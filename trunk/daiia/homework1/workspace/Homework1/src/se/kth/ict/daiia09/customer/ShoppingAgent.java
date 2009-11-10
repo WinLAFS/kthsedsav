@@ -158,13 +158,14 @@ public class ShoppingAgent extends Agent {
 		/*
 		 * the behaviour of the ShoppingAgent is an FSMBehaviour. Control flow:
 		 * 1> check availability of the product (availability)
-		 * 2a> availability == 0: inform user that no availability (noAvailableItems)
-		 * 2b> availability > 0: go to price requests in order to send requests to the pricing agents
+		 * 2> receiving the availabilities (receiveAvailability)
+		 * 3a> availability == 0: inform user that no availability (noAvailableItems)
+		 * 3b> availability > 0: go to price requests in order to send requests to the pricing agents
 		 * 		about the price of the product (priceRequests)
-		 * 3b> receive responses from the pricing agents (priceReceive)
-		 * 4ba> if item found with accepted price : inform user that item found (foundItem)
-		 * 4bb> else if not reached max price : increase price and goto 2b (priceRequests)
-		 * 4bc> else (reached max price) : inform user that no item found within the price limits (notFoundItem)
+		 * 4b> receive responses from the pricing agents (priceReceive)
+		 * 5ba> if item found with accepted price : inform user that item found (foundItem)
+		 * 5bb> else if not reached max price : increase price and goto 2b (priceRequests)
+		 * 5bc> else (reached max price) : inform user that no item found within the price limits (notFoundItem)
 		 */
 		
 		FSMBehaviour shoppingAgentBehaviour = new FSMBehaviour(this);

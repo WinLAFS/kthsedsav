@@ -36,19 +36,23 @@ public class PricingAgent extends Agent {
 		
 		//hard-coded item prices
 		if (getAID().getLocalName().indexOf("c1") >= 0) {
-			inventoryMonitoringAgent = new AID("c1IMA", AID.ISLOCALNAME);
+			//inventoryMonitoringAgent = new AID("c1IMA", AID.ISLOCALNAME);
 			laptopBrandArrayList.add(new LaptopBrand("LG", 8000));
 			laptopBrandArrayList.add(new LaptopBrand("Sony", 11000));
 			laptopBrandArrayList.add(new LaptopBrand("Mac", 13000));
 			laptopBrandArrayList.add(new LaptopBrand("Lenovo", 8000));
 		}
 		else {
-			inventoryMonitoringAgent = new AID("c2IMA", AID.ISLOCALNAME);
+		//	inventoryMonitoringAgent = new AID("c2IMA", AID.ISLOCALNAME);
 			laptopBrandArrayList.add(new LaptopBrand("LG", 9000));
 			laptopBrandArrayList.add(new LaptopBrand("Sony", 10000));
 			laptopBrandArrayList.add(new LaptopBrand("Dell", 12000));
 			laptopBrandArrayList.add(new LaptopBrand("Siemens", 10000));
 		}
+		
+		//finding the corresponding i/m agent 
+		String imString = getLocalName().substring(0, 2)+ "IMA";
+		inventoryMonitoringAgent = new AID(imString, AID.ISLOCALNAME);
 		
 		//register the service as an "inventory-monitoring" service
 		DFAgentDescription dfd = new DFAgentDescription();
@@ -56,7 +60,7 @@ public class PricingAgent extends Agent {
 		ServiceDescription sd = new ServiceDescription();
 		sd.setType("pricing");
 		//the corresponding inventory/monitoring agent
-		sd.setName(getLocalName().substring(0, 2)+ "IMA");
+		sd.setName(imString);
 		dfd.addServices(sd);
 		try {
 			DFService.register(this, dfd);
