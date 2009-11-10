@@ -130,6 +130,9 @@ public class ShoppingAgent extends Agent {
 								c.setInventoryMonitoringAgent(new AID(sed.getName(), AID.ISLOCALNAME));
 								System.out.println(":"+ getAID().getLocalName() + ": New service provider : " + c.toString());
 								companies.add(c);
+								
+								//get the availability of the newly added company
+								addBehaviour(new getThisAvailability(c));
 							}
 							else {
 								//check if the specified service provider already exists. That would
@@ -180,7 +183,7 @@ public class ShoppingAgent extends Agent {
 		}, "noAvailableItems");
 		shoppingAgentBehaviour.registerTransition("receiveAvailability", "noAvailableItems", 0);
 		shoppingAgentBehaviour.registerDefaultTransition("receiveAvailability", "priceRequests");
-		shoppingAgentBehaviour.registerState(new sendPriceRequestsBehaviour(this, 10000), "priceRequests");
+		shoppingAgentBehaviour.registerState(new sendPriceRequestsBehaviour(this, 4000), "priceRequests");
 		shoppingAgentBehaviour.registerState(new receivePricesBehaviour(), "priceReceive");
 		shoppingAgentBehaviour.registerTransition("priceRequests", "priceReceive", 1);
 		shoppingAgentBehaviour.registerLastState(new OneShotBehaviour() {
@@ -205,6 +208,41 @@ public class ShoppingAgent extends Agent {
 		addBehaviour(shoppingAgentBehaviour);
 	}
 	
+	/**
+	 * 
+	 * Gets the availability and updates the value of a specific company
+	 * that if specified in the constructor
+	 *
+	 */
+	private class getThisAvailability extends OneShotBehaviour {
+		Company c;
+		getThisAvailability(Company c) {
+			super();
+			this.c = c;
+		}
+		
+		public void action() {
+			//send an availability request to i/m agent
+			ACLMessage availabilityQuery = new ACLMessage(ACLMessage.QUERY_IF);
+			availabilityQuery.addReceiver(c.getInventoryMonitoringAgent());
+			availabilityQuery.setContent(laptopBrand);
+			myAgent.send(availabilityQuery);
+			
+		
+			MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.INFORM_IF);
+			//do a blocking receive for the response that will include the availability
+			//for this company
+			ACLMessage incomingMsg = myAgent.blockingReceive(mt);
+			if (incomingMsg != null) {
+				AID senderIMA = incomingMsg.getSender();
+				int availability = new Integer(incomingMsg.getContent());
+				c.setAvailability(availability);
+			}
+			else {
+				block();
+			}
+		}
+	}
 	
 	private class receivePricesBehaviour extends Behaviour {
 		//accept only inform messages
