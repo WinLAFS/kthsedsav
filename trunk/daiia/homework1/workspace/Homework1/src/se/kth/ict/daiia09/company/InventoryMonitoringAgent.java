@@ -56,7 +56,7 @@ public class InventoryMonitoringAgent extends Agent {
 		sdAvailability.setName(getLocalName());
 		dfd.addServices(sdAvailability);
 		ServiceDescription sdShippingDays = new ServiceDescription();
-		sdShippingDays.setType("im-availability");
+		sdShippingDays.setType("im-shippingDays");
 		sdShippingDays.setName(getLocalName());
 		dfd.addServices(sdShippingDays);
 		try {
