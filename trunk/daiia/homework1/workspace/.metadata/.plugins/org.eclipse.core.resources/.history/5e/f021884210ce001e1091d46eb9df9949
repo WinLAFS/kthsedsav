@@ -1,0 +1,7 @@
+package se.kth.ict.daiia09.customer;
+
+import jade.core.Agent;
+
+public class ServicesDiscovery extends Agent {
+
+}

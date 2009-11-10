@@ -1,0 +1,167 @@
+package se.kth.ict.daiia09.company;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
+import jade.core.Agent;
+import jade.core.behaviours.CyclicBehaviour;
+import jade.core.behaviours.OneShotBehaviour;
+import jade.core.behaviours.ParallelBehaviour;
+import jade.core.behaviours.SequentialBehaviour;
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
+
+/*
+ * the inventory/monitoring agent
+ * keeps track of the availability of laptop items
+ * and the shipping days that they need
+ * 
+ * parameters:
+ * 	-Int, 1 or 2, in order to load the data for company 1 or 2
+ */
+public class InventoryMonitoringAgent extends Agent {
+	//the list keeping the info about the available laptops
+	private ArrayList<LaptopBrand> laptopBrandArrayList = new ArrayList<LaptopBrand>();
+	
+	public void setup() {
+		System.out.println("Inventory/monitoring agent " + getAID().getName() + " started.");
+		
+		//if user didn't pass startup param or passed param != 1
+		Boolean defaultLoading = true;
+		
+		Object[] args = getArguments();
+		if (args != null && args.length > 0) {
+			if (((String) args[0]).equals("1")) {
+				System.out.println("Loading data for company 1");
+				laptopBrandArrayList.add(new LaptopBrand("LG", 12, 9));
+				laptopBrandArrayList.add(new LaptopBrand("Sony", 3, 5));
+				laptopBrandArrayList.add(new LaptopBrand("Mac", 1, 15));
+				laptopBrandArrayList.add(new LaptopBrand("Lenovo", 22, 3));
+				defaultLoading = false;
+			}
+		}
+		
+		if (defaultLoading) {
+			System.out.println("Loading data for company 2");
+			laptopBrandArrayList.add(new LaptopBrand("LG", 4, 7));
+			laptopBrandArrayList.add(new LaptopBrand("Sony", 4, 5));
+			laptopBrandArrayList.add(new LaptopBrand("Dell", 1, 3));
+			laptopBrandArrayList.add(new LaptopBrand("Siemens", 2, 15));
+		}
+		
+		addBehaviour(new CyclicBehaviour(this) {
+			String target = null;
+			
+			public void action() {
+				
+				//first check for availability request
+				ACLMessage incomingMsg = myAgent.receive();
+				if (incomingMsg != null) {
+					System.out.println("?>>  Received msg: " + incomingMsg.getContent());
+					target = incomingMsg.getContent();
+		
+					ACLMessage reply = incomingMsg.createReply();
+					
+					if (incomingMsg.getPerformative() == ACLMessage.QUERY_IF) {
+						System.out.println("?>>  availability query");
+						int availability = searchAvailability(target);
+						reply.setPerformative(ACLMessage.INFORM_IF);
+						reply.setContent(availability + "");
+						myAgent.send(reply);
+					}
+					else if (incomingMsg.getPerformative() == ACLMessage.QUERY_REF) {
+						System.out.println("?>>  shipping days query");
+						int shippingDays = searchShippingDays(target);
+						reply.setPerformative(ACLMessage.INFORM_REF);
+						reply.setContent(shippingDays + "");
+						myAgent.send(reply);
+					}
+				} 
+				else {
+					block();
+				}
+			}	
+		});
+	}
+	
+	
+	/**
+	 * Search for the available number of items of the specified brand
+	 * 
+	 * @param brand the target brand
+	 * @return the number of available items
+	 */
+	private int searchAvailability(String brand) {
+		int availability = 0;
+		
+		Iterator<LaptopBrand> lbIterator= laptopBrandArrayList.iterator();
+		//iterates through all items, and if the item of the specified
+		//item is found, its availability is returned
+		while (lbIterator.hasNext()) {
+			LaptopBrand laptopBrand = lbIterator.next();
+			if (laptopBrand.getName().equalsIgnoreCase(brand))
+				return laptopBrand.getAvailableItems();
+		}
+		
+		return availability;
+	}
+	
+	/**
+	 * Search for the shipping days for an item. If the item does not
+	 * exist, it returns -1
+	 * 
+	 * @param brand the target brand
+	 * @return the number of shipping days or -1
+	 */
+	private int searchShippingDays(String brand) {
+		int availability = -1;
+		
+		Iterator<LaptopBrand> lbIterator= laptopBrandArrayList.iterator();
+		//iterates through all items, and if the item of the specified
+		//item is found, its availability is returned
+		while (lbIterator.hasNext()) {
+			LaptopBrand laptopBrand = lbIterator.next();
+			if (laptopBrand.getName().equalsIgnoreCase(brand))
+				return laptopBrand.getShippingDays();
+		}
+		
+		return availability;
+	}
+	
+	/*
+	 * inner class LaptopBrand keeping the data regarding the laptops
+	 */
+	private class LaptopBrand {
+		private String name = null;
+		private int availableItems = 2;
+		private int shippingDays = 7;
+		
+		public LaptopBrand(String name, int availableItems, int shippingDays) {
+			super();
+			this.name = name;
+			this.availableItems = availableItems;
+			this.shippingDays = shippingDays;
+		}
+		
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public int getAvailableItems() {
+			return availableItems;
+		}
+		public void setAvailableItems(int availableItems) {
+			this.availableItems = availableItems;
+		}
+		public int getShippingDays() {
+			return shippingDays;
+		}
+		public void setShippingDays(int shippingDays) {
+			this.shippingDays = shippingDays;
+		}
+	}
+}

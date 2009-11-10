@@ -1,0 +1,13 @@
+package se.kth.ict.daiia09.customer;
+
+import jade.core.behaviours.OneShotBehaviour;
+
+public class CheckAvailabilityBehaviour extends OneShotBehaviour {
+
+	@Override
+	public void action() {
+		// TODO Auto-generated method stub
+
+	}
+
+}
