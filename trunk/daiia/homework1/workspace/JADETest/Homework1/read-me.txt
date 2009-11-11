@@ -1,9 +1,13 @@
+
+
+In order to start the GUI console:
+
 java -classpath ../jade/lib/jade.jar;../lib/jadeTools.jar;.;../lib/http.jar jade.Boot -gui
 
-java -classpath ../jade/lib/jade.jar;../lib/jadeTools.jar;.;../lib/http.jar jade.Boot -gui -agents c1MA:se.kth.ict.daiia.company.InventoryMonitoringAgent c1PA:se.kth.ict.daiia09.company.PricingAgent
+java -classpath ../jade/lib/jade.jar;../lib/jadeTools.jar;.;../lib/http.jar jade.Boot -container c1MA:se.kth.ict.daiia09.company.InventoryMonitoringAgent c1PA:se.kth.ict.daiia09.company.PricingAgent
 
-java -classpath ../jade/lib/jade.jar;../lib/jadeTools.jar;.;../lib/http.jar jade.Boot -gui -agents c2PA:se.kth.ict.daiia09.company.PricingAgent[LG 12000]
+java -classpath ../jade/lib/jade.jar;../lib/jadeTools.jar;.;../lib/http.jar jade.Boot -container sa1:se.kth.ict.daiia09.company.ShoppingAgent[LG 12000]
 
-java -classpath ../jade/lib/jade.jar;../lib/jadeTools.jar;.;../lib/http.jar jade.Boot -gui -agents c2PA:se.kth.ict.daiia09.company.ServicesDiscovery
+java -classpath ../jade/lib/jade.jar;../lib/jadeTools.jar;.;../lib/http.jar jade.Boot -container sd1:se.kth.ict.daiia09.company.ServicesDiscovery
 
 
