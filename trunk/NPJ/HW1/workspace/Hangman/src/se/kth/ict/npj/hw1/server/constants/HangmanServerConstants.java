@@ -1,4 +1,4 @@
-package se.kth.ict.npj.hw1.server;
+package se.kth.ict.npj.hw1.server.constants;
 
 public class HangmanServerConstants {
 	public static final String REQUEST_DELIMITER=","; 
