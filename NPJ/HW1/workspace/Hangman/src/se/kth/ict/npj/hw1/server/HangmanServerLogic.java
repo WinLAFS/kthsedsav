@@ -18,6 +18,7 @@ public class HangmanServerLogic {
 
 	private HangmanGame game;
 	private HangmanStatistics statistics = new HangmanStatistics();
+	private boolean currentLetterCorrect=false;
 
 	public void processRequests(PrintWriter pw, BufferedReader br)
 			throws IOException {
@@ -87,7 +88,9 @@ public class HangmanServerLogic {
 					+ HangmanServerConstants.REQUEST_DELIMITER
 					+ statistics.getScore()
 					+ HangmanServerConstants.REQUEST_DELIMITER
-					+ letter;
+					+ letter
+					+ HangmanServerConstants.REQUEST_DELIMITER
+					+ currentLetterCorrect;
 			pw.println(resultString);
 			pw.flush();
 		} else if (requestType.equalsIgnoreCase(HangmanServerConstants.CLIENT_SEND_WORD)) {
@@ -174,6 +177,9 @@ public class HangmanServerLogic {
 
 		if (!letterFound) {
 			game.setAttemptsLeft(game.getAttemptsLeft() - 1);
+			currentLetterCorrect=false;
+		} else {
+			currentLetterCorrect=true;
 		}
 
 		return newWord;
