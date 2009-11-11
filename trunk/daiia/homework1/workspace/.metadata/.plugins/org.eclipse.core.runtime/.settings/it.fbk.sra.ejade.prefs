@@ -1,8 +1,0 @@
-#Tue Nov 10 16:58:18 CET 2009
-se.kth.daiia.test.HelloWorldAgent=HelloWorldAgent
-se.kth.ict.daiia09.company.PricingAgent=c2PA
-eclipse.preferences.version=1
-se.kth.ict.daiia09.customer.ServicesDiscovery=ServicesDiscovery
-se.kth.ict.daiia09.company.InventoryMonitoringAgent=c2IMA
-se.kth.ict.daiia09.customer.ShoppingAgent=sa
-se.kth.ict.daiia09.customer.ShoppingAgent_params=LG 10000
