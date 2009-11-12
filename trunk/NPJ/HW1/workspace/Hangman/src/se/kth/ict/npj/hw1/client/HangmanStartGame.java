@@ -8,8 +8,20 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.StringTokenizer;
 
+/**
+ * This class handles the creation of a new game. Same msg flow
+ * as {@link HangmanLetterTry}
+ *
+ */
 public class HangmanStartGame extends HangmanCommunication {
-
+	
+	/**
+	 * The constructor inherited by {@link HangmanCommunication}
+	 * 
+	 * @param socket
+	 * @param msg
+	 * @param hc
+	 */
 	public HangmanStartGame(Socket socket, String msg, HangmanClient hc) {
 		super(socket, msg, hc);
 	}
@@ -21,7 +33,7 @@ public class HangmanStartGame extends HangmanCommunication {
 			
 			pw.println(msg);
 			pw.flush();
-			// TODO Socket timeout---------------
+
 			String input = br.readLine();
 			if (input != null) {
 				StringTokenizer st = new StringTokenizer(input, HangmanClientConnection.REQUEST_DELIMITER);
