@@ -27,7 +27,6 @@ public class HangmanWordTry extends HangmanCommunication {
 				String word = st.nextToken();
 				int numOfAttempts = new Integer(st.nextToken());
 				int score = new Integer(st.nextToken());
-				String wordPlayed = st.nextToken();
 				//Character c = st.nextToken().toCharArray()[0];
 				//boolean correctLetter = (st.nextToken().equals("true")) ? true : false;
 				
@@ -43,7 +42,8 @@ public class HangmanWordTry extends HangmanCommunication {
 					}
 				}
 				else {
-					hc.setCharacterPlayedWord(word, numOfAttempts, wordPlayed);
+					String wordPlayed = st.nextToken();
+					hc.setWordPlayed(word, numOfAttempts, wordPlayed);
 				}
 			}
 			else {

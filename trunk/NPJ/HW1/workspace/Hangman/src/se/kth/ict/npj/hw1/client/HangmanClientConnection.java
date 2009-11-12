@@ -39,7 +39,7 @@ public class HangmanClientConnection {
 	 * 
 	 */
 	public void startNewGame() {
-		HangmanCommunication hangmanCommunication = new HangmanCommunication(socket, HangmanClientConnection.CLIENT_NEW_GAME, hc);
+		new HangmanCommunication(socket, HangmanClientConnection.CLIENT_NEW_GAME, hc);
 	}
 	
 	/**
@@ -47,11 +47,12 @@ public class HangmanClientConnection {
 	 */
 	public void tryCharacter(Character character) {
 		String msg = HangmanClientConnection.CLIENT_SEND_LETTER + HangmanClientConnection.REQUEST_DELIMITER + character;
-		HangmanLetterTry hangmanLetterTry = new HangmanLetterTry(socket, msg, hc);
+		new HangmanLetterTry(socket, msg, hc);
 	}
 
 	public void tryLetter(String text) {
-		
+		String msg = HangmanClientConnection.CLIENT_SEND_WORD + HangmanClientConnection.REQUEST_DELIMITER + text;
+		new HangmanWordTry(socket, msg, hc);
 	}
 	
 }
