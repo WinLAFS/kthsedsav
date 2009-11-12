@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.SocketTimeoutException;
 import java.util.StringTokenizer;
 
 import se.kth.ict.npj.hw1.server.constants.HangmanServerConstants;
@@ -40,7 +41,10 @@ public class HangmanServerLogic {
 				}
 				processSingleRequest(inputLine, pw);
 			}
-		}catch(IOException e){
+		}catch (SocketTimeoutException e) {
+			System.err.println("Connection with client closed due to timeout");
+		}
+		catch(IOException e){
 			System.err.println("Connection with client interrupted");
 		}
 	}
@@ -131,6 +135,7 @@ public class HangmanServerLogic {
 			} else {
 				if (correctWord) {
 					game.setWon(true);
+					statistics.setScore(statistics.getScore() + 1);
 					resultString += HangmanServerConstants.SERVER_WON
 							+ HangmanServerConstants.REQUEST_DELIMITER
 							+ game.getRealWord()
@@ -138,7 +143,6 @@ public class HangmanServerLogic {
 							+ game.getAttemptsLeft()
 							+ HangmanServerConstants.REQUEST_DELIMITER
 							+ statistics.getScore();
-					statistics.setScore(statistics.getScore() + 1);
 				} else {
 					resultString += HangmanServerConstants.SERVER_PLAY
 							+ HangmanServerConstants.REQUEST_DELIMITER

@@ -39,6 +39,7 @@ public class HangmanServer {
 		while(listen){
 			try{
 				Socket clientSocket = serverSocket.accept();
+				clientSocket.setSoTimeout(600000);
 				(new HangmanConHandler(clientSocket)).start();
 				System.out.println("New client connected");
 			} catch (IOException ex){
