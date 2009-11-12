@@ -319,8 +319,12 @@ public class HangmanClient extends JFrame {
 			jButton3.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					System.out.println("[LOG] Try word button clicked."); // TODO Auto-generated Event stub actionPerformed()
-					
-					hcc.tryWord(getJTextField3().getText()); //try word
+					if (getJTextField3().getText().length() == 0) {
+						jLabel12.setText("Try an non empty word");
+					}
+					else {
+						hcc.tryWord(getJTextField3().getText()); //try word
+					}
 				}
 			});
 		}
