@@ -146,7 +146,9 @@ public class HangmanServerLogic {
 							+ HangmanServerConstants.REQUEST_DELIMITER
 							+ game.getAttemptsLeft()
 							+ HangmanServerConstants.REQUEST_DELIMITER
-							+ statistics.getScore();
+							+ statistics.getScore()
+							+ HangmanServerConstants.REQUEST_DELIMITER
+							+ proposedWord;
 				}
 			}
 
