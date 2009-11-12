@@ -1,7 +1,6 @@
 package se.kth.ict.npj.hw1.client;
 
 import javax.swing.SwingUtilities;
-import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JDialog;
@@ -164,9 +163,10 @@ public class HangmanClient extends JFrame {
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					System.out.println("[LOG] Connect button clicked."); // TODO Auto-generated Event stub actionPerformed()
-					jLabel3.setText("Connecting..");
-					
+
 					try {
+						jLabel3.setText("Connecting..");
+						getJButton().setEnabled(false);
 						//try to establish a connection to the server
 						hcc = new HangmanClientConnection(getJTextField().getText(), getJTextField1().getText(), thisClass);
 						getJDialog().setVisible(false); //if connection established, go to the main (game) frame
@@ -176,7 +176,7 @@ public class HangmanClient extends JFrame {
 					}
 					catch (Exception e1) {
 						System.out.println("[LOG] Connection failed.");
-						
+						getJButton().setEnabled(true);
 						jLabel3.setText("Failed"); //if connection failed, inform user
 					}
 				}
@@ -193,7 +193,7 @@ public class HangmanClient extends JFrame {
 	private JButton getJButton1() {
 		if (jButton1 == null) {
 			jButton1 = new JButton();
-			jButton1.setBounds(new Rectangle(165, 15, 106, 16));
+			jButton1.setBounds(new Rectangle(195, 15, 106, 16));
 			jButton1.setText("New Game");
 			jButton1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -232,7 +232,7 @@ public class HangmanClient extends JFrame {
 	private JButton getJButton2() {
 		if (jButton2 == null) {
 			jButton2 = new JButton();
-			jButton2.setBounds(new Rectangle(165, 135, 106, 17));
+			jButton2.setBounds(new Rectangle(210, 135, 91, 17));
 			jButton2.setEnabled(false);
 			jButton2.setText("Try!");
 			jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -273,7 +273,8 @@ public class HangmanClient extends JFrame {
 	private JTextField getJTextField3() {
 		if (jTextField3 == null) {
 			jTextField3 = new JTextField();
-			jTextField3.setBounds(new Rectangle(75, 165, 76, 16));
+			jTextField3.setBounds(new Rectangle(75, 165, 121, 16));
+			jTextField3.setText("");
 			jTextField3.setEnabled(false);
 		}
 		return jTextField3;
@@ -287,9 +288,16 @@ public class HangmanClient extends JFrame {
 	private JButton getJButton3() {
 		if (jButton3 == null) {
 			jButton3 = new JButton();
-			jButton3.setBounds(new Rectangle(165, 165, 106, 16));
+			jButton3.setBounds(new Rectangle(210, 165, 91, 16));
 			jButton3.setEnabled(false);
 			jButton3.setText("Try!");
+			jButton3.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					System.out.println("[LOG] Connect button clicked."); // TODO Auto-generated Event stub actionPerformed()
+					
+					hcc.tryLetter(getJTextField3().getText());
+				}
+			});
 		}
 		return jButton3;
 	}
@@ -302,8 +310,9 @@ public class HangmanClient extends JFrame {
 	private JEditorPane getJEditorPane() {
 		if (jEditorPane == null) {
 			jEditorPane = new JEditorPane();
-			jEditorPane.setBounds(new Rectangle(15, 240, 256, 46));
+			jEditorPane.setBounds(new Rectangle(15, 255, 286, 46));
 			jEditorPane.setEditable(false);
+			jEditorPane.setFont(new Font("Dialog", Font.PLAIN, 16));
 			jEditorPane.setText("");
 		}
 		return jEditorPane;
@@ -337,7 +346,7 @@ public class HangmanClient extends JFrame {
 	 * @return void
 	 */
 	private void initialize() {
-		this.setSize(300, 371);
+		this.setSize(333, 381);
 		this.setContentPane(getJContentPane());
 		this.setTitle("Hangman v0.1");
 		getJDialog().setVisible(true); //set the connection dialog
@@ -352,24 +361,24 @@ public class HangmanClient extends JFrame {
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
 			jLabel14 = new JLabel();
-			jLabel14.setBounds(new Rectangle(240, 210, 31, 16));
+			jLabel14.setBounds(new Rectangle(270, 225, 31, 16));
 			jLabel14.setText("?");
 			jLabel13 = new JLabel();
-			jLabel13.setBounds(new Rectangle(180, 210, 61, 16));
+			jLabel13.setBounds(new Rectangle(210, 225, 61, 16));
 			jLabel13.setText("Tries left:");
 			jLabel12 = new JLabel();
-			jLabel12.setBounds(new Rectangle(15, 300, 256, 16));
+			jLabel12.setBounds(new Rectangle(15, 315, 286, 16));
 			jLabel12.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 12));
 			jLabel12.setForeground(Color.red);
 			jLabel12.setText("Start a new game");
 			jLabel11 = new JLabel();
-			jLabel11.setBounds(new Rectangle(15, 210, 91, 16));
+			jLabel11.setBounds(new Rectangle(15, 225, 91, 16));
 			jLabel11.setForeground(new Color(160, 51, 51));
 			jLabel11.setText("Wrong letters:");
 			jLabel10 = new JLabel();
-			jLabel10.setBounds(new Rectangle(120, 195, 38, 16));
+			jLabel10.setBounds(new Rectangle(135, 195, 38, 16));
 			jLabel10.setFont(new Font("Dialog", Font.BOLD, 36));
-			jLabel10.setText("--");
+			jLabel10.setText("__");
 			jLabel9 = new JLabel();
 			jLabel9.setBounds(new Rectangle(15, 165, 38, 16));
 			jLabel9.setText("Word:");
@@ -380,13 +389,14 @@ public class HangmanClient extends JFrame {
 			jLabel7.setBounds(new Rectangle(15, 60, 121, 16));
 			jLabel7.setText("Target word:");
 			jLabel6 = new JLabel();
-			jLabel6.setBounds(new Rectangle(15, 75, 256, 31));
+			jLabel6.setBounds(new Rectangle(15, 75, 298, 31));
 			jLabel6.setFont(new Font("Dotum", Font.BOLD, 30));
 			jLabel6.setBackground(new Color(193, 238, 238));
 			jLabel6.setForeground(new Color(51, 129, 51));
 			jLabel6.setText("start a game");
 			jLabel5 = new JLabel();
-			jLabel5.setBounds(new Rectangle(90, 15, 31, 16));
+			jLabel5.setBounds(new Rectangle(90, 15, 31, 19));
+			jLabel5.setFont(new Font("Dialog", Font.BOLD, 24));
 			jLabel5.setText("0");
 			jLabel4 = new JLabel();
 			jLabel4.setBounds(new Rectangle(15, 15, 76, 16));
@@ -436,6 +446,8 @@ public class HangmanClient extends JFrame {
 	 * 
 	 */
 	public void setGameStarted(String word, int numOfAttempts, int score) {
+		System.out.println("[LOG] Game started.");
+		
 		gameInputSetEnabled(true);
 		jLabel12.setText("Game started");
 		jLabel6.setText(word);
@@ -454,20 +466,48 @@ public class HangmanClient extends JFrame {
 	 * @param correctLetter boolean that indicates if the letter was correct or not
 	 */
 	public void setCharacterPlayed(String word, int numOfAttempts, Character c, boolean correctLetter) {
-		jLabel6.setText(word);
-		playedCharacters.add(c);
-		getJTextField2().setText("");
-		if (correctLetter) {
-			jLabel12.setText("Correct letter " + c);	
+		System.out.println("[LOG] Character '" + c + "' played");
+		
+		jLabel6.setText(word); //update the word field
+		playedCharacters.add(c); //add the played character to the played list
+		getJTextField2().setText(""); //clear the input textfield
+		if (correctLetter) { //if correct letter
+			jLabel12.setText("Correct letter " + c); //inform user	
+		}
+		else { //else
+			jLabel12.setText("Wrong letter " + c); //inform user 
+			jLabel14.setText(numOfAttempts+ ""); //show the reduced number of attempts 
+			playedLostCharacters.add(c); //add the character to the wrong characters
+			getJEditorPane().setText(getJEditorPane().getText() + " " + c); //also preview the wrong
+			//characters to the user
+		}
+	}
+
+	public void setPlayerWonOrLost(Boolean won ,String word, int score) {
+		if (won) {
+			System.out.println("[LOG] Game finished: won");
+			jLabel12.setText("Found word " + word + "!");
+			jLabel14.setText("?");
 		}
 		else {
-			jLabel12.setText("Wrong letter " + c);
-			jLabel14.setText(numOfAttempts+ "");
-			playedLostCharacters.add(c);
-			getJEditorPane().setText(getJEditorPane().getText() + " " + c);
+			System.out.println("[LOG] Game finished: lost");
+			jLabel12.setText("Lost! The word was " + word);
+			jLabel14.setText("0");
 		}
+		jLabel6.setText(word);
+		jLabel5.setText(score + "");
+		getJTextField2().setText("");
+		gameInputSetEnabled(false);
+	}
+
+	public void setCharacterPlayedWord(String word, int numOfAttempts, String wordPlayed) {
+		System.out.println("[LOG] Word '" + wordPlayed + "' played");
 		
+		jLabel6.setText(word); //update the word field
+		getJTextField3().setText(""); //clear the input textfield
 		
+		jLabel12.setText("Wrong word " + wordPlayed); //inform user 
+		jLabel14.setText(numOfAttempts+ ""); //show the reduced number of attempts 
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"

@@ -16,6 +16,7 @@ public class HangmanCommunication extends Thread {
 		this.socket = socket;
 		this.msg = msg;
 		this.hc = hc;
+		this.start();
 	}
 	
 	public void run() {
