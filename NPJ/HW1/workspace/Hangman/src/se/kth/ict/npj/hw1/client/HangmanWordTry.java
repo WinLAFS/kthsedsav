@@ -7,8 +7,20 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.StringTokenizer;
 
+/**
+ * Like character try, this is a word try. Same msg flow
+ * as {@link HangmanLetterTry}
+ *
+ */
 public class HangmanWordTry extends HangmanCommunication {
-
+	
+	/**
+	 * The constructor inherited by {@link HangmanCommunication}
+	 * 
+	 * @param socket
+	 * @param msg
+	 * @param hc
+	 */
 	public HangmanWordTry(Socket socket, String msg, HangmanClient hc) {
 		super(socket, msg, hc);
 	}
@@ -20,7 +32,6 @@ public class HangmanWordTry extends HangmanCommunication {
 			
 			pw.println(msg);
 			pw.flush();
-			// TODO Socket timeout---------------
 			String input = br.readLine();
 			if (input != null) {
 				StringTokenizer st = new StringTokenizer(input, HangmanClientConnection.REQUEST_DELIMITER);
