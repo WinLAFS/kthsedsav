@@ -16,9 +16,15 @@ import java.util.ArrayList;
 
 import javax.swing.JEditorPane;
 
+/**
+ * This class is the GUI class of the Hangman game. It handles
+ * all the GUI components, the control flow flow via button events
+ * and initializes the connection to the server.
+ * 
+ */
 public class HangmanClient extends JFrame {
 
-	HangmanClientConnection hcc = null; //the TCP connection thread
+	HangmanClientConnection hcc = null; //the TCP connection object
 	static HangmanClient thisClass = null; //the class
 	ArrayList<Character> playedCharacters = null;
 	ArrayList<Character> playedLostCharacters = null;
@@ -149,7 +155,7 @@ public class HangmanClient extends JFrame {
 
 	/**
 	 * This method initializes jButton, which is the connect button
-	 * used to connect to the HangmanServer	
+	 * used to connect to the HangmanServer.
 	 * 	
 	 * @return javax.swing.JButton	
 	 */
@@ -163,8 +169,10 @@ public class HangmanClient extends JFrame {
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					System.out.println("[LOG] Connect button clicked."); // TODO Auto-generated Event stub actionPerformed()
+					
 					jLabel3.setText("Connecting..");
 					getJButton().setEnabled(false);
+					getJDialog().repaint();
 
 					try {
 						//try to establish a connection to the server
@@ -186,7 +194,8 @@ public class HangmanClient extends JFrame {
 	}
 
 	/**
-	 * This method initializes jButton1	
+	 * This method initializes jButton1, which is responsible for
+	 * starting a new game.
 	 * 	
 	 * @return javax.swing.JButton	
 	 */
@@ -195,15 +204,19 @@ public class HangmanClient extends JFrame {
 			jButton1 = new JButton();
 			jButton1.setBounds(new Rectangle(195, 15, 106, 16));
 			jButton1.setText("New Game");
+			
+			//the start game button
 			jButton1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("[LOG] New game button clicked."); // TODO Auto-generated Event stub actionPerformed()
+					System.out.println("[LOG] New game button clicked.");
 					
 					jLabel12.setText("Starting new game...");
 					getJButton1().setEnabled(false);
+					
+					//clear the letter played lists
 					playedCharacters = new ArrayList<Character>();
 					playedLostCharacters = new ArrayList<Character>();
-					hcc.startNewGame();
+					hcc.startNewGame(); //start a new game
 				}
 			});
 		}
@@ -235,12 +248,14 @@ public class HangmanClient extends JFrame {
 			jButton2.setBounds(new Rectangle(210, 135, 91, 17));
 			jButton2.setEnabled(false);
 			jButton2.setText("Try!");
+			
+			//try to play a letter
 			jButton2.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					System.out.println("[LOG] Letter send click."); // TODO Auto-generated Event stub actionPerformed()
 					
 					String character = getJTextField2().getText();
-					if (character.length() != 1) {
+					if (character.length() != 1) { //check if it is only 1 character
 						jLabel12.setText("Insert 1 character");
 					}
 					else {
@@ -552,15 +567,23 @@ public class HangmanClient extends JFrame {
 		jLabel5.setText("0");
 		jLabel14.setText("?");
 		jLabel3.setText("Connection Lost");
+		jLabel6.setText("start a game");
+		getJTextField2().setText("");
+		getJTextField3().setText("");
+		getJEditorPane().setText("");
+		hcc = null;
+		getJButton().setEnabled(true);
 		getJDialog().setVisible(true);
-		
 	}
 
-	public void setCommunicationError() {
+	public void setCommunicationError(boolean newGameTry) {
 		// TODO Auto-generated method stub
 		System.out.println("[LOG] Communication error happened");
 		
 		jLabel12.setText("Communication error occured. Try again.");
+		if (newGameTry) {
+			gameInputSetEnabled(false);
+		}
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"

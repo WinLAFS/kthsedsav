@@ -46,7 +46,7 @@ public class HangmanStartGame extends HangmanCommunication {
 			hc.setConnectionLost();
 		}
 		catch (Exception e) {
-			hc.setCommunicationError();
+			hc.setCommunicationError(true);
 		}
 	}
 
