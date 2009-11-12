@@ -293,7 +293,7 @@ public class HangmanClient extends JFrame {
 			jButton3.setText("Try!");
 			jButton3.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("[LOG] Connect button clicked."); // TODO Auto-generated Event stub actionPerformed()
+					System.out.println("[LOG] Try word button clicked."); // TODO Auto-generated Event stub actionPerformed()
 					
 					hcc.tryLetter(getJTextField3().getText());
 				}
@@ -372,7 +372,7 @@ public class HangmanClient extends JFrame {
 			jLabel12.setForeground(Color.red);
 			jLabel12.setText("Start a new game");
 			jLabel11 = new JLabel();
-			jLabel11.setBounds(new Rectangle(15, 225, 91, 16));
+			jLabel11.setBounds(new Rectangle(15, 240, 91, 16));
 			jLabel11.setForeground(new Color(160, 51, 51));
 			jLabel11.setText("Wrong letters:");
 			jLabel10 = new JLabel();
@@ -427,7 +427,8 @@ public class HangmanClient extends JFrame {
 	/**
 	 * This method enables or disables all the inputs for a game.
 	 * These are the letter and word input and the letter and word try buttons
-	 * and the new game
+	 * and the new game. It also clears the user inputs if they are becoming
+	 * enabled.
 	 * 
 	 * @param enabled true to enable, false to disable
 	 */
@@ -437,22 +438,29 @@ public class HangmanClient extends JFrame {
 		getJTextField3().setEnabled(enabled);
 		getJButton2().setEnabled(enabled);
 		getJButton3().setEnabled(enabled);
+		if (enabled) {
+			getJTextField2().setText("");
+			getJTextField3().setText("");
+			getJEditorPane().setText("");
+		}
 	}
 	
 	/**
-	 * @param score 
-	 * @param numOfAttempts 
-	 * @param word 
+	 * Initializes the GUI when a new game starts.
+	 * 
+	 * @param score the current score of the player
+	 * @param numOfAttempts the remaining number of attempts for this game
+	 * @param word the target word
 	 * 
 	 */
 	public void setGameStarted(String word, int numOfAttempts, int score) {
 		System.out.println("[LOG] Game started.");
 		
-		gameInputSetEnabled(true);
-		jLabel12.setText("Game started");
-		jLabel6.setText(word);
-		jLabel14.setText(numOfAttempts+ "");
-		jLabel5.setText(score + "");
+		gameInputSetEnabled(true); //enables the inputs
+		jLabel12.setText("Game started"); //informs
+		jLabel6.setText(word); //sets the target word 
+		jLabel14.setText(numOfAttempts+ ""); //sets the number of attempts
+		jLabel5.setText(score + ""); //sets the score
 	}
 	
 	/**
@@ -482,25 +490,41 @@ public class HangmanClient extends JFrame {
 			//characters to the user
 		}
 	}
-
-	public void setPlayerWonOrLost(Boolean won ,String word, int score) {
-		if (won) {
-			System.out.println("[LOG] Game finished: won");
-			jLabel12.setText("Found word " + word + "!");
-			jLabel14.setText("?");
+	
+	/**
+	 * Informs the user when the game (round) is over.
+	 * 
+	 * @param won boolean that indicates if won or lost
+	 * @param word the target word
+	 * @param score the updated score
+	 * 
+	 */
+	public void setPlayerWonOrLost(Boolean won, String word, int score) {
+		if (won) { //if player won
+			System.out.println("[LOG] Game finished: won"); 
+			jLabel12.setText("Found word " + word + "!"); //inform
+			jLabel14.setText("?"); //tries remaining
 		}
 		else {
-			System.out.println("[LOG] Game finished: lost");
-			jLabel12.setText("Lost! The word was " + word);
-			jLabel14.setText("0");
+			System.out.println("[LOG] Game finished: lost"); 
+			jLabel12.setText("Lost! The word was " + word); //inform
+			jLabel14.setText("0"); //tries remaining
 		}
-		jLabel6.setText(word);
-		jLabel5.setText(score + "");
-		getJTextField2().setText("");
-		gameInputSetEnabled(false);
+		jLabel6.setText(word); //show the correct word
+		jLabel5.setText(score + ""); //update score
+		gameInputSetEnabled(false); //disable inputs
 	}
-
-	public void setCharacterPlayedWord(String word, int numOfAttempts, String wordPlayed) {
+	
+	/**
+	 * This method updates the GUI of the user in order to facilitate a correct or
+	 * not word try. It updates the word, the tries left, the message to the
+	 * user. 
+	 * 
+	 * @param word
+	 * @param numOfAttempts
+	 * @param wordPlayed
+	 */
+	public void setWordPlayed(String word, int numOfAttempts, String wordPlayed) {
 		System.out.println("[LOG] Word '" + wordPlayed + "' played");
 		
 		jLabel6.setText(word); //update the word field
