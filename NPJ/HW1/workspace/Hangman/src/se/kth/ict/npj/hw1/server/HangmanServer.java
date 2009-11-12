@@ -40,6 +40,7 @@ public class HangmanServer {
 			try{
 				Socket clientSocket = serverSocket.accept();
 				(new HangmanConHandler(clientSocket)).start();
+				System.out.println("New client connected");
 			} catch (IOException ex){
 				System.err.println("Can't create client socket");
 			}

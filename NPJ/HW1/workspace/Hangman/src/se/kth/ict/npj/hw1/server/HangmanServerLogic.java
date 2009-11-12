@@ -23,7 +23,7 @@ public class HangmanServerLogic {
 	private boolean currentLetterCorrect=false;
 
 	/**
-	 * The method is called in the beginning of client commmunication.
+	 * The method is called in the beginning of client communication.
 	 * The method waits for a new commands from client and process them.
 	 * 
 	 * @param pw PrintWriter to communicate with client
@@ -47,7 +47,7 @@ public class HangmanServerLogic {
 
 	/**
 	 * The method process request from the client. It defines request type,
-	 * checks for the word and sends corresponding responce message.
+	 * checks for the word and sends corresponding response message.
 	 * 
 	 * @param requestString
 	 *            String of client request
@@ -93,6 +93,7 @@ public class HangmanServerLogic {
 				statistics.setScore(statistics.getScore() + 1);
 			} else if (game.getAttemptsLeft() < 1) {
 				resultString += HangmanServerConstants.SERVER_FAIL;
+				game.setCurrentWord(game.getRealWord());
 				statistics.setScore(statistics.getScore() - 1);
 			} else {
 				resultString += HangmanServerConstants.SERVER_PLAY;
@@ -118,6 +119,8 @@ public class HangmanServerLogic {
 			boolean correctWord = checkWord(game.getRealWord(), proposedWord);
 
 			if (game.getAttemptsLeft() < 1) {
+				game.setCurrentWord(game.getRealWord());
+				statistics.setScore(statistics.getScore() - 1);
 				resultString += HangmanServerConstants.SERVER_FAIL
 						+ HangmanServerConstants.REQUEST_DELIMITER
 						+ game.getCurrentWord()
@@ -125,7 +128,6 @@ public class HangmanServerLogic {
 						+ game.getAttemptsLeft()
 						+ HangmanServerConstants.REQUEST_DELIMITER
 						+ statistics.getScore();
-				statistics.setScore(statistics.getScore() - 1);
 			} else {
 				if (correctWord) {
 					game.setWon(true);
