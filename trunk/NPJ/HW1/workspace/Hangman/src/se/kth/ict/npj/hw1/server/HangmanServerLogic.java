@@ -84,80 +84,111 @@ public class HangmanServerLogic {
 		
 		//Client sends a letter
 		} else if (requestType.equalsIgnoreCase(HangmanServerConstants.CLIENT_SEND_LETTER)) {
-			String resultString = "";
-			String letter = st.nextToken().toLowerCase();
-			String newWord = checkLetter(game.getRealWord(), game
-					.getCurrentWord(), letter);
-
-			game.setCurrentWord(newWord);
-
-			if (newWord.indexOf("-") < 0) {
-				game.setWon(true);
-				resultString += HangmanServerConstants.SERVER_WON;
-				statistics.setScore(statistics.getScore() + 1);
-			} else if (game.getAttemptsLeft() < 1) {
-				resultString += HangmanServerConstants.SERVER_FAIL;
-				game.setCurrentWord(game.getRealWord());
-				statistics.setScore(statistics.getScore() - 1);
+			if(!game.isFailed()){
+				String resultString = "";
+				String letter = st.nextToken().toLowerCase();
+				String newWord = checkLetter(game.getRealWord(), game
+						.getCurrentWord(), letter);
+	
+				game.setCurrentWord(newWord);
+	
+				if (newWord.indexOf("-") < 0) {
+					game.setWon(true);
+					resultString += HangmanServerConstants.SERVER_WON;
+					statistics.setScore(statistics.getScore() + 1);
+				} else if (game.getAttemptsLeft() < 1) {
+					resultString += HangmanServerConstants.SERVER_FAIL;
+					game.setCurrentWord(game.getRealWord());
+					game.setFailed(true);
+					statistics.setScore(statistics.getScore() - 1);
+				} else {
+					resultString += HangmanServerConstants.SERVER_PLAY;
+				}
+	
+				resultString += HangmanServerConstants.REQUEST_DELIMITER
+						+ game.getCurrentWord()
+						+ HangmanServerConstants.REQUEST_DELIMITER
+						+ game.getAttemptsLeft()
+						+ HangmanServerConstants.REQUEST_DELIMITER
+						+ statistics.getScore()
+						+ HangmanServerConstants.REQUEST_DELIMITER
+						+ letter
+						+ HangmanServerConstants.REQUEST_DELIMITER
+						+ currentLetterCorrect;
+				pw.println(resultString);
+				pw.flush();
 			} else {
-				resultString += HangmanServerConstants.SERVER_PLAY;
+				String letter = st.nextToken().toLowerCase();
+				String resultString = HangmanServerConstants.SERVER_FAIL+
+						HangmanServerConstants.REQUEST_DELIMITER
+						+ game.getCurrentWord()
+						+ HangmanServerConstants.REQUEST_DELIMITER
+						+ game.getAttemptsLeft()
+						+ HangmanServerConstants.REQUEST_DELIMITER
+						+ statistics.getScore()
+						+ HangmanServerConstants.REQUEST_DELIMITER
+						+ letter
+						+ HangmanServerConstants.REQUEST_DELIMITER
+						+ "false";
+				pw.println(resultString);
+				pw.flush();
 			}
-
-			resultString += HangmanServerConstants.REQUEST_DELIMITER
-					+ game.getCurrentWord()
-					+ HangmanServerConstants.REQUEST_DELIMITER
-					+ game.getAttemptsLeft()
-					+ HangmanServerConstants.REQUEST_DELIMITER
-					+ statistics.getScore()
-					+ HangmanServerConstants.REQUEST_DELIMITER
-					+ letter
-					+ HangmanServerConstants.REQUEST_DELIMITER
-					+ currentLetterCorrect;
-			pw.println(resultString);
-			pw.flush();
 		
 		//Client sends a word
 		} else if (requestType.equalsIgnoreCase(HangmanServerConstants.CLIENT_SEND_WORD)) {
-			String resultString = "";
-			String proposedWord = st.nextToken().toLowerCase();
-			boolean correctWord = checkWord(game.getRealWord(), proposedWord);
-
-			if (game.getAttemptsLeft() < 1) {
-				game.setCurrentWord(game.getRealWord());
-				statistics.setScore(statistics.getScore() - 1);
-				resultString += HangmanServerConstants.SERVER_FAIL
+			if(!game.isFailed()){
+				String resultString = "";
+				String proposedWord = st.nextToken().toLowerCase();
+				boolean correctWord = checkWord(game.getRealWord(), proposedWord);
+	
+				if (game.getAttemptsLeft() < 1) {
+					game.setCurrentWord(game.getRealWord());
+					statistics.setScore(statistics.getScore() - 1);
+					game.setFailed(true);
+					resultString += HangmanServerConstants.SERVER_FAIL
+							+ HangmanServerConstants.REQUEST_DELIMITER
+							+ game.getCurrentWord()
+							+ HangmanServerConstants.REQUEST_DELIMITER
+							+ game.getAttemptsLeft()
+							+ HangmanServerConstants.REQUEST_DELIMITER
+							+ statistics.getScore();
+				} else {
+					if (correctWord) {
+						game.setWon(true);
+						statistics.setScore(statistics.getScore() + 1);
+						resultString += HangmanServerConstants.SERVER_WON
+								+ HangmanServerConstants.REQUEST_DELIMITER
+								+ game.getRealWord()
+								+ HangmanServerConstants.REQUEST_DELIMITER
+								+ game.getAttemptsLeft()
+								+ HangmanServerConstants.REQUEST_DELIMITER
+								+ statistics.getScore();
+					} else {
+						resultString += HangmanServerConstants.SERVER_PLAY
+								+ HangmanServerConstants.REQUEST_DELIMITER
+								+ game.getCurrentWord()
+								+ HangmanServerConstants.REQUEST_DELIMITER
+								+ game.getAttemptsLeft()
+								+ HangmanServerConstants.REQUEST_DELIMITER
+								+ statistics.getScore()
+								+ HangmanServerConstants.REQUEST_DELIMITER
+								+ proposedWord;
+					}
+				}
+	
+				pw.println(resultString);
+				pw.flush();
+			} else {
+				String resultString = HangmanServerConstants.SERVER_FAIL
 						+ HangmanServerConstants.REQUEST_DELIMITER
 						+ game.getCurrentWord()
 						+ HangmanServerConstants.REQUEST_DELIMITER
 						+ game.getAttemptsLeft()
 						+ HangmanServerConstants.REQUEST_DELIMITER
 						+ statistics.getScore();
-			} else {
-				if (correctWord) {
-					game.setWon(true);
-					statistics.setScore(statistics.getScore() + 1);
-					resultString += HangmanServerConstants.SERVER_WON
-							+ HangmanServerConstants.REQUEST_DELIMITER
-							+ game.getRealWord()
-							+ HangmanServerConstants.REQUEST_DELIMITER
-							+ game.getAttemptsLeft()
-							+ HangmanServerConstants.REQUEST_DELIMITER
-							+ statistics.getScore();
-				} else {
-					resultString += HangmanServerConstants.SERVER_PLAY
-							+ HangmanServerConstants.REQUEST_DELIMITER
-							+ game.getCurrentWord()
-							+ HangmanServerConstants.REQUEST_DELIMITER
-							+ game.getAttemptsLeft()
-							+ HangmanServerConstants.REQUEST_DELIMITER
-							+ statistics.getScore()
-							+ HangmanServerConstants.REQUEST_DELIMITER
-							+ proposedWord;
-				}
+				pw.println(resultString);
+				pw.flush();
 			}
-
-			pw.println(resultString);
-			pw.flush();
 		}
 	}
 
