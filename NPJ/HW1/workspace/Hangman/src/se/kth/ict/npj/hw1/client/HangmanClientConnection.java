@@ -40,7 +40,6 @@ public class HangmanClientConnection {
 	 */
 	public void startNewGame() {
 		HangmanCommunication hangmanCommunication = new HangmanCommunication(socket, HangmanClientConnection.CLIENT_NEW_GAME, hc);
-		hangmanCommunication.start();
 	}
 	
 	/**
@@ -49,7 +48,10 @@ public class HangmanClientConnection {
 	public void tryCharacter(Character character) {
 		String msg = HangmanClientConnection.CLIENT_SEND_LETTER + HangmanClientConnection.REQUEST_DELIMITER + character;
 		HangmanLetterTry hangmanLetterTry = new HangmanLetterTry(socket, msg, hc);
-		hangmanLetterTry.start();
+	}
+
+	public void tryLetter(String text) {
+		
 	}
 	
 }
