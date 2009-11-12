@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.StringTokenizer;
 
-public class HangmanWordTry extends HangmanCommunication {
+public class HangmanStartGame extends HangmanCommunication {
 
-	public HangmanWordTry(Socket socket, String msg, HangmanClient hc) {
+	public HangmanStartGame(Socket socket, String msg, HangmanClient hc) {
 		super(socket, msg, hc);
 	}
 	
@@ -28,27 +29,16 @@ public class HangmanWordTry extends HangmanCommunication {
 				String word = st.nextToken();
 				int numOfAttempts = new Integer(st.nextToken());
 				int score = new Integer(st.nextToken());
-				//Character c = st.nextToken().toCharArray()[0];
-				//boolean correctLetter = (st.nextToken().equals("true")) ? true : false;
 				
 				if (!fixed.equals(HangmanClientConnection.SERVER_PLAY)) {
-					if (fixed.equals(HangmanClientConnection.SERVER_WON)) {
-						hc.setPlayerWonOrLost(true, word, score);
-					}
-					else if (fixed.equals(HangmanClientConnection.SERVER_FAIL)) {
-						hc.setPlayerWonOrLost(false ,word, score);
-					}
-					else {
-						throw new Exception("Wrong message from server");
-					}
+					throw new Exception("Wrong message");
 				}
-				else {
-					String wordPlayed = st.nextToken();
-					hc.setWordPlayed(word, numOfAttempts, wordPlayed);
-				}
+					
+				
+				hc.setGameStarted(word, numOfAttempts, score);
 			}
 			else {
-				throw new Exception("Could not try the word");
+				throw new Exception("Could not start game");
 			}
 			
 		}

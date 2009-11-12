@@ -1,6 +1,5 @@
 package se.kth.ict.npj.hw1.client;
 
-import java.awt.Component;
 import java.net.Socket;
 
 /**
@@ -27,8 +26,8 @@ public class HangmanClientConnection {
 	public HangmanClientConnection(String host, String port, HangmanClient hc) throws Exception {
 		try {
 			socket = new Socket(host, Integer.parseInt(port));
+			socket.setSoTimeout(5000);
 			this.hc = hc;
-			
 		}
 		catch (Exception e) {
 			throw e;
@@ -39,7 +38,7 @@ public class HangmanClientConnection {
 	 * 
 	 */
 	public void startNewGame() {
-		new HangmanCommunication(socket, HangmanClientConnection.CLIENT_NEW_GAME, hc);
+		new HangmanStartGame(socket, HangmanClientConnection.CLIENT_NEW_GAME, hc);
 	}
 	
 	/**

@@ -163,12 +163,12 @@ public class HangmanClient extends JFrame {
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					System.out.println("[LOG] Connect button clicked."); // TODO Auto-generated Event stub actionPerformed()
+					jLabel3.setText("Connecting..");
+					getJButton().setEnabled(false);
 
 					try {
-						jLabel3.setText("Connecting..");
-						getJButton().setEnabled(false);
 						//try to establish a connection to the server
-						hcc = new HangmanClientConnection(getJTextField().getText(), getJTextField1().getText(), thisClass);
+						hcc = getHangmanClientConnection(); //by getting the HangmanClientConnection 
 						getJDialog().setVisible(false); //if connection established, go to the main (game) frame
 						//that mean hide this dialog window
 						
@@ -532,6 +532,35 @@ public class HangmanClient extends JFrame {
 		
 		jLabel12.setText("Wrong word " + wordPlayed); //inform user 
 		jLabel14.setText(numOfAttempts+ ""); //show the reduced number of attempts 
+	}
+	
+	private synchronized HangmanClientConnection getHangmanClientConnection() throws Exception {
+		if (hcc == null) {
+			return new HangmanClientConnection(getJTextField().getText(), getJTextField1().getText(), thisClass);
+		}
+		else {
+			return hcc;
+		}
+	}
+
+	public void setConnectionLost() {
+		// TODO Auto-generated method stub
+		System.out.println("[LOG] Connection with the server lost");
+		
+		jLabel12.setText("Start a new game");
+		gameInputSetEnabled(false);
+		jLabel5.setText("0");
+		jLabel14.setText("?");
+		jLabel3.setText("Connection Lost");
+		getJDialog().setVisible(true);
+		
+	}
+
+	public void setCommunicationError() {
+		// TODO Auto-generated method stub
+		System.out.println("[LOG] Communication error happened");
+		
+		jLabel12.setText("Communication error occured. Try again.");
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"
