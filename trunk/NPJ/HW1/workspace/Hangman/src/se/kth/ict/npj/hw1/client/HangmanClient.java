@@ -233,6 +233,11 @@ public class HangmanClient extends JFrame {
 			jTextField2 = new JTextField();
 			jTextField2.setBounds(new Rectangle(75, 135, 31, 16));
 			jTextField2.setEnabled(false);
+			jTextField2.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					getJButton2().doClick();
+				}
+			});
 		}
 		return jTextField2;
 	}
@@ -291,6 +296,11 @@ public class HangmanClient extends JFrame {
 			jTextField3.setBounds(new Rectangle(75, 165, 121, 16));
 			jTextField3.setText("");
 			jTextField3.setEnabled(false);
+			jTextField3.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					getJButton3().doClick();
+				}
+			});
 		}
 		return jTextField3;
 	}
