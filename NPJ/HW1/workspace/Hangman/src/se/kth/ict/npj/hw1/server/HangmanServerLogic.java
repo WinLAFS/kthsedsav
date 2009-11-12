@@ -2,6 +2,8 @@ package se.kth.ict.npj.hw1.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
@@ -204,6 +206,23 @@ public class HangmanServerLogic {
 	}
 	
 	protected String generateWord(){
-		return "programming";
+		String result="";
+		InputStream is = this.getClass().getClassLoader().getResourceAsStream("se/kth/ict/npj/hw1/server/resources/words");
+		BufferedReader fbr = new BufferedReader(new InputStreamReader(is));
+		int num = (int)((Math.random() * (25140)));
+		try {
+			for(int i=0; i<num; i++){
+				fbr.readLine();
+			}
+			result = fbr.readLine();
+			
+			System.out.println("HINT: "+result);
+		} catch (IOException e) {
+			System.err.println("error reading words file, using 'programming'");
+			result="programming";
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 }
