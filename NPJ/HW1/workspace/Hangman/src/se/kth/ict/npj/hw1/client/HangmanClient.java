@@ -262,15 +262,18 @@ public class HangmanClient extends JFrame {
 					String character = getJTextField2().getText();
 					if (character.length() != 1) { //check if it is only 1 character
 						jLabel12.setText("Insert 1 character");
+						getJTextField2().setText("");
 					}
 					else {
 						Character c = new Character(character.toLowerCase().toCharArray()[0]);
 						if (c.compareTo('a') < 0 || c.compareTo('z') > 0) { //check if it is letter
 							jLabel12.setText("Insert alphabet character");
+							getJTextField2().setText("");
 						}
 						else {
 							if (playedCharacters.contains(c)) { //if the character is already played
 								jLabel12.setText("You have played this character");
+								getJTextField2().setText("");
 							}
 							else { //else try the character
 								jLabel12.setText("Trying character " + c);
