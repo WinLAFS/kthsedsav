@@ -138,7 +138,19 @@ public class HangmanServerLogic {
 		} else if (requestType.equalsIgnoreCase(HangmanServerConstants.CLIENT_SEND_WORD)) {
 			if(!game.isFailed()){
 				String resultString = "";
-				String proposedWord = st.nextToken().toLowerCase();
+				String proposedWord;
+				
+				try{
+					proposedWord = st.nextToken();
+					if(proposedWord!=null){
+						proposedWord=proposedWord.toLowerCase();
+					}else{
+						proposedWord="";
+					}
+				}catch (Exception e) {
+					System.err.println("Wrong message from client!");
+					proposedWord="";
+				}
 				boolean correctWord = checkWord(game.getRealWord(), proposedWord);
 	
 				if (game.getAttemptsLeft() < 1) {
