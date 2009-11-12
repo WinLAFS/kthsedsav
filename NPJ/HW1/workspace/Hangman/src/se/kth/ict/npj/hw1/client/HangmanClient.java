@@ -238,7 +238,7 @@ public class HangmanClient extends JFrame {
 	}
 
 	/**
-	 * This method initializes jButton2	
+	 * This method initializes jButton2, which is the try letter button
 	 * 	
 	 * @return javax.swing.JButton	
 	 */
@@ -260,14 +260,14 @@ public class HangmanClient extends JFrame {
 					}
 					else {
 						Character c = new Character(character.toLowerCase().toCharArray()[0]);
-						if (c.compareTo('a') < 0 || c.compareTo('z') > 0) {
+						if (c.compareTo('a') < 0 || c.compareTo('z') > 0) { //check if it is letter
 							jLabel12.setText("Insert alphabet character");
 						}
 						else {
-							if (playedCharacters.contains(c)) {
+							if (playedCharacters.contains(c)) { //if the character is already played
 								jLabel12.setText("You have played this character");
 							}
-							else {
+							else { //else try the character
 								jLabel12.setText("Trying character " + c);
 								hcc.tryCharacter(c);
 							}
@@ -296,7 +296,7 @@ public class HangmanClient extends JFrame {
 	}
 
 	/**
-	 * This method initializes jButton3	
+	 * This method initializes jButton3, which is responsible for the try word
 	 * 	
 	 * @return javax.swing.JButton	
 	 */
@@ -310,7 +310,7 @@ public class HangmanClient extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					System.out.println("[LOG] Try word button clicked."); // TODO Auto-generated Event stub actionPerformed()
 					
-					hcc.tryLetter(getJTextField3().getText());
+					hcc.tryWord(getJTextField3().getText()); //try word
 				}
 			});
 		}
@@ -364,6 +364,11 @@ public class HangmanClient extends JFrame {
 		this.setSize(333, 381);
 		this.setContentPane(getJContentPane());
 		this.setTitle("Hangman v0.1");
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				System.out.println("windowClosing()"); // TODO Auto-generated Event stub windowClosing()
+			}
+		});
 		getJDialog().setVisible(true); //set the connection dialog
 		//visible on startup
 	}
@@ -549,6 +554,13 @@ public class HangmanClient extends JFrame {
 		jLabel14.setText(numOfAttempts+ ""); //show the reduced number of attempts 
 	}
 	
+	/**
+	 * This method is responsible for creating the socket object with the server. It ensures
+	 * that only socket will be created.
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	private synchronized HangmanClientConnection getHangmanClientConnection() throws Exception {
 		if (hcc == null) {
 			return new HangmanClientConnection(getJTextField().getText(), getJTextField1().getText(), thisClass);
@@ -557,7 +569,12 @@ public class HangmanClient extends JFrame {
 			return hcc;
 		}
 	}
-
+	
+	/**
+	 * This method handles the case that the connection (socket) with the server was lost.
+	 * The user is informed, everything is reinitializes and the user can try to reconnect
+	 * to a server.
+	 */
 	public void setConnectionLost() {
 		// TODO Auto-generated method stub
 		System.out.println("[LOG] Connection with the server lost");
@@ -575,7 +592,12 @@ public class HangmanClient extends JFrame {
 		getJButton().setEnabled(true);
 		getJDialog().setVisible(true);
 	}
-
+	
+	/**
+	 * This method handles the errors that are not due to socket close.
+	 * 
+	 * @param newGameTry if the error occurred while the user were trying to establish a new game
+	 */
 	public void setCommunicationError(boolean newGameTry) {
 		// TODO Auto-generated method stub
 		System.out.println("[LOG] Communication error happened");
