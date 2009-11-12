@@ -39,10 +39,16 @@ public class HangmanConHandler extends Thread {
 			pw.close();
 			br.close();
 			clientSocket.close();
+			System.out.println("Client socket closed!");
 		} catch (IOException e) {
-			System.err.println("Can't open client socket");
+			System.err.println("Can't work with client socket");
 			e.printStackTrace();
-			return;
+			try {
+				clientSocket.close();
+				System.out.println("Client socket closed!");
+			} catch (IOException e2) {
+				System.err.println("Can't close client socket!");
+			}
 		}
 		
 	}
