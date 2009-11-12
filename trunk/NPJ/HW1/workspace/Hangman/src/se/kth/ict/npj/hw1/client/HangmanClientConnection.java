@@ -1,5 +1,6 @@
 package se.kth.ict.npj.hw1.client;
 
+import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -54,6 +55,18 @@ public class HangmanClientConnection {
 	public void tryWord(String text) {
 		String msg = HangmanClientConnection.CLIENT_SEND_WORD + HangmanClientConnection.REQUEST_DELIMITER + text;
 		new HangmanWordTry(socket, msg, hc);
+	}
+	
+	/**
+	 * The method closes client socket.
+	 */
+	public void closeSocket(){
+		try {
+			socket.close();
+		} catch (IOException e) {
+			System.err.println("Error closing socket!");
+			e.printStackTrace();
+		}
 	}
 	
 }

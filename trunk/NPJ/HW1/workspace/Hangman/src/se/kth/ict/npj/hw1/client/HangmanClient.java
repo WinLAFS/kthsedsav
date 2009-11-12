@@ -366,7 +366,7 @@ public class HangmanClient extends JFrame {
 		this.setTitle("Hangman v0.1");
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(java.awt.event.WindowEvent e) {
-				System.out.println("windowClosing()"); // TODO Auto-generated Event stub windowClosing()
+				hcc.closeSocket();
 			}
 		});
 		getJDialog().setVisible(true); //set the connection dialog
