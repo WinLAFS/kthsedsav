@@ -56,7 +56,7 @@ public class HangmanLetterTry extends HangmanCommunication {
 			hc.setConnectionLost();
 		}
 		catch (Exception e) {
-			hc.setCommunicationError();
+			hc.setCommunicationError(false);
 		}
 	}
 
