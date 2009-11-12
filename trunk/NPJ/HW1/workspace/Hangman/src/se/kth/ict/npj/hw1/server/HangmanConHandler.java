@@ -34,6 +34,11 @@ public class HangmanConHandler extends Thread {
 			pw = new PrintWriter(clientSocket.getOutputStream());
 			br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			logic.processRequests(pw, br);
+			
+			//Closing everything
+			pw.close();
+			br.close();
+			clientSocket.close();
 		} catch (IOException e) {
 			System.err.println("Can't open client socket");
 			e.printStackTrace();

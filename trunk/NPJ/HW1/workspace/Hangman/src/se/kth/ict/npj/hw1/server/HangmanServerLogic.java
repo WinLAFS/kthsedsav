@@ -22,14 +22,26 @@ public class HangmanServerLogic {
 	private HangmanStatistics statistics = new HangmanStatistics();
 	private boolean currentLetterCorrect=false;
 
-	public void processRequests(PrintWriter pw, BufferedReader br)
-			throws IOException {
+	/**
+	 * The method is called in the beginning of client commmunication.
+	 * The method waits for a new commands from client and process them.
+	 * 
+	 * @param pw PrintWriter to communicate with client
+	 * @param br BufferedReader to communicate with client
+	 * @throws IOException
+	 */
+	public void processRequests(PrintWriter pw, BufferedReader br){
 		String inputLine = null;
-		while ((inputLine = br.readLine()) != null) {
-			if (inputLine.equalsIgnoreCase(HangmanServerConstants.CLIENT_END)) {
-				break;
+		
+		try{
+			while ((inputLine = br.readLine()) != null) {
+				if (inputLine.equalsIgnoreCase(HangmanServerConstants.CLIENT_END)) {
+					break;
+				}
+				processSingleRequest(inputLine, pw);
 			}
-			processSingleRequest(inputLine, pw);
+		}catch(IOException e){
+			System.err.println("Connection with client interrupted");
 		}
 	}
 
@@ -46,8 +58,9 @@ public class HangmanServerLogic {
 		StringTokenizer st = new StringTokenizer(requestString,
 				HangmanServerConstants.REQUEST_DELIMITER);
 		String requestType = st.nextToken();
-		if (requestType
-				.equalsIgnoreCase(HangmanServerConstants.CLIENT_NEW_GAME)) {
+		
+		//Client starts a new game
+		if (requestType.equalsIgnoreCase(HangmanServerConstants.CLIENT_NEW_GAME)) {
 			game = new HangmanGame();
 			String word = generateWord();
 			
@@ -64,6 +77,8 @@ public class HangmanServerLogic {
 					+ statistics.getScore();
 			pw.println(resultString);
 			pw.flush();
+		
+		//Client sends a letter
 		} else if (requestType.equalsIgnoreCase(HangmanServerConstants.CLIENT_SEND_LETTER)) {
 			String resultString = "";
 			String letter = st.nextToken().toLowerCase();
@@ -95,6 +110,8 @@ public class HangmanServerLogic {
 					+ currentLetterCorrect;
 			pw.println(resultString);
 			pw.flush();
+		
+		//Client sends a word
 		} else if (requestType.equalsIgnoreCase(HangmanServerConstants.CLIENT_SEND_WORD)) {
 			String resultString = "";
 			String proposedWord = st.nextToken().toLowerCase();
@@ -162,13 +179,13 @@ public class HangmanServerLogic {
 	 *            Letter that user wants to check.
 	 * @return New currentWord. It may have new open letters
 	 */
-	protected String checkLetter(String realWord, String currentWord,
-			String letter) {
+	protected String checkLetter(String realWord, String currentWord, String letter) {
 		String newWord = currentWord;
 		String temp = realWord;
 		int prevIndex = 0;
 		boolean letterFound = false;
 
+		//Check if a letter is correct
 		while (temp.indexOf(letter, prevIndex) >= 0) {
 			int position = temp.indexOf(letter, prevIndex);
 			prevIndex = position + 1;
@@ -176,7 +193,8 @@ public class HangmanServerLogic {
 					+ newWord.substring(position + 1);
 			letterFound = true;
 		}
-
+		
+		//Make necessary actions
 		if (!letterFound) {
 			game.setAttemptsLeft(game.getAttemptsLeft() - 1);
 			currentLetterCorrect=false;
@@ -205,11 +223,22 @@ public class HangmanServerLogic {
 		}
 	}
 	
+	/**
+	 * The method generates a new word to guess. It uses words file to take a word.
+	 * 
+	 * @return A new word to guess.
+	 */
 	protected String generateWord(){
 		String result="";
+		
+		//Opening a words file
 		InputStream is = this.getClass().getClassLoader().getResourceAsStream("se/kth/ict/npj/hw1/server/resources/words");
 		BufferedReader fbr = new BufferedReader(new InputStreamReader(is));
+		
+		//Generating random line to read
 		int num = (int)((Math.random() * (25140)));
+		
+		//Reading chose line
 		try {
 			for(int i=0; i<num; i++){
 				fbr.readLine();
