@@ -70,7 +70,7 @@ public class HangmanServerLogic {
 			
 			game.setRealWord(word.toLowerCase());
 			game.setCurrentWord(generateHiddenWord(word.length()));
-			game.setAttemptsLeft(word.length() / 2);
+			game.setAttemptsLeft((word.length() / 2)+3);
 
 			String resultString = HangmanServerConstants.SERVER_PLAY
 					+ HangmanServerConstants.REQUEST_DELIMITER
