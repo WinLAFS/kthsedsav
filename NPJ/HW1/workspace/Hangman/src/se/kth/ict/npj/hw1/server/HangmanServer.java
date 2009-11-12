@@ -23,6 +23,7 @@ public class HangmanServer {
 		
 		try {
 			serverPort = Integer.parseInt(args[0]);
+			System.out.println("Server works on port:" + args[0]);
 		} catch (Exception e) {
 			System.out.println("Can't parse server port number from command line");
 			System.out.println("Using default server port 9900");
@@ -39,7 +40,11 @@ public class HangmanServer {
 		while(listen){
 			try{
 				Socket clientSocket = serverSocket.accept();
+				
+				//Setting socket parameters
 				clientSocket.setSoTimeout(600000);
+				clientSocket.setSoLinger(true, 1);
+				
 				(new HangmanConHandler(clientSocket)).start();
 				System.out.println("New client connected");
 			} catch (IOException ex){

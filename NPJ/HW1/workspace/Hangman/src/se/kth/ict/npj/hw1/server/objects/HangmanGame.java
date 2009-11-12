@@ -5,7 +5,14 @@ public class HangmanGame {
 	private String currentWord;
 	private int attemptsLeft;
 	private boolean won = false;
+	private boolean failed = false;
 	
+	public boolean isFailed() {
+		return failed;
+	}
+	public void setFailed(boolean failed) {
+		this.failed = failed;
+	}
 	public boolean isWon() {
 		return won;
 	}
