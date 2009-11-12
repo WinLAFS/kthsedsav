@@ -3,8 +3,10 @@ package se.kth.ict.npj.hw1.client;
 import java.net.Socket;
 
 /**
- * HangmanClientConnection is the thread responsible for the TCP
- * connection of the client with the Hangman Server
+ * HangmanClientConnection is the responsible object for the TCP
+ * connection of the client with the Hangman Server. It provides
+ * the interface to GUI to start a new game, try a word and
+ * try a letter
  * 
  */
 public class HangmanClientConnection {
@@ -49,7 +51,7 @@ public class HangmanClientConnection {
 		new HangmanLetterTry(socket, msg, hc);
 	}
 
-	public void tryLetter(String text) {
+	public void tryWord(String text) {
 		String msg = HangmanClientConnection.CLIENT_SEND_WORD + HangmanClientConnection.REQUEST_DELIMITER + text;
 		new HangmanWordTry(socket, msg, hc);
 	}
