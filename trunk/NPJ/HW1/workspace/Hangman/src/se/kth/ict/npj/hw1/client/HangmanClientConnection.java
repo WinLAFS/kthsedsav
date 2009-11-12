@@ -76,6 +76,7 @@ public class HangmanClientConnection {
 	public void closeSocket(){
 		try {
 			socket.close();
+			System.out.println("[LOG] Client socket closed");
 		} catch (IOException e) {
 			System.err.println("Error closing socket!");
 			e.printStackTrace();
