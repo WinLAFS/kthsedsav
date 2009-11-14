@@ -42,7 +42,7 @@ public class MPClientLogic {
 			if(port!=null && !port.equals("")){
 				portStr=":"+port;
 			}
-			serverInt = (MarketplaceServerInterface)Naming.lookup("rmi//"+server+portStr+"/server");
+			serverInt = (MarketplaceServerInterface)Naming.lookup("rmi://"+server+portStr+"/server");
 			serverInt.registerClient(user);
 			
 			this.userName = user;
