@@ -38,7 +38,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		super();
 		
 		try {
-			bankrmi.Bank bank = (bankrmi.Bank) Naming.lookup(bankUrl);
+			bank = (bankrmi.Bank) Naming.lookup(bankUrl);
 		} 
 		catch (MalformedURLException e) {
 			System.out.println("[LOG] The bank url was not correct: " + e.getMessage());
@@ -214,7 +214,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#unregisterClient(java.lang.String)
 	 */
-	public void unregisterClient(String id) throws RemoteException,
+	synchronized public void unregisterClient(String id) throws RemoteException,
 			UnknownClientException {
 		
 		System.out.println("[LOG] Unregister user: " + id);
@@ -222,9 +222,16 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			throw new UnknownClientException();
 		}
 		
-		Iterator<Item> iIterator = itemList.iterator();
-		while (iIterator.hasNext()) {
-			Item item = iIterator.next();
+//		Iterator<Item> iIterator = itemList.iterator();
+//		while (iIterator.hasNext()) {
+//			Item item = iIterator.next();
+//			if (item.getOwner().equals(id)) {
+//				itemList.remove(item);
+//			}
+//		}
+		
+		for(int i=0; i<itemList.size(); i++){
+			Item item = itemList.get(i);
 			if (item.getOwner().equals(id)) {
 				itemList.remove(item);
 			}

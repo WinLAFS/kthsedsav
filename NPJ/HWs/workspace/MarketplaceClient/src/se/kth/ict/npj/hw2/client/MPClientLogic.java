@@ -56,7 +56,7 @@ public class MPClientLogic {
 				serverInt.registerClient("rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user);
 				this.userName = "rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user;
 				
-				String bankUrl = "rmi://localhost/NordBanken";
+				String bankUrl = "rmi://"+server+portStr+"/NordBanken";
 				bank = (bankrmi.Bank) Naming.lookup(bankUrl);
 				account = bank.newAccount(userName);
 				account.deposit(10000000);
