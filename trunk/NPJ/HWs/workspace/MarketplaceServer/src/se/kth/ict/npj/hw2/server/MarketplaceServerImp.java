@@ -225,8 +225,8 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 					&& (!item.getOwner().equals(item2.getOwner()))) {
 				
 				try {
-					MPClientInterface mpci = (MPClientInterface) Naming.lookup(item.getOwner());
-					mpci.receiveWishedItemNotification(item2);
+					MPClientInterface mpci = (MPClientInterface) Naming.lookup(item2.getOwner());
+					mpci.receiveWishedItemNotification(item);
 				} 
 				catch (MalformedURLException e) {
 					System.out.println("[LOG] The wish client url was not correct: " + e.getMessage());
@@ -239,7 +239,6 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 				}
 				
 				wishList.remove(item2);
-				break;
 			}
 		}
 		
