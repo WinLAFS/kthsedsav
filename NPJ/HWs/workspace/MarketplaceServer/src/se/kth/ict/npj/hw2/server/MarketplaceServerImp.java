@@ -11,6 +11,8 @@ import java.util.StringTokenizer;
 
 import javax.security.auth.login.AccountNotFoundException;
 
+import bankrmi.Rejected;
+
 import se.kth.ict.npj.hw2.Item;
 import se.kth.ict.npj.hw2.Rejected;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
@@ -63,7 +65,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#buyItem(se.kth.ict.npj.hw2.Item)
 	 */
-	public void buyItem(String userId, Item item) throws IllegalItemException, UnknownItemException,
+	public synchronized void buyItem(String userId, Item item) throws IllegalItemException, UnknownItemException,
 			RemoteException, AccountNotFoundException {
 		
 		System.out.println("[LOG] Client " + userId + "trying to buy item: " + item.toString());
@@ -170,7 +172,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#sellItem(java.lang.String, se.kth.ict.npj.hw2.Item)
 	 */
-	public void sellItem(Item item) throws RemoteException,
+	public synchronized void sellItem(Item item) throws RemoteException,
 			IllegalItemException, ItemAlreadyExistsException, UnknownClientException {
 		
 		System.out.println("[LOG] Selling item: " + item.toString());
@@ -214,7 +216,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#unregisterClient(java.lang.String)
 	 */
-	synchronized public void unregisterClient(String id) throws RemoteException,
+	public synchronized void unregisterClient(String id) throws RemoteException,
 			UnknownClientException {
 		
 		System.out.println("[LOG] Unregister user: " + id);
@@ -254,7 +256,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	 * @param wish the clients wanted item
 	 * @return
 	 */
-	private ArrayList<Item> satisfyWish(Item wish) {
+	private synchronized ArrayList<Item> satisfyWish(Item wish) {
 		ArrayList<Item> satisfyingItemList = new ArrayList<Item>();
 		
 		Iterator<Item> iIterator = itemList.iterator();
