@@ -431,7 +431,7 @@ public class MPClientGUI extends JFrame {
 			jButton4.setText("Submit");
 			jButton4.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					logic.sellItem(getJTextField5().getText(), getJTextField6().getText());
+					logic.placeWish(jTextField5.getText(), jTextField6.getText());
 				}
 			});
 		}

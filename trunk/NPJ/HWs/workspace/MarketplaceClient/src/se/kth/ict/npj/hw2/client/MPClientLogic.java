@@ -41,10 +41,24 @@ public class MPClientLogic {
 		this.userName = userName;
 	}
 
+	/**
+	 * Constructor accepts gui object of the client
+	 * 
+	 * @param gui GUI object of the client
+	 */
 	public MPClientLogic(MPClientGUI gui){
 		this.gui=gui;
 	}
 	
+	/**
+	 * The method performs connection of the client to the servers.
+	 * It connects to Marketplace and bank servers and updates client's
+	 * gui.
+	 * 
+	 * @param user Username string
+	 * @param server Server host string
+	 * @param port Servers port number
+	 */
 	public void connectToServer(String user, String server, String port){
 		try {
 			String portStr="";
@@ -83,6 +97,10 @@ public class MPClientLogic {
 		}
 	}
 	
+	/**
+	 * The method connects to the server, retrieves items list and
+	 * updates client's gui.
+	 */
 	public void updateItems(){
 		try {
 			if(serverInt!=null){
@@ -97,6 +115,12 @@ public class MPClientLogic {
 		}
 	}
 	
+	/**
+	 * The method sends request to the server to sell a new item.
+	 * 
+	 * @param itemName Name of the item.
+	 * @param itemPrice Price of the item.
+	 */
 	public void sellItem(String itemName, String itemPrice){
 		int price = 0;
 		try{
@@ -136,6 +160,13 @@ public class MPClientLogic {
 		gui.clearSellItemForm();
 	}
 	
+	/**
+	 * Method sends request to the server to be subscribed 
+	 * if requested item appears.
+	 * 
+	 * @param itemName Name of wished items
+	 * @param itemPrice Price of wished item
+	 */
 	public void placeWish(String itemName, String itemPrice){
 		int price = 0;
 		try{
@@ -163,6 +194,12 @@ public class MPClientLogic {
 		gui.clearWishForm();
 	}
 	
+	/**
+	 * Methods sends server request to buy the item.
+	 * 
+	 * @param itemName Name of the item
+	 * @param itemPrice Price of the item
+	 */
 	public void buyItem(String itemName, String itemPrice){
 		int price = 0;
 		try{
@@ -197,6 +234,10 @@ public class MPClientLogic {
 		gui.setNotificationMessage("Item was bought");
 	}
 	
+	/**
+	 * Method should be called before closing client, It unregisteres
+	 * client on Marketplace and Banking servers.
+	 */
 	public void unregisterUser(){
 		try {
 			serverInt.unregisterClient(userName);
