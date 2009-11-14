@@ -56,7 +56,8 @@ public interface MarketplaceServerInterface extends Remote {
 	
 	/**
 	 * This method is responsible for handling the buy of an item. If the item 
-	 * does not exist in the item list it throws {@link UknownItemException}.
+	 * does not exist in the item list it throws {@link UknownItemException} and if
+	 * the item has some null attributes it throws {@link IllegalItemException}.
 	 * It also handles the update of the balances of the seller and the buyer and
 	 * the notification that the item was sold to the seller. 
 	 * 
@@ -65,7 +66,7 @@ public interface MarketplaceServerInterface extends Remote {
 	 * @throws RemoteException
 	 * @throws UknownItemException
 	 */
-	public void buyItem(String userId, Item item) throws RemoteException, UknownItemException;
+	public void buyItem(String userId, Item item) throws RemoteException, UknownItemException, IllegalItemException;
 	
 	/**
 	 * This methods returns all the available items if the Marketplace server.
@@ -74,5 +75,6 @@ public interface MarketplaceServerInterface extends Remote {
 	 * @throws RemoteException
 	 */
 	public ArrayList<Item> inspectItems() throws RemoteException;
-	public void wishItem(Item item) throws RemoteException;
+	
+	public void wishItem(Item item) throws RemoteException, ItemAlreadyExistsException;
 }
