@@ -175,6 +175,8 @@ public class MPClientGUI extends JFrame {
 					jLabel12.setText("Connecting to server...");
 					
 					logic.connectToServer(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
+					
+					setTitle(jTextField.getText()+" at Marketplace client v 0.1");
 				}
 			});
 		}
@@ -356,6 +358,18 @@ public class MPClientGUI extends JFrame {
 			jButton3 = new JButton();
 			jButton3.setBounds(new Rectangle(69, 196, 109, 21));
 			jButton3.setText("Buy selected");
+			jButton3.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					int selrow = jTable.getSelectedRow();
+					if(selrow>=0){
+						String itemName = jTable.getModel().getValueAt(selrow, 0).toString();
+						String itemPrice = jTable.getModel().getValueAt(selrow, 1).toString();
+						String itemOwner = jTable.getModel().getValueAt(selrow, 2).toString();
+					} else {
+						setNotificationMessage("Select item to sell first");
+					}
+				}
+			});
 		}
 		return jButton3;
 	}
@@ -441,6 +455,11 @@ public class MPClientGUI extends JFrame {
 		this.setSize(491, 333);
 		this.setContentPane(getJContentPane());
 		this.setTitle("Marketplace client v 0.1");
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				logic.unregisterUser();
+			}
+		});
 		
 		this.getJDialog().setVisible(true);
 		
