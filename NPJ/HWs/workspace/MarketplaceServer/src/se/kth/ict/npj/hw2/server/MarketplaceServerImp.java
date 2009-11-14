@@ -57,6 +57,8 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		clientList = new ArrayList<String>();
 		itemList = new ArrayList<Item>();
 		wishList = new ArrayList<Item>();
+		
+		System.out.println("[LOG] Server started");
 	}
 
 	/* (non-Javadoc)

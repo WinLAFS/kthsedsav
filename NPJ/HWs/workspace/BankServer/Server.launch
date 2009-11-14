@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/BankServer/src/bankrmi/Server.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="bankrmi.Server"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="BankServer"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.security.policy=C:/Users/saibbot/Documents/seds/projects/NPJ/HWs/wideopen.policy&#13;&#10;-Djava.rmi.server.codebase=file:/C:/Users/saibbot/Documents/seds/projects/NPJ/HWs/workspace/BankServer/bin/"/>
+</launchConfiguration>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/MarketplaceServer/src/se/kth/ict/npj/hw2/server/MarketplaceServer.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="se.kth.ict.npj.hw2.server.MarketplaceServer"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="server localhost NordBanken"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="MarketplaceServer"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.security.policy=C:/Users/saibbot/Documents/seds/projects/NPJ/HWs/wideopen.policy&#13;&#10;-Djava.rmi.server.codebase=file:/C:/Users/saibbot/Documents/seds/projects/NPJ/HWs/workspace/MarketplaceServer/bin/"/>
+</launchConfiguration>
