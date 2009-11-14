@@ -14,7 +14,6 @@ import javax.security.auth.login.AccountNotFoundException;
 import bankrmi.Rejected;
 
 import se.kth.ict.npj.hw2.Item;
-import se.kth.ict.npj.hw2.Rejected;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
