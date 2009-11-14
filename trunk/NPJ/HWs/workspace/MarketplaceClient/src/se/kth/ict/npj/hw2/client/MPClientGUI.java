@@ -1,27 +1,28 @@
 package se.kth.ict.npj.hw2.client;
 
-import javax.swing.SwingUtilities;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JDialog;
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import javax.swing.JLabel;
+import java.awt.Font;
 import java.awt.Rectangle;
-import javax.swing.JTextField;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Vector;
+
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 
 import se.kth.ict.npj.hw2.Item;
 import se.kth.ict.npj.hw2.client.objects.MPClientImpl;
-import java.awt.Font;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Vector;
 
 public class MPClientGUI extends JFrame {
 
@@ -176,6 +177,18 @@ public class MPClientGUI extends JFrame {
 					
 					logic.connectToServer(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
 					
+					try {
+						System.out.println("[LOG] MPClient url: " + logic.getUserName());
+						
+						try {
+							Naming.rebind(logic.getUserName() , new MPClientImpl(logic.getUserName(), thisClass));
+						} catch (MalformedURLException e1) {
+							System.out.println("[LOG] The url was not correct formed: " + e1.getMessage());
+						}
+						
+					} catch (RemoteException e2) {
+						System.out.println("[LOG] Could not start the MPClient: " + e2.getMessage());
+					}
 					setTitle(jTextField.getText()+" at Marketplace client v 0.1");
 				}
 			});
@@ -529,4 +542,22 @@ public class MPClientGUI extends JFrame {
 		return jContentPane;
 	}
 
+	/**
+	 * This method is used to inform the user for a sold item.
+	 * 
+	 * @param item
+	 */
+	public synchronized void notifyItemSold(Item item) {
+		jLabel11.setText("The item " + item.getName() + " / " + item.getPrice() + " was sold.");
+	}
+	
+	/**
+	 * This method is used to inform the user for an item that match one
+	 * item from his wish list.
+	 * 
+	 * @param item
+	 */
+	public synchronized void notifyWishListItemFound(Item item) {
+		jLabel11.setText("The item " + item.getName() + " / " + item.getPrice() + " is matching an item from your wish list.");
+	}
 }  //  @jve:decl-index=0:visual-constraint="10,10"
