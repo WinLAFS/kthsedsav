@@ -128,7 +128,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		throw new UnknownItemException();
 	}
 
-	public ArrayList<Item> inspectItems() throws RemoteException {
+	public synchronized ArrayList<Item> inspectItems() throws RemoteException {
 		System.out.println("[LOG] inspectItems()");
 		return itemList;
 	}
@@ -137,7 +137,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#registerClient(java.lang.String)
 	 */
-	public void registerClient(String id) throws ClientAlreadyExistsException, RemoteException {
+	public synchronized void registerClient(String id) throws ClientAlreadyExistsException, RemoteException {
 		System.out.println("[LOG] Client registering: " + id);
 		if (clientList.contains(id)) {
 			throw new ClientAlreadyExistsException();
@@ -148,7 +148,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	}
 
 
-	public ArrayList<Item> wishItem(Item item) throws ItemAlreadyExistsException, RemoteException {
+	public synchronized ArrayList<Item> wishItem(Item item) throws ItemAlreadyExistsException, RemoteException {
 		System.out.println("[LOG] Wish item: " + item.toString());
 		if (item.getName() == null || item.getOwner() == null || item.getPrice() == 0) {
 			throw new IllegalItemException();
@@ -174,6 +174,21 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		if (satisfyingWishList.size() == 0) {
 			wishList.add(item);
 			return null;
+		}
+		else {
+			try {
+				MPClientInterface mpci = (MPClientInterface) Naming.lookup(item.getOwner());
+				mpci.receiveWishedItemNotification(satisfyingWishList.get(0));
+			} 
+			catch (MalformedURLException e) {
+				System.out.println("[LOG] The wish client url was not correct: " + e.getMessage());
+			} 
+			catch (NotBoundException e) {
+				System.out.println("[LOG] The wish client object was not found: " + e.getMessage());
+			}
+			catch (RemoteException e) {
+				System.out.println("[LOG] The wish client object could not be retrieved: " + e.getMessage());
+			}
 		}
 		
 		
@@ -210,7 +225,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 					&& (!item.getOwner().equals(item2.getOwner()))) {
 				
 				try {
-					MPClientInterface mpci = (MPClientInterface) Naming.lookup(item2.getOwner());
+					MPClientInterface mpci = (MPClientInterface) Naming.lookup(item.getOwner());
 					mpci.receiveWishedItemNotification(item2);
 				} 
 				catch (MalformedURLException e) {
