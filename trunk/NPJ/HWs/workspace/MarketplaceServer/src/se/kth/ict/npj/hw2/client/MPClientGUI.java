@@ -289,6 +289,7 @@ public class MPClientGUI extends JFrame {
 		columns.add("Name");
 		columns.add("Price");
 		columns.add("Owner");
+		columns.add("FullOwner");
 		
 		Vector<Vector> products = new Vector<Vector>();
 	
@@ -298,11 +299,13 @@ public class MPClientGUI extends JFrame {
 			product.add(item.getName());
 			product.add(item.getPrice()+"");
 			product.add(item.getOwnerPretty());
+			product.add(item.getOwner());
 			
 			products.add(product);
 		}
 		
 		jTable.setModel(new DefaultTableModel(products,columns));
+		jTable.getColumnModel().getColumn(3).setPreferredWidth(0);
 		jTable.revalidate();
 	  	jTable.repaint();
 	}
@@ -378,9 +381,9 @@ public class MPClientGUI extends JFrame {
 					if(selrow>=0){
 						String itemName = jTable.getModel().getValueAt(selrow, 0).toString();
 						String itemPrice = jTable.getModel().getValueAt(selrow, 1).toString();
-						String itemOwner = jTable.getModel().getValueAt(selrow, 2).toString();
+						String itemOwner = jTable.getModel().getValueAt(selrow, 3).toString();
 						
-						logic.buyItem(itemName, itemPrice);
+						logic.buyItem(itemName, itemPrice, itemOwner);
 						
 						logic.updateItems();
 					} else {
@@ -431,7 +434,7 @@ public class MPClientGUI extends JFrame {
 			jButton4.setText("Submit");
 			jButton4.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					logic.sellItem(getJTextField5().getText(), getJTextField6().getText());
+					logic.placeWish(jTextField5.getText(), jTextField6.getText());
 				}
 			});
 		}
