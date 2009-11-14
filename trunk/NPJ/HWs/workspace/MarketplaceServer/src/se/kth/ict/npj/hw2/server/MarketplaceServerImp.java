@@ -32,7 +32,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#buyItem(se.kth.ict.npj.hw2.Item)
 	 */
-	public void buyItem(Item item) throws UknownItemException, RemoteException {
+	public void buyItem(String userId ,Item item) throws UknownItemException, RemoteException {
 		Iterator<Item> iIterator = itemList.iterator();
 		while (iIterator.hasNext()) {
 			Item item2 = iIterator.next();
