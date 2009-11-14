@@ -380,7 +380,7 @@ public class MPClientGUI extends JFrame {
 						String itemPrice = jTable.getModel().getValueAt(selrow, 1).toString();
 						String itemOwner = jTable.getModel().getValueAt(selrow, 2).toString();
 						
-						logic.buyItem(itemName, itemPrice);
+						logic.buyItem(itemName, itemPrice, itemOwner);
 						
 						logic.updateItems();
 					} else {
