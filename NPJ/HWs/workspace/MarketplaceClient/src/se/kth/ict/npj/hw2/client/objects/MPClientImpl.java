@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import se.kth.ict.npj.hw2.Item;
 import se.kth.ict.npj.hw2.client.MPClientGUI;
 
+
 public class MPClientImpl extends UnicastRemoteObject implements MPClientInterface {
 
 	private String clientId;
@@ -18,7 +19,7 @@ public class MPClientImpl extends UnicastRemoteObject implements MPClientInterfa
 	 * @param gui Link to client gui
 	 * @throws RemoteException
 	 */
-	protected MPClientImpl(String clientId, MPClientGUI gui) throws RemoteException {
+	public MPClientImpl(String clientId, MPClientGUI gui) throws RemoteException {
 		super();
 		this.clientId = clientId;
 		this.gui = gui;	
@@ -26,21 +27,25 @@ public class MPClientImpl extends UnicastRemoteObject implements MPClientInterfa
 
 	private static final long serialVersionUID = 5555500677813683130L;
 
-	@Override
+	/* (non-Javadoc)
+	 * @see se.kth.ict.npj.hw2.client.objects.MPClientInterface#getId()
+	 */
 	public String getId() throws RemoteException {
 		return this.clientId;
 	}
 
-	@Override
+	/* (non-Javadoc)
+	 * @see se.kth.ict.npj.hw2.client.objects.MPClientInterface#receiveItemSoldNotification(se.kth.ict.npj.hw2.Item)
+	 */
 	public void receiveItemSoldNotification(Item item) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		gui.notifyItemSold(item);
 	}
 
-	@Override
+	/* (non-Javadoc)
+	 * @see se.kth.ict.npj.hw2.client.objects.MPClientInterface#receiveWishedItemNotification(se.kth.ict.npj.hw2.Item)
+	 */
 	public void receiveWishedItemNotification(Item item) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		gui.notifyWishListItemFound(item);
 	}
 
 }
