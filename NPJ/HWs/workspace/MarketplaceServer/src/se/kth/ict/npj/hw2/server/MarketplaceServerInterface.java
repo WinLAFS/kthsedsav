@@ -76,5 +76,17 @@ public interface MarketplaceServerInterface extends Remote {
 	 */
 	public ArrayList<Item> inspectItems() throws RemoteException;
 	
-	public void wishItem(Item item) throws RemoteException, ItemAlreadyExistsException;
+	/**
+	 * This method adds an item to the wish list or returns immediately some results
+	 * that satisfy the users criteria. If the item is malformed then an {@link IllegalItemException}
+	 * is thrown and if the item exists in the wish list then a {@link ItemAlreadyExistsException}.
+	 *  
+	 * 
+	 * @param item the item that the user wants to add into the wish list
+	 * @return
+	 * @throws RemoteException
+	 * @throws ItemAlreadyExistsException
+	 * @throws IllegalItemException
+	 */
+	public ArrayList<Item> wishItem(Item item) throws RemoteException, ItemAlreadyExistsException, IllegalItemException;
 }

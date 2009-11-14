@@ -13,8 +13,11 @@ import se.kth.ict.npj.hw2.exception.UknownClientException;
 import se.kth.ict.npj.hw2.exception.UknownItemException;
 
 /**
- * @author saibbot
- *
+ * The MarketplaceServerInterface's implementation that implements all
+ * the methods needed for the Marketplace server and keeps the data
+ * about the items that are being sold, the clients registered and
+ * the wish list of the clients.
+ * 
  */
 public class MarketplaceServerImp extends UnicastRemoteObject implements MarketplaceServerInterface {
 	ArrayList<String> clientList = null;
@@ -69,8 +72,27 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	}
 
 
-	public void wishItem(Item item) throws ItemAlreadyExistsException, RemoteException {
+	public ArrayList<Item> wishItem(Item item) throws ItemAlreadyExistsException, RemoteException {
+		if (item.getName() == null || item.getOwner() == null || item.getPrice() == 0) {
+			throw new IllegalItemException();
+		}
 		
+		Iterator<Item> iIterator = wishList.iterator();
+		while (iIterator.hasNext()) {
+			Item item2 = (Item) iIterator.next();
+			if (item.hashCode() == item2.hashCode()) {
+				throw new ItemAlreadyExistsException();
+			}
+		}
+		
+		ArrayList<Item> satisfyingWishList = satisfyWish(item);
+		
+		if (satisfyingWishList.size() == 0) {
+			wishList.add(item);
+			return null;
+		}
+		
+		return satisfyingWishList;
 	}
 
 	
@@ -86,6 +108,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		if (!clientList.contains(item.getOwner())) {
 			throw new UknownClientException();
 		}
+
 		Iterator<Item> iIterator = itemList.iterator();
 		while (iIterator.hasNext()) {
 			Item i = iIterator.next();	
@@ -93,7 +116,19 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 				throw new ItemAlreadyExistsException();
 			}
 		}
-		// TODO make the wish list crap
+
+		Iterator<Item> wlIterator = wishList.iterator();
+		while (wlIterator.hasNext()) {
+			Item item2 = (Item) wlIterator.next();
+			if (item.getName().equalsIgnoreCase(item2.getName()) && item.getPrice() <= item2.getPrice()
+					&& (!item.getOwner().equals(item2.getOwner()))) {
+				
+				//TODO callback
+				wishList.remove(item2);
+				break;
+			}
+		}
+		
 		itemList.add(item);
 	}
 
@@ -115,9 +150,37 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			}
 		}
 		
-		//TODO wish list removal 
+		Iterator<Item> wlIterator = wishList.iterator();
+		while (wlIterator.hasNext()) {
+			Item item2 = (Item) wlIterator.next();
+			if (item2.getOwner().equals(id)) {
+				wishList.remove(item2);
+			}
+		}
 		
 		clientList.remove(id);
+	}
+	
+	/**
+	 * This method is responsible for finding the items that satisfy a clients wish.
+	 * 
+	 * @param wish the clients wanted item
+	 * @return
+	 */
+	private ArrayList<Item> satisfyWish(Item wish) {
+		ArrayList<Item> satisfyingItemList = new ArrayList<Item>();
+		
+		Iterator<Item> iIterator = itemList.iterator();
+		while (iIterator.hasNext()) {
+			Item item = iIterator.next();
+			
+			if (item.getName().equalsIgnoreCase(wish.getName()) && item.getPrice() <= wish.getPrice()
+					&& (!item.getOwner().equals(wish.getOwner()))) {
+				satisfyingItemList.add(item);
+			}
+		}
+		
+		return satisfyingItemList;
 	}
 
 }
