@@ -13,10 +13,24 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+
+import se.kth.ict.npj.hw2.Item;
+import se.kth.ict.npj.hw2.client.objects.MPClientImpl;
+import java.awt.Font;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Vector;
 
 public class MPClientGUI extends JFrame {
 
+	//Client Logic object
+	private MPClientLogic logic;
+	private MPClientImpl impl;
+	
+	public static MPClientGUI thisClass;
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel jContentPane = null;
 	private JDialog jDialog = null;  //  @jve:decl-index=0:visual-constraint="547,12"
@@ -47,6 +61,7 @@ public class MPClientGUI extends JFrame {
 	private JTextField jTextField6 = null;
 	private JButton jButton4 = null;
 	private JLabel jLabel11 = null;
+	private JLabel jLabel12 = null;
 
 	/**
 	 * This method initializes jDialog	
@@ -70,6 +85,11 @@ public class MPClientGUI extends JFrame {
 	 */
 	private JPanel getJContentPane1() {
 		if (jContentPane1 == null) {
+			jLabel12 = new JLabel();
+			jLabel12.setBounds(new Rectangle(16, 128, 145, 16));
+			jLabel12.setFont(new Font("Dialog", Font.BOLD, 12));
+			jLabel12.setForeground(new Color(201, 45, 45));
+			jLabel12.setText("");
 			jLabel3 = new JLabel();
 			jLabel3.setBounds(new Rectangle(17, 99, 85, 16));
 			jLabel3.setText("Server port");
@@ -92,6 +112,7 @@ public class MPClientGUI extends JFrame {
 			jContentPane1.add(getJTextField1(), null);
 			jContentPane1.add(getJTextField2(), null);
 			jContentPane1.add(getJButton(), null);
+			jContentPane1.add(jLabel12, null);
 		}
 		return jContentPane1;
 	}
@@ -105,6 +126,7 @@ public class MPClientGUI extends JFrame {
 		if (jTextField == null) {
 			jTextField = new JTextField();
 			jTextField.setBounds(new Rectangle(109, 35, 128, 20));
+			jTextField.setText("Andrei");
 		}
 		return jTextField;
 	}
@@ -118,6 +140,7 @@ public class MPClientGUI extends JFrame {
 		if (jTextField1 == null) {
 			jTextField1 = new JTextField();
 			jTextField1.setBounds(new Rectangle(109, 64, 129, 20));
+			jTextField1.setText("localhost");
 		}
 		return jTextField1;
 	}
@@ -131,6 +154,7 @@ public class MPClientGUI extends JFrame {
 		if (jTextField2 == null) {
 			jTextField2 = new JTextField();
 			jTextField2.setBounds(new Rectangle(109, 95, 49, 20));
+			jTextField2.setText("1099");
 		}
 		return jTextField2;
 	}
@@ -145,9 +169,32 @@ public class MPClientGUI extends JFrame {
 			jButton = new JButton();
 			jButton.setBounds(new Rectangle(166, 124, 88, 22));
 			jButton.setText("Connect");
+			jButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					jButton.setEnabled(false);
+					jLabel12.setText("Connecting to server...");
+					
+					logic.connectToServer(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
+				}
+			});
 		}
 		return jButton;
 	}
+	
+	/**
+	 * The method is called when client successfully connected to server
+	 */
+	public void connectionSuccessful(){
+		jButton.setEnabled(true);
+		getJDialog().setVisible(false);
+		System.out.println("[LOG] Connected.");
+	}
+	
+	public void connectionError(String errorMsg){
+		jLabel12.setText(errorMsg);
+		jButton.setEnabled(true);
+	}
+	
 
 	/**
 	 * This method initializes jScrollPane	
@@ -171,15 +218,17 @@ public class MPClientGUI extends JFrame {
 	private JTable getJTable() {
 		if (jTable == null) {
 			
-			  String data[][] = {{"CD", "234"},
-	                     {"laptop", "234"},
-	                     {"Phone", "123"},
-	                     {"WWW", "10000000"},
-			  };
-
-			  String fields[] = {"Item", "Price"};
-	  
-			jTable = new JTable(data, fields);
+//			  String data[][] = {{"CD", "234"},
+//	                     {"laptop", "234"},
+//	                     {"Phone", "123"},
+//	                     {"WWW", "10000000"},
+//			  };
+//
+//			  String fields[] = {"Item", "Price"};
+//			 
+//	  
+//			jTable = new JTable(data, fields);
+			jTable = new JTable();
 			jTable.setBounds(new Rectangle(0, 0, 450, 80));
 			
 			
@@ -197,8 +246,54 @@ public class MPClientGUI extends JFrame {
 			jButton1 = new JButton();
 			jButton1.setBounds(new Rectangle(188, 196, 80, 21));
 			jButton1.setText("Refresh");
+			
+			jButton1.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+//					Item i1 = new Item();
+//					i1.setName("name01");
+//					i1.setPrice(1000);
+//					i1.setOwner("me");
+//					
+//					ArrayList<Item> items = new ArrayList<Item>();
+//					items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);items.add(i1);
+//					 updateItemsList(items);
+//					 
+//					 int selrow = jTable.getSelectedRow();
+//					 System.out.println( jTable.getModel().getValueAt(1, 1));
+					
+					logic.updateItems();
+				}
+			});
+			
 		}
 		return jButton1;
+	}
+	
+	public void updateItemsList(ArrayList<Item> items){
+		Vector<String> columns = new Vector<String>();
+		columns.add("Name");
+		columns.add("Price");
+		columns.add("Owner");
+		
+		Vector<Vector> products = new Vector<Vector>();
+	
+		for(int i=0; i<items.size(); i++){
+			Item item= items.get(i);
+			Vector<String> product = new Vector<String>();
+			product.add(item.getName());
+			product.add(item.getPrice()+"");
+			product.add(item.getOwner());
+			
+			products.add(product);
+		}
+		
+		jTable.setModel(new DefaultTableModel(products,columns));
+		jTable.revalidate();
+	  	jTable.repaint();
+	}
+	
+	public void setNotificationMessage(String notification){
+		jLabel11.setText(notification);
 	}
 
 	/**
@@ -237,8 +332,18 @@ public class MPClientGUI extends JFrame {
 			jButton2 = new JButton();
 			jButton2.setBounds(new Rectangle(307, 100, 84, 19));
 			jButton2.setText("Sell item");
+			jButton2.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					logic.sellItem(getJTextField3().getText(), getJTextField4().getText());
+				}
+			});
 		}
 		return jButton2;
+	}
+	
+	public void clearSellItemForm(){
+		getJTextField3().setText("");
+		getJTextField4().setText("");
 	}
 
 	/**
@@ -291,8 +396,18 @@ public class MPClientGUI extends JFrame {
 			jButton4 = new JButton();
 			jButton4.setBounds(new Rectangle(308, 227, 84, 19));
 			jButton4.setText("Submit");
+			jButton4.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					logic.sellItem(getJTextField3().getText(), getJTextField4().getText());
+				}
+			});
 		}
 		return jButton4;
+	}
+	
+	public void clearWishForm(){
+		getJTextField5().setText("");
+		getJTextField6().setText("");
 	}
 
 	/**
@@ -302,7 +417,7 @@ public class MPClientGUI extends JFrame {
 		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				MPClientGUI thisClass = new MPClientGUI();
+				thisClass = new MPClientGUI();
 				thisClass.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				thisClass.setVisible(true);
 			}
@@ -325,9 +440,11 @@ public class MPClientGUI extends JFrame {
 	private void initialize() {
 		this.setSize(491, 333);
 		this.setContentPane(getJContentPane());
-		this.setTitle("JFrame");
+		this.setTitle("Marketplace client v 0.1");
 		
 		this.getJDialog().setVisible(true);
+		
+		logic = new MPClientLogic(this);
 	}
 
 	/**
@@ -339,6 +456,7 @@ public class MPClientGUI extends JFrame {
 		if (jContentPane == null) {
 			jLabel11 = new JLabel();
 			jLabel11.setBounds(new Rectangle(38, 260, 362, 27));
+			jLabel11.setFont(new Font("Dialog", Font.BOLD, 12));
 			jLabel11.setText("NOTIFICATION AREA");
 			jLabel10 = new JLabel();
 			jLabel10.setBounds(new Rectangle(307, 198, 38, 16));
