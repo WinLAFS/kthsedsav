@@ -200,7 +200,7 @@ public class MPClientLogic {
 	 * @param itemName Name of the item
 	 * @param itemPrice Price of the item
 	 */
-	public void buyItem(String itemName, String itemPrice){
+	public void buyItem(String itemName, String itemPrice, String itemOwner){
 		int price = 0;
 		try{
 			price = Integer.parseInt(itemPrice);
@@ -212,7 +212,7 @@ public class MPClientLogic {
 		
 		Item item = new Item();
 		item.setName(itemName);
-		item.setOwner(userName);
+		item.setOwner(itemOwner);
 		item.setPrice(price);
 		
 		try {
