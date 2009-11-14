@@ -37,7 +37,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	protected MarketplaceServerImp(String bankUrl) throws RemoteException {
 		super();
 		
-		/*try {
+		try {
 			bankrmi.Bank bank = (bankrmi.Bank) Naming.lookup(bankUrl);
 		} 
 		catch (MalformedURLException e) {
@@ -52,7 +52,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			System.out.println("[LOG] The bank object could not be retrieved: " + e.getMessage());
 			System.exit(0);
 		}
-		*/
+
 		clientList = new ArrayList<String>();
 		itemList = new ArrayList<Item>();
 		wishList = new ArrayList<Item>();
