@@ -24,6 +24,8 @@ public class MPClientLogic {
 	private MPClientGUI gui;
 	private MarketplaceServerInterface serverInt;
 	private String userName;
+	private bankrmi.Bank bank;
+	Account account;
 	
 	/**
 	 * @return the userName
@@ -54,34 +56,29 @@ public class MPClientLogic {
 				serverInt.registerClient("rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user);
 				this.userName = "rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user;
 				
-				String bankUrl = "rmi://localhost/Nordea";
-				bankrmi.Bank bank = (bankrmi.Bank) Naming.lookup(bankUrl);
-				Account account = bank.newAccount(userName);
+				String bankUrl = "rmi://localhost/NordBanken";
+				bank = (bankrmi.Bank) Naming.lookup(bankUrl);
+				account = bank.newAccount(userName);
 				account.deposit(10000000);
 			} catch (UnknownHostException e) {
 				gui.connectionError("Can't conect to server");
 				System.err.println("[LOG] UnknownHostException when connecting to server");
 				return;
-				//e.printStackTrace();
 			}
 			
-			
 			gui.connectionSuccessful();
+			updateItems();
 		} catch (ClientAlreadyExistsException e){
 			gui.connectionError("Choose another name");
-			//e.printStackTrace();
 			System.err.println("[LOG] ClientAlreadyExistsException when connecting to server");
 		} catch (MalformedURLException e) {
 			gui.connectionError("Bad server address or port");
-			//e.printStackTrace();
 			System.err.println("[LOG] MalformedURLException when connecting to server");
 		} catch (RemoteException e) {
 			gui.connectionError("Can't conect to server");
-			//e.printStackTrace();
 			System.err.println("[LOG] RemoteException when connecting to server");
 		} catch (NotBoundException e) {
 			gui.connectionError("Can't connect to server");
-			//e.printStackTrace();
 			System.err.println("[LOG] NotBoundException when connecting to server");
 		}
 	}
@@ -157,7 +154,6 @@ public class MPClientLogic {
 		try {
 			serverInt.wishItem(item);
 		} catch (RemoteException e) {
-			//e.printStackTrace();
 			System.err.println("[LOG] RemoteException when wishing item");
 			gui.setNotificationMessage("Can't wish the item");
 			return;
@@ -188,7 +184,6 @@ public class MPClientLogic {
 			System.err.println("[LOG] UknownItemException when buying item");
 			gui.setNotificationMessage("Can't buy the item");
 			return;
-			//e.printStackTrace();
 		} catch (AccountNotFoundException e){
 			System.err.println("[LOG] AccountNotFoundException when buying item");
 			gui.setNotificationMessage("Wrong user account");
@@ -197,7 +192,6 @@ public class MPClientLogic {
 			System.err.println("[LOG] RemoteException when buying item");
 			gui.setNotificationMessage("Can't buy the item");
 			return;
-			//e.printStackTrace();
 		}
 		
 		gui.setNotificationMessage("Item was bought");
@@ -206,12 +200,11 @@ public class MPClientLogic {
 	public void unregisterUser(){
 		try {
 			serverInt.unregisterClient(userName);
+			bank.deleteAccount(account);
 		} catch (UknownClientException e) {
 			System.err.println("[LOG] UknownClientException when unregistering user");
-			//e.printStackTrace();
 		} catch (RemoteException e) {
 			System.err.println("[LOG] RemoteException when unregistering user");
-			//e.printStackTrace();
 		}
 	}
 }
