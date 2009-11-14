@@ -55,13 +55,17 @@ public interface MarketplaceServerInterface extends Remote {
 	public void sellItem(Item item) throws RemoteException, IllegalItemException, ItemAlreadyExistsException, UknownClientException;
 	
 	/**
+	 * This method is responsible for handling the buy of an item. If the item 
+	 * does not exist in the item list it throws {@link UknownItemException}.
+	 * It also handles the update of the balances of the seller and the buyer and
+	 * the notification that the item was sold to the seller. 
 	 * 
-	 * 
-	 * @param item
+	 * @param userId the buyer's id
+	 * @param item the item that the client wants to by
 	 * @throws RemoteException
 	 * @throws UknownItemException
 	 */
-	public void buyItem(Item item) throws RemoteException, UknownItemException;
+	public void buyItem(String userId, Item item) throws RemoteException, UknownItemException;
 	
 	/**
 	 * This methods returns all the available items if the Marketplace server.
