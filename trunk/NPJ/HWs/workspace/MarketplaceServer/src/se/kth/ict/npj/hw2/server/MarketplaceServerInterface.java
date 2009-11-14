@@ -4,12 +4,14 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.security.auth.login.AccountNotFoundException;
+
 import se.kth.ict.npj.hw2.Item;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
-import se.kth.ict.npj.hw2.exception.UknownClientException;
-import se.kth.ict.npj.hw2.exception.UknownItemException;
+import se.kth.ict.npj.hw2.exception.UnknownClientException;
+import se.kth.ict.npj.hw2.exception.UnknownItemException;
 
 /**
  * The remote interface of the MarketplaceServerInterface.
@@ -30,18 +32,18 @@ public interface MarketplaceServerInterface extends Remote {
 	
 	/**
 	 * Unregister a client from the Marketplace server. If the clients does not exist
-	 * it throws {@link UknownClientException}. Also, it removes all items and wish list items
+	 * it throws {@link UnknownClientException}. Also, it removes all items and wish list items
 	 * that belonged to this client.
 	 * 
 	 * @param id the id of the client to be removed
 	 * @throws RemoteException
-	 * @throws UknownClientException
+	 * @throws UnknownClientException
 	 */
-	public void unregisterClient(String id) throws RemoteException, UknownClientException;
+	public void unregisterClient(String id) throws RemoteException, UnknownClientException;
 	
 	/**
 	 * This method add a new item to the list with items that are for selling.
-	 * If the client is not registered then it throws {@link UknownClientException},
+	 * If the client is not registered then it throws {@link UnknownClientException},
 	 * if an item with the same price, value and user exists then it throws
 	 * {@link ItemAlreadyExistsException} and if an item has a null field it throws
 	 * {@link IllegalItemException}.
@@ -50,13 +52,13 @@ public interface MarketplaceServerInterface extends Remote {
 	 * @throws RemoteException
 	 * @throws IllegalItemException
 	 * @throws ItemAlreadyExistsException
-	 * @throws UknownClientException
+	 * @throws UnknownClientException
 	 */
-	public void sellItem(Item item) throws RemoteException, IllegalItemException, ItemAlreadyExistsException, UknownClientException;
+	public void sellItem(Item item) throws RemoteException, IllegalItemException, ItemAlreadyExistsException, UnknownClientException;
 	
 	/**
 	 * This method is responsible for handling the buy of an item. If the item 
-	 * does not exist in the item list it throws {@link UknownItemException} and if
+	 * does not exist in the item list it throws {@link UnknownItemException} and if
 	 * the item has some null attributes it throws {@link IllegalItemException}.
 	 * It also handles the update of the balances of the seller and the buyer and
 	 * the notification that the item was sold to the seller. 
@@ -64,9 +66,9 @@ public interface MarketplaceServerInterface extends Remote {
 	 * @param userId the buyer's id
 	 * @param item the item that the client wants to by
 	 * @throws RemoteException
-	 * @throws UknownItemException
+	 * @throws UnknownItemException
 	 */
-	public void buyItem(String userId, Item item) throws RemoteException, UknownItemException, IllegalItemException;
+	public void buyItem(String userId, Item item) throws RemoteException, UnknownItemException, IllegalItemException, AccountNotFoundException;
 	
 	/**
 	 * This methods returns all the available items if the Marketplace server.
