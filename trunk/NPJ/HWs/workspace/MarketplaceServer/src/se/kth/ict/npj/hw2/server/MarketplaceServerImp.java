@@ -76,7 +76,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		while (iIterator.hasNext()) {
 			Item item2 = iIterator.next();
 			
-			if (item.hashCode() == item2.hashCode()) {
+			if (areEqualItems(item, item2)) {
 				
 				try {
 					Account sellerAccount = bank.getAccount(item2.getOwner());
@@ -146,7 +146,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		Iterator<Item> iIterator = wishList.iterator();
 		while (iIterator.hasNext()) {
 			Item item2 = (Item) iIterator.next();
-			if (item.hashCode() == item2.hashCode()) {
+			if (areEqualItems(item, item2)) {
 				throw new ItemAlreadyExistsException();
 			}
 		}
@@ -179,7 +179,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		Iterator<Item> iIterator = itemList.iterator();
 		while (iIterator.hasNext()) {
 			Item i = iIterator.next();	
-			if (i.hashCode() == item.hashCode()) {
+			if (areEqualItems(i, item)) {
 				throw new ItemAlreadyExistsException();
 			}
 		}
@@ -249,6 +249,13 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		}
 		
 		return satisfyingItemList;
+	}
+	
+	private boolean areEqualItems(Item i1, Item i2) {
+		if (i1.toString().equals(i2.toString()))
+			return true;
+		else
+			return false;
 	}
 
 }
