@@ -12,10 +12,10 @@ import se.kth.ict.npj.hw2.exception.UknownClientException;
 import se.kth.ict.npj.hw2.exception.UknownItemException;
 
 /**
- * The remote interface of the MarketplaceServer.
+ * The remote interface of the MarketplaceServerInterface.
  * 
  */
-public interface MarketplaceServer extends Remote {
+public interface MarketplaceServerInterface extends Remote {
 	
 	/**
 	 * This method registers a client to the Marketplace server by his id.

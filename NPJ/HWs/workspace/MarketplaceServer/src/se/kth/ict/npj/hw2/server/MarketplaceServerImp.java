@@ -16,7 +16,7 @@ import se.kth.ict.npj.hw2.exception.UknownItemException;
  * @author saibbot
  *
  */
-public class MarketplaceServerImp extends UnicastRemoteObject implements MarketplaceServer {
+public class MarketplaceServerImp extends UnicastRemoteObject implements MarketplaceServerInterface {
 	ArrayList<String> clientList = null;
 	ArrayList<Item> itemList = null;
 	ArrayList<Item> wishList = null;
@@ -30,7 +30,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	}
 
 	/* (non-Javadoc)
-	 * @see se.kth.ict.npj.hw2.server.MarketplaceServer#buyItem(se.kth.ict.npj.hw2.Item)
+	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#buyItem(se.kth.ict.npj.hw2.Item)
 	 */
 	public void buyItem(Item item) throws UknownItemException, RemoteException {
 		Iterator<Item> iIterator = itemList.iterator();
@@ -53,7 +53,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	
 	
 	/* (non-Javadoc)
-	 * @see se.kth.ict.npj.hw2.server.MarketplaceServer#registerClient(java.lang.String)
+	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#registerClient(java.lang.String)
 	 */
 	public void registerClient(String id) throws ClientAlreadyExistsException, RemoteException {
 		if (clientList.contains(id)) {
@@ -72,7 +72,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 
 	
 	/* (non-Javadoc)
-	 * @see se.kth.ict.npj.hw2.server.MarketplaceServer#sellItem(java.lang.String, se.kth.ict.npj.hw2.Item)
+	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#sellItem(java.lang.String, se.kth.ict.npj.hw2.Item)
 	 */
 	public void sellItem(Item item) throws RemoteException,
 			IllegalItemException, ItemAlreadyExistsException, UknownClientException {
@@ -95,7 +95,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	}
 
 	/* (non-Javadoc)
-	 * @see se.kth.ict.npj.hw2.server.MarketplaceServer#unregisterClient(java.lang.String)
+	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#unregisterClient(java.lang.String)
 	 */
 	public void unregisterClient(String id) throws RemoteException,
 			UknownClientException {
