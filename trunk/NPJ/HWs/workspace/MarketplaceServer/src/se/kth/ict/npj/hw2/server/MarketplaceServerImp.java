@@ -14,6 +14,7 @@ import javax.security.auth.login.AccountNotFoundException;
 import bankrmi.Rejected;
 
 import se.kth.ict.npj.hw2.Item;
+import se.kth.ict.npj.hw2.client.objects.MPClientImpl;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
@@ -33,8 +34,6 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	ArrayList<Item> wishList = null;
 	bankrmi.Bank bank = null;
 	
-	//TODO syncronised methods
-	//TODO logging
 	protected MarketplaceServerImp(String bankUrl) throws RemoteException {
 		super();
 		
@@ -107,9 +106,21 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 				}
 				
 				
+				try {
+					MPClientImpl mpci = (MPClientImpl) Naming.lookup(item2.getOwner());
+					mpci.receiveItemSoldNotification(item2);
+				} 
+				catch (MalformedURLException e) {
+					System.out.println("[LOG] The seller url was not correct: " + e.getMessage());
+				} 
+				catch (NotBoundException e) {
+					System.out.println("[LOG] The seller object was not found: " + e.getMessage());
+				}
+				catch (RemoteException e) {
+					System.out.println("[LOG] The seller object could not be retrieved: " + e.getMessage());
+				}
 				
 				
-				//TODO callback to seller
 				return;
 			}
 		}
@@ -196,7 +207,20 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			if (item.getName().equalsIgnoreCase(item2.getName()) && item.getPrice() <= item2.getPrice()
 					&& (!item.getOwner().equals(item2.getOwner()))) {
 				
-				//TODO callback
+				try {
+					MPClientImpl mpci = (MPClientImpl) Naming.lookup(item2.getOwner());
+					mpci.receiveWishedItemNotification(item2);
+				} 
+				catch (MalformedURLException e) {
+					System.out.println("[LOG] The wish client url was not correct: " + e.getMessage());
+				} 
+				catch (NotBoundException e) {
+					System.out.println("[LOG] The wish client object was not found: " + e.getMessage());
+				}
+				catch (RemoteException e) {
+					System.out.println("[LOG] The wish client object could not be retrieved: " + e.getMessage());
+				}
+				
 				wishList.remove(item2);
 				break;
 			}
