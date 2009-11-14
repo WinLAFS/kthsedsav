@@ -66,6 +66,8 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	 */
 	public void buyItem(String userId, Item item) throws IllegalItemException, UnknownItemException,
 			RemoteException, AccountNotFoundException {
+		
+		System.out.println("[LOG] Client " + userId + "trying to buy item: " + item.toString());
 		if (item.getName() == null || item.getOwner() == null || item.getPrice() == 0) {
 			throw new IllegalItemException();
 		}
@@ -116,6 +118,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	}
 
 	public ArrayList<Item> inspectItems() throws RemoteException {
+		System.out.println("[LOG] inspectItems()");
 		return itemList;
 	}
 	
@@ -135,6 +138,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 
 
 	public ArrayList<Item> wishItem(Item item) throws ItemAlreadyExistsException, RemoteException {
+		System.out.println("[LOG] Wish item: " + item.toString());
 		if (item.getName() == null || item.getOwner() == null || item.getPrice() == 0) {
 			throw new IllegalItemException();
 		}
@@ -164,6 +168,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	public void sellItem(Item item) throws RemoteException,
 			IllegalItemException, ItemAlreadyExistsException, UnknownClientException {
 		
+		System.out.println("[LOG] Selling item: " + item.toString());
 		if (item.getName() == null || item.getOwner() == null || item.getPrice() == 0) {
 			throw new IllegalItemException();
 		}
@@ -200,6 +205,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	public void unregisterClient(String id) throws RemoteException,
 			UnknownClientException {
 		
+		System.out.println("[LOG] Unregister user: " + id);
 		if (!clientList.contains(id)) {
 			throw new UnknownClientException();
 		}
