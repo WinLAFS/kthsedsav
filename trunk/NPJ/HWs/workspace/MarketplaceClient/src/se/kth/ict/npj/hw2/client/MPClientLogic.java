@@ -1,6 +1,8 @@
 package se.kth.ict.npj.hw2.client;
 
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -11,6 +13,7 @@ import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.UknownClientException;
+import se.kth.ict.npj.hw2.exception.UknownItemException;
 import se.kth.ict.npj.hw2.server.MarketplaceServerInterface;
 
 public class MPClientLogic {
@@ -43,7 +46,14 @@ public class MPClientLogic {
 				portStr=":"+port;
 			}
 			serverInt = (MarketplaceServerInterface)Naming.lookup("rmi://"+server+portStr+"/server");
-			serverInt.registerClient(user);
+			try {
+				serverInt.registerClient("rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user);
+			} catch (UnknownHostException e) {
+				gui.connectionError("Can't conect to server");
+				System.err.println("[LOG] UnknownHostException when connecting to server");
+				return;
+				//e.printStackTrace();
+			}
 			
 			this.userName = user;
 			
@@ -146,5 +156,49 @@ public class MPClientLogic {
 		
 		gui.setNotificationMessage("Item is wished");
 		gui.clearWishForm();
+	}
+	
+	public void buyItem(String itemName, String itemPrice){
+		int price = 0;
+		try{
+			price = Integer.parseInt(itemPrice);
+		} catch(NumberFormatException ex){
+			gui.setNotificationMessage("Bad price");
+			System.err.println("[LOG] NumberFormatException when buying item");
+			return;
+		}
+		
+		Item item = new Item();
+		item.setName(itemName);
+		item.setOwner(userName);
+		item.setPrice(price);
+		
+		try {
+			serverInt.buyItem(userName, item);
+		} catch (UknownItemException e) {
+			System.err.println("[LOG] UknownItemException when buying item");
+			gui.setNotificationMessage("Can't buy the item");
+			return;
+			//e.printStackTrace();
+		} catch (RemoteException e) {
+			System.err.println("[LOG] RemoteException when buying item");
+			gui.setNotificationMessage("Can't buy the item");
+			return;
+			//e.printStackTrace();
+		}
+		
+		gui.setNotificationMessage("Item was bought");
+	}
+	
+	public void unregisterUser(){
+		try {
+			serverInt.unregisterClient(userName);
+		} catch (UknownClientException e) {
+			System.err.println("[LOG] UknownClientException when unregistering user");
+			//e.printStackTrace();
+		} catch (RemoteException e) {
+			System.err.println("[LOG] RemoteException when unregistering user");
+			//e.printStackTrace();
+		}
 	}
 }
