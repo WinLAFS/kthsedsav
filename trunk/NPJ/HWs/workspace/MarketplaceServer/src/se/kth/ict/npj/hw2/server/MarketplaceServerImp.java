@@ -11,8 +11,6 @@ import java.util.StringTokenizer;
 
 import javax.security.auth.login.AccountNotFoundException;
 
-import se.kth.ict.npj.hw2.Account;
-import se.kth.ict.npj.hw2.Bank;
 import se.kth.ict.npj.hw2.Item;
 import se.kth.ict.npj.hw2.Rejected;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
@@ -32,7 +30,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	ArrayList<String> clientList = null;
 	ArrayList<Item> itemList = null;
 	ArrayList<Item> wishList = null;
-	Bank bank = null;
+	bankrmi.Bank bank = null;
 	
 	//TODO syncronised methods
 	//TODO logging
@@ -40,7 +38,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		super();
 		
 		/*try {
-			Bank bank = (Bank) Naming.lookup(bankUrl);
+			bankrmi.Bank bank = (bankrmi.Bank) Naming.lookup(bankUrl);
 		} 
 		catch (MalformedURLException e) {
 			System.out.println("[LOG] The bank url was not correct: " + e.getMessage());
@@ -53,8 +51,8 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		catch (RemoteException e) {
 			System.out.println("[LOG] The bank object could not be retrieved: " + e.getMessage());
 			System.exit(0);
-		}*/
-		
+		}
+		*/
 		clientList = new ArrayList<String>();
 		itemList = new ArrayList<Item>();
 		wishList = new ArrayList<Item>();
@@ -79,11 +77,11 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			
 			if (areEqualItems(item, item2)) {
 				try {
-					Account sellerAccount = bank.getAccount(item2.getOwner());
+					bankrmi.Account sellerAccount = bank.getAccount(item2.getOwner());
 					if (sellerAccount == null) {
 						throw new AccountNotFoundException("Could not get the seller's account.");
 					}
-					Account buyerAccount = bank.getAccount(userId);
+					bankrmi.Account buyerAccount = bank.getAccount(userId);
 					if (buyerAccount == null) {
 						throw new AccountNotFoundException("Could not get the buyer's account.");
 					}
@@ -153,7 +151,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		
 		ArrayList<Item> satisfyingWishList = satisfyWish(item);
 		
-		StringTokenizer st = new StringTokenizer(item.getName(), "/");
+		StringTokenizer st = new StringTokenizer(item.getOwner(), "/");
 		String prettyName = null;
 		while (st.hasMoreTokens()) {
 			prettyName = st.nextToken();
@@ -203,7 +201,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			}
 		}
 		
-		StringTokenizer st = new StringTokenizer(item.getName(), "/");
+		StringTokenizer st = new StringTokenizer(item.getOwner(), "/");
 		String prettyName = null;
 		while (st.hasMoreTokens()) {
 			prettyName = st.nextToken();
