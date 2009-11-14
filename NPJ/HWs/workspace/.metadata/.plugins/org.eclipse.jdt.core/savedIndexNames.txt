@@ -1,0 +1,4 @@
+INDEX VERSION 1.125+D:\KTH\Projects\NPJ\HWs\workspace\.metadata\.plugins\org.eclipse.jdt.core
+3000053649.index
+3270002986.index
+1789169078.index
