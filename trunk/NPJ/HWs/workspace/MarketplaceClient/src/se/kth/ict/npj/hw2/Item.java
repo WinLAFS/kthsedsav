@@ -6,7 +6,14 @@ public class Item implements Serializable {
 	String name = null;
 	int price = 0;
 	String owner = null;
+	String ownerPretty = null;
 	
+	public String getOwnerPretty() {
+		return ownerPretty;
+	}
+	public void setOwnerPretty(String ownerPretty) {
+		this.ownerPretty = ownerPretty;
+	}
 	public String getOwner() {
 		return owner;
 	}

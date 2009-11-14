@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.StringTokenizer;
 
 import javax.security.auth.login.AccountNotFoundException;
 
@@ -38,7 +39,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	protected MarketplaceServerImp(String bankUrl) throws RemoteException {
 		super();
 		
-		/*try {
+		try {
 			Bank bank = (Bank) Naming.lookup(bankUrl);
 		} 
 		catch (MalformedURLException e) {
@@ -52,7 +53,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		catch (RemoteException e) {
 			System.out.println("[LOG] The bank object could not be retrieved: " + e.getMessage());
 			System.exit(0);
-		}*/
+		}
 		
 		clientList = new ArrayList<String>();
 		itemList = new ArrayList<Item>();
@@ -153,6 +154,13 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		
 		ArrayList<Item> satisfyingWishList = satisfyWish(item);
 		
+		StringTokenizer st = new StringTokenizer(item.getName(), "/");
+		String prettyName = null;
+		while (st.hasMoreTokens()) {
+			prettyName = st.nextToken();
+		}
+		item.setOwnerPretty(prettyName);
+		
 		if (satisfyingWishList.size() == 0) {
 			wishList.add(item);
 			return null;
@@ -195,6 +203,13 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 				break;
 			}
 		}
+		
+		StringTokenizer st = new StringTokenizer(item.getName(), "/");
+		String prettyName = null;
+		while (st.hasMoreTokens()) {
+			prettyName = st.nextToken();
+		}
+		item.setOwnerPretty(prettyName);
 		
 		itemList.add(item);
 	}
