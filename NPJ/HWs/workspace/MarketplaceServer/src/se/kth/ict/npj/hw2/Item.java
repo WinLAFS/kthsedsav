@@ -25,4 +25,8 @@ public class Item implements Serializable {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	
+	public String toString() {
+		return name + " / " + price + " / " + owner;
+	}
 }
