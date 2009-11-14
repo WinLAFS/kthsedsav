@@ -1,0 +1,16 @@
+grant {
+  permission java.io.FilePermission 
+	"<<ALL FILES>>", "read, write, delete, execute";
+};
+
+grant
+{
+        permission java.net.SocketPermission "*:1024-65535", "connect,accept";
+        permission java.lang.RuntimePermission "setSecurityManager";
+        permission java.lang.RuntimePermission "createSecurityManager";
+};
+//grant {
+	// Allow everything for now
+	//permission java.security.AllPermission;
+//};
+

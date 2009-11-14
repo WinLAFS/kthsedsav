@@ -1,16 +1,24 @@
 package se.kth.ict.npj.hw2.server;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.security.auth.login.AccountNotFoundException;
+
+import se.kth.ict.npj.hw2.Account;
+import se.kth.ict.npj.hw2.Bank;
 import se.kth.ict.npj.hw2.Item;
+import se.kth.ict.npj.hw2.Rejected;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
-import se.kth.ict.npj.hw2.exception.UknownClientException;
-import se.kth.ict.npj.hw2.exception.UknownItemException;
+import se.kth.ict.npj.hw2.exception.UnknownClientException;
+import se.kth.ict.npj.hw2.exception.UnknownItemException;
 
 /**
  * The MarketplaceServerInterface's implementation that implements all
@@ -23,10 +31,29 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	ArrayList<String> clientList = null;
 	ArrayList<Item> itemList = null;
 	ArrayList<Item> wishList = null;
+	Bank bank = null;
 	
 	//TODO syncronised methods
-	protected MarketplaceServerImp() throws RemoteException {
+	//TODO logging
+	protected MarketplaceServerImp(String bankUrl) throws RemoteException {
 		super();
+		
+		/*try {
+			Bank bank = (Bank) Naming.lookup(bankUrl);
+		} 
+		catch (MalformedURLException e) {
+			System.out.println("[LOG] The bank url was not correct: " + e.getMessage());
+			System.exit(0);
+		} 
+		catch (NotBoundException e) {
+			System.out.println("[LOG] The bank object was not found: " + e.getMessage());
+			System.exit(0);
+		}
+		catch (RemoteException e) {
+			System.out.println("[LOG] The bank object could not be retrieved: " + e.getMessage());
+			System.exit(0);
+		}*/
+		
 		clientList = new ArrayList<String>();
 		itemList = new ArrayList<Item>();
 		wishList = new ArrayList<Item>();
@@ -35,7 +62,8 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#buyItem(se.kth.ict.npj.hw2.Item)
 	 */
-	public void buyItem(String userId ,Item item) throws IllegalItemException, UknownItemException, RemoteException {
+	public void buyItem(String userId, Item item) throws IllegalItemException, UnknownItemException,
+			RemoteException, AccountNotFoundException {
 		if (item.getName() == null || item.getOwner() == null || item.getPrice() == 0) {
 			throw new IllegalItemException();
 		}
@@ -45,13 +73,44 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			Item item2 = iIterator.next();
 			
 			if (item.hashCode() == item2.hashCode()) {
-				itemList.remove(item2);
-				//TODO money
+				
+				try {
+					Account sellerAccount = bank.getAccount(item2.getOwner());
+					if (sellerAccount == null) {
+						throw new AccountNotFoundException("Could not get the seller's account.");
+					}
+					Account buyerAccount = bank.getAccount(userId);
+					if (buyerAccount == null) {
+						throw new AccountNotFoundException("Could not get the buyer's account.");
+					}
+					
+					buyerAccount.withdraw(item2.getPrice());
+					try { 
+						sellerAccount.deposit(item2.getPrice());
+						itemList.remove(item2);
+					} catch (Rejected re) {
+						buyerAccount.deposit(item2.getPrice());
+						throw re;
+					}
+				}
+				catch (Rejected e) {
+					throw e;
+				}
+				catch (AccountNotFoundException e) {
+					throw e;
+				}
+				catch (RemoteException e) {
+					throw new AccountNotFoundException("Could not update the clients' accounts.");
+				}
+				
+				
+				
+				
 				//TODO callback to seller
 				return;
 			}
 		}
-		throw new UknownItemException();
+		throw new UnknownItemException();
 	}
 
 	public ArrayList<Item> inspectItems() throws RemoteException {
@@ -63,6 +122,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#registerClient(java.lang.String)
 	 */
 	public void registerClient(String id) throws ClientAlreadyExistsException, RemoteException {
+		System.out.println("[LOG] Client registering: " + id);
 		if (clientList.contains(id)) {
 			throw new ClientAlreadyExistsException();
 		}
@@ -100,13 +160,13 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#sellItem(java.lang.String, se.kth.ict.npj.hw2.Item)
 	 */
 	public void sellItem(Item item) throws RemoteException,
-			IllegalItemException, ItemAlreadyExistsException, UknownClientException {
+			IllegalItemException, ItemAlreadyExistsException, UnknownClientException {
 		
 		if (item.getName() == null || item.getOwner() == null || item.getPrice() == 0) {
 			throw new IllegalItemException();
 		}
 		if (!clientList.contains(item.getOwner())) {
-			throw new UknownClientException();
+			throw new UnknownClientException();
 		}
 
 		Iterator<Item> iIterator = itemList.iterator();
@@ -136,10 +196,10 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#unregisterClient(java.lang.String)
 	 */
 	public void unregisterClient(String id) throws RemoteException,
-			UknownClientException {
+			UnknownClientException {
 		
 		if (!clientList.contains(id)) {
-			throw new UknownClientException();
+			throw new UnknownClientException();
 		}
 		
 		Iterator<Item> iIterator = itemList.iterator();
