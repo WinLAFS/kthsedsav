@@ -15,6 +15,7 @@ import bankrmi.Rejected;
 
 import se.kth.ict.npj.hw2.Item;
 import se.kth.ict.npj.hw2.client.objects.MPClientImpl;
+import se.kth.ict.npj.hw2.client.objects.MPClientInterface;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
@@ -107,7 +108,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 				
 				
 				try {
-					MPClientImpl mpci = (MPClientImpl) Naming.lookup(item2.getOwner());
+					MPClientInterface mpci = (MPClientInterface) Naming.lookup(item2.getOwner());
 					mpci.receiveItemSoldNotification(item2);
 				} 
 				catch (MalformedURLException e) {
@@ -175,6 +176,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			return null;
 		}
 		
+		
 		return satisfyingWishList;
 	}
 
@@ -208,7 +210,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 					&& (!item.getOwner().equals(item2.getOwner()))) {
 				
 				try {
-					MPClientImpl mpci = (MPClientImpl) Naming.lookup(item2.getOwner());
+					MPClientInterface mpci = (MPClientInterface) Naming.lookup(item2.getOwner());
 					mpci.receiveWishedItemNotification(item2);
 				} 
 				catch (MalformedURLException e) {
