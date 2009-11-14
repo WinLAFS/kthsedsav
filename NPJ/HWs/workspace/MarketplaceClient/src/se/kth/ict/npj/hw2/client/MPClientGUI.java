@@ -393,6 +393,7 @@ public class MPClientGUI extends JFrame {
 	}
 
 	/**
+	 * 
 	 * This method initializes jTextField6	
 	 * 	
 	 * @return javax.swing.JTextField	
