@@ -8,6 +8,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.security.auth.login.AccountNotFoundException;
+
+import bankrmi.Account;
+
 import se.kth.ict.npj.hw2.Item;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
@@ -48,6 +52,12 @@ public class MPClientLogic {
 			serverInt = (MarketplaceServerInterface)Naming.lookup("rmi://"+server+portStr+"/server");
 			try {
 				serverInt.registerClient("rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user);
+				this.userName = "rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user;
+				
+				String bankUrl = "rmi://localhost/Nordea";
+				bankrmi.Bank bank = (bankrmi.Bank) Naming.lookup(bankUrl);
+				Account account = bank.newAccount(userName);
+				account.deposit(10000000);
 			} catch (UnknownHostException e) {
 				gui.connectionError("Can't conect to server");
 				System.err.println("[LOG] UnknownHostException when connecting to server");
@@ -55,7 +65,6 @@ public class MPClientLogic {
 				//e.printStackTrace();
 			}
 			
-			this.userName = user;
 			
 			gui.connectionSuccessful();
 		} catch (ClientAlreadyExistsException e){
@@ -180,7 +189,11 @@ public class MPClientLogic {
 			gui.setNotificationMessage("Can't buy the item");
 			return;
 			//e.printStackTrace();
-		} catch (RemoteException e) {
+		} catch (AccountNotFoundException e){
+			System.err.println("[LOG] AccountNotFoundException when buying item");
+			gui.setNotificationMessage("Wrong user account");
+			return;
+		}	catch (RemoteException e) {
 			System.err.println("[LOG] RemoteException when buying item");
 			gui.setNotificationMessage("Can't buy the item");
 			return;

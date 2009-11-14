@@ -284,7 +284,7 @@ public class MPClientGUI extends JFrame {
 			Vector<String> product = new Vector<String>();
 			product.add(item.getName());
 			product.add(item.getPrice()+"");
-			product.add(item.getOwner());
+			product.add(item.getOwnerPretty());
 			
 			products.add(product);
 		}
@@ -337,6 +337,7 @@ public class MPClientGUI extends JFrame {
 			jButton2.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					logic.sellItem(getJTextField3().getText(), getJTextField4().getText());
+					logic.updateItems();
 				}
 			});
 		}
@@ -365,6 +366,10 @@ public class MPClientGUI extends JFrame {
 						String itemName = jTable.getModel().getValueAt(selrow, 0).toString();
 						String itemPrice = jTable.getModel().getValueAt(selrow, 1).toString();
 						String itemOwner = jTable.getModel().getValueAt(selrow, 2).toString();
+						
+						logic.buyItem(itemName, itemPrice);
+						
+						logic.updateItems();
 					} else {
 						setNotificationMessage("Select item to sell first");
 					}
@@ -476,6 +481,8 @@ public class MPClientGUI extends JFrame {
 			jLabel11 = new JLabel();
 			jLabel11.setBounds(new Rectangle(38, 260, 362, 27));
 			jLabel11.setFont(new Font("Dialog", Font.BOLD, 12));
+			jLabel11.setBounds(new Rectangle(6, 276, 459, 19));
+			jLabel11.setText("");
 			jLabel11.setText("NOTIFICATION AREA");
 			jLabel10 = new JLabel();
 			jLabel10.setBounds(new Rectangle(307, 198, 38, 16));
