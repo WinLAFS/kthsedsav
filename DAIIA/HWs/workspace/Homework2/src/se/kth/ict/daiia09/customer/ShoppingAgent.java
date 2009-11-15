@@ -29,9 +29,6 @@ public class ShoppingAgent extends Agent {
 	int maxPrice = 15000;
 	//the price that the agent is currently negotiating
 	int currentPrice;
-	//the company that we ll buy the laptop from
-	Company mySeller = null;
-	int waitingFor = 0;
 	
 	/*
 	 * (non-Javadoc)
