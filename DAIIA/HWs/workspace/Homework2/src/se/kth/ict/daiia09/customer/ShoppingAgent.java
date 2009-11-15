@@ -1,26 +1,17 @@
 package se.kth.ict.daiia09.customer;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import sun.applet.AppletClassLoader;
-import sun.font.EAttribute;
-
 import jade.core.AID;
 import jade.core.Agent;
-import jade.core.behaviours.Behaviour;
-import jade.core.behaviours.CyclicBehaviour;
-import jade.core.behaviours.FSMBehaviour;
-import jade.core.behaviours.OneShotBehaviour;
-import jade.core.behaviours.SequentialBehaviour;
-import jade.core.behaviours.WakerBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
-import jade.lang.acl.MessageTemplate;
-import jade.proto.SubscriptionInitiator;
+import jade.proto.ContractNetInitiator;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Vector;
 
 /**
  * The Shopping agent responsible for interacting with the Inventory/Monitoring
@@ -36,14 +27,11 @@ public class ShoppingAgent extends Agent {
 	private String laptopBrand = null;
 	//the maximum price that we would accept
 	int maxPrice = 15000;
-	//the max number of days for shipment
-	int maxDaysShipment = 7;
 	//the price that the agent is currently negotiating
 	int currentPrice;
 	//the company that we ll buy the laptop from
 	Company mySeller = null;
 	int waitingFor = 0;
-	boolean fistTime = true;
 	
 	/*
 	 * (non-Javadoc)
@@ -61,21 +49,12 @@ public class ShoppingAgent extends Agent {
 				}
 				catch (Exception e) {
 				}
-				try {
-					maxDaysShipment = new Integer((String) args[2]);
-				}
-				catch (Exception e) {
-				}
 		}
 		else {
 			laptopBrand = "LG";
 		}
 		
-		//we start our offers with the half of the price we are willing to pay
-		currentPrice = maxPrice / 2;
-		
-		System.out.println("Trying to buy laptop of brand: " + laptopBrand);
-		System.out.println("\t and max price: " + maxPrice);
+		System.out.println("Trying to buy laptop of brand: " + maxPrice);
 		
 		
 		//search for the available service providers and add them
@@ -97,13 +76,80 @@ public class ShoppingAgent extends Agent {
 			fe.printStackTrace();
 		}
 		
+		ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
+		cfp.setContent(laptopBrand);
+		cfp.setProtocol("fipa-contract-net");
+		Iterator<Company> cIterator = companies.iterator();
+		while (cIterator.hasNext()) {
+			Company company = (Company) cIterator.next();
+			cfp.addReceiver(company.getPricingAgent());
+		}
+		
+		addBehaviour(new ShoppingContractNetInitiator(this, cfp));
+		
 		
 	}
 
+	private class ShoppingContractNetInitiator extends ContractNetInitiator {
+		String brand = null;
+		
+		public ShoppingContractNetInitiator(Agent a, ACLMessage cfp) {
+			super(a, cfp);
+			brand = cfp.getContent();
+		}
+
+		protected Vector prepareCfps(ACLMessage cfp) {
+			System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] sending cfp messages. Protocol: " + cfp.getProtocol());
+			return super.prepareCfps(cfp);
+		}
+		
+		protected void handleAllResponses(Vector responses, Vector acceptances) {
+			int bestPrice = -1;
+			ACLMessage bestOffer = null;
+			
+			for (int i = 0; i < responses.size(); i++) {
+				ACLMessage response = (ACLMessage) responses.get(i);
+				if (response.getPerformative() == ACLMessage.PROPOSE) {
+					int price = 0;
+					try {
+						price = Integer.parseInt(response.getContent());
+					}
+					catch (ArithmeticException e) {
+					}
+					if (price != 0 && (bestOffer == null || price < bestPrice)) {
+						bestOffer = response;
+						bestPrice = price;
+					}
+				}
+			}
+			
+			if (bestOffer != null) {
+				System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Accepting best offer: " + bestOffer.getSender().getLocalName() + " / " + bestPrice + " SEK");
+				ACLMessage accept = bestOffer.createReply();
+				accept.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
+				accept.setContent(brand);
+				acceptances.add(accept);
+			}
+		}
+
+		protected void handleAllResultNotifications(Vector resultNotifications) {
+			ACLMessage msg = (ACLMessage) resultNotifications.get(0);
+			if (msg.getPerformative() == ACLMessage.INFORM) {
+				System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Bought item: " + brand + " / " + msg.getSender().getLocalName() + " / " + msg.getContent() + " SEK");
+			}
+			else {
+				System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Failed to buy item: " + brand + " / " + msg.getSender().getLocalName() + " / " + msg.getContent() + " SEK");
+			}
+		}
+
+		
+		
+	}
+	
+	
 	//a class for keeping the AID of the pricing and the inventory/monitoring agent of a company
 	private class Company {
 		AID pricingAgent = null;
-		int availability = 0;
 		int price = -1;
 		
 		
@@ -112,12 +158,6 @@ public class ShoppingAgent extends Agent {
 		}
 		public void setPrice(int price) {
 			this.price = price;
-		}
-		public int getAvailability() {
-			return availability;
-		}
-		public void setAvailability(int availability) {
-			this.availability = availability;
 		}
 		public AID getPricingAgent() {
 			return pricingAgent;
