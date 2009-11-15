@@ -34,7 +34,7 @@ public class PricingAgent extends Agent {
 		System.out.println("pricing agent " + getAID().getName() + " started.");
 		
 		//hard-coded item prices
-		if (getAID().getLocalName().indexOf("c1") >= 0) {
+		if (getAID().getLocalName().indexOf("1") >= 0) {
 			laptopBrandArrayList.add(new LaptopBrand("LG", 8000));
 			laptopBrandArrayList.add(new LaptopBrand("Sony", 11000));
 			laptopBrandArrayList.add(new LaptopBrand("Mac", 13000));
@@ -64,8 +64,6 @@ public class PricingAgent extends Agent {
 		}
 		
 		
-		//TODO add behavior :)
-		
 		final MessageTemplate template = MessageTemplate.and(
 				MessageTemplate.MatchProtocol("fipa-contract-net"),
 				MessageTemplate.MatchPerformative(ACLMessage.CFP) );
@@ -82,15 +80,15 @@ public class PricingAgent extends Agent {
 							int price = searchAvailability(brand);
 							String senderName = cfp.getSender().getLocalName();
 							
-							System.out.println("[LOG] Received CFP for brand "+ brand+" from "+senderName+".");
+							System.out.println("[LOG PricingAgent] Received CFP for brand "+ brand+" from "+senderName+".");
 							
 							if(price>0){
 								reply.setPerformative(ACLMessage.PROPOSE);
 								reply.setContent(price+"");
-								System.out.println("[LOG] brand "+brand+" found with price "+ price+". Sending ACLMessage.PROPOSE message to "+senderName+".");
+								System.out.println("[LOG PricingAgent] brand "+brand+" found with price "+ price+". Sending ACLMessage.PROPOSE message to "+senderName+".");
 							} else {
 								reply.setPerformative(ACLMessage.REFUSE);
-								System.out.println("[LOG] brand "+brand+" was not found. Sending ACLMessage.REFUSE message to "+senderName+".");
+								System.out.println("[LOG PricingAgent] brand "+brand+" was not found. Sending ACLMessage.REFUSE message to "+senderName+".");
 							}
 							
 							return reply;
@@ -105,14 +103,14 @@ public class PricingAgent extends Agent {
 							propose.setPerformative(ACLMessage.INFORM);
 							propose.setContent(price+"");
 							
-							System.out.println("[LOG] received accept proposal message for brand "+brand+". Sending ACLMessage.INFORM message to "+senderName+".");
+							System.out.println("[LOG PricingAgent] received accept proposal message for brand "+brand+". Sending ACLMessage.INFORM message to "+senderName+".");
 							
 							return propose;
 						}
 						
 						protected void handleRejectProposal(ACLMessage cfp, ACLMessage propose, ACLMessage reject){
 							String senderName = reject.getSender().getLocalName();
-							System.out.println("[LOG] received reject message from "+senderName+".");
+							System.out.println("[LOG PricingAgent] received reject message from "+senderName+".");
 						}
 						
 					});
