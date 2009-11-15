@@ -74,6 +74,7 @@ public class MPClientGUI extends JFrame {
 			jDialog = new JDialog(this);
 			jDialog.setSize(new Dimension(291, 204));
 			jDialog.setTitle("Connection options");
+			jDialog.setResizable(false);
 			jDialog.setContentPane(getJContentPane1());
 		}
 		return jDialog;
