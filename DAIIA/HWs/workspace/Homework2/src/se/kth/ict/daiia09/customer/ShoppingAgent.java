@@ -53,9 +53,7 @@ public class ShoppingAgent extends Agent {
 		else {
 			laptopBrand = "LG";
 		}
-		
-		System.out.println("Trying to buy laptop of brand: " + maxPrice);
-		
+		System.out.println("[LOG: Trying to buy laptop of brand: " + laptopBrand + ". Max Price : " + maxPrice);
 		
 		//search for the available service providers and add them
 		//these are the initial service providers
@@ -85,17 +83,19 @@ public class ShoppingAgent extends Agent {
 			cfp.addReceiver(company.getPricingAgent());
 		}
 		
-		addBehaviour(new ShoppingContractNetInitiator(this, cfp));
+		addBehaviour(new ShoppingContractNetInitiator(this, cfp, maxPrice));
 		
 		
 	}
 
 	private class ShoppingContractNetInitiator extends ContractNetInitiator {
 		String brand = null;
+		int maxPrice = 0;
 		
-		public ShoppingContractNetInitiator(Agent a, ACLMessage cfp) {
+		public ShoppingContractNetInitiator(Agent a, ACLMessage cfp, int maxPrice) {
 			super(a, cfp);
 			brand = cfp.getContent();
+			this.maxPrice = maxPrice;
 		}
 
 		protected Vector prepareCfps(ACLMessage cfp) {
@@ -105,7 +105,7 @@ public class ShoppingAgent extends Agent {
 		
 		protected void handleAllResponses(Vector responses, Vector acceptances) {
 			int bestPrice = -1;
-			ACLMessage bestOffer = null;
+			ACLMessage bestOfferReply = null;
 			
 			for (int i = 0; i < responses.size(); i++) {
 				ACLMessage response = (ACLMessage) responses.get(i);
@@ -116,19 +116,20 @@ public class ShoppingAgent extends Agent {
 					}
 					catch (ArithmeticException e) {
 					}
-					if (price != 0 && (bestOffer == null || price < bestPrice)) {
-						bestOffer = response;
+					ACLMessage replyToResponse = response.createReply();
+					replyToResponse.setPerformative(ACLMessage.REJECT_PROPOSAL);
+					replyToResponse.setContent(brand);
+					if (price != 0 && price <= maxPrice && (bestOfferReply == null || price < bestPrice)) {
+						bestOfferReply = replyToResponse;
 						bestPrice = price;
 					}
+					acceptances.add(replyToResponse);
 				}
 			}
 			
-			if (bestOffer != null) {
-				System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Accepting best offer: " + bestOffer.getSender().getLocalName() + " / " + bestPrice + " SEK");
-				ACLMessage accept = bestOffer.createReply();
-				accept.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
-				accept.setContent(brand);
-				acceptances.add(accept);
+			if (bestOfferReply != null) {
+				System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Accepting best offer: " + bestOfferReply.getSender().getLocalName() + " / " + bestPrice + " SEK");
+				bestOfferReply.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
 			}
 		}
 
@@ -141,9 +142,6 @@ public class ShoppingAgent extends Agent {
 				System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Failed to buy item: " + brand + " / " + msg.getSender().getLocalName() + " / " + msg.getContent() + " SEK");
 			}
 		}
-
-		
-		
 	}
 	
 	
