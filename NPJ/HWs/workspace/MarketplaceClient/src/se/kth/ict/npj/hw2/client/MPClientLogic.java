@@ -251,6 +251,8 @@ public class MPClientLogic {
 			System.err.println("[LOG] UknownClientException when unregistering user");
 		} catch (RemoteException e) {
 			System.err.println("[LOG] RemoteException when unregistering user");
+		} catch (Throwable t) {
+			System.err.println("[LOG] Can't unregister client");
 		}
 	}
 }
