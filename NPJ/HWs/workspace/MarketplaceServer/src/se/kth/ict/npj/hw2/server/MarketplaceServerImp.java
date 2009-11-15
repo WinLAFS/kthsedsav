@@ -258,32 +258,28 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	public synchronized void unregisterClient(String id) throws RemoteException,
 			UnknownClientException {
 		
-		System.out.println("[LOG] Unregister user: " + id);
-		if (!clientList.contains(id)) {
-			throw new UnknownClientException();
-		}
-		
-//		Iterator<Item> iIterator = itemList.iterator();
-//		while (iIterator.hasNext()) {
-//			Item item = iIterator.next();
-//			if (item.getOwner().equals(id)) {
-//				itemList.remove(item);
-//			}
-//		}
-		
-		for(int i=0; i<itemList.size(); i++){
-			Item item = itemList.get(i);
-			if (item.getOwner().equals(id)) {
-				itemList.remove(item);
+		try{
+			System.out.println("[LOG] Unregister user: " + id);
+			if (!clientList.contains(id)) {
+				throw new UnknownClientException();
 			}
-		}
-		
-		Iterator<Item> wlIterator = wishList.iterator();
-		while (wlIterator.hasNext()) {
-			Item item2 = (Item) wlIterator.next();
-			if (item2.getOwner().equals(id)) {
-				wishList.remove(item2);
+			
+			for(int i=0; i<itemList.size(); i++){
+				Item item = itemList.get(i);
+				if (item.getOwner().equals(id)) {
+					itemList.remove(item);
+				}
 			}
+			
+			Iterator<Item> wlIterator = wishList.iterator();
+			while (wlIterator.hasNext()) {
+				Item item2 = (Item) wlIterator.next();
+				if (item2.getOwner().equals(id)) {
+					wishList.remove(item2);
+				}
+			}
+		} catch (Throwable e) {
+			System.err.println("[LOG] Can't correctly unregister client");
 		}
 		
 		clientList.remove(id);

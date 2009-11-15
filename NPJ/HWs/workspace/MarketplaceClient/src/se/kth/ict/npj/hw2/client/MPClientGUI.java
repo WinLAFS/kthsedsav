@@ -305,7 +305,7 @@ public class MPClientGUI extends JFrame {
 		}
 		
 		jTable.setModel(new DefaultTableModel(products,columns));
-		jTable.getColumnModel().getColumn(3).setPreferredWidth(0);
+		jTable.getColumnModel().getColumn(3).setMaxWidth(0);
 		jTable.revalidate();
 	  	jTable.repaint();
 	}
