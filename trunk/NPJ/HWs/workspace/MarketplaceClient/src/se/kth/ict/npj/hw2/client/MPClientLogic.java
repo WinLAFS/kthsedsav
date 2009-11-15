@@ -102,10 +102,12 @@ public class MPClientLogic {
 	 * updates client's gui.
 	 */
 	public void updateItems(){
+		gui.setNotificationMessage("Communicating with server, please wait");
 		try {
 			if(serverInt!=null){
 				ArrayList<Item> items = serverInt.inspectItems();
 				gui.updateItemsList(items);
+				gui.setNotificationMessage("Items list updated");
 			} else {
 				gui.setNotificationMessage("Can't connect to the server");
 			}
@@ -122,6 +124,7 @@ public class MPClientLogic {
 	 * @param itemPrice Price of the item.
 	 */
 	public void sellItem(String itemName, String itemPrice){
+		gui.setNotificationMessage("Communicating with server, please wait");
 		int price = 0;
 		try{
 			price = Integer.parseInt(itemPrice);
@@ -168,6 +171,7 @@ public class MPClientLogic {
 	 * @param itemPrice Price of wished item
 	 */
 	public void placeWish(String itemName, String itemPrice){
+		gui.setNotificationMessage("Communicating with server, please wait");
 		int price = 0;
 		try{
 			price = Integer.parseInt(itemPrice);
@@ -201,6 +205,7 @@ public class MPClientLogic {
 	 * @param itemPrice Price of the item
 	 */
 	public void buyItem(String itemName, String itemPrice, String itemOwner){
+		gui.setNotificationMessage("Communicating with server, please wait");
 		int price = 0;
 		try{
 			price = Integer.parseInt(itemPrice);
