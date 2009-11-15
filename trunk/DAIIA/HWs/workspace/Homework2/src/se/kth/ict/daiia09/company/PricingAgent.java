@@ -1,23 +1,22 @@
 package se.kth.ict.daiia09.company;
 
 //se.kth.ict.daiia09.company.PricingAgent
-import java.util.ArrayList;
-import java.util.Iterator;
-
-
 import jade.core.AID;
 import jade.core.Agent;
-import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
-import jade.core.behaviours.OneShotBehaviour;
-import jade.core.behaviours.SequentialBehaviour;
-import jade.core.behaviours.TickerBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
+import jade.domain.FIPAAgentManagement.FailureException;
+import jade.domain.FIPAAgentManagement.NotUnderstoodException;
+import jade.domain.FIPAAgentManagement.RefuseException;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import jade.proto.SSContractNetResponder;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -65,7 +64,63 @@ public class PricingAgent extends Agent {
 		}
 		
 		
-		//TODO
+		//TODO add behavior :)
+		
+		final MessageTemplate template = MessageTemplate.and(
+				MessageTemplate.MatchProtocol("fipa-contract-net"),
+				MessageTemplate.MatchPerformative(ACLMessage.CFP) );
+		
+		addBehaviour(new CyclicBehaviour(this){
+			public void action(){
+				ACLMessage cfp = myAgent.receive(template);
+				if(cfp!=null){
+					myAgent.addBehaviour(new SSContractNetResponder(myAgent, cfp){
+						protected ACLMessage handleCfp(ACLMessage cfp) throws RefuseException,  FailureException, NotUnderstoodException{
+							ACLMessage reply = cfp.createReply();
+							
+							String brand = cfp.getContent();
+							int price = searchAvailability(brand);
+							String senderName = cfp.getSender().getLocalName();
+							
+							System.out.println("[LOG] Received CFP for brand "+ brand+" from "+senderName+".");
+							
+							if(price>0){
+								reply.setPerformative(ACLMessage.PROPOSE);
+								reply.setContent(price+"");
+								System.out.println("[LOG] brand "+brand+" found with price "+ price+". Sending ACLMessage.PROPOSE message to "+senderName+".");
+							} else {
+								reply.setPerformative(ACLMessage.REFUSE);
+								System.out.println("[LOG] brand "+brand+" was not found. Sending ACLMessage.REFUSE message to "+senderName+".");
+							}
+							
+							return reply;
+						}
+						
+						protected ACLMessage handleAcceptProposal(ACLMessage cfp,  ACLMessage propose, ACLMessage accept)throws FailureException{
+							ACLMessage reply = propose.createReply();
+							
+							String brand = cfp.getContent();
+							String senderName = cfp.getSender().getLocalName();
+							int price = searchAvailability(brand);
+							
+							reply.setPerformative(ACLMessage.INFORM);
+							reply.setContent(brand);
+							reply.setContent(price+"");
+							
+							System.out.println("[LOG] received accept proposal message for brand "+brand+". Sending ACLMessage.INFORM message to "+senderName+".");
+							
+							return reply;
+						}
+						
+						protected void handleRejectProposal(ACLMessage cfp, ACLMessage propose, ACLMessage reject){
+							String senderName = cfp.getSender().getLocalName();
+							System.out.println("[LOG] received reject message from "+senderName+".");
+						}
+						
+					});
+				}
+			}
+		});
 	}
 	
 	protected void takeDown() {
@@ -82,8 +137,6 @@ public class PricingAgent extends Agent {
 		private String name = null;
 		private int price = Integer.MAX_VALUE;
 		private int availability = 0;
-		
-		
 		
 		public int getAvailability() {
 			return availability;
@@ -110,5 +163,26 @@ public class PricingAgent extends Agent {
 		public void setPrice(int price) {
 			this.price = price;
 		}
+	}
+	
+	/**
+	 * Search for the available number of items of the specified brand
+	 * 
+	 * @param brand the target brand
+	 * @return the number of available items
+	 */
+	private int searchAvailability(String brand) {
+		int availability = 0;
+		
+		Iterator<LaptopBrand> lbIterator= laptopBrandArrayList.iterator();
+		//iterates through all items, and if the item of the specified
+		//item is found, its availability is returned
+		while (lbIterator.hasNext()) {
+			LaptopBrand laptopBrand = lbIterator.next();
+			if (laptopBrand.getName().equalsIgnoreCase(brand))
+				return laptopBrand.getPrice();
+		}
+		
+		return availability;
 	}
 }
