@@ -161,9 +161,23 @@ public class PricingAgentNegotiate extends Agent {
 						
 						protected ACLMessage handleAcceptProposal(ACLMessage cfp,  ACLMessage propose, ACLMessage accept)throws FailureException{
 							
-							String brand = cfp.getContent();
+							String brand = "";
+							String price = "";
+							int priceInt = 0;
+							String requestStr = cfp.getContent();
+							
+							try{
+								StringTokenizer st = new StringTokenizer(requestStr, ",");
+								brand = st.nextToken();
+								price = st.nextToken();
+								
+								priceInt = Integer.parseInt(price);
+							} catch (Throwable t){
+								System.out.println("[LOG PricingAgent] Error parsing request string!");
+							}
+							
+							
 							String senderName = cfp.getSender().getLocalName();
-							int price = searchNormalPrice(brand);
 							
 							propose.setPerformative(ACLMessage.INFORM);
 							propose.setContent(price+"");
