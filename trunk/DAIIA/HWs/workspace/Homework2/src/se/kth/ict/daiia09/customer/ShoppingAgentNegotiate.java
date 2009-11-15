@@ -2,6 +2,7 @@ package se.kth.ict.daiia09.customer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.StringTokenizer;
 import java.util.Vector;
 
 import jade.core.AID;
@@ -132,7 +133,8 @@ public class ShoppingAgentNegotiate extends Agent {
 		
 		public ShoppingContractNetInitiator(Agent a, ACLMessage cfp, int maxPrice, boolean ili) {
 			super(a, cfp);
-			brand = cfp.getContent();
+			StringTokenizer st = new StringTokenizer(cfp.getContent(), ",");
+			brand = st.nextToken();
 			this.maxPrice = maxPrice;
 			this.isLastIterateration = ili;
 		}
@@ -159,18 +161,19 @@ public class ShoppingAgentNegotiate extends Agent {
 						}
 						ACLMessage replyToResponse = response.createReply();
 						replyToResponse.setPerformative(ACLMessage.REJECT_PROPOSAL);
-						replyToResponse.setContent(brand);
+						replyToResponse.setContent(brand);						
 						if (price != 0 && price <= maxPrice && (bestOfferReply == null || price < bestPrice)) {
 							bestOfferReply = replyToResponse;
 							bestPrice = price;
 						}
-						
+						acceptances.add(replyToResponse);
 					}
 				}
 				
 				if (bestOfferReply != null) {
 					System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Accepting best offer: " + ((AID) bestOfferReply.getAllReceiver().next()).getLocalName() + " / " + bestPrice + " SEK");
 					bestOfferReply.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
+					bestOfferReply.setContent(brand + "," + bestPrice);
 				}
 				else {
 					System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Cannot buy " + brand +". No available items found.");
@@ -187,8 +190,8 @@ public class ShoppingAgentNegotiate extends Agent {
 						}
 						catch (ArithmeticException e) {
 						}
-						if ((price != -1) && (price < bestPrice)) {
-							price = bestPrice;
+						if ((price != -1) && ((price < bestPrice) || bestPrice == -1)) {
+							bestPrice = price;
 							nextMsg = brand + "," + price + "," + response.getSender().getName();
 						}
 						Company c = new Company();
@@ -203,14 +206,12 @@ public class ShoppingAgentNegotiate extends Agent {
 					start.addReceiver(myAgent.getAID());
 					start.setContent(nextMsg);
 					myAgent.send(start);
+					System.out.println("[LOG: " + myAgent.getAID().getLocalName() + "] Finished round. Current price: " + bestPrice);
 				}
 				else {
 					System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Cannot buy " + brand +". No shopping agent continued.");
 				}
 			}
-			
-			
-			
 		}
 
 		protected void handleAllResultNotifications(Vector resultNotifications) {
