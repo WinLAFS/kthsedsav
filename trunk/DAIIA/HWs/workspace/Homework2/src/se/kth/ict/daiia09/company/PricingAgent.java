@@ -97,19 +97,17 @@ public class PricingAgent extends Agent {
 						}
 						
 						protected ACLMessage handleAcceptProposal(ACLMessage cfp,  ACLMessage propose, ACLMessage accept)throws FailureException{
-							ACLMessage reply = propose.createReply();
 							
 							String brand = cfp.getContent();
 							String senderName = cfp.getSender().getLocalName();
 							int price = searchAvailability(brand);
 							
-							reply.setPerformative(ACLMessage.INFORM);
-							reply.setContent(brand);
-							reply.setContent(price+"");
+							propose.setPerformative(ACLMessage.INFORM);
+							propose.setContent(price+"");
 							
 							System.out.println("[LOG] received accept proposal message for brand "+brand+". Sending ACLMessage.INFORM message to "+senderName+".");
 							
-							return reply;
+							return propose;
 						}
 						
 						protected void handleRejectProposal(ACLMessage cfp, ACLMessage propose, ACLMessage reject){
