@@ -243,7 +243,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 					System.out.println("[LOG] The wish client object could not be retrieved: " + e.getMessage());
 				}
 				
-				wishList.remove(item2);
+				//wishList.remove(item2);
 			}
 		}
 		
