@@ -128,8 +128,11 @@ public class ShoppingAgent extends Agent {
 			}
 			
 			if (bestOfferReply != null) {
-				System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Accepting best offer: " + bestOfferReply.getSender().getLocalName() + " / " + bestPrice + " SEK");
+				System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Accepting best offer: " + ((AID) bestOfferReply.getAllReceiver().next()).getLocalName() + " / " + bestPrice + " SEK");
 				bestOfferReply.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
+			}
+			else {
+				System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Cannot buy " + brand +". No available items found.");
 			}
 		}
 
