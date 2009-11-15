@@ -67,7 +67,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	public synchronized void buyItem(String userId, Item item) throws IllegalItemException, UnknownItemException,
 			RemoteException, AccountNotFoundException {
 		
-		System.out.println("[LOG] Client " + userId + "trying to buy item: " + item.toString());
+		System.out.println("[LOG] Client " + userId + " trying to buy item: " + item.toString());
 		if (item.getName() == null || item.getOwner() == null || item.getPrice() == 0) {
 			throw new IllegalItemException();
 		}
@@ -86,14 +86,19 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 					if (buyerAccount == null) {
 						throw new AccountNotFoundException("Could not get the buyer's account.");
 					}
-					
-					buyerAccount.withdraw(item2.getPrice());
-					try { 
-						sellerAccount.deposit(item2.getPrice());
-						itemList.remove(item2);
-					} catch (Rejected re) {
-						buyerAccount.deposit(item2.getPrice());
-						throw re;
+					try {
+						buyerAccount.withdraw(item2.getPrice());
+						try { 
+							sellerAccount.deposit(item2.getPrice());
+							itemList.remove(item2);
+						} catch (Rejected e) {
+							buyerAccount.deposit(item2.getPrice());
+							throw e;
+						}
+					}
+					catch (Rejected e) {
+						System.out.println("[LOG] The bank transaction was rejected: " + e.getMessage());
+						throw e;
 					}
 				}
 				catch (Rejected e) {
