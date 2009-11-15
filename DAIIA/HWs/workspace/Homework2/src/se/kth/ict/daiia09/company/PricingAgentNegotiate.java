@@ -164,7 +164,7 @@ public class PricingAgentNegotiate extends Agent {
 							String brand = "";
 							String price = "";
 							int priceInt = 0;
-							String requestStr = cfp.getContent();
+							String requestStr = accept.getContent();
 							
 							try{
 								StringTokenizer st = new StringTokenizer(requestStr, ",");
@@ -182,7 +182,7 @@ public class PricingAgentNegotiate extends Agent {
 							propose.setPerformative(ACLMessage.INFORM);
 							propose.setContent(price+"");
 							
-							System.out.println("[LOG PricingAgent] received accept proposal message for brand "+brand+". Sending ACLMessage.INFORM message to "+senderName+".");
+							System.out.println("[LOG PricingAgent] received accept proposal message for brand "+brand+". Sending ACLMessage.INFORM message to "+senderName+". Price: " + price);
 							
 							return propose;
 						}
