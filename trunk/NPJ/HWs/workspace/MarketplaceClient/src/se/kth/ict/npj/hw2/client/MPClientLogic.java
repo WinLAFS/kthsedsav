@@ -228,7 +228,7 @@ public class MPClientLogic {
 			return;
 		} catch (AccountNotFoundException e){
 			System.err.println("[LOG] AccountNotFoundException when buying item");
-			gui.setNotificationMessage("Wrong user account");
+			gui.setNotificationMessage("Not enough money to buy item");
 			return;
 		}	catch (RemoteException e) {
 			System.err.println("[LOG] RemoteException when buying item");
