@@ -110,7 +110,8 @@ public class PricingAgent extends Agent {
 						
 						protected void handleRejectProposal(ACLMessage cfp, ACLMessage propose, ACLMessage reject){
 							String senderName = reject.getSender().getLocalName();
-							System.out.println("[LOG PricingAgent] received reject message from "+senderName+".");
+							String item = reject.getContent();
+							System.out.println("[LOG PricingAgent] received reject message for item "+item+" from "+senderName+".");
 						}
 						
 					});
