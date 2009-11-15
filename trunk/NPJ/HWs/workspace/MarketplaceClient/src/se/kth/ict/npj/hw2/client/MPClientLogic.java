@@ -222,6 +222,7 @@ public class MPClientLogic {
 		
 		try {
 			serverInt.buyItem(userName, item);
+			updateItems();
 		} catch (UknownItemException e) {
 			System.err.println("[LOG] UknownItemException when buying item");
 			gui.setNotificationMessage("Can't buy the item");
