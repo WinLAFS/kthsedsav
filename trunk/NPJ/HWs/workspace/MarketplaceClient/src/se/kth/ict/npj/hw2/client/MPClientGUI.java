@@ -205,6 +205,11 @@ public class MPClientGUI extends JFrame {
 		System.out.println("[LOG] Connected.");
 	}
 	
+	/**
+	 * Method is called in case of error while connecting to server
+	 * 
+	 * @param errorMsg Error message to be displayed
+	 */
 	public void connectionError(String errorMsg){
 		jLabel12.setText(errorMsg);
 		jButton.setEnabled(true);
@@ -284,6 +289,11 @@ public class MPClientGUI extends JFrame {
 		return jButton1;
 	}
 	
+	/**
+	 * Method updates list of selling items on GUI
+	 * 
+	 * @param items ArrayList of selling items
+	 */
 	public void updateItemsList(ArrayList<Item> items){
 		Vector<String> columns = new Vector<String>();
 		columns.add("Name");
@@ -310,6 +320,11 @@ public class MPClientGUI extends JFrame {
 	  	jTable.repaint();
 	}
 	
+	/**
+	 * Method writes a notification message on the GUI
+	 * 
+	 * @param notification Notification message
+	 */
 	public void setNotificationMessage(String notification){
 		jLabel11.setText(notification);
 	}
@@ -360,6 +375,9 @@ public class MPClientGUI extends JFrame {
 		return jButton2;
 	}
 	
+	/**
+	 * Method clears field of selling item form
+	 */
 	public void clearSellItemForm(){
 		getJTextField3().setText("");
 		getJTextField4().setText("");
@@ -441,13 +459,18 @@ public class MPClientGUI extends JFrame {
 		return jButton4;
 	}
 	
+	/**
+	 * Method clears fields of wish item form
+	 */
 	public void clearWishForm(){
 		getJTextField5().setText("");
 		getJTextField6().setText("");
 	}
 
 	/**
-	 * @param args
+	 * Main method of the client
+	 * 
+	 * @param args List of arguments
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
