@@ -73,7 +73,7 @@ public class MPClientLogic {
 				String bankUrl = "rmi://"+server+portStr+"/NordBanken";
 				bank = (bankrmi.Bank) Naming.lookup(bankUrl);
 				account = bank.newAccount(userName);
-				account.deposit(10000000);
+				account.deposit(100);
 			} catch (UnknownHostException e) {
 				gui.connectionError("Can't conect to server");
 				System.err.println("[LOG] UnknownHostException when connecting to server");
