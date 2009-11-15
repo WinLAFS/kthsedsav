@@ -404,7 +404,7 @@ public class MPClientGUI extends JFrame {
 						
 						logic.buyItem(itemName, itemPrice, itemOwner);
 						
-						logic.updateItems();
+						
 					} else {
 						setNotificationMessage("Select item to sell first");
 					}
