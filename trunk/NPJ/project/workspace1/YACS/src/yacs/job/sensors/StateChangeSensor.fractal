@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/fractal/adl/xml/basic.dtd">
+
+<definition
+  name="yacs.job.sensors.StateChangeSensor"  >
+
+  <!-- ================================== -->
+  <!--        SERVER INTERFACE            -->
+  <!-- ================================== -->
+  <interface name="init" role="server" signature="dks.niche.fractal.interfaces.SensorInitInterface" />
+  <interface name="stateChangeInterface" role="server" signature="yacs.job.interfaces.StateChangeInterface" />
+
+  <!-- ================================== -->
+  <!--        CLIENT INTERFACE            -->
+  <!-- ================================== -->
+  <interface name="trigger" role="client" signature="dks.niche.fractal.interfaces.TriggerInterface" />
+  
+  <!-- ================================== -->
+  <!--              CONTENT               -->
+  <!-- ================================== -->
+  <content class="yacs.job.sensors.StateChangeSensor" />
+  
+  <!-- ================================== -->
+  <!--             ATTRIBUTES             -->
+  <!-- ================================== -->
+  
+  <!--              Not Used              -->
+
+  <!-- ================================== -->
+  <!--            CONTROLLER              -->
+  <!-- ================================== -->
+  <controller desc="primitive" />
+
+</definition>
+

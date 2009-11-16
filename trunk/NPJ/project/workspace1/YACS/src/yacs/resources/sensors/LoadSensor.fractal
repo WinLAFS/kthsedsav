@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/fractal/adl/xml/basic.dtd">
+
+<definition
+  name="yacs.resources.sensors.LoadSensor"  >
+
+  <!-- ================================== -->
+  <!--        SERVER INTERFACE            -->
+  <!-- ================================== -->
+  <interface name="init" role="server" signature="dks.niche.fractal.interfaces.SensorInitInterface" />
+  <interface name="loadState" role="server" signature="yacs.resources.interfaces.LoadStateInterface" />
+
+  <!-- ================================== -->
+  <!--        CLIENT INTERFACE            -->
+  <!-- ================================== -->
+  <interface name="trigger" role="client" signature="dks.niche.fractal.interfaces.TriggerInterface" />
+  
+  <!-- ================================== -->
+  <!--              CONTENT               -->
+  <!-- ================================== -->
+  <content class="yacs.resources.sensors.LoadSensor" />
+  
+  <!-- ================================== -->
+  <!--             ATTRIBUTES             -->
+  <!-- ================================== -->
+  
+  <!--              Not Used              -->
+
+  <!-- ================================== -->
+  <!--            CONTROLLER              -->
+  <!-- ================================== -->
+  <controller desc="primitive" />
+
+</definition>
+
