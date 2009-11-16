@@ -1,6 +1,0 @@
-source("init"); 
-
-print("Start deployment");
-deploy("Yass");
-print("End deployment");
-
