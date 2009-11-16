@@ -1,0 +1,13 @@
+source("init"); 
+displayreg();
+print("Start deployment ResourceSeller");
+id=deploy("ResourceSeller");
+print("End deployment ResourceSeller");
+print("Starting the ResourceSeller");
+c = lookupcomp("ResourceSeller_"+id);
+lc=getitf(c, "lifecycle-controller");
+lc.startFc();
+print("Invoking the component");
+i=getitf(c, "r");
+i.run();
+print("Resource Seller is running ");

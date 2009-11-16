@@ -1,0 +1,7 @@
+source("init"); 
+
+print("Starting NicheHelloWorld");
+c = lookupcomp("NicheHelloWorld_0");
+lc=getitf(c, "lifecycle-controller");
+lc.startFc();
+print("NicheHelloWorld started");

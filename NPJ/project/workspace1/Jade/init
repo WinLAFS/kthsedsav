@@ -1,0 +1,6 @@
+importCommands("jade");
+importCommands("fractal");
+importCommands("joram");
+importCommands("j2ee");
+importCommands("clusterDB");
+init("localhost", 1238);

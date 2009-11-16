@@ -1,0 +1,10 @@
+source("init"); 
+
+print("Starting the composite");
+c = lookupcomp("Yass_0");
+lc=getitf(c, "lifecycle-controller");
+lc.startFc();
+print("Invoking the composite");
+i=getitf(c, "r");
+i.run();
+
