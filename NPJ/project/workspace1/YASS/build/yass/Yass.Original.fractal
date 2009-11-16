@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/fractal/adl/xml/basic.dtd">
+
+<definition name="yass.Yass">
+  <interface name="r" role="server" signature="java.lang.Runnable"/>
+  <component name="frontend">
+    <interface name="r" role="server" signature="java.lang.Runnable"/>
+    <interface name="storageItfs" role="client" signature="yass.Storage" cardinality="collection"/>
+    <content class="yass.FrontendImpl"/>
+  </component>
+  <component name="storage1">
+    <interface name="s" role="server" signature="yass.Storage"/>
+    <content class="yass.StorageComponent"/>
+    <attributes signature="yass.ServiceAttributes">
+      <attribute name="header" value="-> "/>
+      <attribute name="count" value="3"/>
+    </attributes>
+    <controller desc="primitive"/>
+  </component>
+  
+  <component name="storage2">
+    <interface name="s" role="server" signature="yass.Storage"/>
+    <content class="yass.StorageComponent"/>
+    <attributes signature="yass.ServiceAttributes">
+      <attribute name="header" value="-> "/>
+      <attribute name="count" value="1"/>
+    </attributes>
+    <controller desc="primitive"/>
+  </component>
+  
+  <component name="storage3">
+    <interface name="s" role="server" signature="yass.Storage"/>
+    <content class="yass.StorageComponent"/>
+    <attributes signature="yass.ServiceAttributes">
+      <attribute name="header" value="-> "/>
+      <attribute name="count" value="1"/>
+    </attributes>
+    <controller desc="primitive"/>
+  </component>
+  
+  <binding client="this.r" server="frontend.r"/>
+  <binding client="frontend.storageItfs1" server="storage1.s"/>
+  <binding client="frontend.storageItfs2" server="storage2.s"/>
+  <binding client="frontend.storageItfs3" server="storage3.s"/>
+  
+  
+</definition>
