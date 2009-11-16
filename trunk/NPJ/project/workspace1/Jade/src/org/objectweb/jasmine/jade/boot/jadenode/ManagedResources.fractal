@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jade.dtd">
+
+<definition
+	name="org.objectweb.jasmine.jade.boot.jadenode.ManagedResources">
+
+	<!-- ================================== -->
+	<!--            CONTROLLER              -->
+	<!-- ================================== -->
+	
+	
+  <component name="fractal_rmi_registry"
+		definition="org.objectweb.jasmine.jade.service.registry.fractalrmi.Registry">
+		<attributes
+			signature="fr.jade.fractal.api.control.GenericAttributeController">
+			<attribute name="isProxy" value="true" />
+		</attributes>
+  </component>	
+  
+  <component name="resource_deployer"
+		definition="org.objectweb.jasmine.jade.service.deployer.proxy.ResourceDeployerProxy" />
+
+
+  <component name="nicheOS" 
+       definition="org.objectweb.jasmine.jade.service.nicheOS.NicheOS">
+    	<attributes
+      		signature="fr.jade.fractal.api.control.GenericAttributeController">
+      		<attribute name="mode" value="JOIN" />
+  		</attributes>
+  	</component>
+  
+  <component name="nodeManager" 
+       definition="org.objectweb.jasmine.jade.service.nodemanager.NodeManager"/>
+       
+  <component name="basicResourceManagement" 
+       definition="org.objectweb.jasmine.jade.service.basicresourcemanagement.BasicResourceManagement" />
+  
+       
+  <component name="resourceDiscoveryBackEnd"
+    definition="org.objectweb.jasmine.jade.service.resourcediscoverybackend.ResourceDiscoveryBackEnd">
+  <attributes
+      signature="fr.jade.fractal.api.control.GenericAttributeController">
+      <attribute name="myproperty"
+        value="1" />
+    </attributes>
+  </component>
+  	
+  <component name="componentDeploymentBackEnd"
+    definition="org.objectweb.jasmine.jade.service.componentdeploymentbackend.ComponentDeploymentBackEnd">
+  <attributes
+      signature="fr.jade.fractal.api.control.GenericAttributeController">
+      <attribute name="myproperty"
+        value="1" />
+    </attributes>
+  </component>
+  
+  <component name="componentBindingBackEnd"
+    definition="org.objectweb.jasmine.jade.service.componentbindingbackend.ComponentBindingBackEnd">
+  </component>
+  
+  	<!-- ================================== -->
+	<!--              BINDING               -->
+	<!-- ================================== -->
+  
+  <binding client="resource_deployer.registry"
+    	server="fractal_rmi_registry.registry" />
+
+  <binding client="basicResourceManagement.overlayAccess"
+      server="nicheOS.overlayAccess" />   	
+  
+  <binding client="resourceDiscoveryBackEnd.overlayAccess"
+      server="nicheOS.overlayAccess" />
+  
+  <binding client="resourceDiscoveryBackEnd.nodeManager"
+      server="nodeManager.nodeManager" />
+          
+  <binding client="componentDeploymentBackEnd.overlayAccess"
+      server="nicheOS.overlayAccess" />
+      
+   <binding client="componentDeploymentBackEnd.nodeManager"
+      server="nodeManager.nodeManager" />
+
+  <binding client="componentBindingBackEnd.overlayAccess"
+      server="nicheOS.overlayAccess" />
+  
+  <binding client="componentBindingBackEnd.deployedComponents"
+      server="componentDeploymentBackEnd.deployedComponents" />
+  
+<controller desc="jade-compositeNoLcCheck"/>
+  
+</definition>

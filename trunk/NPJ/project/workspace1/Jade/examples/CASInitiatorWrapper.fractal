@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jadeApplication.dtd">
+
+<!--
+"mname", "id", "regend", "bidstart", "bidend", "clearstart", "clearend", "closetime", "grouping", "itemType", "maxbuyers", "maxsellers", "resourceprops", "nbcpuunits", "nbstorageunits", "leasestart", "leaseend",  "unitprice"
+-->
+
+<definition name="CASInitiatorWrapper">
+
+	<content class="eu.grid4all.grimp.cas.agents.lib.KDAInitiatorWrapper"/>
+
+    <attributes signature="fr.jade.fractal.api.control.GenericAttributeController">
+	   <attribute name="mname" value="GRIMP Market1"/>
+	   <attribute name="id" value="8765432"/>
+	   <attribute name="resourceprops" value="CPUSpeed=HIGH:physicalMemory=BIG"/>
+	   <attribute name="leasestart" value="480"/>
+	   <attribute name="leaseend" value="300"/>
+    </attributes>
+ 
+ 	<virtual-node name="node" resourceReqs="(jadeName=*0)"/> 
+ 	 	
+ 	<packages>
+      <package name="CASInitiator Wrapper" />
+    </packages>
+
+</definition>

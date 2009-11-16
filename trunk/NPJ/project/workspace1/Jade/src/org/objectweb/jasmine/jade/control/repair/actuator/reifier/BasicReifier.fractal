@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jade.dtd">
+
+<definition name="org.objectweb.jasmine.jade.control.repair.actuator.reifier.BasicReifier"
+  extends="org.objectweb.jasmine.jade.control.repair.actuator.reifier.ReifierType">
+
+  <interface name="registry" role="client"
+    signature="org.objectweb.fractal.rmi.registry.NamingService" />
+
+  <!-- ================================== -->
+  <!--          SUB COMPONENT             -->
+  <!-- ================================== -->
+
+  <component name="lifecycle-reifier"
+    definition="org.objectweb.jasmine.jade.control.repair.actuator.reifier.DelegateReifierType">
+    <content
+      class="org.objectweb.jasmine.jade.control.repair.actuator.reifier.lifecycle.LifecycleReifier" />
+  </component>
+
+  <component name="attribute-reifier"
+    definition="org.objectweb.jasmine.jade.control.repair.actuator.reifier.DelegateReifierType">
+    <content
+      class="org.objectweb.jasmine.jade.control.repair.actuator.reifier.attribute.AttributeReifier" />
+  </component>
+
+  <component name="binding-reifier"
+    definition="org.objectweb.jasmine.jade.control.repair.actuator.reifier.DelegateReifierType">
+    <content
+      class="org.objectweb.jasmine.jade.control.repair.actuator.reifier.binding.BindingReifier" />
+  </component>
+
+  <component name="content-reifier"
+    definition="org.objectweb.jasmine.jade.control.repair.actuator.reifier.DelegateReifierType">
+    <content
+      class="org.objectweb.jasmine.jade.control.repair.actuator.reifier.content.ContentReifier" />
+  </component>
+
+  <component name="component-reifier"
+    definition="org.objectweb.jasmine.jade.control.repair.actuator.reifier.ReifierType">
+    <interface name="registry" role="client"
+      signature="org.objectweb.fractal.rmi.registry.NamingService" />
+    <content
+      class="org.objectweb.jasmine.jade.control.repair.actuator.reifier.component.ComponentReifier" />
+  </component>
+
+  <!-- ================================== -->
+  <!--              BINDING               -->
+  <!-- ================================== -->
+  <binding client="this.reifier" server="lifecycle-reifier.reifier" />
+  <binding client="lifecycle-reifier.client-reifier"
+    server="attribute-reifier.reifier" />
+  <binding client="attribute-reifier.client-reifier"
+    server="binding-reifier.reifier" />
+  <binding client="binding-reifier.client-reifier"
+    server="content-reifier.reifier" />
+  <binding client="content-reifier.client-reifier"
+    server="component-reifier.reifier" />
+
+  <binding client="component-reifier.registry" server="this.registry" />
+
+  <!-- ================================== -->
+  <!--            CONTROLLER              -->
+  <!-- ================================== -->
+  <controller desc="composite" />
+
+</definition>

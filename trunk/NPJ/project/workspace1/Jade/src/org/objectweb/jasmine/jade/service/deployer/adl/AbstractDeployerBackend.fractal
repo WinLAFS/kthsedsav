@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/fractal/adl/xml/core.dtd">
+
+<definition
+  name="org.objectweb.jasmine.jade.service.deployer.adl.AbstractDeployerBackend"
+  extends="org.objectweb.jasmine.jade.service.deployer.adl.DeployerBackendType">
+
+  <!-- ================================== -->
+  <!--          SUB-COMPONENT             -->
+  <!-- ================================== -->
+  <component name="type-builder">
+    <interface name="type-builder" role="server"
+      signature="org.objectweb.fractal.adl.types.TypeBuilder" />
+  </component>
+
+  <component name="implementation-builder">
+    <interface name="implementation-builder" role="server"
+      signature="org.objectweb.jasmine.jade.service.deployer.adl.implementations.ImplementationBuilder" />
+    <interface name="registry" role="client"
+      signature="org.objectweb.fractal.rmi.registry.NamingService" />
+    <interface name="componentDeployment" role="client"
+      signature="org.objectweb.jasmine.jade.service.componentdeployment.ComponentDeployment" />
+  </component>
+
+  <component name="component-builder">
+    <interface name="component-builder" role="server"
+      signature="org.objectweb.fractal.adl.components.ComponentBuilder" />
+  </component>
+
+  <component name="binding-builder">
+    <interface name="binding-builder" role="server"
+      signature="org.objectweb.jasmine.jade.service.deployer.adl.bindings.BindingBuilder" />
+     <interface name="componentBinding" role="client"
+      signature="org.objectweb.jasmine.jade.service.componentbinding.ComponentBinding" />
+  </component>
+
+  <component name="attribute-builder">
+    <interface name="attribute-builder" role="server"
+      signature="org.objectweb.fractal.adl.attributes.AttributeBuilder" />
+  </component>
+
+  <component name="virtual-node-builder">
+    <interface name="virtual-node-builder" role="server"
+      signature="org.objectweb.jasmine.jade.service.deployer.adl.nodes.VirtualNodeBuilder" />
+    <interface name="allocator" role="client"
+      signature="org.objectweb.jasmine.jade.service.allocator.Allocator" />
+    <interface name="resourceDiscovery" role="client"
+      signature="org.objectweb.jasmine.jade.service.resourcediscovery.ResourceDiscovery" />  
+  </component>
+
+  <component name="package-builder">
+    <interface name="package-builder" role="server"
+      signature="org.objectweb.jasmine.jade.service.deployer.adl.packages.PackageBuilder" />
+  </component>
+  
+  <!-- ================================== -->
+  <!--              BINDING               -->
+  <!-- ================================== -->
+  <binding client="this.virtual-node-builder"
+    server="virtual-node-builder.virtual-node-builder" />
+  <binding client="this.package-builder"
+    server="package-builder.package-builder" />
+  <binding client="this.type-builder"
+    server="type-builder.type-builder" />
+  <binding client="this.implementation-builder"
+    server="implementation-builder.implementation-builder" />
+  <binding client="this.component-builder"
+    server="component-builder.component-builder" />
+  <binding client="this.binding-builder"
+    server="binding-builder.binding-builder" />
+  <binding client="this.attribute-builder"
+    server="attribute-builder.attribute-builder" />
+
+</definition>

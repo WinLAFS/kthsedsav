@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jadeApplication.dtd">
+
+<!--
+"properties", "marketVOHost", "marketVOPort", "buyerid"
+-->
+
+<definition name="ResourceBuyer">
+
+    <interface name="r" role="server" signature="java.lang.Runnable"/>
+    <interface name="buyer listener" role="server" signature="eu.grid4all.grimp.cas.agents.api.Negotiator"/>
+	<content class="eu.grid4all.grimp.cas.agents.lib.ResourceBuyerTest"/>
+
+    <attributes signature="fr.jade.fractal.api.control.GenericAttributeController">
+	   <attribute name="propertyfile" value="buyer.properties"/>
+	   <attribute name="buyerId" value="11223344"/>
+	   <attribute name="marketVOHost" value="10.193.137.238"/>
+	   <attribute name="marketVOPort" value="1238"/>
+    </attributes>
+ 
+ 	<virtual-node name="node" resourceReqs="(jadeName=*0)"/> 
+ 	 	
+ 	<packages>
+      <package name="ResourceBuyer" />
+    </packages>
+
+</definition>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jade.dtd">
+
+<definition name="org.objectweb.jasmine.jade.boot.jadeboot.JadeBoot"
+	arguments="fractal_rmi_registry_port,node_discovery_port,jndi_port,urls">
+
+	<!-- ================================== -->
+	<!--          SERVER INTERFACE          -->
+	<!-- ================================== -->
+	<interface name="installer" role="server"
+		signature="org.objectweb.fractal.deployment.local.api.Installer" />
+
+	<interface name="generic-installing-factory" role="server"
+		signature="org.objectweb.fractal.deployment.local.api.GenericInstallingFactory" />
+
+	<interface name="registry" role="server"
+		signature="org.objectweb.fractal.rmi.registry.NamingService" />
+
+	<!-- ================================== -->
+	<!--          SUB-COMPONENT             -->
+	<!-- ================================== -->
+	<component name="controllers"
+		definition="org.objectweb.jasmine.jade.boot.jadeboot.Controllers" />
+
+	<component name="managed_resources"
+		definition="org.objectweb.jasmine.jade.boot.jadeboot.ManagedResources(${fractal_rmi_registry_port},${node_discovery_port},${jndi_port},${urls})" />
+
+	<!-- ================================== -->
+	<!--             BINDING                -->
+	<!-- ================================== -->
+    <binding client="this.installer" server="controllers.installer" />	
+    <binding client="this.registry" server="managed_resources.registry" />
+    <binding client="this.generic-installing-factory"
+		server="controllers.generic-installing-factory" />
+
+	<!-- ================================== -->
+	<!--            CONTROLLER              -->
+	<!-- ================================== -->
+	<controller desc="composite" />
+
+</definition>

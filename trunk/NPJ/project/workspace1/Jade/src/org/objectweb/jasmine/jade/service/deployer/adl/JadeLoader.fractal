@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/fractal/adl/xml/basic.dtd">
+
+<definition
+  name="org.objectweb.jasmine.jade.service.deployer.adl.JadeLoader"
+  extends="org.objectweb.fractal.adl.BasicLoader">
+
+  <!-- ================================== -->
+  <!--            INTERFACE               -->
+  <!-- ================================== -->
+  <interface name="allocator" role="client"
+    signature="org.objectweb.jasmine.jade.service.allocator.Allocator" />
+
+  <!-- ================================== -->
+  <!--          SUB-COMPONENT             -->
+  <!-- ================================== -->
+  <component name="basic-loader"
+    definition="org.objectweb.fractal.adl.LoaderType">
+    <content class="org.objectweb.fractal.adl.xml.XMLLoader" />
+    <!--<content class="fr.jade.fractal.adl.xml.XMLLoader" />-->
+  </component>
+
+  <component name="argument-loader"
+    definition="org.objectweb.fractal.adl.DelegateLoaderType">
+    <content class="org.objectweb.fractal.adl.arguments.ArgumentLoader" />
+  </component>
+
+  <component name="interface-loader"
+    definition="org.objectweb.fractal.adl.DelegateLoaderType">
+    <content
+      class="org.objectweb.fractal.adl.interfaces.InterfaceLoader" />
+  </component>
+
+  <component name="type-loader"
+    definition="org.objectweb.fractal.adl.DelegateLoaderType">
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.types.TypeLoader" />
+  </component>
+
+  <component name="implementation-loader"
+    definition="org.objectweb.fractal.adl.DelegateLoaderType">
+    <content
+      class="fr.jade.fractal.adl.implementations.ImplementationLoader" />
+  </component>
+
+  <component name="attribute-loader"
+    definition="org.objectweb.fractal.adl.DelegateLoaderType">
+    <content class="fr.jade.fractal.adl.attributes.AttributeLoader" />
+  </component>
+
+  <component name="component-loader"
+    definition="org.objectweb.fractal.adl.DelegateLoaderType">
+    <content
+      class="org.objectweb.fractal.adl.arguments.ArgumentComponentLoader" />
+  </component>
+
+  <component name="binding-loader"
+    definition="org.objectweb.fractal.adl.DelegateLoaderType">
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.bindings.TypeBindingLoader" />
+  </component>
+
+  <component name="virtualnode-loader"
+    definition="org.objectweb.jasmine.jade.service.deployer.adl.nodes.VirtualNodeLoaderType">
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.nodes.VirtualNodeLoader" />
+  </component>
+
+  <component name="post-attribute-loader"
+    definition="org.objectweb.fractal.adl.DelegateLoaderType">
+    <content class="fr.jade.fractal.adl.attributes.AttributeLoader" />
+  </component>
+
+  <!-- ================================== -->
+  <!--              BINDING               -->
+  <!-- ================================== -->
+  <binding client="this.loader" server="post-attribute-loader.loader" />
+
+  <binding client="post-attribute-loader.client-loader"
+    server="virtualnode-loader.loader" />
+  <binding client="virtualnode-loader.client-loader"
+    server="binding-loader.loader" />
+
+  <binding client="virtualnode-loader.allocator"
+    server="this.allocator" />
+
+
+  <!--<binding client="post-attribute-loader.client-loader"
+    server="binding-loader.loader" /> -->
+  <binding client="binding-loader.client-loader"
+    server="component-loader.loader" />
+  <binding client="component-loader.client-loader"
+    server="attribute-loader.loader" />
+  <binding client="attribute-loader.client-loader"
+    server="implementation-loader.loader" />
+  <binding client="implementation-loader.client-loader"
+    server="type-loader.loader" />
+  <binding client="type-loader.client-loader"
+    server="interface-loader.loader" />
+  <binding client="interface-loader.client-loader"
+    server="argument-loader.loader" />
+  <binding client="argument-loader.client-loader"
+    server="basic-loader.loader" />
+</definition>

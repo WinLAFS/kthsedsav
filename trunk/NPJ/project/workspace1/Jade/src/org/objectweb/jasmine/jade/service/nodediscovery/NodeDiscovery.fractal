@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jade.dtd">
+
+<definition
+  name="org.objectweb.jasmine.jade.service.nodediscovery.NodeDiscovery"
+  arguments="port">
+
+  <!-- ================================== -->
+  <!--        SERVER INTERFACE            -->
+  <!-- ================================== -->
+  <interface name="discovery" role="server"
+    signature="org.objectweb.jasmine.jade.service.nodediscovery.NodeDiscovery" />
+  <!-- ================================== -->
+  <!--        CLIENT INTERFACE            -->
+  <!-- ================================== -->
+  <interface name="jms" role="client"
+    signature="org.objectweb.jasmine.jade.service.jms.JMSController" />
+
+  <interface name="registry" role="client"
+    signature="org.objectweb.fractal.rmi.registry.NamingService" />
+  <!-- ================================== -->
+  <!--          SUB COMPONENT             -->
+  <!-- ================================== -->
+  <component name="listener"
+    definition="org.objectweb.jasmine.jade.service.nodediscovery.listener.NodeDiscoveryListener(${port})" />
+  <component name="analyser"
+    definition="org.objectweb.jasmine.jade.service.nodediscovery.analyser.NodeDiscoveryAnalyser" />
+  <!-- ================================== -->
+  <!--              BINDING               -->
+  <!-- ================================== -->
+  <binding client="this.discovery" server="analyser.discovery" />
+  <binding client="listener.analyser" server="analyser.analyser" />
+  <binding client="analyser.jms" server="this.jms" />
+  <binding client="analyser.registry" server="this.registry" />
+  <binding client="listener.registry" server="this.registry" />
+
+  <!-- ================================== -->
+  <!--            CONTROLLER              -->
+  <!-- ================================== -->
+  <controller desc="composite" />
+
+</definition>

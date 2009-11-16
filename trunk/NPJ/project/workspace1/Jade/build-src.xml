@@ -1,0 +1,604 @@
+<project name="Jade (src)" default="bundles">
+
+	<!-- ================================== -->
+	<!--    	Properties	          -->
+	<!-- ================================== -->
+
+	<property file="etc/build.properties" />
+	<property file="etc/execute.properties" />
+
+	<property name="src" location="${basedir}/src" />
+
+	<property name="bin" location="${basedir}/bin" />
+	<property name="etc" location="${basedir}/etc" />
+	<property name="externals" location="${basedir}/externals" />
+	<property name="logs" location="${basedir}/logs" />
+	<property name="doc" location="${basedir}/doc" />
+	<property name="javadoc" location="${doc}/javadoc" />
+	<property name="examples" location="${basedir}/examples" />
+
+	<property name="lib" location="${basedir}/lib" />
+	<property name="output" location="${basedir}/output" />
+	<property name="build" location="${output}/build" />
+	<property name="dist" location="${output}/dist" />
+	<property name="examples" location="${basedir}/examples" />
+	<property name="examples.joram" location="${examples}/joram" />
+
+	<property name="dist.jade" location="${dist}/Jade" />
+	<property name="dist.jade.etc" location="${dist.jade}/etc" />
+	<property name="dist.jade.externals" location="${dist.jade}/externals" />
+	<property name="dist.jade.lib" location="${dist.jade}/lib" />
+	<property name="dist.jade.doc" location="${dist.jade}/doc" />
+	<property name="dist.jade.javadoc" location="${dist.jade.doc}/javadoc" />
+	<property name="dist.jade.log" location="${dist.jade}/logs" />
+	<property name="dist.jade.examples" location="${dist.jade}/examples" />
+	<property name="dist.jade.examples.joram" location="${dist.jade.examples}/joram" />
+
+	<property name="bundle" location="${dist}/Bundle" />
+
+	<property name="bundle.jadeboot" location="${bundle}/jadeboot" />
+	<property name="bundle.jadeboot.embeddedlib"
+            location="${bundle.jadeboot}/embeddedlib" />
+	<property name="bundle.jadeboot.etc" location="${bundle.jadeboot}/etc" />
+	<property name="bundle.jadeboot.architecture"
+            location="${bundle.jadeboot}/architecture" />
+
+	<property name="bundle.jadenode" location="${bundle}/jadenode" />
+	<property name="bundle.jadenode.embeddedlib"
+            location="${bundle.jadenode}/embeddedlib" />
+	<property name="bundle.jadenode.etc" location="${bundle.jadenode}/etc" />
+
+	<property name="dist.jadeboot" location="${dist}/JadeBoot" />
+	<property name="dist.jadenode" location="${dist}/JadeNode" />
+
+	<!-- ================================== -->
+	<!--    	Initialization	          -->
+	<!-- ================================== -->
+
+	<condition property="paths.configured">
+		<and>
+			<isset property="jade-fractal.path" />
+			<isset property="reflex-fractal.path" />
+			<isset property="fractal-deployment-local.path" />
+			<isset property="objectweb.ant.tasks.path" />
+			<isset property="asm.path" />
+			<isset property="jonathan.path" />
+			<isset property="fractal.path" />
+			<isset property="fractaladl.path" />
+			<isset property="julia.path" />
+			<isset property="fractalrmi.path" />
+			<isset property="dream.path" />
+			<isset property="joram.path" />
+			<isset property="oscar.path" />
+			<isset property="bsh.path" />
+			<isset property="dks.path" />
+			<isset property="swt.path" />
+		</and>
+	</condition>
+
+	<target name="check" unless="paths.configured">
+		<echo message="The 'build.properties' file must be configured" />
+		<fail />
+	</target>
+
+	<target name="init" depends="check">
+
+		<path id="classpath">
+			<pathelement location="${build}" />
+			<pathelement location="${etc}/osgi" />
+			<pathelement location="${etc}/joram" />
+
+			<pathelement path="${jade-fractal.path}" />
+			<pathelement path="${reflex-fractal.path}" />
+			<pathelement path="${fractal-deployment-local.path}" />
+			<pathelement path="${objectweb.ant.tasks.path}" />
+			<pathelement path="${asm.path}" />
+			<pathelement path="${jonathan.path}" />
+			<pathelement path="${fractal.path}" />
+			<pathelement path="${fractaladl.path}" />
+			<pathelement path="${fractalrmi.path}" />
+			<pathelement path="${julia.path}" />
+			<pathelement path="${dream.path}" />
+			<pathelement path="${joram.path}" />
+			<pathelement path="${oscar.path}" />
+			<pathelement path="${bsh.path}" />
+			<pathelement path="${dks.path}" />
+			<pathelement path="${nichehelloworld.path}" />
+			<pathelement path="${yass.path}" />
+			<pathelement path="${reservation.path}" />
+
+		</path>
+	</target>
+
+	<!-- ================================== -->
+	<!--    Public execution TASKS          -->
+	<!-- ================================== -->
+
+	<target name="help">
+		<echo message="--> compile: compile all packages into ${build}" />
+		<echo message="--> dist: generates all jars in {$dist}" />
+		<echo message="--> clean: remove all compiled files" />
+		<echo message="--> javadoc: generates the javadoc in ${javadoc}" />
+		<echo message="--> clean: remove the generated javadoc" />
+	</target>
+
+	<!-- ================================== -->
+	<!--              Compile               -->
+	<!-- ================================== -->
+
+	<target name="compile">
+		<mkdir dir="${build}" />
+
+		<javac srcdir="${src}" destdir="${build}" debug="on">
+			<classpath refid="classpath" />
+			<include name="**/*.java" />
+		</javac>
+
+		<rmic classname="org.objectweb.jasmine.jade.util.Logger" base="${build}" />
+
+		<rmic base="${build}" compiler="sun" stubversion="1.2" verify="true"
+  	  		                  classname="org.objectweb.jasmine.jade.service.remotenodeaddition.RNAServer">
+			<classpath refid="classpath" />
+		</rmic>
+
+		<copy todir="${build}">
+			<fileset dir="${src}">
+				<include name="**/*.fractal" />
+				<include name="**/*.dtd" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- ================================== -->
+	<!--            	Jar		                -->
+	<!-- ================================== -->
+	<target name="jar" depends="compile">
+
+		<mkdir dir="lib" />
+
+		<jar destfile="${lib}/jade.jar" manifest="${basedir}/manifest.mf">
+			<fileset dir="${build}" />
+		</jar>
+	</target>
+
+	<!-- ================================== -->
+	<!--               Dist                 -->
+	<!-- ================================== -->
+
+	<target name="dist" depends="jar,javadoc">
+
+		<mkdir dir="${dist}" />
+		<mkdir dir="${dist.jade}" />
+		<mkdir dir="${dist.jade.lib}" />
+		<mkdir dir="${dist.jade.etc}" />
+		<mkdir dir="${dist.jade.doc}" />
+		<mkdir dir="${dist.jade.examples}" />
+		<mkdir dir="${dist.jade.examples.joram}" />
+
+		<copy todir="${dist.jade.lib}">
+			<fileset dir="${lib}">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+
+		<copy todir="${dist.jade.externals}">
+			<fileset dir="${externals}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+
+		<copy todir="${dist.jade.etc}">
+			<fileset dir="${etc}" />
+		</copy>
+
+		<copy todir="${dist.jade.examples.joram}">
+			<fileset dir="${examples.joram}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+
+		<copy todir="${dist.jade}" file="${basedir}/build.xml" />
+		<copy todir="${dist.jade}" file="${basedir}/init" />
+
+
+		<zip destfile="${dist.jade.doc}/javadoc.zip" basedir="${javadoc}" />
+
+		<copy todir="${dist.jade.doc}">
+			<fileset dir="${doc}">
+				<include name="*.pdf" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<!-- ================================= 
+            target: dist.jadeboot              
+           ================================= -->
+	<target name="dist.jadeboot"
+          description="--> create a JadeBoot distribution with Oscar binaries and configuration files">
+
+		<mkdir dir="${dist.jadeboot}" />
+
+		<copy todir="${dist.jadeboot}">
+			<fileset dir="${externals}">
+				<include name="oscar.jar" />
+				<include name="osgi.jar" />
+				<include name="moduleloader.jar" />
+			</fileset>
+
+			<fileset dir="${etc}">
+				<include name="java.policy" />
+			</fileset>
+
+			<fileset dir="${etc}/oscar">
+				<include name="system-jadeboot.properties" />
+				<include name="bundle-jadeboot.properties" />
+			</fileset>
+
+			<fileset dir="${bin}">
+				<include name="jadeboot.sh" />
+			</fileset>
+
+		</copy>
+
+		<move file="${dist.jadeboot}/system-jadeboot.properties"
+          tofile="${dist.jadeboot}/system.properties" />
+		<move file="${dist.jadeboot}/bundle-jadeboot.properties"
+          tofile="${dist.jadeboot}/bundle.properties" />
+
+	</target>
+
+	<!-- ================================= 
+              target: dist.jadenode              
+             ================================= -->
+	<target name="dist.jadenode"
+          description="--> create a JadeNode distribution with Oscar binaries and configuration files">
+
+		<mkdir dir="${dist.jadenode}" />
+
+		<copy todir="${dist.jadenode}">
+			<fileset dir="${externals}">
+				<include name="oscar.jar" />
+				<include name="osgi.jar" />
+				<include name="moduleloader.jar" />
+			</fileset>
+
+			<fileset dir="${etc}">
+				<include name="java.policy" />
+			</fileset>
+
+			<fileset dir="${etc}/oscar">
+				<include name="system-jadenode.properties" />
+				<include name="bundle-jadenode.properties" />
+			</fileset>
+
+			<fileset dir="${bin}">
+				<include name="jadeboot.sh" />
+			</fileset>
+
+		</copy>
+
+		<move file="${dist.jadenode}/system-jadenode.properties"
+          tofile="${dist.jadenode}/system.properties" />
+		<move file="${dist.jadenode}/bundle-jadenode.properties"
+          tofile="${dist.jadenode}/bundle.properties" />
+		<move file="${dist.jadenode}/jadeboot.sh"
+          tofile="${dist.jadenode}/jadenode.sh" />
+
+	</target>
+
+	<!-- ================================= 
+          target: bundles              
+         ================================= -->
+	<target name="bundles"
+          description="--> generate JadeBoot and JadeNode bundles">
+		<!--
+  	<exec dir="${user.home}" executable="pskill" >
+  								<arg line="java"/>
+  	</exec>
+  	-->
+
+		<antcall target="bundle_jadeboot" />
+		<antcall target="bundle_jadenode" />
+	</target>
+
+	<!-- ================================== -->
+	<!--          Bundle JadeBoot           -->
+	<!-- ================================== -->
+	<target name="bundle_jadeboot" depends="clean.bundle.jadeboot,jar">
+
+		<!-- init -->
+
+		<mkdir dir="${bundle}" />
+		<mkdir dir="${bundle.jadeboot}" />
+		<mkdir dir="${bundle.jadeboot.embeddedlib}" />
+		<mkdir dir="${bundle.jadeboot.etc}" />
+
+		<!-- copy -->
+
+		<copy todir="${bundle.jadeboot}">
+			<fileset dir="${build}">
+				<include name="org/objectweb/jasmine/jade/osgi/JadeBootActivator.class" />
+			</fileset>
+		</copy>
+
+		<copy todir="${bundle.jadeboot.embeddedlib}">
+
+			<fileset dir="${lib}">
+				<include name="jade.jar" />
+			</fileset>
+
+			<fileset dir="${externals}">
+
+				<include name="jade-fractal.jar" />
+				<include name="reflex-fractal.jar" />
+
+				<include name="bsh.jar" />
+				<include name="beanshell-fractal.jar" />
+				<include name="beanshell-jade.jar" />
+				<include name="beanshell-joram.jar" />
+
+				<include name="fractal.jar" />
+				<include name="julia-asm.jar" />
+				<include name="julia-mixins.jar" />
+				<include name="julia-runtime.jar" />
+				<include name="fractal-adl.jar" />
+				<include name="fractal-rmi.jar" />
+				<include name="fractal-rmi-tmpl.jar" />
+				<include name="fractal-deployment-local-api.jar" />
+				<include name="asm-2.0.jar" />
+				<include name="jonathan.jar" />
+				<include name="dtdparser.jar" />
+				<include name="ow_deployment_scheduling.jar" />
+				<include name="ow_monolog.jar" />
+				<include name="ow_util_ant_tasks.jar" />
+				<include name="ow_util_log_api.jar" />
+
+				<include name="jms.jar" />
+				<include name="joram-client.jar" />
+				<include name="joram-mom.jar" />
+				<include name="joram-shared.jar" />
+				<include name="JCup.jar" />
+				<include name="dks.jar" />
+				<include name="junit-4.1.jar" />
+				<include name="jetty-6.1.8.jar" />
+				<include name="jetty-util-6.1.8.jar" />
+				<include name="mina-core-2.0.0-M4.jar" />
+				<include name="servlet-api-2.5-6.1.8.jar" />
+				<include name="slf4j-api-1.4.3.jar" />
+				<include name="slf4j-log4j12-1.4.3.jar" />
+				<include name="log4j-1.2.14.jar" />
+				<include name="nichehelloworld.jar" />
+				<include name="yass.jar"/>
+				<include name="swt.jar"/>
+				<include name="reservationManager.jar"/>
+				<include name="reservationManagerImpl.jar"/>
+
+			</fileset>
+
+		</copy>
+
+		<copy todir="${bundle.jadeboot.etc}">
+			<fileset dir="${etc}">
+				<include name="julia.cfg" />
+				<include name="julia-fractal-rmi.cfg" />
+				<include name="julia-jade.cfg" />
+				<include name="julia-deploy.cfg" />
+				<include name="reflex-julia-jade.cfg" />
+				<include name="reflex-julia-deploy.cfg" />
+				<include name="reflex-julia-fractal-rmi.cfg" />
+				<include name="julia-joram.cfg" />
+				<include name="reflex-julia-deploy.cfg" />
+				<include name="reflex-julia-fractal-rmi.cfg" />
+				<include name="java.policy" />
+			</fileset>
+		</copy>
+
+		<copy todir="${bundle.jadeboot}">
+			<fileset dir="${etc}/joram">
+				<include name="a3servers.xml" />
+				<include name="a3config.dtd" />
+				<include name="a3debug.cfg" />
+			</fileset>
+		</copy>
+
+		<!-- jar -->
+
+		<jar manifest="${basedir}/META-INF/jadeboot/MANIFEST.MF"
+         jarfile="${lib}/jadeboot.jar"
+         basedir="${bundle.jadeboot}">
+			<include name="**" />
+		</jar>
+
+	</target>
+
+	<!-- ================================== -->
+	<!--          Bundle JadeNode           -->
+	<!-- ================================== -->
+	<target name="bundle_jadenode" depends="clean.bundle.jadenode,jar">
+
+		<!-- init -->
+
+		<mkdir dir="${bundle}" />
+		<mkdir dir="${bundle.jadenode}" />
+		<mkdir dir="${bundle.jadenode.embeddedlib}" />
+		<mkdir dir="${bundle.jadenode.etc}" />
+
+		<!-- copy -->
+
+		<copy todir="${bundle.jadenode}">
+			<fileset dir="${build}">
+				<include name="org/objectweb/jasmine/jade/osgi/JadeNodeActivator.class" />
+			</fileset>
+
+			<fileset dir="${build}">
+				<include name="org/objectweb/jasmine/jade/service/remotenodeaddition/RNAServer_Stub.class" />
+			</fileset>
+
+
+		</copy>
+
+		<copy todir="${bundle.jadenode.embeddedlib}">
+
+			<fileset dir="${lib}">
+				<include name="jade.jar" />
+			</fileset>
+
+			<fileset dir="${externals}">
+
+				<include name="jade-fractal.jar" />
+				<include name="reflex-fractal.jar" />
+
+				<include name="fractal.jar" />
+				<include name="julia-asm.jar" />
+				<include name="julia-mixins.jar" />
+				<include name="julia-runtime.jar" />
+				<include name="fractal-adl.jar" />
+				<include name="fractal-rmi.jar" />
+				<include name="fractal-rmi-tmpl.jar" />
+				<include name="fractal-deployment-local-api.jar" />
+				<include name="asm-2.0.jar" />
+				<include name="jonathan.jar" />
+				<include name="dtdparser.jar" />
+				<include name="ow_deployment_scheduling.jar" />
+				<include name="ow_monolog.jar" />
+				<include name="ow_util_ant_tasks.jar" />
+				<include name="ow_util_log_api.jar" />
+				<include name="dks.jar" />
+				<include name="junit-4.1.jar" />
+				<include name="jetty-6.1.8.jar" />
+				<include name="jetty-util-6.1.8.jar" />
+				<include name="mina-core-2.0.0-M4.jar" />
+				<include name="servlet-api-2.5-6.1.8.jar" />
+				<include name="slf4j-api-1.4.3.jar" />
+				<include name="slf4j-log4j12-1.4.3.jar" />
+				<include name="log4j-1.2.14.jar" />
+				<include name="nichehelloworld.jar" />
+				<include name="yass.jar"/>
+				<include name="swt.jar"/>
+				<include name="reservationManager.jar"/>
+				<include name="reservationManagerImpl.jar"/>
+
+			</fileset>
+
+		</copy>
+
+		<copy todir="${bundle.jadenode.etc}">
+			<fileset dir="${etc}">
+				<include name="julia.cfg" />
+				<include name="julia-fractal-rmi.cfg" />
+				<include name="julia-jade.cfg" />
+				<include name="julia-deploy.cfg" />
+				<include name="reflex-julia-jade.cfg" />
+				<include name="reflex-julia-deploy.cfg" />
+				<include name="reflex-julia-fractal-rmi.cfg" />
+				<include name="julia-joram.cfg" />
+				<include name="java.policy" />
+			</fileset>
+		</copy>
+
+		<!-- jar -->
+
+		<jar manifest="${basedir}/META-INF/jadenode/MANIFEST.MF"
+         jarfile="${lib}/jadenode.jar"
+         basedir="${bundle.jadenode}">
+			<include name="**" />
+		</jar>
+
+	</target>
+
+	<!-- ================================== -->
+	<!--               Jdoc                 -->
+	<!-- ================================== -->
+
+	<target name="javadoc">
+		<mkdir dir="${javadoc}" />
+		<javadoc packagenames="org.objectweb.jasmine.jade.*"
+             access="package"
+             author="true"
+             classpathref="classpath"
+             destdir="${javadoc}"
+             doctitle="Jade API"
+             nodeprecated="false"
+             nodeprecatedlist="false"
+             noindex="false"
+             nonavbar="false"
+             notree="false"
+             source="1.5"
+             sourcepath="${src}"
+             splitindex="true"
+             use="true"
+             version="true"
+             overview="true" />
+	</target>
+
+	<!-- ================================== -->
+	<!--               Zip                  -->
+	<!-- ================================== -->
+
+	<target name="zip" depends="dist">
+		<zip destfile="${dist.jade}.zip">
+			<zipfileset dir="${dist.jade}" prefix="jade" />
+		</zip>
+	</target>
+
+	<!-- ================================== -->
+	<!--               Clean                -->
+	<!-- ================================== -->
+
+	<target name="clean">
+		<delete dir="${dist}" />
+		<antcall target="clean.build" />
+		<antcall target="clean.lib" />
+		<antcall target="clean.logs" />
+		<antcall target="clean.javadoc" />
+		<antcall target="clean.bundle.jadeboot" />
+		<antcall target="clean.bundle.jadenode" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+                  target: clean.build                      
+                 - - - - - - - - - - - - - - - - - -->
+	<target name="clean.build">
+		<delete dir="${build}" />
+		<mkdir dir="${build}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+                target: clean.lib                      
+               - - - - - - - - - - - - - - - - - -->
+	<target name="clean.lib">
+		<delete dir="${lib}" />
+		<mkdir dir="${lib}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+                  target: clean.logs                 
+                 - - - - - - - - - - - - - - - - - -->
+	<target name="clean.logs">
+		<delete dir="${logs}" />
+		<mkdir dir="${logs}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+                target: clean.javadoc                      
+               - - - - - - - - - - - - - - - - - -->
+	<target name="clean.javadoc">
+		<delete dir="${javadoc}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+            target: clean.bundle.jadeboot                      
+           - - - - - - - - - - - - - - - - - -->
+	<target name="clean.bundle.jadeboot">
+		<delete dir="${bundle.jadeboot}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+              target: clean.bundle.jadenode                     
+             - - - - - - - - - - - - - - - - - -->
+	<target name="clean.bundle.jadenode">
+		<delete dir="${bundle.jadenode}" />
+	</target>
+
+</project>

@@ -1,0 +1,319 @@
+/**
+ * Copyright (C) : INRIA - Domaine de Voluceau, Rocquencourt, B.P. 105, 
+ * 78153 Le Chesnay Cedex - France 
+ * 
+ * contributor(s) : SARDES project - http://sardes.inrialpes.fr
+ *
+ * Contact : jade@inrialpes.fr
+ *
+ * This software is a computer program whose purpose is to provide a framework
+ * to build autonomic systems, following an architecture-based approach.
+ *
+ * This software is governed by the CeCILL-C license under French law and 
+ * abiding by the rules of distribution of free software. You can use, modify
+ * and/or redistribute the software under the terms of the CeCILL-C license as 
+ * circulated by CEA, CNRS and INRIA at the following URL 
+ * "http://www.cecill.info". 
+ *
+ * As a counterpart to the access to the source code and rights to copy, modify
+ * and redistribute granted by the license, users are provided only with a 
+ * limited warranty and the software's author, the holder of the economic 
+ * rights, and the successive licensors have only limited liability. 
+ *
+ * In this respect, the user's attention is drawn to the risks associated with 
+ * loading,  using,  modifying and/or developing or reproducing the software by 
+ * the user in light of its specific status of free software, that may mean that
+ * it is complicated to manipulate,  and  that  also therefore means  that it is
+ * reserved for developers  and  experienced professionals having in-depth 
+ * computer knowledge. Users are therefore encouraged to load and test the
+ * software's suitability as regards their requirements in conditions enabling 
+ * the security of their systems and/or data to be ensured and,  more generally,
+ * to use and operate it in the same conditions as regards security. 
+ *
+ * The fact that you are presently reading this means that you have had 
+ * knowledge of the CeCILL-C license and that you accept its terms.
+ */
+
+package org.objectweb.jasmine.jade.service.deployer.adl.classloader;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+import org.objectweb.fractal.adl.ADLException;
+import org.objectweb.fractal.adl.Factory;
+import org.objectweb.fractal.api.NoSuchInterfaceException;
+import org.objectweb.fractal.api.control.BindingController;
+import org.objectweb.fractal.api.control.IllegalBindingException;
+import org.objectweb.fractal.api.control.IllegalLifeCycleException;
+
+import fr.jade.fractal.api.control.GenericAttributeController;
+import fr.jade.fractal.api.control.NoSuchAttributeException;
+
+/**
+ * @author <a href="mailto:julien.legrand@inrialpes.fr">Julien Legrand
+ * 
+ */
+public class ClassLoaderManager implements UrlManager, Factory,
+        BindingController, GenericAttributeController {
+
+    /**
+     * 
+     */
+    private static String attList[] = { "urls" };
+
+    /**
+     * 
+     */
+    private Factory basicFactory;
+
+    /**
+     * 
+     */
+    private static String bindingsList[] = { "basic-factory" };
+
+    /**
+     * 
+     */
+    private URLClassLoader urlCL;
+
+    /**
+     * 
+     */
+    private Set<URL> urls;
+
+    // ------------------------------------------------------------------------
+    // Constructor
+    // ------------------------------------------------------------------------
+
+    /**
+     * 
+     */
+    public ClassLoaderManager() {
+        urls = new HashSet<URL>();
+    }
+
+    // ------------------------------------------------------------------------
+    // Implementation of UrlManager interface
+    // ------------------------------------------------------------------------
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.jade.fractal.adl.classloader.UrlManager#addURL(java.lang.String)
+     */
+    public void addURL(String url) throws MalformedURLException {
+        addURL(new URL(url));
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.jade.fractal.adl.classloader.UrlManager#addURL(java.net.URL)
+     */
+    public void addURL(URL url) {
+        urls.add(url);
+        updateUrlClassLoader();
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.jade.fractal.adl.classloader.UrlManager#removeURL(java.lang.String)
+     */
+    public void removeURL(String url) throws MalformedURLException {
+        removeURL(new URL(url));
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.jade.fractal.adl.classloader.UrlManager#removeURL(java.net.URL)
+     */
+    public void removeURL(URL url) {
+        urls.remove(url);
+        updateUrlClassLoader();
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.objectweb.jasmine.jade.service.deployer.adl.classloader.UrlManager#listUrls()
+     */
+    public String listUrls() {
+        return urlsSet2String();
+    }
+
+    // ------------------------------------------------------------------------
+    // Implementation of Factory interface
+    // ------------------------------------------------------------------------
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.jade.fractal.adl.Factory#newComponent(java.lang.String,
+     *      java.util.Map)
+     */
+    public Object newComponent(String name, Map context) throws ADLException,
+            NoSuchElementException, Exception {
+
+        context.put("classloader", urlCL);
+
+        return basicFactory.newComponent(name, context);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.jade.fractal.adl.Factory#newComponentType(java.lang.String,
+     *      java.util.Map)
+     */
+    public Object newComponentType(String name, Map context)
+            throws ADLException, NoSuchElementException, Exception {
+
+        context.put("classloader", urlCL);
+
+        return basicFactory.newComponentType(name, context);
+    }
+
+    // ------------------------------------------------------------------------
+    // Implementation of GenericAttributeController interface
+    // ------------------------------------------------------------------------
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.jade.fractal.api.control.GenericAttributeController#getAttribute(java.lang.String)
+     */
+    public String getAttribute(String name) throws NoSuchAttributeException {
+        if (name.equals("urls"))
+            return urlsSet2String();
+        throw new NoSuchAttributeException(name);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.jade.fractal.api.control.GenericAttributeController#listFcAtt()
+     */
+    public String[] listFcAtt() {
+        return attList;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.jade.fractal.api.control.GenericAttributeController#setAttribute(java.lang.String,
+     *      java.lang.String)
+     */
+    public void setAttribute(String name, String value)
+            throws NoSuchAttributeException {
+        if (name.equals("urls")) {
+            updateUrlSet(value);
+            updateUrlClassLoader();
+        } else
+            throw new NoSuchAttributeException(name);
+    }
+
+    // ------------------------------------------------------------------------
+    // Implementation of BindingController interface
+    // ------------------------------------------------------------------------
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.objectweb.fractal.api.control.BindingController#bindFc(java.lang.String,
+     *      java.lang.Object)
+     */
+    public void bindFc(String clientItfName, Object serverItf)
+            throws NoSuchInterfaceException, IllegalBindingException,
+            IllegalLifeCycleException {
+        if (clientItfName.equals("basic-factory"))
+            basicFactory = (Factory) serverItf;
+        else
+            throw new NoSuchInterfaceException(clientItfName);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.objectweb.fractal.api.control.BindingController#listFc()
+     */
+    public String[] listFc() {
+        return bindingsList;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.objectweb.fractal.api.control.BindingController#lookupFc(java.lang.String)
+     */
+    public Object lookupFc(String clientItfName)
+            throws NoSuchInterfaceException {
+        if (clientItfName.equals("basic-factory"))
+            return basicFactory;
+        else
+            throw new NoSuchInterfaceException(clientItfName);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.objectweb.fractal.api.control.BindingController#unbindFc(java.lang.String)
+     */
+    public void unbindFc(String clientItfName) throws NoSuchInterfaceException,
+            IllegalBindingException, IllegalLifeCycleException {
+        if (clientItfName.equals("basic-factory"))
+            basicFactory = null;
+        else
+            throw new NoSuchInterfaceException(clientItfName);
+    }
+
+    // ------------------------------------------------------------------------
+    // Private Methods
+    // ------------------------------------------------------------------------
+
+    private void updateUrlClassLoader() {
+
+        urlCL = new URLClassLoader(urls.toArray(new URL[0]), this.getClass()
+                .getClassLoader());
+    }
+
+    private void updateUrlSet(String urls) {
+
+        if (urls != null) {
+
+            StringTokenizer tokenizer = new StringTokenizer(urls, ";");
+
+            while (tokenizer.hasMoreTokens()) {
+
+                URL url;
+                try {
+                    url = new URL(tokenizer.nextToken());
+                    this.urls.add(url);
+                } catch (MalformedURLException ignored) {
+                }
+            }
+
+        }
+    }
+
+    private String urlsSet2String() {
+
+        StringBuffer res = new StringBuffer();
+
+        for (URL url : urls) {
+            res.append(url.toString());
+            res.append(File.pathSeparator);
+        }
+
+        return res.toString();
+    }
+
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jade.dtd">
+
+
+<definition
+  name="org.objectweb.jasmine.jade.service.deployer.ResourceDeployer"
+  arguments="urls">
+
+  <!-- ================================== -->
+  <!--        SERVER INTERFACE            -->
+  <!-- ================================== -->
+  <interface name="deployer_service" role="server"
+    signature="org.objectweb.jasmine.jade.service.deployer.DeployerService" />
+
+  <interface name="url-manager" role="server"
+    signature="org.objectweb.jasmine.jade.service.deployer.adl.classloader.UrlManager" />
+
+  <!-- ================================== -->
+  <!--        CLIENT INTERFACE            -->
+  <!-- ================================== -->
+  <interface name="allocator" role="client"
+    signature="org.objectweb.jasmine.jade.service.allocator.Allocator" />
+
+  <interface name="resourceDiscovery" role="client"
+    signature="org.objectweb.jasmine.jade.service.resourcediscovery.ResourceDiscovery" />
+  
+  <interface name="componentDeployment" role="client"
+    signature="org.objectweb.jasmine.jade.service.componentdeployment.ComponentDeployment" />
+    
+
+  <interface name="registry" role="client"
+    signature="org.objectweb.fractal.rmi.registry.NamingService" />
+
+  <!-- ================================== -->
+  <!--          SUB-COMPONENT             -->
+  <!-- ================================== -->
+  <component name="deployer_manager"
+    definition="org.objectweb.jasmine.jade.service.deployer.manager.DeployerManager" />
+
+  <component name="deployer"
+    definition="org.objectweb.jasmine.jade.service.deployer.deployer.ApplicationDeployer(${urls},org.objectweb.jasmine.jade.service.deployer.adl.DeployerBackend)" />
+
+  <!-- ================================== -->
+  <!--              BINDING               -->
+  <!-- ================================== -->
+  <binding client="deployer.allocator" server="this.allocator" />
+  <binding client="deployer.resourceDiscovery" server="this.resourceDiscovery" />
+  <binding client="deployer.componentDeployment" server="this.componentDeployment" />
+
+  <binding client="deployer_manager.registry" server="this.registry" />
+  <binding client="deployer.registry" server="this.registry" />
+
+  <binding client="this.deployer_service"
+    server="deployer_manager.deployer_service" />
+  <binding client="deployer_manager.deployer" server="deployer.factory" />
+
+  <binding client="this.url-manager" server="deployer.url-manager" />
+
+  <!-- ================================== -->
+  <!--            CONTROLLER              -->
+  <!-- ================================== -->
+  <controller desc="composite" />
+
+</definition>

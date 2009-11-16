@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jade.dtd">
+
+<definition name="org.objectweb.jasmine.jade.control.repair.RepairManager"
+  extends="org.objectweb.jasmine.jade.control.repair.RepairManagerType">
+
+  <!-- ================================== -->
+  <!--          SUB COMPONENT             -->
+  <!-- ================================== -->
+
+  <component name="sensor"
+    definition="org.objectweb.jasmine.jade.control.repair.sensor.Sensor" />
+
+  <component name="reactor"
+    definition="org.objectweb.jasmine.jade.control.repair.reactor.Reactor" />
+
+  <component name="actuator"
+    definition="org.objectweb.jasmine.jade.control.repair.actuator.Actuator" />
+
+  <!-- ================================== -->
+  <!--              BINDING               -->
+  <!-- ================================== -->
+  <binding client="sensor.event-out" server="reactor.event-in" />
+  <binding client="sensor.jms" server="this.jms" />
+  <binding client="sensor.jmsJndi" server="this.jmsJndi" />
+
+  <binding client="reactor.event-out" server="actuator.event-in" />
+  <binding client="reactor.allocator" server="this.allocator" />
+  <binding client="reactor.registry" server="this.registry" />
+  
+  <binding client="actuator.registry" server="this.registry" />
+
+  <!-- ================================== -->
+  <!--            CONTROLLER              -->
+  <!-- ================================== -->
+  <controller desc="composite" />
+
+</definition>

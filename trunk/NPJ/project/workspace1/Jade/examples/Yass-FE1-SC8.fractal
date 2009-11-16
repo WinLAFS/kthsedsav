@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jadeApplication.dtd">
+
+<definition name="Yass">
+  <interface name="r" role="server" signature="java.lang.Runnable"/>
+  
+     
+  <component name="StartManager" definition="org.objectweb.jasmine.jade.ManagementType">
+       
+  <content class="yass.managers.StartManager"/>
+  <controller desc="primitive"/>
+   
+  </component>
+  
+  
+  <component name="frontend1">
+    <interface name="r" role="server" signature="java.lang.Runnable"/>
+   
+    <interface name="fileWriteRequest" role="client" signature="yass.storage.FileWriteRequest" contingency="optional" />
+    <interface name="fileWriteRequestAck" role="server" signature="yass.storage.FileWriteRequestAck" contingency="optional" />
+  
+  	<interface name="fileWrite" role="client" signature="yass.storage.FileWrite"  contingency="optional"/>
+    <interface name="fileWriteAck" role="server" signature="yass.storage.FileWriteAck" contingency="optional"/>
+  
+  	
+  	<interface name="fileRead" role="client" signature="yass.storage.FileRead" contingency="optional"/>
+    <interface name="fileReadAck" role="server" signature="yass.storage.FileReadAck" contingency="optional" />
+    
+    
+    <interface name="fileRemove" role="client" signature="yass.storage.FileRemove" contingency="optional"/>
+     
+    
+    <content class="yass.frontend.FrontendImpl"/>
+    
+    <virtual-node name="lightweight1" resourceReqs="600000"/>
+   
+   </component>
+   
+ 
+  
+    
+  <component name="storage1">
+    
+    <interface name="fileWriteRequest" role="server" signature="yass.storage.FileWriteRequest" contingency="optional"/>
+    <interface name="fileWriteRequestAck" role="client" signature="yass.storage.FileWriteRequestAck" contingency="optional"/>
+  
+    <interface name="restoreReplica" role="client" signature="yass.storage.FileWrite" contingency="optional" />
+  
+    <interface name="fileWriteS" role="server" signature="yass.storage.FileWrite" contingency="optional" />
+    <interface name="fileWriteAck" role="client" signature="yass.storage.FileWriteAck" contingency="optional"/>
+  
+    <interface name="findReplicasS" role="server" signature="yass.storage.FindReplicas" contingency="optional"/>
+    <interface name="findReplicas" role="client" signature="yass.storage.FindReplicas" contingency="optional"/>
+    
+    <interface name="findReplicasAckS" role="server" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    <interface name="findReplicasAck" role="client" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    
+  
+     
+    <interface name="fileRead" role="server" signature="yass.storage.FileRead" contingency="optional"/>
+    <interface name="fileReadAck" role="client" signature="yass.storage.FileReadAck" contingency="optional"/>
+      
+    <interface name="fileRemove" role="server" signature="yass.storage.FileRemove" contingency="optional"/>
+    
+    <interface name="restoreReplicaRequestServer" role="server" signature="yass.interfaces.ReplicaRestoreRequest" contingency="optional"/>
+    
+    
+    
+    <interface name="pushLoadChange" role="client" signature="yass.sensors.LoadChangeInterface"  contingency="optional"/>
+       
+        
+    
+    <content class="yass.storage.StorageComponent"/>
+    <attributes signature="yass.storage.ServiceAttributes">
+      <attribute name="totalSpace" value="2048"/>
+      <attribute name="freeSpace" value="2048"/>
+    </attributes>
+    <controller desc="primitive"/>
+
+    <virtual-node name="medium1" resourceReqs="600000"/>
+
+  </component>
+
+
+
+
+
+
+
+
+  <component name="storage2">
+  
+    <interface name="fileWriteRequest" role="server" signature="yass.storage.FileWriteRequest" contingency="optional"/>
+    <interface name="fileWriteRequestAck" role="client" signature="yass.storage.FileWriteRequestAck" contingency="optional"/>
+  
+    <interface name="restoreReplica" role="client" signature="yass.storage.FileWrite" contingency="optional" />
+  
+    <interface name="fileWriteS" role="server" signature="yass.storage.FileWrite" contingency="optional" />
+    <interface name="fileWriteAck" role="client" signature="yass.storage.FileWriteAck" contingency="optional"/>
+  
+    <interface name="findReplicasS" role="server" signature="yass.storage.FindReplicas" contingency="optional"/>
+    <interface name="findReplicas" role="client" signature="yass.storage.FindReplicas" contingency="optional"/>
+    
+    <interface name="findReplicasAckS" role="server" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    <interface name="findReplicasAck" role="client" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    
+  
+     
+    <interface name="fileRead" role="server" signature="yass.storage.FileRead" contingency="optional"/>
+    <interface name="fileReadAck" role="client" signature="yass.storage.FileReadAck" contingency="optional"/>
+      
+    <interface name="fileRemove" role="server" signature="yass.storage.FileRemove" contingency="optional"/>
+    
+    <interface name="restoreReplicaRequestServer" role="server" signature="yass.interfaces.ReplicaRestoreRequest" contingency="optional"/>
+    
+    
+    
+    <interface name="pushLoadChange" role="client" signature="yass.sensors.LoadChangeInterface"  contingency="optional"/>
+         
+      
+    <content class="yass.storage.StorageComponent"/>
+    <attributes signature="yass.storage.ServiceAttributes">
+      <attribute name="totalSpace" value="2048"/>
+      <attribute name="freeSpace" value="2048"/>
+    </attributes>
+    <controller desc="primitive"/>
+    
+    <virtual-node name="medium2" resourceReqs="600000"/>
+  </component>
+
+
+
+
+
+
+
+  <component name="storage3">
+  
+    <interface name="fileWriteRequest" role="server" signature="yass.storage.FileWriteRequest" contingency="optional"/>
+    <interface name="fileWriteRequestAck" role="client" signature="yass.storage.FileWriteRequestAck" contingency="optional"/>
+  
+    <interface name="restoreReplica" role="client" signature="yass.storage.FileWrite" contingency="optional" />
+  
+    <interface name="fileWriteS" role="server" signature="yass.storage.FileWrite" contingency="optional" />
+    <interface name="fileWriteAck" role="client" signature="yass.storage.FileWriteAck" contingency="optional"/>
+  
+    <interface name="findReplicasS" role="server" signature="yass.storage.FindReplicas" contingency="optional"/>
+    <interface name="findReplicas" role="client" signature="yass.storage.FindReplicas" contingency="optional"/>
+    
+    <interface name="findReplicasAckS" role="server" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    <interface name="findReplicasAck" role="client" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    
+  
+     
+    <interface name="fileRead" role="server" signature="yass.storage.FileRead" contingency="optional"/>
+    <interface name="fileReadAck" role="client" signature="yass.storage.FileReadAck" contingency="optional"/>
+      
+    <interface name="fileRemove" role="server" signature="yass.storage.FileRemove" contingency="optional"/>
+    
+    <interface name="restoreReplicaRequestServer" role="server" signature="yass.interfaces.ReplicaRestoreRequest" contingency="optional"/>
+    
+    
+    
+    <interface name="pushLoadChange" role="client" signature="yass.sensors.LoadChangeInterface"  contingency="optional"/>
+  
+   <content class="yass.storage.StorageComponent"/>
+   <attributes signature="yass.storage.ServiceAttributes">
+      <attribute name="totalSpace" value="2048"/>
+      <attribute name="freeSpace" value="2048"/>
+    </attributes>
+    <controller desc="primitive"/>
+    
+    <virtual-node name="medium3" resourceReqs="600000"/>
+  </component>
+  
+
+  <component name="storage4">
+  
+    <interface name="fileWriteRequest" role="server" signature="yass.storage.FileWriteRequest" contingency="optional"/>
+    <interface name="fileWriteRequestAck" role="client" signature="yass.storage.FileWriteRequestAck" contingency="optional"/>
+  
+    <interface name="restoreReplica" role="client" signature="yass.storage.FileWrite" contingency="optional" />
+  
+    <interface name="fileWriteS" role="server" signature="yass.storage.FileWrite" contingency="optional" />
+    <interface name="fileWriteAck" role="client" signature="yass.storage.FileWriteAck" contingency="optional"/>
+  
+    <interface name="findReplicasS" role="server" signature="yass.storage.FindReplicas" contingency="optional"/>
+    <interface name="findReplicas" role="client" signature="yass.storage.FindReplicas" contingency="optional"/>
+    
+    <interface name="findReplicasAckS" role="server" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    <interface name="findReplicasAck" role="client" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    
+  
+     
+    <interface name="fileRead" role="server" signature="yass.storage.FileRead" contingency="optional"/>
+    <interface name="fileReadAck" role="client" signature="yass.storage.FileReadAck" contingency="optional"/>
+      
+    <interface name="fileRemove" role="server" signature="yass.storage.FileRemove" contingency="optional"/>
+    
+    <interface name="restoreReplicaRequestServer" role="server" signature="yass.interfaces.ReplicaRestoreRequest" contingency="optional"/>
+    
+    
+    
+    <interface name="pushLoadChange" role="client" signature="yass.sensors.LoadChangeInterface"  contingency="optional"/>
+  
+   <content class="yass.storage.StorageComponent"/>
+   <attributes signature="yass.storage.ServiceAttributes">
+      <attribute name="totalSpace" value="2048"/>
+      <attribute name="freeSpace" value="2048"/>
+    </attributes>
+    <controller desc="primitive"/>
+    
+    <virtual-node name="medium4" resourceReqs="600000"/>
+  </component>
+  
+    
+
+ 
+    
+  <component name="storage5">
+    
+    <interface name="fileWriteRequest" role="server" signature="yass.storage.FileWriteRequest" contingency="optional"/>
+    <interface name="fileWriteRequestAck" role="client" signature="yass.storage.FileWriteRequestAck" contingency="optional"/>
+  
+    <interface name="restoreReplica" role="client" signature="yass.storage.FileWrite" contingency="optional" />
+  
+    <interface name="fileWriteS" role="server" signature="yass.storage.FileWrite" contingency="optional" />
+    <interface name="fileWriteAck" role="client" signature="yass.storage.FileWriteAck" contingency="optional"/>
+  
+    <interface name="findReplicasS" role="server" signature="yass.storage.FindReplicas" contingency="optional"/>
+    <interface name="findReplicas" role="client" signature="yass.storage.FindReplicas" contingency="optional"/>
+    
+    <interface name="findReplicasAckS" role="server" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    <interface name="findReplicasAck" role="client" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    
+  
+     
+    <interface name="fileRead" role="server" signature="yass.storage.FileRead" contingency="optional"/>
+    <interface name="fileReadAck" role="client" signature="yass.storage.FileReadAck" contingency="optional"/>
+      
+    <interface name="fileRemove" role="server" signature="yass.storage.FileRemove" contingency="optional"/>
+    
+    <interface name="restoreReplicaRequestServer" role="server" signature="yass.interfaces.ReplicaRestoreRequest" contingency="optional"/>
+    
+    
+    
+    <interface name="pushLoadChange" role="client" signature="yass.sensors.LoadChangeInterface"  contingency="optional"/>
+       
+        
+    
+    <content class="yass.storage.StorageComponent"/>
+    <attributes signature="yass.storage.ServiceAttributes">
+      <attribute name="totalSpace" value="2048"/>
+      <attribute name="freeSpace" value="2048"/>
+    </attributes>
+    <controller desc="primitive"/>
+
+    <virtual-node name="medium5" resourceReqs="600000"/>
+
+  </component>
+
+
+
+
+
+
+
+
+  <component name="storage6">
+  
+    <interface name="fileWriteRequest" role="server" signature="yass.storage.FileWriteRequest" contingency="optional"/>
+    <interface name="fileWriteRequestAck" role="client" signature="yass.storage.FileWriteRequestAck" contingency="optional"/>
+  
+    <interface name="restoreReplica" role="client" signature="yass.storage.FileWrite" contingency="optional" />
+  
+    <interface name="fileWriteS" role="server" signature="yass.storage.FileWrite" contingency="optional" />
+    <interface name="fileWriteAck" role="client" signature="yass.storage.FileWriteAck" contingency="optional"/>
+  
+    <interface name="findReplicasS" role="server" signature="yass.storage.FindReplicas" contingency="optional"/>
+    <interface name="findReplicas" role="client" signature="yass.storage.FindReplicas" contingency="optional"/>
+    
+    <interface name="findReplicasAckS" role="server" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    <interface name="findReplicasAck" role="client" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    
+  
+     
+    <interface name="fileRead" role="server" signature="yass.storage.FileRead" contingency="optional"/>
+    <interface name="fileReadAck" role="client" signature="yass.storage.FileReadAck" contingency="optional"/>
+      
+    <interface name="fileRemove" role="server" signature="yass.storage.FileRemove" contingency="optional"/>
+    
+    <interface name="restoreReplicaRequestServer" role="server" signature="yass.interfaces.ReplicaRestoreRequest" contingency="optional"/>
+    
+    
+    
+    <interface name="pushLoadChange" role="client" signature="yass.sensors.LoadChangeInterface"  contingency="optional"/>
+         
+      
+    <content class="yass.storage.StorageComponent"/>
+    <attributes signature="yass.storage.ServiceAttributes">
+      <attribute name="totalSpace" value="2048"/>
+      <attribute name="freeSpace" value="2048"/>
+    </attributes>
+    <controller desc="primitive"/>
+    
+    <virtual-node name="medium6" resourceReqs="600000"/>
+  </component>
+
+
+
+
+
+
+
+  <component name="storage7">
+  
+    <interface name="fileWriteRequest" role="server" signature="yass.storage.FileWriteRequest" contingency="optional"/>
+    <interface name="fileWriteRequestAck" role="client" signature="yass.storage.FileWriteRequestAck" contingency="optional"/>
+  
+    <interface name="restoreReplica" role="client" signature="yass.storage.FileWrite" contingency="optional" />
+  
+    <interface name="fileWriteS" role="server" signature="yass.storage.FileWrite" contingency="optional" />
+    <interface name="fileWriteAck" role="client" signature="yass.storage.FileWriteAck" contingency="optional"/>
+  
+    <interface name="findReplicasS" role="server" signature="yass.storage.FindReplicas" contingency="optional"/>
+    <interface name="findReplicas" role="client" signature="yass.storage.FindReplicas" contingency="optional"/>
+    
+    <interface name="findReplicasAckS" role="server" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    <interface name="findReplicasAck" role="client" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    
+  
+     
+    <interface name="fileRead" role="server" signature="yass.storage.FileRead" contingency="optional"/>
+    <interface name="fileReadAck" role="client" signature="yass.storage.FileReadAck" contingency="optional"/>
+      
+    <interface name="fileRemove" role="server" signature="yass.storage.FileRemove" contingency="optional"/>
+    
+    <interface name="restoreReplicaRequestServer" role="server" signature="yass.interfaces.ReplicaRestoreRequest" contingency="optional"/>
+    
+    
+    
+    <interface name="pushLoadChange" role="client" signature="yass.sensors.LoadChangeInterface"  contingency="optional"/>
+  
+   <content class="yass.storage.StorageComponent"/>
+   <attributes signature="yass.storage.ServiceAttributes">
+      <attribute name="totalSpace" value="2048"/>
+      <attribute name="freeSpace" value="2048"/>
+    </attributes>
+    <controller desc="primitive"/>
+    
+    <virtual-node name="medium7" resourceReqs="600000"/>
+  </component>
+  
+
+  <component name="storage8">
+  
+    <interface name="fileWriteRequest" role="server" signature="yass.storage.FileWriteRequest" contingency="optional"/>
+    <interface name="fileWriteRequestAck" role="client" signature="yass.storage.FileWriteRequestAck" contingency="optional"/>
+  
+    <interface name="restoreReplica" role="client" signature="yass.storage.FileWrite" contingency="optional" />
+  
+    <interface name="fileWriteS" role="server" signature="yass.storage.FileWrite" contingency="optional" />
+    <interface name="fileWriteAck" role="client" signature="yass.storage.FileWriteAck" contingency="optional"/>
+  
+    <interface name="findReplicasS" role="server" signature="yass.storage.FindReplicas" contingency="optional"/>
+    <interface name="findReplicas" role="client" signature="yass.storage.FindReplicas" contingency="optional"/>
+    
+    <interface name="findReplicasAckS" role="server" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    <interface name="findReplicasAck" role="client" signature="yass.storage.FindReplicasAck" contingency="optional"/>
+    
+  
+     
+    <interface name="fileRead" role="server" signature="yass.storage.FileRead" contingency="optional"/>
+    <interface name="fileReadAck" role="client" signature="yass.storage.FileReadAck" contingency="optional"/>
+      
+    <interface name="fileRemove" role="server" signature="yass.storage.FileRemove" contingency="optional"/>
+    
+    <interface name="restoreReplicaRequestServer" role="server" signature="yass.interfaces.ReplicaRestoreRequest" contingency="optional"/>
+    
+    
+    
+    <interface name="pushLoadChange" role="client" signature="yass.sensors.LoadChangeInterface"  contingency="optional"/>
+  
+   <content class="yass.storage.StorageComponent"/>
+   <attributes signature="yass.storage.ServiceAttributes">
+      <attribute name="totalSpace" value="2048"/>
+      <attribute name="freeSpace" value="2048"/>
+    </attributes>
+    <controller desc="primitive"/>
+    
+    <virtual-node name="medium8" resourceReqs="600000"/>
+  </component>
+  
+    
+
+  
+  
+  <virtual-node name="lightweight2" resourceReqs="1"/>  
+   
+</definition>

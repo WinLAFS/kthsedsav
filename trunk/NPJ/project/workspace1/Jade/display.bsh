@@ -1,0 +1,15 @@
+displayVONodes() {
+list = listreg();
+ArrayList nodes=new ArrayList();
+print("\n************* VO nodes *************");
+ 
+for(i = 0; i < list.length; i++){
+    	Component comp = lookupcomp(list[i]);
+		name=getcompname(comp);
+		if (name.startsWith("p-") && (!nodes.contains(name))) {
+		   print(name);
+		   nodes.add(name);
+		}
+}
+print("\n");
+}

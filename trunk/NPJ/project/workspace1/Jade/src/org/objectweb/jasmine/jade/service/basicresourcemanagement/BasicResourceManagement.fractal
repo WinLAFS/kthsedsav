@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jade.dtd">
+
+<definition
+  name="org.objectweb.jasmine.jade.service.basicresourcemanagement.BasicResourceManagement">
+
+  <!-- ================================== -->
+  <!--        SERVER INTERFACE            -->
+  <!-- ================================== -->
+  <interface name="basicResourceManagement" role="server"
+    signature="org.objectweb.jasmine.jade.service.basicresourcemanagement.BasicResourceManagement" />
+       
+  <!-- ================================== -->
+  <!--        CLIENT INTERFACE            -->
+  <!-- ================================== -->
+
+  <interface name="overlayAccess" role="client"
+    signature="org.objectweb.jasmine.jade.service.nicheOS.OverlayAccess" />
+
+  <!-- ================================== -->
+  <!--             CONTENT                -->
+  <!-- ================================== -->
+  <content
+    class="org.objectweb.jasmine.jade.service.basicresourcemanagement.BasicResourceManagementImpl" />
+
+  <!-- ================================== -->
+  <!--            CONTROLLER              -->
+  <!-- ================================== -->
+  <controller desc="primitive" />
+
+</definition>
