@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="externals/shell.jar"/>
+	<classpathentry kind="lib" path="externals/reflex-fractal.jar"/>
+	<classpathentry kind="lib" path="externals/ow_util_log_api.jar"/>
+	<classpathentry kind="lib" path="externals/ow_util_ant_tasks.jar"/>
+	<classpathentry kind="lib" path="externals/ow_monolog.jar"/>
+	<classpathentry kind="lib" path="externals/ow_deployment_scheduling.jar"/>
+	<classpathentry kind="lib" path="externals/osgi.jar"/>
+	<classpathentry kind="lib" path="externals/osgi-service.jar"/>
+	<classpathentry kind="lib" path="externals/oscar.jar"/>
+	<classpathentry kind="lib" path="externals/moduleloader.jar"/>
+	<classpathentry kind="lib" path="externals/julia-runtime.jar"/>
+	<classpathentry kind="lib" path="externals/julia-mixins.jar"/>
+	<classpathentry kind="lib" path="externals/julia-asm.jar"/>
+	<classpathentry kind="lib" path="externals/joram-shared.jar"/>
+	<classpathentry kind="lib" path="externals/joram-mom.jar"/>
+	<classpathentry kind="lib" path="externals/joram-client.jar"/>
+	<classpathentry kind="lib" path="externals/jonathan.jar"/>
+	<classpathentry kind="lib" path="externals/jms.jar"/>
+	<classpathentry kind="lib" path="externals/JCup.jar"/>
+	<classpathentry kind="lib" path="externals/jade-fractal.jar" sourcepath="/Users/Nikos/Documents/workspace/Jade-Fractal/src"/>
+	<classpathentry kind="lib" path="externals/fractal.jar" sourcepath="/Users/Nikos/Documents/workspace/Fractal"/>
+	<classpathentry kind="lib" path="externals/fractal-rmi.jar"/>
+	<classpathentry kind="lib" path="externals/fractal-rmi-tmpl.jar"/>
+	<classpathentry kind="lib" path="externals/fractal-deployment-local-api.jar"/>
+	<classpathentry kind="lib" path="externals/fractal-adl.jar"/>
+	<classpathentry kind="lib" path="externals/dtdparser.jar"/>
+	<classpathentry kind="lib" path="externals/bsh.jar"/>
+	<classpathentry kind="lib" path="externals/beanshell-joram.jar"/>
+	<classpathentry kind="lib" path="externals/beanshell-jade.jar"/>
+	<classpathentry kind="lib" path="externals/beanshell-fractal.jar"/>
+	<classpathentry kind="lib" path="externals/asm-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/jadeboot.jar" sourcepath=""/>
+	<classpathentry kind="lib" path="lib/jadenode.jar" sourcepath=""/>
+	<classpathentry kind="lib" path="externals/dks.jar" sourcepath="/DKS/src"/>
+	<classpathentry kind="lib" path="externals/junit-4.1.jar"/>
+	<classpathentry kind="lib" path="externals/reservationManager.jar"/>
+	<classpathentry kind="lib" path="externals/reservationManagerImpl.jar"/>
+	<classpathentry kind="output" path="output/build"/>
+</classpath>
