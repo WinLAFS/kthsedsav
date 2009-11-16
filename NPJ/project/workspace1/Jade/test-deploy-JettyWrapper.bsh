@@ -1,0 +1,14 @@
+source("init"); 
+displayreg();
+print("Start deployment");
+id=deploy("JettyWrapper");
+print("End deployment");
+print("Starting the wrapper");
+c = lookupcomp("JettyWrapper_"+id);
+lc=getitf(c, "lifecycle-controller");
+lc.startFc();
+
+
+
+
+

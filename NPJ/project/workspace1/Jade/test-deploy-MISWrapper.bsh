@@ -1,0 +1,10 @@
+source("init"); 
+displayreg();
+print("Start deployment");
+id=deploy("MISWrapper");
+print("End deployment");
+print("Starting the wrapper");
+c = lookupcomp("MISWrapper_"+id);
+lc=getitf(c, "lifecycle-controller");
+lc.startFc();
+

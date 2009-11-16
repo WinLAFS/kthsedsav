@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jadeApplication.dtd">
+
+<definition name="SimpleWrapperClient">
+
+  <interface name="r" role="server" signature="java.lang.Runnable"/>
+  <interface name="s" role="client" signature="fractalhelloworld.Service"/>
+  
+  <content class="eu.grid4all.jade.wrappers.simplewrapperclient.SimpleWrapperClient" />    
+  
+  <virtual-node name="node" resourceReqs="(jadeName=*1)"/> 
+ 	
+  <packages>
+      <package name="Simple Wrapper Client" />
+  </packages>
+    
+</definition>

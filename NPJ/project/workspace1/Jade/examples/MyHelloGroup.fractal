@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jadeApplication.dtd">
+
+<definition name="MyHelloGroup">
+
+  <interface name="r" role="server" signature="java.lang.Runnable"/>
+  
+  <component name="mgr" definition="org.objectweb.jasmine.jade.ManagementType">
+    <content class="org.objectweb.jasmine.jade.examples.managerimpl.ManagerImpl"/>
+    <controller desc="primitive"/>
+  </component>
+  
+  <component name="client">
+    <interface name="r" role="server" signature="java.lang.Runnable"/>
+    <interface name="s" role="client" signature="myhelloworld.Service"/>
+    <content class="myhelloworld.ClientImpl"/>
+    <virtual-node name="node0" resourceReqs="(jadeName=*0)"/>
+  </component>
+  
+   <component name="group1">
+    <interface name="s" role="server" signature="myhelloworld.Service"/>
+    <interface name="clients" role="client" signature="myhelloworld.Service" cardinality="collection"/>
+    <content class="GROUP"/>
+  </component>
+  
+  <component name="server1">
+    <interface name="s" role="server" signature="myhelloworld.Service"/>
+    <content class="myhelloworld.ServerImpl"/>
+    <controller desc="primitive"/>
+    <virtual-node name="node0" resourceReqs="(jadeName=*0)"/>
+  </component>
+ 
+  <component name="server2">
+    <interface name="s" role="server" signature="myhelloworld.Service"/>
+    <content class="myhelloworld.ServerImpl"/>
+    <controller desc="primitive"/>
+    <virtual-node name="node0" resourceReqs="(jadeName=*0)"/>
+  </component>
+   
+  <binding client="this.r" server="client.r" />
+  <binding client="client.s" server="group1.s" bindingType="groupAll"/>
+  <binding client="group1.clients1" server="server1.s"/>
+  <binding client="group1.clients2" server="server2.s"/>
+  
+  <virtual-node name="node0" resourceReqs="(jadeName=*0)"/>
+</definition>

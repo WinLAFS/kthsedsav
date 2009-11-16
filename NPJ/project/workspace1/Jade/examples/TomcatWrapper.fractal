@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jadeApplication.dtd">
+
+<definition name="TomcatWrapper">
+
+
+	<content class="eu.grid4all.jade.wrappers.tomcatwrapper.TomcatWrapper" />      
+ 
+    <attributes signature="fr.jade.fractal.api.control.GenericAttributeController">
+       <attribute name="localDir" value="TEMP" />
+    </attributes>
+ 
+ 	<virtual-node name="node" resourceReqs="MemorySize&gt;0GB"/> 
+ 	 	
+ 	<packages>
+      <package name="Tomcat Wrapper" >
+        <property name="localDir" value="TEMP"/>
+      </package>
+    </packages>
+
+</definition>

@@ -1,0 +1,1491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="repository.xsl"?>
+
+<!--<!DOCTYPE bundles SYSTEM "bundlerepository10.dtd">-->
+
+<bundles>
+  <dtd-version>1.0</dtd-version>
+
+  <repository>
+    <name>Jade Bundle Repository</name>
+    <url>http://proton.inrialpes.fr/~n/repo.jasmine/</url>
+
+    <date>Tue Dec 05 11:00:00 CEST 2006</date>
+    <extern-repositories></extern-repositories>
+  </repository>
+
+  <!-- ================================== -->
+  <!--            JADEBOOT                -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>JadeBoot</bundle-name>
+    <bundle-description>
+      A bundle that launch a JadeBoot
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/jade/jadeboot.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl></bundle-docurl>
+    <bundle-category>General</bundle-category>
+
+    <import-package package="org.ungoverned.osgi.service.shell" />
+    
+    <export-package package="org.objectweb.jasmine.jade.service" />
+    <export-package package="org.objectweb.jasmine.jade.resource" />
+    <export-package package="org.objectweb.jasmine.jade.resource.start" />
+    <export-package package="org.objectweb.jasmine.jade.util" />
+
+    <export-package package="fr.jade.fractal.api.control" />
+    <export-package package="fr.jade.fractal.julia.control.factory" />
+    <export-package package="fr.jade.fractal.julia.control.genericattribute" />
+    <export-package package="fr.jade.fractal.adl.attributes" />
+    <export-package package="fr.jade.fractal.adl.components" />
+    <export-package package="fr.jade.fractal.util" />
+    
+    <export-package package="fr.jade.fractal.api.control" />
+    
+    <export-package package="org.objectweb.jonathan.apis.presentation" />
+    <export-package package="org.objectweb.jonathan.apis.protocols" />
+
+    <export-package package="org.objectweb.fractal.api" />
+    <export-package package="org.objectweb.fractal.api.control" />
+    <export-package package="org.objectweb.fractal.api.factory" />
+    <export-package package="org.objectweb.fractal.api.type" />
+    
+    <export-package package="org.objectweb.jasmine.jade.util" />
+    
+    <export-package package="fr.jade.fractal.util" />
+    <export-package package="org.objectweb.asm" />
+    <export-package package="org.objectweb.asm.signature" />
+
+  </bundle>
+
+  <!-- ================================== -->
+  <!--            JADENODE                -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>JadeNode</bundle-name>
+    <bundle-description>
+      A bundle that launch a JadeNode
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/jade/jadenode.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl></bundle-docurl>
+    <bundle-category>General</bundle-category>
+
+    <import-package package="org.ungoverned.osgi.service.shell" />
+
+    <export-package package="org.objectweb.jasmine.jade.service" />
+    <export-package package="org.objectweb.jasmine.jade.resource" />
+    <export-package package="org.objectweb.jasmine.jade.resource.start" />
+    <export-package package="org.objectweb.jasmine.jade.util" />
+
+    <export-package package="fr.jade.fractal.api.control" />
+    <export-package package="fr.jade.fractal.julia.control.factory" />
+    <export-package package="fr.jade.fractal.julia.control.genericattribute" />
+    <export-package package="fr.jade.fractal.adl.attributes" />
+    <export-package package="fr.jade.fractal.adl.components" />
+    <export-package package="fr.jade.fractal.util" />
+
+    <export-package package="fr.jade.reflex.api.control" />
+    <export-package package="fr.jade.reflex.control" />
+    <export-package package="fr.jade.reflex.control.attribute" />
+
+    <export-package package="org.objectweb.jonathan.apis.presentation" />
+    <export-package package="org.objectweb.jonathan.apis.protocols" />
+
+    <export-package package="org.objectweb.fractal.api" />
+    <export-package package="org.objectweb.fractal.api.control" />
+    <export-package package="org.objectweb.fractal.api.factory" />
+    <export-package package="org.objectweb.fractal.api.type" />
+
+    <export-package package="org.objectweb.fractal.util" />
+
+    <!-- <export-package package="org.objectweb.fractal.rmi" /> -->	
+      <export-package package="org.objectweb.fractal.rmi.registry" />
+      <export-package package="org.objectweb.fractal.rmi.stub" />
+      <export-package package="org.objectweb.asm" />
+    <export-package package="org.objectweb.asm.signature" />
+<!--
+    <export-package package="org.objectweb.dream.control.logger"/>
+-->
+    <export-package package="org.objectweb.fractal.adl" />
+    <export-package package="org.objectweb.fractal.adl.arguments" />
+    <export-package package="org.objectweb.fractal.adl.attributes" />
+    <export-package package="org.objectweb.fractal.adl.bindings" />
+    <export-package package="org.objectweb.fractal.adl.comments" />
+    <export-package package="org.objectweb.fractal.adl.components" />
+    <export-package package="org.objectweb.fractal.adl.coordinates" />
+    <export-package package="org.objectweb.fractal.adl.implementations" />
+    <export-package package="org.objectweb.fractal.adl.interfaces" />
+    <export-package package="org.objectweb.fractal.adl.loggers" />
+    <export-package package="org.objectweb.fractal.adl.nodes" />
+    <export-package package="org.objectweb.fractal.adl.types" />
+    <export-package package="org.objectweb.fractal.adl.util" />
+    <export-package package="org.objectweb.fractal.adl.xml" />
+
+    <export-package
+      package="org.objectweb.fractal.deployment.local.api" />
+
+    <export-package package="org.objectweb.fractal.julia" />
+    <export-package package="org.objectweb.fractal.julia.asm" />
+    <export-package
+      package="org.objectweb.fractal.julia.control.attribute" />
+    <export-package
+      package="org.objectweb.fractal.julia.control.binding" />
+    <export-package
+      package="org.objectweb.fractal.julia.control.content" />
+    <export-package
+      package="org.objectweb.fractal.julia.control.lifecycle" />
+    <export-package package="org.objectweb.fractal.julia.control.name" />
+    <export-package package="org.objectweb.fractal.julia.factory" />
+    <export-package package="org.objectweb.fractal.julia.loader" />
+    <export-package package="org.objectweb.fractal.julia.logger" />
+    <export-package package="org.objectweb.fractal.julia.type" />
+-->
+  </bundle>
+
+  <!-- ================================== -->
+  <!--         PROPERTY COMMANDS          -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>Property Commands</bundle-name>
+    <bundle-description>
+      A bundle that adds the sp and gp commands to manipulate system
+      properties.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/properties.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>General</bundle-category>
+    <import-package package="org.ungoverned.osgi.service.shell" />
+    <export-package package="org.jko.osgi.bundles.commands" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--              APACHE                -->
+  <!-- ================================== -->
+
+  <bundle>
+    <bundle-name>Apache v1.3.37 mac Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/apache_http_server/Apache_1.0.0.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+    <import-package package="fr.jade.resource.j2ee" />
+    <import-package package="fr.jade.resource.j2ee.rubis" />
+
+    <import-package package="fr.jade.osgi.apache.1_3_37.mac.dummy" />
+
+    <export-package package="fr.jade.osgi.apache.wrapper" />
+  </bundle>
+ 
+  <bundle>
+    <bundle-name>Apache v1.3.29 linux x86 Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/apache_http_server/2.0M1/Apache_2.0.0.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>2.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+    <import-package package="fr.jade.resource.j2ee" />
+    <import-package package="fr.jade.resource.j2ee.rubis" />
+
+    <import-package
+      package="fr.jade.osgi.apache.1_3_29.linux.x86.dummy" />
+
+    <export-package package="fr.jade.osgi.apache.wrapper" />
+  </bundle>
+
+  <bundle>
+    <bundle-name>Apache HTTP server v1.3.37 (mac)</bundle-name>
+    <bundle-description>
+      A bundle that installs the apache HTTP server locally. Intended
+      for mac intel.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/apache_http_server/ApacheHttpServer_mac_1.0.0.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Legacy software</bundle-category>
+
+    <import-package package="org.objectweb.jasmine.jade.util" />
+
+    <export-package package="fr.jade.osgi.apache.1_3_37.mac.dummy" />
+
+  </bundle>
+
+  <bundle>
+    <bundle-name>Apache HTTP server v1.3.29 (linux x86)</bundle-name>
+    <bundle-description>
+      A bundle that installs the apache HTTP server locally. Intended
+      for i386 machines.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/apache_http_server/ApacheHttpServer_linux_x86_1.0.0.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Legacy software</bundle-category>
+
+    <import-package package="org.objectweb.jasmine.jade.util" />
+
+    <export-package
+      package="fr.jade.osgi.apache.1_3_29.linux.x86.dummy" />
+
+  </bundle>
+
+
+  <!-- ================================== -->
+  <!--                TOMCAT              -->
+  <!-- ================================== -->
+
+  <bundle>
+    <bundle-name>Tomcat</bundle-name>
+    <bundle-description>
+      A bundle that installs the tomcat server locally.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/tomcat/Tomcat_1.0.0.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Legacy</bundle-category>
+    <import-package package="fr.jade.osgi.tomcat.wrapper" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+
+    <export-package package="fr.jade.osgi.tomcat.dummy" />
+
+  </bundle>
+
+ 
+  <bundle>
+    <bundle-name>Tomcat Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+      http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/TomcatWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <!--
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+    -->
+  </bundle>
+
+
+
+
+
+
+  <!-- ================================== -->
+  <!--                MYSQL               -->
+  <!-- ================================== -->
+
+  <bundle>
+    <bundle-name>MySQL (linux x86)</bundle-name>
+    <bundle-description>
+      A bundle that installs the MySQL server locally. Intended for
+      Linux i686 machines.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/mysql/Mysql_linux_x86_1.0.0.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Legacy</bundle-category>
+    <import-package package="fr.jade.osgi.mysql.wrapper" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+  </bundle>
+
+  <bundle>
+    <bundle-name>MySql Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/mysql/MysqlWrapper_1.0.0.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+    <import-package package="fr.jade.resource.j2ee.rubis" />
+    <export-package package="fr.jade.osgi.mysql.wrapper" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--                KIOWA               -->
+  <!-- ================================== -->
+
+  <bundle>
+    <bundle-name>Kiowa</bundle-name>
+    <bundle-description>
+      A bundle that installs the Kiowa load balancer
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/kiowa/Kiowa_1.0.0.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Fractal application</bundle-category>
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+    <import-package package="fr.jade.resource.j2ee.kiowa" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.fractal.api" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--                 RUBIS              -->
+  <!-- ================================== -->
+
+  <bundle>
+    <bundle-name>Rubis Apache</bundle-name>
+    <bundle-description>
+      A bundle that installs the Apache part of RUBiS on a local
+      machine.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/rubis/RubisApache.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.2</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>General</bundle-category>
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.osgi.service.log" />
+  </bundle>
+
+  <bundle>
+    <bundle-name>Rubis Tomcat</bundle-name>
+    <bundle-description>
+      A bundle that installs the Tomcat part of RUBiS on a local
+      machine.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/rubis/RubisTomcat.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>General</bundle-category>
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.osgi.service.log" />
+  </bundle>
+
+  <bundle>
+    <bundle-name>Rubis MySql</bundle-name>
+    <bundle-description>
+      A bundle that installs the MySQL part of RUBiS on a local machine.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/rubis/RubisMysql.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>General</bundle-category>
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.osgi.service.log" />
+  </bundle>
+
+  <bundle>
+    <bundle-name>Rubis Wrapper</bundle-name>
+    <bundle-description>
+      A bundle that contains the implementation class of the Fractal
+      component Rubis wrapper.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/rubis/RubisWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>General</bundle-category>
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.osgi.service.log" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--                JONAS               -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>JOnAS ALL</bundle-name>
+    <bundle-description>
+      A bundle that installs JOnAS ALL on a local machine.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/jonas/jonasall.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>General</bundle-category>
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.osgi.service.log" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--              COMPAS                -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>Compas Bundle</bundle-name>
+    <bundle-description>Compas monitoring framework</bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/compasbundle.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>
+      http://oscar-osgi.sf.net/repo/bundlerepository
+    </bundle-docurl>
+    <bundle-category>General</bundle-category>
+  </bundle>
+
+  <!-- ================================== -->
+  <!--              JADE J2EE             -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>Jade J2ee</bundle-name>
+    <bundle-description>
+      A bundle that exposes J2ee resources for Jade
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/j2ee/Jade_J2ee_1.0.0.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl></bundle-docurl>
+    <bundle-category>General</bundle-category>
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+    <export-package package="fr.jade.resource.j2ee" />
+    <export-package package="fr.jade.resource.j2ee.apache" />
+    <export-package package="fr.jade.resource.j2ee.tomcat" />
+    <export-package package="fr.jade.resource.j2ee.mysql" />
+    <export-package package="fr.jade.resource.j2ee.rubis" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--              JORAM                 -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>Joram Server</bundle-name>
+    <bundle-description>
+      A bundle that provides the Joram JMS server.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/joram/joram-server-wrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl></bundle-docurl>
+    <bundle-category>General</bundle-category>
+  </bundle>
+
+  <!-- ================================== -->
+  <!--                DERBY               -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>Derby-bin</bundle-name>
+    <bundle-description>
+      A bundle that installs Derby and exposes the code of its Fractal
+      wrapper.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/Derby-bin.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Legacy</bundle-category>
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.osgi.service.log" />
+    <export-package package="Derby_Legacy" />
+  </bundle>
+
+  <bundle>
+    <bundle-name>DerbyWrapper</bundle-name>
+    <bundle-description>
+      A bundle that installs Derby and exposes the code of its Fractal
+      wrapper.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/DerbyWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package
+      package="fr.jade.fractal.julia.control.genericattribute" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.julia" />
+    <import-package package="org.objectweb.fractal.julia.asm" />
+    <import-package package="org.objectweb.fractal.julia.loader" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.attribute" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.binding" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.content" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.lifecycle" />
+    <import-package package="org.objectweb.fractal.julia.control.name" />
+    <import-package package="org.objectweb.fractal.julia.factory" />
+    <import-package package="org.objectweb.fractal.julia.logger" />
+    <import-package package="org.objectweb.fractal.julia.type" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.fractal.api.control" />
+    <import-package package="org.objectweb.fractal.api.factory" />
+    <import-package package="org.objectweb.fractal.api.type" />
+    <import-package package="org.objectweb.fractal.rmi" />
+    <import-package package="org.objectweb.fractal.rmi.io" />
+    <import-package package="org.objectweb.fractal.rmi.registry" />
+    <import-package package="org.objectweb.fractal.rmi.stub" />
+    <import-package package="org.objectweb.fractal.jonathan" />
+    <import-package package="org.objectweb.jonathan.apis.binding" />
+    <import-package package="org.objectweb.jonathan.apis.kernel" />
+    <import-package package="org.objectweb.jonathan.apis.presentation" />
+    <import-package package="org.objectweb.jonathan.apis.protocols" />
+    <import-package package="org.objectweb.jonathan.apis.protocols.ip" />
+    <import-package package="org.objectweb.jonathan.apis.resources" />
+    <import-package
+      package="org.objectweb.jonathan.apis.stub_factories" />
+    <import-package package="org.objectweb.jonathan.libs.helpers" />
+    <import-package package="org.objectweb.jonathan.libs.kernel" />
+    <import-package
+      package="org.objectweb.jonathan.libs.protocols.tcpip" />
+    <import-package package="org.objectweb.jonathan.libs.resources" />
+    <import-package
+      package="org.objectweb.jonathan.libs.resources.tcpip" />
+    <import-package package="Derby_Legacy" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--                DERBY G              -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>DerbyG-bin</bundle-name>
+    <bundle-description>
+      A bundle that installs Derby 10.1.2.1 and derbyG 0.2 legacy.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/DerbyG-bin.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Legacy</bundle-category>
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.osgi.service.log" />
+    <export-package package="DerbyG_bin" />
+  </bundle>
+
+  <bundle>
+    <bundle-name>DerbyGWrapper</bundle-name>
+    <bundle-description>
+      A bundle that wrapps Derby 10.1.2.1 and DerbyG 0.2 legacy (starts
+      and stops a server).
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/DerbyGWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="DerbyG_bin" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package
+      package="fr.jade.fractal.julia.control.genericattribute" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.julia" />
+    <import-package package="org.objectweb.fractal.julia.asm" />
+    <import-package package="org.objectweb.fractal.julia.loader" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.attribute" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.binding" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.content" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.lifecycle" />
+    <import-package package="org.objectweb.fractal.julia.control.name" />
+    <import-package package="org.objectweb.fractal.julia.factory" />
+    <import-package package="org.objectweb.fractal.julia.logger" />
+    <import-package package="org.objectweb.fractal.julia.type" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.fractal.api.control" />
+    <import-package package="org.objectweb.fractal.api.factory" />
+    <import-package package="org.objectweb.fractal.api.type" />
+    <import-package package="org.objectweb.fractal.rmi" />
+    <import-package package="org.objectweb.fractal.rmi.io" />
+    <import-package package="org.objectweb.fractal.rmi.registry" />
+    <import-package package="org.objectweb.fractal.rmi.stub" />
+    <import-package package="org.objectweb.fractal.jonathan" />
+    <import-package package="org.objectweb.jonathan.apis.binding" />
+    <import-package package="org.objectweb.jonathan.apis.kernel" />
+    <import-package package="org.objectweb.jonathan.apis.presentation" />
+    <import-package package="org.objectweb.jonathan.apis.protocols" />
+    <import-package package="org.objectweb.jonathan.apis.protocols.ip" />
+    <import-package package="org.objectweb.jonathan.apis.resources" />
+    <import-package
+      package="org.objectweb.jonathan.apis.stub_factories" />
+    <import-package package="org.objectweb.jonathan.libs.helpers" />
+    <import-package package="org.objectweb.jonathan.libs.kernel" />
+    <import-package
+      package="org.objectweb.jonathan.libs.protocols.tcpip" />
+    <import-package package="org.objectweb.jonathan.libs.resources" />
+    <import-package
+      package="org.objectweb.jonathan.libs.resources.tcpip" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--                SEQUOIA              -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>Sequoia-2.6.1-bin</bundle-name>
+    <bundle-description>
+      A bundle that installs Sequoia-2.6.1-bin legacy.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/Sequoia-2.6.1-bin.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Legacy</bundle-category>
+    <export-package package="Sequoia_Legacy" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.osgi.service.log" />
+  </bundle>
+
+  <bundle>
+    <bundle-name>Sequoia-2.6.1-Wrapper</bundle-name>
+    <bundle-description>
+      A bundle that wrapps Sequoia-2.6.1 legacy.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/Sequoia-2.6.1-Wrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="Sequoia_Legacy" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package
+      package="fr.jade.fractal.julia.control.genericattribute" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.julia" />
+    <import-package package="org.objectweb.fractal.julia.asm" />
+    <import-package package="org.objectweb.fractal.julia.loader" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.attribute" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.binding" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.content" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.lifecycle" />
+    <import-package package="org.objectweb.fractal.julia.control.name" />
+    <import-package package="org.objectweb.fractal.julia.factory" />
+    <import-package package="org.objectweb.fractal.julia.logger" />
+    <import-package package="org.objectweb.fractal.julia.type" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.fractal.api.control" />
+    <import-package package="org.objectweb.fractal.api.factory" />
+    <import-package package="org.objectweb.fractal.api.type" />
+    <import-package package="org.objectweb.fractal.rmi" />
+    <import-package package="org.objectweb.fractal.rmi.io" />
+    <import-package package="org.objectweb.fractal.rmi.registry" />
+    <import-package package="org.objectweb.fractal.rmi.stub" />
+    <import-package package="org.objectweb.fractal.jonathan" />
+    <import-package package="org.objectweb.jonathan.apis.binding" />
+    <import-package package="org.objectweb.jonathan.apis.kernel" />
+    <import-package package="org.objectweb.jonathan.apis.presentation" />
+    <import-package package="org.objectweb.jonathan.apis.protocols" />
+    <import-package package="org.objectweb.jonathan.apis.protocols.ip" />
+    <import-package package="org.objectweb.jonathan.apis.resources" />
+    <import-package
+      package="org.objectweb.jonathan.apis.stub_factories" />
+    <import-package package="org.objectweb.jonathan.libs.helpers" />
+    <import-package package="org.objectweb.jonathan.libs.kernel" />
+    <import-package
+      package="org.objectweb.jonathan.libs.protocols.tcpip" />
+    <import-package package="org.objectweb.jonathan.libs.resources" />
+    <import-package
+      package="org.objectweb.jonathan.libs.resources.tcpip" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--                POSTGRESQL/G          -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>PostgreSQLG-0.3-8.1.4-bin</bundle-name>
+    <bundle-description>
+      A bundle that installs PostgreSQLG-0.3-8.1.4 legacy.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/PostgreSQLG-0.3-8.1.4-bin.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Legacy</bundle-category>
+    <export-package package="PostgresqlG_Linux" />
+    <import-package package="org.objectweb.fractal.julia.asm" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.attribute" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.binding" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.content" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.lifecycle" />
+    <import-package package="org.objectweb.fractal.julia.control.name" />
+    <import-package package="org.objectweb.fractal.julia.factory" />
+    <import-package package="org.objectweb.fractal.julia.loader" />
+    <import-package package="org.objectweb.fractal.julia.logger" />
+    <import-package package="org.objectweb.fractal.julia.type" />
+    <import-package
+      package="org.objectweb.fractal.deployment.local.api" />
+    <import-package package="org.objectweb.fractal.adl" />
+    <import-package package="org.objectweb.fractal.adl.arguments" />
+    <import-package package="org.objectweb.fractal.adl.attributes" />
+    <import-package package="org.objectweb.fractal.adl.bindings" />
+    <import-package package="org.objectweb.fractal.adl.comments" />
+    <import-package package="org.objectweb.fractal.adl.components" />
+    <import-package package="org.objectweb.fractal.adl.coordinates" />
+    <import-package package="org.objectweb.fractal.adl.implementations" />
+    <import-package package="org.objectweb.fractal.adl.interfaces" />
+    <import-package package="org.objectweb.fractal.adl.loggers" />
+    <import-package package="org.objectweb.fractal.adl.nodes" />
+    <import-package package="org.objectweb.fractal.adl.types" />
+    <import-package package="org.objectweb.fractal.adl.util" />
+    <import-package package="org.objectweb.fractal.adl.xml" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.fractal.api.control" />
+    <import-package package="org.objectweb.fractal.api.factory" />
+    <import-package package="org.objectweb.fractal.api.type" />
+    <import-package package="org.objectweb.fractal.util" />
+    <import-package package="fr.jade.fractal.adl.components" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="fr.jade.fractal.julia" />
+    <import-package
+      package="fr.jade.fractal.julia.control.genericattribute" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="fr.jade.fractal.util" />
+    <import-package package="org.objectweb.fractal.rmi.registry" />
+    <import-package package="org.objectweb.fractal.rmi" />
+    <import-package package="org.objectweb.fractal.rmi.io" />
+    <import-package package="org.objectweb.fractal.rmi.stub" />
+    <import-package package="org.objectweb.fractal.jonathan" />
+    <import-package package="org.objectweb.jonathan.apis.binding" />
+    <import-package package="org.objectweb.jonathan.apis.kernel" />
+    <import-package package="org.objectweb.jonathan.apis.presentation" />
+    <import-package package="org.objectweb.jonathan.apis.protocols" />
+    <import-package package="org.objectweb.jonathan.apis.protocols.ip" />
+    <import-package package="org.objectweb.jonathan.apis.resources" />
+    <import-package
+      package="org.objectweb.jonathan.apis.stub_factories" />
+    <import-package package="org.objectweb.jonathan.libs.helpers" />
+    <import-package package="org.objectweb.jonathan.libs.kernel" />
+    <import-package
+      package="org.objectweb.jonathan.libs.protocols.tcpip" />
+    <import-package package="org.objectweb.jonathan.libs.resources" />
+    <import-package
+      package="org.objectweb.jonathan.libs.resources.tcpip" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.osgi.service.log" />
+  </bundle>
+
+  <bundle>
+    <bundle-name>PostgreSQLG-0.3-8.1.4-Wrapper</bundle-name>
+    <bundle-description>
+      A bundle that wrapps PostgreSQLG-0.3-8.1.4 legacy (starts and
+      stops a server).
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/PostgreSQLG-0.3-8.1.4-Wrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="fr.jade.resource.interfaces.postgres" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package
+      package="fr.jade.fractal.julia.control.genericattribute" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.julia" />
+    <import-package package="org.objectweb.fractal.julia.asm" />
+    <import-package package="org.objectweb.fractal.julia.loader" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.attribute" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.binding" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.content" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.lifecycle" />
+    <import-package package="org.objectweb.fractal.julia.control.name" />
+    <import-package package="org.objectweb.fractal.julia.factory" />
+    <import-package package="org.objectweb.fractal.julia.logger" />
+    <import-package package="org.objectweb.fractal.julia.type" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.fractal.api.control" />
+    <import-package package="org.objectweb.fractal.api.factory" />
+    <import-package package="org.objectweb.fractal.api.type" />
+    <import-package package="org.objectweb.fractal.rmi" />
+    <import-package package="org.objectweb.fractal.rmi.io" />
+    <import-package package="org.objectweb.fractal.rmi.registry" />
+    <import-package package="org.objectweb.fractal.rmi.stub" />
+    <import-package package="org.objectweb.fractal.jonathan" />
+    <import-package package="org.objectweb.jonathan.apis.binding" />
+    <import-package package="org.objectweb.jonathan.apis.kernel" />
+    <import-package package="org.objectweb.jonathan.apis.presentation" />
+    <import-package package="org.objectweb.jonathan.apis.protocols" />
+    <import-package package="org.objectweb.jonathan.apis.protocols.ip" />
+    <import-package package="org.objectweb.jonathan.apis.resources" />
+    <import-package
+      package="org.objectweb.jonathan.apis.stub_factories" />
+    <import-package package="org.objectweb.jonathan.libs.helpers" />
+    <import-package package="org.objectweb.jonathan.libs.kernel" />
+    <import-package
+      package="org.objectweb.jonathan.libs.protocols.tcpip" />
+    <import-package package="org.objectweb.jonathan.libs.resources" />
+    <import-package
+      package="org.objectweb.jonathan.libs.resources.tcpip" />
+    <import-package package="PostgresqlG_Linux" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--                ESCADA              -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>Escada-0.3-bin</bundle-name>
+    <bundle-description>
+      A bundle that installs Escada-0.3 legacy.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/Escada-0.3-bin.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Legacy</bundle-category>
+    <export-package package="Escada_Linux" />
+    <import-package package="org.objectweb.fractal.julia" />
+    <import-package package="org.objectweb.fractal.julia.asm" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.attribute" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.binding" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.content" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.lifecycle" />
+    <import-package package="org.objectweb.fractal.julia.control.name" />
+    <import-package package="org.objectweb.fractal.julia.factory" />
+    <import-package package="org.objectweb.fractal.julia.loader" />
+    <import-package package="org.objectweb.fractal.julia.logger" />
+    <import-package package="org.objectweb.fractal.julia.type" />
+    <import-package
+      package="org.objectweb.fractal.deployment.local.api" />
+    <import-package package="org.objectweb.fractal.adl" />
+    <import-package package="org.objectweb.fractal.adl.arguments" />
+    <import-package package="org.objectweb.fractal.adl.attributes" />
+    <import-package package="org.objectweb.fractal.adl.bindings" />
+    <import-package package="org.objectweb.fractal.adl.comments" />
+    <import-package package="org.objectweb.fractal.adl.components" />
+    <import-package package="org.objectweb.fractal.adl.coordinates" />
+    <import-package package="org.objectweb.fractal.adl.implementations" />
+    <import-package package="org.objectweb.fractal.adl.interfaces" />
+    <import-package package="org.objectweb.fractal.adl.loggers" />
+    <import-package package="org.objectweb.fractal.adl.nodes" />
+    <import-package package="org.objectweb.fractal.adl.types" />
+    <import-package package="org.objectweb.fractal.adl.util" />
+    <import-package package="org.objectweb.fractal.adl.xml" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.fractal.api.control" />
+    <import-package package="org.objectweb.fractal.api.factory" />
+    <import-package package="org.objectweb.fractal.api.type" />
+    <import-package package="org.objectweb.fractal.util" />
+    <import-package package="fr.jade.fractal.adl.components" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="fr.jade.fractal.julia" />
+    <import-package
+      package="fr.jade.fractal.julia.control.genericattribute" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="fr.jade.fractal.util" />
+    <import-package package="org.objectweb.fractal.rmi.registry" />
+    <import-package package="org.objectweb.fractal.rmi" />
+    <import-package package="org.objectweb.fractal.rmi.io" />
+    <import-package package="org.objectweb.fractal.rmi.stub" />
+    <import-package package="org.objectweb.fractal.jonathan" />
+    <import-package package="org.objectweb.jonathan.apis.binding" />
+    <import-package package="org.objectweb.jonathan.apis.kernel" />
+    <import-package package="org.objectweb.jonathan.apis.presentation" />
+    <import-package package="org.objectweb.jonathan.apis.protocols" />
+    <import-package package="org.objectweb.jonathan.apis.protocols.ip" />
+    <import-package package="org.objectweb.jonathan.apis.resources" />
+    <import-package
+      package="org.objectweb.jonathan.apis.stub_factories" />
+    <import-package package="org.objectweb.jonathan.libs.helpers" />
+    <import-package package="org.objectweb.jonathan.libs.kernel" />
+    <import-package
+      package="org.objectweb.jonathan.libs.protocols.tcpip" />
+    <import-package package="org.objectweb.jonathan.libs.resources" />
+    <import-package
+      package="org.objectweb.jonathan.libs.resources.tcpip" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.osgi.service.log" />
+  </bundle>
+
+  <bundle>
+    <bundle-name>Escada-0.3-Wrapper</bundle-name>
+    <bundle-description>
+      A bundle that wrapps Escada-0.3 legacy.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/Escada-0.3-Wrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="Escada_Linux" />
+    <import-package package="fr.jade.resource.interfaces.postgres" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package
+      package="fr.jade.fractal.julia.control.genericattribute" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.julia" />
+    <import-package package="org.objectweb.fractal.julia.asm" />
+    <import-package package="org.objectweb.fractal.julia.loader" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.attribute" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.binding" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.content" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.lifecycle" />
+    <import-package package="org.objectweb.fractal.julia.control.name" />
+    <import-package package="org.objectweb.fractal.julia.factory" />
+    <import-package package="org.objectweb.fractal.julia.logger" />
+    <import-package package="org.objectweb.fractal.julia.type" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.fractal.api.control" />
+    <import-package package="org.objectweb.fractal.api.factory" />
+    <import-package package="org.objectweb.fractal.api.type" />
+    <import-package package="org.objectweb.fractal.rmi" />
+    <import-package package="org.objectweb.fractal.rmi.io" />
+    <import-package package="org.objectweb.fractal.rmi.registry" />
+    <import-package package="org.objectweb.fractal.rmi.stub" />
+    <import-package package="org.objectweb.fractal.jonathan" />
+    <import-package package="org.objectweb.jonathan.apis.binding" />
+    <import-package package="org.objectweb.jonathan.apis.kernel" />
+    <import-package package="org.objectweb.jonathan.apis.presentation" />
+    <import-package package="org.objectweb.jonathan.apis.protocols" />
+    <import-package package="org.objectweb.jonathan.apis.protocols.ip" />
+    <import-package package="org.objectweb.jonathan.apis.resources" />
+    <import-package
+      package="org.objectweb.jonathan.apis.stub_factories" />
+    <import-package package="org.objectweb.jonathan.libs.helpers" />
+    <import-package package="org.objectweb.jonathan.libs.kernel" />
+    <import-package
+      package="org.objectweb.jonathan.libs.protocols.tcpip" />
+    <import-package package="org.objectweb.jonathan.libs.resources" />
+    <import-package
+      package="org.objectweb.jonathan.libs.resources.tcpip" />
+  </bundle>
+
+  <bundle>
+    <bundle-name>ClusterDBInterfaces</bundle-name>
+    <bundle-description>
+      A bundle that contains interfaces for clusterDB managment.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/ClusterDBInterfaces
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <export-package package="fr.jade.resource.interfaces.IDgenerator" />
+    <export-package package="fr.jade.resource.interfaces.postgres" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package
+      package="fr.jade.fractal.julia.control.genericattribute" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.julia" />
+    <import-package package="org.objectweb.fractal.julia.asm" />
+    <import-package package="org.objectweb.fractal.julia.loader" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.attribute" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.binding" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.content" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.lifecycle" />
+    <import-package package="org.objectweb.fractal.julia.control.name" />
+    <import-package package="org.objectweb.fractal.julia.factory" />
+    <import-package package="org.objectweb.fractal.julia.logger" />
+    <import-package package="org.objectweb.fractal.julia.type" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.fractal.api.control" />
+    <import-package package="org.objectweb.fractal.api.factory" />
+    <import-package package="org.objectweb.fractal.api.type" />
+    <import-package package="org.objectweb.fractal.rmi" />
+    <import-package package="org.objectweb.fractal.rmi.io" />
+    <import-package package="org.objectweb.fractal.rmi.registry" />
+    <import-package package="org.objectweb.fractal.rmi.stub" />
+    <import-package package="org.objectweb.fractal.jonathan" />
+    <import-package package="org.objectweb.jonathan.apis.binding" />
+    <import-package package="org.objectweb.jonathan.apis.kernel" />
+    <import-package package="org.objectweb.jonathan.apis.presentation" />
+    <import-package package="org.objectweb.jonathan.apis.protocols" />
+    <import-package package="org.objectweb.jonathan.apis.protocols.ip" />
+    <import-package package="org.objectweb.jonathan.apis.resources" />
+    <import-package
+      package="org.objectweb.jonathan.apis.stub_factories" />
+    <import-package package="org.objectweb.jonathan.libs.helpers" />
+    <import-package package="org.objectweb.jonathan.libs.kernel" />
+    <import-package
+      package="org.objectweb.jonathan.libs.protocols.tcpip" />
+    <import-package package="org.objectweb.jonathan.libs.resources" />
+    <import-package
+      package="org.objectweb.jonathan.libs.resources.tcpip" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--             IDGENERATOR            -->
+  <!-- ================================== -->
+  <bundle>
+    <bundle-name>IDGenerator-Wrapper</bundle-name>
+    <bundle-description>
+      A bundle that wrapps an ID generator for DB replicas.
+    </bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~jlegrand/repo.jasmine/bundlerepository/database/2.0M1/IDGenerator-Wrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="fr.jade.resource.interfaces.IDgenerator" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package
+      package="fr.jade.fractal.julia.control.genericattribute" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.julia" />
+    <import-package package="org.objectweb.fractal.julia.asm" />
+    <import-package package="org.objectweb.fractal.julia.loader" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.attribute" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.binding" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.content" />
+    <import-package
+      package="org.objectweb.fractal.julia.control.lifecycle" />
+    <import-package package="org.objectweb.fractal.julia.control.name" />
+    <import-package package="org.objectweb.fractal.julia.factory" />
+    <import-package package="org.objectweb.fractal.julia.logger" />
+    <import-package package="org.objectweb.fractal.julia.type" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="org.objectweb.fractal.api.control" />
+    <import-package package="org.objectweb.fractal.api.factory" />
+    <import-package package="org.objectweb.fractal.api.type" />
+    <import-package package="org.objectweb.fractal.rmi" />
+    <import-package package="org.objectweb.fractal.rmi.io" />
+    <import-package package="org.objectweb.fractal.rmi.registry" />
+    <import-package package="org.objectweb.fractal.rmi.stub" />
+    <import-package package="org.objectweb.fractal.jonathan" />
+    <import-package package="org.objectweb.jonathan.apis.binding" />
+    <import-package package="org.objectweb.jonathan.apis.kernel" />
+    <import-package package="org.objectweb.jonathan.apis.presentation" />
+    <import-package package="org.objectweb.jonathan.apis.protocols" />
+    <import-package package="org.objectweb.jonathan.apis.protocols.ip" />
+    <import-package package="org.objectweb.jonathan.apis.resources" />
+    <import-package
+      package="org.objectweb.jonathan.apis.stub_factories" />
+    <import-package package="org.objectweb.jonathan.libs.helpers" />
+    <import-package package="org.objectweb.jonathan.libs.kernel" />
+    <import-package
+      package="org.objectweb.jonathan.libs.protocols.tcpip" />
+    <import-package package="org.objectweb.jonathan.libs.resources" />
+    <import-package
+      package="org.objectweb.jonathan.libs.resources.tcpip" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--                JETTY WRAPPER-->
+  <!-- ================================== -->
+
+
+<bundle>
+    <bundle-name>Jetty Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~nparlava/repo.jasmine/bundlerepository/Grid4All/JettyWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+
+
+  <!-- ================================== -->
+  <!--                SIMPLE WRAPPER-->
+  <!-- ================================== -->
+
+
+  <bundle>
+    <bundle-name>Simple Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~nparlava/repo.jasmine/bundlerepository/Grid4All/SimpleWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <export-package package="fractalhelloworld" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+  
+  
+  <!-- ================================== -->
+  <!--                SIMPLE WRAPPER CLIENT-->
+  <!-- ================================== -->
+
+
+  <bundle>
+    <bundle-name>Simple Wrapper Client</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+      http://proton.inrialpes.fr/~nparlava/repo.jasmine/bundlerepository/Grid4All/SimpleWrapperClient.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <export-package package="fractalhelloworld" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+  
+  <!-- ================================== -->
+  <!--                Fractal Hello World Wrapper-->
+  <!-- ================================== -->
+
+
+  <bundle>
+    <bundle-name>Fractal HelloWorld Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+      http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/SimpleWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <export-package package="fractalhelloworld" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+  
+   <!-- ================================== -->
+  <!--                RESERVATIONMANAGER WRAPPER-->
+  <!-- ================================== -->
+
+
+  <bundle>
+    <bundle-name>ReservationManager Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+      http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/ReservationManagerWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <export-package package="fractalhelloworld" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+  
+  <!-- ================================== -->
+  <!--                CAS WRAPPER-->
+  <!-- ================================== -->
+ 
+ 
+<bundle>
+    <bundle-name>CAS Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+   http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/CASWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="fr.jade.fractal.julia" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+
+
+ <!-- ================================== -->
+  <!--                CAS KDAInitiator WRAPPER-->
+  <!-- ================================== -->
+ 
+<bundle>
+    <bundle-name>CASInitiator Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+	  http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/CASInitiatorWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="fr.jade.fractal.julia" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+
+ <!-- ================================== -->
+  <!--                MIS WRAPPER-->
+  <!-- ================================== -->
+ 
+<bundle>
+    <bundle-name>MIS Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+	  http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/MISWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="fr.jade.fractal.julia" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+
+
+ <!-- ================================== -->
+  <!--                MIS CLIENT WRAPPER-->
+  <!-- ================================== -->
+ 
+<bundle>
+    <bundle-name>MIS Client</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+	  http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/MISClient.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="fr.jade.fractal.julia" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+
+
+ <!-- ================================== -->
+  <!--                Resource Buyer WRAPPER-->
+  <!-- ================================== -->
+ 
+<bundle>
+    <bundle-name>ResourceBuyer</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+	  http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/ResourceBuyer.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="fr.jade.fractal.julia" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+
+
+ <!-- ================================== -->
+  <!--                Resource Seller WRAPPER-->
+  <!-- ================================== -->
+ 
+<bundle>
+    <bundle-name>ResourceSeller</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+	  http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/ResourceSeller.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="fr.jade.fractal.julia" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+  
+  <!-- ================================== -->
+  <!--                Resource Buyer Comp WRAPPER-->
+  <!-- ================================== -->
+ 
+ <bundle>
+    <bundle-name>ResourceBuyerComp</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+	  http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/ResourceBuyerComp.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="fr.jade.fractal.julia" />
+    <import-package package="fr.jade.fractal.julia.control.factory" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+
+  <!-- ================================== -->
+  <!--                RESERVATIONMANAGER CLIENT WRAPPER-->
+  <!-- ================================== -->
+
+
+  <bundle>
+    <bundle-name>ReservationManagerWrapperClient</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+      http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/ReservationManagerWrapperClient.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+  
+   <!-- ================================== -->
+  <!--                RESOURCEBUYER WRAPPER-->
+  <!-- ================================== -->
+
+
+  <bundle>
+    <bundle-name>ResourceBuyer Wrapper</bundle-name>
+    <bundle-description></bundle-description>
+    <bundle-updatelocation>
+      http://localhost/~nparlava/repo.jasmine/bundlerepository/Grid4All/ResourceBuyerWrapper.jar
+    </bundle-updatelocation>
+    <bundle-sourceurl>none</bundle-sourceurl>
+    <bundle-version>1.0</bundle-version>
+    <bundle-docurl>none</bundle-docurl>
+    <bundle-category>Jade Wrapper</bundle-category>
+    <export-package package="fractalhelloworld" />
+    <import-package package="org.objectweb.fractal.api" />
+    <import-package package="fr.jade.fractal.api.control" />
+    <import-package package="org.objectweb.jasmine.jade.util" />
+    <import-package package="org.objectweb.jasmine.jade.resource" />
+  </bundle>
+  
+  
+</bundles>
+

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jade.dtd">
+
+<definition
+  name="org.objectweb.jasmine.jade.service.deployer.adl.DeployerBackend"
+  extends="org.objectweb.jasmine.jade.service.deployer.adl.AbstractDeployerBackend">
+
+  <!-- ================================== -->
+  <!--          SUB-COMPONENT             -->
+  <!-- ================================== -->
+  <component name="package-builder">
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.packages.OSGiOBRPackageBuilder" />
+  </component>
+
+  <component name="virtual-node-builder">
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.nodes.BasicVirtualNodeBuilder" />
+  </component>
+
+  <component name="implementation-builder">
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.implementations.ApplicationImplementationBuilder" />
+  </component>
+
+  <component name="type-builder">
+    <content class="org.objectweb.fractal.adl.types.FractalTypeBuilder" />
+  </component>
+
+  <component name="component-builder">
+    <content
+      class="org.objectweb.fractal.adl.components.FractalComponentBuilder" />
+  </component>
+
+  <component name="binding-builder">
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.bindings.FractalBindingBuilder" />
+  </component>
+
+  <component name="attribute-builder">
+    <content
+      class="fr.jade.fractal.adl.attributes.FractalAttributeBuilder" />
+  </component>
+  
+  <component name="componentBinding"
+    definition="org.objectweb.jasmine.jade.service.componentbinding.ComponentBinding"/>    
+
+  <!-- ================================== -->
+  <!--              BINDING               -->
+  <!-- ================================== -->
+  <binding client="virtual-node-builder.resourceDiscovery"
+    server="this.resourceDiscovery" />
+  <binding client="implementation-builder.componentDeployment"
+    server="this.componentDeployment" />
+  <binding client="virtual-node-builder.allocator"
+    server="this.allocator" />
+  <binding client="implementation-builder.registry"
+    server="this.registry" />
+    
+  <binding client="binding-builder.componentBinding"
+    server="componentBinding.componentBinding" />
+    
+    
+  <!-- ================================== -->
+  <!--            CONTROLLER              -->
+  <!-- ================================== -->
+  <controller desc="composite" />
+
+</definition>

@@ -1,0 +1,14 @@
+source("init"); 
+displayreg();
+print("Start deployment");
+id=deploy("TomcatWrapper");
+print("End deployment");
+print("Starting the wrapper");
+c = lookupcomp("TomcatWrapper_"+id);
+lc=getitf(c, "lifecycle-controller");
+lc.startFc();
+
+
+
+
+

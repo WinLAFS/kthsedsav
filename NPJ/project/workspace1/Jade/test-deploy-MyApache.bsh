@@ -1,0 +1,6 @@
+source("init"); 
+displayreg();
+print("Start deployment");
+deploy("MyApache");
+print("End deployment");
+

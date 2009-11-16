@@ -1,0 +1,145 @@
+/**
+ * Copyright (C) : INRIA - Domaine de Voluceau, Rocquencourt, B.P. 105, 
+ * 78153 Le Chesnay Cedex - France 
+ * 
+ * contributor(s) : SARDES project - http://sardes.inrialpes.fr
+ *
+ * Contact : jade@inrialpes.fr
+ *
+ * This software is a computer program whose purpose is to provide a framework
+ * to build autonomic systems, following an architecture-based approach.
+ *
+ * This software is governed by the CeCILL-C license under French law and 
+ * abiding by the rules of distribution of free software. You can use, modify
+ * and/or redistribute the software under the terms of the CeCILL-C license as 
+ * circulated by CEA, CNRS and INRIA at the following URL 
+ * "http://www.cecill.info". 
+ *
+ * As a counterpart to the access to the source code and rights to copy, modify
+ * and redistribute granted by the license, users are provided only with a 
+ * limited warranty and the software's author, the holder of the economic 
+ * rights, and the successive licensors have only limited liability. 
+ *
+ * In this respect, the user's attention is drawn to the risks associated with 
+ * loading,  using,  modifying and/or developing or reproducing the software by 
+ * the user in light of its specific status of free software, that may mean that
+ * it is complicated to manipulate,  and  that  also therefore means  that it is
+ * reserved for developers  and  experienced professionals having in-depth 
+ * computer knowledge. Users are therefore encouraged to load and test the
+ * software's suitability as regards their requirements in conditions enabling 
+ * the security of their systems and/or data to be ensured and,  more generally,
+ * to use and operate it in the same conditions as regards security. 
+ *
+ * The fact that you are presently reading this means that you have had 
+ * knowledge of the CeCILL-C license and that you accept its terms.
+ */
+
+package org.objectweb.jasmine.jade.service.gc;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.objectweb.fractal.api.Component;
+import org.objectweb.fractal.api.NoSuchInterfaceException;
+import org.objectweb.fractal.api.control.BindingController;
+import org.objectweb.fractal.api.control.IllegalBindingException;
+import org.objectweb.fractal.api.control.IllegalLifeCycleException;
+import org.objectweb.fractal.deployment.local.api.GarbageCollector;
+import org.objectweb.fractal.deployment.local.api.Installer;
+import org.objectweb.fractal.deployment.local.api.PackageDescription;
+
+/**
+ * @author <a href="mailto:jakub.kornas@inrialpes.fr">Jakub Kornas
+ * 
+ */
+public class GarbageCollectorImpl implements GarbageCollector,
+		BindingController {
+
+	private final String INSTALLER_ITF = "installer";
+
+	private Map<Component, PackageDescription> cmpsToPkgs = new HashMap<Component, PackageDescription>();
+
+	private Installer installer = null;
+
+	public synchronized void notifyComponentCreated(Component comp,
+			PackageDescription desc) {
+		cmpsToPkgs.put(comp, desc);
+	}
+
+	public synchronized void notifyComponentDestroyed(Component comp) {
+		System.out.println("IGC kicked in");
+
+		PackageDescription cmpPkg = cmpsToPkgs.get(comp);
+		if (cmpPkg != null && checkPkgUsageMultiplicity(cmpPkg) <= 1
+				&& !cmpPkg.isMarked()) {
+			try {
+				installer.uninstall(cmpPkg);
+				System.out.println("IGC garbage collecting the " + cmpPkg.getPackageID()
+						+ " package");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		// TODO: manage the wires correctly ...
+		PackageDescription[] installedPkgs = installer.getInstalledPackages();
+		List<PackageDescription> mappedPkgs = new ArrayList<PackageDescription>(
+				cmpsToPkgs.values());
+		if (mappedPkgs != null) {
+			for (int i = 0; i < installedPkgs.length; i++) {
+				if (!mappedPkgs.contains(installedPkgs[i])
+						&& !installedPkgs[i].isMarked()) {
+					try {
+						System.out.println("IGC garbage collecting the "
+								+ installedPkgs[i].getPackageID() + " dependend package");
+						installer.uninstall(installedPkgs[i]);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		cmpsToPkgs.remove(comp);
+		System.out.println("IGC done");
+	}
+
+	private int checkPkgUsageMultiplicity(PackageDescription componentPackage) {
+		Iterator iter = cmpsToPkgs.values().iterator();
+		int multiplicity = 0;
+		while (iter.hasNext()) {
+			PackageDescription pkgDesc = (PackageDescription) iter.next();
+			if (pkgDesc.equals(componentPackage)) {
+				multiplicity++;
+			}
+		}
+		return multiplicity;
+	}
+
+	public void bindFc(String clientItfName, Object serverItf)
+			throws NoSuchInterfaceException, IllegalBindingException,
+			IllegalLifeCycleException {
+		if (clientItfName.equals(this.INSTALLER_ITF)) {
+			this.installer = (Installer) serverItf;
+		}
+	}
+
+	public String[] listFc() {
+		return new String[] { this.INSTALLER_ITF };
+	}
+
+	public Object lookupFc(String clientItfName)
+			throws NoSuchInterfaceException {
+		if (clientItfName.equals(this.INSTALLER_ITF))
+			return this.installer;
+		return null;
+	}
+
+	public void unbindFc(String clientItfName) throws NoSuchInterfaceException,
+			IllegalBindingException, IllegalLifeCycleException {
+		if (clientItfName.equals(this.INSTALLER_ITF))
+			this.installer = null;
+	}
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jadeApplication.dtd">
+
+<definition name="MyApache">
+
+  <interface name="service" role="server"
+    signature="org.objectweb.jasmine.jade.service.Service" />
+
+  <component name="start"
+    definition="org.objectweb.jasmine.jade.resource.start.StartType">
+    <virtual-node name="node2" resourceReqs="(jadeName=*2)"/>
+  </component>
+
+  <!-- ================================== -->
+  <!--                APACHE              -->
+  <!-- ================================== -->
+  <component name="apache"
+    definition="fr.jade.resource.j2ee.apache.ApacheResourceType">
+    <attributes
+      signature="fr.jade.fractal.api.control.GenericAttributeController">
+      <attribute name="dirLocal" value="/tmp/j2ee" />
+      <attribute name="resourceName" value="apache" />
+      <attribute name="user" value="jlegrand" />
+      <attribute name="group" value="wheel" />
+      <attribute name="port" value="9090" />
+      <attribute name="serverAdmin" value="julien.legrand@inrialpes.fr" />
+    </attributes>
+    <virtual-node name="node2" resourceReqs="(jadeName=*2)"/>
+    
+    <packages>
+      <package name="Apache v1.3.37 mac Wrapper" >
+        <property name="local.dir" value="/tmp/j2ee"/>
+      </package>
+    </packages>
+  </component>
+
+  <!-- ================================== -->
+  <!--              BINDING               -->
+  <!-- ================================== -->
+  <binding client="this.service" server="start.service" />
+  <binding client="start.rsrc_apache" server="apache.resource" />
+
+  <virtual-node name="node1" resourceReqs="(jadeName=*1)"/>
+</definition>

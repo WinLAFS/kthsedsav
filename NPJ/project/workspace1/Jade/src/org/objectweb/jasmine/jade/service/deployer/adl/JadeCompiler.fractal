@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/fractal/adl/xml/basic.dtd">
+
+<definition
+  name="org.objectweb.jasmine.jade.service.deployer.adl.JadeCompiler"
+  extends="org.objectweb.fractal.adl.CompilerType">
+
+  <!-- ================================== -->
+  <!--        CLIENT INTERFACE            -->
+  <!-- ================================== -->
+  <interface name="type-builder" role="client"
+    signature="org.objectweb.fractal.adl.types.TypeBuilder" />
+  <interface name="implementation-builder" role="client"
+    signature="org.objectweb.jasmine.jade.service.deployer.adl.implementations.ImplementationBuilder" />
+  <interface name="component-builder" role="client"
+    signature="org.objectweb.fractal.adl.components.ComponentBuilder" />
+  <interface name="binding-builder" role="client"
+    signature="org.objectweb.jasmine.jade.service.deployer.adl.bindings.BindingBuilder" />
+  <interface name="attribute-builder" role="client"
+    signature="org.objectweb.fractal.adl.attributes.AttributeBuilder" />
+  <interface name="virtual-node-builder" role="client"
+    signature="org.objectweb.jasmine.jade.service.deployer.adl.nodes.VirtualNodeBuilder"
+    contingency="optional" />
+  <interface name="package-builder" role="client"
+    signature="org.objectweb.jasmine.jade.service.deployer.adl.packages.PackageBuilder"
+    contingency="optional" />
+
+  <!-- ================================== -->
+  <!--          SUB-COMPONENT             -->
+  <!-- ================================== -->
+  <component name="main-compiler"
+    definition="org.objectweb.fractal.adl.components.ComponentCompiler" />
+
+  <component name="type-compiler"
+    definition="org.objectweb.fractal.adl.components.PrimitiveCompilerType">
+    <interface name="builder" role="client"
+      signature="org.objectweb.fractal.adl.types.TypeBuilder" />
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.types.TypeCompiler" />
+  </component>
+
+  <component name="implementation-compiler"
+    definition="org.objectweb.fractal.adl.components.PrimitiveCompilerType">
+    <interface name="builder" role="client"
+      signature="org.objectweb.jasmine.jade.service.deployer.adl.implementations.ImplementationBuilder" />
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.implementations.ImplementationCompiler" />
+  </component>
+
+  <component name="component-compiler"
+    definition="org.objectweb.fractal.adl.components.PrimitiveCompilerType">
+    <interface name="builder" role="client"
+      signature="org.objectweb.fractal.adl.components.ComponentBuilder" />
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.components.PrimitiveComponentCompiler" />
+  </component>
+
+  <component name="binding-compiler"
+    definition="org.objectweb.fractal.adl.components.PrimitiveCompilerType">
+    <interface name="builder" role="client"
+      signature="org.objectweb.jasmine.jade.service.deployer.adl.bindings.BindingBuilder" />
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.bindings.BindingCompiler" />
+  </component>
+
+  <component name="attribute-compiler"
+    definition="org.objectweb.fractal.adl.components.PrimitiveCompilerType">
+    <interface name="builder" role="client"
+      signature="org.objectweb.fractal.adl.attributes.AttributeBuilder" />
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.attributes.AttributeCompiler" />
+  </component>
+
+  <component name="virtual-node-compiler"
+    definition="org.objectweb.fractal.adl.components.PrimitiveCompilerType">
+    <interface name="builder" role="client"
+      signature="org.objectweb.jasmine.jade.service.deployer.adl.nodes.VirtualNodeBuilder"
+      contingency="optional" />
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.nodes.VirtualNodeCompiler" />
+  </component>
+
+  <component name="package-compiler"
+    definition="org.objectweb.fractal.adl.components.PrimitiveCompilerType">
+    <interface name="builder" role="client"
+      signature="org.objectweb.jasmine.jade.service.deployer.adl.packages.PackageBuilder"
+      contingency="optional" />
+    <content
+      class="org.objectweb.jasmine.jade.service.deployer.adl.packages.PackageCompiler" />
+  </component>
+
+  <!-- ================================== -->
+  <!--              BINDING               -->
+  <!-- ================================== -->
+  <binding client="this.compiler" server="main-compiler.compiler" />
+
+  <binding client="main-compiler.primitive-compilers0"
+    server="virtual-node-compiler.compiler" />
+  <binding client="main-compiler.primitive-compilers1"
+    server="package-compiler.compiler" />
+  <binding client="main-compiler.primitive-compilers2"
+    server="type-compiler.compiler" />
+  <binding client="main-compiler.primitive-compilers3"
+    server="implementation-compiler.compiler" />
+  <binding client="main-compiler.primitive-compilers4"
+    server="component-compiler.compiler" />
+  <binding client="main-compiler.primitive-compilers5"
+    server="binding-compiler.compiler" />
+  <binding client="main-compiler.primitive-compilers6"
+    server="attribute-compiler.compiler" />
+
+  <binding client="type-compiler.builder" server="this.type-builder" />
+  <binding client="implementation-compiler.builder"
+    server="this.implementation-builder" />
+  <binding client="component-compiler.builder"
+    server="this.component-builder" />
+  <binding client="binding-compiler.builder"
+    server="this.binding-builder" />
+  <binding client="attribute-compiler.builder"
+    server="this.attribute-builder" />
+  <binding client="virtual-node-compiler.builder"
+    server="this.virtual-node-builder" />
+  <binding client="package-compiler.builder"
+    server="this.package-builder" />
+
+</definition>

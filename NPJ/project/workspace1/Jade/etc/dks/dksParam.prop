@@ -1,0 +1,5 @@
+arity=4
+levels=10
+ip=Shum-PC
+port=12345
+publishAddress=http://Shum-PC:8081/webcache/

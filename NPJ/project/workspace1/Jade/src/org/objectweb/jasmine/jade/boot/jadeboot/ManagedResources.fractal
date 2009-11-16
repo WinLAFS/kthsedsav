@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" 
+"classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jade.dtd">
+
+<definition
+	name="org.objectweb.jasmine.jade.boot.jadeboot.ManagedResources"
+	arguments="fractal_rmi_registry_port,node_discovery_port,jndi_port,urls">
+
+	<!-- ================================== -->
+	<!--          SERVER INTERFACE          -->
+	<!-- ================================== -->
+	<interface name="registry" role="server"
+		signature="org.objectweb.fractal.rmi.registry.NamingService" />
+
+	<!-- ================================== -->
+	<!--          CLIENT INTERFACE          -->
+	<!-- ================================== -->
+
+	<!-- ================================== -->
+	<!--          SUB-COMPONENT             -->
+	<!-- ================================== -->
+
+	<component name="fractal_rmi_registry"
+		definition="org.objectweb.jasmine.jade.service.registry.fractalrmi.Registry">
+		<attributes
+			signature="fr.jade.fractal.api.control.GenericAttributeController">
+			<attribute name="port" value="${fractal_rmi_registry_port}" />
+		</attributes>
+	</component>
+
+	<component name="jms_registry"
+		definition="org.objectweb.jasmine.jade.service.registry.jndi.Jndi">
+		<attributes
+			signature="fr.jade.fractal.api.control.GenericAttributeController">
+			<attribute name="port" value="${jndi_port}" />
+			<attribute name="protocol" value="scn" />
+			<attribute name="initialContextFactory"
+				value="fr.dyade.aaa.jndi2.client.NamingContextFactory" />
+		</attributes>
+	</component>
+
+	<component name="jms_server_wrapper"
+		definition="org.objectweb.jasmine.jade.service.jms.JmsWrapper">
+		<content
+			class="org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl" />
+	</component>
+
+	<component name="node_discovery"
+		definition="org.objectweb.jasmine.jade.service.nodediscovery.NodeDiscovery(${node_discovery_port})" />
+
+	<component name="allocator"
+		definition="org.objectweb.jasmine.jade.service.allocator.Allocator" />
+  
+    <component name="nicheOS" 
+       definition="org.objectweb.jasmine.jade.service.nicheOS.NicheOS">
+    	<attributes
+      		signature="fr.jade.fractal.api.control.GenericAttributeController">
+      		<attribute name="mode" value="BOOT" />
+  		</attributes>
+  	</component>
+  	
+  	<component name="resource_deployer"
+		definition="org.objectweb.jasmine.jade.service.deployer.ResourceDeployer(${urls})" />
+  	
+  	<component name="resourceDiscovery" 
+       definition="org.objectweb.jasmine.jade.service.resourcediscovery.ResourceDiscovery" />
+  	
+	<component name="basicResourceManagement" 
+       definition="org.objectweb.jasmine.jade.service.basicresourcemanagement.BasicResourceManagement" />
+  	
+  	<component name="componentDeployment" 
+       definition="org.objectweb.jasmine.jade.service.componentdeployment.ComponentDeployment" />
+  
+    <component name="registry_cleaner"
+		definition="org.objectweb.jasmine.jade.service.cleaner.RegistryCleaner" />
+
+<!--
+	<component name="repair_manager"
+		definition="org.objectweb.jasmine.jade.control.repair.RepairManager" />
+-->
+		
+	<!--SHARED component -->
+ 	<component name="componentBinding" 
+       definition="resource_deployer/deployer/backend/componentBinding"/>
+       
+<!-- Backend components -->
+	
+	<component name="nodeManager" 
+       definition="org.objectweb.jasmine.jade.service.nodemanager.NodeManager"/>
+   
+  
+  <component name="resourceDiscoveryBackEnd"
+    definition="org.objectweb.jasmine.jade.service.resourcediscoverybackend.ResourceDiscoveryBackEnd">
+  
+  <attributes
+      signature="fr.jade.fractal.api.control.GenericAttributeController">
+      <attribute name="myproperty"
+        value="1" />
+    </attributes>
+  </component>
+  	
+  <component name="componentDeploymentBackEnd"
+    definition="org.objectweb.jasmine.jade.service.componentdeploymentbackend.ComponentDeploymentBackEnd">
+  <attributes
+      signature="fr.jade.fractal.api.control.GenericAttributeController">
+      <attribute name="myproperty"
+        value="1" />
+    </attributes>
+  </component>
+  
+  <component name="componentBindingBackEnd"
+    definition="org.objectweb.jasmine.jade.service.componentbindingbackend.ComponentBindingBackEnd">
+  </component>    
+       
+       
+       
+       
+       
+       
+
+	<!-- ================================== -->
+	<!--              BINDING               -->
+	<!-- ================================== -->
+
+	<binding client="this.registry"
+		server="fractal_rmi_registry.registry" />
+
+	<binding client="node_discovery.jms"
+		server="jms_server_wrapper.jms" />
+
+	<binding client="node_discovery.registry"
+		server="fractal_rmi_registry.registry" />
+
+	<binding client="jms_server_wrapper.jms_jndi"
+		server="jms_registry.jndi" />
+
+	<binding client="allocator.jms_jndi" server="jms_registry.jndi" />
+
+	<binding client="resource_deployer.resourceDiscovery"
+    	server="resourceDiscovery.resourceDiscovery" />
+  
+    <binding client="resource_deployer.componentDeployment"
+    	server="componentDeployment.componentDeployment" />
+  
+  	<binding client="resource_deployer.registry"
+    	server="fractal_rmi_registry.registry" />
+	
+	<binding client="allocator.registry"
+		server="fractal_rmi_registry.registry" />
+
+	<binding client="allocator.jms" server="jms_server_wrapper.jms" />
+          
+    <binding client="resourceDiscovery.overlayAccess"
+      server="nicheOS.overlayAccess" />
+
+	<binding client="basicResourceManagement.overlayAccess"
+      server="nicheOS.overlayAccess" />      	
+    
+    <binding client="componentDeployment.registry"
+      server="fractal_rmi_registry.registry" />
+        
+    <binding client="componentDeployment.overlayAccess"
+      server="nicheOS.overlayAccess" />
+    
+	<binding client="resource_deployer.allocator"
+		server="allocator.allocator" />
+
+	<binding client="registry_cleaner.jms"
+		server="jms_server_wrapper.jms" />
+
+	<binding client="registry_cleaner.jmsJndi"
+		server="jms_registry.jndi" />
+
+	<binding client="registry_cleaner.registry"
+		server="fractal_rmi_registry.registry" />
+
+<!--
+	<binding client="repair_manager.jms"
+		server="jms_server_wrapper.jms" />
+
+	<binding client="repair_manager.jmsJndi" server="jms_registry.jndi" />
+
+	<binding client="repair_manager.allocator"
+		server="allocator.allocator" />
+
+	<binding client="repair_manager.registry"
+		server="fractal_rmi_registry.registry" />
+
+-->
+	<binding client="componentBinding.overlayAccess"
+		server="nicheOS.overlayAccess" />
+	
+	<binding client="componentBinding.lowerComponents"
+		server="componentDeployment.lowerComponents" />
+	
+	
+	<!-- Backend component bindingss -->
+	
+	<binding client="resourceDiscoveryBackEnd.overlayAccess"
+      server="nicheOS.overlayAccess" />
+  
+  <binding client="resourceDiscoveryBackEnd.nodeManager"
+      server="nodeManager.nodeManager" />
+          
+  <binding client="componentDeploymentBackEnd.overlayAccess"
+      server="nicheOS.overlayAccess" />
+  
+  <binding client="componentDeploymentBackEnd.nodeManager"
+      server="nodeManager.nodeManager" />
+  
+  <binding client="componentBindingBackEnd.overlayAccess"
+      server="nicheOS.overlayAccess" />
+  
+  <binding client="componentBindingBackEnd.deployedComponents"
+      server="componentDeploymentBackEnd.deployedComponents" />
+	
+	<!-- ================================== -->
+	<!--            CONTROLLER              -->
+	<!-- ================================== -->
+	<controller desc="compositeNoLcCheck"/>
+
+
+</definition>
