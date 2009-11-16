@@ -1,7 +1,0 @@
-source("init"); 
-
-print("Starting YASS");
-c = lookupcomp("Yass_0");
-lc=getitf(c, "lifecycle-controller");
-lc.startFc();
-print("YASS started");

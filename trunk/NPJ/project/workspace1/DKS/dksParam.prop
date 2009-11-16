@@ -1,5 +1,0 @@
-arity = 4
-levels = 10
-ip = 127.0.0.1
-port = 12345
-publishAddress=http://127.0.0.1/webcache/

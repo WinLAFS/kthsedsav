@@ -1,5 +1,0 @@
-source("init"); 
-
-print("Start NicheHelloWorld deployment");
-deploy("NicheHelloWorld");
-print("End NicheHelloWorld deployment");

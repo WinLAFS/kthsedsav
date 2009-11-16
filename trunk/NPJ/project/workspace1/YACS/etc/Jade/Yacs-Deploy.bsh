@@ -1,5 +1,0 @@
-source("init"); 
-
-print("Start YACS deployment");
-deploy("Yacs");
-print("End YACS deployment");
