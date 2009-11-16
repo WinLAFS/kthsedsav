@@ -1,0 +1,308 @@
+main WARNING 2008-01-29 21:55:38,751, AgentServer#0, init()
+main WARNING 2008-01-29 21:55:38,811, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1eec612 class loader.
+main WARNING 2008-01-29 21:55:38,812, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-01-29 21:55:38,812, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-01-29 21:55:38,813, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-01-29 21:55:38,819, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-01-29 21:55:38,819, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1eec612 class loader.
+main WARNING 2008-01-29 21:55:38,961, Engine#0, factory created
+main WARNING 2008-01-29 21:55:38,971, AgentServer#0, initialized at Tue Jan 29 21:55:38 CET 2008
+main WARNING 2008-01-29 21:55:38,972, AgentServer#0, start()
+main SEVERE 2008-01-29 21:55:39,594, AgentServer#0.ServiceManager, cannot start service:fr.dyade.aaa.jndi2.server.JndiServer
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:121)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:150)
+	at fr.dyade.aaa.agent.AgentServer.start(AgentServer.java:1175)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startJoramServer(JoramWrapperImpl.java:323)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startFc(JoramWrapperImpl.java:154)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcContentState(BasicControllerMixin.java:6128)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcStarted(BasicControllerMixin.java:6068)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.setFcStarted(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc$$0(BasicControllerMixin.java:4097)
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc(BasicControllerMixin.java:5095)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.startFc(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.startJadeNode(JadeBootActivator.java:574)
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.start(JadeBootActivator.java:158)
+	at org.ungoverned.oscar.Oscar.startBundleWithStartLevel(Oscar.java:1642)
+	at org.ungoverned.oscar.Oscar.setStartLevelInternal(Oscar.java:760)
+	at org.ungoverned.oscar.Oscar.initialize(Oscar.java:585)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:358)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:174)
+	at org.ungoverned.oscar.Main.main(Main.java:95)
+Caused by: java.net.BindException: Address already in use
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at fr.dyade.aaa.jndi2.server.JndiServer.init(JndiServer.java:63)
+	... 23 more
+main SEVERE 2008-01-29 21:55:39,600, AgentServer#0.ServiceManager, cannot start service:org.objectweb.joram.mom.proxies.tcp.TcpProxyService
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:121)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:150)
+	at fr.dyade.aaa.agent.AgentServer.start(AgentServer.java:1175)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startJoramServer(JoramWrapperImpl.java:323)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startFc(JoramWrapperImpl.java:154)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcContentState(BasicControllerMixin.java:6128)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcStarted(BasicControllerMixin.java:6068)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.setFcStarted(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc$$0(BasicControllerMixin.java:4097)
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc(BasicControllerMixin.java:5095)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.startFc(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.startJadeNode(JadeBootActivator.java:574)
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.start(JadeBootActivator.java:158)
+	at org.ungoverned.oscar.Oscar.startBundleWithStartLevel(Oscar.java:1642)
+	at org.ungoverned.oscar.Oscar.setStartLevelInternal(Oscar.java:760)
+	at org.ungoverned.oscar.Oscar.initialize(Oscar.java:585)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:358)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:174)
+	at org.ungoverned.oscar.Main.main(Main.java:95)
+Caused by: java.net.BindException: Address already in use
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:141)
+	at org.objectweb.joram.mom.proxies.tcp.TcpProxyService.init(TcpProxyService.java:95)
+	... 23 more
+main WARNING 2008-01-29 21:55:39,624, AgentServer#0, started at Tue Jan 29 21:55:39 CET 2008
+main WARNING 2008-01-30 22:58:36,388, AgentServer#0, init()
+main WARNING 2008-01-30 22:58:36,474, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1eec612 class loader.
+main WARNING 2008-01-30 22:58:36,475, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-01-30 22:58:36,475, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-01-30 22:58:36,475, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-01-30 22:58:36,483, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-01-30 22:58:36,484, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1eec612 class loader.
+main WARNING 2008-01-30 22:58:36,636, Engine#0, factory created
+main WARNING 2008-01-30 22:58:36,648, AgentServer#0, initialized at Wed Jan 30 22:58:36 CET 2008
+main WARNING 2008-01-30 22:58:36,649, AgentServer#0, start()
+main SEVERE 2008-01-30 22:58:37,607, AgentServer#0.ServiceManager, cannot start service:fr.dyade.aaa.jndi2.server.JndiServer
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:121)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:150)
+	at fr.dyade.aaa.agent.AgentServer.start(AgentServer.java:1175)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startJoramServer(JoramWrapperImpl.java:323)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startFc(JoramWrapperImpl.java:154)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcContentState(BasicControllerMixin.java:6128)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcStarted(BasicControllerMixin.java:6068)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.setFcStarted(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc$$0(BasicControllerMixin.java:4097)
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc(BasicControllerMixin.java:5095)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.startFc(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.startJadeNode(JadeBootActivator.java:574)
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.start(JadeBootActivator.java:158)
+	at org.ungoverned.oscar.Oscar.startBundleWithStartLevel(Oscar.java:1642)
+	at org.ungoverned.oscar.Oscar.setStartLevelInternal(Oscar.java:760)
+	at org.ungoverned.oscar.Oscar.initialize(Oscar.java:585)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:358)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:174)
+	at org.ungoverned.oscar.Main.main(Main.java:95)
+Caused by: java.net.BindException: Address already in use
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at fr.dyade.aaa.jndi2.server.JndiServer.init(JndiServer.java:63)
+	... 23 more
+main SEVERE 2008-01-30 22:58:37,614, AgentServer#0.ServiceManager, cannot start service:org.objectweb.joram.mom.proxies.tcp.TcpProxyService
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:121)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:150)
+	at fr.dyade.aaa.agent.AgentServer.start(AgentServer.java:1175)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startJoramServer(JoramWrapperImpl.java:323)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startFc(JoramWrapperImpl.java:154)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcContentState(BasicControllerMixin.java:6128)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcStarted(BasicControllerMixin.java:6068)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.setFcStarted(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc$$0(BasicControllerMixin.java:4097)
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc(BasicControllerMixin.java:5095)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.startFc(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.startJadeNode(JadeBootActivator.java:574)
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.start(JadeBootActivator.java:158)
+	at org.ungoverned.oscar.Oscar.startBundleWithStartLevel(Oscar.java:1642)
+	at org.ungoverned.oscar.Oscar.setStartLevelInternal(Oscar.java:760)
+	at org.ungoverned.oscar.Oscar.initialize(Oscar.java:585)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:358)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:174)
+	at org.ungoverned.oscar.Main.main(Main.java:95)
+Caused by: java.net.BindException: Address already in use
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:141)
+	at org.objectweb.joram.mom.proxies.tcp.TcpProxyService.init(TcpProxyService.java:95)
+	... 23 more
+main WARNING 2008-01-30 22:58:37,618, AgentServer#0, started at Wed Jan 30 22:58:37 CET 2008
+main WARNING 2008-01-29 21:55:38,751, AgentServer#0, init()
+main WARNING 2008-01-29 21:55:38,811, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1eec612 class loader.
+main WARNING 2008-01-29 21:55:38,812, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-01-29 21:55:38,812, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-01-29 21:55:38,813, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-01-29 21:55:38,819, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-01-29 21:55:38,819, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1eec612 class loader.
+main WARNING 2008-01-29 21:55:38,961, Engine#0, factory created
+main WARNING 2008-01-29 21:55:38,971, AgentServer#0, initialized at Tue Jan 29 21:55:38 CET 2008
+main WARNING 2008-01-29 21:55:38,972, AgentServer#0, start()
+main SEVERE 2008-01-29 21:55:39,594, AgentServer#0.ServiceManager, cannot start service:fr.dyade.aaa.jndi2.server.JndiServer
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:121)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:150)
+	at fr.dyade.aaa.agent.AgentServer.start(AgentServer.java:1175)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startJoramServer(JoramWrapperImpl.java:323)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startFc(JoramWrapperImpl.java:154)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcContentState(BasicControllerMixin.java:6128)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcStarted(BasicControllerMixin.java:6068)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.setFcStarted(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc$$0(BasicControllerMixin.java:4097)
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc(BasicControllerMixin.java:5095)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.startFc(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.startJadeNode(JadeBootActivator.java:574)
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.start(JadeBootActivator.java:158)
+	at org.ungoverned.oscar.Oscar.startBundleWithStartLevel(Oscar.java:1642)
+	at org.ungoverned.oscar.Oscar.setStartLevelInternal(Oscar.java:760)
+	at org.ungoverned.oscar.Oscar.initialize(Oscar.java:585)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:358)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:174)
+	at org.ungoverned.oscar.Main.main(Main.java:95)
+Caused by: java.net.BindException: Address already in use
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at fr.dyade.aaa.jndi2.server.JndiServer.init(JndiServer.java:63)
+	... 23 more
+main SEVERE 2008-01-29 21:55:39,600, AgentServer#0.ServiceManager, cannot start service:org.objectweb.joram.mom.proxies.tcp.TcpProxyService
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:121)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:150)
+	at fr.dyade.aaa.agent.AgentServer.start(AgentServer.java:1175)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startJoramServer(JoramWrapperImpl.java:323)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startFc(JoramWrapperImpl.java:154)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcContentState(BasicControllerMixin.java:6128)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcStarted(BasicControllerMixin.java:6068)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.setFcStarted(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc$$0(BasicControllerMixin.java:4097)
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc(BasicControllerMixin.java:5095)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.startFc(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.startJadeNode(JadeBootActivator.java:574)
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.start(JadeBootActivator.java:158)
+	at org.ungoverned.oscar.Oscar.startBundleWithStartLevel(Oscar.java:1642)
+	at org.ungoverned.oscar.Oscar.setStartLevelInternal(Oscar.java:760)
+	at org.ungoverned.oscar.Oscar.initialize(Oscar.java:585)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:358)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:174)
+	at org.ungoverned.oscar.Main.main(Main.java:95)
+Caused by: java.net.BindException: Address already in use
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:141)
+	at org.objectweb.joram.mom.proxies.tcp.TcpProxyService.init(TcpProxyService.java:95)
+	... 23 more
+main WARNING 2008-01-29 21:55:39,624, AgentServer#0, started at Tue Jan 29 21:55:39 CET 2008
+main WARNING 2008-01-30 22:58:36,388, AgentServer#0, init()
+main WARNING 2008-01-30 22:58:36,474, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1eec612 class loader.
+main WARNING 2008-01-30 22:58:36,475, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-01-30 22:58:36,475, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-01-30 22:58:36,475, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-01-30 22:58:36,483, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-01-30 22:58:36,484, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1eec612 class loader.
+main WARNING 2008-01-30 22:58:36,636, Engine#0, factory created
+main WARNING 2008-01-30 22:58:36,648, AgentServer#0, initialized at Wed Jan 30 22:58:36 CET 2008
+main WARNING 2008-01-30 22:58:36,649, AgentServer#0, start()
+main SEVERE 2008-01-30 22:58:37,607, AgentServer#0.ServiceManager, cannot start service:fr.dyade.aaa.jndi2.server.JndiServer
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:121)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:150)
+	at fr.dyade.aaa.agent.AgentServer.start(AgentServer.java:1175)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startJoramServer(JoramWrapperImpl.java:323)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startFc(JoramWrapperImpl.java:154)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcContentState(BasicControllerMixin.java:6128)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcStarted(BasicControllerMixin.java:6068)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.setFcStarted(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc$$0(BasicControllerMixin.java:4097)
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc(BasicControllerMixin.java:5095)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.startFc(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.startJadeNode(JadeBootActivator.java:574)
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.start(JadeBootActivator.java:158)
+	at org.ungoverned.oscar.Oscar.startBundleWithStartLevel(Oscar.java:1642)
+	at org.ungoverned.oscar.Oscar.setStartLevelInternal(Oscar.java:760)
+	at org.ungoverned.oscar.Oscar.initialize(Oscar.java:585)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:358)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:174)
+	at org.ungoverned.oscar.Main.main(Main.java:95)
+Caused by: java.net.BindException: Address already in use
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at fr.dyade.aaa.jndi2.server.JndiServer.init(JndiServer.java:63)
+	... 23 more
+main SEVERE 2008-01-30 22:58:37,614, AgentServer#0.ServiceManager, cannot start service:org.objectweb.joram.mom.proxies.tcp.TcpProxyService
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:121)
+	at fr.dyade.aaa.agent.ServiceManager.start(ServiceManager.java:150)
+	at fr.dyade.aaa.agent.AgentServer.start(AgentServer.java:1175)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startJoramServer(JoramWrapperImpl.java:323)
+	at org.objectweb.jasmine.jade.service.jms.joram.JoramWrapperImpl.startFc(JoramWrapperImpl.java:154)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcContentState(BasicControllerMixin.java:6128)
+	at org.objectweb.fractal.julia.generated.Ccac238dc_0.setFcStarted(BasicControllerMixin.java:6068)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.setFcStarted(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc$$0(BasicControllerMixin.java:4097)
+	at org.objectweb.fractal.julia.generated.C4eddf8e0_0.startFc(BasicControllerMixin.java:5095)
+	at org.objectweb.fractal.julia.generated.C18c4c884_0.startFc(INTERFACE[LifeCycleCoordinator])
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.startJadeNode(JadeBootActivator.java:574)
+	at org.objectweb.jasmine.jade.osgi.JadeBootActivator.start(JadeBootActivator.java:158)
+	at org.ungoverned.oscar.Oscar.startBundleWithStartLevel(Oscar.java:1642)
+	at org.ungoverned.oscar.Oscar.setStartLevelInternal(Oscar.java:760)
+	at org.ungoverned.oscar.Oscar.initialize(Oscar.java:585)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:358)
+	at org.ungoverned.oscar.Oscar.<init>(Oscar.java:174)
+	at org.ungoverned.oscar.Main.main(Main.java:95)
+Caused by: java.net.BindException: Address already in use
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:141)
+	at org.objectweb.joram.mom.proxies.tcp.TcpProxyService.init(TcpProxyService.java:95)
+	... 23 more
+main WARNING 2008-01-30 22:58:37,618, AgentServer#0, started at Wed Jan 30 22:58:37 CET 2008
