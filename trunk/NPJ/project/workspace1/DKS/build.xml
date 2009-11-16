@@ -1,0 +1,108 @@
+<project name="DKS" default="dist" basedir=".">
+	<description>DKS Peer-to-Peer Middleware</description>
+
+	<property name="bin.dir" location="bin" />
+	<property name="src.dir" location="src" />
+	<property name="lib.dir" location="lib" />
+	<property name="doc.dir" location="doc" />
+	<property name="jar.file" location="dks.jar" />
+	<property name="junit.reports.dir" location="test-reports" />
+	<!--
+	<property name="testcase" value="dks.test.unit.Test*" />
+	-->
+	
+	<property name="javadoc.core.linkexternal" value="http://java.sun.com/j2se/1.5.0/docs/api/" />
+	<property name="javadoc.core.packagelist" value="${java.home}/../docs/api/" />
+
+
+
+	<path id="build.classpath">
+		<pathelement location="${lib.dir}/junit-4.1.jar" />
+		<pathelement location="${lib.dir}/log4j-1.2.14.jar" />
+		<pathelement location="${lib.dir}/fractal-adl.jar" />
+		<pathelement location="${lib.dir}/fractal.jar" />
+		<pathelement location="${lib.dir}/jetty-6.1.8.jar" />
+		<pathelement location="${lib.dir}/jetty-util-6.1.8.jar" />
+		<pathelement location="${lib.dir}/mina-core-2.0.0-M4.jar" />
+		<pathelement location="${lib.dir}/servlet-api-2.5-6.1.8.jar" />
+		<pathelement location="${lib.dir}/slf4j-api-1.4.3.jar" />
+		<pathelement location="${lib.dir}/slf4j-log4j12-1.4.3.jar" />
+		<pathelement location="${lib.dir}/yass.jar" />
+		<pathelement location="${lib.dir}/jade.jar" />
+
+		<pathelement location="${bin.dir}" />
+	</path>
+
+
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${bin.dir}" />
+		<mkdir dir="${junit.reports.dir}" />
+	</target>
+
+	<target name="build" depends="init" description="Compiles DKS">
+		<javac srcdir="${src.dir}" debug="on" destdir="${bin.dir}">
+			<classpath refid="build.classpath" />
+			<include name="**/*.java" />
+		</javac>
+
+	    <copy file="src/dks/niche/fractal/ManagementElement.fractal" todir="bin/dks/niche/fractal/"/>
+	</target>
+
+	<target name="dist" depends="build" description="Packages the DKS jar file">
+		<jar destfile="${jar.file}" basedir="${bin.dir}" />
+	</target>
+
+	<target name="javadoc" description="Creating Javadoc documentation">
+
+		<mkdir dir="${doc.dir}" />
+
+		<javadoc destdir="${doc.dir}" author="true" version="true" use="true" windowtitle="DKS Documentation" packagenames="*" header="&lt;b&gt;Distributed K-ary System (DKS)&lt;br&gt;A Peer-to-Peer Middleware&lt;/b&gt;" footer="&lt;b&gt;Distributed K-ary System (DKS)&lt;br&gt;A Peer-to-Peer Middleware&lt;/b&gt;" bottom="Submit bugs and feature requests to &lt;a href=mailto:dks@sics.se&gt;dks@sics.se&lt;/a&gt;" classpath="${classpath}">
+			<sourcepath>
+				<pathelement location="${src.dir}" />
+			</sourcepath>
+			<link offline="true" href="${javadoc.core.linkexternal}" packagelistloc="${javadoc.core.packagelist}" />
+		</javadoc>
+	</target>
+
+	<target name="test" depends="init">
+
+		<junit fork="yes" printsummary="yes" haltonfailure="no">
+			<classpath refid="build.classpath" />
+			<formatter type="xml" />
+			 
+			<test name="${testcase}" todir="${junit.reports.dir}" if="testcase" />
+		
+			<batchtest fork="yes" todir="${junit.reports.dir}">
+				<fileset dir="${src.dir}">
+					<include name="dks/test/unit/Test*.java" />
+				</fileset>
+			</batchtest>
+			<jvmarg value="-Ddks.propFile=./dksParam.prop" />
+			<jvmarg value="-Dorg.apache.log4j.config.file=log4j.config" />
+		</junit>
+
+		<junitreport todir="${junit.reports.dir}">
+			<fileset dir="${junit.reports.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${junit.reports.dir}" />
+		</junitreport>
+	</target>
+
+	<target name="run-example" depends="init">
+
+		<java fork="yes" classname="dks.ring.tests.RingBootAndJoinTest">
+			<jvmarg value="-Ddks.propFile=./dksParam.prop" />
+			<jvmarg value="-Dorg.apache.log4j.config.file=log4j.config" />
+			<classpath refid="build.classpath">
+			</classpath>
+		</java>
+	</target>
+	
+	 <target name="clean" description="Remove all generated files.">
+	    <delete dir="${bin.dir}"/>
+	    <delete dir="${junit.reports.dir}"/>
+	  </target>
+
+</project>

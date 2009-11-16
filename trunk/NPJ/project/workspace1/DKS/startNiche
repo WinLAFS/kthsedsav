@@ -1,0 +1,36 @@
+#!/bin/sh
+
+NICHE_HOME=.
+NICHE_RELEASE=dks.jar
+
+
+TIMESTAMP=`date +%F_%H%M%S`
+
+LOGFILE="$NICHE_HOME/logs/niche-$3-$TIMESTAMP.log"
+LOG4JFILE="$NICHE_HOME/logs/niche-$3-$TIMESTAMP.log4j"
+
+CLASSPATH=$NICHE_HOME/$NICHE_RELEASE:\
+$NICHE_HOME/lib/log4j-1.2.14.jar:\
+$NICHE_HOME/lib/jetty-6.1.8.jar:\
+$NICHE_HOME/lib/jetty-util-6.1.8.jar:\
+$NICHE_HOME/lib/servlet-api-2.5-6.1.8.jar:\
+$NICHE_HOME/lib/mina-core-2.0.0-M1-SNAPSHOT.jar:\
+$NICHE_HOME/lib/slf4j-api-1.4.3.jar:\
+$NICHE_HOME/lib/junit-4.1.jar:\
+$NICHE_HOME/lib/slf4j-log4j12-1.4.3.jar
+
+JVM_ARGS="-classpath $CLASSPATH -Ddks.propFile=$NICHE_HOME/dksParam.prop -Dorg.apache.log4j.config.file=$NICHE_HOME/log4j.config -Dniche.log.file=$LOG4JFILE -Ddks.timeout=30000"
+
+nohup java $JVM_ARGS $* $HOSTNAME> $LOGFILE 2>&1 &
+
+EXIT_VALUE=$?
+
+PID=$!
+
+if [ $EXIT_VALUE -eq 0 ]; then
+	echo -n $PID
+	exit 0;
+else
+	cat $LOGFILE
+	exit $EXIT_VALUE;
+fi

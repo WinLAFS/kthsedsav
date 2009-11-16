@@ -1,0 +1,633 @@
+cat * | grep Delivered | grep "ID:     0"
+cat * | grep Delivered | grep "ID:     1"
+cat * | grep Delivered | grep "ID:     2"
+cat * | grep Delivered | grep "ID:     3"
+cat * | grep Delivered | grep "ID:     4"
+cat * | grep DIA
+
+cat * | grep Delivered | grep "ID:     0"
+cat * | grep Delivered | grep "ID:     1"
+cat * | grep Delivered | grep "ID:     2"
+cat * | grep Delivered | grep "ID:     3"
+cat * | grep Delivered | grep "ID:     4"
+cat * | grep ACK
+
+
+
+MY_CLASS=examples.SimpleIntervalBroadcastDKSExample
+export MY_CLASS
+
+MY_CLASS=examples.PseudoReliableIntervalBroadcastDKSExample
+export MY_CLASS
+
+MY_CLASS=examples.DHTExample
+export MY_CLASS
+
+
+rm -f /home/alshishtawy/workspace/logs/*.log
+startdks.sh $MY_CLASS create 000 22330 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 170 22331 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 260 22332 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 340 22333 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 490 22334 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 540 22335 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 680 22336 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 720 22337 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 860 22338 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 930 22339 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 130 22341 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 220 22342 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 380 22343 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 430 22344 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 570 22345 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 640 22346 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 780 22347 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 850 22348 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 934 22349 kalle.sics.se
+sleep 1
+startdks.sh $MY_CLASS join 1023 22350 kalle.sics.se
+
+sleep 2
+startdks.sh $MY_CLASS join 030 22340 kalle.sics.se
+
+startdks.sh $MY_CLASS join 30 22340 kalle.sics.se
+
+
+
+rm jadeTest.txt 
+rm -f /home/alshishtawy/workspace/logs/*
+startdks.sh jade.JadeBoot 22330
+sleep 1
+startdks.sh jade.JadeNode 22331
+sleep 1
+startdks.sh jade.JadeNode 22332
+sleep 1
+startdks.sh jade.JadeNode 22333
+sleep 1
+startdks.sh jade.JadeNode 22334
+sleep 1
+startdks.sh jade.JadeNode 22335
+sleep 1
+startdks.sh jade.JadeNode 22336
+
+sleep 2
+startdks.sh jade.JadeNode 15555
+
+
+Wrapped test
+============
+
+ALLES:
+
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+startdks.sh $MY_CLASS create 0 21000
+sleep 3
+startdks.sh $MY_CLASS join 0 22100
+sleep 3
+startdks.sh $MY_CLASS join 0 22200
+sleep 3
+startdks.sh $MY_CLASS join 0 22300
+sleep 3
+startdks.sh $MY_CLASS join 0 22400
+sleep 3
+startdks.sh $MY_CLASS join 0 22500
+sleep 3
+startdks.sh $MY_CLASS join 0 22600
+sleep 3
+startdks.sh $MY_CLASS join 0 22700
+sleep 3
+startdks.sh $MY_CLASS join 0 22800
+sleep 3
+startdks.sh $MY_CLASS join 0 22900
+sleep 3
+startdks.sh $MY_CLASS join 0 23000
+sleep 3
+startdks.sh $MY_CLASS join 0 23100
+sleep 3
+startdks.sh $MY_CLASS join 0 23200
+sleep 3
+startdks.sh $MY_CLASS join 0 23300
+sleep 3
+startdks.sh $MY_CLASS join 0 23400
+sleep 3
+startdks.sh $MY_CLASS join 0 23500
+sleep 3
+startdks.sh $MY_CLASS join 0 23600
+sleep 3
+startdks.sh $MY_CLASS join 0 23700
+sleep 3
+startdks.sh $MY_CLASS join 0 23800
+sleep 3
+startdks.sh $MY_CLASS join 0 23900
+sleep 3
+startdks.sh $MY_CLASS join 0 22001
+sleep 3
+startdks.sh $MY_CLASS join 0 24000
+sleep 3
+startdks.sh $MY_CLASS join 0 24100
+sleep 3
+startdks.sh $MY_CLASS join 0 24200
+sleep 3
+startdks.sh $MY_CLASS join 0 24300
+sleep 3
+startdks.sh $MY_CLASS join 0 24400
+sleep 3
+startdks.sh $MY_CLASS join 0 24500
+sleep 3
+startdks.sh $MY_CLASS join 0 24600
+sleep 3
+startdks.sh $MY_CLASS join 0 24700
+sleep 3
+startdks.sh $MY_CLASS join 0 24800
+sleep 3
+startdks.sh $MY_CLASS join 0 24900
+sleep 3
+startdks.sh $MY_CLASS join 0 25000
+
+
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log4j
+startdks.sh $MY_CLASS create 0 21000
+sleep 2
+startdks.sh $MY_CLASS join 0 22100
+sleep 2
+startdks.sh $MY_CLASS join 0 23900
+sleep 2
+startdks.sh $MY_CLASS join 0 24000
+sleep 2
+startdks.sh $MY_CLASS join 0 24100
+sleep 2
+startdks.sh $MY_CLASS join 0 23001
+
+
+
+
+MY_CLASS=dks.niche.tests.JadeTest
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log4j
+startdks.sh $MY_CLASS create 1 17900
+sleep 6
+startdks.sh $MY_CLASS join 190000 18000
+sleep 6
+startdks.sh $MY_CLASS join 420000 18100
+sleep 6
+startdks.sh $MY_CLASS join 620000 18200
+sleep 6
+startdks.sh $MY_CLASS join 680000 18300
+sleep 6
+startdks.sh $MY_CLASS join 830000 18001
+
+
+MY_CLASS=dks.niche.tests.JadeTest
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log4j
+
+startdks.sh $MY_CLASS create 830000 19001
+
+startdks.sh $MY_CLASS create 1 17900
+sleep 10
+startdks.sh $MY_CLASS join 190000 18000
+sleep 7
+startdks.sh $MY_CLASS join 420000 18100
+sleep 7
+startdks.sh $MY_CLASS join 830000 19001
+
+sleep 16
+startdks.sh $MY_CLASS join 620000 18200
+sleep 16
+startdks.sh $MY_CLASS join 280000 18300
+sleep 16
+startdks.sh $MY_CLASS join 830000 19001
+
+
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log4j
+startdksprof.sh $MY_CLASS create 1 17900
+sleep 2
+startdks.sh $MY_CLASS join 3 18000
+sleep 2
+startdks.sh $MY_CLASS join 140000 18100
+sleep 2
+startdks.sh $MY_CLASS join 270000 18200
+sleep 2
+startdks.sh $MY_CLASS join 410000 18300
+sleep 2
+startdks.sh $MY_CLASS join 630000 18400
+sleep 2
+startdks.sh $MY_CLASS join 850000 17001
+
+______________
+Puts and gets:
+--------------
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+startdks.sh $MY_CLASS create 0 21000
+sleep 10
+startdks.sh $MY_CLASS join 0 22100
+sleep 10
+startdks.sh $MY_CLASS join 0 22200
+sleep 10
+startdks.sh $MY_CLASS join 0 22300
+sleep 10
+startdks.sh $MY_CLASS join 0 22400
+sleep 10
+startdks.sh $MY_CLASS join 0 22500
+sleep 10
+startdks.sh $MY_CLASS join 0 22600
+sleep 10
+startdks.sh $MY_CLASS join 0 22700
+sleep 10
+startdks.sh $MY_CLASS join 555555 22001
+
+% tested to here
+
+sleep 1
+startdks.sh $MY_CLASS join 0 22800
+sleep 1
+startdks.sh $MY_CLASS join 0 22900
+sleep 1
+startdks.sh $MY_CLASS join 0 23000
+sleep 1
+startdks.sh $MY_CLASS join 0 23100
+sleep 1
+startdks.sh $MY_CLASS join 0 23200
+sleep 1
+startdks.sh $MY_CLASS join 0 23300
+sleep 1
+startdks.sh $MY_CLASS join 0 23400
+sleep 1
+startdks.sh $MY_CLASS join 0 23500
+sleep 1
+startdks.sh $MY_CLASS join 0 23600
+
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+startdks.sh $MY_CLASS create 534818 21000
+sleep 1
+startdks.sh $MY_CLASS join 66992 22100
+sleep 1
+startdks.sh $MY_CLASS join 239687 22200
+sleep 1
+startdks.sh $MY_CLASS join 489960 22300
+sleep 1
+startdks.sh $MY_CLASS join 703071 22400
+sleep 1
+startdks.sh $MY_CLASS join 559437 22500
+sleep 1
+startdks.sh $MY_CLASS join 306768 22600
+sleep 1
+startdks.sh $MY_CLASS join 33727 22700
+sleep 1
+startdks.sh $MY_CLASS join 474321 22001
+sleep 1
+startdks.sh $MY_CLASS join 818689 22800
+sleep 1
+startdks.sh $MY_CLASS join 433340 22900
+sleep 1
+startdks.sh $MY_CLASS join 302617 23000
+sleep 1
+startdks.sh $MY_CLASS join 315439 23100
+sleep 1
+startdks.sh $MY_CLASS join 950852 23200
+sleep 1
+startdks.sh $MY_CLASS join 933622 23300
+sleep 1
+startdks.sh $MY_CLASS join 330313 23400
+sleep 1
+startdks.sh $MY_CLASS join 183605 23500
+sleep 1
+startdks.sh $MY_CLASS join 940840 23600
+
+
+## without doing anything!
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log4j
+startdks.sh $MY_CLASS create 534818 21000
+sleep 300
+startdks.sh $MY_CLASS join 66992 22100
+sleep 100
+startdks.sh $MY_CLASS join 239687 22200
+sleep 100
+startdks.sh $MY_CLASS join 489960 22300
+sleep 100
+startdks.sh $MY_CLASS join 703071 22400
+sleep 100
+startdks.sh $MY_CLASS join 559437 22500
+sleep 100
+startdks.sh $MY_CLASS join 306768 22600
+sleep 100
+startdks.sh $MY_CLASS join 33727 22700
+sleep 100
+startdks.sh $MY_CLASS join 474321 22000
+sleep 100
+startdks.sh $MY_CLASS join 818689 22800
+sleep 100
+startdks.sh $MY_CLASS join 433340 22900
+sleep 100
+startdks.sh $MY_CLASS join 302617 23000
+sleep 100
+startdks.sh $MY_CLASS join 315439 23100
+sleep 100
+startdks.sh $MY_CLASS join 950852 23200
+sleep 100
+startdks.sh $MY_CLASS join 933622 23300
+sleep 100
+startdks.sh $MY_CLASS join 330313 23400
+sleep 100
+startdks.sh $MY_CLASS join 183605 23500
+sleep 100
+startdks.sh $MY_CLASS join 940840 23600
+
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+startdks.sh $MY_CLASS create 534818 21000
+sleep 1
+startdks.sh $MY_CLASS join 66992 22100
+sleep 1
+startdks.sh $MY_CLASS join 239687 22200
+sleep 1
+startdks.sh $MY_CLASS join 489960 22300
+sleep 1
+startdks.sh $MY_CLASS join 703071 22400
+sleep 1
+startdks.sh $MY_CLASS join 559437 22500
+sleep 1
+startdks.sh $MY_CLASS join 306768 22600
+sleep 1
+startdks.sh $MY_CLASS join 33727 22700
+sleep 1
+startdks.sh $MY_CLASS join 474321 22000
+sleep 1
+startdks.sh $MY_CLASS join 818689 22800
+sleep 1
+startdks.sh $MY_CLASS join 433340 22900
+sleep 1
+startdks.sh $MY_CLASS join 302617 23000
+sleep 1
+startdks.sh $MY_CLASS join 315439 23100
+sleep 1
+startdks.sh $MY_CLASS join 950852 23200
+sleep 1
+startdks.sh $MY_CLASS join 933622 23300
+sleep 1
+startdks.sh $MY_CLASS join 330313 23400
+sleep 1
+startdks.sh $MY_CLASS join 183605 23500
+sleep 1
+startdks.sh $MY_CLASS join 940840 24002
+
+
+_________________
+one-to-one sends:
+-----------------
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log4j
+startdks.sh $MY_CLASS create 654321 22000
+sleep 4
+startdks.sh $MY_CLASS join 1 22100
+sleep 4
+startdks.sh $MY_CLASS join 999999 22200
+sleep 4
+startdks.sh $MY_CLASS join 250000 22300
+sleep 4
+startdks.sh $MY_CLASS join 123456 23001
+
+% Tested this far without trouble 2007-11-04
+
+sleep 1
+startdks.sh $MY_CLASS join 0 22500
+sleep 1
+startdks.sh $MY_CLASS join 0 22600
+sleep 1
+startdks.sh $MY_CLASS join 0 22700
+sleep 1
+startdks.sh $MY_CLASS join 0 22800
+sleep 1
+startdks.sh $MY_CLASS join 0 22900
+sleep 1
+startdks.sh $MY_CLASS join 0 23000
+sleep 1
+startdks.sh $MY_CLASS join 0 23100
+sleep 1
+startdks.sh $MY_CLASS join 0 23200
+sleep 1
+startdks.sh $MY_CLASS join 0 23300
+sleep 1
+startdks.sh $MY_CLASS join 0 23400
+sleep 1
+startdks.sh $MY_CLASS join 0 23500
+sleep 1
+startdks.sh $MY_CLASS join 0 23600
+sleep 2
+startdks.sh $MY_CLASS join 0 23001
+
+
+_________________
+broadcasts:
+-----------------
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+startdks.sh $MY_CLASS create 0 22000
+sleep 2
+startdks.sh $MY_CLASS join 0 22100
+sleep 1
+startdks.sh $MY_CLASS join 0 22200
+sleep 1
+startdks.sh $MY_CLASS join 0 22300
+sleep 1
+startdks.sh $MY_CLASS join 0 22400
+sleep 1
+startdks.sh $MY_CLASS join 0 22500
+sleep 1
+startdks.sh $MY_CLASS join 0 22600
+sleep 1
+startdks.sh $MY_CLASS join 0 22700
+sleep 1
+startdks.sh $MY_CLASS join 0 22800
+sleep 1
+startdks.sh $MY_CLASS join 0 22900
+sleep 1
+startdks.sh $MY_CLASS join 0 23001
+sleep 2
+
+
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log4j
+startdks.sh $MY_CLASS create 0 22000
+sleep 2
+startdks.sh $MY_CLASS join 0 22900
+sleep 1
+startdks.sh $MY_CLASS join 0 23001
+sleep 2
+
+
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log4j
+startNiche.sh $MY_CLASS create 0 22000
+sleep 2
+startNiche.sh $MY_CLASS join 0 22100
+sleep 1
+startNiche.sh $MY_CLASS join 0 22200
+sleep 1
+startNiche.sh $MY_CLASS join 0 22001
+sleep 1
+startNiche.sh $MY_CLASS join 0 23000
+sleep 2
+
+
+
+*DO NOT DELETE*
+saved as "broadcast-working": 
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+startdks.sh $MY_CLASS create 0 22000
+sleep 2
+startdks.sh $MY_CLASS join 0 22100
+sleep 1
+startdks.sh $MY_CLASS join 0 22200
+sleep 1
+startdks.sh $MY_CLASS join 0 22300
+sleep 1
+startdks.sh $MY_CLASS join 0 22400
+sleep 1
+startdks.sh $MY_CLASS join 0 22500
+sleep 1
+startdks.sh $MY_CLASS join 0 22600
+sleep 1
+startdks.sh $MY_CLASS join 0 22700
+sleep 1
+startdks.sh $MY_CLASS join 0 22800
+sleep 1
+startdks.sh $MY_CLASS join 0 22900
+sleep 1
+startdks.sh $MY_CLASS join 0 23000
+sleep 1
+startdks.sh $MY_CLASS join 0 23100
+sleep 1
+startdks.sh $MY_CLASS join 0 23200
+sleep 1
+startdks.sh $MY_CLASS join 0 23300
+sleep 1
+startdks.sh $MY_CLASS join 0 23400
+sleep 1
+startdks.sh $MY_CLASS join 0 23500
+sleep 1
+startdks.sh $MY_CLASS join 0 23600
+sleep 1
+startdks.sh $MY_CLASS join 0 24000
+sleep 1
+startdks.sh $MY_CLASS join 0 24100
+sleep 1
+startdks.sh $MY_CLASS join 0 24200
+sleep 1
+startdks.sh $MY_CLASS join 0 24300
+sleep 1
+startdks.sh $MY_CLASS join 0 24400
+sleep 1
+startdks.sh $MY_CLASS join 0 24500
+sleep 1
+startdks.sh $MY_CLASS join 0 24600
+sleep 1
+startdks.sh $MY_CLASS join 0 24700
+sleep 1
+startdks.sh $MY_CLASS join 0 24800
+sleep 1
+startdks.sh $MY_CLASS join 0 24900
+sleep 1
+startdks.sh $MY_CLASS join 0 25000
+sleep 1
+startdks.sh $MY_CLASS join 0 25100
+sleep 2
+startdks.sh $MY_CLASS join 0 24001
+sleep 2
+startdks.sh $MY_CLASS join 0 24002
+
+% does not work, as of 2007-11-04
+
+
+
+MY_CLASS=dks.niche.tests.InterfacePresentation
+export MY_CLASS
+
+rm -f /home/joel/MyWorkbench/DKS/logs/*.log
+startdks.sh $MY_CLASS create 0 22000
+sleep 20
+startdks.sh $MY_CLASS join 0 24600
+sleep 10
+startdks.sh $MY_CLASS join 0 24700
+sleep 10
+startdks.sh $MY_CLASS join 0 24800
+sleep 10
+startdks.sh $MY_CLASS join 0 24900
+sleep 10
+startdks.sh $MY_CLASS join 0 25000
+sleep 10
+startdks.sh $MY_CLASS join 0 25100
+sleep 20
+startdks.sh $MY_CLASS join 0 24001
+sleep 20
+startdks.sh $MY_CLASS join 0 24002
+
+% seems to work..

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/fractal/adl/xml/basic.dtd">
+
+<definition
+  name="dks.niche.fractal.ManagementElement" >
+
+  <!-- ================================== -->
+  <!--        SERVER INTERFACE            -->
+  <!-- ================================== -->
+  <interface name="trigger" role="server" signature="dks.niche.fractal.interfaces.TriggerInterface" contingency="optional" />
+  <interface name="deploySensor" role="server" signature="dks.niche.fractal.interfaces.DeploySensorsInterface" />
+  <interface name="deployActuator" role="server" signature="dks.niche.fractal.interfaces.DeployActuatorsInterface" />
+
+
+  <!-- ================================== -->
+  <!--        CLIENT INTERFACE            -->
+  <!-- ================================== -->
+
+  <interface name="eventHandler" role="client" signature="dks.niche.fractal.interfaces.EventHandlerInterface" contingency="optional" />
+  <interface name="init" role="client" signature="dks.niche.fractal.interfaces.InitInterface" />
+  <interface name="movable" role="client" signature="dks.niche.fractal.interfaces.MovableInterface" contingency="optional" />
+  <interface name="controller" role="client" signature="org.objectweb.fractal.api.control.BindingController" />
+
+  <!-- ================================== -->
+  <!--              CONTENT               -->
+  <!-- ================================== -->
+  <content class="dks.niche.fractal.ManagementElement" />
+  
+  <!-- ================================== -->
+  <!--             ATTRIBUTES             -->
+  <!-- ================================== -->
+
+ <attributes signature="dks.niche.fractal.interfaces.ManagementElementAttributeController"> 
+ </attributes> 
+
+  <!-- ================================== -->
+  <!--            CONTROLLER              -->
+  <!-- ================================== -->
+  <controller desc="primitive" />
+
+</definition>
+
+
