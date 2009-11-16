@@ -1,0 +1,1747 @@
+main WARNING 2008-04-09 13:32:50,856, AgentServer#0, init()
+main WARNING 2008-04-09 13:32:50,905, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-09 13:32:50,917, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-09 13:32:50,918, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-09 13:32:50,918, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-09 13:32:50,924, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-09 13:32:50,925, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-09 13:32:51,048, Engine#0, factory created
+main WARNING 2008-04-09 13:32:51,074, AgentServer#0, initialized at Wed Apr 09 13:32:51 CEST 2008
+main WARNING 2008-04-09 13:32:51,075, AgentServer#0, start()
+main WARNING 2008-04-09 13:32:51,813, AgentServer#0, started at Wed Apr 09 13:32:51 CEST 2008
+main WARNING 2008-04-09 13:55:04,860, AgentServer#0, init()
+main WARNING 2008-04-09 13:55:04,898, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 13:55:04,899, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-09 13:55:04,900, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-09 13:55:04,900, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-09 13:55:04,906, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-09 13:55:04,907, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 13:32:50,856, AgentServer#0, init()
+main WARNING 2008-04-09 13:32:50,905, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-09 13:32:50,917, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-09 13:32:50,918, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-09 13:32:50,918, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-09 13:32:50,924, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-09 13:32:50,925, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-09 13:32:51,048, Engine#0, factory created
+main WARNING 2008-04-09 13:32:51,074, AgentServer#0, initialized at Wed Apr 09 13:32:51 CEST 2008
+main WARNING 2008-04-09 13:32:51,075, AgentServer#0, start()
+main WARNING 2008-04-09 13:32:51,813, AgentServer#0, started at Wed Apr 09 13:32:51 CEST 2008
+main WARNING 2008-04-09 13:55:04,860, AgentServer#0, init()
+main WARNING 2008-04-09 13:55:04,898, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 13:55:04,899, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-09 13:55:04,900, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-09 13:55:04,900, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-09 13:55:04,906, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-09 13:55:04,907, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 13:32:50,856, AgentServer#0, init()
+main WARNING 2008-04-09 13:32:50,905, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-09 13:32:50,917, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-09 13:32:50,918, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-09 13:32:50,918, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-09 13:32:50,924, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-09 13:32:50,925, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-09 13:32:51,048, Engine#0, factory created
+main WARNING 2008-04-09 13:32:51,074, AgentServer#0, initialized at Wed Apr 09 13:32:51 CEST 2008
+main WARNING 2008-04-09 13:32:51,075, AgentServer#0, start()
+main WARNING 2008-04-09 13:32:51,813, AgentServer#0, started at Wed Apr 09 13:32:51 CEST 2008
+main WARNING 2008-04-09 13:55:04,860, AgentServer#0, init()
+main WARNING 2008-04-09 13:55:04,898, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 13:55:04,899, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-09 13:55:04,900, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-09 13:55:04,900, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-09 13:55:04,906, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-09 13:55:04,907, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 13:55:05,040, Engine#0, factory created
+main WARNING 2008-04-09 13:55:05,050, AgentServer#0, initialized at Wed Apr 09 13:55:05 CEST 2008
+main WARNING 2008-04-09 13:55:05,050, AgentServer#0, start()
+main WARNING 2008-04-09 13:55:05,934, AgentServer#0, started at Wed Apr 09 13:55:05 CEST 2008
+main WARNING 2008-04-09 14:06:04,354, AgentServer#0, init()
+main WARNING 2008-04-09 14:06:04,389, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 14:06:04,390, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-09 14:06:04,391, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-09 14:06:04,391, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-09 14:06:04,398, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-09 14:06:04,399, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 14:06:04,518, Engine#0, factory created
+main WARNING 2008-04-09 14:06:04,527, AgentServer#0, initialized at Wed Apr 09 14:06:04 CEST 2008
+main WARNING 2008-04-09 14:06:04,528, AgentServer#0, start()
+main WARNING 2008-04-09 14:06:05,293, AgentServer#0, started at Wed Apr 09 14:06:05 CEST 2008
+main WARNING 2008-04-09 16:08:58,596, AgentServer#0, init()
+main WARNING 2008-04-09 16:08:58,628, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 16:08:58,629, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-09 16:08:58,630, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-09 16:08:58,630, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-09 16:08:58,638, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-09 16:08:58,638, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 16:08:58,756, Engine#0, factory created
+main WARNING 2008-04-09 16:08:58,765, AgentServer#0, initialized at Wed Apr 09 16:08:58 CEST 2008
+main WARNING 2008-04-09 16:08:58,766, AgentServer#0, start()
+main WARNING 2008-04-09 16:08:59,506, AgentServer#0, started at Wed Apr 09 16:08:59 CEST 2008
+main WARNING 2008-04-09 16:20:22,214, AgentServer#0, init()
+main WARNING 2008-04-09 16:20:22,249, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 16:20:22,250, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-09 16:20:22,251, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-09 16:20:22,251, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-09 16:20:22,259, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-09 16:20:22,259, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 16:20:22,384, Engine#0, factory created
+main WARNING 2008-04-09 16:20:22,393, AgentServer#0, initialized at Wed Apr 09 16:20:22 CEST 2008
+main WARNING 2008-04-09 16:20:22,394, AgentServer#0, start()
+main WARNING 2008-04-09 16:20:25,292, AgentServer#0, started at Wed Apr 09 16:20:25 CEST 2008
+main WARNING 2008-04-09 16:47:06,654, AgentServer#0, init()
+main WARNING 2008-04-09 16:47:06,690, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 16:47:06,691, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-09 16:47:06,692, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-09 16:47:06,692, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-09 16:47:06,697, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-09 16:47:06,698, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-09 16:47:06,813, Engine#0, factory created
+main WARNING 2008-04-09 16:47:06,823, AgentServer#0, initialized at Wed Apr 09 16:47:06 CEST 2008
+main WARNING 2008-04-09 16:47:06,823, AgentServer#0, start()
+main WARNING 2008-04-09 16:47:07,770, AgentServer#0, started at Wed Apr 09 16:47:07 CEST 2008
+main WARNING 2008-04-10 09:45:00,286, AgentServer#0, init()
+main WARNING 2008-04-10 09:45:00,318, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-04-10 09:45:00,341, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 09:45:00,342, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 09:45:00,342, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 09:45:00,348, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 09:45:00,349, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-04-10 09:45:00,468, Engine#0, factory created
+main WARNING 2008-04-10 09:45:00,476, AgentServer#0, initialized at Thu Apr 10 09:45:00 CEST 2008
+main WARNING 2008-04-10 09:45:00,477, AgentServer#0, start()
+main WARNING 2008-04-10 09:45:01,337, AgentServer#0, started at Thu Apr 10 09:45:01 CEST 2008
+main WARNING 2008-04-10 12:56:59,922, AgentServer#0, init()
+main WARNING 2008-04-10 12:56:59,958, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 12:56:59,960, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 12:56:59,960, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 12:56:59,961, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 12:56:59,966, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 12:56:59,967, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 12:57:00,086, Engine#0, factory created
+main WARNING 2008-04-10 12:57:00,094, AgentServer#0, initialized at Thu Apr 10 12:57:00 CEST 2008
+main WARNING 2008-04-10 12:57:00,095, AgentServer#0, start()
+main WARNING 2008-04-10 12:57:01,999, AgentServer#0, started at Thu Apr 10 12:57:01 CEST 2008
+main WARNING 2008-04-10 13:02:56,926, AgentServer#0, init()
+main WARNING 2008-04-10 13:02:56,968, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@4b222f class loader.
+main WARNING 2008-04-10 13:02:56,994, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 13:02:56,994, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 13:02:56,994, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 13:02:57,003, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 13:02:57,003, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@4b222f class loader.
+main WARNING 2008-04-10 13:02:57,152, Engine#0, factory created
+main WARNING 2008-04-10 13:02:57,170, AgentServer#0, initialized at Thu Apr 10 13:02:57 CEST 2008
+main WARNING 2008-04-10 13:02:57,170, AgentServer#0, start()
+main WARNING 2008-04-10 13:02:58,470, AgentServer#0, started at Thu Apr 10 13:02:58 CEST 2008
+main WARNING 2008-04-10 13:04:20,004, AgentServer#0, init()
+main WARNING 2008-04-10 13:04:20,068, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 13:04:20,069, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 13:04:20,069, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 13:04:20,070, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 13:04:20,083, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 13:04:20,084, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 13:04:20,213, Engine#0, factory created
+main WARNING 2008-04-10 13:04:20,255, AgentServer#0, initialized at Thu Apr 10 13:04:20 CEST 2008
+main WARNING 2008-04-10 13:04:20,256, AgentServer#0, start()
+main WARNING 2008-04-10 13:04:21,456, AgentServer#0, started at Thu Apr 10 13:04:21 CEST 2008
+main WARNING 2008-04-10 13:08:57,483, AgentServer#0, init()
+main WARNING 2008-04-10 13:08:57,527, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-10 13:08:57,543, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 13:08:57,543, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 13:08:57,543, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 13:08:57,550, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 13:08:57,550, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-10 13:08:57,663, Engine#0, factory created
+main WARNING 2008-04-10 13:08:57,670, AgentServer#0, initialized at Thu Apr 10 13:08:57 CEST 2008
+main WARNING 2008-04-10 13:08:57,672, AgentServer#0, start()
+main WARNING 2008-04-10 13:08:58,413, AgentServer#0, started at Thu Apr 10 13:08:58 CEST 2008
+main WARNING 2008-04-10 13:26:46,560, AgentServer#0, init()
+main WARNING 2008-04-10 13:26:46,601, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@15ff48b class loader.
+main WARNING 2008-04-10 13:26:46,621, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 13:26:46,622, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 13:26:46,622, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 13:26:46,631, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 13:26:46,631, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@15ff48b class loader.
+main WARNING 2008-04-10 13:26:46,766, Engine#0, factory created
+main WARNING 2008-04-10 13:26:46,778, AgentServer#0, initialized at Thu Apr 10 13:26:46 CEST 2008
+main WARNING 2008-04-10 13:26:46,779, AgentServer#0, start()
+main WARNING 2008-04-10 13:26:47,567, AgentServer#0, started at Thu Apr 10 13:26:47 CEST 2008
+main WARNING 2008-04-10 13:42:47,507, AgentServer#0, init()
+main WARNING 2008-04-10 13:42:47,577, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-04-10 13:42:47,578, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 13:42:47,579, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 13:42:47,579, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 13:42:47,585, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 13:42:47,585, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-04-10 13:42:47,708, Engine#0, factory created
+main WARNING 2008-04-10 13:42:47,718, AgentServer#0, initialized at Thu Apr 10 13:42:47 CEST 2008
+main WARNING 2008-04-10 13:42:47,718, AgentServer#0, start()
+main WARNING 2008-04-10 13:42:48,485, AgentServer#0, started at Thu Apr 10 13:42:48 CEST 2008
+main WARNING 2008-04-10 14:52:08,925, AgentServer#0, init()
+main WARNING 2008-04-10 14:52:08,958, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 14:52:08,959, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 14:52:08,960, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 14:52:08,960, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 14:52:08,967, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 14:52:08,967, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 14:52:09,069, Engine#0, factory created
+main WARNING 2008-04-10 14:52:09,078, AgentServer#0, initialized at Thu Apr 10 14:52:09 CEST 2008
+main WARNING 2008-04-10 14:52:09,078, AgentServer#0, start()
+main WARNING 2008-04-10 14:52:09,931, AgentServer#0, started at Thu Apr 10 14:52:09 CEST 2008
+main WARNING 2008-04-10 14:54:58,191, AgentServer#0, init()
+main WARNING 2008-04-10 14:54:58,226, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 14:54:58,227, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 14:54:58,227, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 14:54:58,228, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 14:54:58,234, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 14:54:58,235, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 14:54:58,354, Engine#0, factory created
+main WARNING 2008-04-10 14:54:58,364, AgentServer#0, initialized at Thu Apr 10 14:54:58 CEST 2008
+main WARNING 2008-04-10 14:54:58,365, AgentServer#0, start()
+main WARNING 2008-04-10 14:54:59,101, AgentServer#0, started at Thu Apr 10 14:54:59 CEST 2008
+main WARNING 2008-04-10 15:02:16,024, AgentServer#0, init()
+main WARNING 2008-04-10 15:02:16,060, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1e63e3d class loader.
+main WARNING 2008-04-10 15:02:16,082, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 15:02:16,083, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 15:02:16,083, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 15:02:16,090, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 15:02:16,090, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1e63e3d class loader.
+main WARNING 2008-04-10 15:02:16,208, Engine#0, factory created
+main WARNING 2008-04-10 15:02:16,216, AgentServer#0, initialized at Thu Apr 10 15:02:16 CEST 2008
+main WARNING 2008-04-10 15:02:16,217, AgentServer#0, start()
+main WARNING 2008-04-10 15:02:17,485, AgentServer#0, started at Thu Apr 10 15:02:17 CEST 2008
+main WARNING 2008-04-10 15:28:00,995, AgentServer#0, init()
+main WARNING 2008-04-10 15:28:01,038, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@15601ea class loader.
+main WARNING 2008-04-10 15:28:01,061, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 15:28:01,061, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 15:28:01,061, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 15:28:01,069, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 15:28:01,069, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@15601ea class loader.
+main WARNING 2008-04-10 15:28:01,203, Engine#0, factory created
+main WARNING 2008-04-10 15:28:01,214, AgentServer#0, initialized at Thu Apr 10 15:28:01 CEST 2008
+main WARNING 2008-04-10 15:28:01,216, AgentServer#0, start()
+main WARNING 2008-04-10 15:28:07,170, AgentServer#0, started at Thu Apr 10 15:28:07 CEST 2008
+main WARNING 2008-04-10 15:35:17,154, AgentServer#0, init()
+main WARNING 2008-04-10 15:35:17,187, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-10 15:35:17,199, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 15:35:17,200, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 15:35:17,200, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 15:35:17,206, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 15:35:17,206, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-10 15:35:17,314, Engine#0, factory created
+main WARNING 2008-04-10 15:35:17,323, AgentServer#0, initialized at Thu Apr 10 15:35:17 CEST 2008
+main WARNING 2008-04-10 15:35:17,324, AgentServer#0, start()
+main WARNING 2008-04-10 15:35:18,272, AgentServer#0, started at Thu Apr 10 15:35:18 CEST 2008
+main WARNING 2008-04-10 15:55:33,423, AgentServer#0, init()
+main WARNING 2008-04-10 15:55:33,460, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 15:55:33,461, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 15:55:33,461, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 15:55:33,462, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 15:55:33,467, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 15:55:33,468, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 15:55:33,591, Engine#0, factory created
+main WARNING 2008-04-10 15:55:33,602, AgentServer#0, initialized at Thu Apr 10 15:55:33 CEST 2008
+main WARNING 2008-04-10 15:55:33,603, AgentServer#0, start()
+main WARNING 2008-04-10 15:55:34,347, AgentServer#0, started at Thu Apr 10 15:55:34 CEST 2008
+main WARNING 2008-04-10 16:10:18,737, AgentServer#0, init()
+main WARNING 2008-04-10 16:10:18,778, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 16:10:18,779, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 16:10:18,780, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 16:10:18,780, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 16:10:18,787, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 16:10:18,788, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 16:10:18,910, Engine#0, factory created
+main WARNING 2008-04-10 16:10:18,917, AgentServer#0, initialized at Thu Apr 10 16:10:18 CEST 2008
+main WARNING 2008-04-10 16:10:18,917, AgentServer#0, start()
+main WARNING 2008-04-10 16:10:19,884, AgentServer#0, started at Thu Apr 10 16:10:19 CEST 2008
+main WARNING 2008-04-10 16:28:20,844, AgentServer#0, init()
+main WARNING 2008-04-10 16:28:20,879, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 16:28:20,892, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 16:28:20,893, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 16:28:20,893, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 16:28:20,899, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 16:28:20,899, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 16:28:21,011, Engine#0, factory created
+main WARNING 2008-04-10 16:28:21,031, AgentServer#0, initialized at Thu Apr 10 16:28:21 CEST 2008
+main WARNING 2008-04-10 16:28:21,032, AgentServer#0, start()
+main WARNING 2008-04-10 16:28:22,483, AgentServer#0, started at Thu Apr 10 16:28:22 CEST 2008
+main WARNING 2008-04-10 16:38:36,257, AgentServer#0, init()
+main WARNING 2008-04-10 16:38:36,301, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@4b222f class loader.
+main WARNING 2008-04-10 16:38:36,358, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 16:38:36,359, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 16:38:36,359, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 16:38:36,366, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 16:38:36,367, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@4b222f class loader.
+main WARNING 2008-04-10 16:38:36,572, Engine#0, factory created
+main WARNING 2008-04-10 16:38:36,578, AgentServer#0, initialized at Thu Apr 10 16:38:36 CEST 2008
+main WARNING 2008-04-10 16:38:36,579, AgentServer#0, start()
+main WARNING 2008-04-10 16:38:37,921, AgentServer#0, started at Thu Apr 10 16:38:37 CEST 2008
+main WARNING 2008-04-10 16:49:58,711, AgentServer#0, init()
+main WARNING 2008-04-10 16:49:58,746, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 16:49:58,747, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 16:49:58,747, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 16:49:58,747, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 16:49:58,753, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 16:49:58,753, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 16:49:58,881, Engine#0, factory created
+main WARNING 2008-04-10 16:49:58,891, AgentServer#0, initialized at Thu Apr 10 16:49:58 CEST 2008
+main WARNING 2008-04-10 16:49:58,891, AgentServer#0, start()
+main WARNING 2008-04-10 16:49:59,843, AgentServer#0, started at Thu Apr 10 16:49:59 CEST 2008
+main WARNING 2008-04-10 17:02:00,947, AgentServer#0, init()
+main WARNING 2008-04-10 17:02:00,980, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@192d342 class loader.
+main WARNING 2008-04-10 17:02:00,998, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 17:02:00,999, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 17:02:00,999, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 17:02:01,005, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 17:02:01,006, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@192d342 class loader.
+main WARNING 2008-04-10 17:02:01,111, Engine#0, factory created
+main WARNING 2008-04-10 17:02:01,117, AgentServer#0, initialized at Thu Apr 10 17:02:01 CEST 2008
+main WARNING 2008-04-10 17:02:01,118, AgentServer#0, start()
+main WARNING 2008-04-10 17:02:02,087, AgentServer#0, started at Thu Apr 10 17:02:02 CEST 2008
+main WARNING 2008-04-10 17:55:03,764, AgentServer#0, init()
+main WARNING 2008-04-10 17:55:03,804, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 17:55:03,805, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-10 17:55:03,806, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-10 17:55:03,806, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-10 17:55:03,812, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-10 17:55:03,813, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-10 17:55:03,942, Engine#0, factory created
+main WARNING 2008-04-10 17:55:03,952, AgentServer#0, initialized at Thu Apr 10 17:55:03 CEST 2008
+main WARNING 2008-04-10 17:55:03,953, AgentServer#0, start()
+main WARNING 2008-04-10 17:55:04,750, AgentServer#0, started at Thu Apr 10 17:55:04 CEST 2008
+main WARNING 2008-04-14 17:26:15,143, AgentServer#0, init()
+main WARNING 2008-04-14 17:26:15,176, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-14 17:26:15,195, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-14 17:26:15,196, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-14 17:26:15,196, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-14 17:26:15,201, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-14 17:26:15,201, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-14 17:26:15,332, Engine#0, factory created
+main WARNING 2008-04-14 17:26:15,341, AgentServer#0, initialized at Mon Apr 14 17:26:15 CEST 2008
+main WARNING 2008-04-14 17:26:15,341, AgentServer#0, start()
+main WARNING 2008-04-14 17:26:16,397, AgentServer#0, started at Mon Apr 14 17:26:16 CEST 2008
+main WARNING 2008-04-15 13:38:50,265, AgentServer#0, init()
+main WARNING 2008-04-15 13:38:50,301, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@11a698a class loader.
+main WARNING 2008-04-15 13:38:50,326, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-15 13:38:50,326, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-15 13:38:50,327, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-15 13:38:50,333, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-15 13:38:50,333, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@11a698a class loader.
+main WARNING 2008-04-15 13:38:50,457, Engine#0, factory created
+main WARNING 2008-04-15 13:38:50,482, AgentServer#0, initialized at Tue Apr 15 13:38:50 CEST 2008
+main WARNING 2008-04-15 13:38:50,483, AgentServer#0, start()
+main WARNING 2008-04-15 13:38:54,118, AgentServer#0, started at Tue Apr 15 13:38:54 CEST 2008
+main WARNING 2008-04-15 14:32:02,504, AgentServer#0, init()
+main WARNING 2008-04-15 14:32:02,536, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-15 14:32:02,537, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-15 14:32:02,538, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-15 14:32:02,538, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-15 14:32:02,543, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-15 14:32:02,543, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-15 14:32:02,687, Engine#0, factory created
+main WARNING 2008-04-15 14:32:02,699, AgentServer#0, initialized at Tue Apr 15 14:32:02 CEST 2008
+main WARNING 2008-04-15 14:32:02,701, AgentServer#0, start()
+main WARNING 2008-04-15 14:32:03,512, AgentServer#0, started at Tue Apr 15 14:32:03 CEST 2008
+main WARNING 2008-04-16 10:12:48,828, AgentServer#0, init()
+main WARNING 2008-04-16 10:12:48,864, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-04-16 10:12:48,889, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-16 10:12:48,889, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-16 10:12:48,889, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-16 10:12:48,895, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-16 10:12:48,895, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-04-16 10:12:49,001, Engine#0, factory created
+main WARNING 2008-04-16 10:12:49,007, AgentServer#0, initialized at Wed Apr 16 10:12:49 CEST 2008
+main WARNING 2008-04-16 10:12:49,008, AgentServer#0, start()
+main WARNING 2008-04-16 10:12:51,282, AgentServer#0, started at Wed Apr 16 10:12:51 CEST 2008
+main WARNING 2008-04-16 10:33:52,648, AgentServer#0, init()
+main WARNING 2008-04-16 10:33:52,683, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f6a746 class loader.
+main WARNING 2008-04-16 10:33:52,703, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-16 10:33:52,704, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-16 10:33:52,704, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-16 10:33:52,711, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-16 10:33:52,711, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f6a746 class loader.
+main WARNING 2008-04-16 10:33:52,829, Engine#0, factory created
+main WARNING 2008-04-16 10:33:52,839, AgentServer#0, initialized at Wed Apr 16 10:33:52 CEST 2008
+main WARNING 2008-04-16 10:33:52,840, AgentServer#0, start()
+main WARNING 2008-04-16 10:33:53,633, AgentServer#0, started at Wed Apr 16 10:33:53 CEST 2008
+main WARNING 2008-04-16 10:35:47,609, AgentServer#0, init()
+main WARNING 2008-04-16 10:35:47,652, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-16 10:35:47,653, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-16 10:35:47,655, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-16 10:35:47,655, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-16 10:35:47,661, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-16 10:35:47,661, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-16 10:35:47,782, Engine#0, factory created
+main WARNING 2008-04-16 10:35:47,792, AgentServer#0, initialized at Wed Apr 16 10:35:47 CEST 2008
+main WARNING 2008-04-16 10:35:47,792, AgentServer#0, start()
+main WARNING 2008-04-16 10:35:48,594, AgentServer#0, started at Wed Apr 16 10:35:48 CEST 2008
+main WARNING 2008-04-21 19:01:47,828, AgentServer#0, init()
+main WARNING 2008-04-21 19:01:47,862, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@194ca6c class loader.
+main WARNING 2008-04-21 19:01:47,883, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-21 19:01:47,883, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-21 19:01:47,883, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-21 19:01:47,889, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-21 19:01:47,889, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@194ca6c class loader.
+main WARNING 2008-04-21 19:01:48,002, Engine#0, factory created
+main WARNING 2008-04-21 19:01:48,013, AgentServer#0, initialized at Mon Apr 21 19:01:48 CEST 2008
+main WARNING 2008-04-21 19:01:48,016, AgentServer#0, start()
+main WARNING 2008-04-21 19:01:50,179, AgentServer#0, started at Mon Apr 21 19:01:50 CEST 2008
+main WARNING 2008-04-22 12:50:23,511, AgentServer#0, init()
+main WARNING 2008-04-22 12:50:23,544, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1cde100 class loader.
+main WARNING 2008-04-22 12:50:23,563, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-22 12:50:23,563, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-22 12:50:23,564, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-22 12:50:23,569, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-22 12:50:23,569, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1cde100 class loader.
+main WARNING 2008-04-22 12:50:24,417, Engine#0, factory created
+main WARNING 2008-04-22 12:50:24,427, AgentServer#0, initialized at Tue Apr 22 12:50:24 CEST 2008
+main WARNING 2008-04-22 12:50:24,428, AgentServer#0, start()
+main WARNING 2008-04-22 12:50:26,186, AgentServer#0, started at Tue Apr 22 12:50:26 CEST 2008
+main WARNING 2008-04-22 13:02:56,904, AgentServer#0, init()
+main WARNING 2008-04-22 13:02:56,941, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-22 13:02:56,942, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-22 13:02:56,942, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-22 13:02:56,942, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-22 13:02:56,949, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-22 13:02:56,949, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-22 13:02:57,062, Engine#0, factory created
+main WARNING 2008-04-22 13:02:57,072, AgentServer#0, initialized at Tue Apr 22 13:02:57 CEST 2008
+main WARNING 2008-04-22 13:02:57,072, AgentServer#0, start()
+main WARNING 2008-04-22 13:02:57,768, AgentServer#0, started at Tue Apr 22 13:02:57 CEST 2008
+main WARNING 2008-04-22 13:11:04,688, AgentServer#0, init()
+main WARNING 2008-04-22 13:11:04,735, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@5224ee class loader.
+main WARNING 2008-04-22 13:11:04,812, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-22 13:11:04,813, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-22 13:11:04,813, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-22 13:11:04,829, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-22 13:11:04,829, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@5224ee class loader.
+main WARNING 2008-04-22 13:11:04,976, Engine#0, factory created
+main WARNING 2008-04-22 13:11:04,980, AgentServer#0, initialized at Tue Apr 22 13:11:04 CEST 2008
+main WARNING 2008-04-22 13:11:04,980, AgentServer#0, start()
+main WARNING 2008-04-22 17:39:27,511, AgentServer#0, init()
+main WARNING 2008-04-22 17:39:27,541, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@108786b class loader.
+main WARNING 2008-04-22 17:39:27,560, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-22 17:39:27,560, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-22 17:39:27,560, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-22 17:39:27,565, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-22 17:39:27,566, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@108786b class loader.
+main WARNING 2008-04-22 17:39:27,667, Engine#0, factory created
+main WARNING 2008-04-22 17:39:27,672, AgentServer#0, initialized at Tue Apr 22 17:39:27 CEST 2008
+main WARNING 2008-04-22 17:39:27,672, AgentServer#0, start()
+main WARNING 2008-04-22 17:39:28,337, AgentServer#0, started at Tue Apr 22 17:39:28 CEST 2008
+main WARNING 2008-04-22 17:47:21,202, AgentServer#0, init()
+main WARNING 2008-04-22 17:47:21,237, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-22 17:47:21,238, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-22 17:47:21,238, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-22 17:47:21,239, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-22 17:47:21,245, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-22 17:47:21,245, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-22 17:47:21,354, Engine#0, factory created
+main WARNING 2008-04-22 17:47:21,364, AgentServer#0, initialized at Tue Apr 22 17:47:21 CEST 2008
+main WARNING 2008-04-22 17:47:21,364, AgentServer#0, start()
+main WARNING 2008-04-22 17:47:22,051, AgentServer#0, started at Tue Apr 22 17:47:22 CEST 2008
+main WARNING 2008-04-22 18:21:17,990, AgentServer#0, init()
+main WARNING 2008-04-22 18:21:18,038, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-22 18:21:18,059, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-22 18:21:18,061, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-22 18:21:18,061, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-22 18:21:18,067, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-22 18:21:18,069, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-22 18:21:18,236, Engine#0, factory created
+main WARNING 2008-04-22 18:21:18,244, AgentServer#0, initialized at Tue Apr 22 18:21:18 CEST 2008
+main WARNING 2008-04-22 18:21:18,244, AgentServer#0, start()
+main WARNING 2008-04-22 18:21:20,578, AgentServer#0, started at Tue Apr 22 18:21:20 CEST 2008
+main WARNING 2008-04-22 18:42:35,180, AgentServer#0, init()
+main WARNING 2008-04-22 18:42:35,220, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-22 18:42:35,221, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-22 18:42:35,221, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-22 18:42:35,221, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-22 18:42:35,229, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-22 18:42:35,229, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-22 18:42:35,361, Engine#0, factory created
+main WARNING 2008-04-22 18:42:35,375, AgentServer#0, initialized at Tue Apr 22 18:42:35 CEST 2008
+main WARNING 2008-04-22 18:42:35,376, AgentServer#0, start()
+main WARNING 2008-04-22 18:42:36,163, AgentServer#0, started at Tue Apr 22 18:42:36 CEST 2008
+main WARNING 2008-04-23 09:49:04,966, AgentServer#0, init()
+main WARNING 2008-04-23 09:49:04,996, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1e63e3d class loader.
+main WARNING 2008-04-23 09:49:05,015, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-23 09:49:05,016, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-23 09:49:05,016, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-23 09:49:05,021, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-23 09:49:05,022, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1e63e3d class loader.
+main WARNING 2008-04-23 09:49:05,123, Engine#0, factory created
+main WARNING 2008-04-23 09:49:05,130, AgentServer#0, initialized at Wed Apr 23 09:49:05 CEST 2008
+main WARNING 2008-04-23 09:49:05,130, AgentServer#0, start()
+main WARNING 2008-04-23 09:49:06,052, AgentServer#0, started at Wed Apr 23 09:49:06 CEST 2008
+main WARNING 2008-04-23 11:22:59,896, AgentServer#0, init()
+main WARNING 2008-04-23 11:22:59,930, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-04-23 11:22:59,950, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-23 11:22:59,950, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-23 11:22:59,951, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-23 11:22:59,956, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-23 11:22:59,956, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-04-23 11:23:00,089, Engine#0, factory created
+main WARNING 2008-04-23 11:23:00,097, AgentServer#0, initialized at Wed Apr 23 11:23:00 CEST 2008
+main WARNING 2008-04-23 11:23:00,097, AgentServer#0, start()
+main WARNING 2008-04-23 11:23:00,829, AgentServer#0, started at Wed Apr 23 11:23:00 CEST 2008
+main WARNING 2008-04-24 13:42:43,090, AgentServer#0, init()
+main WARNING 2008-04-24 13:42:43,131, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@4b222f class loader.
+main WARNING 2008-04-24 13:42:43,150, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-24 13:42:43,151, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-24 13:42:43,151, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-24 13:42:43,157, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-24 13:42:43,157, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@4b222f class loader.
+main WARNING 2008-04-24 13:42:43,318, Engine#0, factory created
+main WARNING 2008-04-24 13:42:43,338, AgentServer#0, initialized at Thu Apr 24 13:42:43 CEST 2008
+main WARNING 2008-04-24 13:42:43,339, AgentServer#0, start()
+main WARNING 2008-04-24 13:42:44,216, AgentServer#0, started at Thu Apr 24 13:42:44 CEST 2008
+main WARNING 2008-04-30 09:16:34,800, AgentServer#0, init()
+main WARNING 2008-04-30 09:16:34,830, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-30 09:16:34,848, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-30 09:16:34,849, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-30 09:16:34,849, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-30 09:16:34,855, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-30 09:16:34,856, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-30 09:16:34,975, Engine#0, factory created
+main WARNING 2008-04-30 09:16:34,982, AgentServer#0, initialized at Wed Apr 30 09:16:34 CEST 2008
+main WARNING 2008-04-30 09:16:34,983, AgentServer#0, start()
+main WARNING 2008-04-30 09:16:35,637, AgentServer#0, started at Wed Apr 30 09:16:35 CEST 2008
+main WARNING 2008-04-30 14:30:02,394, AgentServer#0, init()
+main WARNING 2008-04-30 14:30:02,424, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-30 14:30:02,426, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-30 14:30:02,427, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-30 14:30:02,427, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-30 14:30:02,432, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-30 14:30:02,433, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-30 14:30:02,537, Engine#0, factory created
+main WARNING 2008-04-30 14:30:02,553, AgentServer#0, initialized at Wed Apr 30 14:30:02 CEST 2008
+main WARNING 2008-04-30 14:30:02,553, AgentServer#0, start()
+main WARNING 2008-04-30 14:30:03,335, AgentServer#0, started at Wed Apr 30 14:30:03 CEST 2008
+main WARNING 2008-04-30 15:11:29,081, AgentServer#0, init()
+main WARNING 2008-04-30 15:11:29,113, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-30 15:11:29,114, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-30 15:11:29,114, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-30 15:11:29,114, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-30 15:11:29,120, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-30 15:11:29,120, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-04-30 15:11:29,227, Engine#0, factory created
+main WARNING 2008-04-30 15:11:29,236, AgentServer#0, initialized at Wed Apr 30 15:11:29 CEST 2008
+main WARNING 2008-04-30 15:11:29,237, AgentServer#0, start()
+main WARNING 2008-04-30 15:11:29,877, AgentServer#0, started at Wed Apr 30 15:11:29 CEST 2008
+main WARNING 2008-04-30 15:18:58,822, AgentServer#0, init()
+main WARNING 2008-04-30 15:18:58,854, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-30 15:18:58,856, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-30 15:18:58,856, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-30 15:18:58,856, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-30 15:18:58,862, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-30 15:18:58,862, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-30 15:18:58,976, Engine#0, factory created
+main WARNING 2008-04-30 15:18:58,986, AgentServer#0, initialized at Wed Apr 30 15:18:58 CEST 2008
+main WARNING 2008-04-30 15:18:58,986, AgentServer#0, start()
+main WARNING 2008-04-30 15:18:59,623, AgentServer#0, started at Wed Apr 30 15:18:59 CEST 2008
+main WARNING 2008-04-30 15:29:54,691, AgentServer#0, init()
+main WARNING 2008-04-30 15:29:54,727, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-30 15:29:54,727, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-04-30 15:29:54,728, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-04-30 15:29:54,728, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-04-30 15:29:54,735, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-04-30 15:29:54,735, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-04-30 15:29:54,866, Engine#0, factory created
+main WARNING 2008-04-30 15:29:54,876, AgentServer#0, initialized at Wed Apr 30 15:29:54 CEST 2008
+main WARNING 2008-04-30 15:29:54,877, AgentServer#0, start()
+main WARNING 2008-04-30 15:29:55,768, AgentServer#0, started at Wed Apr 30 15:29:55 CEST 2008
+main WARNING 2008-05-02 14:01:20,046, AgentServer#0, init()
+main WARNING 2008-05-02 14:01:20,079, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1ea2dfe class loader.
+main WARNING 2008-05-02 14:01:20,102, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-02 14:01:20,102, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-02 14:01:20,103, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-02 14:01:20,109, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-02 14:01:20,109, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1ea2dfe class loader.
+main WARNING 2008-05-02 14:01:20,225, Engine#0, factory created
+main WARNING 2008-05-02 14:01:20,241, AgentServer#0, initialized at Fri May 02 14:01:20 CEST 2008
+main WARNING 2008-05-02 14:01:20,242, AgentServer#0, start()
+main WARNING 2008-05-02 14:01:20,997, AgentServer#0, started at Fri May 02 14:01:20 CEST 2008
+main WARNING 2008-05-02 14:37:47,370, AgentServer#0, init()
+main WARNING 2008-05-02 14:37:47,407, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-02 14:37:47,409, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-02 14:37:47,409, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-02 14:37:47,409, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-02 14:37:47,417, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-02 14:37:47,417, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-02 14:37:47,537, Engine#0, factory created
+main WARNING 2008-05-02 14:37:47,556, AgentServer#0, initialized at Fri May 02 14:37:47 CEST 2008
+main WARNING 2008-05-02 14:37:47,557, AgentServer#0, start()
+main WARNING 2008-05-02 14:37:48,286, AgentServer#0, started at Fri May 02 14:37:48 CEST 2008
+JndiServer.Monitor#0 SEVERE 2008-05-02 14:42:48,892, JndiServer.Monitor#0, error during send
+java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(SocketInputStream.java:168)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:218)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:258)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:317)
+	at java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2264)
+	at java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2277)
+	at java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:2748)
+	at java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:780)
+	at java.io.ObjectInputStream.<init>(ObjectInputStream.java:280)
+	at fr.dyade.aaa.jndi2.msg.IOControl.readObject(IOControl.java:47)
+	at fr.dyade.aaa.jndi2.server.TcpRequestContext.<init>(TcpRequestContext.java:42)
+	at fr.dyade.aaa.jndi2.server.TcpServer$Monitor.run(TcpServer.java:144)
+	at java.lang.Thread.run(Thread.java:619)
+main WARNING 2008-05-02 14:54:05,929, AgentServer#0, init()
+main WARNING 2008-05-02 14:54:05,963, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-02 14:54:05,965, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-02 14:54:05,965, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-02 14:54:05,965, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-02 14:54:05,971, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-02 14:54:05,971, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-02 14:54:06,084, Engine#0, factory created
+main WARNING 2008-05-02 14:54:06,102, AgentServer#0, initialized at Fri May 02 14:54:06 CEST 2008
+main WARNING 2008-05-02 14:54:06,103, AgentServer#0, start()
+main WARNING 2008-05-02 14:54:06,782, AgentServer#0, started at Fri May 02 14:54:06 CEST 2008
+main WARNING 2008-05-02 15:13:05,280, AgentServer#0, init()
+main WARNING 2008-05-02 15:13:05,315, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@11a698a class loader.
+main WARNING 2008-05-02 15:13:05,338, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-02 15:13:05,339, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-02 15:13:05,340, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-02 15:13:05,345, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-02 15:13:05,345, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@11a698a class loader.
+main WARNING 2008-05-02 15:13:05,457, Engine#0, factory created
+main WARNING 2008-05-02 15:13:05,465, AgentServer#0, initialized at Fri May 02 15:13:05 CEST 2008
+main WARNING 2008-05-02 15:13:05,466, AgentServer#0, start()
+main WARNING 2008-05-02 15:13:06,761, AgentServer#0, started at Fri May 02 15:13:06 CEST 2008
+main WARNING 2008-05-02 15:23:33,017, AgentServer#0, init()
+main WARNING 2008-05-02 15:23:33,064, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1a457b6 class loader.
+main WARNING 2008-05-02 15:23:33,065, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-02 15:23:33,066, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-02 15:23:33,066, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-02 15:23:33,078, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-02 15:23:33,078, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1a457b6 class loader.
+main WARNING 2008-05-02 15:23:33,226, Engine#0, factory created
+main WARNING 2008-05-02 15:23:33,258, AgentServer#0, initialized at Fri May 02 15:23:33 CEST 2008
+main WARNING 2008-05-02 15:23:33,258, AgentServer#0, start()
+main WARNING 2008-05-02 15:23:34,191, AgentServer#0, started at Fri May 02 15:23:34 CEST 2008
+main WARNING 2008-05-02 15:49:35,832, AgentServer#0, init()
+main WARNING 2008-05-02 15:49:35,877, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-02 15:49:35,879, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-02 15:49:35,879, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-02 15:49:35,880, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-02 15:49:35,887, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-02 15:49:35,887, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-02 15:49:36,013, Engine#0, factory created
+main WARNING 2008-05-02 15:49:36,024, AgentServer#0, initialized at Fri May 02 15:49:36 CEST 2008
+main WARNING 2008-05-02 15:49:36,024, AgentServer#0, start()
+main WARNING 2008-05-02 15:49:37,002, AgentServer#0, started at Fri May 02 15:49:37 CEST 2008
+main WARNING 2008-05-02 15:54:42,920, AgentServer#0, init()
+main WARNING 2008-05-02 15:54:42,956, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-02 15:54:42,957, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-02 15:54:42,957, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-02 15:54:42,958, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-02 15:54:42,964, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-02 15:54:42,964, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-02 15:54:43,079, Engine#0, factory created
+main WARNING 2008-05-02 15:54:43,098, AgentServer#0, initialized at Fri May 02 15:54:43 CEST 2008
+main WARNING 2008-05-02 15:54:43,099, AgentServer#0, start()
+main WARNING 2008-05-02 15:54:43,793, AgentServer#0, started at Fri May 02 15:54:43 CEST 2008
+main WARNING 2008-05-06 11:47:28,204, AgentServer#0, init()
+main WARNING 2008-05-06 11:47:28,263, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@eee36c class loader.
+main WARNING 2008-05-06 11:47:28,287, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 11:47:28,288, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 11:47:28,289, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 11:47:28,294, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 11:47:28,294, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@eee36c class loader.
+main WARNING 2008-05-06 11:47:28,457, Engine#0, factory created
+main WARNING 2008-05-06 11:47:28,466, AgentServer#0, initialized at Tue May 06 11:47:28 CEST 2008
+main WARNING 2008-05-06 11:47:28,467, AgentServer#0, start()
+main WARNING 2008-05-06 11:47:29,336, AgentServer#0, started at Tue May 06 11:47:29 CEST 2008
+main WARNING 2008-05-06 11:51:41,330, AgentServer#0, init()
+main WARNING 2008-05-06 11:51:41,363, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 11:51:41,367, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 11:51:41,368, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 11:51:41,368, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 11:51:41,375, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 11:51:41,375, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 11:51:41,488, Engine#0, factory created
+main WARNING 2008-05-06 11:51:41,497, AgentServer#0, initialized at Tue May 06 11:51:41 CEST 2008
+main WARNING 2008-05-06 11:51:41,498, AgentServer#0, start()
+main WARNING 2008-05-06 11:51:42,182, AgentServer#0, started at Tue May 06 11:51:42 CEST 2008
+main WARNING 2008-05-06 13:03:06,895, AgentServer#0, init()
+main WARNING 2008-05-06 13:03:06,925, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 13:03:06,926, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 13:03:06,927, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 13:03:06,927, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 13:03:06,932, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 13:03:06,932, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 13:03:07,036, Engine#0, factory created
+main WARNING 2008-05-06 13:03:07,070, AgentServer#0, initialized at Tue May 06 13:03:07 CEST 2008
+main WARNING 2008-05-06 13:03:07,070, AgentServer#0, start()
+main WARNING 2008-05-06 13:03:07,787, AgentServer#0, started at Tue May 06 13:03:07 CEST 2008
+main WARNING 2008-05-06 13:09:11,288, AgentServer#0, init()
+main WARNING 2008-05-06 13:09:11,323, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 13:09:11,324, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 13:09:11,325, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 13:09:11,326, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 13:09:11,331, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 13:09:11,332, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 13:09:11,450, Engine#0, factory created
+main WARNING 2008-05-06 13:09:11,461, AgentServer#0, initialized at Tue May 06 13:09:11 CEST 2008
+main WARNING 2008-05-06 13:09:11,462, AgentServer#0, start()
+main WARNING 2008-05-06 13:09:12,185, AgentServer#0, started at Tue May 06 13:09:12 CEST 2008
+main WARNING 2008-05-06 13:14:33,422, AgentServer#0, init()
+main WARNING 2008-05-06 13:14:33,456, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1e63e3d class loader.
+main WARNING 2008-05-06 13:14:33,477, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 13:14:33,478, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 13:14:33,478, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 13:14:33,485, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 13:14:33,485, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1e63e3d class loader.
+main WARNING 2008-05-06 13:14:33,604, Engine#0, factory created
+main WARNING 2008-05-06 13:14:33,613, AgentServer#0, initialized at Tue May 06 13:14:33 CEST 2008
+main WARNING 2008-05-06 13:14:33,614, AgentServer#0, start()
+main WARNING 2008-05-06 13:14:34,303, AgentServer#0, started at Tue May 06 13:14:34 CEST 2008
+main WARNING 2008-05-06 13:52:41,940, AgentServer#0, init()
+main WARNING 2008-05-06 13:52:41,976, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 13:52:41,977, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 13:52:41,977, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 13:52:41,978, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 13:52:41,984, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 13:52:41,984, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 13:52:42,115, Engine#0, factory created
+main WARNING 2008-05-06 13:52:42,126, AgentServer#0, initialized at Tue May 06 13:52:42 CEST 2008
+main WARNING 2008-05-06 13:52:42,126, AgentServer#0, start()
+main WARNING 2008-05-06 13:52:43,081, AgentServer#0, started at Tue May 06 13:52:43 CEST 2008
+main WARNING 2008-05-06 14:24:18,963, AgentServer#0, init()
+main WARNING 2008-05-06 14:24:18,994, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 14:24:18,996, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 14:24:18,996, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 14:24:18,997, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 14:24:19,003, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 14:24:19,003, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 14:24:19,118, Engine#0, factory created
+main WARNING 2008-05-06 14:24:19,145, AgentServer#0, initialized at Tue May 06 14:24:19 CEST 2008
+main WARNING 2008-05-06 14:24:19,146, AgentServer#0, start()
+main WARNING 2008-05-06 14:24:19,870, AgentServer#0, started at Tue May 06 14:24:19 CEST 2008
+main WARNING 2008-05-06 14:31:54,279, AgentServer#0, init()
+main WARNING 2008-05-06 14:31:54,322, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 14:31:54,323, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 14:31:54,323, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 14:31:54,323, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 14:31:54,329, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 14:31:54,330, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 14:31:54,448, Engine#0, factory created
+main WARNING 2008-05-06 14:31:54,465, AgentServer#0, initialized at Tue May 06 14:31:54 CEST 2008
+main WARNING 2008-05-06 14:31:54,466, AgentServer#0, start()
+main WARNING 2008-05-06 14:31:55,200, AgentServer#0, started at Tue May 06 14:31:55 CEST 2008
+main WARNING 2008-05-06 15:07:30,047, AgentServer#0, init()
+main WARNING 2008-05-06 15:07:30,090, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 15:07:30,091, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 15:07:30,091, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 15:07:30,091, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 15:07:30,099, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 15:07:30,099, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 15:07:30,230, Engine#0, factory created
+main WARNING 2008-05-06 15:07:30,250, AgentServer#0, initialized at Tue May 06 15:07:30 CEST 2008
+main WARNING 2008-05-06 15:07:30,250, AgentServer#0, start()
+main WARNING 2008-05-06 15:07:30,992, AgentServer#0, started at Tue May 06 15:07:30 CEST 2008
+main WARNING 2008-05-06 15:41:22,637, AgentServer#0, init()
+main WARNING 2008-05-06 15:41:22,670, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 15:41:22,672, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 15:41:22,673, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 15:41:22,673, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 15:41:22,679, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 15:41:22,679, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 15:41:22,804, Engine#0, factory created
+main WARNING 2008-05-06 15:41:22,824, AgentServer#0, initialized at Tue May 06 15:41:22 CEST 2008
+main WARNING 2008-05-06 15:41:22,825, AgentServer#0, start()
+main WARNING 2008-05-06 15:41:23,561, AgentServer#0, started at Tue May 06 15:41:23 CEST 2008
+main WARNING 2008-05-06 17:49:45,348, AgentServer#0, init()
+main WARNING 2008-05-06 17:49:45,379, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@4b222f class loader.
+main WARNING 2008-05-06 17:49:45,380, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 17:49:45,381, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 17:49:45,381, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 17:49:45,387, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 17:49:45,388, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@4b222f class loader.
+main WARNING 2008-05-06 17:49:45,503, Engine#0, factory created
+main WARNING 2008-05-06 17:49:45,536, AgentServer#0, initialized at Tue May 06 17:49:45 CEST 2008
+main WARNING 2008-05-06 17:49:45,536, AgentServer#0, start()
+main WARNING 2008-05-06 17:49:46,223, AgentServer#0, started at Tue May 06 17:49:46 CEST 2008
+main WARNING 2008-05-06 18:08:15,756, AgentServer#0, init()
+main WARNING 2008-05-06 18:08:15,790, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-06 18:08:15,791, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 18:08:15,792, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 18:08:15,792, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 18:08:15,797, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 18:08:15,798, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-06 18:08:15,912, Engine#0, factory created
+main WARNING 2008-05-06 18:08:15,922, AgentServer#0, initialized at Tue May 06 18:08:15 CEST 2008
+main WARNING 2008-05-06 18:08:15,923, AgentServer#0, start()
+main WARNING 2008-05-06 18:08:16,605, AgentServer#0, started at Tue May 06 18:08:16 CEST 2008
+main WARNING 2008-05-06 18:16:17,249, AgentServer#0, init()
+main WARNING 2008-05-06 18:16:17,313, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 18:16:17,315, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-06 18:16:17,319, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-06 18:16:17,319, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-06 18:16:17,330, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-06 18:16:17,331, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-06 18:16:17,517, Engine#0, factory created
+main WARNING 2008-05-06 18:16:17,537, AgentServer#0, initialized at Tue May 06 18:16:17 CEST 2008
+main WARNING 2008-05-06 18:16:17,537, AgentServer#0, start()
+main WARNING 2008-05-06 18:16:18,254, AgentServer#0, started at Tue May 06 18:16:18 CEST 2008
+main WARNING 2008-05-07 10:00:07,991, AgentServer#0, init()
+main WARNING 2008-05-07 10:00:08,042, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@15601ea class loader.
+main WARNING 2008-05-07 10:00:08,075, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 10:00:08,076, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 10:00:08,076, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 10:00:08,081, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 10:00:08,082, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@15601ea class loader.
+main WARNING 2008-05-07 10:00:08,267, Engine#0, factory created
+main WARNING 2008-05-07 10:00:08,276, AgentServer#0, initialized at Wed May 07 10:00:08 CEST 2008
+main WARNING 2008-05-07 10:00:08,276, AgentServer#0, start()
+main WARNING 2008-05-07 10:00:09,206, AgentServer#0, started at Wed May 07 10:00:09 CEST 2008
+main WARNING 2008-05-07 10:12:55,491, AgentServer#0, init()
+main WARNING 2008-05-07 10:12:55,524, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 10:12:55,537, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 10:12:55,539, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 10:12:55,539, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 10:12:55,545, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 10:12:55,546, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 10:12:55,663, Engine#0, factory created
+main WARNING 2008-05-07 10:12:55,671, AgentServer#0, initialized at Wed May 07 10:12:55 CEST 2008
+main WARNING 2008-05-07 10:12:55,672, AgentServer#0, start()
+main WARNING 2008-05-07 10:12:56,371, AgentServer#0, started at Wed May 07 10:12:56 CEST 2008
+main WARNING 2008-05-07 13:33:10,008, AgentServer#0, init()
+main WARNING 2008-05-07 13:33:10,041, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 13:33:10,042, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 13:33:10,042, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 13:33:10,043, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 13:33:10,048, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 13:33:10,048, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 13:33:10,160, Engine#0, factory created
+main WARNING 2008-05-07 13:33:10,180, AgentServer#0, initialized at Wed May 07 13:33:10 CEST 2008
+main WARNING 2008-05-07 13:33:10,181, AgentServer#0, start()
+main WARNING 2008-05-07 13:33:10,881, AgentServer#0, started at Wed May 07 13:33:10 CEST 2008
+main WARNING 2008-05-07 13:40:58,264, AgentServer#0, init()
+main WARNING 2008-05-07 13:40:58,307, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 13:40:58,308, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 13:40:58,308, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 13:40:58,308, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 13:40:58,322, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 13:40:58,323, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 13:40:58,479, Engine#0, factory created
+main WARNING 2008-05-07 13:40:58,501, AgentServer#0, initialized at Wed May 07 13:40:58 CEST 2008
+main WARNING 2008-05-07 13:40:58,501, AgentServer#0, start()
+main WARNING 2008-05-07 13:40:59,284, AgentServer#0, started at Wed May 07 13:40:59 CEST 2008
+main WARNING 2008-05-07 13:46:33,593, AgentServer#0, init()
+main WARNING 2008-05-07 13:46:33,626, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 13:46:33,631, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 13:46:33,632, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 13:46:33,632, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 13:46:33,638, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 13:46:33,640, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 13:46:33,754, Engine#0, factory created
+main WARNING 2008-05-07 13:46:33,770, AgentServer#0, initialized at Wed May 07 13:46:33 CEST 2008
+main WARNING 2008-05-07 13:46:33,771, AgentServer#0, start()
+main WARNING 2008-05-07 13:46:34,715, AgentServer#0, started at Wed May 07 13:46:34 CEST 2008
+main WARNING 2008-05-07 14:04:54,656, AgentServer#0, init()
+main WARNING 2008-05-07 14:04:54,687, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1a125f0 class loader.
+main WARNING 2008-05-07 14:04:54,705, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 14:04:54,705, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 14:04:54,706, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 14:04:54,711, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 14:04:54,712, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1a125f0 class loader.
+main WARNING 2008-05-07 14:04:54,908, Engine#0, factory created
+main WARNING 2008-05-07 14:04:54,915, AgentServer#0, initialized at Wed May 07 14:04:54 CEST 2008
+main WARNING 2008-05-07 14:04:54,916, AgentServer#0, start()
+main WARNING 2008-05-07 14:04:56,131, AgentServer#0, started at Wed May 07 14:04:56 CEST 2008
+main WARNING 2008-05-07 14:51:00,489, AgentServer#0, init()
+main WARNING 2008-05-07 14:51:00,531, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-07 14:51:00,549, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 14:51:00,550, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 14:51:00,550, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 14:51:00,555, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 14:51:00,555, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-07 14:51:00,658, Engine#0, factory created
+main WARNING 2008-05-07 14:51:00,664, AgentServer#0, initialized at Wed May 07 14:51:00 CEST 2008
+main WARNING 2008-05-07 14:51:00,664, AgentServer#0, start()
+main WARNING 2008-05-07 14:51:01,656, AgentServer#0, started at Wed May 07 14:51:01 CEST 2008
+main WARNING 2008-05-07 15:03:33,151, AgentServer#0, init()
+main WARNING 2008-05-07 15:03:33,195, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 15:03:33,208, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 15:03:33,209, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 15:03:33,209, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 15:03:33,220, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 15:03:33,221, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 15:03:33,593, Engine#0, factory created
+main WARNING 2008-05-07 15:03:33,606, AgentServer#0, initialized at Wed May 07 15:03:33 CEST 2008
+main WARNING 2008-05-07 15:03:33,607, AgentServer#0, start()
+main WARNING 2008-05-07 15:03:34,654, AgentServer#0, started at Wed May 07 15:03:34 CEST 2008
+main WARNING 2008-05-07 15:07:31,668, AgentServer#0, init()
+main WARNING 2008-05-07 15:07:31,711, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@47858e class loader.
+main WARNING 2008-05-07 15:07:31,729, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 15:07:31,730, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 15:07:31,730, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 15:07:31,736, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 15:07:31,736, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@47858e class loader.
+main WARNING 2008-05-07 15:07:31,929, Engine#0, factory created
+main WARNING 2008-05-07 15:07:31,935, AgentServer#0, initialized at Wed May 07 15:07:31 CEST 2008
+main WARNING 2008-05-07 15:07:31,935, AgentServer#0, start()
+main WARNING 2008-05-07 15:07:32,793, AgentServer#0, started at Wed May 07 15:07:32 CEST 2008
+main WARNING 2008-05-07 15:22:02,778, AgentServer#0, init()
+main WARNING 2008-05-07 15:22:02,810, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 15:22:02,811, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 15:22:02,811, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 15:22:02,812, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 15:22:02,817, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 15:22:02,818, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 15:22:02,925, Engine#0, factory created
+main WARNING 2008-05-07 15:22:02,937, AgentServer#0, initialized at Wed May 07 15:22:02 CEST 2008
+main WARNING 2008-05-07 15:22:02,938, AgentServer#0, start()
+main WARNING 2008-05-07 15:22:03,730, AgentServer#0, started at Wed May 07 15:22:03 CEST 2008
+main WARNING 2008-05-07 16:40:53,093, AgentServer#0, init()
+main WARNING 2008-05-07 16:40:53,123, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 16:40:53,125, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 16:40:53,125, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 16:40:53,126, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 16:40:53,131, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 16:40:53,131, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 16:40:53,235, Engine#0, factory created
+main WARNING 2008-05-07 16:40:53,252, AgentServer#0, initialized at Wed May 07 16:40:53 CEST 2008
+main WARNING 2008-05-07 16:40:53,252, AgentServer#0, start()
+main WARNING 2008-05-07 16:40:53,885, AgentServer#0, started at Wed May 07 16:40:53 CEST 2008
+main WARNING 2008-05-07 17:39:52,759, AgentServer#0, init()
+main WARNING 2008-05-07 17:39:52,797, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 17:39:52,834, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 17:39:52,835, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 17:39:52,835, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 17:39:52,841, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 17:39:52,842, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 17:39:52,962, Engine#0, factory created
+main WARNING 2008-05-07 17:39:52,980, AgentServer#0, initialized at Wed May 07 17:39:52 CEST 2008
+main WARNING 2008-05-07 17:39:52,981, AgentServer#0, start()
+main WARNING 2008-05-07 17:39:53,691, AgentServer#0, started at Wed May 07 17:39:53 CEST 2008
+main WARNING 2008-05-07 17:45:23,519, AgentServer#0, init()
+main WARNING 2008-05-07 17:45:23,556, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 17:45:23,557, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 17:45:23,558, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 17:45:23,558, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 17:45:23,564, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 17:45:23,565, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 17:45:23,682, Engine#0, factory created
+main WARNING 2008-05-07 17:45:23,691, AgentServer#0, initialized at Wed May 07 17:45:23 CEST 2008
+main WARNING 2008-05-07 17:45:23,692, AgentServer#0, start()
+main WARNING 2008-05-07 17:45:24,407, AgentServer#0, started at Wed May 07 17:45:24 CEST 2008
+main WARNING 2008-05-07 17:50:01,843, AgentServer#0, init()
+main WARNING 2008-05-07 17:50:01,876, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 17:50:01,877, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 17:50:01,878, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 17:50:01,878, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 17:50:01,884, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 17:50:01,884, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 17:50:02,153, Engine#0, factory created
+main WARNING 2008-05-07 17:50:02,163, AgentServer#0, initialized at Wed May 07 17:50:02 CEST 2008
+main WARNING 2008-05-07 17:50:02,164, AgentServer#0, start()
+main WARNING 2008-05-07 17:50:03,163, AgentServer#0, started at Wed May 07 17:50:03 CEST 2008
+main WARNING 2008-05-07 19:38:42,561, AgentServer#0, init()
+main WARNING 2008-05-07 19:38:42,592, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 19:38:42,614, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 19:38:42,614, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 19:38:42,615, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 19:38:42,620, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 19:38:42,621, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 19:38:42,731, Engine#0, factory created
+main WARNING 2008-05-07 19:38:42,744, AgentServer#0, initialized at Wed May 07 19:38:42 CEST 2008
+main WARNING 2008-05-07 19:38:42,745, AgentServer#0, start()
+main WARNING 2008-05-07 19:38:43,450, AgentServer#0, started at Wed May 07 19:38:43 CEST 2008
+main WARNING 2008-05-07 19:41:32,037, AgentServer#0, init()
+main WARNING 2008-05-07 19:41:32,077, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@197d257 class loader.
+main WARNING 2008-05-07 19:41:32,096, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 19:41:32,097, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 19:41:32,097, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 19:41:32,103, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 19:41:32,103, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@197d257 class loader.
+main WARNING 2008-05-07 19:41:32,221, Engine#0, factory created
+main WARNING 2008-05-07 19:41:32,228, AgentServer#0, initialized at Wed May 07 19:41:32 CEST 2008
+main WARNING 2008-05-07 19:41:32,229, AgentServer#0, start()
+main WARNING 2008-05-07 19:41:32,933, AgentServer#0, started at Wed May 07 19:41:32 CEST 2008
+main WARNING 2008-05-07 20:24:45,108, AgentServer#0, init()
+main WARNING 2008-05-07 20:24:45,140, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 20:24:45,141, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 20:24:45,141, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 20:24:45,142, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 20:24:45,147, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 20:24:45,148, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 20:24:45,254, Engine#0, factory created
+main WARNING 2008-05-07 20:24:45,262, AgentServer#0, initialized at Wed May 07 20:24:45 CEST 2008
+main WARNING 2008-05-07 20:24:45,264, AgentServer#0, start()
+main WARNING 2008-05-07 20:24:46,147, AgentServer#0, started at Wed May 07 20:24:46 CEST 2008
+main WARNING 2008-05-07 21:21:32,493, AgentServer#0, init()
+main WARNING 2008-05-07 21:21:32,523, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 21:21:32,536, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 21:21:32,536, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 21:21:32,536, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 21:21:32,541, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 21:21:32,542, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-07 21:21:32,645, Engine#0, factory created
+main WARNING 2008-05-07 21:21:32,673, AgentServer#0, initialized at Wed May 07 21:21:32 CEST 2008
+main WARNING 2008-05-07 21:21:32,674, AgentServer#0, start()
+main WARNING 2008-05-07 21:21:33,404, AgentServer#0, started at Wed May 07 21:21:33 CEST 2008
+main WARNING 2008-05-07 21:37:05,164, AgentServer#0, init()
+main WARNING 2008-05-07 21:37:05,194, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 21:37:05,195, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 21:37:05,195, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 21:37:05,196, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 21:37:05,201, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 21:37:05,202, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-07 21:37:05,307, Engine#0, factory created
+main WARNING 2008-05-07 21:37:05,317, AgentServer#0, initialized at Wed May 07 21:37:05 CEST 2008
+main WARNING 2008-05-07 21:37:05,318, AgentServer#0, start()
+main WARNING 2008-05-07 21:37:06,175, AgentServer#0, started at Wed May 07 21:37:06 CEST 2008
+main WARNING 2008-05-07 21:46:42,843, AgentServer#0, init()
+main WARNING 2008-05-07 21:46:42,875, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@9fbe93 class loader.
+main WARNING 2008-05-07 21:46:42,894, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 21:46:42,894, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 21:46:42,895, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 21:46:42,900, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 21:46:42,901, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@9fbe93 class loader.
+main WARNING 2008-05-07 21:46:43,006, Engine#0, factory created
+main WARNING 2008-05-07 21:46:43,016, AgentServer#0, initialized at Wed May 07 21:46:43 CEST 2008
+main WARNING 2008-05-07 21:46:43,017, AgentServer#0, start()
+main WARNING 2008-05-07 21:46:43,822, AgentServer#0, started at Wed May 07 21:46:43 CEST 2008
+main WARNING 2008-05-07 21:50:50,331, AgentServer#0, init()
+main WARNING 2008-05-07 21:50:50,364, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@197d257 class loader.
+main WARNING 2008-05-07 21:50:50,383, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-07 21:50:50,384, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-07 21:50:50,384, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-07 21:50:50,391, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-07 21:50:50,391, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@197d257 class loader.
+main WARNING 2008-05-07 21:50:50,500, Engine#0, factory created
+main WARNING 2008-05-07 21:50:50,512, AgentServer#0, initialized at Wed May 07 21:50:50 CEST 2008
+main WARNING 2008-05-07 21:50:50,513, AgentServer#0, start()
+main WARNING 2008-05-07 21:50:51,371, AgentServer#0, started at Wed May 07 21:50:51 CEST 2008
+main WARNING 2008-05-08 10:05:43,812, AgentServer#0, init()
+main WARNING 2008-05-08 10:05:43,852, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1ddebc3 class loader.
+main WARNING 2008-05-08 10:05:43,873, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-08 10:05:43,873, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-08 10:05:43,874, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-08 10:05:43,886, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-08 10:05:43,886, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1ddebc3 class loader.
+main WARNING 2008-05-08 10:05:44,009, Engine#0, factory created
+main WARNING 2008-05-08 10:05:44,026, AgentServer#0, initialized at Thu May 08 10:05:44 CEST 2008
+main WARNING 2008-05-08 10:05:44,027, AgentServer#0, start()
+main WARNING 2008-05-08 10:05:45,081, AgentServer#0, started at Thu May 08 10:05:45 CEST 2008
+main WARNING 2008-05-08 10:29:24,180, AgentServer#0, init()
+main WARNING 2008-05-08 10:29:24,247, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@119c082 class loader.
+main WARNING 2008-05-08 10:29:24,270, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-08 10:29:24,271, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-08 10:29:24,271, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-08 10:29:24,278, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-08 10:29:24,278, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@119c082 class loader.
+main WARNING 2008-05-08 10:29:24,387, Engine#0, factory created
+main WARNING 2008-05-08 10:29:24,400, AgentServer#0, initialized at Thu May 08 10:29:24 CEST 2008
+main WARNING 2008-05-08 10:29:24,401, AgentServer#0, start()
+main WARNING 2008-05-08 10:29:25,103, AgentServer#0, started at Thu May 08 10:29:25 CEST 2008
+main WARNING 2008-05-08 10:33:37,495, AgentServer#0, init()
+main WARNING 2008-05-08 10:33:37,530, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-08 10:33:37,552, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-08 10:33:37,552, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-08 10:33:37,552, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-08 10:33:37,560, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-08 10:33:37,561, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-08 10:33:37,666, Engine#0, factory created
+main WARNING 2008-05-08 10:33:37,720, AgentServer#0, initialized at Thu May 08 10:33:37 CEST 2008
+main WARNING 2008-05-08 10:33:37,720, AgentServer#0, start()
+main WARNING 2008-05-08 10:33:38,901, AgentServer#0, started at Thu May 08 10:33:38 CEST 2008
+main WARNING 2008-05-09 13:07:57,073, AgentServer#0, init()
+main WARNING 2008-05-09 13:07:57,125, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17182c1 class loader.
+main WARNING 2008-05-09 13:07:57,147, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-09 13:07:57,147, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-09 13:07:57,148, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-09 13:07:57,160, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-09 13:07:57,160, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17182c1 class loader.
+main WARNING 2008-05-09 13:07:57,345, Engine#0, factory created
+main WARNING 2008-05-09 13:07:57,357, AgentServer#0, initialized at Fri May 09 13:07:57 CEST 2008
+main WARNING 2008-05-09 13:07:57,358, AgentServer#0, start()
+main WARNING 2008-05-09 13:07:58,326, AgentServer#0, started at Fri May 09 13:07:58 CEST 2008
+main WARNING 2008-05-09 13:44:35,042, AgentServer#0, init()
+main WARNING 2008-05-09 13:44:35,079, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-09 13:44:35,080, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-09 13:44:35,081, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-09 13:44:35,081, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-09 13:44:35,088, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-09 13:44:35,088, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-09 13:44:35,223, Engine#0, factory created
+main WARNING 2008-05-09 13:44:35,240, AgentServer#0, initialized at Fri May 09 13:44:35 CEST 2008
+main WARNING 2008-05-09 13:44:35,241, AgentServer#0, start()
+main WARNING 2008-05-09 13:44:35,952, AgentServer#0, started at Fri May 09 13:44:35 CEST 2008
+main WARNING 2008-05-12 19:59:58,297, AgentServer#0, init()
+main WARNING 2008-05-12 19:59:58,328, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-12 19:59:58,342, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-12 19:59:58,343, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-12 19:59:58,343, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-12 19:59:58,348, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-12 19:59:58,348, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-12 19:59:58,460, Engine#0, factory created
+main WARNING 2008-05-12 19:59:58,471, AgentServer#0, initialized at Mon May 12 19:59:58 CEST 2008
+main WARNING 2008-05-12 19:59:58,472, AgentServer#0, start()
+main WARNING 2008-05-12 19:59:59,319, AgentServer#0, started at Mon May 12 19:59:59 CEST 2008
+main WARNING 2008-05-12 20:28:41,108, AgentServer#0, init()
+main WARNING 2008-05-12 20:28:41,150, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-12 20:28:41,221, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-12 20:28:41,222, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-12 20:28:41,222, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-12 20:28:41,241, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-12 20:28:41,241, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-12 20:28:41,415, Engine#0, factory created
+main WARNING 2008-05-12 20:28:41,448, AgentServer#0, initialized at Mon May 12 20:28:41 CEST 2008
+main WARNING 2008-05-12 20:28:41,449, AgentServer#0, start()
+main WARNING 2008-05-12 20:28:42,932, AgentServer#0, started at Mon May 12 20:28:42 CEST 2008
+main WARNING 2008-05-12 20:31:31,277, AgentServer#0, init()
+main WARNING 2008-05-12 20:31:31,311, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-12 20:31:31,330, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-12 20:31:31,330, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-12 20:31:31,330, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-12 20:31:31,336, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-12 20:31:31,336, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-12 20:31:31,446, Engine#0, factory created
+main WARNING 2008-05-12 20:31:31,452, AgentServer#0, initialized at Mon May 12 20:31:31 CEST 2008
+main WARNING 2008-05-12 20:31:31,452, AgentServer#0, start()
+main WARNING 2008-05-12 20:31:32,428, AgentServer#0, started at Mon May 12 20:31:32 CEST 2008
+main WARNING 2008-05-12 20:49:11,831, AgentServer#0, init()
+main WARNING 2008-05-12 20:49:11,867, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-12 20:49:11,881, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-12 20:49:11,882, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-12 20:49:11,882, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-12 20:49:11,889, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-12 20:49:11,889, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-12 20:49:12,033, Engine#0, factory created
+main WARNING 2008-05-12 20:49:12,061, AgentServer#0, initialized at Mon May 12 20:49:12 CEST 2008
+main WARNING 2008-05-12 20:49:12,066, AgentServer#0, start()
+main WARNING 2008-05-12 20:49:13,306, AgentServer#0, started at Mon May 12 20:49:13 CEST 2008
+main WARNING 2008-05-12 21:09:28,533, AgentServer#0, init()
+main WARNING 2008-05-12 21:09:28,571, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@11a698a class loader.
+main WARNING 2008-05-12 21:09:28,593, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-12 21:09:28,594, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-12 21:09:28,594, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-12 21:09:28,601, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-12 21:09:28,601, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@11a698a class loader.
+main WARNING 2008-05-12 21:09:28,718, Engine#0, factory created
+main WARNING 2008-05-12 21:09:28,726, AgentServer#0, initialized at Mon May 12 21:09:28 CEST 2008
+main WARNING 2008-05-12 21:09:28,726, AgentServer#0, start()
+main WARNING 2008-05-12 21:09:29,551, AgentServer#0, started at Mon May 12 21:09:29 CEST 2008
+main WARNING 2008-05-12 21:14:40,436, AgentServer#0, init()
+main WARNING 2008-05-12 21:14:40,477, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-12 21:14:40,488, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-12 21:14:40,489, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-12 21:14:40,489, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-12 21:14:40,495, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-12 21:14:40,495, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-12 21:14:40,605, Engine#0, factory created
+main WARNING 2008-05-12 21:14:40,612, AgentServer#0, initialized at Mon May 12 21:14:40 CEST 2008
+main WARNING 2008-05-12 21:14:40,612, AgentServer#0, start()
+main WARNING 2008-05-12 21:14:41,341, AgentServer#0, started at Mon May 12 21:14:41 CEST 2008
+main WARNING 2008-05-12 21:24:43,075, AgentServer#0, init()
+main WARNING 2008-05-12 21:24:43,119, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-12 21:24:43,120, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-12 21:24:43,121, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-12 21:24:43,121, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-12 21:24:43,127, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-12 21:24:43,127, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-12 21:24:43,251, Engine#0, factory created
+main WARNING 2008-05-12 21:24:43,260, AgentServer#0, initialized at Mon May 12 21:24:43 CEST 2008
+main WARNING 2008-05-12 21:24:43,261, AgentServer#0, start()
+main WARNING 2008-05-12 21:24:44,373, AgentServer#0, started at Mon May 12 21:24:44 CEST 2008
+main WARNING 2008-05-13 10:34:25,605, AgentServer#0, init()
+main WARNING 2008-05-13 10:34:25,637, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-13 10:34:25,657, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 10:34:25,658, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 10:34:25,658, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 10:34:25,664, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 10:34:25,664, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-13 10:34:25,786, Engine#0, factory created
+main WARNING 2008-05-13 10:34:25,792, AgentServer#0, initialized at Tue May 13 10:34:25 CEST 2008
+main WARNING 2008-05-13 10:34:25,793, AgentServer#0, start()
+main WARNING 2008-05-13 10:34:26,620, AgentServer#0, started at Tue May 13 10:34:26 CEST 2008
+main WARNING 2008-05-13 10:45:57,630, AgentServer#0, init()
+main WARNING 2008-05-13 10:45:57,665, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-13 10:45:57,682, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 10:45:57,683, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 10:45:57,683, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 10:45:57,691, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 10:45:57,691, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-13 10:45:57,818, Engine#0, factory created
+main WARNING 2008-05-13 10:45:57,826, AgentServer#0, initialized at Tue May 13 10:45:57 CEST 2008
+main WARNING 2008-05-13 10:45:57,827, AgentServer#0, start()
+main WARNING 2008-05-13 10:45:58,717, AgentServer#0, started at Tue May 13 10:45:58 CEST 2008
+main WARNING 2008-05-13 15:31:49,465, AgentServer#0, init()
+main WARNING 2008-05-13 15:31:49,498, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-13 15:31:49,500, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 15:31:49,500, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 15:31:49,500, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 15:31:49,506, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 15:31:49,506, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-13 15:31:49,622, Engine#0, factory created
+main WARNING 2008-05-13 15:31:49,632, AgentServer#0, initialized at Tue May 13 15:31:49 CEST 2008
+main WARNING 2008-05-13 15:31:49,633, AgentServer#0, start()
+main WARNING 2008-05-13 15:31:50,349, AgentServer#0, started at Tue May 13 15:31:50 CEST 2008
+JndiServer.Monitor#0 SEVERE 2008-05-13 15:37:28,800, JndiServer.Monitor#0, error during send
+java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(SocketInputStream.java:168)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:218)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:258)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:317)
+	at java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2264)
+	at java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2277)
+	at java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:2748)
+	at java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:780)
+	at java.io.ObjectInputStream.<init>(ObjectInputStream.java:280)
+	at fr.dyade.aaa.jndi2.msg.IOControl.readObject(IOControl.java:47)
+	at fr.dyade.aaa.jndi2.server.TcpRequestContext.<init>(TcpRequestContext.java:42)
+	at fr.dyade.aaa.jndi2.server.TcpServer$Monitor.run(TcpServer.java:144)
+	at java.lang.Thread.run(Thread.java:619)
+JndiServer.Monitor#0 SEVERE 2008-05-13 16:03:58,934, JndiServer.Monitor#0, error during send
+java.io.EOFException
+	at java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2279)
+	at java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:2748)
+	at java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:780)
+	at java.io.ObjectInputStream.<init>(ObjectInputStream.java:280)
+	at fr.dyade.aaa.jndi2.msg.IOControl.readObject(IOControl.java:47)
+	at fr.dyade.aaa.jndi2.server.TcpRequestContext.<init>(TcpRequestContext.java:42)
+	at fr.dyade.aaa.jndi2.server.TcpServer$Monitor.run(TcpServer.java:144)
+	at java.lang.Thread.run(Thread.java:619)
+main WARNING 2008-05-13 16:55:59,275, AgentServer#0, init()
+main WARNING 2008-05-13 16:55:59,308, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1e63e3d class loader.
+main WARNING 2008-05-13 16:55:59,329, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 16:55:59,330, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 16:55:59,330, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 16:55:59,336, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 16:55:59,336, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1e63e3d class loader.
+main WARNING 2008-05-13 16:55:59,452, Engine#0, factory created
+main WARNING 2008-05-13 16:55:59,460, AgentServer#0, initialized at Tue May 13 16:55:59 CEST 2008
+main WARNING 2008-05-13 16:55:59,460, AgentServer#0, start()
+main WARNING 2008-05-13 16:56:00,162, AgentServer#0, started at Tue May 13 16:56:00 CEST 2008
+main WARNING 2008-05-13 16:56:55,746, AgentServer#0, init()
+main WARNING 2008-05-13 16:56:55,782, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-13 16:56:55,804, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 16:56:55,804, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 16:56:55,805, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 16:56:55,813, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 16:56:55,813, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-13 16:56:55,923, Engine#0, factory created
+main WARNING 2008-05-13 16:56:55,937, AgentServer#0, initialized at Tue May 13 16:56:55 CEST 2008
+main WARNING 2008-05-13 16:56:55,938, AgentServer#0, start()
+main WARNING 2008-05-13 16:56:56,637, AgentServer#0, started at Tue May 13 16:56:56 CEST 2008
+main WARNING 2008-05-13 17:26:49,929, AgentServer#0, init()
+main WARNING 2008-05-13 17:26:49,964, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-13 17:26:49,965, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 17:26:49,966, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 17:26:49,966, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 17:26:49,972, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 17:26:49,972, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-13 17:26:50,085, Engine#0, factory created
+main WARNING 2008-05-13 17:26:50,101, AgentServer#0, initialized at Tue May 13 17:26:50 CEST 2008
+main WARNING 2008-05-13 17:26:50,102, AgentServer#0, start()
+main WARNING 2008-05-13 17:26:50,781, AgentServer#0, started at Tue May 13 17:26:50 CEST 2008
+main WARNING 2008-05-13 17:35:04,617, AgentServer#0, init()
+main WARNING 2008-05-13 17:35:04,652, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-13 17:35:04,653, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 17:35:04,653, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 17:35:04,653, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 17:35:04,660, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 17:35:04,660, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-13 17:35:04,778, Engine#0, factory created
+main WARNING 2008-05-13 17:35:04,787, AgentServer#0, initialized at Tue May 13 17:35:04 CEST 2008
+main WARNING 2008-05-13 17:35:04,787, AgentServer#0, start()
+main WARNING 2008-05-13 17:35:05,499, AgentServer#0, started at Tue May 13 17:35:05 CEST 2008
+main WARNING 2008-05-13 17:43:52,296, AgentServer#0, init()
+main WARNING 2008-05-13 17:43:52,338, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1cde100 class loader.
+main WARNING 2008-05-13 17:43:52,358, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 17:43:52,359, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 17:43:52,359, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 17:43:52,365, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 17:43:52,365, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1cde100 class loader.
+main WARNING 2008-05-13 17:43:52,483, Engine#0, factory created
+main WARNING 2008-05-13 17:43:52,492, AgentServer#0, initialized at Tue May 13 17:43:52 CEST 2008
+main WARNING 2008-05-13 17:43:52,493, AgentServer#0, start()
+main WARNING 2008-05-13 17:43:53,361, AgentServer#0, started at Tue May 13 17:43:53 CEST 2008
+main WARNING 2008-05-13 17:48:56,279, AgentServer#0, init()
+main WARNING 2008-05-13 17:48:56,326, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1858610 class loader.
+main WARNING 2008-05-13 17:48:56,349, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 17:48:56,349, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 17:48:56,350, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 17:48:56,357, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 17:48:56,357, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1858610 class loader.
+main WARNING 2008-05-13 17:48:56,466, Engine#0, factory created
+main WARNING 2008-05-13 17:48:56,478, AgentServer#0, initialized at Tue May 13 17:48:56 CEST 2008
+main WARNING 2008-05-13 17:48:56,479, AgentServer#0, start()
+main WARNING 2008-05-13 17:48:58,121, AgentServer#0, started at Tue May 13 17:48:58 CEST 2008
+main WARNING 2008-05-13 18:26:39,265, AgentServer#0, init()
+main WARNING 2008-05-13 18:26:39,631, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-13 18:26:39,638, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 18:26:39,638, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 18:26:39,639, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 18:26:39,646, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 18:26:39,646, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-13 18:26:39,779, Engine#0, factory created
+main WARNING 2008-05-13 18:26:39,795, AgentServer#0, initialized at Tue May 13 18:26:39 CEST 2008
+main WARNING 2008-05-13 18:26:39,796, AgentServer#0, start()
+main WARNING 2008-05-13 18:26:41,499, AgentServer#0, started at Tue May 13 18:26:41 CEST 2008
+main WARNING 2008-05-13 18:30:33,430, AgentServer#0, init()
+main WARNING 2008-05-13 18:30:33,471, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@16930e2 class loader.
+main WARNING 2008-05-13 18:30:33,491, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 18:30:33,492, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 18:30:33,492, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 18:30:33,499, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 18:30:33,500, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@16930e2 class loader.
+main WARNING 2008-05-13 18:30:33,654, Engine#0, factory created
+main WARNING 2008-05-13 18:30:33,673, AgentServer#0, initialized at Tue May 13 18:30:33 CEST 2008
+main WARNING 2008-05-13 18:30:33,674, AgentServer#0, start()
+main WARNING 2008-05-13 18:30:35,401, AgentServer#0, started at Tue May 13 18:30:35 CEST 2008
+main WARNING 2008-05-13 18:38:34,888, AgentServer#0, init()
+main WARNING 2008-05-13 18:38:34,920, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-13 18:38:34,933, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-13 18:38:34,933, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-13 18:38:34,933, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-13 18:38:34,940, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-13 18:38:34,940, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-13 18:38:35,178, Engine#0, factory created
+main WARNING 2008-05-13 18:38:35,184, AgentServer#0, initialized at Tue May 13 18:38:35 CEST 2008
+main WARNING 2008-05-13 18:38:35,185, AgentServer#0, start()
+main WARNING 2008-05-13 18:38:36,827, AgentServer#0, started at Tue May 13 18:38:36 CEST 2008
+main WARNING 2008-05-14 09:17:24,707, AgentServer#0, init()
+main WARNING 2008-05-14 09:17:24,739, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-14 09:17:24,744, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-14 09:17:24,745, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-14 09:17:24,745, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-14 09:17:24,755, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-14 09:17:24,755, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-14 09:17:24,864, Engine#0, factory created
+main WARNING 2008-05-14 09:17:24,879, AgentServer#0, initialized at Wed May 14 09:17:24 CEST 2008
+main WARNING 2008-05-14 09:17:24,880, AgentServer#0, start()
+main WARNING 2008-05-14 09:17:25,635, AgentServer#0, started at Wed May 14 09:17:25 CEST 2008
+main WARNING 2008-05-14 09:20:50,070, AgentServer#0, init()
+main WARNING 2008-05-14 09:20:50,107, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@defa1a class loader.
+main WARNING 2008-05-14 09:20:50,265, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-14 09:20:50,266, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-14 09:20:50,266, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-14 09:20:50,282, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-14 09:20:50,283, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@defa1a class loader.
+main WARNING 2008-05-14 09:20:50,441, Engine#0, factory created
+main WARNING 2008-05-14 09:20:50,468, AgentServer#0, initialized at Wed May 14 09:20:50 CEST 2008
+main WARNING 2008-05-14 09:20:50,468, AgentServer#0, start()
+main WARNING 2008-05-14 09:20:51,441, AgentServer#0, started at Wed May 14 09:20:51 CEST 2008
+main WARNING 2008-05-14 09:39:44,066, AgentServer#0, init()
+main WARNING 2008-05-14 09:39:44,099, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-14 09:39:44,100, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-14 09:39:44,101, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-14 09:39:44,101, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-14 09:39:44,108, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-14 09:39:44,109, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-14 09:39:44,320, Engine#0, factory created
+main WARNING 2008-05-14 09:39:44,339, AgentServer#0, initialized at Wed May 14 09:39:44 CEST 2008
+main WARNING 2008-05-14 09:39:44,340, AgentServer#0, start()
+main WARNING 2008-05-14 09:39:45,919, AgentServer#0, started at Wed May 14 09:39:45 CEST 2008
+main WARNING 2008-05-15 10:16:52,299, AgentServer#0, init()
+main WARNING 2008-05-15 10:16:52,334, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@defa1a class loader.
+main WARNING 2008-05-15 10:16:52,357, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-15 10:16:52,358, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-15 10:16:52,358, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-15 10:16:52,364, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-15 10:16:52,364, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@defa1a class loader.
+main WARNING 2008-05-15 10:16:52,486, Engine#0, factory created
+main WARNING 2008-05-15 10:16:52,496, AgentServer#0, initialized at Thu May 15 10:16:52 CEST 2008
+main WARNING 2008-05-15 10:16:52,497, AgentServer#0, start()
+main WARNING 2008-05-15 10:16:53,241, AgentServer#0, started at Thu May 15 10:16:53 CEST 2008
+main WARNING 2008-05-15 10:24:17,120, AgentServer#0, init()
+main WARNING 2008-05-15 10:24:17,155, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@15601ea class loader.
+main WARNING 2008-05-15 10:24:17,177, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-15 10:24:17,178, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-15 10:24:17,178, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-15 10:24:17,184, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-15 10:24:17,184, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@15601ea class loader.
+main WARNING 2008-05-15 10:24:17,308, Engine#0, factory created
+main WARNING 2008-05-15 10:24:17,316, AgentServer#0, initialized at Thu May 15 10:24:17 CEST 2008
+main WARNING 2008-05-15 10:24:17,316, AgentServer#0, start()
+main WARNING 2008-05-15 10:24:18,040, AgentServer#0, started at Thu May 15 10:24:18 CEST 2008
+main WARNING 2008-05-15 10:46:20,277, AgentServer#0, init()
+main WARNING 2008-05-15 10:46:20,314, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-15 10:46:20,337, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-15 10:46:20,337, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-15 10:46:20,338, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-15 10:46:20,347, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-15 10:46:20,347, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-15 10:46:20,483, Engine#0, factory created
+main WARNING 2008-05-15 10:46:20,494, AgentServer#0, initialized at Thu May 15 10:46:20 CEST 2008
+main WARNING 2008-05-15 10:46:20,495, AgentServer#0, start()
+main WARNING 2008-05-15 10:46:21,238, AgentServer#0, started at Thu May 15 10:46:21 CEST 2008
+main WARNING 2008-05-15 11:20:10,968, AgentServer#0, init()
+main WARNING 2008-05-15 11:20:11,004, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-15 11:20:11,005, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-15 11:20:11,005, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-15 11:20:11,006, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-15 11:20:11,012, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-15 11:20:11,013, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-15 11:20:11,133, Engine#0, factory created
+main WARNING 2008-05-15 11:20:11,151, AgentServer#0, initialized at Thu May 15 11:20:11 CEST 2008
+main WARNING 2008-05-15 11:20:11,151, AgentServer#0, start()
+main WARNING 2008-05-15 11:20:11,863, AgentServer#0, started at Thu May 15 11:20:11 CEST 2008
+main WARNING 2008-05-15 11:36:00,361, AgentServer#0, init()
+main WARNING 2008-05-15 11:36:00,397, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-15 11:36:00,399, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-15 11:36:00,399, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-15 11:36:00,399, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-15 11:36:00,407, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-15 11:36:00,407, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-15 11:36:00,526, Engine#0, factory created
+main WARNING 2008-05-15 11:36:00,536, AgentServer#0, initialized at Thu May 15 11:36:00 CEST 2008
+main WARNING 2008-05-15 11:36:00,536, AgentServer#0, start()
+main WARNING 2008-05-15 11:36:01,470, AgentServer#0, started at Thu May 15 11:36:01 CEST 2008
+main WARNING 2008-05-19 10:09:20,780, AgentServer#0, init()
+main WARNING 2008-05-19 10:09:20,816, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 10:09:20,817, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 10:09:20,817, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 10:09:20,818, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 10:09:20,824, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 10:09:20,826, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 10:09:20,948, Engine#0, factory created
+main WARNING 2008-05-19 10:09:20,958, AgentServer#0, initialized at Mon May 19 10:09:20 CEST 2008
+main WARNING 2008-05-19 10:09:20,959, AgentServer#0, start()
+main WARNING 2008-05-19 10:09:21,764, AgentServer#0, started at Mon May 19 10:09:21 CEST 2008
+main WARNING 2008-05-19 10:33:32,378, AgentServer#0, init()
+main WARNING 2008-05-19 10:33:32,410, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@929206 class loader.
+main WARNING 2008-05-19 10:33:32,411, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 10:33:32,412, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 10:33:32,413, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 10:33:32,418, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 10:33:32,418, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@929206 class loader.
+main WARNING 2008-05-19 10:33:32,545, Engine#0, factory created
+main WARNING 2008-05-19 10:33:32,565, AgentServer#0, initialized at Mon May 19 10:33:32 CEST 2008
+main WARNING 2008-05-19 10:33:32,566, AgentServer#0, start()
+main WARNING 2008-05-19 10:33:33,848, AgentServer#0, started at Mon May 19 10:33:33 CEST 2008
+main WARNING 2008-05-19 13:59:17,840, AgentServer#0, init()
+main WARNING 2008-05-19 13:59:17,873, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-19 13:59:17,893, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 13:59:17,893, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 13:59:17,893, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 13:59:17,899, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 13:59:17,899, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-19 13:59:18,018, Engine#0, factory created
+main WARNING 2008-05-19 13:59:18,129, AgentServer#0, initialized at Mon May 19 13:59:18 CEST 2008
+main WARNING 2008-05-19 13:59:18,130, AgentServer#0, start()
+main WARNING 2008-05-19 13:59:19,130, AgentServer#0, started at Mon May 19 13:59:19 CEST 2008
+main WARNING 2008-05-19 14:39:06,748, AgentServer#0, init()
+main WARNING 2008-05-19 14:39:06,780, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-19 14:39:06,781, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 14:39:06,781, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 14:39:06,781, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 14:39:06,787, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 14:39:06,788, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-19 14:39:06,897, Engine#0, factory created
+main WARNING 2008-05-19 14:39:06,906, AgentServer#0, initialized at Mon May 19 14:39:06 CEST 2008
+main WARNING 2008-05-19 14:39:06,907, AgentServer#0, start()
+main WARNING 2008-05-19 14:39:07,792, AgentServer#0, started at Mon May 19 14:39:07 CEST 2008
+main WARNING 2008-05-19 14:52:11,569, AgentServer#0, init()
+main WARNING 2008-05-19 14:52:11,607, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-19 14:52:11,608, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 14:52:11,609, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 14:52:11,609, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 14:52:11,616, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 14:52:11,616, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-19 14:52:11,735, Engine#0, factory created
+main WARNING 2008-05-19 14:52:11,746, AgentServer#0, initialized at Mon May 19 14:52:11 CEST 2008
+main WARNING 2008-05-19 14:52:11,746, AgentServer#0, start()
+main WARNING 2008-05-19 14:52:12,476, AgentServer#0, started at Mon May 19 14:52:12 CEST 2008
+main WARNING 2008-05-19 15:40:14,671, AgentServer#0, init()
+main WARNING 2008-05-19 15:40:14,709, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-19 15:40:14,723, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 15:40:14,723, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 15:40:14,724, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 15:40:14,731, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 15:40:14,731, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-19 15:40:14,850, Engine#0, factory created
+main WARNING 2008-05-19 15:40:14,860, AgentServer#0, initialized at Mon May 19 15:40:14 CEST 2008
+main WARNING 2008-05-19 15:40:14,860, AgentServer#0, start()
+main WARNING 2008-05-19 15:40:15,584, AgentServer#0, started at Mon May 19 15:40:15 CEST 2008
+main WARNING 2008-05-19 16:14:27,547, AgentServer#0, init()
+main WARNING 2008-05-19 16:14:27,585, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 16:14:27,586, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 16:14:27,586, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 16:14:27,587, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 16:14:27,593, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 16:14:27,593, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 16:14:27,718, Engine#0, factory created
+main WARNING 2008-05-19 16:14:27,738, AgentServer#0, initialized at Mon May 19 16:14:27 CEST 2008
+main WARNING 2008-05-19 16:14:27,739, AgentServer#0, start()
+main WARNING 2008-05-19 16:14:28,598, AgentServer#0, started at Mon May 19 16:14:28 CEST 2008
+main WARNING 2008-05-19 17:09:31,714, AgentServer#0, init()
+main WARNING 2008-05-19 17:09:31,752, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-19 17:09:31,773, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 17:09:31,774, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 17:09:31,774, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 17:09:31,781, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 17:09:31,781, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-19 17:09:31,901, Engine#0, factory created
+main WARNING 2008-05-19 17:09:31,913, AgentServer#0, initialized at Mon May 19 17:09:31 CEST 2008
+main WARNING 2008-05-19 17:09:31,914, AgentServer#0, start()
+main WARNING 2008-05-19 17:09:32,639, AgentServer#0, started at Mon May 19 17:09:32 CEST 2008
+main WARNING 2008-05-19 17:19:14,597, AgentServer#0, init()
+main WARNING 2008-05-19 17:19:14,642, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 17:19:14,645, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 17:19:14,646, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 17:19:14,646, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 17:19:14,653, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 17:19:14,655, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 17:19:14,790, Engine#0, factory created
+main WARNING 2008-05-19 17:19:14,804, AgentServer#0, initialized at Mon May 19 17:19:14 CEST 2008
+main WARNING 2008-05-19 17:19:14,805, AgentServer#0, start()
+main WARNING 2008-05-19 17:19:15,648, AgentServer#0, started at Mon May 19 17:19:15 CEST 2008
+main WARNING 2008-05-19 17:55:55,507, AgentServer#0, init()
+main WARNING 2008-05-19 17:55:55,556, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 17:55:55,557, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 17:55:55,558, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 17:55:55,558, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 17:55:55,564, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 17:55:55,564, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 17:55:55,673, Engine#0, factory created
+main WARNING 2008-05-19 17:55:55,682, AgentServer#0, initialized at Mon May 19 17:55:55 CEST 2008
+main WARNING 2008-05-19 17:55:55,684, AgentServer#0, start()
+main WARNING 2008-05-19 17:55:56,642, AgentServer#0, started at Mon May 19 17:55:56 CEST 2008
+main WARNING 2008-05-19 19:06:31,272, AgentServer#0, init()
+main WARNING 2008-05-19 19:06:31,315, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 19:06:31,315, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 19:06:31,316, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 19:06:31,316, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 19:06:31,325, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 19:06:31,325, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 19:06:31,433, Engine#0, factory created
+main WARNING 2008-05-19 19:06:31,450, AgentServer#0, initialized at Mon May 19 19:06:31 CEST 2008
+main WARNING 2008-05-19 19:06:31,451, AgentServer#0, start()
+main WARNING 2008-05-19 19:06:32,163, AgentServer#0, started at Mon May 19 19:06:32 CEST 2008
+main WARNING 2008-05-19 19:50:58,793, AgentServer#0, init()
+main WARNING 2008-05-19 19:50:58,824, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 19:50:58,826, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 19:50:58,826, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 19:50:58,826, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 19:50:58,833, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 19:50:58,833, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 19:50:58,946, Engine#0, factory created
+main WARNING 2008-05-19 19:50:58,953, AgentServer#0, initialized at Mon May 19 19:50:58 CEST 2008
+main WARNING 2008-05-19 19:50:58,954, AgentServer#0, start()
+main WARNING 2008-05-19 19:50:59,837, AgentServer#0, started at Mon May 19 19:50:59 CEST 2008
+main WARNING 2008-05-19 20:05:34,649, AgentServer#0, init()
+main WARNING 2008-05-19 20:05:34,711, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1ba34f2 class loader.
+main WARNING 2008-05-19 20:05:34,740, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 20:05:34,741, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 20:05:34,741, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 20:05:34,751, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 20:05:34,752, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1ba34f2 class loader.
+main WARNING 2008-05-19 20:05:34,862, Engine#0, factory created
+main WARNING 2008-05-19 20:05:34,869, AgentServer#0, initialized at Mon May 19 20:05:34 CEST 2008
+main WARNING 2008-05-19 20:05:34,870, AgentServer#0, start()
+main WARNING 2008-05-19 20:05:35,665, AgentServer#0, started at Mon May 19 20:05:35 CEST 2008
+main WARNING 2008-05-19 20:28:12,581, AgentServer#0, init()
+main WARNING 2008-05-19 20:28:12,619, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@192d342 class loader.
+main WARNING 2008-05-19 20:28:12,638, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 20:28:12,639, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 20:28:12,639, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 20:28:12,645, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 20:28:12,645, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@192d342 class loader.
+main WARNING 2008-05-19 20:28:12,750, Engine#0, factory created
+main WARNING 2008-05-19 20:28:12,773, AgentServer#0, initialized at Mon May 19 20:28:12 CEST 2008
+main WARNING 2008-05-19 20:28:12,773, AgentServer#0, start()
+main WARNING 2008-05-19 20:28:13,641, AgentServer#0, started at Mon May 19 20:28:13 CEST 2008
+main WARNING 2008-05-19 20:39:26,556, AgentServer#0, init()
+main WARNING 2008-05-19 20:39:26,595, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 20:39:26,595, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 20:39:26,596, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 20:39:26,596, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 20:39:26,603, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 20:39:26,603, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 20:39:26,725, Engine#0, factory created
+main WARNING 2008-05-19 20:39:26,736, AgentServer#0, initialized at Mon May 19 20:39:26 CEST 2008
+main WARNING 2008-05-19 20:39:26,737, AgentServer#0, start()
+main WARNING 2008-05-19 20:39:27,486, AgentServer#0, started at Mon May 19 20:39:27 CEST 2008
+main WARNING 2008-05-19 20:48:07,648, AgentServer#0, init()
+main WARNING 2008-05-19 20:48:07,683, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 20:48:07,684, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 20:48:07,685, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 20:48:07,685, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 20:48:07,691, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 20:48:07,691, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 20:48:07,813, Engine#0, factory created
+main WARNING 2008-05-19 20:48:07,824, AgentServer#0, initialized at Mon May 19 20:48:07 CEST 2008
+main WARNING 2008-05-19 20:48:07,824, AgentServer#0, start()
+main WARNING 2008-05-19 20:48:08,579, AgentServer#0, started at Mon May 19 20:48:08 CEST 2008
+main WARNING 2008-05-19 20:52:17,262, AgentServer#0, init()
+main WARNING 2008-05-19 20:52:17,295, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 20:52:17,296, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 20:52:17,296, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 20:52:17,296, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 20:52:17,302, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 20:52:17,302, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-19 20:52:17,412, Engine#0, factory created
+main WARNING 2008-05-19 20:52:17,422, AgentServer#0, initialized at Mon May 19 20:52:17 CEST 2008
+main WARNING 2008-05-19 20:52:17,422, AgentServer#0, start()
+main WARNING 2008-05-19 20:52:18,274, AgentServer#0, started at Mon May 19 20:52:18 CEST 2008
+main WARNING 2008-05-19 20:57:09,451, AgentServer#0, init()
+main WARNING 2008-05-19 20:57:09,484, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-19 20:57:09,502, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-19 20:57:09,502, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-19 20:57:09,502, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-19 20:57:09,509, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-19 20:57:09,509, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-19 20:57:09,617, Engine#0, factory created
+main WARNING 2008-05-19 20:57:09,622, AgentServer#0, initialized at Mon May 19 20:57:09 CEST 2008
+main WARNING 2008-05-19 20:57:09,625, AgentServer#0, start()
+main WARNING 2008-05-19 20:57:10,705, AgentServer#0, started at Mon May 19 20:57:10 CEST 2008
+main WARNING 2008-05-20 12:41:59,689, AgentServer#0, init()
+main WARNING 2008-05-20 12:41:59,722, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@15601ea class loader.
+main WARNING 2008-05-20 12:41:59,744, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-20 12:41:59,745, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-20 12:41:59,745, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-20 12:41:59,750, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-20 12:41:59,750, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@15601ea class loader.
+main WARNING 2008-05-20 12:41:59,875, Engine#0, factory created
+main WARNING 2008-05-20 12:41:59,883, AgentServer#0, initialized at Tue May 20 12:41:59 CEST 2008
+main WARNING 2008-05-20 12:41:59,884, AgentServer#0, start()
+main WARNING 2008-05-20 12:42:00,613, AgentServer#0, started at Tue May 20 12:42:00 CEST 2008
+main WARNING 2008-05-20 12:57:09,502, AgentServer#0, init()
+main WARNING 2008-05-20 12:57:09,537, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 12:57:09,538, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-20 12:57:09,539, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-20 12:57:09,539, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-20 12:57:09,544, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-20 12:57:09,545, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 12:57:09,669, Engine#0, factory created
+main WARNING 2008-05-20 12:57:09,679, AgentServer#0, initialized at Tue May 20 12:57:09 CEST 2008
+main WARNING 2008-05-20 12:57:09,680, AgentServer#0, start()
+main WARNING 2008-05-20 12:57:10,404, AgentServer#0, started at Tue May 20 12:57:10 CEST 2008
+main WARNING 2008-05-20 14:54:47,527, AgentServer#0, init()
+main WARNING 2008-05-20 14:54:47,562, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@bd0108 class loader.
+main WARNING 2008-05-20 14:54:47,594, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-20 14:54:47,595, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-20 14:54:47,595, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-20 14:54:47,602, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-20 14:54:47,602, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@bd0108 class loader.
+main WARNING 2008-05-20 14:54:47,725, Engine#0, factory created
+main WARNING 2008-05-20 14:54:47,735, AgentServer#0, initialized at Tue May 20 14:54:47 CEST 2008
+main WARNING 2008-05-20 14:54:47,736, AgentServer#0, start()
+main WARNING 2008-05-20 14:54:48,525, AgentServer#0, started at Tue May 20 14:54:48 CEST 2008
+main WARNING 2008-05-20 17:46:37,013, AgentServer#0, init()
+main WARNING 2008-05-20 17:46:37,044, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-20 17:46:37,064, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-20 17:46:37,064, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-20 17:46:37,064, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-20 17:46:37,070, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-20 17:46:37,070, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@12f6684 class loader.
+main WARNING 2008-05-20 17:46:37,213, Engine#0, factory created
+main WARNING 2008-05-20 17:46:37,302, AgentServer#0, initialized at Tue May 20 17:46:37 CEST 2008
+main WARNING 2008-05-20 17:46:37,303, AgentServer#0, start()
+main WARNING 2008-05-20 17:46:39,071, AgentServer#0, started at Tue May 20 17:46:39 CEST 2008
+main WARNING 2008-05-20 17:53:23,266, AgentServer#0, init()
+main WARNING 2008-05-20 17:53:23,310, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 17:53:23,310, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-20 17:53:23,311, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-20 17:53:23,311, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-20 17:53:23,317, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-20 17:53:23,317, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 17:53:23,421, Engine#0, factory created
+main WARNING 2008-05-20 17:53:23,429, AgentServer#0, initialized at Tue May 20 17:53:23 CEST 2008
+main WARNING 2008-05-20 17:53:23,430, AgentServer#0, start()
+main WARNING 2008-05-20 17:53:24,362, AgentServer#0, started at Tue May 20 17:53:24 CEST 2008
+main WARNING 2008-05-20 18:20:00,890, AgentServer#0, init()
+main WARNING 2008-05-20 18:20:00,925, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 18:20:00,927, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-20 18:20:00,927, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-20 18:20:00,927, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-20 18:20:00,933, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-20 18:20:00,934, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 18:20:01,045, Engine#0, factory created
+main WARNING 2008-05-20 18:20:01,057, AgentServer#0, initialized at Tue May 20 18:20:01 CEST 2008
+main WARNING 2008-05-20 18:20:01,057, AgentServer#0, start()
+main WARNING 2008-05-20 18:20:03,013, AgentServer#0, started at Tue May 20 18:20:03 CEST 2008
+main WARNING 2008-05-20 18:34:24,998, AgentServer#0, init()
+main WARNING 2008-05-20 18:34:25,030, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 18:34:25,032, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-20 18:34:25,032, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-20 18:34:25,033, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-20 18:34:25,039, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-20 18:34:25,039, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 18:34:25,150, Engine#0, factory created
+main WARNING 2008-05-20 18:34:25,160, AgentServer#0, initialized at Tue May 20 18:34:25 CEST 2008
+main WARNING 2008-05-20 18:34:25,161, AgentServer#0, start()
+main WARNING 2008-05-20 18:34:25,826, AgentServer#0, started at Tue May 20 18:34:25 CEST 2008
+main WARNING 2008-05-20 18:42:14,859, AgentServer#0, init()
+main WARNING 2008-05-20 18:42:14,906, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 18:42:14,906, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-20 18:42:14,907, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-20 18:42:14,907, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-20 18:42:14,917, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-20 18:42:14,917, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 18:42:15,057, Engine#0, factory created
+main WARNING 2008-05-20 18:42:15,067, AgentServer#0, initialized at Tue May 20 18:42:15 CEST 2008
+main WARNING 2008-05-20 18:42:15,068, AgentServer#0, start()
+main WARNING 2008-05-20 18:42:15,948, AgentServer#0, started at Tue May 20 18:42:15 CEST 2008
+main WARNING 2008-05-20 19:00:44,766, AgentServer#0, init()
+main WARNING 2008-05-20 19:00:44,799, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 19:00:44,801, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-20 19:00:44,801, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-20 19:00:44,801, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-20 19:00:44,808, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-20 19:00:44,808, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@17172ea class loader.
+main WARNING 2008-05-20 19:00:44,927, Engine#0, factory created
+main WARNING 2008-05-20 19:00:44,936, AgentServer#0, initialized at Tue May 20 19:00:44 CEST 2008
+main WARNING 2008-05-20 19:00:44,937, AgentServer#0, start()
+main WARNING 2008-05-20 19:00:45,659, AgentServer#0, started at Tue May 20 19:00:45 CEST 2008
+main WARNING 2008-05-21 09:22:32,844, AgentServer#0, init()
+main WARNING 2008-05-21 09:22:32,876, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@197d257 class loader.
+main WARNING 2008-05-21 09:22:32,894, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-21 09:22:32,895, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-21 09:22:32,895, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-21 09:22:32,900, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-21 09:22:32,901, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@197d257 class loader.
+main WARNING 2008-05-21 09:22:33,011, Engine#0, factory created
+main WARNING 2008-05-21 09:22:33,018, AgentServer#0, initialized at Wed May 21 09:22:33 CEST 2008
+main WARNING 2008-05-21 09:22:33,019, AgentServer#0, start()
+main WARNING 2008-05-21 09:22:34,052, AgentServer#0, started at Wed May 21 09:22:34 CEST 2008
+main WARNING 2008-05-21 09:41:17,375, AgentServer#0, init()
+main WARNING 2008-05-21 09:41:17,414, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-21 09:41:17,529, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-21 09:41:17,529, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-21 09:41:17,530, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-21 09:41:17,545, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-21 09:41:17,545, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@f38798 class loader.
+main WARNING 2008-05-21 09:41:17,661, Engine#0, factory created
+main WARNING 2008-05-21 09:41:17,689, AgentServer#0, initialized at Wed May 21 09:41:17 CEST 2008
+main WARNING 2008-05-21 09:41:17,690, AgentServer#0, start()
+main WARNING 2008-05-21 09:41:19,102, AgentServer#0, started at Wed May 21 09:41:19 CEST 2008
+main WARNING 2008-05-21 10:00:40,466, AgentServer#0, init()
+main WARNING 2008-05-21 10:00:40,533, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@a39137 class loader.
+main WARNING 2008-05-21 10:00:40,534, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-21 10:00:40,535, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-21 10:00:40,535, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-21 10:00:40,541, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-21 10:00:40,542, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@a39137 class loader.
+main WARNING 2008-05-21 10:00:40,661, Engine#0, factory created
+main WARNING 2008-05-21 10:00:40,671, AgentServer#0, initialized at Wed May 21 10:00:40 CEST 2008
+main WARNING 2008-05-21 10:00:40,672, AgentServer#0, start()
+main WARNING 2008-05-21 10:00:41,601, AgentServer#0, started at Wed May 21 10:00:41 CEST 2008
+main WARNING 2008-05-21 12:49:04,159, AgentServer#0, init()
+main WARNING 2008-05-21 12:49:04,192, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@1e63e3d class loader.
+main WARNING 2008-05-21 12:49:04,216, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-21 12:49:04,217, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-21 12:49:04,217, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-21 12:49:04,222, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-21 12:49:04,222, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@1e63e3d class loader.
+main WARNING 2008-05-21 12:49:04,334, Engine#0, factory created
+main WARNING 2008-05-21 12:49:04,342, AgentServer#0, initialized at Wed May 21 12:49:04 CEST 2008
+main WARNING 2008-05-21 12:49:04,343, AgentServer#0, start()
+main WARNING 2008-05-21 12:49:05,233, AgentServer#0, started at Wed May 21 12:49:05 CEST 2008
+main WARNING 2008-05-21 13:08:37,054, AgentServer#0, init()
+main WARNING 2008-05-21 13:08:37,090, Trying to find [a3cmlconfig] using org.ungoverned.moduleloader.ModuleClassLoader@7a78d3 class loader.
+main WARNING 2008-05-21 13:08:37,091, Trying to find serialized config using ClassLoader.getSystemResource().
+main WARNING 2008-05-21 13:08:37,092, Unable to find configuration file: a3cmlconfig
+main WARNING 2008-05-21 13:08:37,092, AgentServer#0, serialized a3cmlconfig not found
+main WARNING 2008-05-21 13:08:37,099, Unable to find configuration file "a3servers.xml".
+main WARNING 2008-05-21 13:08:37,099, Trying to find [a3servers.xml] using org.ungoverned.moduleloader.ModuleClassLoader@7a78d3 class loader.
+main WARNING 2008-05-21 13:08:37,226, Engine#0, factory created
+main WARNING 2008-05-21 13:08:37,243, AgentServer#0, initialized at Wed May 21 13:08:37 CEST 2008
+main WARNING 2008-05-21 13:08:37,243, AgentServer#0, start()
+main WARNING 2008-05-21 13:08:38,069, AgentServer#0, started at Wed May 21 13:08:38 CEST 2008
