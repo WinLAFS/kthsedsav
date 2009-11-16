@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE definition PUBLIC "-//objectweb.org//DTD Fractal ADL 2.0//EN" "classpath://org/objectweb/jasmine/jade/service/deployer/adl/xml/jadeApplication.dtd">
+
+<definition name="Yacs">
+  <interface name="r" role="server" signature="java.lang.Runnable"/>
+     
+  <component name="StartManager" definition="org.objectweb.jasmine.jade.ManagementType">   
+	<content class="yacs.managers.StartManager"/>
+	<controller desc="primitive"/>
+  </component>
+  
+  
+  <component name="frontend1">
+    <interface name="r" role="server" signature="java.lang.Runnable"/>
+	<interface name="jobResult" role="server" signature="yacs.job.interfaces.JobResultInterface" contingency="optional"/>
+
+	<interface name="jobManagementClient" role="client" signature="yacs.job.interfaces.JobManagement" contingency="optional"/>
+	<interface name="resourceServiceRequest" role="client" signature="yacs.resources.interfaces.ResourceServiceRequestInterface" contingency="optional"/>	
+    
+    <content class="yacs.frontend.FrontendImpl"/>
+
+    <virtual-node name="lightweight1" resourceReqs="1"/>
+   </component>
+
+    <component name="master1">
+    
+	<!-- JOB -->
+	<interface name="jobManagementServer" role="server" signature="yacs.job.interfaces.JobManagement" contingency="optional"/>
+	<interface name="informationInterfaceServer" role="server" signature="yacs.job.interfaces.InformationInterface" contingency="optional"/>
+	<interface name="masterInterfaceServer" role="server" signature="yacs.job.interfaces.MasterGroupInterface" contingency="optional"/>
+	
+	<interface name="taskManagementClient" role="client" signature="yacs.job.interfaces.TaskManagement" contingency="optional"/>
+	<interface name="stateChangeInterface" role="client" signature="yacs.job.interfaces.StateChangeInterface" contingency="optional"/>
+	<interface name="jobResult" role="client" signature="yacs.job.interfaces.JobResultInterface" contingency="optional"/>
+
+	<!-- RESOURCE -->
+	<interface name="resourceServiceState" role="client" signature="yacs.resources.interfaces.ResourceServiceStateInterface" contingency="optional"/>
+	<interface name="resourceServiceRequest" role="client" signature="yacs.resources.interfaces.ResourceServiceRequestInterface" contingency="optional"/>	
+
+	<content class="yacs.job.Master"/>
+    <controller desc="primitive"/>
+
+    <virtual-node name="lightweight1" resourceReqs="500000"/>
+  </component>
+  
+  <component name="master2">
+    
+	<!-- JOB -->
+	<interface name="jobManagementServer" role="server" signature="yacs.job.interfaces.JobManagement" contingency="optional"/>
+	<interface name="informationInterfaceServer" role="server" signature="yacs.job.interfaces.InformationInterface" contingency="optional"/>
+	<interface name="masterInterfaceServer" role="server" signature="yacs.job.interfaces.MasterGroupInterface" contingency="optional"/>
+	
+	<interface name="taskManagementClient" role="client" signature="yacs.job.interfaces.TaskManagement" contingency="optional"/>
+	<interface name="stateChangeInterface" role="client" signature="yacs.job.interfaces.StateChangeInterface" contingency="optional"/>
+	<interface name="jobResult" role="client" signature="yacs.job.interfaces.JobResultInterface" contingency="optional"/>
+
+	<!-- RESOURCE -->
+	<interface name="resourceServiceState" role="client" signature="yacs.resources.interfaces.ResourceServiceStateInterface" contingency="optional"/>
+	<interface name="resourceServiceRequest" role="client" signature="yacs.resources.interfaces.ResourceServiceRequestInterface" contingency="optional"/>	
+
+	<content class="yacs.job.Master"/>
+    <controller desc="primitive"/>
+
+    <virtual-node name="lightweight2" resourceReqs="500000"/>
+  </component>
+
+  <component name="worker1">
+	<!-- JOB -->
+	<interface name="taskManagementServer" role="server" signature="yacs.job.interfaces.TaskManagement" contingency="optional"/>
+	<interface name="informationInterfaceServer" role="server" signature="yacs.job.interfaces.InformationInterface" contingency="optional"/>
+	<interface name="workerGroupInterface" role="server" signature="yacs.job.interfaces.WorkerGroupInterface" contingency="optional"/>
+
+	<interface name="masterInterfaceClient" role="client" signature="yacs.job.interfaces.MasterGroupInterface" contingency="optional"/>
+	<interface name="stateChangeInterface" role="client" signature="yacs.job.interfaces.StateChangeInterface" contingency="optional"/>
+
+	<!-- RESOURCE -->
+	<interface name="resourceServiceState" role="client" signature="yacs.resources.interfaces.ResourceServiceStateInterface" contingency="optional"/>
+
+	<content class="yacs.job.Worker"/>
+    <controller desc="primitive"/>
+
+    <virtual-node name="medium2" resourceReqs="1000000"/>
+  </component>
+
+  <component name="worker2">
+    <!-- JOB -->
+	<interface name="taskManagementServer" role="server" signature="yacs.job.interfaces.TaskManagement" contingency="optional"/>
+	<interface name="informationInterfaceServer" role="server" signature="yacs.job.interfaces.InformationInterface" contingency="optional"/>
+	<interface name="workerGroupInterface" role="server" signature="yacs.job.interfaces.WorkerGroupInterface" contingency="optional"/>
+
+	<interface name="masterInterfaceClient" role="client" signature="yacs.job.interfaces.MasterGroupInterface" contingency="optional"/>
+	<interface name="stateChangeInterface" role="client" signature="yacs.job.interfaces.StateChangeInterface" contingency="optional"/>
+
+	<!-- RESOURCE -->
+	<interface name="resourceServiceState" role="client" signature="yacs.resources.interfaces.ResourceServiceStateInterface" contingency="optional"/>
+
+	<content class="yacs.job.Worker"/>
+    <controller desc="primitive"/>
+
+    <virtual-node name="medium3" resourceReqs="1000000"/>
+  </component>
+
+  <component name="resourceService1">
+	<interface name="resourceManagementServer" role="server" signature="yacs.resources.interfaces.ResourceManagement" contingency="optional"/>
+	<interface name="resourceServiceState" role="server" signature="yacs.resources.interfaces.ResourceServiceStateInterface" contingency="optional"/>
+	<interface name="resourceServiceRequest" role="server" signature="yacs.resources.interfaces.ResourceServiceRequestInterface" contingency="optional"/>
+
+	<interface name="resourceManagementClient" role="client" signature="yacs.resources.interfaces.ResourceManagement" contingency="optional"/>
+	<interface name="loadState" role="client" signature="yacs.resources.interfaces.LoadStateInterface" contingency="optional"/>
+
+	<content class="yacs.resources.ResourceService"/>
+    <controller desc="primitive"/>
+
+    <!--<virtual-node name="medium6" resourceReqs="100000"/>-->
+	<virtual-node name="lightweight1" resourceReqs="100"/>
+  </component>  
+  
+  <virtual-node name="lightweight1" resourceReqs="1"/>  
+</definition>
