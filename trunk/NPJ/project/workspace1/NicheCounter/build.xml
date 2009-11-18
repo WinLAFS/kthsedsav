@@ -83,6 +83,19 @@
 	    <jar destfile="nichecounter.jar" >
 	      <fileset dir="${build}" />
 	    </jar>
+	  	<delete>
+			<fileset dir="/home/shum/NPJ/project/workspace1/Jade/externals/">
+			    <include name="nichecounter.jar"/>
+			</fileset>
+		</delete>
+	  	<delete>
+	  			<fileset dir="/home/shum/NPJ/project/workspace1/Jade/examples/">
+	  			    <include name="NicheCounter.fractal"/>
+	  			</fileset>
+	  	</delete>
+	  	<copyfile  dest="/home/shum/NPJ/project/workspace1/Jade/externals/nichecounter.jar" src="/home/shum/NPJ/project/workspace1/NicheCounter/nichecounter.jar"/>
+	  	<copyfile  src="/home/shum/NPJ/project/workspace1/NicheCounter/NicheCounter.fractal" dest="/home/shum/NPJ/project/workspace1/Jade/examples/NicheCounter.fractal"/>
+		<exec command="bash /home/shum/NPJ/project/workspace1/Jade/build_bundles.sh"></exec>
 	  </target>
 
 	
