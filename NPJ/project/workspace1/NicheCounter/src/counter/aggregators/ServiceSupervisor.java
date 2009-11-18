@@ -11,6 +11,8 @@ package counter.aggregators;
 
 import counter.events.AvailabilityTimerTimeoutEvent;
 import counter.events.ServiceAvailabilityChangeEvent;
+import counter.interfaces.CounterInterface;
+import counter.interfaces.CounterStatusInterface;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -41,7 +43,7 @@ import dks.niche.interfaces.NicheComponentSupportInterface;
  * @author Joel
  * @version $Id: ServiceSupervisor.java 294 2006-05-05 17:14:14Z joel $
  */
-public class ServiceSupervisor implements EventHandlerInterface, InitInterface, MovableInterface,
+public class ServiceSupervisor implements CounterStatusInterface, EventHandlerInterface, InitInterface, MovableInterface,
     BindingController, LifeCycleController {
 
     private static final long serialVersionUID = -9008437658170151593L;
@@ -85,6 +87,15 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
     // Empty constructor always needed!
     public ServiceSupervisor() {
     }
+    
+    // //////////////////////////////////////////////////////////////////
+    // //////// Methods called by the ServiceComponent //////////////////
+    // //////////////////////////////////////////////////////////////////
+    
+    @Override
+	public void informCounterValue(int value) {
+		System.out.println("Received a new counter value: " + value);
+	}
 
     // //////////////////////////////////////////////////////////////////
     // //////// InitInterface methods, gives us init attributes. ////////
@@ -102,7 +113,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
         }
     }
 
-    public void reinit(Serializable[] parameters) {
+	public void reinit(Serializable[] parameters) {
         componentGroup = (NicheId) parameters[0];
         currentComponents = (HashMap<String, Boolean>) parameters[1];
         gotCurrentComponents = true;
