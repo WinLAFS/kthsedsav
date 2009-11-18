@@ -45,6 +45,7 @@ Bundle-ClassPath: .,
  embeddedlib/yass.jar,
  embeddedlib/swt.jar,
  embeddedlib/nichehelloworld.jar,
+ embeddedlib/nichecounter.jar,
  embeddedlib/reservationManager.jar,
  embeddedlib/reservationManagerImpl.jar
 DynamicImport-Package: *
