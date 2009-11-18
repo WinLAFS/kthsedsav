@@ -35,8 +35,8 @@ public class FrontendComponent implements BindingController, LifeCycleController
         helloAll.helloAll("Counter");
     }
     
-    public synchronized void increaseCounter() {
-    	counter.inreaseCounter();
+    public synchronized void increaseCounter(String a) {
+    	counter.inreaseCounter(a);
     }
 
     // ////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,9 @@ public class FrontendComponent implements BindingController, LifeCycleController
     }
 
     public void bindFc(final String itfName, final Object itfValue) throws NoSuchInterfaceException {
-        if (itfName.equals("helloAny")) {
+        System.out.println(">> >>Binding " + itfName + " : null ? " + (itfValue == null));
+        System.out.println(">> >>Value: " + (itfValue.toString()));
+    	if (itfName.equals("helloAny")) {
             helloAny = (HelloAnyInterface) itfValue;
         } else if (itfName.equals("helloAll")) {
             helloAll = (HelloAllInterface) itfValue;

@@ -69,6 +69,6 @@ public class UserInterface extends JPanel {
     private void helloAll() {
         System.out.println("UI says: Invoking HelloAll");
         //myAI.helloAll();
-        myAI.increaseCounter();
+        myAI.increaseCounter("a");
     }
 }
