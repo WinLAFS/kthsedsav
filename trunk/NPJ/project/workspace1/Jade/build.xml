@@ -130,6 +130,16 @@
 			<jvmarg line="${jvm.parameters.oscar.jadenode}" />
 		</java>
 	</target>
+	
+	<target name="jadenode4">
+		<parallel>
+			<antcall target="jadenode"></antcall>
+					<antcall target="jadenode"></antcall>
+					<antcall target="jadenode"></antcall>
+					<antcall target="jadenode"></antcall>
+		</parallel>
+		
+	</target>
 
 	<!-- ====================================== -->
 	<!-- 					BeanShell Console             -->
