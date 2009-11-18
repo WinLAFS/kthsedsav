@@ -20,6 +20,7 @@
     <interface name="helloAny" role="server" signature="counter.interfaces.HelloAnyInterface" contingency="optional" />
     <interface name="helloAll" role="server" signature="counter.interfaces.HelloAllInterface"  contingency="optional"/>
     <interface name="counter" role="server" signature="counter.interfaces.CounterInterface"  contingency="optional"/>
+    <interface name="counterStatus" role="client" signature="counter.interfaces.CounterStatusInterface"  contingency="optional"/>
     <content class="counter.service.ServiceComponent"/>
     <virtual-node name="medium1" resourceReqs="950000"/>
   </component>
@@ -28,6 +29,7 @@
     <interface name="helloAny" role="server" signature="counter.interfaces.HelloAnyInterface" contingency="optional" />
     <interface name="helloAll" role="server" signature="counter.interfaces.HelloAllInterface"  contingency="optional"/>
     <interface name="counter" role="server" signature="counter.interfaces.CounterInterface"  contingency="optional"/>
+    <interface name="counterStatus" role="client" signature="counter.interfaces.CounterStatusInterface"  contingency="optional"/>
     <content class="counter.service.ServiceComponent"/>
     <virtual-node name="medium2" resourceReqs="950000"/>
   </component>
@@ -36,6 +38,7 @@
     <interface name="helloAny" role="server" signature="counter.interfaces.HelloAnyInterface" contingency="optional" />
     <interface name="helloAll" role="server" signature="counter.interfaces.HelloAllInterface"  contingency="optional"/>
     <interface name="counter" role="server" signature="counter.interfaces.CounterInterface"  contingency="optional"/>
+    <interface name="counterStatus" role="client" signature="counter.interfaces.CounterStatusInterface"  contingency="optional"/>
     <content class="counter.service.ServiceComponent"/>
     <virtual-node name="medium3" resourceReqs="950000"/>
   </component>

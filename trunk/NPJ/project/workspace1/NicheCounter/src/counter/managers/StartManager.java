@@ -110,6 +110,12 @@ public class StartManager implements BindingController, LifeCycleController {
                                       ComponentFailEvent.class.getName());
         myActuatorInterface.subscribe(serviceGroup, serviceSupervisor,
                                       MemberAddedEvent.class.getName());
+        
+        //bind service supervisor with service components
+        clientInterfaceName = "counterStatus";
+        serverInterfaceName = "counterStatus";
+        //TODO
+        myActuatorInterface.bind(serviceGroup, clientInterfaceName, serviceSupervisor, serverInterfaceName, JadeBindInterface.ONE_TO_ONE);
 
         // Grab the service component's properties from a service component
         // which is already deployed. The ConfigurationManager needs these when
