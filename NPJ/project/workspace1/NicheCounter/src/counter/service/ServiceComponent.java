@@ -15,7 +15,7 @@ public class ServiceComponent implements CounterInterface, HelloAnyInterface, He
 
     private Component myself;
     private boolean status;
-    private int counterNumber;
+    private int counterNumber = 0;
 
     public ServiceComponent() {
         System.err.println("HelloService created");
@@ -33,7 +33,7 @@ public class ServiceComponent implements CounterInterface, HelloAnyInterface, He
         System.out.println(s);
     }
     
-	public void inreaseCounter() {
+	public void inreaseCounter(String a) {
 //		counterNumber = ++counterNumber;
 		System.out.println("Counter increased! New value: " + (++counterNumber));
 	}

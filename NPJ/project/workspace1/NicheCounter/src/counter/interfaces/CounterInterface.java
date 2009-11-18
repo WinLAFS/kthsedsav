@@ -1,5 +1,5 @@
 package counter.interfaces;
 
 public interface CounterInterface {
-	public void inreaseCounter();
+	public void inreaseCounter(String a);
 }
