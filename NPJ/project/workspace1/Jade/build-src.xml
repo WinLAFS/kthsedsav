@@ -104,6 +104,7 @@
 			<pathelement path="${bsh.path}" />
 			<pathelement path="${dks.path}" />
 			<pathelement path="${nichehelloworld.path}" />
+			<pathelement path="${nichecounter.path}" />
 			<pathelement path="${yass.path}" />
 			<pathelement path="${reservation.path}" />
 
@@ -369,6 +370,7 @@
 				<include name="slf4j-log4j12-1.4.3.jar" />
 				<include name="log4j-1.2.14.jar" />
 				<include name="nichehelloworld.jar" />
+				<include name="nichecounter.jar" />
 				<include name="yass.jar"/>
 				<include name="swt.jar"/>
 				<include name="reservationManager.jar"/>
@@ -474,6 +476,7 @@
 				<include name="slf4j-log4j12-1.4.3.jar" />
 				<include name="log4j-1.2.14.jar" />
 				<include name="nichehelloworld.jar" />
+				<include name="nichecounter.jar" />
 				<include name="yass.jar"/>
 				<include name="swt.jar"/>
 				<include name="reservationManager.jar"/>
