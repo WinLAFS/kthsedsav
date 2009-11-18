@@ -8,5 +8,5 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="bankrmi.Server"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="BankServer"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.security.policy=C:/Users/saibbot/Documents/seds/projects/NPJ/HWs/wideopen.policy&#13;&#10;-Djava.rmi.server.codebase=file:/C:/Users/saibbot/Documents/seds/projects/NPJ/HWs/workspace/BankServer/bin/"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.security.policy=d:/KTH/Projects/NPJ/HWs/wideopen.policy&#13;&#10;-Djava.rmi.server.codebase=file:/d:/KTH/Projects/NPJ/HWs/workspace/BankServer/bin/"/>
 </launchConfiguration>
