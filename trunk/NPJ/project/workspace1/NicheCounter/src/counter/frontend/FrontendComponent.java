@@ -1,5 +1,6 @@
 package counter.frontend;
 
+import counter.interfaces.CounterInterface;
 import counter.interfaces.HelloAllInterface;
 import counter.interfaces.HelloAnyInterface;
 
@@ -14,6 +15,7 @@ public class FrontendComponent implements BindingController, LifeCycleController
     // Client Interfaces
     private HelloAnyInterface helloAny;
     private HelloAllInterface helloAll;
+    private CounterInterface counter;
 
     // The Niche reference to this component.
     private Component myself;
@@ -32,13 +34,17 @@ public class FrontendComponent implements BindingController, LifeCycleController
     public synchronized void helloAll() {
         helloAll.helloAll("Counter");
     }
+    
+    public synchronized void increaseCounter() {
+    	counter.inreaseCounter();
+    }
 
     // ////////////////////////////////////////////////////////////////////////
     // ////////////////////////// Fractal Stuff ///////////////////////////////
     // ////////////////////////////////////////////////////////////////////////
 
     public String[] listFc() {
-        return new String[] { "component", "helloAny", "helloAll" };
+        return new String[] { "component", "helloAny", "helloAll", "counter" };
     }
 
     public Object lookupFc(final String itfName) throws NoSuchInterfaceException {
@@ -46,6 +52,8 @@ public class FrontendComponent implements BindingController, LifeCycleController
             return helloAny;
         } else if (itfName.equals("helloAll")) {
             return helloAll;
+        } else if (itfName.equals("counter")) {
+            return counter;
         } else if (itfName.equals("component")) {
             return myself;
         } else {
@@ -60,6 +68,8 @@ public class FrontendComponent implements BindingController, LifeCycleController
             helloAll = (HelloAllInterface) itfValue;
         } else if (itfName.equals("component")) {
             myself = (Component) itfValue;
+        } else if (itfName.equals("counter")) {
+            counter = (CounterInterface) itfValue;
         } else {
             throw new NoSuchInterfaceException(itfName);
         }
@@ -72,6 +82,8 @@ public class FrontendComponent implements BindingController, LifeCycleController
             helloAll = null;
         } else if (itfName.equals("component")) {
             myself = null;
+        } else if (itfName.equals("counter")) {
+            counter = null;
         } else {
             throw new NoSuchInterfaceException(itfName);
         }

@@ -1,5 +1,6 @@
 package counter.service;
 
+import counter.interfaces.CounterInterface;
 import counter.interfaces.HelloAllInterface;
 import counter.interfaces.HelloAnyInterface;
 
@@ -9,11 +10,12 @@ import org.objectweb.fractal.api.control.BindingController;
 import org.objectweb.fractal.api.control.IllegalLifeCycleException;
 import org.objectweb.fractal.api.control.LifeCycleController;
 
-public class ServiceComponent implements HelloAnyInterface, HelloAllInterface, BindingController,
+public class ServiceComponent implements CounterInterface, HelloAnyInterface, HelloAllInterface, BindingController,
     LifeCycleController {
 
     private Component myself;
     private boolean status;
+    private int counterNumber;
 
     public ServiceComponent() {
         System.err.println("HelloService created");
@@ -30,6 +32,11 @@ public class ServiceComponent implements HelloAnyInterface, HelloAllInterface, B
     public void helloAll(String s) {
         System.out.println(s);
     }
+    
+	public void inreaseCounter() {
+//		counterNumber = ++counterNumber;
+		System.out.println("Counter increased! New value: " + (++counterNumber));
+	}
 
     // /////////////////////////////////////////////////////////////////////
     // //////////////////////// Fractal Stuff //////////////////////////////
@@ -75,4 +82,6 @@ public class ServiceComponent implements HelloAnyInterface, HelloAllInterface, B
     public void stopFc() throws IllegalLifeCycleException {
         status = false;
     }
+
+	
 }

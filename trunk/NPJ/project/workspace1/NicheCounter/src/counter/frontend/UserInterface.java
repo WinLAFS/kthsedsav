@@ -26,7 +26,8 @@ public class UserInterface extends JPanel {
         // helloAnyButton.setMnemonic(KeyEvent.VK_D);
         // helloAnyButton.setActionCommand("disable");
 
-        helloAllButton = new JButton("HelloAll");
+        //helloAllButton = new JButton("HelloAll");
+        helloAllButton = new JButton("Increase");
         helloAllButton.setVerticalTextPosition(AbstractButton.CENTER);
         helloAllButton.setHorizontalTextPosition(AbstractButton.LEADING);
         // helloAllButton.setMnemonic(KeyEvent.VK_M);
@@ -67,6 +68,7 @@ public class UserInterface extends JPanel {
 
     private void helloAll() {
         System.out.println("UI says: Invoking HelloAll");
-        myAI.helloAll();
+        //myAI.helloAll();
+        myAI.increaseCounter();
     }
 }

@@ -75,6 +75,7 @@ public class StartManager implements BindingController, LifeCycleController {
         GroupId serviceGroupTemplate = myActuatorInterface.getGroupTemplate();
         serviceGroupTemplate.addServerBinding("helloAny", JadeBindInterface.ONE_TO_ANY);
         serviceGroupTemplate.addServerBinding("helloAll", JadeBindInterface.ONE_TO_MANY);
+        serviceGroupTemplate.addServerBinding("counter", JadeBindInterface.ONE_TO_MANY);
         GroupId serviceGroup =
             myActuatorInterface.createGroup(serviceGroupTemplate, serviceComponents);
 
@@ -89,6 +90,12 @@ public class StartManager implements BindingController, LifeCycleController {
         // This binding uses the helloAll interface.
         clientInterfaceName = "helloAll";
         serverInterfaceName = "helloAll";
+        myActuatorInterface.bind(frontendComponent, clientInterfaceName, serviceGroup,
+                                 serverInterfaceName, JadeBindInterface.ONE_TO_MANY);
+        
+        //Counter binding
+        clientInterfaceName = "counter";
+        serverInterfaceName = "counter";
         myActuatorInterface.bind(frontendComponent, clientInterfaceName, serviceGroup,
                                  serverInterfaceName, JadeBindInterface.ONE_TO_MANY);
 
