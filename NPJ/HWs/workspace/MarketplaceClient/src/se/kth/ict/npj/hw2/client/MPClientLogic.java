@@ -18,6 +18,8 @@ import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.UknownClientException;
 import se.kth.ict.npj.hw2.exception.UknownItemException;
+import se.kth.ict.npj.hw2.exception.UnknownClientException;
+import se.kth.ict.npj.hw2.exception.UnknownItemException;
 import se.kth.ict.npj.hw2.server.MarketplaceServerInterface;
 
 public class MPClientLogic {
@@ -149,13 +151,13 @@ public class MPClientLogic {
 			System.err.println("[LOG] ItemAlreadyExistsException when selling item");
 			gui.setNotificationMessage("Item already exists");
 			return;
-		} catch (UknownClientException e) {
-			System.err.println("[LOG] UknownClientException when selling item");
-			gui.setNotificationMessage("You are not logged in");
-			return;
 		} catch (RemoteException e) {
 			System.err.println("[LOG] RemoteException when selling item");
 			gui.setNotificationMessage("Can't sell item");
+			return;
+		} catch (UnknownClientException e) {
+			System.err.println("[LOG] UknownClientException when selling item");
+			gui.setNotificationMessage("You are not logged in");
 			return;
 		}
 		
@@ -192,6 +194,14 @@ public class MPClientLogic {
 			System.err.println("[LOG] RemoteException when wishing item");
 			gui.setNotificationMessage("Can't wish the item");
 			return;
+		} catch (ItemAlreadyExistsException e) {
+			System.err.println("[LOG] ItemAlreadyExistsException when wishing item");
+			gui.setNotificationMessage("Can't wish the item");
+			return;
+		} catch (IllegalItemException e) {
+			System.err.println("[LOG] IllegalItemException when wishing item");
+			gui.setNotificationMessage("Can't wish the item");
+			return;
 		}
 		
 		gui.setNotificationMessage("Item is wished");
@@ -223,16 +233,20 @@ public class MPClientLogic {
 		try {
 			serverInt.buyItem(userName, item);
 			updateItems();
-		} catch (UknownItemException e) {
-			System.err.println("[LOG] UknownItemException when buying item");
-			gui.setNotificationMessage("Can't buy the item");
-			return;
-		} catch (AccountNotFoundException e){
+		}catch (AccountNotFoundException e){
 			System.err.println("[LOG] AccountNotFoundException when buying item");
 			gui.setNotificationMessage("Not enough money to buy item");
 			return;
 		}	catch (RemoteException e) {
 			System.err.println("[LOG] RemoteException when buying item");
+			gui.setNotificationMessage("Can't buy the item");
+			return;
+		} 	catch (UnknownItemException e) {
+			System.err.println("[LOG] UknownItemException when buying item");
+			gui.setNotificationMessage("Can't buy the item");
+			return;
+		} catch (IllegalItemException e) {
+			System.err.println("[LOG] IllegalItemException when buying item");
 			gui.setNotificationMessage("Can't buy the item");
 			return;
 		}
@@ -248,8 +262,6 @@ public class MPClientLogic {
 		try {
 			serverInt.unregisterClient(userName);
 			bank.deleteAccount(account);
-		} catch (UknownClientException e) {
-			System.err.println("[LOG] UknownClientException when unregistering user");
 		} catch (RemoteException e) {
 			System.err.println("[LOG] RemoteException when unregistering user");
 		} catch (Throwable t) {

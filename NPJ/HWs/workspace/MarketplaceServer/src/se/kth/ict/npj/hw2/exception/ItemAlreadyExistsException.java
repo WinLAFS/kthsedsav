@@ -2,7 +2,7 @@ package se.kth.ict.npj.hw2.exception;
 
 import java.rmi.RemoteException;
 
-public class ItemAlreadyExistsException extends RemoteException {
+public class ItemAlreadyExistsException extends Exception {
 
 	public ItemAlreadyExistsException() {
 	}

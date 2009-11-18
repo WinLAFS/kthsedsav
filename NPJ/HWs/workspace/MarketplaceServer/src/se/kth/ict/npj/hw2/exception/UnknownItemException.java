@@ -2,7 +2,7 @@ package se.kth.ict.npj.hw2.exception;
 
 import java.rmi.RemoteException;
 
-public class UnknownItemException extends RemoteException {
+public class UnknownItemException extends Exception {
 
 	public UnknownItemException() {
 		super();

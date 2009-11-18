@@ -153,7 +153,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	}
 
 
-	public synchronized ArrayList<Item> wishItem(Item item) throws ItemAlreadyExistsException, RemoteException {
+	public synchronized ArrayList<Item> wishItem(Item item) throws ItemAlreadyExistsException, RemoteException, IllegalItemException {
 		System.out.println("[LOG] Wish item: " + item.toString());
 		if (item.getName() == null || item.getOwner() == null || item.getPrice() == 0) {
 			throw new IllegalItemException();

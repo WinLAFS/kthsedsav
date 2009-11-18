@@ -2,7 +2,7 @@ package se.kth.ict.npj.hw2.exception;
 
 import java.rmi.RemoteException;
 
-public class BankAccountNotFoundException extends RemoteException {
+public class BankAccountNotFoundException extends Exception {
 
 	public BankAccountNotFoundException() {
 		super();

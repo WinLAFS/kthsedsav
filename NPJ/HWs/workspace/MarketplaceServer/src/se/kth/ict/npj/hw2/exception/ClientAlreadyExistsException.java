@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
  * is trying to reregister to the Marketplace server.
  *
  */
-public class ClientAlreadyExistsException extends RemoteException {
+public class ClientAlreadyExistsException extends Exception {
 	
 	public ClientAlreadyExistsException() {
 		super();

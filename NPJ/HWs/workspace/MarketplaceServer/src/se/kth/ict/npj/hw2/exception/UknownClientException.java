@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
  * registered to the server.
  *
  */
-public class UknownClientException extends RemoteException {
+public class UknownClientException extends Exception {
 
 	public UknownClientException() {
 		super();
