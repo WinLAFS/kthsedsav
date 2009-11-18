@@ -159,6 +159,13 @@
 			<jvmarg line="${jvm.parameters}" />
 		</java>
 	</target>
+	
+	<target name="testG4A-NicheCounter-Deploy">
+			<java classname="${run.beanshell-console.classname}" classpathref="beanshell-classpath" fork="yes" failonerror="no">
+				<arg line="NicheCounter-Deploy.bsh" />
+				<jvmarg line="${jvm.parameters}" />
+			</java>
+		</target>
 
 	<!-- ====================================== -->
 	<!-- 			testG4A-NicheHelloWorld-Start         -->
@@ -169,6 +176,13 @@
 			<jvmarg line="${jvm.parameters}" />
 		</java>
 	</target>
+	
+	<target name="testG4A-NicheCounterStart">
+			<java classname="${run.beanshell-console.classname}" classpathref="beanshell-classpath" fork="yes" failonerror="no">
+				<arg line="NicheCounter-Start.bsh" />
+				<jvmarg line="${jvm.parameters}" />
+			</java>
+		</target>
 	<!-- ====================================== -->
 	<!-- 					testG4A-run-yass-original -->
 	<!-- ====================================== -->

@@ -1,0 +1,8 @@
+source("init"); 
+
+print("Starting NicheCounter");
+c = lookupcomp("NicheCounter_0");
+print(c);
+lc=getitf(c, "lifecycle-controller");
+lc.startFc();
+print("NicheCounter started");
