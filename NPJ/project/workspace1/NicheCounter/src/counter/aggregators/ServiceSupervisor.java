@@ -10,6 +10,8 @@
 package counter.aggregators;
 
 import counter.events.AvailabilityTimerTimeoutEvent;
+import counter.events.CounterChangedEvent;
+import counter.events.MaxCounterChangedEvent;
 import counter.events.ServiceAvailabilityChangeEvent;
 import counter.interfaces.CounterInterface;
 import counter.interfaces.CounterStatusInterface;
@@ -87,6 +89,16 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     // Empty constructor always needed!
     public ServiceSupervisor() {
     }
+    
+    private int maxedReceivedvalue=0;
+
+	public synchronized int getMaxedReceivedvalue() {
+		return maxedReceivedvalue;
+	}
+
+	public synchronized void setMaxedReceivedvalue(int maxedReceivedvalue) {
+		this.maxedReceivedvalue = maxedReceivedvalue;
+	}
     
     // //////////////////////////////////////////////////////////////////
     // //////// Methods called by the ServiceComponent //////////////////
@@ -189,9 +201,21 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
             handleMemberAddedEvent((MemberAddedEvent) e);
         } else if (e instanceof AvailabilityTimerTimeoutEvent) {
             handlerAvailabilityTimerTimeout();
+        } else if (e instanceof CounterChangedEvent) {
+            handlerCounterChanged((CounterChangedEvent)e);
         } else {
             System.out.println("[ServiceSupervisor]: Unknown event type, error.");
         }
+    }
+    
+    private void handlerCounterChanged(CounterChangedEvent e){
+    	int resNumber = e.getCounterNumber();
+    	
+    	if(resNumber>getMaxedReceivedvalue()){
+    		setMaxedReceivedvalue(resNumber);
+//    		System.out.println("Maxed number set in supervisor: "+getMaxedReceivedvalue());
+    		eventTrigger.trigger(new MaxCounterChangedEvent(getMaxedReceivedvalue()));
+    	}
     }
 
     /**

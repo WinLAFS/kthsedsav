@@ -21,6 +21,9 @@ import org.objectweb.fractal.api.control.IllegalLifeCycleException;
 import org.objectweb.fractal.api.control.LifeCycleController;
 import org.objectweb.jasmine.jade.util.Serialization;
 
+import counter.events.CounterChangedEvent;
+import counter.events.MaxCounterChangedEvent;
+
 import dks.niche.exceptions.OperationTimedOutException;
 import dks.niche.fractal.FractalInterfaceNames;
 import dks.niche.fractal.interfaces.EventHandlerInterface;
@@ -70,8 +73,18 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
 
     // Our Niche id.
     private NicheId myId;
+    
+    private int maxCounterNumber=0;
 
-    // Empty constructor always needed!
+    public synchronized int getMaxCounterNumber() {
+		return maxCounterNumber;
+	}
+
+	public synchronized void setMaxCounterNumber(int maxCounterNumber) {
+		this.maxCounterNumber = maxCounterNumber;
+	}
+
+	// Empty constructor always needed!
     public ConfigurationManager() {
     }
 
@@ -109,6 +122,12 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
     // //////////////////////////////////////////////////////////////////
 
     public void eventHandler(Serializable e, int flag) {
+    	
+    	if (e instanceof MaxCounterChangedEvent) {
+    		int maxNumber = ((MaxCounterChangedEvent)e).getCounterNumber();
+    		setMaxCounterNumber(maxNumber);
+    		System.out.println("[]> Max counter value set in conf. manager = " + getMaxCounterNumber());
+    	}else{
         if (!(myId.getReplicaNumber() < 1)) {
             // I am not the master replica, do nothing.
             return;
@@ -182,7 +201,7 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
             notDone = false;
         } // end while notDone - after a continue we get here
 
-        executing = false;
+        executing = false;}
     }
 
     // ///////////////////////////////////////////////////////////////////////////

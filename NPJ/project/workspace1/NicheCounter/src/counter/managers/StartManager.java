@@ -1,8 +1,5 @@
 package counter.managers;
 
-import counter.aggregators.ServiceSupervisor;
-import counter.events.ServiceAvailabilityChangeEvent;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,6 +14,11 @@ import org.objectweb.jasmine.jade.service.componentdeployment.NicheIdRegistry;
 import org.objectweb.jasmine.jade.service.nicheOS.OverlayAccess;
 import org.objectweb.jasmine.jade.util.Serialization;
 
+import counter.aggregators.ServiceSupervisor;
+import counter.events.CounterChangedEvent;
+import counter.events.MaxCounterChangedEvent;
+import counter.events.ServiceAvailabilityChangeEvent;
+import counter.watchers.CounterChangedWatcher;
 import dks.niche.events.ComponentFailEvent;
 import dks.niche.events.MemberAddedEvent;
 import dks.niche.fractal.FractalInterfaceNames;
@@ -111,11 +113,8 @@ public class StartManager implements BindingController, LifeCycleController {
         myActuatorInterface.subscribe(serviceGroup, serviceSupervisor,
                                       MemberAddedEvent.class.getName());
         
-        //bind service supervisor with service components
-        clientInterfaceName = "counterStatus";
-        serverInterfaceName = "counterStatus";
-        //TODO
-        myActuatorInterface.bind(serviceGroup, clientInterfaceName, serviceSupervisor, serverInterfaceName, JadeBindInterface.ONE_TO_ONE);
+        
+     
 
         // Grab the service component's properties from a service component
         // which is already deployed. The ConfigurationManager needs these when
@@ -143,6 +142,27 @@ public class StartManager implements BindingController, LifeCycleController {
             myActuatorInterface.deployManagementElement(params, serviceGroup);
         myActuatorInterface.subscribe(serviceSupervisor, configurationManager,
                                       ServiceAvailabilityChangeEvent.class.getName());
+        
+        
+        //TODO
+        //bind service supervisor with service components
+//        clientInterfaceName = "counterStatus";
+//        serverInterfaceName = "counterStatus";
+//        myActuatorInterface.bind(serviceGroup, clientInterfaceName, serviceSupervisor, serverInterfaceName, JadeBindInterface.ONE_TO_ANY);
+       
+        ManagementDeployParameters params2 = new ManagementDeployParameters();
+        params2.describeWatcher(CounterChangedWatcher.class.getName(), 
+        		"WW", 
+        		null, 
+        		new Serializable[] {}, 
+        		serviceGroup.getId());
+        NicheId watcherId = myActuatorInterface.deployManagementElement(params2, serviceGroup);
+        
+        myActuatorInterface.subscribe(watcherId, serviceSupervisor,
+                CounterChangedEvent.class.getName());
+        
+        myActuatorInterface.subscribe(serviceSupervisor, configurationManager,
+                MaxCounterChangedEvent.class.getName());
     }
 
     // ///////////////////////////////////////////////////////////////
