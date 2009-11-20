@@ -35,6 +35,13 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	ArrayList<Item> wishList = null;
 	bankrmi.Bank bank = null;
 	
+	/**
+	 * Constructor. 
+	 * Connects to bank server
+	 * 
+	 * @param bankUrl URL of the bank server
+	 * @throws RemoteException
+	 */
 	protected MarketplaceServerImp(String bankUrl) throws RemoteException {
 		super();
 		
