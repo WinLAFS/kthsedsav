@@ -16,6 +16,7 @@ import dks.niche.fractal.interfaces.EventHandlerInterface;
 import dks.niche.fractal.interfaces.InitInterface;
 import dks.niche.fractal.interfaces.MovableInterface;
 import dks.niche.fractal.interfaces.TriggerInterface;
+import dks.niche.ids.ComponentId;
 import dks.niche.ids.NicheId;
 import dks.niche.interfaces.NicheActuatorInterface;
 
@@ -35,8 +36,9 @@ public class CounterChangedWatcher implements EventHandlerInterface,
 	public void eventHandler(Serializable event, int flag) {
 		if (event instanceof CounterChangedEvent) {
 			int value = ((CounterChangedEvent)event).getCounterNumber();
+			ComponentId cid = ((CounterChangedEvent)event).getCid();
 //			System.out.println("value in watcher = "+value);
-			trigger.trigger(new CounterChangedEvent(value));
+			trigger.trigger(new CounterChangedEvent(cid, value));
 		}
 
 	}
