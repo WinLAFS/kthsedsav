@@ -45,7 +45,7 @@ public class UserInterface extends JPanel {
                 helloAll();
             }
         });
-        add(helloAnyButton);
+        //add(helloAnyButton);
         add(helloAllButton);
 
         // Create and set up the window.

@@ -18,6 +18,7 @@ import counter.interfaces.CounterStatusInterface;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import org.objectweb.fractal.api.Component;
 import org.objectweb.fractal.api.NoSuchInterfaceException;
@@ -84,7 +85,7 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     private NicheId componentGroup;
 
     // The members of the group of service components.
-    private HashMap<String, Boolean> currentComponents;
+    private HashMap<String, Integer> currentComponents;
 
     // Empty constructor always needed!
     public ServiceSupervisor() {
@@ -105,7 +106,7 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     // //////////////////////////////////////////////////////////////////
     
     @Override
-	public void informCounterValue(int value) {
+	public void informCounterValue(ComponentId cid, int value) {
 		System.out.println("Received a new counter value: " + value);
 	}
 
@@ -115,7 +116,7 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
 
     public void init(Serializable[] parameters) {
         componentGroup = (NicheId) parameters[0];
-        currentComponents = new HashMap<String, Boolean>();
+        currentComponents = new HashMap<String, Integer>();
         gotCurrentComponents = true;
 
         // We don't know the order the init-methods are invoked. Do not run init
@@ -127,7 +128,7 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
 
 	public void reinit(Serializable[] parameters) {
         componentGroup = (NicheId) parameters[0];
-        currentComponents = (HashMap<String, Boolean>) parameters[1];
+        currentComponents = (HashMap<String, Integer>) parameters[1];
         gotCurrentComponents = true;
 
         // We don't know the order the init-methods are invoked. Do not run init
@@ -170,7 +171,7 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
             }
         }
         for (Object currentMember : currentMembers) {
-            currentComponents.put(((ComponentId) currentMember).getId().toString(), true);
+            currentComponents.put(((ComponentId) currentMember).getId().toString(), 0);
         }
 
         currentAllocatedServiceComponents = currentMembers.length;
@@ -210,12 +211,32 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     
     private void handlerCounterChanged(CounterChangedEvent e){
     	int resNumber = e.getCounterNumber();
+    	String id = e.getCid().getId().toString();
+    	
+    	currentComponents.put(id, resNumber);
     	
     	if(resNumber>getMaxedReceivedvalue()){
-    		setMaxedReceivedvalue(resNumber);
-//    		System.out.println("Maxed number set in supervisor: "+getMaxedReceivedvalue());
+    		setMaxedReceivedvalue(resNumber);    		
     		eventTrigger.trigger(new MaxCounterChangedEvent(getMaxedReceivedvalue()));
     	}
+    	
+    	
+    	 Iterator iterator = currentComponents.keySet().iterator();  
+    	 
+    	 System.out.println("========================================================");
+    	 System.out.println("***VALUES IN MAP***");
+    	 while (iterator.hasNext()) {  
+    	    String key = iterator.next().toString();  
+    	    Integer value = (Integer)currentComponents.get(key);
+    	    System.out.println(key + " --- " + value.intValue()); 
+    	    if(value.intValue()<=(getMaxedReceivedvalue()-2)){
+    	    	System.out.println("Component "+key+" is inconsistent");
+    	    }
+    	 }  
+    	 System.out.println("========================================================");
+    	 
+    	
+    	
     }
 
     /**
@@ -281,7 +302,7 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
             // We already new about this component.
             return;
         }
-        currentComponents.put(idAsString, true);
+        currentComponents.put(idAsString, 0);
         currentAllocatedServiceComponents++;
     }
 

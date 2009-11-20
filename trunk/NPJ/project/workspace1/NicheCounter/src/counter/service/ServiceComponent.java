@@ -1,5 +1,7 @@
 package counter.service;
 
+import java.util.Random;
+
 import counter.interfaces.CounterInterface;
 import counter.interfaces.CounterStatusInterface;
 import counter.interfaces.HelloAllInterface;
@@ -17,6 +19,7 @@ import org.objectweb.jasmine.jade.util.NoSuchComponentException;
 
 import dks.niche.ids.ComponentId;
 import dks.niche.interfaces.NicheActuatorInterface;
+import dks.niche.interfaces.NicheComponentSupportInterface;
 
 public class ServiceComponent implements CounterInterface, HelloAnyInterface, HelloAllInterface, BindingController,
     LifeCycleController {
@@ -29,7 +32,7 @@ public class ServiceComponent implements CounterInterface, HelloAnyInterface, He
     
 
     public ServiceComponent() {
-        System.err.println("HelloService created");
+        System.err.println("CounterService created");
     }
 
     // /////////////////////////////////////////////////////////////////////
@@ -45,9 +48,10 @@ public class ServiceComponent implements CounterInterface, HelloAnyInterface, He
     }
     
 	public void inreaseCounter(String a) {
-//		counterNumber = ++counterNumber;
-		System.out.println("Counter increased! New value: " + (++counterNumber));
-		counterStatus.informCounterValue(counterNumber);
+		double r = Math.random();
+		
+		if(r<0.5)
+			counterStatus.informCounterValue(myGlobalId, ++counterNumber);
 	}
 
     // /////////////////////////////////////////////////////////////////////
@@ -94,6 +98,7 @@ public class ServiceComponent implements CounterInterface, HelloAnyInterface, He
     }
 
     public void startFc() throws IllegalLifeCycleException {
+    	init();
     	Component jadeNode = null;
 		Component niche = null;
 		OverlayAccess overlayAccess = null;
@@ -144,5 +149,47 @@ public class ServiceComponent implements CounterInterface, HelloAnyInterface, He
         status = false;
     }
 
-	
+	private void init(){
+		Component jadeNode = null;
+		Component niche = null;
+		OverlayAccess overlayAccess = null;
+
+		Component comps[] = null;
+		try {
+			comps = Fractal.getSuperController(myself).getFcSuperComponents();
+		}
+		catch (NoSuchInterfaceException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < comps.length; i++) {
+			try {
+				if (Fractal.getNameController(comps[i]).getFcName().equals("managed_resources")) {
+					jadeNode = comps[i];
+					break;
+				}
+			}
+			catch (NoSuchInterfaceException e) {
+				e.printStackTrace();
+			}
+		}
+
+		try {
+			niche = FractalUtil.getFirstFoundSubComponentByName(jadeNode,"nicheOS");
+		}
+		catch (NoSuchComponentException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			overlayAccess = (OverlayAccess) niche.getFcInterface("overlayAccess");
+		}
+		catch (NoSuchInterfaceException e) {
+			e.printStackTrace();
+		}
+
+		NicheComponentSupportInterface nicheOSSupport = overlayAccess.getOverlay().getComponentSupport(myself);
+		myGlobalId = nicheOSSupport.getResourceManager().getComponentId(myself);
+		
+	}
 }
