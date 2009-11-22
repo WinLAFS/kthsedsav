@@ -13,6 +13,6 @@ public class Constants {
 	public static final String CONTRACTOR_AMAZON_2="CAmazon2";
 	
 	public static final String MANAGER_1="Manager1";
-	public static final String MANAGER_2="Manager2";
-	public static final String MANAGER_3="Manager3";
+	public static final String MANAGER_EBAY="Manager2";
+	public static final String MANAGER_AMAZON="Manager3";
 }
