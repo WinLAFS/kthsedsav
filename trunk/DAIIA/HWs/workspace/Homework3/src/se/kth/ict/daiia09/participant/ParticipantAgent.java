@@ -61,9 +61,9 @@ public class ParticipantAgent extends Agent {
 		participateInAuction.addSubBehaviour(new OneShotBehaviour() {
 			public void action() {
 				System.out.println("[LOG PARTICIPANT] Start participating in auction");
-				ACLMessage incomingMsg = myAgent.receive(template1);
-				if(incomingMsg==null){
-					block();
+				ACLMessage incomingMsg = myAgent.blockingReceive(template1);
+				if(incomingMsg!=null){
+					System.out.println("[LOG PARTICIPANT] Starting new auction.");
 				}
 			}
 		});
