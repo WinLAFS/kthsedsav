@@ -17,8 +17,11 @@ import jade.lang.acl.MessageTemplate;
 import jade.proto.SSContractNetResponder;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
+import se.kth.ict.daiia09.ontologies.Asus;
 import se.kth.ict.daiia09.ontologies.Costs;
+import se.kth.ict.daiia09.ontologies.Dell;
 import se.kth.ict.daiia09.ontologies.Netbook;
 import se.kth.ict.daiia09.ontologies.NetbookOntology;
 
@@ -29,7 +32,23 @@ public class ParticipantAgent extends Agent {
 		System.out.println("[LOG PARTICIPANT] participant agent "
 				+ getAID().getName() + " started.");
 
-		// #TODO initialize netbooks list
+		//hard-coded item prices
+		if (getAID().getLocalName().indexOf("1") >= 0) {
+			Dell dellNetbook = new Dell();
+			dellNetbook.setPrice(10000);
+			netbooks.add(dellNetbook);
+			Asus asusNetbook = new Asus();
+			asusNetbook.setPrice(9000);
+			netbooks.add(asusNetbook);
+		}
+		else {
+			Dell dellNetbook = new Dell();
+			dellNetbook.setPrice(9000);
+			netbooks.add(dellNetbook);
+			Asus asusNetbook = new Asus();
+			asusNetbook.setPrice(10000);
+			netbooks.add(asusNetbook);
+		}
 
 		// register the service as an "inventory-monitoring" service
 		DFAgentDescription dfd = new DFAgentDescription();
@@ -74,7 +93,7 @@ public class ParticipantAgent extends Agent {
 			
 			public void action() {
 				ACLMessage cfp = myAgent.receive(template2);
-				int y;
+
 				if (cfp != null && cfp.getPerformative()==ACLMessage.CFP) {
 					myAgent.addBehaviour(new SSContractNetResponder(myAgent,cfp) {
 						
@@ -90,11 +109,26 @@ public class ParticipantAgent extends Agent {
 							
 							System.out.println("[LOG PARTICIPANT] Received price "+costs.getPrice());
 							
-							if (costs != null && costs.getPrice() <= 10000) {
-								System.out.println("[LOG PARTICIPANT] Price accepted, sending answer.");
-								reply.setPerformative(ACLMessage.PROPOSE);
-								reply.setContent(costs.getPrice() + "");
-								return reply;
+							Netbook nbForSale = costs.getItem();
+							
+							if (costs != null) {
+								Iterator<Netbook> ni = netbooks.iterator();
+								while (ni.hasNext()){
+									Netbook nb = ni.next();
+									costs.getItem();
+									if(nb instanceof Asus && nbForSale instanceof Asus){
+										System.out.println("[LOG PARTICIPANT] Price accepted, sending answer.");
+										reply.setPerformative(ACLMessage.PROPOSE);
+										reply.setContent(costs.getPrice() + "");
+										return reply;
+									} else if (nb instanceof Dell && nbForSale instanceof Dell){
+										System.out.println("[LOG PARTICIPANT] Price accepted, sending answer.");
+										reply.setPerformative(ACLMessage.PROPOSE);
+										reply.setContent(costs.getPrice() + "");
+										return reply;
+									} 
+								}
+								return null;
 							} else {
 								System.out.println("[LOG PARTICIPANT] Price rejected, no messages sent.");
 								return null;
