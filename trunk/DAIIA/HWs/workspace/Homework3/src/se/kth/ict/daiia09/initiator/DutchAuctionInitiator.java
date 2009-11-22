@@ -111,6 +111,11 @@ public class DutchAuctionInitiator extends Agent {
 		send(auctionInform);
 		
 		addBehaviour(new DucthAuctionIteration());
+		
+		ACLMessage start = new ACLMessage(ACLMessage.PROPAGATE);
+		start.setProtocol("new-round");
+		start.addReceiver(getAID());
+		send(start);
 	}
 	
 	
