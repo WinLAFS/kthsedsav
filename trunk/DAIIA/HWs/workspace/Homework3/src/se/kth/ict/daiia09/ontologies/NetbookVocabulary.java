@@ -30,6 +30,11 @@ public final static String APPLE = "apple"; */
 	public static final String WEIGHT = "weight";
 	public static final String SCREEN_SIZE = "screenSize";
 	
+	public final static String COSTS = "Costs"; 
+	public final static String COSTS_ITEM = "item"; 
+	public final static String COSTS_PRICE = "price";
+	
+	
 	public final static String OWNS = "Owns"; 
 	public final static String OWNS_OWNER = "owner"; 
 	public final static String OWNS_NETBOOK = "netbook";

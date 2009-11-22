@@ -24,6 +24,7 @@ public class NetbookOntology extends Ontology implements NetbookVocabulary {
 			add(new ConceptSchema(DELL_NETBOOK), Dell.class);
 			add(new ConceptSchema(ASUS_NETBOOK), Asus.class);
 			
+			add(new PredicateSchema(COSTS), Costs.class);
 			add(new PredicateSchema(OWNS), Owns.class);
 			
 			ConceptSchema cs = (ConceptSchema) getSchema(NETBOOK);
@@ -41,24 +42,14 @@ public class NetbookOntology extends Ontology implements NetbookVocabulary {
 			ps.add(OWNS_OWNER, (ConceptSchema) getSchema(BasicOntology.AID));
 			ps.add(OWNS_NETBOOK, (ConceptSchema) getSchema(NETBOOK));
 			
+			ps = (PredicateSchema) getSchema(COSTS);
+			ps.add(COSTS_ITEM, (ConceptSchema) getSchema(NETBOOK));
+			ps.add(COSTS_PRICE, (ConceptSchema) getSchema(BasicOntology.INTEGER));
+			
 			
 		} catch (OntologyException e) {
 			e.printStackTrace();
 		}
-/* try {
-            PredicateSchema ps = (PredicateSchema) getSchema(COSTS);
-            ps.add(COSTS_FRUIT, (ConceptSchema) getSchema(FRUIT));
-            ps.add(COSTS_PRICE, (ConceptSchema) getSchema(PRICE));
-            ps.add(COSTS_QUANTITY, (ConceptSchema) getSchema(QUANTITY), ObjectSchema.OPTIONAL);
-
-            ps = (PredicateSchema) getSchema(OWNS);
-            ps.add(OWNS_OWNER, (ConceptSchema) getSchema(BasicOntology.AID));
-            ps.add(OWNS_FRUIT, (ConceptSchema) getSchema(FRUIT));
-
-
-        } catch (OntologyException oe) {
-            oe.printStackTrace();
-        }*/
 	}
 
 }
