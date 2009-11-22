@@ -49,11 +49,11 @@ public class ParticipantAgent extends Agent {
 		getContentManager().registerLanguage(new SLCodec());
 
 		final MessageTemplate template1 = MessageTemplate.and(MessageTemplate
-				.MatchProtocol("fipa-dutch-action"), MessageTemplate
+				.MatchProtocol("fipa-dutch-auction"), MessageTemplate
 				.MatchPerformative(ACLMessage.INFORM));
 
 		final MessageTemplate template2 = MessageTemplate.and(MessageTemplate
-				.MatchProtocol("fipa-dutch-action"), MessageTemplate.or(
+				.MatchProtocol("fipa-dutch-auction"), MessageTemplate.or(
 				MessageTemplate.MatchPerformative(ACLMessage.CFP), MessageTemplate.MatchPerformative(ACLMessage.INFORM)));
 
 		SequentialBehaviour participateInAuction = new SequentialBehaviour();
