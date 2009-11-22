@@ -80,7 +80,7 @@ public class Contractor extends Agent {
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
-		sd.setType("pricing");
+		sd.setType("contractor");
 		//the corresponding inventory/monitoring agent
 		sd.setName(getAID().getLocalName());
 		dfd.addServices(sd);
@@ -342,6 +342,21 @@ public class Contractor extends Agent {
 				laptopBrandArrayList.add(new LaptopBrand("Sony", 12000, 9600));
 				laptopBrandArrayList.add(new LaptopBrand("Dell", 11000, 7500));
 				laptopBrandArrayList.add(new LaptopBrand("Siemens", 11000, 8000));
+			}
+		 
+		 //register the service as an "inventory-monitoring" service
+			DFAgentDescription dfd = new DFAgentDescription();
+			dfd.setName(getAID());
+			ServiceDescription sd = new ServiceDescription();
+			sd.setType("contractor");
+			//the corresponding inventory/monitoring agent
+			sd.setName(getAID().getLocalName());
+			dfd.addServices(sd);
+			try {
+				DFService.register(this, dfd);
+			}
+			catch (FIPAException fe) {
+				fe.printStackTrace();
 			}
 	}
 
