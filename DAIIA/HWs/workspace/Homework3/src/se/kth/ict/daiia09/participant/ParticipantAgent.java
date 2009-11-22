@@ -116,12 +116,12 @@ public class ParticipantAgent extends Agent {
 								while (ni.hasNext()){
 									Netbook nb = ni.next();
 									costs.getItem();
-									if(nb instanceof Asus && nbForSale instanceof Asus){
+									if(nb instanceof Asus && nbForSale instanceof Asus && costs.getPrice()<=nb.getPrice()){
 										System.out.println("[LOG PARTICIPANT] Price accepted, sending answer.");
 										reply.setPerformative(ACLMessage.PROPOSE);
 										reply.setContent(costs.getPrice() + "");
 										return reply;
-									} else if (nb instanceof Dell && nbForSale instanceof Dell){
+									} else if (nb instanceof Dell && nbForSale instanceof Dell && costs.getPrice()<=nb.getPrice()){
 										System.out.println("[LOG PARTICIPANT] Price accepted, sending answer.");
 										reply.setPerformative(ACLMessage.PROPOSE);
 										reply.setContent(costs.getPrice() + "");
