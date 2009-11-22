@@ -1,9 +1,16 @@
 package se.kth.ict.daiia09.task2.contractors;
 
 //se.kth.ict.daiia09.company.PricingAgent
+import jade.content.ContentElement;
+import jade.content.lang.Codec.CodecException;
 import jade.content.lang.sl.SLCodec;
+import jade.content.onto.OntologyException;
+import jade.content.onto.UngroundedException;
+import jade.content.onto.basic.Action;
+import jade.content.onto.basic.Result;
 import jade.core.AID;
 import jade.core.Agent;
+import jade.core.Location;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
@@ -12,14 +19,21 @@ import jade.domain.FIPAAgentManagement.FailureException;
 import jade.domain.FIPAAgentManagement.NotUnderstoodException;
 import jade.domain.FIPAAgentManagement.RefuseException;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
+import jade.domain.mobility.CloneAction;
+import jade.domain.mobility.MobileAgentDescription;
 import jade.domain.mobility.MobilityOntology;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import jade.proto.SSContractNetResponder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.StringTokenizer;
+
+import se.kth.ict.daiia09.task2.Constants;
+
+import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 /**
  *
@@ -38,24 +52,28 @@ public class Contractor extends Agent {
 		System.out.println("pricing agent " + getAID().getName() + " started.");
 		
 		//hard-coded item prices
-		if (getAID().getLocalName().indexOf("1") >= 0) {
+		String newName = "";
+		if (getAID().getLocalName().indexOf("Ebay") >= 0) {
 			laptopBrandArrayList.add(new LaptopBrand("LG", 8000, 6000));
 			laptopBrandArrayList.add(new LaptopBrand("Sony", 11000, 9000));
 			laptopBrandArrayList.add(new LaptopBrand("Mac", 13000, 10000));
 			laptopBrandArrayList.add(new LaptopBrand("Lenovo", 8000,5500));
+			newName = Constants.CONTRACTOR_EBAY_2;
 		}
-		else {
+		else if (getAID().getLocalName().indexOf("Amazon") >= 0){
 			laptopBrandArrayList.add(new LaptopBrand("LG", 9000, 5900));
 			laptopBrandArrayList.add(new LaptopBrand("Sony", 10000, 8600));
 			laptopBrandArrayList.add(new LaptopBrand("Dell", 12000, 10500));
 			laptopBrandArrayList.add(new LaptopBrand("Siemens", 10000, 7000));
+			newName = Constants.CONTRACTOR_AMAZON_2;
+		} else {
+			System.err.println("[LOG] Bad name, exiting. I should be either Ebay or Amazon contractor");
+			return;
 		}
 		
 		//Registering mobility staff
 		getContentManager().registerLanguage(new SLCodec());
 		getContentManager().registerOntology(MobilityOntology.getInstance());
-		
-		
 		
 		
 		//register the service as an "inventory-monitoring" service
@@ -72,6 +90,12 @@ public class Contractor extends Agent {
 		catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
+		
+		String currentContainer=this.here().getName();
+		Location myLocation = here();
+		
+		
+		this.doClone(myLocation, newName);
 		
 		
 		final MessageTemplate template = MessageTemplate.and(
@@ -103,11 +127,11 @@ public class Contractor extends Agent {
 								
 								curPriceInt = Integer.parseInt(curPrice);
 							} catch (Throwable t){
-								System.out.println("[LOG PricingAgent] Error parsing request string!");
+								System.out.println("<"+getAID().getLocalName()+">"+"[LOG PricingAgent] Error parsing request string!");
 							}
 							
 							String senderName = cfp.getSender().getLocalName();
-							System.out.println("[LOG PricingAgent] Received CFP for brand "+ brand+" from "+senderName+".");
+							System.out.println("<"+getAID().getLocalName()+">"+"[LOG PricingAgent] Received CFP for brand "+ brand+" from "+senderName+".");
 							
 							//First request
 							if(seller.equalsIgnoreCase("null")){
@@ -117,11 +141,11 @@ public class Contractor extends Agent {
 								if(normalPrice>0){
 									reply.setPerformative(ACLMessage.PROPOSE);
 									reply.setContent(normalPrice+"");
-									System.out.println("[LOG PricingAgent] brand "+brand+" found with price "+ normalPrice+". Sending ACLMessage.PROPOSE message to "+senderName+".");
+									System.out.println("<"+getAID().getLocalName()+">"+"[LOG PricingAgent] brand "+brand+" found with price "+ normalPrice+". Sending ACLMessage.PROPOSE message to "+senderName+".");
 								//brand not found
 								}else{
 									reply.setPerformative(ACLMessage.REFUSE);
-									System.out.println("[LOG PricingAgent] brand "+brand+" was not found. Sending ACLMessage.REFUSE message to "+senderName+".");
+									System.out.println("<"+getAID().getLocalName()+">"+"[LOG PricingAgent] brand "+brand+" was not found. Sending ACLMessage.REFUSE message to "+senderName+".");
 								}
 							//Not first request
 							} else {
@@ -133,13 +157,13 @@ public class Contractor extends Agent {
 									if(seller.equalsIgnoreCase(getAID().getName())){
 										reply.setPerformative(ACLMessage.PROPOSE);
 										reply.setContent(curPriceInt+"");
-										System.out.println("[LOG PricingAgent] request for brand "+brand+" received. The previous price was mine. Repeating price "+ curPriceInt+". Sending ACLMessage.PROPOSE message to "+senderName+".");
+										System.out.println("<"+getAID().getLocalName()+">"+"[LOG PricingAgent] request for brand "+brand+" received. The previous price was mine. Repeating price "+ curPriceInt+". Sending ACLMessage.PROPOSE message to "+senderName+".");
 									//The previous price was from another agent
 									}else{
 										//We can't give smaller price
 										if(minPrice>=curPriceInt){
 											reply.setPerformative(ACLMessage.REFUSE);
-											System.out.println("[LOG PricingAgent] Can't give smaller price for brand "+brand+". Current price is "+curPriceInt+". Sending ACLMessage.REFUSE message to "+senderName+".");
+											System.out.println("<"+getAID().getLocalName()+">"+"[LOG PricingAgent] Can't give smaller price for brand "+brand+". Current price is "+curPriceInt+". Sending ACLMessage.REFUSE message to "+senderName+".");
 										//We can give smaller price
 										} else{
 											int canGivePrice = 0;
@@ -153,13 +177,13 @@ public class Contractor extends Agent {
 											
 											reply.setPerformative(ACLMessage.PROPOSE);
 											reply.setContent(canGivePrice+"");
-											System.out.println("[LOG PricingAgent] Can give price "+canGivePrice+" for rand "+brand+". Sending ACLMessage.PROPOSE message to "+senderName+".");
+											System.out.println("<"+getAID().getLocalName()+">"+"[LOG PricingAgent] Can give price "+canGivePrice+" for rand "+brand+". Sending ACLMessage.PROPOSE message to "+senderName+".");
 										}
 									}
 								//Brand not found	
 								}else{
 									reply.setPerformative(ACLMessage.REFUSE);
-									System.out.println("[LOG PricingAgent] brand "+brand+" was not found. Sending ACLMessage.REFUSE message to "+senderName+".");
+									System.out.println("<"+getAID().getLocalName()+">"+"[LOG PricingAgent] brand "+brand+" was not found. Sending ACLMessage.REFUSE message to "+senderName+".");
 								}
 							}
 							
@@ -181,7 +205,7 @@ public class Contractor extends Agent {
 								
 								priceInt = Integer.parseInt(price);
 							} catch (Throwable t){
-								System.out.println("[LOG PricingAgent] Error parsing request string!");
+								System.out.println("<"+getAID().getLocalName()+">"+"[LOG PricingAgent] Error parsing request string!");
 							}
 							
 							
@@ -190,7 +214,7 @@ public class Contractor extends Agent {
 							propose.setPerformative(ACLMessage.INFORM);
 							propose.setContent(price+"");
 							
-							System.out.println("[LOG PricingAgent] received accept proposal message for brand "+brand+". Sending ACLMessage.INFORM message to "+senderName+". Price: " + price);
+							System.out.println("<"+getAID().getLocalName()+">"+"[LOG PricingAgent] received accept proposal message for brand "+brand+". Sending ACLMessage.INFORM message to "+senderName+". Price: " + price);
 							
 							return propose;
 						}
@@ -198,7 +222,7 @@ public class Contractor extends Agent {
 						protected void handleRejectProposal(ACLMessage cfp, ACLMessage propose, ACLMessage reject){
 							String senderName = reject.getSender().getLocalName();
 							String item = reject.getContent();
-							System.out.println("[LOG PricingAgent] received reject message for item "+item+" from "+senderName+".");
+							System.out.println("<"+getAID().getLocalName()+">"+"[LOG PricingAgent] received reject message for item "+item+" from "+senderName+".");
 						}
 						
 					});
@@ -217,7 +241,7 @@ public class Contractor extends Agent {
 		}
 	}
 	
-	private class LaptopBrand {
+	private class LaptopBrand implements Serializable{
 		private String name = null;
 		private int price = Integer.MAX_VALUE;
 		private int minPrice = Integer.MAX_VALUE;
@@ -303,4 +327,22 @@ public class Contractor extends Agent {
 		
 		return availability;
 	}
+	
+	 protected void afterClone() {
+		 laptopBrandArrayList = new ArrayList<LaptopBrand>();
+		 System.out.println("<"+getAID().getLocalName()+">"+" I'm cloned!!!");
+		 if (getAID().getLocalName().indexOf("Ebay") >= 0) {
+				laptopBrandArrayList.add(new LaptopBrand("LG", 9000, 7000));
+				laptopBrandArrayList.add(new LaptopBrand("Sony", 10000, 8000));
+				laptopBrandArrayList.add(new LaptopBrand("Mac", 12000, 19000));
+				laptopBrandArrayList.add(new LaptopBrand("Lenovo", 9000,6500));
+			}
+			else {
+				laptopBrandArrayList.add(new LaptopBrand("LG", 10000, 4900));
+				laptopBrandArrayList.add(new LaptopBrand("Sony", 12000, 9600));
+				laptopBrandArrayList.add(new LaptopBrand("Dell", 11000, 7500));
+				laptopBrandArrayList.add(new LaptopBrand("Siemens", 11000, 8000));
+			}
+	}
+
 }
