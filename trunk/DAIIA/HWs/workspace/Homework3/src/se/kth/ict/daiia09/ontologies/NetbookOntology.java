@@ -44,7 +44,7 @@ public class NetbookOntology extends Ontology implements NetbookVocabulary {
 			
 			ps = (PredicateSchema) getSchema(COSTS);
 			ps.add(COSTS_ITEM, (ConceptSchema) getSchema(NETBOOK));
-			ps.add(COSTS_PRICE, (ConceptSchema) getSchema(BasicOntology.INTEGER));
+			ps.add(COSTS_PRICE, (PrimitiveSchema) getSchema(BasicOntology.INTEGER));
 			
 			
 		} catch (OntologyException e) {
