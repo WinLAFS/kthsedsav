@@ -9,6 +9,7 @@ import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
+import jade.domain.FIPANames;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
@@ -127,32 +128,34 @@ public class DutchAuctionInitiator extends Agent {
 		public void action() {
 			ACLMessage start = myAgent.receive(template);
 			if (start != null) {
-				System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] New Iteration STARTING. Price: " + currentPrice + " -------------");
-				ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
-				Date replyDate = new Date(System.currentTimeMillis() + 3000);
-				cfp.setReplyByDate(replyDate);
-				cfp.setOntology(NetbookOntology.ONTOLOGY_NAME);
-				
-				netbook.setPrice(currentPrice);
-				costs.setPrice(currentPrice);
-				try {
-					getContentManager().fillContent(cfp, costs);
-				} catch (CodecException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (OntologyException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if (!sold) {
+					System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] New Iteration STARTING. Price: " + currentPrice + " -------------");
+					ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
+					Date replyDate = new Date(System.currentTimeMillis() + 1000);
+					cfp.setReplyByDate(replyDate);
+					cfp.setOntology(NetbookOntology.ONTOLOGY_NAME);
+					cfp.setLanguage(FIPANames.ContentLanguage.FIPA_SL);
+					
+					netbook.setPrice(currentPrice);
+					costs.setPrice(currentPrice);
+					try {
+						getContentManager().fillContent(cfp, costs);
+					} catch (CodecException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (OntologyException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					cfp.setProtocol("fipa-dutch-auction");
+					Iterator<AID> pIterator = participantList.iterator();
+					while (pIterator.hasNext()) {
+						cfp.addReceiver(pIterator.next());
+					}
+	
+					myAgent.addBehaviour(new DutchAuctionNetInitiator(myAgent, cfp));
 				}
-				
-				cfp.setProtocol("fipa-dutch-auction");
-				Iterator<AID> pIterator = participantList.iterator();
-				while (pIterator.hasNext()) {
-					cfp.addReceiver(pIterator.next());
-				}
-
-				myAgent.addBehaviour(new DutchAuctionNetInitiator(myAgent, cfp));
-				currentPrice -= priceStep;
 			}
 			else {
 				block();
@@ -163,7 +166,6 @@ public class DutchAuctionInitiator extends Agent {
 			return (currentPrice < lowerPrice) || sold;
 		}
 
-		@Override
 		public int onEnd() {
 			if (!sold) {
 				ACLMessage informEnd = new ACLMessage(ACLMessage.INFORM);
@@ -175,6 +177,7 @@ public class DutchAuctionInitiator extends Agent {
 				}
 				
 				myAgent.send(informEnd);
+				System.out.println("[LOG: " + myAgent.getAID().getLocalName() +"] Item NOT sold :-(");
 			}
 			
 			return super.onEnd();
@@ -215,7 +218,8 @@ public class DutchAuctionInitiator extends Agent {
 					acceptances.add(reply);
 				}
 			}
-				
+			
+			currentPrice -= priceStep;
 			ACLMessage start = new ACLMessage(ACLMessage.PROPAGATE);
 			start.setProtocol("new-round");
 			start.addReceiver(myAgent.getAID());
