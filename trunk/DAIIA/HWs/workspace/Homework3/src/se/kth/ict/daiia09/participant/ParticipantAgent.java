@@ -18,6 +18,7 @@ import jade.proto.SSContractNetResponder;
 
 import java.util.ArrayList;
 
+import se.kth.ict.daiia09.ontologies.Costs;
 import se.kth.ict.daiia09.ontologies.Netbook;
 import se.kth.ict.daiia09.ontologies.NetbookOntology;
 
@@ -78,19 +79,19 @@ public class ParticipantAgent extends Agent {
 						protected ACLMessage handleCfp(ACLMessage cfp)throws RefuseException, FailureException,NotUnderstoodException {
 							ACLMessage reply = cfp.createReply();
 
-							Netbook netbook = null;
+							Costs costs = null;
 							try {
-								netbook = (Netbook) getContentManager().extractContent(cfp);
+								costs = (Costs) getContentManager().extractContent(cfp);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
 							
 							System.out.println("[LOG PARTICIPANT] Received price.");
 							
-							if (netbook != null && netbook.getPrice() <= 10000) {
+							if (costs != null && costs.getPrice() <= 10000) {
 								System.out.println("[LOG PARTICIPANT] Price accepted, sending answer.");
 								reply.setPerformative(ACLMessage.PROPOSE);
-								reply.setContent(netbook.getPrice() + "");
+								reply.setContent(costs.getPrice() + "");
 								return reply;
 							} else {
 								System.out.println("[LOG PARTICIPANT] Price rejected, no messages sent.");
