@@ -1,6 +1,9 @@
 package se.kth.ict.daiia09.initiator;
 
+import jade.content.ContentElementList;
+import jade.content.lang.Codec.CodecException;
 import jade.content.lang.sl.SLCodec;
+import jade.content.onto.OntologyException;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
@@ -18,6 +21,7 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import se.kth.ict.daiia09.ontologies.Asus;
+import se.kth.ict.daiia09.ontologies.Costs;
 import se.kth.ict.daiia09.ontologies.Dell;
 import se.kth.ict.daiia09.ontologies.Netbook;
 import se.kth.ict.daiia09.ontologies.NetbookOntology;
@@ -29,6 +33,7 @@ public class DutchAuctionInitiator extends Agent {
 	private int currentPrice = startPrice;
 	private boolean sold = false;
 	Netbook netbook = null;
+	Costs costs = null;
 	
 	String brand = "Asus";
 	private ArrayList<AID> participantList = new ArrayList<AID>();
@@ -50,18 +55,27 @@ public class DutchAuctionInitiator extends Agent {
 			catch (Exception e) {
 			}
 			if (args[0].toString().equalsIgnoreCase("asus")) {
-				netbook = new Asus();
-				netbook.setPrice(currentPrice);
-				netbook.setScreenSize(11);
-				netbook.setWeight(1100);
+				brand = "Asus";
 			}
 			else {
-				netbook = new Dell();
-				netbook.setPrice(currentPrice);
-				netbook.setScreenSize(10);
-				netbook.setWeight(1000);
+				brand = "Dell";
 			}
 		}
+		if (brand.equalsIgnoreCase("asus")) {
+			netbook = new Asus();
+			netbook.setPrice(currentPrice);
+			netbook.setScreenSize(11);
+			netbook.setWeight(1100);
+		}
+		else {
+			netbook = new Dell();
+			netbook.setPrice(currentPrice);
+			netbook.setScreenSize(10);
+			netbook.setWeight(1000);
+		}
+		costs = new Costs();
+		costs.setItem(netbook);
+		costs.setPrice(currentPrice);
 		
 		//codec
 		getContentManager().registerOntology(NetbookOntology.getInstance());
@@ -96,7 +110,7 @@ public class DutchAuctionInitiator extends Agent {
 		
 		send(auctionInform);
 		
-		//TODO
+		addBehaviour(new DucthAuctionIteration());
 	}
 	
 	
@@ -115,18 +129,24 @@ public class DutchAuctionInitiator extends Agent {
 				cfp.setOntology(NetbookOntology.ONTOLOGY_NAME);
 				
 				netbook.setPrice(currentPrice);
-				getContentManager().fillContent(cfp, netbook);
-				
+				costs.setPrice(currentPrice);
+				try {
+					getContentManager().fillContent(cfp, costs);
+				} catch (CodecException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (OntologyException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 				cfp.setProtocol("fipa-dutch-auction");
 				Iterator<AID> pIterator = participantList.iterator();
 				while (pIterator.hasNext()) {
 					cfp.addReceiver(pIterator.next());
 				}
-				//TODO remove previous behaviour
-				
-				//TODO add a new round behaviour
-				//myAgent.addBehaviour(new ShoppingContractNetInitiator(myAgent, cfp, maxPrice, (iterations == 1)));
+
+				myAgent.addBehaviour(new DutchAuctionNetInitiator(myAgent, cfp));
 				currentPrice -= priceStep;
 			}
 			else {
