@@ -88,7 +88,7 @@ public class ParticipantAgent extends Agent {
 								e.printStackTrace();
 							}
 							
-							System.out.println("[LOG PARTICIPANT] Received price.");
+							System.out.println("[LOG PARTICIPANT] Received price "+costs.getPrice());
 							
 							if (costs != null && costs.getPrice() <= 10000) {
 								System.out.println("[LOG PARTICIPANT] Price accepted, sending answer.");
