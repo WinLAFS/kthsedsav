@@ -111,7 +111,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		
 		User user = getEntityManager().find(User.class, username);
 		if (user != null) {
-			Query query = getEntityManager().createNativeQuery("select x from Item x where x.itemname LIKE " + item.getItemName());
+			Query query = getEntityManager().createQuery("select x from Item x where x.itemname LIKE " + item.getItemName());
 			se.kth.ict.npj.hw2.server.objects.Item item2 = (se.kth.ict.npj.hw2.server.objects.Item) query.getSingleResult();
 			if (item2 != null) {
 				
