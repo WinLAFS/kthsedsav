@@ -23,6 +23,7 @@ import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.UknownClientException;
+import se.kth.ict.npj.hw2.exception.UknownItemException;
 import se.kth.ict.npj.hw2.exception.UnknownClientException;
 import se.kth.ict.npj.hw2.exception.UnknownItemException;
 import se.kth.ict.npj.hw2.server.objects.User;
@@ -98,78 +99,36 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#buyItem(se.kth.ict.npj.hw2.Item)
 	 */
-	public synchronized void buyItem(String userId, Item item) throws IllegalItemException, UnknownItemException,
-			RemoteException, AccountNotFoundException {
+	public synchronized void buyItem(String username, se.kth.ict.npj.hw2.server.objects.Item item) throws IllegalItemException, UnknownItemException,
+			RemoteException, AccountNotFoundException, UknownClientException {
 		
-		System.out.println("[LOG] Client " + userId + " trying to buy item: " + item.toString());
-		if (item.getName() == null || item.getOwner() == null || item.getPrice() == 0) {
-			throw new IllegalItemException();
-		}
+		System.out.println("[LOG] Client " + username + " trying to buy item: " + item.getItemName());
 		
-		Iterator<Item> iIterator = itemList.iterator();
-		while (iIterator.hasNext()) {
-			Item item2 = iIterator.next();
-			
-			if (areEqualItems(item, item2)) {
-				try {
-					bankrmi.Account sellerAccount = bank.getAccount(item2.getOwner());
-					if (sellerAccount == null) {
-						throw new AccountNotFoundException("Could not get the seller's account.");
-					}
-					bankrmi.Account buyerAccount = bank.getAccount(userId);
-					if (buyerAccount == null) {
-						throw new AccountNotFoundException("Could not get the buyer's account.");
-					}
-					try {
-						buyerAccount.withdraw(item2.getPrice());
-						try { 
-							sellerAccount.deposit(item2.getPrice());
-							itemList.remove(item2);
-						} catch (Rejected e) {
-							buyerAccount.deposit(item2.getPrice());
-							throw e;
-						}
-					}
-					catch (Rejected e) {
-						System.out.println("[LOG] The bank transaction was rejected: " + e.getMessage());
-						throw e;
-					}
+		EntityTransaction et = getEntityManager().getTransaction();
+		et.begin();
+		
+		User user = getEntityManager().find(User.class, username);
+		if (user != null) {
+			Query query = getEntityManager().createQuery("select * from item where itemname LIKE " + item.getItemName());
+			se.kth.ict.npj.hw2.server.objects.Item item2 = (se.kth.ict.npj.hw2.server.objects.Item) query.getSingleResult();
+			if (item2 != null) {
+				if (item2.getQuantity() > 1) {
+					
 				}
-				catch (Rejected e) {
-					throw e;
-				}
-				catch (AccountNotFoundException e) {
-					throw e;
-				}
-				catch (RemoteException e) {
-					throw new AccountNotFoundException("Could not update the clients' accounts.");
-				}
-				
-				
-				try {
-					MPClientInterface mpci = (MPClientInterface) Naming.lookup(item2.getOwner());
-					mpci.receiveItemSoldNotification(item2);
-				} 
-				catch (MalformedURLException e) {
-					System.out.println("[LOG] The seller url was not correct: " + e.getMessage());
-				} 
-				catch (NotBoundException e) {
-					System.out.println("[LOG] The seller object was not found: " + e.getMessage());
-				}
-				catch (RemoteException e) {
-					System.out.println("[LOG] The seller object could not be retrieved: " + e.getMessage());
-				}
-				
-				
-				return;
+			}
+			else {
+				throw new UnknownItemException();
 			}
 		}
-		throw new UnknownItemException();
+		else {
+			throw new UknownClientException();
+		}
+		
 	}
 
 	public synchronized ArrayList<se.kth.ict.npj.hw2.server.objects.Item> inspectItems() throws RemoteException {
 		System.out.println("[LOG] inspectItems()");
-		Query query = getEntityManager().createQuery("SELECT * FROM item");
+		Query query = getEntityManager().createQuery("SELECT x FROM item x");
 		
 		ArrayList<se.kth.ict.npj.hw2.server.objects.Item> itemListt = (ArrayList<se.kth.ict.npj.hw2.server.objects.Item>) query.getResultList();
 		
