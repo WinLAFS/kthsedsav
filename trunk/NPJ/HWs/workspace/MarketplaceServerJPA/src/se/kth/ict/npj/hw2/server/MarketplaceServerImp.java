@@ -398,6 +398,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		}
 		
 		if (!login) {
+			et.commit();
 			throw new UknownClientException();
 		}
 		

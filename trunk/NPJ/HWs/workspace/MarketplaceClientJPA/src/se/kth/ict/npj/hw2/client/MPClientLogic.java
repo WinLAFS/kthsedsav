@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import javax.security.auth.login.AccountNotFoundException;
 
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+
 import bankrmi.Account;
 
 import se.kth.ict.npj.hw2.Item;
@@ -22,6 +24,7 @@ import se.kth.ict.npj.hw2.exception.UknownItemException;
 import se.kth.ict.npj.hw2.exception.UnknownClientException;
 import se.kth.ict.npj.hw2.exception.UnknownItemException;
 import se.kth.ict.npj.hw2.server.MarketplaceServerInterface;
+import sun.misc.BASE64Encoder;
 
 public class MPClientLogic {
 	private MPClientGUI gui;
@@ -72,8 +75,8 @@ public class MPClientLogic {
 			try {
 				this.userName = "rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user;
 				
-				serverInt.registerClient("rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user, generateHash(password), userName);
-				
+				//serverInt.registerClient("rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user, generateHash(password), userName);
+				serverInt.loginUser(user, generateHash(password), userName);
 				
 				String bankUrl = "rmi://"+server+portStr+"/NordBanken";
 				bank = (bankrmi.Bank) Naming.lookup(bankUrl);
@@ -83,13 +86,64 @@ public class MPClientLogic {
 				gui.connectionError("Can't conect to server");
 				System.err.println("[LOG] UnknownHostException when connecting to server");
 				return;
+			} catch (UknownClientException e) {
+				gui.connectionError("Username/password incorrect");
+				System.err.println("[LOG] UknownClientException when connecting to server");
+				return;
 			}
 			
 			gui.connectionSuccessful();
 			updateItems();
-		} catch (ClientAlreadyExistsException e){
-			gui.connectionError("Choose another name");
-			System.err.println("[LOG] ClientAlreadyExistsException when connecting to server");
+		} catch (MalformedURLException e) {
+			gui.connectionError("Bad server address or port");
+			System.err.println("[LOG] MalformedURLException when connecting to server");
+		} catch (RemoteException e) {
+			gui.connectionError("Can't conect to server");
+			System.err.println("[LOG] RemoteException when connecting to server");
+		} catch (NotBoundException e) {
+			gui.connectionError("Can't connect to server");
+			System.err.println("[LOG] NotBoundException when connecting to server");
+		}
+	}
+	
+	/**
+	 * The method performs connection of the client to the servers.
+	 * It connects to Marketplace and bank servers and updates client's
+	 * gui.
+	 * 
+	 * @param user Username string
+	 * @param server Server host string
+	 * @param port Servers port number
+	 */
+	public void registerOnServer(String user, String server, String port, String password){
+		try {
+			String portStr="";
+			if(port!=null && !port.equals("")){
+				portStr=":"+port;
+			}
+			serverInt = (MarketplaceServerInterface)Naming.lookup("rmi://"+server+portStr+"/server");
+			try {
+				this.userName = "rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user;
+				
+				//serverInt.registerClient("rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user, generateHash(password), userName);
+				serverInt.registerClient(user, generateHash(password), userName);
+				
+				String bankUrl = "rmi://"+server+portStr+"/NordBanken";
+				bank = (bankrmi.Bank) Naming.lookup(bankUrl);
+				account = bank.newAccount(userName);
+				account.deposit(100);
+			} catch (UnknownHostException e) {
+				gui.connectionError("Can't conect to server");
+				System.err.println("[LOG] UnknownHostException when connecting to server");
+				return;
+			} catch (ClientAlreadyExistsException e) {
+				gui.connectionError("Client already exists on server");
+				System.err.println("[LOG] ClientAlreadyExistsException when connecting to server");
+				return;
+			}
+			
+			gui.connectionSuccessful();
+			updateItems();
 		} catch (MalformedURLException e) {
 			gui.connectionError("Bad server address or port");
 			System.err.println("[LOG] MalformedURLException when connecting to server");
@@ -285,7 +339,7 @@ public class MPClientLogic {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			byte[] thedigest = md.digest(bytesOfMessage);
 			
-			hash = new String(thedigest);
+			hash = Base64.encode(thedigest);
 		} catch (Exception e){
 			System.err.println("Error generaing hash");
 		}
