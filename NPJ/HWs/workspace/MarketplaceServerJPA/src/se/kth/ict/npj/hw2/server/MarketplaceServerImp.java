@@ -6,12 +6,11 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+import javax.jws.soap.SOAPBinding.Use;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,18 +19,18 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.security.auth.login.AccountNotFoundException;
 
+import bankrmi.Rejected;
+
 import se.kth.ict.npj.hw2.Item;
 import se.kth.ict.npj.hw2.client.objects.MPClientInterface;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.UknownClientException;
-import se.kth.ict.npj.hw2.exception.UknownItemException;
 import se.kth.ict.npj.hw2.exception.UnknownClientException;
 import se.kth.ict.npj.hw2.exception.UnknownItemException;
 import se.kth.ict.npj.hw2.server.objects.User;
 import se.kth.ict.npj.hw2.server.objects.UserStatistics;
-import bankrmi.Rejected;
 
 /**
  * The MarketplaceServerInterface's implementation that implements all
@@ -115,15 +114,77 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			Query query = getEntityManager().createNativeQuery("select * from item where itemname LIKE " + item.getItemName());
 			se.kth.ict.npj.hw2.server.objects.Item item2 = (se.kth.ict.npj.hw2.server.objects.Item) query.getSingleResult();
 			if (item2 != null) {
-				if (item2.getQuantity() == 1) {
-					
+				
+				User seller = item2.getSeller();
+				
+				try {
+					bankrmi.Account sellerAccount = bank.getAccount(seller.getUsername());
+					if (sellerAccount == null) {
+						throw new AccountNotFoundException("Could not get the seller's account.");
+					}
+					bankrmi.Account buyerAccount = bank.getAccount(user.getUsername());
+					if (buyerAccount == null) {
+						throw new AccountNotFoundException("Could not get the buyer's account.");
+					}
+					try {
+						buyerAccount.withdraw(item2.getPrice());
+						try { 
+							sellerAccount.deposit(item2.getPrice());
+							if (item2.getQuantity() == 1) {
+								Query query2 = getEntityManager().createNativeQuery("delete from item where itemname LIKE " + item.getItemName());
+								query2.executeUpdate();
+								
+							}
+							else {
+								int exQuantity = item2.getQuantity();
+								item2.setQuantity(--exQuantity);
+							}
+						} catch (Rejected e) {
+							buyerAccount.deposit(item2.getPrice());
+							throw e;
+						}
+					}
+					catch (Rejected e) {
+						System.out.println("[LOG] The bank transaction was rejected: " + e.getMessage());
+						throw e;
+					}
+				}
+				catch (Rejected e) {
+					throw e;
+				}
+				catch (AccountNotFoundException e) {
+					throw e;
+				}
+				catch (RemoteException e) {
+					throw new AccountNotFoundException("Could not update the clients' accounts.");
+				}
+				finally {
+					et.rollback();
+				}
+				
+				et.commit();
+				
+				try {
+					MPClientInterface mpci = (MPClientInterface) Naming.lookup(seller.getUserURL());
+					mpci.receiveItemSoldNotification(null); //TODO
+				} 
+				catch (MalformedURLException e) {
+					System.out.println("[LOG] The seller url was not correct: " + e.getMessage());
+				} 
+				catch (NotBoundException e) {
+					System.out.println("[LOG] The seller object was not found: " + e.getMessage());
+				}
+				catch (RemoteException e) {
+					System.out.println("[LOG] The seller object could not be retrieved: " + e.getMessage());
 				}
 			}
 			else {
+				et.rollback();
 				throw new UnknownItemException();
 			}
 		}
 		else {
+			et.rollback();
 			throw new UknownClientException();
 		}
 		
@@ -228,7 +289,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		et.begin();
 		
 		User user = getEntityManager().find(User.class, username);
-		ArrayList<se.kth.ict.npj.hw2.server.objects.Item> itemList = (ArrayList<se.kth.ict.npj.hw2.server.objects.Item>) user.getSellingItemList();
+		Vector<se.kth.ict.npj.hw2.server.objects.Item> itemList = (Vector<se.kth.ict.npj.hw2.server.objects.Item>) user.getSellingItemList();
 		Iterator<se.kth.ict.npj.hw2.server.objects.Item> iIterator = itemList.iterator();
 		while (iIterator.hasNext()) {
 			se.kth.ict.npj.hw2.server.objects.Item item2 = (se.kth.ict.npj.hw2.server.objects.Item) iIterator.next();
