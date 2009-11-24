@@ -6,8 +6,11 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.StringTokenizer;
+import java.util.Vector;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -109,10 +112,10 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		
 		User user = getEntityManager().find(User.class, username);
 		if (user != null) {
-			Query query = getEntityManager().createQuery("select * from item where itemname LIKE " + item.getItemName());
+			Query query = getEntityManager().createNativeQuery("select * from item where itemname LIKE " + item.getItemName());
 			se.kth.ict.npj.hw2.server.objects.Item item2 = (se.kth.ict.npj.hw2.server.objects.Item) query.getSingleResult();
 			if (item2 != null) {
-				if (item2.getQuantity() > 1) {
+				if (item2.getQuantity() == 1) {
 					
 				}
 			}
@@ -126,12 +129,11 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		
 	}
 
-	public synchronized ArrayList<se.kth.ict.npj.hw2.server.objects.Item> inspectItems() throws RemoteException {
+	public synchronized Vector<se.kth.ict.npj.hw2.server.objects.Item> inspectItems() throws RemoteException {
 		System.out.println("[LOG] inspectItems()");
 		Query query = getEntityManager().createNativeQuery("SELECT * FROM item");
 		
-		ArrayList<se.kth.ict.npj.hw2.server.objects.Item> itemListt = (ArrayList<se.kth.ict.npj.hw2.server.objects.Item>) query.getResultList();
-		
+		Vector<se.kth.ict.npj.hw2.server.objects.Item> itemListt = (Vector<se.kth.ict.npj.hw2.server.objects.Item>) query.getResultList();
 		return itemListt;
 	}
 	

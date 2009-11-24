@@ -3,6 +3,7 @@ package se.kth.ict.npj.hw2.server;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.security.auth.login.AccountNotFoundException;
 
@@ -95,7 +96,7 @@ public interface MarketplaceServerInterface extends Remote {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ArrayList<se.kth.ict.npj.hw2.server.objects.Item> inspectItems() throws RemoteException;
+	public Vector<se.kth.ict.npj.hw2.server.objects.Item> inspectItems() throws RemoteException;
 	
 	/**
 	 * This method adds an item to the wish list or returns immediately some results
