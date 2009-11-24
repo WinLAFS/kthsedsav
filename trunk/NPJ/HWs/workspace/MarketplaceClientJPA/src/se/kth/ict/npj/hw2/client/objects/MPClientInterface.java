@@ -21,7 +21,7 @@ public interface MPClientInterface extends Remote{
 	 * @param item Item that was sold
 	 * @throws RemoteException
 	 */
-	void receiveItemSoldNotification(Item item) throws RemoteException;
+	void receiveItemSoldNotification(se.kth.ict.npj.hw2.server.objects.Item item) throws RemoteException;
 	
 	
 	/**

@@ -675,8 +675,8 @@ public class MPClientGUI extends JFrame {
 	 * 
 	 * @param item
 	 */
-	public synchronized void notifyItemSold(Item item) {
-		jLabel11.setText("The item " + item.getName() + " / " + item.getPrice() + " was sold.");
+	public synchronized void notifyItemSold(se.kth.ict.npj.hw2.server.objects.Item item) {
+		jLabel11.setText("The item " + item.getItemName() + " / " + item.getPrice() + " was sold.");
 	}
 	
 	/**

@@ -37,7 +37,7 @@ public class MPClientImpl extends UnicastRemoteObject implements MPClientInterfa
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.client.objects.MPClientInterface#receiveItemSoldNotification(se.kth.ict.npj.hw2.Item)
 	 */
-	public void receiveItemSoldNotification(Item item) throws RemoteException {
+	public void receiveItemSoldNotification(se.kth.ict.npj.hw2.server.objects.Item item) throws RemoteException {
 		gui.notifyItemSold(item);
 	}
 
