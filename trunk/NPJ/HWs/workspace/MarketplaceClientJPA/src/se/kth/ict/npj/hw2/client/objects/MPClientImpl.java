@@ -45,7 +45,7 @@ public class MPClientImpl extends UnicastRemoteObject implements MPClientInterfa
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.client.objects.MPClientInterface#receiveWishedItemNotification(se.kth.ict.npj.hw2.Item)
 	 */
-	public void receiveWishedItemNotification(Item item) throws RemoteException {
+	public void receiveWishedItemNotification(se.kth.ict.npj.hw2.server.objects.Item item) throws RemoteException {
 		gui.notifyWishListItemFound(item);
 	}
 

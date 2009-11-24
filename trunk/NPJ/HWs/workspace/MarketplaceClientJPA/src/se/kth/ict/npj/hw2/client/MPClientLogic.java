@@ -244,13 +244,13 @@ public class MPClientLogic {
 			return;
 		}
 		
-		Item item = new Item();
-		item.setName(itemName);
-		item.setOwner(userName);
+		se.kth.ict.npj.hw2.server.objects.Item item = new se.kth.ict.npj.hw2.server.objects.Item();
+		item.setItemName(itemName);
+		item.setSeller(null);
 		item.setPrice(price);
 		
 		try {
-			serverInt.wishItem(item);
+			serverInt.wishItem(userNameShort, item);
 		} catch (RemoteException e) {
 			System.err.println("[LOG] RemoteException when wishing item");
 			gui.setNotificationMessage("Can't wish the item");
