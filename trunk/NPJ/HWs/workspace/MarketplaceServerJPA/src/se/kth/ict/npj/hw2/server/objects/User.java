@@ -45,7 +45,7 @@ public class User implements Serializable{
 		this.userStatistics = userStatistics;
 	}
 	@OneToMany(cascade=CascadeType.REMOVE, mappedBy="user", targetEntity=se.kth.ict.npj.hw2.server.objects.Item.class)
-	@JoinColumn(nullable=false, referencedColumnName="seller")
+	@JoinColumn(nullable=true, referencedColumnName="seller")
 	public List<Item> getSellingItemList() {
 		return sellingItemList;
 	}
