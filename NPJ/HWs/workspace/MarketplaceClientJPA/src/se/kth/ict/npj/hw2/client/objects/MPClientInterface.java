@@ -32,7 +32,7 @@ public interface MPClientInterface extends Remote{
 	 * @param item Item that client wished.
 	 * @throws RemoteException
 	 */
-	void receiveWishedItemNotification(Item item) throws RemoteException;
+	void receiveWishedItemNotification(se.kth.ict.npj.hw2.server.objects.Item item) throws RemoteException;
 	
 	/**
 	 * The method is called when user statistics changed

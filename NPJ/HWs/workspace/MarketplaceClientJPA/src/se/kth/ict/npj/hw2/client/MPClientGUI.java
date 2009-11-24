@@ -688,8 +688,8 @@ public class MPClientGUI extends JFrame {
 	 * 
 	 * @param item
 	 */
-	public synchronized void notifyWishListItemFound(Item item) {
-		jLabel11.setText("The item " + item.getName() + " / " + item.getPrice() + " is matching an item from your wish list.");
+	public synchronized void notifyWishListItemFound(se.kth.ict.npj.hw2.server.objects.Item item) {
+		jLabel11.setText("The item " + item.getItemName() + " / " + item.getPrice() + " is matching an item from your wish list.");
 	}
 	
 	public synchronized void notifyStatisticsChanged(UserStatistics statistics) {
