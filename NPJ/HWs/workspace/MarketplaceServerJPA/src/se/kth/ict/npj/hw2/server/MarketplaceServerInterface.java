@@ -110,5 +110,5 @@ public interface MarketplaceServerInterface extends Remote {
 	 * @throws ItemAlreadyExistsException
 	 * @throws IllegalItemException
 	 */
-	public ArrayList<Item> wishItem(Item item) throws RemoteException, ItemAlreadyExistsException, IllegalItemException;
+	public se.kth.ict.npj.hw2.server.objects.Item wishItem(String username, se.kth.ict.npj.hw2.server.objects.Item item) throws RemoteException, ItemAlreadyExistsException, IllegalItemException;
 }
