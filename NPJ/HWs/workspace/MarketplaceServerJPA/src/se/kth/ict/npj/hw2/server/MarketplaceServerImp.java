@@ -128,7 +128,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 
 	public synchronized ArrayList<se.kth.ict.npj.hw2.server.objects.Item> inspectItems() throws RemoteException {
 		System.out.println("[LOG] inspectItems()");
-		Query query = getEntityManager().createQuery("SELECT x FROM item x");
+		Query query = getEntityManager().createNativeQuery("SELECT * FROM item");
 		
 		ArrayList<se.kth.ict.npj.hw2.server.objects.Item> itemListt = (ArrayList<se.kth.ict.npj.hw2.server.objects.Item>) query.getResultList();
 		
