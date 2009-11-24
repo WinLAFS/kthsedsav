@@ -8,6 +8,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.security.auth.login.AccountNotFoundException;
 
@@ -30,6 +31,8 @@ public class MPClientLogic {
 	private MPClientGUI gui;
 	private MarketplaceServerInterface serverInt;
 	private String userName;
+	
+	private String userNameShort;
 	private bankrmi.Bank bank;
 	Account account;
 	
@@ -74,13 +77,13 @@ public class MPClientLogic {
 			serverInt = (MarketplaceServerInterface)Naming.lookup("rmi://"+server+portStr+"/server");
 			try {
 				this.userName = "rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user;
-				
+				this.userNameShort = user;
 				//serverInt.registerClient("rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user, generateHash(password), userName);
 				serverInt.loginUser(user, generateHash(password), userName);
 				
 				String bankUrl = "rmi://"+server+portStr+"/NordBanken";
 				bank = (bankrmi.Bank) Naming.lookup(bankUrl);
-				account = bank.newAccount(userName);
+				account = bank.newAccount(user);
 				account.deposit(100);
 			} catch (UnknownHostException e) {
 				gui.connectionError("Can't conect to server");
@@ -124,13 +127,13 @@ public class MPClientLogic {
 			serverInt = (MarketplaceServerInterface)Naming.lookup("rmi://"+server+portStr+"/server");
 			try {
 				this.userName = "rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user;
-				
+				this.userNameShort = user;
 				//serverInt.registerClient("rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user, generateHash(password), userName);
 				serverInt.registerClient(user, generateHash(password), userName);
 				
 				String bankUrl = "rmi://"+server+portStr+"/NordBanken";
 				bank = (bankrmi.Bank) Naming.lookup(bankUrl);
-				account = bank.newAccount(userName);
+				account = bank.newAccount(user);
 				account.deposit(100);
 			} catch (UnknownHostException e) {
 				gui.connectionError("Can't conect to server");
@@ -164,7 +167,7 @@ public class MPClientLogic {
 		gui.setNotificationMessage("Communicating with server, please wait");
 		try {
 			if(serverInt!=null){
-				ArrayList<Item> items = serverInt.inspectItems();
+				Vector<se.kth.ict.npj.hw2.server.objects.Item> items = serverInt.inspectItems();
 				gui.updateItemsList(items);
 				gui.setNotificationMessage("Items list updated");
 			} else {
@@ -182,7 +185,7 @@ public class MPClientLogic {
 	 * @param itemName Name of the item.
 	 * @param itemPrice Price of the item.
 	 */
-	public void sellItem(String itemName, String itemPrice){
+	public void sellItem(String itemName, String itemPrice, int quantity){
 		gui.setNotificationMessage("Communicating with server, please wait");
 		int price = 0;
 		try{
@@ -193,13 +196,14 @@ public class MPClientLogic {
 			return;
 		}
 		
-		Item item = new Item();
-		item.setName(itemName);
-		item.setOwner(userName);
+		se.kth.ict.npj.hw2.server.objects.Item item = new se.kth.ict.npj.hw2.server.objects.Item();
+		item.setItemName(itemName);
+		item.setSeller(null);
 		item.setPrice(price);
+		item.setQuantity(quantity);
 		
 		try {
-			serverInt.sellItem(item);
+			serverInt.sellItem(item, userNameShort);
 		} catch (IllegalItemException e) {
 			System.err.println("[LOG] IllegalItemException when selling item");
 			gui.setNotificationMessage("Can't sell item");
@@ -282,13 +286,13 @@ public class MPClientLogic {
 			return;
 		}
 		
-		Item item = new Item();
-		item.setName(itemName);
-		item.setOwner(itemOwner);
+		se.kth.ict.npj.hw2.server.objects.Item item = new se.kth.ict.npj.hw2.server.objects.Item();
+		item.setItemName(itemName);
+		item.setSeller(null);
 		item.setPrice(price);
 		
 		try {
-			serverInt.buyItem(userName, item);
+			serverInt.buyItem(userNameShort, item);
 			updateItems();
 		}catch (AccountNotFoundException e){
 			System.err.println("[LOG] AccountNotFoundException when buying item");
@@ -305,6 +309,10 @@ public class MPClientLogic {
 		} catch (IllegalItemException e) {
 			System.err.println("[LOG] IllegalItemException when buying item");
 			gui.setNotificationMessage("Can't buy the item");
+			return;
+		} catch (UknownClientException e) {
+			System.err.println("[LOG] UknownClientException when buying item");
+			gui.setNotificationMessage("You are not logged in");
 			return;
 		}
 		
@@ -327,7 +335,7 @@ public class MPClientLogic {
 	}
 	
 	/**
-	 * The method generates String with MD5 digest for a given String
+	 * The method generates BASE64 String with MD5 digest for a given String
 	 * 
 	 * @param pass Password for which we generate digest
 	 * @return Digest String
