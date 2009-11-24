@@ -23,6 +23,8 @@ import javax.swing.table.DefaultTableModel;
 
 import se.kth.ict.npj.hw2.Item;
 import se.kth.ict.npj.hw2.client.objects.MPClientImpl;
+import se.kth.ict.npj.hw2.server.objects.UserStatistics;
+
 import javax.swing.JPasswordField;
 
 public class MPClientGUI extends JFrame {
@@ -687,5 +689,10 @@ public class MPClientGUI extends JFrame {
 	 */
 	public synchronized void notifyWishListItemFound(Item item) {
 		jLabel11.setText("The item " + item.getName() + " / " + item.getPrice() + " is matching an item from your wish list.");
+	}
+	
+	public synchronized void notifyStatisticsChanged(UserStatistics statistics) {
+		jLabel18.setText(new Integer(statistics.getSellsNumber()).toString());
+		jLabel19.setText(new Integer(statistics.getBuysNumber()).toString());
 	}
 }  //  @jve:decl-index=0:visual-constraint="10,10"
