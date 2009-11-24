@@ -259,57 +259,49 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#sellItem(java.lang.String, se.kth.ict.npj.hw2.Item)
 	 */
-	public synchronized void sellItem(Item item) throws RemoteException,
+	public synchronized void sellItem(se.kth.ict.npj.hw2.server.objects.Item item, String username) throws RemoteException,
 			IllegalItemException, ItemAlreadyExistsException, UnknownClientException {
 		
-		System.out.println("[LOG] Selling item: " + item.toString());
-		if (item.getName() == null || item.getOwner() == null || item.getPrice() == 0) {
-			throw new IllegalItemException();
-		}
-		if (!clientList.contains(item.getOwner())) {
-			throw new UnknownClientException();
-		}
+		System.out.println("[LOG] Selling item: " + item.getItemName());
 
-		Iterator<Item> iIterator = itemList.iterator();
+		boolean updated = false;
+		EntityTransaction et = getEntityManager().getTransaction();
+		et.begin();
+		
+		User user = getEntityManager().find(User.class, username);
+		ArrayList<se.kth.ict.npj.hw2.server.objects.Item> itemList = (ArrayList<se.kth.ict.npj.hw2.server.objects.Item>) user.getSellingItemList();
+		Iterator<se.kth.ict.npj.hw2.server.objects.Item> iIterator = itemList.iterator();
 		while (iIterator.hasNext()) {
-			Item i = iIterator.next();	
-			if (areEqualItems(i, item)) {
-				throw new ItemAlreadyExistsException();
-			}
-		}
-
-		Iterator<Item> wlIterator = wishList.iterator();
-		while (wlIterator.hasNext()) {
-			Item item2 = (Item) wlIterator.next();
-			if (item.getName().equalsIgnoreCase(item2.getName()) && item.getPrice() <= item2.getPrice()
-					&& (!item.getOwner().equals(item2.getOwner()))) {
+			se.kth.ict.npj.hw2.server.objects.Item item2 = (se.kth.ict.npj.hw2.server.objects.Item) iIterator.next();
+			if (item.getItemName().equals(item2.getItemName()) && item.getPrice() == item2.getPrice()) {
 				
 				try {
-					MPClientInterface mpci = (MPClientInterface) Naming.lookup(item2.getOwner());
-					mpci.receiveWishedItemNotification(item);
-				} 
-				catch (MalformedURLException e) {
-					System.out.println("[LOG] The wish client url was not correct: " + e.getMessage());
-				} 
-				catch (NotBoundException e) {
-					System.out.println("[LOG] The wish client object was not found: " + e.getMessage());
+					int exQuantity = item2.getQuantity();
+					item2.setQuantity(exQuantity + item.getQuantity());
+					et.commit();
+					
+					break;
 				}
-				catch (RemoteException e) {
-					System.out.println("[LOG] The wish client object could not be retrieved: " + e.getMessage());
+				catch(Exception e) {
+					System.err.println("[LOG] Could not store the new item: " + e.getMessage());
 				}
-				
-				//wishList.remove(item2);
+				finally {
+					updated = true;
+				}
+			}
+		}
+		if (!updated) {
+			try {
+				item.setSeller(user);
+				itemList.add(item);
+				getEntityManager().persist(item);
+				et.commit();
+			}
+			catch(Exception e) {
+				System.err.println("[LOG] Could not store the new item: " + e.getMessage());
 			}
 		}
 		
-		StringTokenizer st = new StringTokenizer(item.getOwner(), "/");
-		String prettyName = null;
-		while (st.hasMoreTokens()) {
-			prettyName = st.nextToken();
-		}
-		item.setOwnerPretty(prettyName);
-		
-		itemList.add(item);
 	}
 
 	/* (non-Javadoc)

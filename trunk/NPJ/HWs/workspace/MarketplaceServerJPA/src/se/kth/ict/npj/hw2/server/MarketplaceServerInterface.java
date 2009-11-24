@@ -73,7 +73,7 @@ public interface MarketplaceServerInterface extends Remote {
 	 * @throws ItemAlreadyExistsException
 	 * @throws UnknownClientException
 	 */
-	public void sellItem(Item item) throws RemoteException, IllegalItemException, ItemAlreadyExistsException, UnknownClientException;
+	public void sellItem(se.kth.ict.npj.hw2.server.objects.Item item, String username) throws RemoteException, IllegalItemException, ItemAlreadyExistsException, UnknownClientException;
 	
 	/**
 	 * This method is responsible for handling the buy of an item. If the item 
