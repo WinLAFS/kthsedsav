@@ -240,12 +240,14 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	}
 
 
-	public synchronized se.kth.ict.npj.hw2.server.objects.Item wishItem(String username ,se.kth.ict.npj.hw2.server.objects.Item wish) throws ItemAlreadyExistsException, RemoteException, IllegalItemException {
+	public synchronized se.kth.ict.npj.hw2.server.objects.Item wishItem(String username, se.kth.ict.npj.hw2.server.objects.Item wish) throws ItemAlreadyExistsException, RemoteException, IllegalItemException {
 		System.out.println("[LOG] Wish item: " + wish.getItemName());
 		
 		//TODO
 		Query query = getEntityManager().createQuery("SELECT x FROM Item x");
 		Vector<se.kth.ict.npj.hw2.server.objects.Item> itemListt = (Vector<se.kth.ict.npj.hw2.server.objects.Item>) query.getResultList();
+		
+		User user = getEntityManager().find(User.class, username);
 		
 		Iterator<se.kth.ict.npj.hw2.server.objects.Item > iIterator = itemListt.iterator();
 		while (iIterator.hasNext()) {
@@ -253,7 +255,6 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			
 			if (item.getItemName().equalsIgnoreCase(wish.getItemName()) && item.getPrice() <= wish.getPrice()) {
 				try {
-					User user = getEntityManager().find(User.class, username);
 					MPClientInterface mpci = (MPClientInterface) Naming.lookup(user.getUserURL());
 					mpci.receiveWishedItemNotification(item);
 				} 
@@ -269,7 +270,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 				return item;
 			}
 		}
-		
+		wish.setSeller(user);
 		wishList.add(wish);
 		
 		return null;
@@ -316,6 +317,29 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 				item.setSeller(user);
 				itemList.add(item);
 				getEntityManager().persist(item);
+				
+				//TODO
+				Iterator<se.kth.ict.npj.hw2.server.objects.Item> iIterator2 = wishList.iterator();
+				while (iIterator2.hasNext()) {
+					se.kth.ict.npj.hw2.server.objects.Item item2 = (se.kth.ict.npj.hw2.server.objects.Item) iIterator2.next();
+					if (item.getItemName().equals(item2.getItemName()) && item.getPrice() <= item2.getPrice()) {
+						try {
+							User user2 = item2.getSeller();
+							MPClientInterface mpci = (MPClientInterface) Naming.lookup(user2.getUserURL());
+							mpci.receiveWishedItemNotification(item);
+						} 
+						catch (MalformedURLException e) {
+							System.out.println("[LOG] The seller url was not correct: " + e.getMessage());
+						} 
+						catch (NotBoundException e) {
+							System.out.println("[LOG] The seller object was not found: " + e.getMessage());
+						}
+						catch (RemoteException e) {
+							System.out.println("[LOG] The seller object could not be retrieved: " + e.getMessage());
+						}
+					}
+				}
+				
 				et.commit();
 			}
 			catch(Exception e) {
