@@ -295,7 +295,7 @@ public class MPClientGUI extends JFrame {
 	 * 
 	 * @param items ArrayList of selling items
 	 */
-	public void updateItemsList(ArrayList<Item> items){
+	public void updateItemsList(Vector<se.kth.ict.npj.hw2.server.objects.Item> items){
 		Vector<String> columns = new Vector<String>();
 		columns.add("Name");
 		columns.add("Price");
@@ -306,13 +306,13 @@ public class MPClientGUI extends JFrame {
 		Vector<Vector> products = new Vector<Vector>();
 	
 		for(int i=0; i<items.size(); i++){
-			Item item= items.get(i);
+			se.kth.ict.npj.hw2.server.objects.Item item= items.get(i);
 			Vector<String> product = new Vector<String>();
-			product.add(item.getName());
+			product.add(item.getItemName());
 			product.add(item.getPrice()+"");
-			product.add(item.getOwnerPretty());
-			product.add("1");
-			product.add(item.getOwner());
+			product.add(item.getSeller().getUsername());
+			product.add(new Integer(item.getQuantity()).toString());
+			product.add(item.getSeller().getUserURL());
 			
 			products.add(product);
 		}
@@ -370,8 +370,15 @@ public class MPClientGUI extends JFrame {
 			jButton2.setText("Sell item");
 			jButton2.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					logic.sellItem(getJTextField3().getText(), getJTextField4().getText());
-					logic.updateItems();
+					String qStr = jTextField7.getText();
+					int q = new Integer(qStr);
+					
+					if(q>0){
+						logic.sellItem(getJTextField3().getText(), getJTextField4().getText(), q);
+						logic.updateItems();
+					} else {
+						jLabel11.setText("Quantity should be positive number");
+					}
 				}
 			});
 		}
