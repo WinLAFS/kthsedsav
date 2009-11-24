@@ -9,18 +9,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
+import javax.persistence.EntityExistsException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.security.auth.login.AccountNotFoundException;
 
-import bankrmi.Rejected;
-
 import se.kth.ict.npj.hw2.Item;
-import se.kth.ict.npj.hw2.client.objects.MPClientImpl;
 import se.kth.ict.npj.hw2.client.objects.MPClientInterface;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.UnknownClientException;
 import se.kth.ict.npj.hw2.exception.UnknownItemException;
+import se.kth.ict.npj.hw2.server.objects.User;
+import se.kth.ict.npj.hw2.server.objects.UserStatistics;
+import bankrmi.Rejected;
 
 /**
  * The MarketplaceServerInterface's implementation that implements all
@@ -35,9 +39,20 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	ArrayList<Item> wishList = null;
 	bankrmi.Bank bank = null;
 	
+	private EntityManagerFactory emf = null;
+	private EntityManager entityManager = null;
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
 	/**
 	 * Constructor. 
-	 * Connects to bank server
+	 * Connects to bank server & initiates the connection to the database.
 	 * 
 	 * @param bankUrl URL of the bank server
 	 * @throws RemoteException
@@ -64,6 +79,15 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		clientList = new ArrayList<String>();
 		itemList = new ArrayList<Item>();
 		wishList = new ArrayList<Item>();
+		
+		try {
+			emf = Persistence.createEntityManagerFactory("MarketplaceServerJPA");
+			entityManager = emf.createEntityManager();
+		}
+		catch (Exception e) {
+			System.err.println("[LOG] Could not connect to the database. Try again.");
+			System.exit(0);
+		}
 		
 		System.out.println("[LOG] Server started");
 	}
@@ -149,13 +173,31 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#registerClient(java.lang.String)
 	 */
-	public synchronized void registerClient(String id) throws ClientAlreadyExistsException, RemoteException {
+	public synchronized void registerClient(String id, String password) throws ClientAlreadyExistsException, RemoteException {
+		//TODO it is registration now
 		System.out.println("[LOG] Client registering: " + id);
-		if (clientList.contains(id)) {
-			throw new ClientAlreadyExistsException();
+//		if (clientList.contains(id)) {
+//			throw new ClientAlreadyExistsException();
+//		}
+//		else {
+//			clientList.add(id);
+//		}
+		
+		UserStatistics userStatistics = new UserStatistics();
+		userStatistics.setBuysNumber(0);
+		userStatistics.setSellsNumber(0);
+		
+		User user = new User();
+		user.setUsername(id);
+		user.setPassword(password);
+		user.setUserStatistics(userStatistics);
+		
+		try {
+			getEntityManager().persist(user);
+			getEntityManager().flush();
 		}
-		else {
-			clientList.add(id);
+		catch (EntityExistsException e) {
+			throw new ClientAlreadyExistsException();
 		}
 	}
 
