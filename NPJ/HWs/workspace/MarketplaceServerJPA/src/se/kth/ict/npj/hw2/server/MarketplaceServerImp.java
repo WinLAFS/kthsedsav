@@ -20,6 +20,7 @@ import se.kth.ict.npj.hw2.client.objects.MPClientInterface;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
+import se.kth.ict.npj.hw2.exception.UknownClientException;
 import se.kth.ict.npj.hw2.exception.UnknownClientException;
 import se.kth.ict.npj.hw2.exception.UnknownItemException;
 import se.kth.ict.npj.hw2.server.objects.User;
@@ -173,7 +174,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	/* (non-Javadoc)
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#registerClient(java.lang.String)
 	 */
-	public synchronized void registerClient(String id, String password) throws ClientAlreadyExistsException, RemoteException {
+	public synchronized void registerClient(String id, String password, String userURL) throws ClientAlreadyExistsException, RemoteException {
 		//TODO it is registration now
 		System.out.println("[LOG] Client registering: " + id);
 //		if (clientList.contains(id)) {
@@ -191,6 +192,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		user.setUsername(id);
 		user.setPassword(password);
 		user.setUserStatistics(userStatistics);
+		user.setUserURL(userURL);
 		
 		try {
 			getEntityManager().persist(user);
@@ -366,6 +368,13 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public void loginUser(String id, String password) throws RemoteException,
+			UknownClientException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
