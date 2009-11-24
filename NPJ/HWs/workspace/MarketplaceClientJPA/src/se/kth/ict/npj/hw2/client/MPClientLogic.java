@@ -326,7 +326,7 @@ public class MPClientLogic {
 	public void unregisterUser(){
 		try {
 			serverInt.unregisterClient(userName);
-			bank.deleteAccount(account);
+			//bank.deleteAccount(account);
 		} catch (RemoteException e) {
 			System.err.println("[LOG] RemoteException when unregistering user");
 		} catch (Throwable t) {
