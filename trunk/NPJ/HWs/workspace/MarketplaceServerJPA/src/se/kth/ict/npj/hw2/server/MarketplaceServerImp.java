@@ -111,7 +111,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		
 		User user = getEntityManager().find(User.class, username);
 		if (user != null) {
-			Query query = getEntityManager().createQuery("select x from Item x where x.itemname LIKE '" + item.getItemName() + "'");
+			Query query = getEntityManager().createQuery("select x from Item x where x.itemName LIKE '" + item.getItemName() + "'");
 			se.kth.ict.npj.hw2.server.objects.Item item2 = (se.kth.ict.npj.hw2.server.objects.Item) query.getSingleResult();
 			if (item2 != null) {
 				
@@ -161,8 +161,8 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 				finally {
 					et.rollback();
 				}
-				
-				et.commit();
+				if(et.isActive())
+					et.commit();
 				
 				try {
 					MPClientInterface mpci = (MPClientInterface) Naming.lookup(seller.getUserURL());
