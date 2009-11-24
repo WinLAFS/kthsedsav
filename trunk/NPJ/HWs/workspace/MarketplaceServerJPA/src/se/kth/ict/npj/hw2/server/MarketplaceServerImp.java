@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -131,8 +132,11 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 						try { 
 							sellerAccount.deposit(item2.getPrice());
 							if (item2.getQuantity() == 1) {
-								Query query2 = getEntityManager().createNativeQuery("delete from item where itemname LIKE '" + item.getItemName() + "'");
-								query2.executeUpdate();
+								//Query query2 = getEntityManager().createNativeQuery("delete from item where itemname LIKE '" + item.getItemName() + "'");
+								//query2.executeUpdate();
+								Vector<se.kth.ict.npj.hw2.server.objects.Item> sellerItems = (Vector<se.kth.ict.npj.hw2.server.objects.Item>) seller.getSellingItemList();
+								sellerItems.remove(item2);
+								getEntityManager().remove(item2);
 								
 							}
 							else {
@@ -153,20 +157,19 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 					throw e;
 				}
 				catch (AccountNotFoundException e) {
+					et.rollback();
 					throw e;
 				}
 				catch (RemoteException e) {
-					throw new AccountNotFoundException("Could not update the clients' accounts.");
-				}
-				finally {
 					et.rollback();
+					throw new AccountNotFoundException("Could not update the clients' accounts.");
 				}
 				if(et.isActive())
 					et.commit();
 				
 				try {
 					MPClientInterface mpci = (MPClientInterface) Naming.lookup(seller.getUserURL());
-					mpci.receiveItemSoldNotification(null); //TODO
+				//	mpci.receiveItemSoldNotification(null); //TODO
 				} 
 				catch (MalformedURLException e) {
 					System.out.println("[LOG] The seller url was not correct: " + e.getMessage());
