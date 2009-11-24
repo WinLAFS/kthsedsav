@@ -12,6 +12,7 @@ import java.util.StringTokenizer;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.security.auth.login.AccountNotFoundException;
 
@@ -195,8 +196,11 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		user.setUserURL(userURL);
 		
 		try {
+			EntityTransaction et = getEntityManager().getTransaction();
+			et.begin();
+			getEntityManager().persist(userStatistics);
 			getEntityManager().persist(user);
-			getEntityManager().flush();
+			et.commit();
 		}
 		catch (EntityExistsException e) {
 			throw new ClientAlreadyExistsException();
@@ -371,9 +375,31 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	}
 
 	@Override
-	public void loginUser(String id, String password) throws RemoteException,
+	public void loginUser(String id, String password, String userURL) throws RemoteException,
 			UknownClientException {
 		// TODO Auto-generated method stub
+		boolean login = false;
+		
+		EntityTransaction et = getEntityManager().getTransaction();
+		et.begin();
+		User user = getEntityManager().find(User.class, id);
+		if (user != null) {
+			if (user.getPassword().equals(password)) {
+				user.setUserURL(userURL);
+				et.commit();
+				login = true;
+			}
+			else {
+				login = false;
+			}
+		}
+		else {
+			login = false;
+		}
+		
+		if (!login) {
+			throw new UknownClientException();
+		}
 		
 	}
 

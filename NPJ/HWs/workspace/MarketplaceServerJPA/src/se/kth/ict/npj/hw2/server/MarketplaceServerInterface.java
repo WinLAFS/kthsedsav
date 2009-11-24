@@ -27,10 +27,11 @@ public interface MarketplaceServerInterface extends Remote {
 	 * 
 	 * @param id
 	 * @param password
+	 * @param userURL
 	 * @throws RemoteException
 	 * @throws UknownClientException
 	 */
-	public void loginUser(String id, String password) throws RemoteException, UknownClientException;
+	public void loginUser(String id, String password, String userURL) throws RemoteException, UknownClientException;
 	
 	/**
 	 * This method registers a client to the Marketplace server and
