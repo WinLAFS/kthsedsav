@@ -256,6 +256,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			if (item.getItemName().equalsIgnoreCase(wish.getItemName()) && item.getPrice() <= wish.getPrice()) {
 				try {
 					MPClientInterface mpci = (MPClientInterface) Naming.lookup(user.getUserURL());
+					System.out.println("[LOG] Wish satisfied of " + user.getUsername());
 					mpci.receiveWishedItemNotification(item);
 				} 
 				catch (MalformedURLException e) {
@@ -326,6 +327,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 						try {
 							User user2 = item2.getSeller();
 							MPClientInterface mpci = (MPClientInterface) Naming.lookup(user2.getUserURL());
+							System.out.println("[LOG] Wish satisfied of " + user2.getUsername());
 							mpci.receiveWishedItemNotification(item);
 						} 
 						catch (MalformedURLException e) {
