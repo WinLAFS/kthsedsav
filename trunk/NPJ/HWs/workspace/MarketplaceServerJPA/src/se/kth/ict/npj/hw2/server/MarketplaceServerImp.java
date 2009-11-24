@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.security.auth.login.AccountNotFoundException;
 
 import se.kth.ict.npj.hw2.Item;
@@ -166,9 +167,13 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		throw new UnknownItemException();
 	}
 
-	public synchronized ArrayList<Item> inspectItems() throws RemoteException {
+	public synchronized ArrayList<se.kth.ict.npj.hw2.server.objects.Item> inspectItems() throws RemoteException {
 		System.out.println("[LOG] inspectItems()");
-		return itemList;
+		Query query = getEntityManager().createQuery("SELECT * FROM item");
+		
+		ArrayList<se.kth.ict.npj.hw2.server.objects.Item> itemListt = (ArrayList<se.kth.ict.npj.hw2.server.objects.Item>) query.getResultList();
+		
+		return itemListt;
 	}
 	
 	
@@ -176,14 +181,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	 * @see se.kth.ict.npj.hw2.server.MarketplaceServerInterface#registerClient(java.lang.String)
 	 */
 	public synchronized void registerClient(String id, String password, String userURL) throws ClientAlreadyExistsException, RemoteException {
-		//TODO it is registration now
 		System.out.println("[LOG] Client registering: " + id);
-//		if (clientList.contains(id)) {
-//			throw new ClientAlreadyExistsException();
-//		}
-//		else {
-//			clientList.add(id);
-//		}
 		
 		UserStatistics userStatistics = new UserStatistics();
 		userStatistics.setBuysNumber(0);
@@ -369,7 +367,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 	@Override
 	public void loginUser(String id, String password, String userURL) throws RemoteException,
 			UknownClientException {
-		// TODO Auto-generated method stub
+
 		boolean login = false;
 		
 		EntityTransaction et = getEntityManager().getTransaction();
