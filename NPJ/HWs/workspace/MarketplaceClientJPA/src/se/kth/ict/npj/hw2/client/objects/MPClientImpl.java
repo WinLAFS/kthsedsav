@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import se.kth.ict.npj.hw2.Item;
 import se.kth.ict.npj.hw2.client.MPClientGUI;
+import se.kth.ict.npj.hw2.server.objects.UserStatistics;
 
 
 public class MPClientImpl extends UnicastRemoteObject implements MPClientInterface {
@@ -46,6 +47,15 @@ public class MPClientImpl extends UnicastRemoteObject implements MPClientInterfa
 	 */
 	public void receiveWishedItemNotification(Item item) throws RemoteException {
 		gui.notifyWishListItemFound(item);
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see se.kth.ict.npj.hw2.client.objects.MPClientInterface#receiveStatisticsChange(se.kth.ict.npj.hw2.server.objects.UserStatistics)
+	 */
+	public void receiveStatisticsChange(UserStatistics statistics)throws RemoteException {
+		gui.notifyStatisticsChanged(statistics);
+		
 	}
 
 }

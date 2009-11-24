@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import se.kth.ict.npj.hw2.Item;
+import se.kth.ict.npj.hw2.server.objects.UserStatistics;
 
 public interface MPClientInterface extends Remote{
 	
@@ -32,4 +33,12 @@ public interface MPClientInterface extends Remote{
 	 * @throws RemoteException
 	 */
 	void receiveWishedItemNotification(Item item) throws RemoteException;
+	
+	/**
+	 * The method is called when user statistics changed
+	 * 
+	 * @param statistics User statistics object
+	 * @throws RemoteException
+	 */
+	void receiveStatisticsChange(UserStatistics statistics) throws RemoteException;
 }
