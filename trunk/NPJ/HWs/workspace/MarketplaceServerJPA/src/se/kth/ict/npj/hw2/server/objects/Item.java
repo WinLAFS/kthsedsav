@@ -1,5 +1,7 @@
 package se.kth.ict.npj.hw2.server.objects;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Item {
+public class Item implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
