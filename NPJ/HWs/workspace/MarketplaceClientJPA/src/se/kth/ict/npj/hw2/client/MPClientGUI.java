@@ -393,6 +393,7 @@ public class MPClientGUI extends JFrame {
 	public void clearSellItemForm(){
 		getJTextField3().setText("");
 		getJTextField4().setText("");
+		getJTextField7().setText("");
 	}
 
 	/**
