@@ -1,0 +1,8 @@
+<project name="MPC">
+	<target name="jar" depends="" >
+        <jar destfile="../MarketplaceServerJPA/lib/client.jar" basedir="bin">
+        	
+        </jar>
+    </target>
+
+</project>

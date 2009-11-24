@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 
 import javax.security.auth.login.AccountNotFoundException;
@@ -61,7 +62,7 @@ public class MPClientLogic {
 	 * @param server Server host string
 	 * @param port Servers port number
 	 */
-	public void connectToServer(String user, String server, String port){
+	public void connectToServer(String user, String server, String port, String password){
 		try {
 			String portStr="";
 			if(port!=null && !port.equals("")){
@@ -69,8 +70,10 @@ public class MPClientLogic {
 			}
 			serverInt = (MarketplaceServerInterface)Naming.lookup("rmi://"+server+portStr+"/server");
 			try {
-				serverInt.registerClient("rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user);
 				this.userName = "rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user;
+				
+				serverInt.registerClient("rmi://"+InetAddress.getLocalHost().getCanonicalHostName()+"/"+user, generateHash(password), userName);
+				
 				
 				String bankUrl = "rmi://"+server+portStr+"/NordBanken";
 				bank = (bankrmi.Bank) Naming.lookup(bankUrl);
@@ -117,7 +120,7 @@ public class MPClientLogic {
 			gui.setNotificationMessage("Error connecting to server");
 			System.err.println("[LOG] RemoteException when updating items list");
 		}
-	}
+	}  
 	
 	/**
 	 * The method sends request to the server to sell a new item.
@@ -267,5 +270,25 @@ public class MPClientLogic {
 		} catch (Throwable t) {
 			System.err.println("[LOG] Can't unregister client");
 		}
+	}
+	
+	/**
+	 * The method generates String with MD5 digest for a given String
+	 * 
+	 * @param pass Password for which we generate digest
+	 * @return Digest String
+	 */
+	private String generateHash(String pass){
+		String hash="";
+		try{
+			byte[] bytesOfMessage = pass.getBytes();
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			byte[] thedigest = md.digest(bytesOfMessage);
+			
+			hash = new String(thedigest);
+		} catch (Exception e){
+			System.err.println("Error generaing hash");
+		}
+		return hash;
 	}
 }
