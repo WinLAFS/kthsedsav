@@ -87,7 +87,7 @@ public interface MarketplaceServerInterface extends Remote {
 	 * @throws RemoteException
 	 * @throws UnknownItemException
 	 */
-	public void buyItem(String userId, Item item) throws RemoteException, UnknownItemException, IllegalItemException, AccountNotFoundException;
+	public void buyItem(String username, se.kth.ict.npj.hw2.server.objects.Item item) throws RemoteException, UknownClientException, UnknownItemException, IllegalItemException, AccountNotFoundException;
 	
 	/**
 	 * This methods returns all the available items if the Marketplace server.
