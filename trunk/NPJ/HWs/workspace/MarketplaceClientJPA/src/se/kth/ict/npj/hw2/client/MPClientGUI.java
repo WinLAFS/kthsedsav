@@ -507,7 +507,7 @@ public class MPClientGUI extends JFrame {
 			jButton5.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					
-					if(jTextField.getText()!=null && jPasswordField.getPassword()!=null && !jTextField.getText().equals("") && jPasswordField.getPassword().length>0){
+					if(jTextField.getText()!=null && jPasswordField.getPassword()!=null && !jTextField.getText().equals("") && jPasswordField.getPassword().length>=8){
 						jButton.setEnabled(false);
 						jLabel12.setText("Connecting to server...");
 						
@@ -527,7 +527,7 @@ public class MPClientGUI extends JFrame {
 						}
 						setTitle(jTextField.getText()+" at Marketplace client v 0.1");
 					} else {
-						jLabel12.setText("Enter username and password");
+						jLabel12.setText("Username or password is incorrect");
 					}
 				}
 			});
