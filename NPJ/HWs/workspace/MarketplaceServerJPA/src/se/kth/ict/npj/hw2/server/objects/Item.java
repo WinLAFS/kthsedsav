@@ -10,6 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+/**
+ *The Item class defines the schema of the items into the
+ *db. 
+ *
+ */
+
 @Entity
 public class Item implements Serializable{
 	

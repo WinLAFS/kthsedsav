@@ -8,6 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * The UserStatistics class defines the schema into the
+ * database for the user statistics. 
+ *
+ */
 @Entity
 public class UserStatistics implements Serializable {
 	@Id
