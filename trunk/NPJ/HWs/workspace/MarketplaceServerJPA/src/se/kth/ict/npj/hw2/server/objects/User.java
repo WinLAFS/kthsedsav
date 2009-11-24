@@ -22,8 +22,16 @@ public class User {
 	private String username;
 	@Column(nullable=false)
 	private String password;
+	@Column(nullable=false)
+	private String userURL;
 	private List<Item> sellingItemList;
 	
+	public String getUserURL() {
+		return userURL;
+	}
+	public void setUserURL(String userURL) {
+		this.userURL = userURL;
+	}
 	@JoinColumn(nullable=false)
 	private UserStatistics userStatistics;
 	

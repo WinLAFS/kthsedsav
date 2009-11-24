@@ -10,6 +10,7 @@ import se.kth.ict.npj.hw2.Item;
 import se.kth.ict.npj.hw2.exception.ClientAlreadyExistsException;
 import se.kth.ict.npj.hw2.exception.IllegalItemException;
 import se.kth.ict.npj.hw2.exception.ItemAlreadyExistsException;
+import se.kth.ict.npj.hw2.exception.UknownClientException;
 import se.kth.ict.npj.hw2.exception.UnknownClientException;
 import se.kth.ict.npj.hw2.exception.UnknownItemException;
 
@@ -20,6 +21,18 @@ import se.kth.ict.npj.hw2.exception.UnknownItemException;
 public interface MarketplaceServerInterface extends Remote {
 	
 	/**
+	 * This methods logs in an existing user to the System or
+	 * throws an {@link UknownClientException} if the user credentials
+	 * do not exist into the database.
+	 * 
+	 * @param id
+	 * @param password
+	 * @throws RemoteException
+	 * @throws UknownClientException
+	 */
+	public void loginUser(String id, String password) throws RemoteException, UknownClientException;
+	
+	/**
 	 * This method registers a client to the Marketplace server and
 	 * store his data to the database so the user will be able to log
 	 * in to the system for a future use. After a successful registration
@@ -28,10 +41,11 @@ public interface MarketplaceServerInterface extends Remote {
 	 * 
 	 * @param id the id of the Client that is registering into the server
 	 * @param password the password of the new user
+	 * @param userURL the rmi url of the user
 	 * @throws RemoteException
 	 * @throws ClientAlreadyExistsException
 	 */
-	public void registerClient(String id, String password) throws RemoteException, ClientAlreadyExistsException;
+	public void registerClient(String id, String password, String userURL) throws RemoteException, ClientAlreadyExistsException;
 	
 	
 	/**
