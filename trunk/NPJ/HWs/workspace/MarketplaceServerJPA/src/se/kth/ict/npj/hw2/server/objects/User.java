@@ -27,7 +27,7 @@ public class User {
 	@JoinColumn(nullable=false)
 	private UserStatistics userStatistics;
 	
-	@OneToOne(cascade=CascadeType.REMOVE)
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="userstatistics")
 	public UserStatistics getUserStatistics() {
 		return userStatistics;

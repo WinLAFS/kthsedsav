@@ -20,14 +20,18 @@ import se.kth.ict.npj.hw2.exception.UnknownItemException;
 public interface MarketplaceServerInterface extends Remote {
 	
 	/**
-	 * This method registers a client to the Marketplace server by his id.
+	 * This method registers a client to the Marketplace server and
+	 * store his data to the database so the user will be able to log
+	 * in to the system for a future use. After a successful registration
+	 * the user is considered logged in.
 	 * If the client's id already exists it throws a {@link ClientAlreadyExistsException}.
 	 * 
 	 * @param id the id of the Client that is registering into the server
+	 * @param password the password of the new user
 	 * @throws RemoteException
 	 * @throws ClientAlreadyExistsException
 	 */
-	public void registerClient(String id) throws RemoteException, ClientAlreadyExistsException;
+	public void registerClient(String id, String password) throws RemoteException, ClientAlreadyExistsException;
 	
 	
 	/**
