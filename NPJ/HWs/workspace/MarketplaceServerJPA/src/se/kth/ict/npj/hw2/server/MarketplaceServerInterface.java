@@ -95,7 +95,7 @@ public interface MarketplaceServerInterface extends Remote {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ArrayList<Item> inspectItems() throws RemoteException;
+	public ArrayList<se.kth.ict.npj.hw2.server.objects.Item> inspectItems() throws RemoteException;
 	
 	/**
 	 * This method adds an item to the wish list or returns immediately some results
