@@ -20,6 +20,8 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.security.auth.login.AccountNotFoundException;
 
+import org.eclipse.persistence.exceptions.DatabaseException;
+
 import bankrmi.Rejected;
 
 import se.kth.ict.npj.hw2.Item;
@@ -227,15 +229,30 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		user.setUserStatistics(userStatistics);
 		user.setUserURL(userURL);
 		
+		EntityTransaction et = getEntityManager().getTransaction();
 		try {
-			EntityTransaction et = getEntityManager().getTransaction();
 			et.begin();
 			getEntityManager().persist(userStatistics);
-			getEntityManager().persist(user);
+			if (getEntityManager().find(User.class, user.getUsername()) == null) {
+				getEntityManager().persist(user);
+			}
+			else {
+				et.rollback();
+				throw new ClientAlreadyExistsException();
+			}
+				
 			et.commit();
 		}
 		catch (EntityExistsException e) {
 			throw new ClientAlreadyExistsException();
+		}
+		catch (DatabaseException e) {
+			throw new ClientAlreadyExistsException();
+		}
+		finally {
+			if (et.isActive()) {
+				et.rollback();
+			}
 		}
 	}
 
