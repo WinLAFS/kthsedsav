@@ -143,6 +143,13 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 								int exQuantity = item2.getQuantity();
 								item2.setQuantity(--exQuantity);
 							}
+							UserStatistics buyerStats = user.getUserStatistics();
+							UserStatistics sellerStats = seller.getUserStatistics();
+							int buys = buyerStats.getBuysNumber();
+							buyerStats.setBuysNumber(++buys);
+							int sells = sellerStats.getSellsNumber();
+							sellerStats.setSellsNumber(++sells);
+							
 						} catch (Rejected e) {
 							buyerAccount.deposit(item2.getPrice());
 							throw e;
@@ -162,14 +169,16 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 				}
 				catch (RemoteException e) {
 					et.rollback();
-					throw new AccountNotFoundException("Could not update the clients' accounts.");
+					throw new AccountNotFoundException("Could not update the clients' accounts.");//TODO
 				}
 				if(et.isActive())
 					et.commit();
 				
 				try {
 					MPClientInterface mpci = (MPClientInterface) Naming.lookup(seller.getUserURL());
-				//	mpci.receiveItemSoldNotification(null); //TODO
+					mpci.receiveItemSoldNotification(item2);
+					updateUserStatistics(user);
+					updateUserStatistics(seller);
 				} 
 				catch (MalformedURLException e) {
 					System.out.println("[LOG] The seller url was not correct: " + e.getMessage());
@@ -401,6 +410,7 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 		if (user != null) {
 			if (user.getPassword().equals(password)) {
 				user.setUserURL(userURL);
+				updateUserStatistics(user);
 				et.commit();
 				login = true;
 			}
@@ -417,6 +427,23 @@ public class MarketplaceServerImp extends UnicastRemoteObject implements Marketp
 			throw new UknownClientException();
 		}
 		
+	}
+	
+	private void updateUserStatistics(User user) {
+		UserStatistics userStatistics = user.getUserStatistics();
+		try {
+			MPClientInterface mpci = (MPClientInterface) Naming.lookup(user.getUserURL());
+			mpci.receiveStatisticsChange(userStatistics);
+		} 
+		catch (MalformedURLException e) {
+			System.out.println("[LOG] The seller url was not correct: " + e.getMessage());
+		} 
+		catch (NotBoundException e) {
+			System.out.println("[LOG] The seller object was not found: " + e.getMessage());
+		}
+		catch (RemoteException e) {
+			System.out.println("[LOG] The seller object could not be retrieved: " + e.getMessage());
+		}
 	}
 
 }
