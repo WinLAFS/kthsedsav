@@ -1,5 +1,6 @@
 package se.kth.ict.npj.hw2.server.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import javax.persistence.OneToOne;
  *
  */
 @Entity
-public class User {
+public class User implements Serializable{
 	@Id
 	private String username;
 	@Column(nullable=false)
