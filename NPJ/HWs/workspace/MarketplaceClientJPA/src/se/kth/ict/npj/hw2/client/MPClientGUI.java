@@ -493,6 +493,34 @@ public class MPClientGUI extends JFrame {
 			jButton5 = new JButton();
 			jButton5.setBounds(new Rectangle(153, 167, 88, 22));
 			jButton5.setText("Register");
+			
+			jButton5.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					
+					if(jTextField.getText()!=null && jPasswordField.getPassword()!=null && !jTextField.getText().equals("") && jPasswordField.getPassword().length>0){
+						jButton.setEnabled(false);
+						jLabel12.setText("Connecting to server...");
+						
+						logic.registerOnServer(jTextField.getText(), jTextField1.getText(), jTextField2.getText(), new String(jPasswordField.getPassword()));
+						
+						try {
+							System.out.println("[LOG] MPClient url: " + logic.getUserName());
+							
+							try {
+								Naming.rebind(logic.getUserName() , new MPClientImpl(logic.getUserName(), thisClass));
+							} catch (MalformedURLException e1) {
+								System.out.println("[LOG] The url was not correct formed: " + e1.getMessage());
+							}
+							
+						} catch (RemoteException e2) {
+							System.out.println("[LOG] Could not start the MPClient: " + e2.getMessage());
+						}
+						setTitle(jTextField.getText()+" at Marketplace client v 0.1");
+					} else {
+						jLabel12.setText("Enter username and password");
+					}
+				}
+			});
 		}
 		return jButton5;
 	}
