@@ -1,4 +1,4 @@
-package counter.sensors;
+package counter.actuators;
 
 import java.io.Serializable;
 
@@ -8,8 +8,14 @@ import org.objectweb.fractal.api.control.BindingController;
 import org.objectweb.fractal.api.control.IllegalLifeCycleException;
 import org.objectweb.fractal.api.control.LifeCycleController;
 
+import counter.events.ComponentOutOfSyncEvent;
 import counter.events.CounterChangedEvent;
+import counter.events.SynchronizeCompononentEvent;
+import counter.interfaces.CounterResyncInterface;
 import counter.interfaces.CounterStatusInterface;
+import counter.interfaces.SynchronizeInterface;
+import dks.niche.fractal.interfaces.ActuatorInitInterface;
+import dks.niche.fractal.interfaces.EventHandlerInterface;
 import dks.niche.fractal.interfaces.SensorInitInterface;
 import dks.niche.fractal.interfaces.TriggerInterface;
 import dks.niche.ids.ComponentId;
@@ -17,31 +23,23 @@ import dks.niche.ids.NicheId;
 import dks.niche.interfaces.NicheActuatorInterface;
 import dks.niche.interfaces.NicheAsynchronousInterface;
 
-public class CounterStatusSensor implements SensorInitInterface,
-		CounterStatusInterface, BindingController, LifeCycleController {
+public class CounterStatusActuator implements ActuatorInitInterface,
+		BindingController, LifeCycleController, EventHandlerInterface {
 
-	// Client Interfaces
-	TriggerInterface trigger;
 
 	// ///////////////
 	Component mySelf;
 	private boolean status;
 
 	// Local variables
-	private int delta;
-	private int currentLoad;
-	private int previousLoad;
-	private int totalStorage;
-	private int currentDelta;
 	private NicheId myId;
 	private ComponentId myComponentId;
 	private NicheActuatorInterface myNicheActuatorInterface;
-	private NicheAsynchronousInterface logger;
+	
+	private CounterResyncInterface counterResync;
 
-	public CounterStatusSensor() {
+	public CounterStatusActuator() {
 		mySelf = null;
-		trigger = null;
-		currentDelta = 0;
 	}
 
 	// //////////////////////////////////////////////////////////////////////////
@@ -58,7 +56,6 @@ public class CounterStatusSensor implements SensorInitInterface,
 
 	public void init(NicheActuatorInterface actuator) {
 		myNicheActuatorInterface = actuator;
-		logger = actuator.testingOnly();
 	}
 
 	public void initId(Object id) {
@@ -73,42 +70,16 @@ public class CounterStatusSensor implements SensorInitInterface,
 	public void reinit(Object[] applicationParameters) {
 	}
 
-	public void informCounterValue(ComponentId cid, int value) {
-//		synchronized (this) {
-			System.out.println("[sensor]> informCounterValue was called. Value: " + value);
-			this.trigger.trigger(new CounterChangedEvent(cid, value));			
-//		}
-		
-	}
+//	public void informCounterValue(ComponentId cid, int value) {
+//		this.trigger.trigger(new CounterChangedEvent(cid, value));
+//		
+//	}
 
 	// //////////////////////////////////////////////////////////////////////////
 	// /////////////////////////// Attributes
 	// ///////////////////////////////////
 	// //////////////////////////////////////////////////////////////////////////
 
-	public int getCurrentLoad() {
-		return currentLoad;
-	}
-
-	public int getDelta() {
-		return delta;
-	}
-
-	public int getTotalStorage() {
-		return totalStorage;
-	}
-
-	public void setCurrentLoad(int load) {
-		currentLoad = load;
-	}
-
-	public void setDelta(int delta) {
-		this.delta = delta;
-	}
-
-	public void setTotalStorage(int total) {
-		totalStorage = total;
-	}
 
 	// //////////////////////////////////////////////////////////////////////////
 	// //////////////////////// Fractal Stuff
@@ -117,16 +88,17 @@ public class CounterStatusSensor implements SensorInitInterface,
 
 	public String[] listFc() {
 
-		return new String[] { "component", "trigger" };
+		return new String[] { "component", "counterResync" };
 	}
 
 	public Object lookupFc(final String itfName)
 			throws NoSuchInterfaceException {
 
-		if (itfName.equals("trigger"))
-			return trigger;
-		else if (itfName.equals("component"))
+		if (itfName.equals("component"))
 			return mySelf;
+		else if (itfName.equals("counterResync")) {
+			return counterResync;
+		}
 		else
 			throw new NoSuchInterfaceException(itfName);
 
@@ -134,19 +106,21 @@ public class CounterStatusSensor implements SensorInitInterface,
 
 	public void bindFc(final String itfName, final Object itfValue)
 			throws NoSuchInterfaceException {
-		if (itfName.equals("trigger"))
-			trigger = (TriggerInterface) itfValue;
-		else if (itfName.equals("component"))
+		if (itfName.equals("component"))
 			mySelf = (Component) itfValue;
+		else if (itfName.equals("counterResync")) {
+			counterResync = (CounterResyncInterface) itfValue;
+		}
 		else
 			throw new NoSuchInterfaceException(itfName);
 	}
 
 	public void unbindFc(final String itfName) throws NoSuchInterfaceException {
-		if (itfName.equals("trigger"))
-			trigger = null;
-		else if (itfName.equals("component"))
+		if (itfName.equals("component"))
 			mySelf = null;
+		else if (itfName.equals("counterResync")) {
+			counterResync = null;
+		}
 		else
 			throw new NoSuchInterfaceException(itfName);
 	}
@@ -158,8 +132,6 @@ public class CounterStatusSensor implements SensorInitInterface,
 
 	public void startFc() throws IllegalLifeCycleException {
 		status = true;
-		// log("LoadSensor Started: Total = " + totalStorage + ", Load = " +
-		// currentLoad + ", Delta = " + delta);
 	}
 
 	public void stopFc() throws IllegalLifeCycleException {
@@ -169,19 +141,29 @@ public class CounterStatusSensor implements SensorInitInterface,
 
 	@Override
 	public void init(Serializable[] parameters) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void initId(NicheId id) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void reinit(Serializable[] parameters) {
-		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eventHandler(Serializable event, int flag) {
+		if (event instanceof ComponentOutOfSyncEvent) {
+			ComponentOutOfSyncEvent evt = (ComponentOutOfSyncEvent) event;
+			System.out.println("[actuator]> ComponentOutOfSyncEvent received. Value: " + evt.getCounterNumber());
+			counterResync.reSynchronize(evt.getCounterNumber());
+		}
+		else {
+			System.out.println("[actuator]> uknown event: " + event.getClass().getName());
+		}
 		
 	}
 

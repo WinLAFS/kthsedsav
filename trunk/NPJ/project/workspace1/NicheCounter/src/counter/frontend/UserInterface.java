@@ -66,9 +66,13 @@ public class UserInterface extends JPanel {
         myAI.helloAny();
     }
 
-    private void helloAll() {
-        System.out.println("UI says: Invoking HelloAll");
+    private void helloAll() {//TODO
+        System.out.println("[ui]> Invoking Counter");
         //myAI.helloAll();
-        myAI.increaseCounter("a");
+        
+        //myAI.increaseCounter("NICHE");
+        for (int i = 0; i < 100; i++) {
+        	myAI.increaseCounter("NICHE");
+        }
     }
 }

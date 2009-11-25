@@ -14,10 +14,14 @@ import org.objectweb.jasmine.jade.service.componentdeployment.NicheIdRegistry;
 import org.objectweb.jasmine.jade.service.nicheOS.OverlayAccess;
 import org.objectweb.jasmine.jade.util.Serialization;
 
+import counter.actuators.CounterStatusActuator;
 import counter.aggregators.ServiceSupervisor;
+import counter.events.ComponentOutOfSyncEvent;
 import counter.events.CounterChangedEvent;
+import counter.events.InformOutOfSyncEvent;
 import counter.events.MaxCounterChangedEvent;
 import counter.events.ServiceAvailabilityChangeEvent;
+import counter.executors.CounterStateChangedExecutor;
 import counter.watchers.CounterChangedWatcher;
 import dks.niche.events.ComponentFailEvent;
 import dks.niche.events.MemberAddedEvent;
@@ -162,7 +166,25 @@ public class StartManager implements BindingController, LifeCycleController {
                 CounterChangedEvent.class.getName());
         
         myActuatorInterface.subscribe(serviceSupervisor, configurationManager,
-                MaxCounterChangedEvent.class.getName());
+                ComponentOutOfSyncEvent.class.getName());
+        
+//        //Counter binding
+//        clientInterfaceName = "synchronize";
+//        serverInterfaceName = "synchronize";
+//        myActuatorInterface.bind(configurationManager, clientInterfaceName, serviceGroup,
+//                                 serverInterfaceName, JadeBindInterface.ONE_TO_MANY);
+        
+        
+        ManagementDeployParameters params3 = new ManagementDeployParameters();
+        params3.describeExecutor(CounterStateChangedExecutor.class.getName(), 
+        		"CEX", 
+        		null, 
+        		new Serializable[] {}, 
+        		serviceGroup.getId());
+        NicheId executorId = myActuatorInterface.deployManagementElement(params3, serviceGroup);
+        
+        myActuatorInterface.subscribe(configurationManager, executorId,
+                InformOutOfSyncEvent.class.getName());
     }
 
     // ///////////////////////////////////////////////////////////////
