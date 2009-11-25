@@ -5,6 +5,8 @@
   <interface name="init" role="server" signature="dks.niche.fractal.interfaces.InitInterface" />
   <interface name="eventHandler" role="server" signature="dks.niche.fractal.interfaces.EventHandlerInterface" />
   <interface name="movable" role="server" signature="dks.niche.fractal.interfaces.MovableInterface" />
+  <interface name="synchronize" role="client" signature="counter.interfaces.SynchronizeInterface"  contingency="optional"/>
+    <interface name="trigger" role="client" signature="dks.niche.fractal.interfaces.TriggerInterface" />
   <content class="counter.managers.ConfigurationManager" />
 </definition>
 

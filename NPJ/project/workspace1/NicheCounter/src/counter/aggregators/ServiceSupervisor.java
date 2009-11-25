@@ -10,6 +10,7 @@
 package counter.aggregators;
 
 import counter.events.AvailabilityTimerTimeoutEvent;
+import counter.events.ComponentOutOfSyncEvent;
 import counter.events.CounterChangedEvent;
 import counter.events.MaxCounterChangedEvent;
 import counter.events.ServiceAvailabilityChangeEvent;
@@ -86,18 +87,21 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
 
     // The members of the group of service components.
     private HashMap<String, Integer> currentComponents;
-
+    
+    private int checkStep = 0;
+    private int numberOfNodes;
+    
     // Empty constructor always needed!
     public ServiceSupervisor() {
     }
     
     private int maxedReceivedvalue=0;
 
-	public synchronized int getMaxedReceivedvalue() {
+	public int getMaxedReceivedvalue() {
 		return maxedReceivedvalue;
 	}
 
-	public synchronized void setMaxedReceivedvalue(int maxedReceivedvalue) {
+	public void setMaxedReceivedvalue(int maxedReceivedvalue) {
 		this.maxedReceivedvalue = maxedReceivedvalue;
 	}
     
@@ -209,32 +213,58 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
         }
     }
     
-    private void handlerCounterChanged(CounterChangedEvent e){
+    private synchronized void handlerCounterChanged(CounterChangedEvent e){
     	int resNumber = e.getCounterNumber();
     	String id = e.getCid().getId().toString();
     	
-    	currentComponents.put(id, resNumber);
     	
-    	if(resNumber>getMaxedReceivedvalue()){
-    		setMaxedReceivedvalue(resNumber);    		
-    		eventTrigger.trigger(new MaxCounterChangedEvent(getMaxedReceivedvalue()));
+    	int exValue = currentComponents.get(id);
+    	if (resNumber > exValue) {
+
+    		currentComponents.put(id, resNumber);
+    		
+    		if(resNumber>getMaxedReceivedvalue()){
+    			setMaxedReceivedvalue(resNumber);    		
+    		}
+    		
+    		int margin = currentAllocatedServiceComponents - checkStep;
+    		System.out.println("[aggregator]> Check step: " + checkStep + "\tMargin: " + margin);
+    		checkStep = (checkStep + 1) % currentAllocatedServiceComponents;
+    		
+    		if (margin == currentAllocatedServiceComponents) {
+    			return;
+    		}
+    		
+    		
+    		Iterator iterator = currentComponents.keySet().iterator();  
+    		
+    		System.out.println("[aggregator]> ======== Start");
+    		System.out.println("**Testing stored values against value: " + getMaxedReceivedvalue());
+    		boolean outOfSync = false;
+    		while (iterator.hasNext()) {  
+    			String key = iterator.next().toString();  
+    			Integer value = (Integer) currentComponents.get(key);
+    			System.out.println(key + "\t| " + value.intValue()); 
+    			int maxValue = getMaxedReceivedvalue();
+    			if(value.intValue()<=(maxValue-margin)){
+    				System.out.println("*Component "+key+" is inconsistent! Value: " + value.intValue());
+    				outOfSync = true;
+    			}
+    		}
+    		if (outOfSync) {
+    			System.out.println("[aggregator]> triggering ComponentOutOfSyncEvent. Value: " + getMaxedReceivedvalue());
+    			iterator = currentComponents.keySet().iterator();
+    			while (iterator.hasNext()) {  
+        			String key = iterator.next().toString();
+        			currentComponents.put(key, getMaxedReceivedvalue());
+    			}
+    			eventTrigger.trigger(new ComponentOutOfSyncEvent(getMaxedReceivedvalue()));
+    		}
+    		System.out.println("[aggregator]> ======== End");
     	}
-    	
-    	
-    	 Iterator iterator = currentComponents.keySet().iterator();  
-    	 
-    	 System.out.println("========================================================");
-    	 System.out.println("***VALUES IN MAP***");
-    	 while (iterator.hasNext()) {  
-    	    String key = iterator.next().toString();  
-    	    Integer value = (Integer)currentComponents.get(key);
-    	    System.out.println(key + " --- " + value.intValue()); 
-    	    if(value.intValue()<=(getMaxedReceivedvalue()-2)){
-    	    	System.out.println("Component "+key+" is inconsistent");
-    	    }
-    	 }  
-    	 System.out.println("========================================================");
-    	 
+    	else {
+    		System.out.println("[aggregator]> NO CHECK! From: " + id + "Value:\t" + resNumber + "\t. Ex Value:\t" + exValue);
+    	}
     	
     	
     }
@@ -256,7 +286,10 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
 
         // Remove failed component from list of active components.
         currentComponents.remove(idAsString);
+        
         currentAllocatedServiceComponents--;
+        //TODO
+        checkStep = 0;
 
         if (myId.getReplicaNumber() < 1) {
             System.out.print("ServiceSupervisor ");
@@ -304,6 +337,7 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
         }
         currentComponents.put(idAsString, 0);
         currentAllocatedServiceComponents++;
+        checkStep = 0;
     }
 
     /**

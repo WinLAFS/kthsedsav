@@ -1,4 +1,4 @@
-package counter.watchers;
+package counter.executors;
 
 import java.io.Serializable;
 
@@ -8,9 +8,15 @@ import org.objectweb.fractal.api.control.BindingController;
 import org.objectweb.fractal.api.control.IllegalLifeCycleException;
 import org.objectweb.fractal.api.control.LifeCycleController;
 
+import counter.actuators.CounterStatusActuator;
+import counter.events.ComponentOutOfSyncEvent;
 import counter.events.CounterChangedEvent;
+import counter.events.InformOutOfSyncEvent;
+import counter.interfaces.CounterResyncInterface;
 import counter.sensors.CounterStatusSensor;
+
 import dks.niche.fractal.FractalInterfaceNames;
+import dks.niche.fractal.interfaces.DeployActuatorsInterface;
 import dks.niche.fractal.interfaces.DeploySensorsInterface;
 import dks.niche.fractal.interfaces.EventHandlerInterface;
 import dks.niche.fractal.interfaces.InitInterface;
@@ -20,12 +26,13 @@ import dks.niche.ids.ComponentId;
 import dks.niche.ids.NicheId;
 import dks.niche.interfaces.NicheActuatorInterface;
 
-public class CounterChangedWatcher implements EventHandlerInterface,
-		MovableInterface, BindingController, LifeCycleController, InitInterface {
+public class CounterStateChangedExecutor implements EventHandlerInterface,
+MovableInterface, BindingController, LifeCycleController, InitInterface {
 
 	private Component myself;
 	private NicheActuatorInterface actuator;
-	private DeploySensorsInterface deploySensor;
+//	private DeploySensorsInterface deploySensor;
+	private DeployActuatorsInterface deployActuator;
 	private TriggerInterface trigger;
 	
 	
@@ -34,11 +41,11 @@ public class CounterChangedWatcher implements EventHandlerInterface,
 
 	@Override
 	public void eventHandler(Serializable event, int flag) {
-		if (event instanceof CounterChangedEvent) {
-			int value = ((CounterChangedEvent)event).getCounterNumber();
-			ComponentId cid = ((CounterChangedEvent)event).getCid();
-			System.out.println("[watcher]> counterChangedEvent received. Value: " + value);
-			trigger.trigger(new CounterChangedEvent(cid, value));
+		if (event instanceof InformOutOfSyncEvent) {
+			int value = ((InformOutOfSyncEvent)event).getCounterNumber();
+			//ComponentId cid = ((CounterChangedEvent)event).getCid();
+			System.out.println("[executor] InformOutOfSyncEvent received. Value: "+value);
+			trigger.trigger(new ComponentOutOfSyncEvent(value));
 		}
 
 	}
@@ -55,14 +62,11 @@ public class CounterChangedWatcher implements EventHandlerInterface,
 				.equals(FractalInterfaceNames.ACTUATOR_CLIENT_INTERFACE))
 			actuator = (NicheActuatorInterface) itfValue;
 		else if (itfName
-				.equals(FractalInterfaceNames.DEPLOY_SENSOR_CLIENT_INTERFACE))
-			deploySensor = (DeploySensorsInterface) itfValue;
+				.equals(FractalInterfaceNames.DEPLOY_ACTUATOR_CLIENT_INTERFACE))
+			deployActuator = (DeployActuatorsInterface) itfValue;
 		else if (itfName
 				.equals(FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE))
 			trigger = (TriggerInterface) itfValue;
-		// else if
-		// (itfName.equals(FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE))
-		// triggerInterface = (TriggerInterface) itfValue;
 		else
 			throw new NoSuchInterfaceException(itfName);
 	}
@@ -70,8 +74,7 @@ public class CounterChangedWatcher implements EventHandlerInterface,
 	public String[] listFc() {
 		return new String[] { FractalInterfaceNames.COMPONENT,
 				FractalInterfaceNames.ACTUATOR_CLIENT_INTERFACE,
-				FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE,
-				FractalInterfaceNames.DEPLOY_SENSOR_CLIENT_INTERFACE,
+				FractalInterfaceNames.DEPLOY_ACTUATOR_CLIENT_INTERFACE,
 				FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE};
 	}
 
@@ -83,8 +86,8 @@ public class CounterChangedWatcher implements EventHandlerInterface,
 				.equals(FractalInterfaceNames.ACTUATOR_CLIENT_INTERFACE))
 			return actuator;
 		else if (itfName
-				.equals(FractalInterfaceNames.DEPLOY_SENSOR_CLIENT_INTERFACE))
-			return deploySensor;
+				.equals(FractalInterfaceNames.DEPLOY_ACTUATOR_CLIENT_INTERFACE))
+			return deployActuator;
 		else if (itfName
 				.equals(FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE))
 			return trigger;
@@ -102,8 +105,8 @@ public class CounterChangedWatcher implements EventHandlerInterface,
 				.equals(FractalInterfaceNames.ACTUATOR_CLIENT_INTERFACE))
 			actuator = null;
 		else if (itfName
-				.equals(FractalInterfaceNames.DEPLOY_SENSOR_CLIENT_INTERFACE))
-			deploySensor = null;
+				.equals(FractalInterfaceNames.DEPLOY_ACTUATOR_CLIENT_INTERFACE))
+			deployActuator = null;
 		else if (itfName
 				.equals(FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE))
 			trigger = null;
@@ -131,35 +134,33 @@ public class CounterChangedWatcher implements EventHandlerInterface,
 
 	@Override
 	public void init(Serializable[] parameters) {
-		// TODO Auto-generated method stub
 		initSmth() ;
 	}
 
 	@Override
 	public void init(NicheActuatorInterface actuator) {
-		// TODO Auto-generated method stub
 		initSmth() ;
 	}
 
 	@Override
 	public void initId(NicheId id) {
-		// TODO Auto-generated method stub
 		initSmth() ;
 	}
 
 	@Override
 	public void reinit(Serializable[] parameters) {
-		// TODO Auto-generated method stub
 		initSmth() ;
 	}
 
 	private void initSmth() {
-		System.out.println("INIT called!!!");
-		Serializable[] sensorParameters = new Serializable[2];
+		System.out.println("[executor]> Initialize");
+		Serializable[] actuatorParameters = new Serializable[2];
 
-		deploySensor.deploySensor(CounterStatusSensor.class.getName(),
-				CounterChangedEvent.class.getName(), sensorParameters, null,
-				new String[] { "counterStatus" });
+//		deploySensor.deploySensor(CounterStatusSensor.class.getName(),
+//				CounterChangedEvent.class.getName(), sensorParameters, null,
+//				new String[] { "counterStatus" });
+		deployActuator.deployActuator(CounterStatusActuator.class.getName(), 
+				ComponentOutOfSyncEvent.class.getName(), actuatorParameters, new String[] { "counterResync" }, null);
 	}
 
 }

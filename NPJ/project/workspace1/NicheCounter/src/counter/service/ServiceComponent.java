@@ -3,9 +3,11 @@ package counter.service;
 import java.util.Random;
 
 import counter.interfaces.CounterInterface;
+import counter.interfaces.CounterResyncInterface;
 import counter.interfaces.CounterStatusInterface;
 import counter.interfaces.HelloAllInterface;
 import counter.interfaces.HelloAnyInterface;
+import counter.interfaces.SynchronizeInterface;
 
 import org.objectweb.fractal.api.Component;
 import org.objectweb.fractal.api.NoSuchInterfaceException;
@@ -21,12 +23,14 @@ import dks.niche.ids.ComponentId;
 import dks.niche.interfaces.NicheActuatorInterface;
 import dks.niche.interfaces.NicheComponentSupportInterface;
 
-public class ServiceComponent implements CounterInterface, HelloAnyInterface, HelloAllInterface, BindingController,
+public class ServiceComponent implements SynchronizeInterface, CounterInterface, 
+	HelloAnyInterface, HelloAllInterface, BindingController, CounterResyncInterface,
     LifeCycleController {
 
     private Component myself;
     private boolean status;
     private int counterNumber = 0;
+    private int round = 0;
     private CounterStatusInterface counterStatus;
     private ComponentId myGlobalId;
     
@@ -34,6 +38,7 @@ public class ServiceComponent implements CounterInterface, HelloAnyInterface, He
     public ServiceComponent() {
         System.err.println("CounterService created");
     }
+    
 
     // /////////////////////////////////////////////////////////////////////
     // //////////////////////// Server interfaces //////////////////////////
@@ -49,16 +54,54 @@ public class ServiceComponent implements CounterInterface, HelloAnyInterface, He
     
 	public void inreaseCounter(String a) {
 		double r = Math.random();
+		round++;
+		if(r<0.90) {
+			int newVal =  increaseCounter();
+			System.out.println("[service|"+ round + "\t]> increaseCounter called. New value: " + newVal);
+			counterStatus.informCounterValue(myGlobalId, newVal);
+		}
+		else {
+			System.out.println("[service|"+ round + "\t]> increaseCounter OMIT. Value: " + getCounterNumber());
+		}
 		
-		if(r<0.5)
-			counterStatus.informCounterValue(myGlobalId, ++counterNumber);
+	}
+	
+	public void synchronize(int value) {//TODO REMOVE
+		System.out.println("[service]> synchronize called. Current value: " + getCounterNumber() +
+				", New value: " + value);
+		if (getCounterNumber() < value) {
+			setCounterNumber(value);
+		}
+		
+	}
+	
+	public void reSynchronize(int value) {
+		System.out.println("[service]> Component: received sync msg. Current value: " + getCounterNumber() + ". New value: " + value);
+		if (getCounterNumber() < value) {
+			setCounterNumber(value);
+		}
+		
+		
+	}
+	
+	public int getCounterNumber() {
+		return counterNumber;
+	}
+
+	public void setCounterNumber(int counterNumber) {
+		this.counterNumber = counterNumber;
+	}
+	
+	public int increaseCounter() {
+			counterNumber += 1;
+			return counterNumber;
 	}
 
     // /////////////////////////////////////////////////////////////////////
     // //////////////////////// Fractal Stuff //////////////////////////////
     // /////////////////////////////////////////////////////////////////////
 
-    public String[] listFc() {
+	public String[] listFc() {
         return new String[] { "component", "counterStatus" };
     }
 
@@ -192,4 +235,8 @@ public class ServiceComponent implements CounterInterface, HelloAnyInterface, He
 		myGlobalId = nicheOSSupport.getResourceManager().getComponentId(myself);
 		
 	}
+
+
+	
+
 }

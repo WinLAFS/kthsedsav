@@ -21,14 +21,18 @@ import org.objectweb.fractal.api.control.IllegalLifeCycleException;
 import org.objectweb.fractal.api.control.LifeCycleController;
 import org.objectweb.jasmine.jade.util.Serialization;
 
+import counter.events.ComponentOutOfSyncEvent;
 import counter.events.CounterChangedEvent;
+import counter.events.InformOutOfSyncEvent;
 import counter.events.MaxCounterChangedEvent;
+import counter.interfaces.SynchronizeInterface;
 
 import dks.niche.exceptions.OperationTimedOutException;
 import dks.niche.fractal.FractalInterfaceNames;
 import dks.niche.fractal.interfaces.EventHandlerInterface;
 import dks.niche.fractal.interfaces.InitInterface;
 import dks.niche.fractal.interfaces.MovableInterface;
+import dks.niche.fractal.interfaces.TriggerInterface;
 import dks.niche.ids.ComponentId;
 import dks.niche.ids.GroupId;
 import dks.niche.ids.NicheId;
@@ -75,12 +79,18 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
     private NicheId myId;
     
     private int maxCounterNumber=0;
+    
+    private SynchronizeInterface synchronize;
+    
+    private TriggerInterface eventTrigger;
+    
+    //end of variables
 
-    public synchronized int getMaxCounterNumber() {
+    public int getMaxCounterNumber() {
 		return maxCounterNumber;
 	}
 
-	public synchronized void setMaxCounterNumber(int maxCounterNumber) {
+	public void setMaxCounterNumber(int maxCounterNumber) {
 		this.maxCounterNumber = maxCounterNumber;
 	}
 
@@ -123,11 +133,16 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
 
     public void eventHandler(Serializable e, int flag) {
     	
-    	if (e instanceof MaxCounterChangedEvent) {
-    		int maxNumber = ((MaxCounterChangedEvent)e).getCounterNumber();
+    	if (e instanceof ComponentOutOfSyncEvent) {
+    		int maxNumber = ((ComponentOutOfSyncEvent)e).getCounterNumber();
     		setMaxCounterNumber(maxNumber);
-    		System.out.println("[]> Max counter value set in conf. manager = " + getMaxCounterNumber());
-    	}else{
+    		System.out.println("[configuration]> ComponentOutOfSyncEvent received."+
+    				"Value: " + getMaxCounterNumber());
+    		eventTrigger.trigger(new InformOutOfSyncEvent(maxNumber));
+    		
+    	}
+    	else {
+    		
         if (!(myId.getReplicaNumber() < 1)) {
             // I am not the master replica, do nothing.
             return;
@@ -218,12 +233,16 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
     // ////////////////////////////////////////////////////////////
 
     public String[] listFc() {
-        return new String[] { FractalInterfaceNames.COMPONENT };
+        return new String[] { FractalInterfaceNames.COMPONENT, "synchronize", FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE };
     }
 
     public Object lookupFc(String interfaceName) throws NoSuchInterfaceException {
         if (interfaceName.equals(FractalInterfaceNames.COMPONENT)) {
             return mySelf;
+        } else if (interfaceName.equals(FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE)) {
+            return eventTrigger;
+        }else if (interfaceName.equals("synchronize")) {
+        	return synchronize;
         } else {
             throw new NoSuchInterfaceException(interfaceName);
         }
@@ -233,7 +252,12 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
         IllegalBindingException, IllegalLifeCycleException {
         if (interfaceName.equals(FractalInterfaceNames.COMPONENT)) {
             mySelf = (Component) stub;
-        } else {
+        } else if (interfaceName.equals(FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE)) {
+            eventTrigger = (TriggerInterface) stub;
+        } else if (interfaceName.equals("synchronize")) {
+        	synchronize = (SynchronizeInterface) stub;
+        }
+        else {
             throw new NoSuchInterfaceException(interfaceName);
         }
     }
@@ -242,7 +266,12 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
         IllegalBindingException, IllegalLifeCycleException {
         if (interfaceName.equals(FractalInterfaceNames.COMPONENT)) {
             mySelf = null;
-        } else {
+        } else if (interfaceName.equals(FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE)) {
+            eventTrigger = null;
+        } else if (interfaceName.equals("synchronize")) {
+        	synchronize = null;
+        }
+        else {
             throw new NoSuchInterfaceException(interfaceName);
         }
     }
