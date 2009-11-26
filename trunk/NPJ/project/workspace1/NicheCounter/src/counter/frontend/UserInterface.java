@@ -26,14 +26,14 @@ public class UserInterface extends JPanel {
     }
 
     private void createGUI() {
-        helloAnyButton = new JButton("HelloAny");
+        helloAnyButton = new JButton("Increase");
         helloAnyButton.setVerticalTextPosition(AbstractButton.CENTER);
         helloAnyButton.setHorizontalTextPosition(AbstractButton.LEADING);
         // helloAnyButton.setMnemonic(KeyEvent.VK_D);
         // helloAnyButton.setActionCommand("disable");
 
         //helloAllButton = new JButton("HelloAll");
-        helloAllButton = new JButton("Increase");
+        helloAllButton = new JButton("Increase 100");
         helloAllButton.setVerticalTextPosition(AbstractButton.CENTER);
         helloAllButton.setHorizontalTextPosition(AbstractButton.LEADING);
         // helloAllButton.setMnemonic(KeyEvent.VK_M);
@@ -55,7 +55,7 @@ public class UserInterface extends JPanel {
         labelCounter = new JLabel("");
         labelCounter.setText("0");
         
-        //add(helloAnyButton);
+        add(helloAnyButton);
         add(helloAllButton);
         add(labelCounter);
 
@@ -74,8 +74,11 @@ public class UserInterface extends JPanel {
     }
 
     private void helloAny() {
-        System.out.println("UI says: Invoking HelloAny");
-        myAI.helloAny();
+    	System.out.println("[ui]> Invoking Counter");
+    	int roundId = generator.nextInt();
+		correctCount++;
+		myAI.increaseCounter(roundId);
+		labelCounter.setText(correctCount+"");
     }
 
     private void helloAll() {//TODO
@@ -94,7 +97,7 @@ public class UserInterface extends JPanel {
 		myAI.increaseCounter(roundId);
 		labelCounter.setText(correctCount+"");
 	        try {
-				Thread.sleep(70);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

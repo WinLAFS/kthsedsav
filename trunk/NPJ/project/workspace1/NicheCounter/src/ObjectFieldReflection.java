@@ -7,10 +7,10 @@ public class ObjectFieldReflection {
   }
   
   public static void printAllFields(Object obj) throws IllegalArgumentException, IllegalAccessException{
-	  Field[] f_a = obj.getClass().getDeclaredFields();
-	    for (Field f : f_a) {
-	      f.setAccessible(true);
-	      System.out.println("Fieldname="+f.getName()+" value="+f.get(obj));
+	  int v=0;
+	    for (int i=0; i<12; i++) {
+	      System.out.println(v++);
+
 	    }
   }
 }
