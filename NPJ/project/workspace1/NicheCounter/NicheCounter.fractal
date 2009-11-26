@@ -8,9 +8,7 @@
     <controller desc="primitive"/>
   </component>
   
-  <component name="frontend">   
-    <interface name="helloAny" role="client" signature="counter.interfaces.HelloAnyInterface" contingency="optional" />
-    <interface name="helloAll" role="client" signature="counter.interfaces.HelloAllInterface"  contingency="optional"/>
+  <component name="frontend">
     <interface name="counter" role="client" signature="counter.interfaces.CounterInterface"  contingency="optional"/>
     <content class="counter.frontend.FrontendComponent"/>
     <virtual-node name="lightweight1" resourceReqs="10"/>
