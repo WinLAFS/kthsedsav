@@ -32,7 +32,8 @@ public class FrontendComponent implements BindingController,
 	// ///////////////////////////////////////////////////////////////
 
 	/**
-	 * The method calls increaseCounter method of the client {@link CounterInterface}
+	 * The method calls increaseCounter method of the client
+	 * {@link CounterInterface}
 	 * 
 	 * @param a
 	 */
@@ -66,7 +67,8 @@ public class FrontendComponent implements BindingController,
 	}
 
 	/**
-	 * @see org.objectweb.fractal.api.control.BindingController#bindFc(java.lang.String, java.lang.Object)
+	 * @see org.objectweb.fractal.api.control.BindingController#bindFc(java.lang.String,
+	 *      java.lang.Object)
 	 */
 	public void bindFc(final String itfName, final Object itfValue)
 			throws NoSuchInterfaceException {
