@@ -77,9 +77,8 @@ public class ServiceComponent implements CounterInterface, BindingController,
 //			System.out.println("[service|"+ round + "\t]> increaseCounter called. New value: " + newVal + " | " + roundId);
 			counterStatus.informCounterValue(myGlobalId, newVal, roundId); //inform sensors
 		}
-		else {
-			System.out.println("[service|"+ round + "\t]> increaseCounter OMIT. Value: " + getCounterNumber());
-		}
+		
+		System.out.println("[service|"+ round + "]>\t :Value: " + getCounterNumber());
 		
 	}
 	
@@ -88,8 +87,8 @@ public class ServiceComponent implements CounterInterface, BindingController,
 	 * @see counter.interfaces.CounterResyncInterface#reSynchronize(int, int)
 	 */
 	public synchronized void reSynchronize(int value, int syncRoundId) {
-		System.out.println("[service]> RESYNC.Current: " + getCounterNumber()
-				+ ". New: " + value + ". Sync current: " + syncMessage.getSyncRoundId() + ". New: " + syncRoundId);
+//		System.out.println("[service]> RESYNC.Current: " + getCounterNumber()
+//				+ ". New: " + value + ". Sync current: " + syncMessage.getSyncRoundId() + ". New: " + syncRoundId);
 		
 		//keeping sync msgs in history
 		if (syncRoundIdExists(syncRoundId)) {
@@ -117,6 +116,7 @@ public class ServiceComponent implements CounterInterface, BindingController,
 		if (getCounterNumber() < value) { //updating counter value if needed
 			setCounterNumber(value);
 		}
+		
 	}
 	
 	
