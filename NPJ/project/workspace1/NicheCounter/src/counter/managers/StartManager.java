@@ -79,25 +79,23 @@ public class StartManager implements BindingController, LifeCycleController {
 
         // Create a component group containing all service components.
         GroupId serviceGroupTemplate = myActuatorInterface.getGroupTemplate();
-        serviceGroupTemplate.addServerBinding("helloAny", JadeBindInterface.ONE_TO_ANY);
-        serviceGroupTemplate.addServerBinding("helloAll", JadeBindInterface.ONE_TO_MANY);
         serviceGroupTemplate.addServerBinding("counter", JadeBindInterface.ONE_TO_MANY);
         GroupId serviceGroup =
             myActuatorInterface.createGroup(serviceGroupTemplate, serviceComponents);
 
         // Create a one-to-any binding from the front-end to the service group.
         // This binding uses the helloAny interface.
-        String clientInterfaceName = "helloAny";
-        String serverInterfaceName = "helloAny";
-        myActuatorInterface.bind(frontendComponent, clientInterfaceName, serviceGroup,
-                                 serverInterfaceName, JadeBindInterface.ONE_TO_ANY);
+        String clientInterfaceName = "";
+        String serverInterfaceName = "";
+//        myActuatorInterface.bind(frontendComponent, clientInterfaceName, serviceGroup,
+//                                 serverInterfaceName, JadeBindInterface.ONE_TO_ANY);
 
         // Create a one-to-all binding from the front-end to the service group.
         // This binding uses the helloAll interface.
-        clientInterfaceName = "helloAll";
-        serverInterfaceName = "helloAll";
-        myActuatorInterface.bind(frontendComponent, clientInterfaceName, serviceGroup,
-                                 serverInterfaceName, JadeBindInterface.ONE_TO_MANY);
+//        clientInterfaceName = "helloAll";
+//        serverInterfaceName = "helloAll";
+//        myActuatorInterface.bind(frontendComponent, clientInterfaceName, serviceGroup,
+//                                 serverInterfaceName, JadeBindInterface.ONE_TO_MANY);
         
         //Counter binding
         clientInterfaceName = "counter";
