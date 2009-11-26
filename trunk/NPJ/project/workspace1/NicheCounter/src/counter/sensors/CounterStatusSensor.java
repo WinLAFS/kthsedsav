@@ -17,109 +17,92 @@ import dks.niche.ids.NicheId;
 import dks.niche.interfaces.NicheActuatorInterface;
 import dks.niche.interfaces.NicheAsynchronousInterface;
 
+/**
+ * The sensor management elements that are responsible to "get" (get notified)
+ * the value of the counter from the component each time it is increased and 
+ * trigger a {@link CounterChangedEvent} in order to inform the watchers for
+ * this change. They are informed about counter value by the {@link CounterStatusInterface}.
+ *
+ */
 public class CounterStatusSensor implements SensorInitInterface,
 		CounterStatusInterface, BindingController, LifeCycleController {
 
-	// Client Interfaces
-	TriggerInterface trigger;
+	TriggerInterface trigger; //the interface used to trigger event to watcher
 
-	// ///////////////
 	Component mySelf;
 	private boolean status;
 
-	// Local variables
-	private int delta;
-	private int currentLoad;
-	private int previousLoad;
-	private int totalStorage;
-	private int currentDelta;
 	private NicheId myId;
 	private ComponentId myComponentId;
 	private NicheActuatorInterface myNicheActuatorInterface;
 	private NicheAsynchronousInterface logger;
 
+	/**
+	 * Default constructor.
+	 */
 	public CounterStatusSensor() {
 		mySelf = null;
 		trigger = null;
-		currentDelta = 0;
 	}
 
-	// //////////////////////////////////////////////////////////////////////////
 	// //////////////////////// Server Interfaces
-	// ///////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////
 
-	// ////// InitInterface
+	/**
+	 * @param parameters
+	 */
 	public void init(Object[] parameters) {
-		// delta = (Integer)parameters[0];
-		// log("$$$$$$$$$$$$ LoadSensor: delta = " + delta);
 
 	}
 
+	/**
+	 * @see dks.niche.fractal.interfaces.InitInterface#init(dks.niche.interfaces.NicheActuatorInterface)
+	 */
 	public void init(NicheActuatorInterface actuator) {
 		myNicheActuatorInterface = actuator;
 		logger = actuator.testingOnly();
 	}
 
+	/**
+	 * @param id
+	 */
 	public void initId(Object id) {
 		myId = (NicheId) id;
 	}
 
+	/**
+	 * @see dks.niche.fractal.interfaces.SensorInitInterface#initComponentId(dks.niche.ids.ComponentId)
+	 */
 	public void initComponentId(ComponentId cid) {
 		myComponentId = cid;
 
 	}
 
+	/**
+	 * @param applicationParameters
+	 */
 	public void reinit(Object[] applicationParameters) {
 	}
-
+	
+	/**
+	 * @see counter.interfaces.CounterStatusInterface#informCounterValue(dks.niche.ids.ComponentId, int, int)
+	 */
 	public void informCounterValue(ComponentId cid, int value, int lamport) {
-//		synchronized (this) {
-//			System.out.println("[sensor]> informCounterValue was called. Value: " + value);
 			this.trigger.trigger(new CounterChangedEvent(cid, value, lamport));			
-//		}
-		
 	}
 
-	// //////////////////////////////////////////////////////////////////////////
-	// /////////////////////////// Attributes
-	// ///////////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////
-
-	public int getCurrentLoad() {
-		return currentLoad;
-	}
-
-	public int getDelta() {
-		return delta;
-	}
-
-	public int getTotalStorage() {
-		return totalStorage;
-	}
-
-	public void setCurrentLoad(int load) {
-		currentLoad = load;
-	}
-
-	public void setDelta(int delta) {
-		this.delta = delta;
-	}
-
-	public void setTotalStorage(int total) {
-		totalStorage = total;
-	}
-
-	// //////////////////////////////////////////////////////////////////////////
 	// //////////////////////// Fractal Stuff
-	// ///////////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * @see org.objectweb.fractal.api.control.BindingController#listFc()
+	 */
 	public String[] listFc() {
 
 		return new String[] { "component", "trigger" };
 	}
 
+	/**
+	 * @see org.objectweb.fractal.api.control.BindingController#lookupFc(java.lang.String)
+	 */
 	public Object lookupFc(final String itfName)
 			throws NoSuchInterfaceException {
 
@@ -129,9 +112,11 @@ public class CounterStatusSensor implements SensorInitInterface,
 			return mySelf;
 		else
 			throw new NoSuchInterfaceException(itfName);
-
 	}
 
+	/**
+	 * @see org.objectweb.fractal.api.control.BindingController#bindFc(java.lang.String, java.lang.Object)
+	 */
 	public void bindFc(final String itfName, final Object itfValue)
 			throws NoSuchInterfaceException {
 		if (itfName.equals("trigger"))
@@ -142,6 +127,9 @@ public class CounterStatusSensor implements SensorInitInterface,
 			throw new NoSuchInterfaceException(itfName);
 	}
 
+	/**
+	 * @see org.objectweb.fractal.api.control.BindingController#unbindFc(java.lang.String)
+	 */
 	public void unbindFc(final String itfName) throws NoSuchInterfaceException {
 		if (itfName.equals("trigger"))
 			trigger = null;
@@ -151,38 +139,44 @@ public class CounterStatusSensor implements SensorInitInterface,
 			throw new NoSuchInterfaceException(itfName);
 	}
 
+	/**
+	 * @see org.objectweb.fractal.api.control.LifeCycleController#getFcState()
+	 */
 	public String getFcState() {
 
 		return status ? "STARTED" : "STOPPED";
 	}
 
+	/**
+	 * @see org.objectweb.fractal.api.control.LifeCycleController#startFc()
+	 */
 	public void startFc() throws IllegalLifeCycleException {
 		status = true;
-		// log("LoadSensor Started: Total = " + totalStorage + ", Load = " +
-		// currentLoad + ", Delta = " + delta);
 	}
 
+	/**
+	 * @see org.objectweb.fractal.api.control.LifeCycleController#stopFc()
+	 */
 	public void stopFc() throws IllegalLifeCycleException {
 		status = false;
-
 	}
 
-	@Override
+	/**
+	 * @see dks.niche.fractal.interfaces.InitInterface#init(java.io.Serializable[])
+	 */
 	public void init(Serializable[] parameters) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
+	/**
+	 * @see dks.niche.fractal.interfaces.InitInterface#initId(dks.niche.ids.NicheId)
+	 */
 	public void initId(NicheId id) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
+	/**
+	 * @see dks.niche.fractal.interfaces.InitInterface#reinit(java.io.Serializable[])
+	 */
 	public void reinit(Serializable[] parameters) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
