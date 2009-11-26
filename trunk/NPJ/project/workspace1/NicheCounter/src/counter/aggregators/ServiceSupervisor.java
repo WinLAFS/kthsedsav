@@ -130,7 +130,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
     // //////// InitInterface methods, gives us init attributes. ////////
     // //////////////////////////////////////////////////////////////////
 
-    /* (non-Javadoc)
+    /**
      * @see dks.niche.fractal.interfaces.InitInterface#init(java.io.Serializable[])
      */
     public void init(Serializable[] parameters) {
@@ -145,7 +145,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
         }
     }
 
-	/* (non-Javadoc)
+	/**
 	 * @see dks.niche.fractal.interfaces.InitInterface#reinit(java.io.Serializable[])
 	 */
 	public void reinit(Serializable[] parameters) {
@@ -160,7 +160,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
         }
     }
 
-    /* (non-Javadoc)
+    /**
      * @see dks.niche.fractal.interfaces.InitInterface#init(dks.niche.interfaces.NicheActuatorInterface)
      */
     public void init(NicheActuatorInterface actuator) {
@@ -174,7 +174,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
         }
     }
 
-    /* (non-Javadoc)
+    /**
      * @see dks.niche.fractal.interfaces.InitInterface#initId(dks.niche.ids.NicheId)
      */
     public void initId(NicheId id) {
@@ -226,7 +226,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
     // EventHandlerInterface method, called when we receive an event. ///
     // //////////////////////////////////////////////////////////////////
 
-    /* (non-Javadoc)
+    /**
      * @see dks.niche.fractal.interfaces.EventHandlerInterface#eventHandler(java.io.Serializable, int)
      */
     public void eventHandler(Serializable e, int flag) {
@@ -410,7 +410,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
     // MovableInterface method, called when we are about to be moved or copied.
     // ///////////////////////////////////////////////////////////////////////////
 
-    /* (non-Javadoc)
+    /**
      * @see dks.niche.fractal.interfaces.MovableInterface#getAttributes()
      */
     public Serializable[] getAttributes() {
@@ -421,7 +421,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
     // //////////////////////// FRACTAL STUFF /////////////////////
     // ////////////////////////////////////////////////////////////
 
-    /* (non-Javadoc)
+    /**
      * @see org.objectweb.fractal.api.control.BindingController#listFc()
      */
     public String[] listFc() {
@@ -429,7 +429,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
                 FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE };
     }
 
-    /* (non-Javadoc)
+    /**
      * @see org.objectweb.fractal.api.control.BindingController#lookupFc(java.lang.String)
      */
     public Object lookupFc(String interfaceName) throws NoSuchInterfaceException {
@@ -442,7 +442,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
         }
     }
 
-    /* (non-Javadoc)
+    /**
      * @see org.objectweb.fractal.api.control.BindingController#bindFc(java.lang.String, java.lang.Object)
      */
     public void bindFc(String interfaceName, Object intfValue) throws NoSuchInterfaceException,
@@ -456,7 +456,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
         }
     }
 
-    /* (non-Javadoc)
+    /**
      * @see org.objectweb.fractal.api.control.BindingController#unbindFc(java.lang.String)
      */
     public void unbindFc(String interfaceName) throws NoSuchInterfaceException,
@@ -470,21 +470,21 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
         }
     }
 
-    /* (non-Javadoc)
+    /**
      * @see org.objectweb.fractal.api.control.LifeCycleController#getFcState()
      */
     public String getFcState() {
         return status ? "STARTED" : "STOPPED";
     }
 
-    /* (non-Javadoc)
+    /**
      * @see org.objectweb.fractal.api.control.LifeCycleController#startFc()
      */
     public void startFc() throws IllegalLifeCycleException {
         status = true;
     }
 
-    /* (non-Javadoc)
+    /**
      * @see org.objectweb.fractal.api.control.LifeCycleController#stopFc()
      */
     public void stopFc() throws IllegalLifeCycleException {
