@@ -92,6 +92,8 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     private int numberOfNodes;
     private int roundId = 0;
     
+    private static final boolean isCalculationStrict=true;
+    
     // Empty constructor always needed!
     public ServiceSupervisor() {
     }
@@ -231,13 +233,17 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     			roundId = roundIdNew;
     		}
     		
-    		int margin = currentAllocatedServiceComponents - checkStep;
-    		System.out.println("[aggregator]> Check step: " + checkStep + "\tMargin: " + margin);
-    		checkStep = (checkStep + 1) % currentAllocatedServiceComponents;
+    		int margin=1;
     		
-    		if (margin == currentAllocatedServiceComponents) {
-    			return;
-    		}
+    		if(!isCalculationStrict){
+	    		margin = currentAllocatedServiceComponents - checkStep;
+	    		System.out.println("[aggregator]> Check step: " + checkStep + "\tMargin: " + margin);
+	    		checkStep = (checkStep + 1) % currentAllocatedServiceComponents;
+	    		
+	    		if (margin == currentAllocatedServiceComponents) {
+	    			return;
+	    		}
+	    	}
     		
     		
     		Iterator iterator = currentComponents.keySet().iterator();  

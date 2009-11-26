@@ -80,6 +80,8 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
     
     private int maxCounterNumber=0;
     
+    private int lastRoundId = 0;
+    
     private SynchronizeInterface synchronize;
     
     private TriggerInterface eventTrigger;
@@ -140,7 +142,7 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
 //    		System.out.println("[configuration]> ComponentOutOfSyncEvent received."+
 //    				"Value: " + getMaxCounterNumber());
     		eventTrigger.trigger(new InformOutOfSyncEvent(maxNumber, lamport));
-    		
+    		lastRoundId = lamport;
     	}
     	else {
     		
@@ -213,6 +215,10 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
             myManagementInterface.update(componentGroup, cid,
                                          NicheComponentSupportInterface.ADD_TO_GROUP_AND_START);
             System.out.println("ConfigurationManager says: All done!");
+            
+            
+            System.out.println("[configuration]> New node joined. Resynchronizing.."+ "Value: " + getMaxCounterNumber());
+            eventTrigger.trigger(new InformOutOfSyncEvent(getMaxCounterNumber(),this.lastRoundId));
 
             notDone = false;
         } // end while notDone - after a continue we get here
