@@ -17,13 +17,7 @@
   <interface name="actuator" role="client" signature="dks.niche.interfaces.NicheActuatorInterface" contingency="optional" />
   <interface name="deployActuator" role="client" signature="dks.niche.fractal.interfaces.DeployActuatorsInterface" contingency="optional" />
   <interface name="trigger" role="client" signature="dks.niche.fractal.interfaces.TriggerInterface" contingency="optional" />
-  
-  <!-- interface name="informationInterfaceClient" role="client" signature="yacs.job.interfaces.InformationInterface" contingency="optional" />
-  <interface name="masterInterfaceClient" role="client" signature="yacs.job.interfaces.JobMasterGroupInterface" contingency="optional"/>
-  <interface name="taskManagementClient" role="client" signature="yacs.job.interfaces.TaskManagementInterface" contingency="optional"/>
-  <interface name="workerGroupInterface" role="client" signature="yacs.job.interfaces.JobWorkerGroupInterface" contingency="optional"/>
-  <interface name="resourceServiceRequest" role="client" signature="yacs.resources.interfaces.ResourceServiceRequestInterface" contingency="optional"/>	
-   -->
+
   <!-- ================================== -->
   <!--              CONTENT               -->
   <!-- ================================== -->
