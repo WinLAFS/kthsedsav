@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class UserInterface extends JPanel {
@@ -13,6 +14,9 @@ public class UserInterface extends JPanel {
 
     /* UI elements */
     JButton helloAnyButton, helloAllButton;
+    JLabel labelCounter;
+    
+    int correctCount = 0;
 
     public UserInterface(FrontendComponent applicationInterface) {
         myAI = applicationInterface;
@@ -45,8 +49,13 @@ public class UserInterface extends JPanel {
                 helloAll();
             }
         });
+        
+        labelCounter = new JLabel("");
+        labelCounter.setText("0");
+        
         //add(helloAnyButton);
         add(helloAllButton);
+        add(labelCounter);
 
         // Create and set up the window.
         JFrame frame = new JFrame("Counter");
@@ -70,9 +79,19 @@ public class UserInterface extends JPanel {
         System.out.println("[ui]> Invoking Counter");
         //myAI.helloAll();
         
-        //myAI.increaseCounter("NICHE");
         for (int i = 0; i < 100; i++) {
-        	myAI.increaseCounter("NICHE");
+	        myAI.increaseCounter("NICHE");
+	        correctCount++;
+	        labelCounter.setText(correctCount+"");
+	        try {
+				Thread.sleep(70);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
+//        for (int i = 0; i < 100; i++) {
+//        	myAI.increaseCounter("NICHE");
+//        }
     }
 }
