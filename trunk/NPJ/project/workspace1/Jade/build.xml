@@ -163,14 +163,14 @@
 	<!-- ====================================== -->
 	<!-- 			testG4A-NicheHelloWorld-Deploy         -->
 	<!-- ====================================== -->
-	<target name="testG4A-NicheHelloWorld-Deploy">
+	<!--<target name="zNicheHelloWorld-Deploy">
 		<java classname="${run.beanshell-console.classname}" classpathref="beanshell-classpath" fork="yes" failonerror="no">
 			<arg line="NicheHelloWorld-Deploy.bsh" />
 			<jvmarg line="${jvm.parameters}" />
 		</java>
-	</target>
+	</target>-->
 	
-	<target name="testG4A-NicheCounter-Deploy">
+	<target name="NicheCounter-Deploy">
 			<java classname="${run.beanshell-console.classname}" classpathref="beanshell-classpath" fork="yes" failonerror="no">
 				<arg line="NicheCounter-Deploy.bsh" />
 				<jvmarg line="${jvm.parameters}" />
@@ -180,14 +180,14 @@
 	<!-- ====================================== -->
 	<!-- 			testG4A-NicheHelloWorld-Start         -->
 	<!-- ====================================== -->
-	<target name="testG4A-NicheHelloWorld-Start">
+	<!--<target name="z-NicheHelloWorld-Start">
 		<java classname="${run.beanshell-console.classname}" classpathref="beanshell-classpath" fork="yes" failonerror="no">
 			<arg line="NicheHelloWorld-Start.bsh" />
 			<jvmarg line="${jvm.parameters}" />
 		</java>
-	</target>
+	</target>-->
 	
-	<target name="testG4A-NicheCounterStart">
+	<target name="NicheCounter-Start">
 			<java classname="${run.beanshell-console.classname}" classpathref="beanshell-classpath" fork="yes" failonerror="no">
 				<arg line="NicheCounter-Start.bsh" />
 				<jvmarg line="${jvm.parameters}" />
