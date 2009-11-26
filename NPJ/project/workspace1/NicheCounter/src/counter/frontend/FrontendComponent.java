@@ -35,7 +35,7 @@ public class FrontendComponent implements BindingController, LifeCycleController
         helloAll.helloAll("Counter");
     }
     
-    public synchronized void increaseCounter(String a) {
+    public synchronized void increaseCounter(int a) {
     	counter.inreaseCounter(a);
     }
 

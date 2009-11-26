@@ -14,11 +14,27 @@ public class CounterChangedEvent extends Event implements Serializable {
 	
 	private ComponentId cid;
 	private int counterNumber;
+	private int lamport;
 	
-	public CounterChangedEvent(ComponentId cid, int counterNumber){
+	public CounterChangedEvent(ComponentId cid, int counterNumber, int lamport){
 		this.counterNumber = counterNumber;
 		this.cid = cid;
+		this.lamport = lamport;
 	}
+
+	
+	
+	public int getLamport() {
+		return lamport;
+	}
+
+
+
+	public void setLamport(int lamport) {
+		this.lamport = lamport;
+	}
+
+
 
 	public int getCounterNumber() {
 		return counterNumber;

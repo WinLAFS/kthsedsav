@@ -158,8 +158,8 @@ public class CounterStatusActuator implements ActuatorInitInterface,
 	public void eventHandler(Serializable event, int flag) {
 		if (event instanceof ComponentOutOfSyncEvent) {
 			ComponentOutOfSyncEvent evt = (ComponentOutOfSyncEvent) event;
-			System.out.println("[actuator]> ComponentOutOfSyncEvent received. Value: " + evt.getCounterNumber());
-			counterResync.reSynchronize(evt.getCounterNumber());
+//			System.out.println("[actuator]> ComponentOutOfSyncEvent received. Value: " + evt.getCounterNumber());
+			counterResync.reSynchronize(evt.getCounterNumber(), evt.getLamport());
 		}
 		else {
 			System.out.println("[actuator]> uknown event: " + event.getClass().getName());

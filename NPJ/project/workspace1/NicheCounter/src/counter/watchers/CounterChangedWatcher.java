@@ -36,9 +36,10 @@ public class CounterChangedWatcher implements EventHandlerInterface,
 	public void eventHandler(Serializable event, int flag) {
 		if (event instanceof CounterChangedEvent) {
 			int value = ((CounterChangedEvent)event).getCounterNumber();
+			int lamport = ((CounterChangedEvent)event).getLamport();
 			ComponentId cid = ((CounterChangedEvent)event).getCid();
-			System.out.println("[watcher]> counterChangedEvent received. Value: " + value);
-			trigger.trigger(new CounterChangedEvent(cid, value));
+//			System.out.println("[watcher]> counterChangedEvent received. Value: " + value);
+			trigger.trigger(new CounterChangedEvent(cid, value, lamport));
 		}
 
 	}
