@@ -73,10 +73,10 @@ public class CounterStatusSensor implements SensorInitInterface,
 	public void reinit(Object[] applicationParameters) {
 	}
 
-	public void informCounterValue(ComponentId cid, int value) {
+	public void informCounterValue(ComponentId cid, int value, int lamport) {
 //		synchronized (this) {
-			System.out.println("[sensor]> informCounterValue was called. Value: " + value);
-			this.trigger.trigger(new CounterChangedEvent(cid, value));			
+//			System.out.println("[sensor]> informCounterValue was called. Value: " + value);
+			this.trigger.trigger(new CounterChangedEvent(cid, value, lamport));			
 //		}
 		
 	}

@@ -43,9 +43,10 @@ MovableInterface, BindingController, LifeCycleController, InitInterface {
 	public void eventHandler(Serializable event, int flag) {
 		if (event instanceof InformOutOfSyncEvent) {
 			int value = ((InformOutOfSyncEvent)event).getCounterNumber();
+			int lamport = ((InformOutOfSyncEvent)event).getLamport();
 			//ComponentId cid = ((CounterChangedEvent)event).getCid();
-			System.out.println("[executor] InformOutOfSyncEvent received. Value: "+value);
-			trigger.trigger(new ComponentOutOfSyncEvent(value));
+//			System.out.println("[executor] InformOutOfSyncEvent received. Value: "+value);
+			trigger.trigger(new ComponentOutOfSyncEvent(value, lamport));
 		}
 
 	}

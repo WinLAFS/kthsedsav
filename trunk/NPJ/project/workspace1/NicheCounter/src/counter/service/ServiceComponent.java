@@ -1,5 +1,7 @@
 package counter.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 import counter.interfaces.CounterInterface;
@@ -33,12 +35,16 @@ public class ServiceComponent implements SynchronizeInterface, CounterInterface,
     private int round = 0;
     private CounterStatusInterface counterStatus;
     private ComponentId myGlobalId;
-    
+    private int lamport = 0;
+    private int resync = 1;
+    private boolean previusActionSync = false;
+    private SyncMessage syncMessage = new SyncMessage(0, 0);
+    private ArrayList<SyncMessage> syncMessageList = new ArrayList<SyncMessage>();
 
     public ServiceComponent() {
         System.err.println("CounterService created");
     }
-    
+     
 
     // /////////////////////////////////////////////////////////////////////
     // //////////////////////// Server interfaces //////////////////////////
@@ -52,13 +58,27 @@ public class ServiceComponent implements SynchronizeInterface, CounterInterface,
         System.out.println(s);
     }
     
-	public void inreaseCounter(String a) {
+	public synchronized void inreaseCounter(int roundId) {//TODO
 		double r = Math.random();
 		round++;
-		if(r<0.90) {
+		if(r<0.95) {
+			previusActionSync = false;
+			
+			System.out.println("[service|"+ round + "\t]>\t\t\t\t\t :inc: " + syncMessageList.size());
+			
+			SyncMessage remove = removeCurrentSyncId(roundId);
+			//if (shouldSkipIncrease(roundId)) {
+			if (remove != null) {
+				System.out.println("[service|"+ round + "\t]> increaseCounter SKIPPED. Synchronized to ID: " + syncMessage.getSyncRoundId());
+				syncMessageList.remove(remove);
+				
+				return;
+			}
+			
+			
 			int newVal =  increaseCounter();
-			System.out.println("[service|"+ round + "\t]> increaseCounter called. New value: " + newVal);
-			counterStatus.informCounterValue(myGlobalId, newVal);
+			System.out.println("[service|"+ round + "\t]> increaseCounter called. New value: " + newVal + " | " + roundId);
+			counterStatus.informCounterValue(myGlobalId, newVal, roundId);
 		}
 		else {
 			System.out.println("[service|"+ round + "\t]> increaseCounter OMIT. Value: " + getCounterNumber());
@@ -66,22 +86,86 @@ public class ServiceComponent implements SynchronizeInterface, CounterInterface,
 		
 	}
 	
+	
+
+
 	public void synchronize(int value) {//TODO REMOVE
-		System.out.println("[service]> synchronize called. Current value: " + getCounterNumber() +
-				", New value: " + value);
-		if (getCounterNumber() < value) {
-			setCounterNumber(value);
-		}
+//		System.out.println("[service]> synchronize called. Current value: " + getCounterNumber() +
+//				", New value: " + value);
+//		if (getCounterNumber() < value) {
+//			setCounterNumber(value);
+//		}
 		
 	}
 	
-	public void reSynchronize(int value) {
-		System.out.println("[service]> Component: received sync msg. Current value: " + getCounterNumber() + ". New value: " + value);
+	public synchronized void reSynchronize(int value, int syncRoundId) {
+//		if (resync == 1) {
+		System.out.println("[service]> RESYNC.Current: " + getCounterNumber()
+				+ ". New: " + value + ". Sync current: " + syncMessage.getSyncRoundId() + ". New: " + syncRoundId);
+		
+		if (syncRoundIdExists(syncRoundId)) {
+			return;
+		}
+		
+		if (previusActionSync) {
+//			syncMessage = (syncMessage.getValue() > value) ? syncMessage : (new SyncMessage(syncRoundId, value));
+			if (shouldKeepSyncMsg(value)) {
+				syncMessageList.add(new SyncMessage(syncRoundId, value));
+				System.out.println("[service|"+ round + "\t]>\t\t\t\t\t :ofs: " + syncMessageList.size() + "\t\t| " + syncRoundId);
+			}
+		}
+		else {
+			syncMessageList.add(new SyncMessage(syncRoundId, value));//TODO is it ok????
+			System.out.println("[service|"+ round + "\t]>\t\t\t\t\t :ofs: " + syncMessageList.size() + "\t\t| " + syncRoundId);
+		}
+		
 		if (getCounterNumber() < value) {
 			setCounterNumber(value);
 		}
+	}
+	
+	private SyncMessage removeCurrentSyncId(int roundId) {
+		Iterator<SyncMessage> sIterator = syncMessageList.iterator();
+		while (sIterator.hasNext()) {
+			ServiceComponent.SyncMessage syncMessage = (ServiceComponent.SyncMessage) sIterator.next();
+			if (syncMessage.getSyncRoundId() == roundId) {
+				return syncMessage;
+			}
+		}
+		return null;
+	}
+	
+	private boolean shouldSkipIncrease(int roundId) {
+		return syncRoundIdExists(roundId);
+	}
+	
+	
+	boolean syncRoundIdExists(int syncRoundId) {
+		Iterator<SyncMessage> sIterator = syncMessageList.iterator();
+		while (sIterator.hasNext()) {
+			ServiceComponent.SyncMessage syncMessage = (ServiceComponent.SyncMessage) sIterator.next();
+			if (syncMessage.getSyncRoundId() == syncRoundId) {
+				return true;
+			}
+		}
 		
+		return false;
+	}
+	
+	boolean shouldKeepSyncMsg(int value) {
+		if (syncMessageList.isEmpty()) {
+			return true;
+		}
 		
+		Iterator<SyncMessage> sIterator = syncMessageList.iterator();
+		while (sIterator.hasNext()) {
+			ServiceComponent.SyncMessage syncMessage = (ServiceComponent.SyncMessage) sIterator.next();
+			if (syncMessage.getValue() < value) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public int getCounterNumber() {
@@ -236,7 +320,26 @@ public class ServiceComponent implements SynchronizeInterface, CounterInterface,
 		
 	}
 
+	private class SyncMessage {
+		private int syncRoundId;
+		private int value;
+		
+		public SyncMessage(int syncRoundId, int value) {
+			super();
+			this.syncRoundId = syncRoundId;
+			this.value = value;
+		}
 
+		public int getSyncRoundId() {
+			return syncRoundId;
+		}
+
+		public int getValue() {
+			return value;
+		}
+		
+		
+	}
 	
 
 }

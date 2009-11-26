@@ -135,10 +135,11 @@ public class ConfigurationManager implements EventHandlerInterface, MovableInter
     	
     	if (e instanceof ComponentOutOfSyncEvent) {
     		int maxNumber = ((ComponentOutOfSyncEvent)e).getCounterNumber();
+    		int lamport = ((ComponentOutOfSyncEvent)e).getLamport();
     		setMaxCounterNumber(maxNumber);
-    		System.out.println("[configuration]> ComponentOutOfSyncEvent received."+
-    				"Value: " + getMaxCounterNumber());
-    		eventTrigger.trigger(new InformOutOfSyncEvent(maxNumber));
+//    		System.out.println("[configuration]> ComponentOutOfSyncEvent received."+
+//    				"Value: " + getMaxCounterNumber());
+    		eventTrigger.trigger(new InformOutOfSyncEvent(maxNumber, lamport));
     		
     	}
     	else {

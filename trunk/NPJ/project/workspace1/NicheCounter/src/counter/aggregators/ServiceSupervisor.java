@@ -90,6 +90,7 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     
     private int checkStep = 0;
     private int numberOfNodes;
+    private int roundId = 0;
     
     // Empty constructor always needed!
     public ServiceSupervisor() {
@@ -110,7 +111,7 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     // //////////////////////////////////////////////////////////////////
     
     @Override
-	public void informCounterValue(ComponentId cid, int value) {
+	public void informCounterValue(ComponentId cid, int value, int lamport) {
 		System.out.println("Received a new counter value: " + value);
 	}
 
@@ -215,8 +216,10 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     
     private synchronized void handlerCounterChanged(CounterChangedEvent e){
     	int resNumber = e.getCounterNumber();
+    	int roundIdNew = e.getLamport();
     	String id = e.getCid().getId().toString();
     	
+    	System.out.println("[aggregator]>>>>> MAX: " + getMaxedReceivedvalue() + " | LAMPORT: " + roundIdNew);
     	
     	int exValue = currentComponents.get(id);
     	if (resNumber > exValue) {
@@ -224,7 +227,8 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     		currentComponents.put(id, resNumber);
     		
     		if(resNumber>getMaxedReceivedvalue()){
-    			setMaxedReceivedvalue(resNumber);    		
+    			setMaxedReceivedvalue(resNumber);
+    			roundId = roundIdNew;
     		}
     		
     		int margin = currentAllocatedServiceComponents - checkStep;
@@ -238,29 +242,31 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     		
     		Iterator iterator = currentComponents.keySet().iterator();  
     		
-    		System.out.println("[aggregator]> ======== Start");
-    		System.out.println("**Testing stored values against value: " + getMaxedReceivedvalue());
+    		System.out.print("[aggregator]> ====" + margin + "=== CHECK: ");
+//    		System.out.println("**Testing stored values against value: " + getMaxedReceivedvalue());
     		boolean outOfSync = false;
     		while (iterator.hasNext()) {  
     			String key = iterator.next().toString();  
     			Integer value = (Integer) currentComponents.get(key);
-    			System.out.println(key + "\t| " + value.intValue()); 
+    			System.out.print(value.intValue() + " | "); 
     			int maxValue = getMaxedReceivedvalue();
     			if(value.intValue()<=(maxValue-margin)){
-    				System.out.println("*Component "+key+" is inconsistent! Value: " + value.intValue());
+//    				System.out.println("*Component "+key+" is inconsistent! Value: " + value.intValue());
     				outOfSync = true;
     			}
     		}
+    		System.out.println();
     		if (outOfSync) {
-    			System.out.println("[aggregator]> triggering ComponentOutOfSyncEvent. Value: " + getMaxedReceivedvalue());
+//    			
     			iterator = currentComponents.keySet().iterator();
     			while (iterator.hasNext()) {  
         			String key = iterator.next().toString();
         			currentComponents.put(key, getMaxedReceivedvalue());
     			}
-    			eventTrigger.trigger(new ComponentOutOfSyncEvent(getMaxedReceivedvalue()));
+    			System.out.println("[aggregator]> triggering ComponentOutOfSyncEvent. Value: " + getMaxedReceivedvalue() + " | " + roundId);
+    			eventTrigger.trigger(new ComponentOutOfSyncEvent(getMaxedReceivedvalue(), roundId));
     		}
-    		System.out.println("[aggregator]> ======== End");
+//    		System.out.println("[aggregator]> ======== End");
     	}
     	else {
     		System.out.println("[aggregator]> NO CHECK! From: " + id + "Value:\t" + resNumber + "\t. Ex Value:\t" + exValue);
