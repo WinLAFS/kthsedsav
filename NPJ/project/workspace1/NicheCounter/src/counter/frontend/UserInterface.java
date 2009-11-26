@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import dks.niche.exceptions.OperationTimedOutException;
+
 /**
  * The class draws GUI and invokes {@link FrontendComponent} to increase counter
  * 
@@ -92,8 +94,14 @@ public class UserInterface extends JPanel {
 		System.out.println("[ui]> Invoking Counter");
 		int roundId = generator.nextInt();
 		correctCount++;
-		myAI.increaseCounter(roundId);
-		labelCounter.setText(correctCount + "");
+		try {
+			myAI.increaseCounter(roundId);
+			labelCounter.setText(correctCount + "");
+		}
+		catch (OperationTimedOutException e) {
+			labelCounter.setText("Error.");
+			correctCount--;
+		}
 	}
 
 	/**
