@@ -197,8 +197,8 @@ public class CounterStatusActuator implements ActuatorInitInterface,
 			counterResync.reSynchronize(evt.getCounterNumber(), evt
 					.getLamport());
 		} else {
-			System.out.println("[actuator]> uknown event: "
-					+ event.getClass().getName());
+//			System.out.println("[actuator]> uknown event: "
+//					+ event.getClass().getName());
 		}
 
 	}

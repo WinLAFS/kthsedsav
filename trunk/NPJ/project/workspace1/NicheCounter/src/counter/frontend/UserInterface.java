@@ -91,7 +91,7 @@ public class UserInterface extends JPanel {
 	 * {@link FrontendComponent}
 	 */
 	private void count() {
-		System.out.println("[ui]> Invoking Counter");
+//		System.out.println("[ui]> Invoking Counter");
 		int roundId = generator.nextInt();
 		correctCount++;
 		try {
@@ -109,7 +109,7 @@ public class UserInterface extends JPanel {
 	 * Calls are made witha small delay.
 	 */
 	private void count100() {
-		System.out.println("[ui]> Invoking Counter 100");
+//		System.out.println("[ui]> Invoking Counter 100");
 
 		for (int i = 0; i < 100; i++) {
 			int roundId = generator.nextInt();
