@@ -61,7 +61,7 @@ public class UserInterface extends JPanel {
 
         // Create and set up the window.
         JFrame frame = new JFrame("Counter");
-        frame.setSize(240, 50);
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Create and set up the content pane.
@@ -71,6 +71,7 @@ public class UserInterface extends JPanel {
         // Display the window.
         frame.pack();
         frame.setVisible(true);
+        frame.setSize(340, 70);
     }
 
     private void helloAny() {
