@@ -254,7 +254,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
     	int roundIdNew = e.getLamport();
     	String id = e.getCid().getId().toString();
     	
-    	System.out.println("[aggregator]>>>>> MAX: " + getMaxedReceivedvalue() + " | LAMPORT: " + roundIdNew);
+//    	System.out.println("[aggregator]>>>>> MAX: " + getMaxedReceivedvalue() + " | LAMPORT: " + roundIdNew);
     	
     	//if received a higher value from the component than one known
     	int exValue = currentComponents.get(id);
@@ -272,7 +272,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
     		int margin=1;
     		if(!isCalculationStrict){
 	    		margin = currentAllocatedServiceComponents - checkStep;
-	    		System.out.println("[aggregator]> Check step: " + checkStep + "\tMargin: " + margin);
+//	    		System.out.println("[aggregator]> Check step: " + checkStep + "\tMargin: " + margin);
 	    		checkStep = (checkStep + 1) % currentAllocatedServiceComponents;
 	    		
 	    		if (margin == currentAllocatedServiceComponents) {
@@ -284,18 +284,18 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
     		Iterator iterator = currentComponents.keySet().iterator();  
     		
     		//checking if a component is out of sync
-    		System.out.print("[aggregator]> ====" + margin + "=== CHECK: ");
+//    		System.out.print("[aggregator]> ====" + margin + "=== CHECK: ");
     		boolean outOfSync = false;
     		while (iterator.hasNext()) {  
     			String key = iterator.next().toString();  
     			Integer value = (Integer) currentComponents.get(key);
-    			System.out.print(value.intValue() + " | "); 
+//    			System.out.print(value.intValue() + " | "); 
     			int maxValue = getMaxedReceivedvalue();
     			if(value.intValue()<=(maxValue-margin)){
     				outOfSync = true;
     			}
     		}
-    		System.out.println();
+//    		System.out.println();
     		//and if there is one we inform the Configuration manager
     		if (outOfSync) {
     			iterator = currentComponents.keySet().iterator();
@@ -303,12 +303,12 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
         			String key = iterator.next().toString();
         			currentComponents.put(key, getMaxedReceivedvalue());
     			}
-    			System.out.println("[aggregator]> triggering ComponentOutOfSyncEvent. Value: " + getMaxedReceivedvalue() + " | " + roundId);
+//    			System.out.println("[aggregator]> triggering ComponentOutOfSyncEvent. Value: " + getMaxedReceivedvalue() + " | " + roundId);
     			eventTrigger.trigger(new ComponentOutOfSyncEvent(getMaxedReceivedvalue(), roundId));
     		}
     	}
     	else {
-    		System.out.println("[aggregator]> NO CHECK! From: " + id + "Value:\t" + resNumber + "\t. Ex Value:\t" + exValue);
+//    		System.out.println("[aggregator]> NO CHECK! From: " + id + "Value:\t" + resNumber + "\t. Ex Value:\t" + exValue);
     	}
     	
     	

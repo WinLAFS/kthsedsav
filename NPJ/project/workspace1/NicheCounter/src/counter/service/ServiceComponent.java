@@ -61,12 +61,12 @@ public class ServiceComponent implements CounterInterface, BindingController,
 		if(r<0.95) { //chance NOT to "loose" an increase. Error simulation
 			previusActionSync = false;
 			
-			System.out.println("[service|"+ round + "\t]>\t\t\t\t\t :inc: " + syncMessageList.size());
+//			System.out.println("[service|"+ round + "\t]>\t\t\t\t\t :inc: " + syncMessageList.size());
 			
 			SyncMessage remove = removeCurrentSyncId(roundId); //search in history, if a sync msg with
 			//the same round id exists, ommit increasing
 			if (remove != null) {
-				System.out.println("[service|"+ round + "\t]> increaseCounter SKIPPED. Synchronized to ID: " + syncMessage.getSyncRoundId());
+//				System.out.println("[service|"+ round + "\t]> increaseCounter SKIPPED. Synchronized to ID: " + syncMessage.getSyncRoundId());
 				syncMessageList.remove(remove);
 				
 				return;
@@ -74,7 +74,7 @@ public class ServiceComponent implements CounterInterface, BindingController,
 			
 			
 			int newVal =  increaseCounter(); //counter++
-			System.out.println("[service|"+ round + "\t]> increaseCounter called. New value: " + newVal + " | " + roundId);
+//			System.out.println("[service|"+ round + "\t]> increaseCounter called. New value: " + newVal + " | " + roundId);
 			counterStatus.informCounterValue(myGlobalId, newVal, roundId); //inform sensors
 		}
 		else {
@@ -97,7 +97,7 @@ public class ServiceComponent implements CounterInterface, BindingController,
 		}
 		
 		if(syncMessageList.size()>=syncMessagesStackSize){
-			System.out.println("[service|"+ round + "\t]>\t\t\t\t\t Clearing messages list");
+//			System.out.println("[service|"+ round + "\t]>\t\t\t\t\t Clearing messages list");
 			for(int i=0; i<syncMessageList.size()/2; i++){
 				syncMessageList.remove(i);
 			}
@@ -106,12 +106,12 @@ public class ServiceComponent implements CounterInterface, BindingController,
 		if (previusActionSync) {
 			if (shouldKeepSyncMsg(value)) {
 				syncMessageList.add(new SyncMessage(syncRoundId, value));
-				System.out.println("[service|"+ round + "\t]>\t\t\t\t\t :ofs: " + syncMessageList.size() + "\t\t| " + syncRoundId);
+//				System.out.println("[service|"+ round + "\t]>\t\t\t\t\t :ofs: " + syncMessageList.size() + "\t\t| " + syncRoundId);
 			}
 		}
 		else {
 			syncMessageList.add(new SyncMessage(syncRoundId, value));
-			System.out.println("[service|"+ round + "\t]>\t\t\t\t\t :ofs: " + syncMessageList.size() + "\t\t| " + syncRoundId);
+//			System.out.println("[service|"+ round + "\t]>\t\t\t\t\t :ofs: " + syncMessageList.size() + "\t\t| " + syncRoundId);
 		}
 		
 		if (getCounterNumber() < value) { //updating counter value if needed

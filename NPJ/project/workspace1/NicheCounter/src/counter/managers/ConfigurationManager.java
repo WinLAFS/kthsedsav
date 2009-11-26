@@ -236,7 +236,7 @@ public class ConfigurationManager implements EventHandlerInterface,
 				notDone = false;
 
 				//We need to re-trigger sync event to update a new node
-				System.out.println("[configuration]> New node joined. Resynchronizing.." + "Value: " + getMaxCounterNumber());
+//				System.out.println("[configuration]> New node joined. Resynchronizing.." + "Value: " + getMaxCounterNumber());
 				eventTrigger.trigger(new InformOutOfSyncEvent(getMaxCounterNumber(), this.lastRoundId));
 
 				
