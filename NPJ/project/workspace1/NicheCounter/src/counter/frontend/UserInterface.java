@@ -2,6 +2,7 @@ package counter.frontend;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ public class UserInterface extends JPanel {
     JLabel labelCounter;
     
     int correctCount = 0;
+    Random generator = new Random();
 
     public UserInterface(FrontendComponent applicationInterface) {
         myAI = applicationInterface;
@@ -59,6 +61,7 @@ public class UserInterface extends JPanel {
 
         // Create and set up the window.
         JFrame frame = new JFrame("Counter");
+        frame.setSize(240, 50);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Create and set up the content pane.
@@ -79,10 +82,17 @@ public class UserInterface extends JPanel {
         System.out.println("[ui]> Invoking Counter");
         //myAI.helloAll();
         
+
+//        myAI.increaseCounter("NICHE");
+//        for (int i = 0; i < 100; i++) {
+//        	myAI.increaseCounter("NICHE");
+//        }
+
         for (int i = 0; i < 100; i++) {
-	        myAI.increaseCounter("NICHE");
-	        correctCount++;
-	        labelCounter.setText(correctCount+"");
+        int roundId = generator.nextInt();
+		correctCount++;
+		myAI.increaseCounter(roundId);
+		labelCounter.setText(correctCount+"");
 	        try {
 				Thread.sleep(70);
 			} catch (InterruptedException e) {
@@ -90,6 +100,7 @@ public class UserInterface extends JPanel {
 				e.printStackTrace();
 			}
         }
+
 //        for (int i = 0; i < 100; i++) {
 //        	myAI.increaseCounter("NICHE");
 //        }
