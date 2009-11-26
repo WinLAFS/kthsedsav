@@ -40,6 +40,8 @@ public class ServiceComponent implements SynchronizeInterface, CounterInterface,
     private boolean previusActionSync = false;
     private SyncMessage syncMessage = new SyncMessage(0, 0);
     private ArrayList<SyncMessage> syncMessageList = new ArrayList<SyncMessage>();
+    
+    private final static int syncMessagesStackSize = 50;
 
     public ServiceComponent() {
         System.err.println("CounterService created");
@@ -105,6 +107,13 @@ public class ServiceComponent implements SynchronizeInterface, CounterInterface,
 		
 		if (syncRoundIdExists(syncRoundId)) {
 			return;
+		}
+		
+		if(syncMessageList.size()>=syncMessagesStackSize){
+			System.out.println("[service|"+ round + "\t]>\t\t\t\t\t Clearing messages list");
+			for(int i=0; i<syncMessageList.size()/2; i++){
+				syncMessageList.remove(i);
+			}
 		}
 		
 		if (previusActionSync) {
