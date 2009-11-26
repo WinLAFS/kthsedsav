@@ -14,14 +14,13 @@ import org.objectweb.jasmine.jade.service.componentdeployment.NicheIdRegistry;
 import org.objectweb.jasmine.jade.service.nicheOS.OverlayAccess;
 import org.objectweb.jasmine.jade.util.Serialization;
 
-import counter.actuators.CounterStatusActuator;
 import counter.aggregators.ServiceSupervisor;
 import counter.events.ComponentOutOfSyncEvent;
 import counter.events.CounterChangedEvent;
 import counter.events.InformOutOfSyncEvent;
-import counter.events.MaxCounterChangedEvent;
 import counter.events.ServiceAvailabilityChangeEvent;
 import counter.executors.CounterStateChangedExecutor;
+import counter.service.ServiceComponent;
 import counter.watchers.CounterChangedWatcher;
 import dks.niche.events.ComponentFailEvent;
 import dks.niche.events.MemberAddedEvent;
@@ -35,6 +34,14 @@ import dks.niche.interfaces.NicheManagementInterface;
 import dks.niche.wrappers.ManagementDeployParameters;
 import dks.niche.wrappers.ScriptInfo;
 
+/**
+ * This class is responsible for initializing the system by deploying all the management
+ * elements, creating the {@link ServiceComponent}s group, binding the element with
+ * the interfaces that they will use to make calls and subscribing management elements
+ * to events.
+ * 
+ * @author Vasileios Trigoanakis, Andrei Shumanski
+ */
 public class StartManager implements BindingController, LifeCycleController {
 
     private final static String APPLICATION_PREFIX = "NicheCounter_0/";
@@ -46,13 +53,24 @@ public class StartManager implements BindingController, LifeCycleController {
 
     private boolean status;
 
-    // empty constructor always needed!
+    /**
+     * Default constructor
+     */
     public StartManager() {
     }
-
+    
+    /**
+     * Constuctor
+     * 
+     * @param nicheInstance
+     * @param si
+     */
     public StartManager(NicheManagementInterface nicheInstance, ScriptInfo si) {
     }
 
+    /**
+     * The method that initializes everything.
+     */
     private void startScript() {
         System.err.println("Starting Counter StartManager.");
 
@@ -83,19 +101,8 @@ public class StartManager implements BindingController, LifeCycleController {
         GroupId serviceGroup =
             myActuatorInterface.createGroup(serviceGroupTemplate, serviceComponents);
 
-        // Create a one-to-any binding from the front-end to the service group.
-        // This binding uses the helloAny interface.
         String clientInterfaceName = "";
         String serverInterfaceName = "";
-//        myActuatorInterface.bind(frontendComponent, clientInterfaceName, serviceGroup,
-//                                 serverInterfaceName, JadeBindInterface.ONE_TO_ANY);
-
-        // Create a one-to-all binding from the front-end to the service group.
-        // This binding uses the helloAll interface.
-//        clientInterfaceName = "helloAll";
-//        serverInterfaceName = "helloAll";
-//        myActuatorInterface.bind(frontendComponent, clientInterfaceName, serviceGroup,
-//                                 serverInterfaceName, JadeBindInterface.ONE_TO_MANY);
         
         //Counter binding
         clientInterfaceName = "counter";
@@ -115,9 +122,6 @@ public class StartManager implements BindingController, LifeCycleController {
         myActuatorInterface.subscribe(serviceGroup, serviceSupervisor,
                                       MemberAddedEvent.class.getName());
         
-        
-     
-
         // Grab the service component's properties from a service component
         // which is already deployed. The ConfigurationManager needs these when
         // it deploys a new service component.
@@ -145,13 +149,7 @@ public class StartManager implements BindingController, LifeCycleController {
         myActuatorInterface.subscribe(serviceSupervisor, configurationManager,
                                       ServiceAvailabilityChangeEvent.class.getName());
         
-        
-        //TODO
-        //bind service supervisor with service components
-//        clientInterfaceName = "counterStatus";
-//        serverInterfaceName = "counterStatus";
-//        myActuatorInterface.bind(serviceGroup, clientInterfaceName, serviceSupervisor, serverInterfaceName, JadeBindInterface.ONE_TO_ANY);
-       
+        //deploy and initialize the watcher
         ManagementDeployParameters params2 = new ManagementDeployParameters();
         params2.describeWatcher(CounterChangedWatcher.class.getName(), 
         		"WW", 
@@ -166,13 +164,7 @@ public class StartManager implements BindingController, LifeCycleController {
         myActuatorInterface.subscribe(serviceSupervisor, configurationManager,
                 ComponentOutOfSyncEvent.class.getName());
         
-//        //Counter binding
-//        clientInterfaceName = "synchronize";
-//        serverInterfaceName = "synchronize";
-//        myActuatorInterface.bind(configurationManager, clientInterfaceName, serviceGroup,
-//                                 serverInterfaceName, JadeBindInterface.ONE_TO_MANY);
-        
-        
+        //deploy and initialize executor
         ManagementDeployParameters params3 = new ManagementDeployParameters();
         params3.describeExecutor(CounterStateChangedExecutor.class.getName(), 
         		"CEX", 
@@ -189,11 +181,17 @@ public class StartManager implements BindingController, LifeCycleController {
     // ////////////////////// Fractal Stuff //////////////////////////
     // ///////////////////////////////////////////////////////////////
 
+    /**
+     * @see org.objectweb.fractal.api.control.BindingController#listFc()
+     */
     public String[] listFc() {
         return new String[] { FractalInterfaceNames.COMPONENT,
                 FractalInterfaceNames.OVERLAY_ACCESS, FractalInterfaceNames.ID_REGISTRY };
     }
 
+    /**
+     * @see org.objectweb.fractal.api.control.BindingController#lookupFc(java.lang.String)
+     */
     public Object lookupFc(final String itfName) throws NoSuchInterfaceException {
         if (itfName.equals(FractalInterfaceNames.OVERLAY_ACCESS)) {
             return nicheService;
@@ -206,6 +204,9 @@ public class StartManager implements BindingController, LifeCycleController {
         }
     }
 
+    /**
+     * @see org.objectweb.fractal.api.control.BindingController#bindFc(java.lang.String, java.lang.Object)
+     */
     public void bindFc(final String itfName, final Object itfValue) throws NoSuchInterfaceException {
         if (itfName.equals(FractalInterfaceNames.OVERLAY_ACCESS)) {
             nicheService = (OverlayAccess) itfValue;
@@ -218,6 +219,9 @@ public class StartManager implements BindingController, LifeCycleController {
         }
     }
 
+    /**
+     * @see org.objectweb.fractal.api.control.BindingController#unbindFc(java.lang.String)
+     */
     public void unbindFc(final String itfName) throws NoSuchInterfaceException {
         if (itfName.equals(FractalInterfaceNames.OVERLAY_ACCESS)) {
             nicheService = null;
@@ -230,15 +234,24 @@ public class StartManager implements BindingController, LifeCycleController {
         }
     }
 
+    /**
+     * @see org.objectweb.fractal.api.control.LifeCycleController#getFcState()
+     */
     public String getFcState() {
         return status ? "STARTED" : "STOPPED";
     }
 
+    /**
+     * @see org.objectweb.fractal.api.control.LifeCycleController#startFc()
+     */
     public void startFc() throws IllegalLifeCycleException {
         status = true;
         startScript();
     }
 
+    /**
+     * @see org.objectweb.fractal.api.control.LifeCycleController#stopFc()
+     */
     public void stopFc() throws IllegalLifeCycleException {
         status = false;
     }
