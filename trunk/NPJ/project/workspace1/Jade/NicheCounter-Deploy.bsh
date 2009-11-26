@@ -1,5 +1,5 @@
 source("init"); 
 
-print("Start NicheHelloWorld deployment");
+print("Start Counter deployment");
 deploy("NicheCounter");
-print("End NicheHelloWorld deployment");
+print("End Counter deployment");
