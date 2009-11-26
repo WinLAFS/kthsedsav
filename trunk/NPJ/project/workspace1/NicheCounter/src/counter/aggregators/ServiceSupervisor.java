@@ -9,14 +9,6 @@
  */
 package counter.aggregators;
 
-import counter.events.AvailabilityTimerTimeoutEvent;
-import counter.events.ComponentOutOfSyncEvent;
-import counter.events.CounterChangedEvent;
-import counter.events.MaxCounterChangedEvent;
-import counter.events.ServiceAvailabilityChangeEvent;
-import counter.interfaces.CounterInterface;
-import counter.interfaces.CounterStatusInterface;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -28,6 +20,13 @@ import org.objectweb.fractal.api.control.IllegalBindingException;
 import org.objectweb.fractal.api.control.IllegalLifeCycleException;
 import org.objectweb.fractal.api.control.LifeCycleController;
 
+import counter.events.AvailabilityTimerTimeoutEvent;
+import counter.events.ComponentOutOfSyncEvent;
+import counter.events.CounterChangedEvent;
+import counter.events.ServiceAvailabilityChangeEvent;
+import counter.managers.ConfigurationManager;
+import counter.service.ServiceComponent;
+import counter.watchers.CounterChangedWatcher;
 import dks.niche.events.ComponentFailEvent;
 import dks.niche.events.MemberAddedEvent;
 import dks.niche.exceptions.OperationTimedOutException;
@@ -42,12 +41,18 @@ import dks.niche.interfaces.NicheActuatorInterface;
 import dks.niche.interfaces.NicheComponentSupportInterface;
 
 /**
- * The <code>ServiceSupervisor</code> class
+ * The {@link ServiceSupervisor} (aggregator) aggregates all the events about counter increases sent to
+ * it by {@link CounterChangedWatcher}s and ensures that the {@link ServiceComponent}s are synchronized to the
+ * correct value. If one or more {@link ServiceComponent}s are out of sync then it triggers a {@link ComponentOutOfSyncEvent}
+ * targeting the {@link ConfigurationManager} that will ensure this message to be delivered to the {@link ServiceComponent}s
+ * eventually so that they resynchronize to the correct state.
  * 
- * @author Joel
- * @version $Id: ServiceSupervisor.java 294 2006-05-05 17:14:14Z joel $
+ * <p> It can be set to two different check strictness levels:
+ * 	-Strict : {@link ServiceSupervisor#isCalculationStrict} = true : ensures the syncronization of values.
+ * 	-Not Strict : {@link ServiceSupervisor#isCalculationStrict} = false : uses a more loose checking algorithm
+ * 
  */
-public class ServiceSupervisor implements CounterStatusInterface, EventHandlerInterface, InitInterface, MovableInterface,
+public class ServiceSupervisor implements EventHandlerInterface, InitInterface, MovableInterface,
     BindingController, LifeCycleController {
 
     private static final long serialVersionUID = -9008437658170151593L;
@@ -89,38 +94,45 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     private HashMap<String, Integer> currentComponents;
     
     private int checkStep = 0;
-    private int numberOfNodes;
     private int roundId = 0;
     
-    private static final boolean isCalculationStrict=true;
+    private static final boolean isCalculationStrict = true;
     
-    // Empty constructor always needed!
+    /**
+     * Default constructor.
+     */
     public ServiceSupervisor() {
     }
     
-    private int maxedReceivedvalue=0;
+    //the max counter value received
+    private int maxedReceivedvalue = 0;
 
+	/**
+	 * Getter.
+	 * 
+	 * @return int
+	 */
 	public int getMaxedReceivedvalue() {
 		return maxedReceivedvalue;
 	}
-
+	
+	/**
+	 * Setter
+	 *  
+	 * @param maxedReceivedvalue int
+	 */
 	public void setMaxedReceivedvalue(int maxedReceivedvalue) {
 		this.maxedReceivedvalue = maxedReceivedvalue;
 	}
     
-    // //////////////////////////////////////////////////////////////////
-    // //////// Methods called by the ServiceComponent //////////////////
-    // //////////////////////////////////////////////////////////////////
-    
-    @Override
-	public void informCounterValue(ComponentId cid, int value, int lamport) {
-		System.out.println("Received a new counter value: " + value);
-	}
 
     // //////////////////////////////////////////////////////////////////
     // //////// InitInterface methods, gives us init attributes. ////////
     // //////////////////////////////////////////////////////////////////
 
+    /* (non-Javadoc)
+     * @see dks.niche.fractal.interfaces.InitInterface#init(java.io.Serializable[])
+     */
     public void init(Serializable[] parameters) {
         componentGroup = (NicheId) parameters[0];
         currentComponents = new HashMap<String, Integer>();
@@ -133,6 +145,9 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
         }
     }
 
+	/* (non-Javadoc)
+	 * @see dks.niche.fractal.interfaces.InitInterface#reinit(java.io.Serializable[])
+	 */
 	public void reinit(Serializable[] parameters) {
         componentGroup = (NicheId) parameters[0];
         currentComponents = (HashMap<String, Integer>) parameters[1];
@@ -145,6 +160,9 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
         }
     }
 
+    /* (non-Javadoc)
+     * @see dks.niche.fractal.interfaces.InitInterface#init(dks.niche.interfaces.NicheActuatorInterface)
+     */
     public void init(NicheActuatorInterface actuator) {
         this.actuator = actuator;
         gotNicheAPI = true;
@@ -156,10 +174,16 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
         }
     }
 
+    /* (non-Javadoc)
+     * @see dks.niche.fractal.interfaces.InitInterface#initId(dks.niche.ids.NicheId)
+     */
     public void initId(NicheId id) {
         myId = id;
     }
 
+    /**
+     * Initialization method.
+     */
     private void init() {
         // Get the service components. They are all members of the service
         // component group so we can look them up from there.
@@ -202,6 +226,9 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     // EventHandlerInterface method, called when we receive an event. ///
     // //////////////////////////////////////////////////////////////////
 
+    /* (non-Javadoc)
+     * @see dks.niche.fractal.interfaces.EventHandlerInterface#eventHandler(java.io.Serializable, int)
+     */
     public void eventHandler(Serializable e, int flag) {
         if (e instanceof ComponentFailEvent) {
             handleComponentFailEvent((ComponentFailEvent) e);
@@ -216,6 +243,12 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
         }
     }
     
+    /**
+     * The method that implements the functionality of keeping the {@link ServiceComponent}s
+     * synchronized.
+     * 
+     * @param e the {@link CounterChangedEvent} received from {@link CounterChangedWatcher}
+     */
     private synchronized void handlerCounterChanged(CounterChangedEvent e){
     	int resNumber = e.getCounterNumber();
     	int roundIdNew = e.getLamport();
@@ -223,18 +256,20 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     	
     	System.out.println("[aggregator]>>>>> MAX: " + getMaxedReceivedvalue() + " | LAMPORT: " + roundIdNew);
     	
+    	//if received a higher value from the component than one known
     	int exValue = currentComponents.get(id);
     	if (resNumber > exValue) {
-
+    		//refresh
     		currentComponents.put(id, resNumber);
     		
+    		//if received a new max counter value
     		if(resNumber>getMaxedReceivedvalue()){
     			setMaxedReceivedvalue(resNumber);
     			roundId = roundIdNew;
     		}
     		
+    		//set the algorithm to strict or loose
     		int margin=1;
-    		
     		if(!isCalculationStrict){
 	    		margin = currentAllocatedServiceComponents - checkStep;
 	    		System.out.println("[aggregator]> Check step: " + checkStep + "\tMargin: " + margin);
@@ -248,8 +283,8 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     		
     		Iterator iterator = currentComponents.keySet().iterator();  
     		
+    		//checking if a component is out of sync
     		System.out.print("[aggregator]> ====" + margin + "=== CHECK: ");
-//    		System.out.println("**Testing stored values against value: " + getMaxedReceivedvalue());
     		boolean outOfSync = false;
     		while (iterator.hasNext()) {  
     			String key = iterator.next().toString();  
@@ -257,13 +292,12 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     			System.out.print(value.intValue() + " | "); 
     			int maxValue = getMaxedReceivedvalue();
     			if(value.intValue()<=(maxValue-margin)){
-//    				System.out.println("*Component "+key+" is inconsistent! Value: " + value.intValue());
     				outOfSync = true;
     			}
     		}
     		System.out.println();
+    		//and if there is one we inform the Configuration manager
     		if (outOfSync) {
-//    			
     			iterator = currentComponents.keySet().iterator();
     			while (iterator.hasNext()) {  
         			String key = iterator.next().toString();
@@ -272,7 +306,6 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     			System.out.println("[aggregator]> triggering ComponentOutOfSyncEvent. Value: " + getMaxedReceivedvalue() + " | " + roundId);
     			eventTrigger.trigger(new ComponentOutOfSyncEvent(getMaxedReceivedvalue(), roundId));
     		}
-//    		System.out.println("[aggregator]> ======== End");
     	}
     	else {
     		System.out.println("[aggregator]> NO CHECK! From: " + id + "Value:\t" + resNumber + "\t. Ex Value:\t" + exValue);
@@ -300,7 +333,6 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
         currentComponents.remove(idAsString);
         
         currentAllocatedServiceComponents--;
-        //TODO
         checkStep = 0;
 
         if (myId.getReplicaNumber() < 1) {
@@ -378,7 +410,9 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     // MovableInterface method, called when we are about to be moved or copied.
     // ///////////////////////////////////////////////////////////////////////////
 
-    @Override
+    /* (non-Javadoc)
+     * @see dks.niche.fractal.interfaces.MovableInterface#getAttributes()
+     */
     public Serializable[] getAttributes() {
         return new Serializable[] { componentGroup, currentComponents };
     }
@@ -387,11 +421,17 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
     // //////////////////////// FRACTAL STUFF /////////////////////
     // ////////////////////////////////////////////////////////////
 
+    /* (non-Javadoc)
+     * @see org.objectweb.fractal.api.control.BindingController#listFc()
+     */
     public String[] listFc() {
         return new String[] { FractalInterfaceNames.COMPONENT,
                 FractalInterfaceNames.TRIGGER_CLIENT_INTERFACE };
     }
 
+    /* (non-Javadoc)
+     * @see org.objectweb.fractal.api.control.BindingController#lookupFc(java.lang.String)
+     */
     public Object lookupFc(String interfaceName) throws NoSuchInterfaceException {
         if (interfaceName.equals(FractalInterfaceNames.COMPONENT)) {
             return mySelf;
@@ -402,6 +442,9 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.objectweb.fractal.api.control.BindingController#bindFc(java.lang.String, java.lang.Object)
+     */
     public void bindFc(String interfaceName, Object intfValue) throws NoSuchInterfaceException,
         IllegalBindingException, IllegalLifeCycleException {
         if (interfaceName.equals(FractalInterfaceNames.COMPONENT)) {
@@ -413,6 +456,9 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.objectweb.fractal.api.control.BindingController#unbindFc(java.lang.String)
+     */
     public void unbindFc(String interfaceName) throws NoSuchInterfaceException,
         IllegalBindingException, IllegalLifeCycleException {
         if (interfaceName.equals(FractalInterfaceNames.COMPONENT)) {
@@ -424,14 +470,23 @@ public class ServiceSupervisor implements CounterStatusInterface, EventHandlerIn
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.objectweb.fractal.api.control.LifeCycleController#getFcState()
+     */
     public String getFcState() {
         return status ? "STARTED" : "STOPPED";
     }
 
+    /* (non-Javadoc)
+     * @see org.objectweb.fractal.api.control.LifeCycleController#startFc()
+     */
     public void startFc() throws IllegalLifeCycleException {
         status = true;
     }
 
+    /* (non-Javadoc)
+     * @see org.objectweb.fractal.api.control.LifeCycleController#stopFc()
+     */
     public void stopFc() throws IllegalLifeCycleException {
         status = false;
     }
