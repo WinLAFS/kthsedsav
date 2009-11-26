@@ -112,10 +112,7 @@ public class UserInterface extends JPanel {
 //		System.out.println("[ui]> Invoking Counter 100");
 
 		for (int i = 0; i < 100; i++) {
-			int roundId = generator.nextInt();
-			correctCount++;
-			myAI.increaseCounter(roundId);
-			labelCounter.setText(correctCount + "");
+			count();
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {

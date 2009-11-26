@@ -162,8 +162,7 @@ public class ConfigurationManager implements EventHandlerInterface,
 			int maxNumber = ((ComponentOutOfSyncEvent) e).getCounterNumber();
 			int lamport = ((ComponentOutOfSyncEvent) e).getLamport();
 			setMaxCounterNumber(maxNumber);
-			// System.out.println("[configuration]> ComponentOutOfSyncEvent received."+
-			// "Value: " + getMaxCounterNumber());
+			System.out.println("[configuration]> Synchronizing components to value: " + getMaxCounterNumber());
 			eventTrigger.trigger(new InformOutOfSyncEvent(maxNumber, lamport));
 			lastRoundId = lamport;
 		} else {
@@ -237,6 +236,7 @@ public class ConfigurationManager implements EventHandlerInterface,
 
 				//We need to re-trigger sync event to update a new node
 //				System.out.println("[configuration]> New node joined. Resynchronizing.." + "Value: " + getMaxCounterNumber());
+				
 				eventTrigger.trigger(new InformOutOfSyncEvent(getMaxCounterNumber(), this.lastRoundId));
 
 				
