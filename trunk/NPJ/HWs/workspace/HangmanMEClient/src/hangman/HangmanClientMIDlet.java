@@ -172,7 +172,6 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
 
     private void startNewGame() {
         try {
-                System.err.println("OOO sending new word");
                 out.writeUTF("start\n");
 
                 out.flush();
@@ -212,7 +211,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
         try {
             String word = insertField.getString();
             if(word.length()==1){
-                //tryLetter();
+                tryLetter();
                 return;
             }
             String sendStr = "word,"+word+"\n";
@@ -226,15 +225,16 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
     }
 
     private void handleResponce() throws IOException{
-        String input = "";
+        String inputStr = "";
         int ch = 0;
 
         while (ch != 0x0d) {
             ch = in.read();
-            input += (char) ch;
+            inputStr += (char) ch;
         }
+        inputStr = inputStr.trim();
 
-        StringTokenizer st = new StringTokenizer(input, ",");
+        StringTokenizer st = new StringTokenizer(inputStr, ",");
         String operation = st.nextToken();
 
         String wordR = st.nextToken();
@@ -278,9 +278,9 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
     private void handleCorrectAttempt(String wordR, String attemptsR, String scoreR, String letterR, String correctLetterR) {
         Alert alert;
          if(correctLetterR.equalsIgnoreCase("true")){
-             alert = new Alert("Correct!", "Letter "+letterR+" is correct", null, AlertType.INFO);
+             alert = new Alert("Correct!", letterR+" is correct", null, AlertType.INFO);
          } else {
-            alert = new Alert("Inorrect!", "Letter "+letterR+" is incorrect", null, AlertType.INFO);
+            alert = new Alert("Inorrect!", letterR+" is incorrect", null, AlertType.INFO);
          }
          
          alert.setTimeout(2000);
@@ -290,7 +290,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
          scoreField.setString(scoreR);
          insertField.setString("");
 
-         display.setCurrent(alert , connectionForm);
+         display.setCurrent(alert);
     }
 
 
@@ -307,11 +307,11 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
         try {
             out.writeUTF(request);
             out.flush();
+            handleResponce();
         } catch (IOException ex) {
             informCannotConnectToServer();
         }
 
-       
     }
 
 }
