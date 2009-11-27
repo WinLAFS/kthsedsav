@@ -127,43 +127,13 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
             connectToServer(c, s);
         }
         else if (c == newGame) {
-            try {
-                System.err.println("OOO sending new word");
-                out.writeUTF("start\n");
-
-                out.flush();
-
-                String input = "";
-                int ch = 0;
-
-                while (ch != 0x0d) {
-                    ch = in.read();
-                    input += (char) ch;
-                    System.err.print((char) ch);
-                }
-                System.err.println();
-
-                StringTokenizer st = new StringTokenizer(input, ",");
-                st.nextToken();
-                String word = st.nextToken();
-                String attemptsLeft = st.nextToken();
-                int triesLeft = Integer.parseInt(attemptsLeft);
-                String score = st.nextToken();
-
-                wordItem.setText(word);
-                triesLeftGauge.setMaxValue(triesLeft);
-                triesLeftGauge.setValue(triesLeft);
-
-                scoreField.setString(score);
-
-
-                mainPanelForm.removeCommand(newGame);
-                mainPanelForm.addCommand(tryLetter);
-                mainPanelForm.addCommand(tryWord);
-            } catch (IOException ex) {
-                informCannotConnectToServer();
-            }
-            
+            startNewGame();
+        }
+        else if (c == tryLetter) {
+            //tryLetter();
+        }
+        else if (c == tryWord) {
+            //tryWord();
         }
     }
 
@@ -197,5 +167,42 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
          alert.setTimeout(5000);
          display.vibrate(500);
          display.setCurrent(alert , connectionForm);
+    }
+
+    private void startNewGame() {
+        try {
+                System.err.println("OOO sending new word");
+                out.writeUTF("start\n");
+
+                out.flush();
+
+                String input = "";
+                int ch = 0;
+
+                while (ch != 0x0d) {
+                    ch = in.read();
+                    input += (char) ch;
+                    System.err.print((char) ch);
+                }
+                System.err.println();
+
+                StringTokenizer st = new StringTokenizer(input, ",");
+                st.nextToken();
+                String word = st.nextToken();
+                String attemptsLeft = st.nextToken();
+                int triesLeft = Integer.parseInt(attemptsLeft);
+                String score = st.nextToken();
+
+                wordItem.setText(word);
+                triesLeftGauge.setMaxValue(triesLeft);
+                triesLeftGauge.setValue(triesLeft);
+                scoreField.setString(score);
+
+                mainPanelForm.removeCommand(newGame);
+                mainPanelForm.addCommand(tryLetter);
+                mainPanelForm.addCommand(tryWord);
+            } catch (IOException ex) {
+                informCannotConnectToServer();
+            }
     }
 }
