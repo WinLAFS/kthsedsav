@@ -26,6 +26,7 @@ import javax.microedition.lcdui.StringItem;
 import javax.microedition.lcdui.TextField;
 import javax.microedition.media.control.TempoControl;
 import javax.microedition.midlet.*;
+import javax.microedition.sensor.Unit;
 
 /**
  * @author saibbot
@@ -36,7 +37,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
     private Command connectCommand;
     private Form connectionForm;
     private Form mainPanelForm;
-    private TextField scoreField;
+    private StringItem scoreField;
     private StringItem wordItem;
     private Gauge triesLeftGauge;
     private TextField insertField;
@@ -72,15 +73,15 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
         //Main Game Form!
         mainPanelForm = new Form("Play Hangman");
 
-        scoreField = new TextField("Your Score:", "0", 4, TextField.DECIMAL);
-        scoreField.setConstraints(TextField.UNEDITABLE);
+        scoreField = new StringItem("Your score: ", 0, StringItem.PLAIN)
+        Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_LARGE);
+        scoreField.setFont(font);
         scoreField.setLayout(TextField.LAYOUT_LEFT);
         
         mainPanelForm.append(scoreField);
 
         wordItem = new StringItem("Word:", "Start a game");
         wordItem.setLayout(wordItem.LAYOUT_NEWLINE_AFTER);
-        Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_LARGE);
         wordItem.setFont(font);
 
         mainPanelForm.append(wordItem);
@@ -92,6 +93,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
 
         insertField = new TextField("Try: ", "", 10, TextField.ANY);
         insertField.setLayout(TextField.LAYOUT_LEFT);
+        insertField.setInitialInputMode("UCB_BASIC_LATIN");
 
         mainPanelForm.append(insertField);
 
@@ -196,7 +198,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
                 wordItem.setText(word);
                 triesLeftGauge.setMaxValue(triesLeft);
                 triesLeftGauge.setValue(triesLeft);
-                scoreField.setString(score);
+                scoreField.setText(score);
 
                 mainPanelForm.removeCommand(newGame);
                 mainPanelForm.addCommand(tryLetter);
@@ -254,7 +256,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
              display.setCurrent(alert);
              wordItem.setText(wordR);
              triesLeftGauge.setValue(0);
-             scoreField.setString(scoreR);
+             scoreField.setText(scoreR);
              insertField.setString("");
              mainPanelForm.removeCommand(tryWord);
              mainPanelForm.removeCommand(tryLetter);
@@ -267,7 +269,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
              display.setCurrent(alert);
              wordItem.setText(wordR);
              triesLeftGauge.setValue(0);
-             scoreField.setString(scoreR);
+             scoreField.setText(scoreR);
              insertField.setString("");
              mainPanelForm.removeCommand(tryWord);
              mainPanelForm.removeCommand(tryLetter);
@@ -287,7 +289,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
 
          wordItem.setText(wordR);
          triesLeftGauge.setValue(Integer.parseInt(attemptsR));
-         scoreField.setString(scoreR);
+         scoreField.setText(scoreR);
          insertField.setString("");
 
          display.setCurrent(alert);
