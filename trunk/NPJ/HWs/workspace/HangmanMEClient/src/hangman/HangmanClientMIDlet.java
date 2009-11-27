@@ -5,6 +5,7 @@
 
 package hangman;
 
+import hangman.utils.StringTokenizer;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -128,10 +129,35 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
         else if (c == newGame) {
             try {
                 System.err.println("OOO sending new word");
-                out.writeChars("start");
+                out.writeUTF("start\n");
+
                 out.flush();
 
-              //  in.readChar();
+                String input = "";
+                int ch = 0;
+
+                while (ch != 0x0d) {
+                    ch = in.read();
+                    input += (char) ch;
+                    System.err.println("read char: " + (char) ch);
+                }
+
+                //String input = in.readUTF();
+
+
+                System.err.println("OOO read ok");
+                StringTokenizer st = new StringTokenizer(input, ",");
+                st.nextToken();
+                String word = st.nextToken();
+                String attemptsLeft = st.nextToken();
+                int triesLeft = Integer.parseInt(attemptsLeft);
+                String score = st.nextToken();
+
+                wordItem.setText(word);
+                triesLeftGauge.setMaxValue(triesLeft);
+                triesLeftGauge.setValue(triesLeft);
+
+                scoreField.setString(score);
 
 
                 mainPanelForm.removeCommand(newGame);
