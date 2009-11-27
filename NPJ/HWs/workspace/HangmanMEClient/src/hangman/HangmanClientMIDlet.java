@@ -236,6 +236,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
          triesLeftGauge.setValue(0);
          String scoreR = "" ; //to be remoced
          scoreField.setString(scoreR);
+         insertField.setString("");
          mainPanelForm.removeCommand(tryWord);
          mainPanelForm.removeCommand(tryLetter);
          mainPanelForm.addCommand(newGame);
