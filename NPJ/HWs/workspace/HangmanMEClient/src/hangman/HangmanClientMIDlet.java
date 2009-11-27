@@ -58,7 +58,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
     public void startApp() {
         //Connection Screen Form!
         connectionForm = new Form("Connection settings");
-        TextField hostField = new TextField("Host", "localhost", 20, TextField.URL);
+        TextField hostField = new TextField("Host", "130.237.81.100", 20, TextField.URL);
         hostField.setLayout(TextField.LAYOUT_LEFT);
         connectionForm.append(hostField);
         TextField portField = new TextField("Port", "9900", 5, TextField.DECIMAL);
@@ -74,17 +74,19 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
         scoreField = new StringItem("Your score: ", "0", StringItem.PLAIN);
         Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_LARGE);
         scoreField.setFont(font);
-        scoreField.setLayout(TextField.LAYOUT_LEFT);
+        scoreField.setLayout(wordItem.LAYOUT_NEWLINE_AFTER);
         
         mainPanelForm.append(scoreField);
+        mainPanelForm.append("\n");
 
-        wordItem = new StringItem("Word:", "Start a game");
+        wordItem = new StringItem("Word:  ", "Start a game");
         wordItem.setLayout(wordItem.LAYOUT_NEWLINE_AFTER);
         wordItem.setFont(font);
 
         mainPanelForm.append(wordItem);
-
-        triesLeftGauge = new Gauge("Tries left: ", false, 5, 5);// TODO
+        mainPanelForm.append("\n");
+        
+        triesLeftGauge = new Gauge("Tries left:  ", false, 5, 5);
         triesLeftGauge.setLayout(triesLeftGauge.LAYOUT_CENTER);
 
         mainPanelForm.append(triesLeftGauge);
