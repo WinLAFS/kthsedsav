@@ -95,6 +95,8 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
 
         mainPanelForm.addCommand(newGame);
         mainPanelForm.addCommand(exitCommand);
+
+        mainPanelForm.setCommandListener(this);
         
 
         try {
@@ -125,10 +127,11 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
         }
         else if (c == newGame) {
             try {
+                System.err.println("OOO sending new word");
                 out.writeChars("start");
                 out.flush();
 
-                in.readChar();
+              //  in.readChar();
 
 
                 mainPanelForm.removeCommand(newGame);
