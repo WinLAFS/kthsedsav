@@ -59,6 +59,7 @@ public class HangmanServerLogic {
 	 *            PrintWriter to socket to send responce
 	 */
 	protected void processSingleRequest(String requestString, PrintWriter pw) {
+		requestString = requestString.trim();
 		StringTokenizer st = new StringTokenizer(requestString,
 				HangmanServerConstants.REQUEST_DELIMITER);
 		String requestType = st.nextToken();
