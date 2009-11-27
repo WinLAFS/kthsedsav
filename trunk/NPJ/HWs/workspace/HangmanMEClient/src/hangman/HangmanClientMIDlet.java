@@ -24,9 +24,7 @@ import javax.microedition.lcdui.Gauge;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.StringItem;
 import javax.microedition.lcdui.TextField;
-import javax.microedition.media.control.TempoControl;
 import javax.microedition.midlet.*;
-import javax.microedition.sensor.Unit;
 
 /**
  * @author saibbot
@@ -73,7 +71,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
         //Main Game Form!
         mainPanelForm = new Form("Play Hangman");
 
-        scoreField = new StringItem("Your score: ", 0, StringItem.PLAIN)
+        scoreField = new StringItem("Your score: ", "0", StringItem.PLAIN);
         Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_LARGE);
         scoreField.setFont(font);
         scoreField.setLayout(TextField.LAYOUT_LEFT);
