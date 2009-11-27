@@ -139,13 +139,10 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
                 while (ch != 0x0d) {
                     ch = in.read();
                     input += (char) ch;
-                    System.err.println("read char: " + (char) ch);
+                    System.err.print((char) ch);
                 }
+                System.err.println();
 
-                //String input = in.readUTF();
-
-
-                System.err.println("OOO read ok");
                 StringTokenizer st = new StringTokenizer(input, ",");
                 st.nextToken();
                 String word = st.nextToken();
