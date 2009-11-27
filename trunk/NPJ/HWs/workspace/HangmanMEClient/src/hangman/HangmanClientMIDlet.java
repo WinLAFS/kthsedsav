@@ -5,6 +5,7 @@
 
 package hangman;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import javax.microedition.io.Connector;
@@ -33,13 +34,15 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
     private Command connectCommand;
     private Form connectionForm;
     private Form mainPanelForm;
-    TextField scoreField;
-    StringItem wordItem;
-    Gauge triesLeftGauge;
-    TextField insertField;
-    Command tryLetter;
-    Command tryWord;
-    Command newGame;
+    private TextField scoreField;
+    private StringItem wordItem;
+    private Gauge triesLeftGauge;
+    private TextField insertField;
+    private Command tryLetter;
+    private Command tryWord;
+    private Command newGame;
+    private DataOutputStream out;
+    private DataInputStream in;
 
     public HangmanClientMIDlet() {
         display = Display.getDisplay(this);
@@ -89,6 +92,9 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
         insertField.setLayout(TextField.LAYOUT_LEFT);
 
         mainPanelForm.append(insertField);
+
+        mainPanelForm.addCommand(newGame);
+        mainPanelForm.addCommand(exitCommand);
         
 
         try {
@@ -117,6 +123,22 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
         }  else if (c == connectCommand){
             connectToServer(c, s);
         }
+        else if (c == newGame) {
+            try {
+                out.writeChars("start");
+                out.flush();
+
+                in.readChar();
+
+
+                mainPanelForm.removeCommand(newGame);
+                mainPanelForm.addCommand(tryLetter);
+                mainPanelForm.addCommand(tryWord);
+            } catch (IOException ex) {
+                informCannotConnectToServer();
+            }
+            
+        }
     }
 
     private void connectToServer(Command c, Displayable s){
@@ -134,18 +156,20 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
             //SocketConnection con = (SocketConnection) Connector.open("socket://130.237.250.91:9900");
 
             SocketConnection con = (SocketConnection) Connector.open(conStr);
+      
+            out = con.openDataOutputStream();
+            in = con.openDataInputStream();
 
-            DataOutputStream out = con.openDataOutputStream();
-
-            out.writeChars("start");
-            out.flush();
             display.setCurrent(mainPanelForm);
         } catch (IOException ex) {
-            Alert alert = new Alert("Error", "Can't connect to the server", null, AlertType.ERROR);
-            alert.setTimeout(5000);
-            display.vibrate(500);
-            display.setCurrent(alert , connectionForm);
+           informCannotConnectToServer();
         }
     }
 
+    private void informCannotConnectToServer() {
+         Alert alert = new Alert("Error", "Can't connect to the server", null, AlertType.ERROR);
+         alert.setTimeout(5000);
+         display.vibrate(500);
+         display.setCurrent(alert , connectionForm);
+    }
 }
