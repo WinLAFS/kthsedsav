@@ -9,6 +9,7 @@ import hangman.utils.StringTokenizer;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import javax.microedition.io.Connector;
 import javax.microedition.io.SocketConnection;
 import javax.microedition.lcdui.Alert;
@@ -133,7 +134,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
             tryLetter();
         }
         else if (c == tryWord) {
-            //tryWord();
+            tryWord();
         }
     }
 
@@ -206,6 +207,93 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
             }
     }
 
+
+    private void tryWord() {
+        try {
+            String word = insertField.getString();
+            if(word.length()==1){
+                //tryLetter();
+                return;
+            }
+            String sendStr = "word,"+word+"\n";
+
+            out.writeUTF(sendStr);
+
+            handleResponce();
+        } catch (IOException e) {
+            informCannotConnectToServer();
+        }
+    }
+
+    private void handleResponce() throws IOException{
+        String input = "";
+        int ch = 0;
+
+        while (ch != 0x0d) {
+            ch = in.read();
+            input += (char) ch;
+        }
+
+        StringTokenizer st = new StringTokenizer(input, ",");
+        String operation = st.nextToken();
+
+        String wordR = st.nextToken();
+        String attemptsR = st.nextToken();
+        String scoreR = st.nextToken();
+        String letterR = "";
+        String correctLetterR = "";
+
+        try{
+           letterR = st.nextToken();
+           correctLetterR = st.nextToken();
+        } catch (NoSuchElementException e) {}
+
+        if(operation.equalsIgnoreCase("won")){
+            Alert alert = new Alert("Won!", "You found the word: " + wordR, null, AlertType.INFO);
+             alert.setTimeout(4000);
+             display.setCurrent(alert);
+             wordItem.setText(wordR);
+             triesLeftGauge.setValue(0);
+             scoreField.setString(scoreR);
+             insertField.setString("");
+             mainPanelForm.removeCommand(tryWord);
+             mainPanelForm.removeCommand(tryLetter);
+             mainPanelForm.addCommand(newGame);
+        } else if(operation.equalsIgnoreCase("play")){
+            handleCorrectAttempt(wordR, attemptsR, scoreR, letterR, correctLetterR);
+        } else if (operation.equalsIgnoreCase("fail")){
+             Alert alert = new Alert("Lost!", "The correct word was: " + wordR, null, AlertType.INFO);
+             alert.setTimeout(4000);
+             display.setCurrent(alert);
+             wordItem.setText(wordR);
+             triesLeftGauge.setValue(0);
+             scoreField.setString(scoreR);
+             insertField.setString("");
+             mainPanelForm.removeCommand(tryWord);
+             mainPanelForm.removeCommand(tryLetter);
+             mainPanelForm.addCommand(newGame);
+        }
+    }
+
+    private void handleCorrectAttempt(String wordR, String attemptsR, String scoreR, String letterR, String correctLetterR) {
+        Alert alert;
+         if(correctLetterR.equalsIgnoreCase("true")){
+             alert = new Alert("Correct!", "Letter "+letterR+" is correct", null, AlertType.INFO);
+         } else {
+            alert = new Alert("Inorrect!", "Letter "+letterR+" is incorrect", null, AlertType.INFO);
+         }
+         
+         alert.setTimeout(2000);
+
+         wordItem.setText(wordR);
+         triesLeftGauge.setValue(Integer.parseInt(attemptsR));
+         scoreField.setString(scoreR);
+         insertField.setString("");
+
+         display.setCurrent(alert , connectionForm);
+    }
+
+
     private void tryLetter() {
         String userInput = insertField.getString();
         if (userInput.length() != 1) {
@@ -223,22 +311,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
             informCannotConnectToServer();
         }
 
-        /*
-         * fail
-         *
-         */
-
-        String wordR = "aa"; //to be removed
-         Alert alert = new Alert("Lost!", "The correct word was: " + wordR, null, AlertType.INFO);
-         alert.setTimeout(4000);
-         display.setCurrent(alert);
-         wordItem.setText(wordR);
-         triesLeftGauge.setValue(0);
-         String scoreR = "" ; //to be remoced
-         scoreField.setString(scoreR);
-         insertField.setString("");
-         mainPanelForm.removeCommand(tryWord);
-         mainPanelForm.removeCommand(tryLetter);
-         mainPanelForm.addCommand(newGame);
+       
     }
+
 }
