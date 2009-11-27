@@ -130,7 +130,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
             startNewGame();
         }
         else if (c == tryLetter) {
-            //tryLetter();
+            tryLetter();
         }
         else if (c == tryWord) {
             //tryWord();
@@ -204,5 +204,40 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
             } catch (IOException ex) {
                 informCannotConnectToServer();
             }
+    }
+
+    private void tryLetter() {
+        String userInput = insertField.getString();
+        if (userInput.length() != 1) {
+            Alert alert = new Alert("Error input", "You should insert only one character!", null, AlertType.WARNING);
+            alert.setTimeout(4000);
+            display.setCurrent(alert);
+            return;
+        }
+
+        String request = "letter," + userInput + "\n";
+        try {
+            out.writeUTF(request);
+            out.flush();
+        } catch (IOException ex) {
+            informCannotConnectToServer();
+        }
+
+        /*
+         * fail
+         *
+         */
+
+        String wordR = "aa"; //to be removed
+         Alert alert = new Alert("Lost!", "The correct word was: " + wordR, null, AlertType.INFO);
+         alert.setTimeout(4000);
+         display.setCurrent(alert);
+         wordItem.setText(wordR);
+         triesLeftGauge.setValue(0);
+         String scoreR = "" ; //to be remoced
+         scoreField.setString(scoreR);
+         mainPanelForm.removeCommand(tryWord);
+         mainPanelForm.removeCommand(tryLetter);
+         mainPanelForm.addCommand(newGame);
     }
 }
