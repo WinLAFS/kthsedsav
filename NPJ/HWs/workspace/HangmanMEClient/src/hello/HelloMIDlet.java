@@ -1,5 +1,11 @@
 package hello;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+import javax.microedition.io.Connection;
+import javax.microedition.io.Connector;
+import javax.microedition.io.HttpConnection;
+import javax.microedition.io.SocketConnection;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
 
@@ -18,7 +24,15 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
         t.addCommand(exitCommand);
         t.setCommandListener(this);
-
+        try {
+            SocketConnection con = (SocketConnection) Connector.open("socket://130.237.250.91:9900");
+            DataOutputStream out = con.openDataOutputStream();
+            out.writeChars("start");
+            out.flush();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
         display.setCurrent(t);
     }
 
