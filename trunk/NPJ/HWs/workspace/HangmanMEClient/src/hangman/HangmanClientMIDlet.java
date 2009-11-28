@@ -21,8 +21,11 @@ import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.Gauge;
 import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.ImageItem;
 import javax.microedition.lcdui.StringItem;
 import javax.microedition.lcdui.TextField;
+import javax.microedition.lcdui.game.Sprite;
+import javax.microedition.m3g.Transform;
 import javax.microedition.midlet.*;
 
 /**
@@ -45,7 +48,12 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
     private Command newGame;
     private DataOutputStream out;
     private DataInputStream in;
-    SocketConnection con;
+    private SocketConnection con;
+
+    private int imageNormalHeight;
+    private int overallNumberOfAttempts;
+    private Image mutableImage;
+    private ImageItem imgItem;
 
     /**
      * Constructor.
@@ -96,6 +104,18 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
         mainPanelForm.append(wordItem);
 //        mainPanelForm.append("\n");
 
+        
+        try {
+            mutableImage = Image.createImage("/images/hangman.png");
+            imageNormalHeight = mutableImage.getHeight();
+            Image chImage = Image.createImage(mutableImage, 0,0, mutableImage.getWidth(), mutableImage.getHeight(), Sprite.TRANS_NONE);
+            imgItem = new ImageItem("", chImage, ImageItem.LAYOUT_CENTER, "");
+            mainPanelForm.append(imgItem);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        
         triesLeftGauge = new Gauge("Tries left:  ", false, 5, 5);
         triesLeftGauge.setLayout(triesLeftGauge.LAYOUT_CENTER);
 
@@ -230,6 +250,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
             String attemptsLeft = st.nextToken();
             int triesLeft = Integer.parseInt(attemptsLeft);
             String score = st.nextToken();
+            overallNumberOfAttempts = triesLeft;
 
             wordItem.setText(word);
             triesLeftGauge.setMaxValue(triesLeft);
@@ -239,6 +260,8 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
             mainPanelForm.removeCommand(newGame);
             mainPanelForm.addCommand(tryLetter);
             mainPanelForm.addCommand(tryWord);
+
+            imgItem.setImage(null);
         } catch (IOException ex) {
             informCannotConnectToServer();
         }
@@ -330,6 +353,8 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
             alert = new Alert("Correct!", letterR + " is correct", null, AlertType.INFO);
         } else {
             alert = new Alert("Inorrect!", letterR + " is incorrect", null, AlertType.INFO);
+            Image newImage = Image.createImage( mutableImage, 0, imageNormalHeight*Integer.parseInt(attemptsR)/overallNumberOfAttempts, mutableImage.getWidth(), imageNormalHeight-imageNormalHeight*Integer.parseInt(attemptsR)/overallNumberOfAttempts, Sprite.TRANS_NONE);
+            imgItem.setImage(newImage);
         }
 
         alert.setTimeout(2000);
