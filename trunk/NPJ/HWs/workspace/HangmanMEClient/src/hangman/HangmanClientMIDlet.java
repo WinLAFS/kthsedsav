@@ -161,9 +161,7 @@ public class HangmanClientMIDlet extends MIDlet implements CommandListener {
             out.close();
             in.close();
             con.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        } catch (Exception ex) {}
     }
 
     /**
