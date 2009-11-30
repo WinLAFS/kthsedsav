@@ -20,9 +20,12 @@ import org.objectweb.fractal.api.control.IllegalBindingException;
 import org.objectweb.fractal.api.control.IllegalLifeCycleException;
 import org.objectweb.fractal.api.control.LifeCycleController;
 
+import sun.nio.cs.ext.ISCII91;
+
 import counter.events.AvailabilityTimerTimeoutEvent;
 import counter.events.ComponentOutOfSyncEvent;
 import counter.events.CounterChangedEvent;
+import counter.events.InformOutOfSyncEvent;
 import counter.events.ServiceAvailabilityChangeEvent;
 import counter.managers.ConfigurationManager;
 import counter.service.ServiceComponent;
@@ -48,8 +51,8 @@ import dks.niche.interfaces.NicheComponentSupportInterface;
  * eventually so that they resynchronize to the correct state.
  * 
  * <p> It can be set to two different check strictness levels:
- * 	-Strict : {@link ServiceSupervisor#isCalculationStrict} = true : ensures the syncronization of values.
- * 	-Not Strict : {@link ServiceSupervisor#isCalculationStrict} = false : uses a more loose checking algorithm
+ * 	-Strict : {@link ServiceSupervisor#IS_CALCULATION_STRICT} = true : ensures the syncronization of values.
+ * 	-Not Strict : {@link ServiceSupervisor#IS_CALCULATION_STRICT} = false : uses a more loose checking algorithm
  * 
  */
 public class ServiceSupervisor implements EventHandlerInterface, InitInterface, MovableInterface,
@@ -96,7 +99,9 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
     private int checkStep = 0;
     private int roundId = 0;
     
-    private static final boolean isCalculationStrict = true;
+    private static final boolean IS_CALCULATION_STRICT = false;
+    private static boolean IS_CALCULATION_STRICT2 = false;
+    private int strictSteps = 0;
     
     /**
      * Default constructor.
@@ -270,7 +275,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
     		
     		//set the algorithm to strict or loose
     		int margin=1;
-    		if(!isCalculationStrict){
+    		if(!(IS_CALCULATION_STRICT || IS_CALCULATION_STRICT2)){
 	    		margin = currentAllocatedServiceComponents - checkStep;
 //	    		System.out.println("[aggregator]> Check step: " + checkStep + "\tMargin: " + margin);
 	    		checkStep = (checkStep + 1) % currentAllocatedServiceComponents;
@@ -298,6 +303,19 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
 //    		System.out.println();
     		//and if there is one we inform the Configuration manager
     		if (outOfSync) {
+    			if(IS_CALCULATION_STRICT2 && strictSteps==0){
+    				System.err.println("[aggregator]> Swithing to non-strict mode");
+    				IS_CALCULATION_STRICT2 = false;
+    				checkStep =0;
+    			} else if (IS_CALCULATION_STRICT2){
+    				strictSteps--;
+    			} else {
+    				System.err.println("[aggregator]> Swithing to strict mode");
+    				IS_CALCULATION_STRICT2 = true;
+    				strictSteps = 5;
+    			}
+    			
+    			 
     			iterator = currentComponents.keySet().iterator();
     			while (iterator.hasNext()) {  
         			String key = iterator.next().toString();
@@ -382,6 +400,9 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
         currentComponents.put(idAsString, 0);
         currentAllocatedServiceComponents++;
         checkStep = 0;
+        
+        System.out.println("[aggregator]> Setting up a new node to Value: " + getMaxedReceivedvalue() + " | " + roundId);
+        eventTrigger.trigger(new InformOutOfSyncEvent(getMaxedReceivedvalue(), this.roundId));
     }
 
     /**
@@ -481,6 +502,7 @@ public class ServiceSupervisor implements EventHandlerInterface, InitInterface, 
      * @see org.objectweb.fractal.api.control.LifeCycleController#startFc()
      */
     public void startFc() throws IllegalLifeCycleException {
+    	System.err.println("[aggregator]> Imitialized");
         status = true;
     }
 

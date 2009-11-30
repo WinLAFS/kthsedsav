@@ -157,25 +157,27 @@ public class ConfigurationManager implements EventHandlerInterface,
 	 * @see dks.niche.fractal.interfaces.EventHandlerInterface#eventHandler(java.io.Serializable, int)
 	 */
 	public void eventHandler(Serializable e, int flag) {
+		
+		if (!(myId.getReplicaNumber() < 1)) {
+			// I am not the master replica, do nothing.
+			return;
+		}
+
+		if (executing) {
+			System.out.println("ConfigurationManager received an event but must wait " + "for previous operation to finish");
+			return;
+		}
 
 		if (e instanceof ComponentOutOfSyncEvent) {
+			executing = true;
 			int maxNumber = ((ComponentOutOfSyncEvent) e).getCounterNumber();
 			int lamport = ((ComponentOutOfSyncEvent) e).getLamport();
 			setMaxCounterNumber(maxNumber);
 			System.out.println("[configuration]> Synchronizing components to value: " + getMaxCounterNumber());
 			eventTrigger.trigger(new InformOutOfSyncEvent(maxNumber, lamport));
 			lastRoundId = lamport;
-		} else {
-
-			if (!(myId.getReplicaNumber() < 1)) {
-				// I am not the master replica, do nothing.
-				return;
-			}
-
-			if (executing) {
-				System.out.println("ConfigurationManager received an event but must wait " + "for previous operation to finish");
-				return;
-			}
+			executing = false;
+		} else {	
 			executing = true;
 			boolean notDone = true;
 
@@ -237,7 +239,7 @@ public class ConfigurationManager implements EventHandlerInterface,
 				//We need to re-trigger sync event to update a new node
 //				System.out.println("[configuration]> New node joined. Resynchronizing.." + "Value: " + getMaxCounterNumber());
 				
-				eventTrigger.trigger(new InformOutOfSyncEvent(getMaxCounterNumber(), this.lastRoundId));
+				
 
 				
 			} // end while notDone - after a continue we get here
