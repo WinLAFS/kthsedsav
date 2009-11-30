@@ -14,7 +14,7 @@ public interface CounterInterface {
 	 * The increased counter method. Each time called the counter increase
 	 * its value by 1.
 	 * 
-	 * @param a the unique id of the call
+	 * @param syncId the unique id of the call
 	 */
 	public void inreaseCounter(int syncId);
 }
