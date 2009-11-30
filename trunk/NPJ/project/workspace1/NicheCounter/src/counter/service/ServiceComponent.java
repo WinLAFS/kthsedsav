@@ -58,7 +58,7 @@ public class ServiceComponent implements CounterInterface, BindingController,
 	public synchronized void inreaseCounter(int roundId) {
 		double r = Math.random();
 		round++;
-		if(r<0.95) { //chance NOT to "loose" an increase. Error simulation
+		if(r<0.97) { //chance NOT to "loose" an increase. Error simulation
 			previusActionSync = false;
 			
 //			System.out.println("[service|"+ round + "\t]>\t\t\t\t\t :inc: " + syncMessageList.size());
@@ -115,6 +115,7 @@ public class ServiceComponent implements CounterInterface, BindingController,
 		
 		if (getCounterNumber() < value) { //updating counter value if needed
 			setCounterNumber(value);
+			System.out.println("[service|"+ round + "]>\t :Synchronized to value: " + getCounterNumber());
 		}
 		
 	}
