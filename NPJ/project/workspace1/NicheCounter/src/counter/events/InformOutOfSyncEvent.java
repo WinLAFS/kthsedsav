@@ -23,7 +23,7 @@ public class InformOutOfSyncEvent extends Event implements Serializable {
 	/**
 	 * Counter
 	 * 
-	 * @param counter
+	 * @param counterNumber
 	 *            Number Current maximum counter number
 	 * @param roundId
 	 *            Id of the round when max counter was set
