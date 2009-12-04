@@ -1,0 +1,35 @@
+/* 
+    Document   : newcss
+    Created on : Dec 4, 2009, 7:32:52 PM
+    Author     : saibbot
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+body {
+    color:#22AAAA;
+}
+
+h1 {
+
+}
+
+h3 {
+    color:white;
+    background-color:navy
+}
+
+root { 
+    display: block;
+}
+
+p.result {
+    font-size:larger;
+    color:olive
+}
+
