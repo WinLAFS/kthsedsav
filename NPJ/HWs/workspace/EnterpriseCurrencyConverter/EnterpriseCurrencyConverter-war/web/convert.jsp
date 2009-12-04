@@ -14,6 +14,17 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Currency Coverter v0.0</h1>
+        <form name="inputData" action="/FrontController">
+            <h2>From currency:</h2>
+            <select name="fromcurrency">
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
+                <option value="LVL">LVL</option>
+                <option value="SEK">SEK</option>
+            </select>
+            &nbsp; Amount: <input type="text" name="fromamount" value="1" size="5" />
+        </form>
     </body>
 </html>
