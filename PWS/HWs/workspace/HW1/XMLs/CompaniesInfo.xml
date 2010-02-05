@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<companies xmlns="http://www.kth.se/CompaniesInfo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://www.kth.se/CompaniesInfo CompaniesInfo.xsd">
+	<company companyName="IBM">
+		<addressExt>
+			<country>Sweden</country>
+			<city>Stockholm</city>
+			<index>164 92</index>
+			<line1></line1>
+			<line2></line2>
+		</addressExt>
+		<numberOfEmployees>400000</numberOfEmployees>
+		<foundedYear>1896</foundedYear>
+		<CEO>Samuel J Palmisano</CEO>
+		<site>ibm.com</site>
+	</company>
+	
+</companies>
