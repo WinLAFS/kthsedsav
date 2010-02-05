@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:CV tns:personumme="1234567890" xmlns:tns="http://www.kth.se/CV" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kth.se/CV CV.xsd ">
+  <tns:name>Vasilis</tns:name>
+  <tns:surname>Melene</tns:surname>
+  <tns:birthDate>1985-01-01</tns:birthDate>
+</tns:CV>
