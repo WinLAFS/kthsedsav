@@ -1,0 +1,34 @@
+<profile>
+  <name xmlns="http://www.kth.se/CV">Vasilis</name>
+  <surname xmlns="http://www.kth.se/CV">Melene</surname>
+  <birthDate xmlns="http://www.kth.se/CV">1985-01-01</birthDate>
+<degrees>
+  <degree title="MSc" xmlns="http://www.kth.se/Transcript">
+    <university>KTH</university>
+    <startYear>2009</startYear>
+    <endYear>2011</endYear>
+    <subject>seds</subject>
+    <grades>
+      <grade courseID="1">
+        <gradeVal>10</gradeVal>
+      </grade>
+      <grade courseID="2">
+        <gradeVal>10</gradeVal>
+      </grade>
+    </grades>
+  </degree>
+</degrees>
+<records>
+	<record companyName="IBM" xmlns="http://www.kth.se/EmploymentRecord">
+		<fromDate>2000-01-15</fromDate>
+		<toDate>2004-04-10</toDate>
+		<position>Developer</position>
+	<site>ibm.com</site>
+</record>
+	<record companyName="Microsoft" xmlns="http://www.kth.se/EmploymentRecord">
+		<fromDate>2004-06-15</fromDate>
+		<toDate>2008-03-20</toDate>
+		<position>Developer</position>
+	</record>
+</records>
+</profile>
