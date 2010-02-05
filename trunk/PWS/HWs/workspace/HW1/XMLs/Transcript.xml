@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:degrees xmlns:tns="http://www.kth.se/Transcript" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kth.se/Transcript Transcript.xsd ">
+  <tns:degree tns:title="MSc">
+    <tns:university>KTH</tns:university>
+    <tns:startYear>2009</tns:startYear>
+    <tns:endYear>2011</tns:endYear>
+    <tns:subject>seds</tns:subject>
+    <tns:grades>
+      <tns:grade tns:courseID="1">
+        <tns:gradeVal>10</tns:gradeVal>
+      </tns:grade>
+      <tns:grade tns:courseID="2">
+        <tns:gradeVal>10</tns:gradeVal>
+      </tns:grade>
+    </tns:grades>
+  </tns:degree>
+</tns:degrees>

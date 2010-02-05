@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.kth.se/CV" xmlns:tns="http://www.kth.se/CV" elementFormDefault="qualified">
+<!--
+<CV personumme="">
+	<name></name>
+	<surname></surname>
+	<birthDate></birthDate>
+</CV>
+-->
+
+<element name="name">
+	<simpleType>
+		<restriction base="string">
+			<pattern value="([A-Z]([a-z]*))"></pattern>
+		</restriction>
+	</simpleType>
+</element>
+
+<element name="surname">
+	<simpleType>
+		<restriction base="string">
+			<pattern value="([A-Z]([a-z]*))"></pattern>
+			<minLength value="2"></minLength>
+		</restriction>
+	</simpleType>
+</element>
+
+<element name="birthDate">
+	<simpleType>
+		<restriction base="date">
+			<minInclusive value="1930-01-01"></minInclusive>
+			<maxInclusive value="1990-01-01"></maxInclusive>
+		</restriction>
+	</simpleType>
+</element>
+
+<attribute name="personumme">
+	<simpleType>
+		<restriction base="string">
+			<pattern value="[0-9]{10}"></pattern>
+		</restriction>
+	</simpleType>
+</attribute>
+
+<element name="CV">
+	<complexType>
+		<sequence>
+			<element ref="tns:name"></element>
+			<element ref="tns:surname"></element>
+			<element ref="tns:birthDate"></element>
+		</sequence>
+		<attribute ref="tns:personumme"></attribute>
+	</complexType>
+</element>
+</schema>
