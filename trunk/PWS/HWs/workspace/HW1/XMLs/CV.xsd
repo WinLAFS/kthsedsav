@@ -42,14 +42,25 @@
 	</simpleType>
 </attribute>
 
-<element name="CV">
-	<complexType>
-		<sequence>
-			<element ref="tns:name"></element>
-			<element ref="tns:surname"></element>
-			<element ref="tns:birthDate"></element>
-		</sequence>
-		<attribute ref="tns:personumme"></attribute>
-	</complexType>
+<element name="CV" type="tns:baseDataExtra">
+	
 </element>
+
+<complexType name="baseData">
+	<sequence>
+		<element ref="tns:name"></element>
+		<element ref="tns:surname"></element>
+	</sequence>
+	<attribute ref="tns:personumme"></attribute>
+</complexType>
+
+<complexType name="baseDataExtra">
+	<complexContent>
+	 	<extension base="tns:baseData">
+	 		<sequence>
+	 			<element ref="tns:birthDate"></element>
+	 		</sequence>
+	 	</extension>
+	</complexContent>
+</complexType>
 </schema>
