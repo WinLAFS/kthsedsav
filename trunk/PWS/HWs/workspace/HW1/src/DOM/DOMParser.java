@@ -13,6 +13,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -62,8 +63,8 @@ public class DOMParser {
 
             ////////////////////////
             //Creating the XML tree
-//            Element root = doc.createElement("profile");
-//            doc.appendChild(root);
+            Element root = doc.createElement("profile");
+            doc.appendChild(root);
 //            
 //            String name = cvXML.getElementsByTagName("name").item(0).getTextContent();
 //            String sname = cvXML.getElementsByTagName("surname").item(0).getTextContent();
@@ -74,7 +75,40 @@ public class DOMParser {
 //            Element snameEl = doc.createElement("surname");
 //            snameEl.setTextContent(sname);
 //            root.appendChild(snameEl);
+           
+           //from CV
+            Element ele = cvXML.getDocumentElement();
+            NodeList nl = ele.getChildNodes();
+            for (int i = 0; i < nl.getLength(); i++) {
+            	Node e = doc.importNode(nl.item(i), true);
+            	root.appendChild(e);
+            }
             
+            //from Transcript
+            Element degrees = doc.createElement("degrees");
+            root.appendChild(degrees);
+            Element ele1 = transcriptXML.getDocumentElement();
+            NodeList nl1 = ele1.getChildNodes();
+            for (int i = 0; i < nl1.getLength(); i++) {
+            	Node e = doc.importNode(nl1.item(i), true);
+            	degrees.appendChild(e);
+            }
+            
+            //from Employement record
+            Element records = doc.createElement("records");
+            root.appendChild(records);
+            Element ele2 = employmentRecordXML.getDocumentElement();
+            NodeList nl2 = ele2.getChildNodes();
+            for (int i = 0; i < nl2.getLength(); i++) {
+            	Node e = doc.importNode(nl2.item(i), true);
+            	records.appendChild(e);
+            }
+            
+            NodeList recordsList = doc.getElementsByTagName("record");
+            for (int i = 0; i < recordsList.getLength(); i++) {
+            	String compName = recordsList.item(i).getAttributes().getNamedItem("companyName").getNodeValue();
+            	System.err.println("");
+            }
             
         
           //set up a transformer
