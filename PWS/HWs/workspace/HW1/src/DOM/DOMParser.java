@@ -2,10 +2,12 @@ package DOM;
 
 import java.io.File;
 import java.io.StringWriter;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -104,10 +106,25 @@ public class DOMParser {
             	records.appendChild(e);
             }
             
+            //from CompaniesInfo
+            HashMap<String, String> companySite = new HashMap<String, String>();
+            Element ele3 = companiesInfoXML.getDocumentElement();
+            NodeList companyList = ele3.getElementsByTagName("company");
+            
+            for (int i = 0; i < companyList.getLength(); i++) {
+            	String compName = companyList.item(i).getAttributes().getNamedItem("companyName").getNodeValue();
+            	String compSite = ele3.getElementsByTagName("site").item(i).getTextContent();
+            	companySite.put(compName, compSite);
+            }
+            
             NodeList recordsList = doc.getElementsByTagName("record");
             for (int i = 0; i < recordsList.getLength(); i++) {
             	String compName = recordsList.item(i).getAttributes().getNamedItem("companyName").getNodeValue();
-            	System.err.println("");
+            	if (companySite.containsKey(compName)) {
+            		Element site = doc.createElement("site");
+            		site.setTextContent(companySite.get(compName));
+            		recordsList.item(i).appendChild(site);
+            	}
             }
             
         
@@ -123,22 +140,15 @@ public class DOMParser {
             DOMSource source = new DOMSource(doc);
             trans.transform(source, result);
             String xmlString = sw.toString();
-
+            
+            File file = new File("all.xml");
+            Result result2 = new StreamResult(file);
+            trans.transform(source, result2);
             //print xml
             System.out.println("Here's the xml:\n\n" + xmlString);
             
             
 			
-
-			// Process the DOM tree, beginning with the
-			// Document node to produce the output.
-			// Invocation of processDocumentNode starts
-			// a recursive process that processes the
-			// entire DOM tree.
-			// /
-			// domParser.processNode(document);
-			// OR
-			//domParser.processTranscript(document.getFirstChild());
 
 		} catch (Exception e) {
 
