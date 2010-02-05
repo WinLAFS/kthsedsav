@@ -81,9 +81,16 @@ public class DOMParser {
            //from CV
             Element ele = cvXML.getDocumentElement();
             NodeList nl = ele.getChildNodes();
+            
             for (int i = 0; i < nl.getLength(); i++) {
-            	Node e = doc.importNode(nl.item(i), true);
+            	Node n = nl.item(i);
+            	
+            	Node e = doc.importNode(n, true);
             	root.appendChild(e);
+            	if (e.hasAttributes()) {
+            		e.getAttributes().removeNamedItem("xmlns");
+            		System.err.println();
+            	}
             }
             
             //from Transcript
