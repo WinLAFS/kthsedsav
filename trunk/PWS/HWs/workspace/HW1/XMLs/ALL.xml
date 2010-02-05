@@ -2,9 +2,8 @@
 <profile>
 
 	<!-- CV -->
-	<tns:name>Vasilis</tns:name>
+  <tns:name>Vasilis</tns:name>
   <tns:surname>Melene</tns:surname>
-  <tns:birthDate>1985-01-01</tns:birthDate>
   
   <!-- Transcript -->
   
@@ -13,7 +12,6 @@
 	    <tns:university>KTH</tns:university>
 	    <tns:startYear>2009</tns:startYear>
 	    <tns:endYear>2011</tns:endYear>
-	    <tns:subject>seds</tns:subject>
 	    <tns:grades>
 	      <tns:grade tns:courseID="1">
 	        <tns:gradeVal>10</tns:gradeVal>
@@ -25,26 +23,18 @@
 	  </tns:degree>
 	</tns:degrees>
   
-  
   <!-- EmployementRecord -->
   
   <records>
 	<record companyName="IBM">
 		
 		<!-- CompaniesInfo -->
-		<numberOfEmployees>400000</numberOfEmployees>
-		<foundedYear>1896</foundedYear>
-		<CEO>Samuel J Palmisano</CEO>
 		<site>ibm.com</site>
 		
-		
-		<fromDate>2000-01-15</fromDate>
-		<toDate>2004-04-10</toDate>
 		<position>Developer</position>
 	</record>
 	<record companyName="Microsoft">
-		<fromDate>2004-06-15</fromDate>
-		<toDate>2008-03-20</toDate>
+	
 		<position>Developer</position>
 	</record>
 </records>
