@@ -80,6 +80,7 @@ public class DOMParser {
            
            //from CV
             Element ele = cvXML.getDocumentElement();
+            ele.removeAttribute("xmlns");
             NodeList nl = ele.getChildNodes();
             
             for (int i = 0; i < nl.getLength(); i++) {
@@ -87,10 +88,7 @@ public class DOMParser {
             	
             	Node e = doc.importNode(n, true);
             	root.appendChild(e);
-            	if (e.hasAttributes()) {
-            		e.getAttributes().removeNamedItem("xmlns");
-            		System.err.println();
-            	}
+            	
             }
             
             //from Transcript
