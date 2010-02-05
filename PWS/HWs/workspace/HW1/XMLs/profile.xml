@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:profile xmlns:tns="http://www.kth.se/profile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kth.se/profile profile.xsd ">
+  <tns:name>tns:name</tns:name>
+  <tns:surname>tns:surname</tns:surname>
+  <tns:birthDate>2001-01-01</tns:birthDate>
+  <tns:degrees>
+    <tns:degree tns:title="">
+      <tns:university>tns:university</tns:university>
+      <tns:startYear>2001</tn"all.xml"s:startYear>
+      <tns:endYear>2001</tns:endYear>
+      <tns:subject>tns:subject</tns:subject>
+      <tns:grades>
+        <tns:grade tns:courseID="0">
+          <tns:gradeVal>0</tns:gradeVal>
+        </tns:grade>
+      </tns:grades>
+    </tns:degree>
+  </tns:degrees>
+  <tns:records>
+    <tns:record companyName="">
+      <tns:fromDate>2001-01-01</tns:fromDate>
+      <tns:toDate>2001-01-01</tns:toDate>
+      <tns:position>tns:position</tns:position>
+      <tns:site>tns:site</tns:site>
+    </tns:record>
+  </tns:records>
+</tns:profile>
