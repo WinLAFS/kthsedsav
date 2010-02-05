@@ -1,5 +1,6 @@
 package SAX;
 
+import java.io.File;
 import java.io.StringWriter;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -7,6 +8,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -40,6 +42,9 @@ public class MySAXParser {
 			DocumentBuilder docBuilder = dbfac.newDocumentBuilder();
 			doc = docBuilder.newDocument();
 			root = doc.createElement("profile");
+			root.setAttribute("xmlns", "http://www.kth.se/profile");
+			root.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+			root.setAttribute("xsi:schemaLocation", "http://www.kth.se/profile profile.xsd");
 			doc.appendChild(root);
 
 			// Create Parser
@@ -56,7 +61,7 @@ public class MySAXParser {
 			// set up a transformer
 			TransformerFactory transfac = TransformerFactory.newInstance();
 			Transformer trans = transfac.newTransformer();
-			trans.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+			//trans.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 			trans.setOutputProperty(OutputKeys.INDENT, "yes");
 
 			// create string from xml tree
@@ -65,6 +70,10 @@ public class MySAXParser {
 			DOMSource source = new DOMSource(doc);
 			trans.transform(source, result);
 			String xmlString = sw.toString();
+			
+			 File file = new File("XMLs/profile_SAX.xml");
+	         Result result2 = new StreamResult(file);
+	         trans.transform(source, result2);
 
 			// print xml
 			System.out.println("Here's the xml:\n\n" + xmlString);

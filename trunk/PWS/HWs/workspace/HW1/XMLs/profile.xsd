@@ -59,7 +59,7 @@
 		</restriction>
 	</simpleType>
 </attribute>
-<attribute name="courseID" type="integer"></attribute>
+
 
 <!-- complex type definition -->
 <element name="grades">
@@ -75,7 +75,7 @@
 		<sequence>
 			<element ref="tns:gradeVal"></element>
 		</sequence>
-		<attribute ref="tns:courseID"></attribute>
+		<attribute name="courseID" type="integer"></attribute>
 	</complexType>
 </element>
 
