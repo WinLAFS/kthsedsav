@@ -16,4 +16,18 @@
 		<site>ibm.com</site>
 	</company>
 	
+	<company companyName="Microsoft">
+		<addressExt>
+			<country>Sweden</country>
+			<city>Stockholm</city>
+			<index>164 92</index>
+			<line1></line1>
+			<line2></line2>
+		</addressExt>
+		<numberOfEmployees>400000</numberOfEmployees>
+		<foundedYear>1896</foundedYear>
+		<CEO>Samuel J Palmisano</CEO>
+		<site>microsoft.com</site>
+	</company>
+	
 </companies>
