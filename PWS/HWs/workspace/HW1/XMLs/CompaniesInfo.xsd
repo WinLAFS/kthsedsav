@@ -72,7 +72,7 @@
 <xs:element name="companies">
 	<xs:complexType>
 		<xs:sequence>
-			<xs:element ref="company" minOccurs="1"/>
+			<xs:element ref="company" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 </xs:element>

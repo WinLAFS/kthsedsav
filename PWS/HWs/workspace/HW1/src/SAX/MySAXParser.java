@@ -275,6 +275,8 @@ public class MySAXParser {
 				double gpa = sum/grades.size();
 				
 				gpaEl.setTextContent(new Double(gpa).toString());
+				
+				grades = new ArrayList<Integer>();
 				degreeEl.appendChild(gpaEl);
 			} 
 		}
