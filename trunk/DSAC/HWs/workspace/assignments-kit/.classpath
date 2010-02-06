@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
+	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/junit-4.5.jar"/>
+	<classpathentry kind="lib" path="lib/jzlib-1.0.7.jar"/>
+	<classpathentry kind="lib" path="lib/kompics-address-0.4.2.6.jar"/>
+	<classpathentry kind="lib" path="lib/kompics-component-java-timer-0.4.2.6.jar"/>
+	<classpathentry kind="lib" path="lib/kompics-component-mina-network-0.4.2.6.jar"/>
+	<classpathentry kind="lib" path="lib/kompics-core-0.4.2.6.jar"/>
+	<classpathentry kind="lib" path="lib/kompics-local-process-launcher-0.4.2.6.jar"/>
+	<classpathentry kind="lib" path="lib/kompics-port-network-0.4.2.6.jar"/>
+	<classpathentry kind="lib" path="lib/kompics-port-timer-0.4.2.6.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="lib/mina-core-2.0.0-M6.jar"/>
+	<classpathentry kind="lib" path="lib/mina-filter-compression-2.0.0-M6.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.5.6.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.5.6.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
