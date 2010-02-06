@@ -33,7 +33,7 @@ public class DOMParser {
 			// to make the parser a validating parse
 			//factory.setValidating(true);
 			// To parse a XML document with a namespace,
-			factory.setNamespaceAware(true);
+			factory.setNamespaceAware(false);
 
 			// to ignore cosmetic whitespace between elements.
 			factory.setIgnoringElementContentWhitespace(true);
@@ -66,6 +66,9 @@ public class DOMParser {
             ////////////////////////
             //Creating the XML tree
             Element root = doc.createElement("profile");
+            root.setAttribute("xmlns", "http://www.kth.se/profile");
+			root.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+			root.setAttribute("xsi:schemaLocation", "http://www.kth.se/profile profile.xsd");
             doc.appendChild(root);
 //            
 //            String name = cvXML.getElementsByTagName("name").item(0).getTextContent();
@@ -77,10 +80,9 @@ public class DOMParser {
 //            Element snameEl = doc.createElement("surname");
 //            snameEl.setTextContent(sname);
 //            root.appendChild(snameEl);
-           
            //from CV
             Element ele = cvXML.getDocumentElement();
-            ele.removeAttribute("xmlns");
+            
             NodeList nl = ele.getChildNodes();
             
             for (int i = 0; i < nl.getLength(); i++) {
