@@ -10,7 +10,17 @@
 	</restriction>
 </simpleType>
 
-<element name="profile" type="tns:profileComplex"></element>
+<element name="profile">
+	<complexType>
+		<all>
+			<element ref="tns:name"></element>
+			<element ref="tns:surname"></element>
+			<element ref="tns:birthDate"></element>
+			<element ref="tns:degrees"></element>
+			<element ref="tns:records"></element>
+		</all>
+	</complexType>
+</element>
 <element name="name">
 	<simpleType>
 		<restriction base="string">
@@ -100,15 +110,7 @@
 	</complexType>
 </element>
 
-<complexType name="profileComplex">
-	<all>
-		<element ref="tns:name"></element>
-		<element ref="tns:surname"></element>
-		<element ref="tns:birthDate"></element>
-		<element ref="tns:degrees"></element>
-		<element ref="tns:records"></element>
-	</all>
-</complexType>
+
 
 <element name="records">
 	<complexType>
