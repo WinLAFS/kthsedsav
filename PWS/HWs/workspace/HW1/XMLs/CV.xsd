@@ -34,27 +34,10 @@
 	</simpleType>
 </element>
 
-<attribute name="personumme">
-	<simpleType>
-		<restriction base="string">
-			<pattern value="[0-9]{10}"></pattern>
-		</restriction>
-	</simpleType>
-</attribute>
 
-<element name="CV" type="tns:baseDataExtra">
-	
-</element>
 
-<complexType name="baseData">
-	<sequence>
-		<element ref="tns:name"></element>
-		<element ref="tns:surname"></element>
-	</sequence>
-	<attribute ref="tns:personumme"></attribute>
-</complexType>
-
-<complexType name="baseDataExtra">
+<element name="CV">
+<complexType>
 	<complexContent>
 	 	<extension base="tns:baseData">
 	 		<sequence>
@@ -63,4 +46,21 @@
 	 	</extension>
 	</complexContent>
 </complexType>
+</element>
+
+<complexType name="baseData">
+	<sequence>
+		<element ref="tns:name"></element>
+		<element ref="tns:surname"></element>
+	</sequence>
+	<attribute name="personumme">
+		<simpleType>
+			<restriction base="string">
+				<pattern value="[0-9]{10}"></pattern>
+			</restriction>
+		</simpleType>
+	</attribute>
+</complexType>
+
+
 </schema>
