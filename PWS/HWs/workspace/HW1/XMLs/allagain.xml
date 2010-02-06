@@ -26,6 +26,20 @@
 				</grade>
 			</grades>
 		</degree>
+		<degree title="Diploma">
+			<university>KTH</university>
+			<startYear>2004</startYear>
+			<endYear>2007</endYear>
+			<subject>eve</subject>
+			<grades>
+				<grade courseID="11">
+					<gradeVal>7</gradeVal>
+				</grade>
+				<grade courseID="22">
+					<gradeVal>8</gradeVal>
+				</grade>
+			</grades>
+		</degree>
 	</degrees>
 
 
