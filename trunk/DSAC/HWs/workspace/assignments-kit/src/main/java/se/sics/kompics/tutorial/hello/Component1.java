@@ -18,6 +18,7 @@ public class Component1 extends ComponentDefinition {
 		public void handle(Start event) {
 			System.out.println("Component1 started. Triggering Hello...");
 			trigger(new Hello("Hi there!"), hwPort);
+
 		}
 	};
 	Handler<World> worldHandler = new Handler<World>() {

@@ -79,16 +79,16 @@ public final class Assignment0Executor {
 			}
 		};
 
-		// scenario1.executeOn(topology1);
+		 scenario1.executeOn(topology1);
 		// scenario1.executeOn(topology2);
 		// scenario2.executeOn(topology1);
-		scenario2.executeOn(topology2);
 		// scenario1.executeOnFullyConnected(topology1);
 		// scenario1.executeOnFullyConnected(topology2);
 		// scenario2.executeOnFullyConnected(topology1);
 		// scenario2.executeOnFullyConnected(topology2);
 
 		System.exit(0);
+		scenario2.executeOn(topology2);
 		// move one of the below scenario executions above the exit for
 		// execution
 
