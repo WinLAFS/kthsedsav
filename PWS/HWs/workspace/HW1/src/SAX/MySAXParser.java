@@ -2,6 +2,8 @@ package SAX;
 
 import java.io.File;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -34,6 +36,7 @@ public class MySAXParser {
 	static Element recordEl = null;
 	static String curElement="";
 	static String curCompany="";
+	static ArrayList<Integer> grades = new ArrayList<Integer>();
 
 	public static void main(String[] args) {
 		try {
@@ -107,7 +110,7 @@ public class MySAXParser {
 		            	String compName = recordsList.item(i).getAttributes().getNamedItem("companyName").getNodeValue();
 		            	if (curCompany.equalsIgnoreCase(compName)) {
 		            		Element site = doc.createElement("site");
-		            		site.setTextContent(curCompany);
+		            		site.setTextContent((new String(ch)).substring(start, start+length));
 		            		recordsList.item(i).appendChild(site);
 		            	}
 		            }
@@ -251,6 +254,8 @@ public class MySAXParser {
 				curElement = "";
 			} else if(curElement.equalsIgnoreCase("gradeVal")){
 				nameEl.setTextContent((new String(ch)).substring(start, start+length));
+				Integer grade = new Integer((new String(ch)).substring(start, start+length));
+				grades.add(grade);
 				gradeEl.appendChild(nameEl);
 				curElement = "";
 			}
@@ -258,6 +263,20 @@ public class MySAXParser {
 
 		public void endElement(String uri, String localName, String qName)
 				throws SAXException {
+			if(qName.equalsIgnoreCase("grades")){
+				Element gpaEl = doc.createElement("gpa");
+				
+				double sum = 0;
+				Iterator<Integer> it = grades.iterator();
+				while(it.hasNext()){
+					sum = sum+it.next();
+				}
+				
+				double gpa = sum/grades.size();
+				
+				gpaEl.setTextContent(new Double(gpa).toString());
+				degreeEl.appendChild(gpaEl);
+			} 
 		}
 
 		public void startDocument() throws SAXException {
