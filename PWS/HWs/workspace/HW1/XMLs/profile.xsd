@@ -78,7 +78,13 @@
 		<sequence>
 			<element ref="tns:gradeVal"></element>
 		</sequence>
-		<attribute name="courseID" type="integer"></attribute>
+		<attribute name="courseID">
+			<simpleType>
+				<restriction base="integer">
+					<maxInclusive value="666"></maxInclusive>
+				</restriction>
+			</simpleType>
+		</attribute>
 	</complexType>
 </element>
 
