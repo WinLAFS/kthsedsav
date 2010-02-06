@@ -134,6 +134,27 @@ public class DOMParser {
             	}
             }
             
+            //calc GPA
+            NodeList gradesList = doc.getElementsByTagName("grades");
+            for (int i = 0; i < gradesList.getLength(); i++) {
+            	Node grades = gradesList.item(i);
+            	NodeList gradeList = grades.getChildNodes();
+            	int sum = 0;
+            	int j;
+            	for (j = 0; j < gradeList.getLength(); j++) {
+            		Node cNode = gradeList.item(j);
+            		if (cNode.getNodeType() == Node.TEXT_NODE)
+            			continue;
+            		int g = Integer.parseInt(cNode.getChildNodes().item(1).getTextContent());
+            		sum += g;
+            	}
+            	double avg = sum / (j / 2);
+            	Element gpaElem = doc.createElement("gpa");
+            	gpaElem.setTextContent(avg + "");
+            	grades.getParentNode().appendChild(gpaElem);
+            	//System.err.println(avg + " <>>");
+            }
+            
         
           //set up a transformer
             TransformerFactory transfac = TransformerFactory.newInstance();

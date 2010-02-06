@@ -12,6 +12,9 @@
       <grade courseID="2">
         <gradeVal>10</gradeVal>
       </grade>
+      <grade courseID="3">
+        <gradeVal>7</gradeVal>
+      </grade>
     </grades>
   </degree>
 </degrees>
