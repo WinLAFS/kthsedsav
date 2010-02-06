@@ -14,9 +14,10 @@
 <gradeVal>10</gradeVal>
 </grade>
 <grade courseID="2">
-<gradeVal>10</gradeVal>
+<gradeVal>9</gradeVal>
 </grade>
 </grades>
+<gpa>9.5</gpa>
 </degree>
 </degrees>
 <records>
@@ -24,13 +25,13 @@
 <fromDate>2000-01-15</fromDate>
 <toDate>2004-04-10</toDate>
 <position>Developer</position>
-<site>IBM</site>
+<site>ibm.com</site>
 </record>
 <record companyName="Microsoft">
 <fromDate>2004-06-15</fromDate>
 <toDate>2008-03-20</toDate>
 <position>Developer</position>
-<site>Microsoft</site>
+<site>microsoft.com</site>
 </record>
 </records>
 </profile>
