@@ -80,7 +80,7 @@
 			<element ref="tns:endYear"></element>
 			<element ref="tns:subject"></element>
 			<element ref="tns:grades"></element>
-			<element type="decimal" maxOccurs="1" minOccurs="0"></element>
+			<element name="gpa" type="decimal" maxOccurs="1" minOccurs="0"></element>
 		</all>
 	<attribute name="title">
 		<simpleType>
