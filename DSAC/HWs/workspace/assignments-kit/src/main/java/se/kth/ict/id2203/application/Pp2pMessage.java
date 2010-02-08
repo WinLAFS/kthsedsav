@@ -45,7 +45,7 @@ public class Pp2pMessage extends Pp2pDeliver {
 	 * @param message
 	 *            the message
 	 */
-	protected Pp2pMessage(Address source, String message) {
+	public Pp2pMessage(Address source, String message) {
 		super(source);
 		this.message = message;
 	}
