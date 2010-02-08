@@ -45,7 +45,7 @@ public class Flp2pMessage extends Flp2pDeliver {
 	 * @param message
 	 *            the message
 	 */
-	protected Flp2pMessage(Address source, String message) {
+	public Flp2pMessage(Address source, String message) {
 		super(source);
 		this.message = message;
 	}
