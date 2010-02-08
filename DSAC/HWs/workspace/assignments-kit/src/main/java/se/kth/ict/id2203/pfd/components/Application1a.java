@@ -7,13 +7,12 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import se.kth.ict.id2203.application.Application0;
-import se.kth.ict.id2203.application.Application0Init;
 import se.kth.ict.id2203.application.ApplicationContinue;
 import se.kth.ict.id2203.application.Flp2pMessage;
 import se.kth.ict.id2203.application.Pp2pMessage;
 import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
 import se.kth.ict.id2203.flp2p.Flp2pSend;
+import se.kth.ict.id2203.pfd.Application1Init;
 import se.kth.ict.id2203.pfd.events.CrashEvent;
 import se.kth.ict.id2203.pfd.ports.PerfectFailureDetector;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
@@ -59,8 +58,8 @@ public class Application1a extends ComponentDefinition {
 		}
 	};
 	
-	Handler<Application0Init> handleInit = new Handler<Application0Init>() {
-		public void handle(Application0Init event) {
+	Handler<Application1Init> handleInit = new Handler<Application1Init>() {
+		public void handle(Application1Init event) {
 			commands = event.getCommandScript().split(":");
 			lastCommand = -1;
 			neighborSet = event.getNeighborSet();

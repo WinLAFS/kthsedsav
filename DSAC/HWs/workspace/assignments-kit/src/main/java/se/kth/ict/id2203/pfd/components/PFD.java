@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import se.kth.ict.id2203.application.Application0Init;
+import se.kth.ict.id2203.pfd.Application1Init;
 import se.kth.ict.id2203.pfd.events.CheckTimeoutEvent;
 import se.kth.ict.id2203.pfd.events.CrashEvent;
 import se.kth.ict.id2203.pfd.events.HeartbeatMessage;
@@ -24,9 +25,8 @@ import se.sics.kompics.timer.Timer;
 
 public class PFD extends ComponentDefinition {
 
-	long Delta = 1000;
-	long Gamma = 4000;
-
+	long delta;
+	long gamma;
 	private Set<Address> neighborSet;
 	private Set<Address> aliveSet;
 	private Set<Address> detectedSet;
@@ -66,7 +66,7 @@ public class PFD extends ComponentDefinition {
 			}
 			
 			//11
-			ScheduleTimeout st = new ScheduleTimeout(Gamma);
+			ScheduleTimeout st = new ScheduleTimeout(gamma);
 			st.setTimeoutEvent(new HeartbeatTimeoutEvent(st));
 			trigger(st, timer);
 		}
@@ -86,24 +86,28 @@ public class PFD extends ComponentDefinition {
 			}
 			
 			aliveSet = new HashSet<Address>();
-			ScheduleTimeout st2 = new ScheduleTimeout(Gamma + Delta);
+			ScheduleTimeout st2 = new ScheduleTimeout(gamma + delta);
 			st2.setTimeoutEvent(new CheckTimeoutEvent(st2));
 			trigger(st2, timer);
 		}
 	};
 
-	Handler<Application0Init> handleInit = new Handler<Application0Init>() {
-		public void handle(Application0Init event) {
+	Handler<Application1Init> handleInit = new Handler<Application1Init>() {
+		public void handle(Application1Init event) {
 			//2 - 5
 			logger.info("Algorithm Start running");
 			detectedSet = new HashSet<Address>();
 			neighborSet = event.getNeighborSet();
 			aliveSet = neighborSet;
 			self = event.getSelf();
-			ScheduleTimeout st = new ScheduleTimeout(Gamma);
+			
+			delta = event.getDelta();
+			gamma = event.getGamma();
+			
+			ScheduleTimeout st = new ScheduleTimeout(gamma);
 			st.setTimeoutEvent(new HeartbeatTimeoutEvent(st));
 			trigger(st, timer);
-			ScheduleTimeout st2 = new ScheduleTimeout(Gamma + Delta);
+			ScheduleTimeout st2 = new ScheduleTimeout(gamma + delta);
 			st2.setTimeoutEvent(new CheckTimeoutEvent(st2));
 			trigger(st2, timer);
 		}
