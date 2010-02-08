@@ -10,7 +10,9 @@ import se.kth.ict.id2203.application.Application0Init;
 import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
 import se.kth.ict.id2203.flp2p.delay.DelayDropLink;
 import se.kth.ict.id2203.flp2p.delay.DelayDropLinkInit;
+import se.kth.ict.id2203.pfd.components.Application1a;
 import se.kth.ict.id2203.pfd.components.PFD;
+import se.kth.ict.id2203.pfd.ports.PerfectFailureDetector;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
 import se.kth.ict.id2203.pp2p.delay.DelayLink;
 import se.kth.ict.id2203.pp2p.delay.DelayLinkInit;
@@ -58,7 +60,7 @@ public class Assignment1aMain extends ComponentDefinition {
 		Component network = create(MinaNetwork.class);
 		Component pp2p = create(DelayLink.class);
 		Component flp2p = create(DelayDropLink.class);
-//		Component app = create(Application0.class);
+		Component app = create(Application1a.class);
 		Component pfd = create(PFD.class);
 
 		// handle possible faults in the components
@@ -67,6 +69,7 @@ public class Assignment1aMain extends ComponentDefinition {
 		subscribe(handleFault, pp2p.getControl());
 		subscribe(handleFault, flp2p.getControl());
 		subscribe(handleFault, pfd.getControl());
+		subscribe(handleFault, app.getControl());
 
 		// initialize the components
 		Address self = topology.getSelfAddress();
@@ -75,16 +78,15 @@ public class Assignment1aMain extends ComponentDefinition {
 		trigger(new MinaNetworkInit(self, 5), network.getControl());
 		trigger(new DelayLinkInit(topology), pp2p.getControl());
 		trigger(new DelayDropLinkInit(topology, 0), flp2p.getControl());
-		trigger(new Application0Init(commandScript, neighborSet, self), pfd //TODO - our
+		trigger(new Application0Init(commandScript, neighborSet, self), pfd
+				.getControl());
+		trigger(new Application0Init(commandScript, neighborSet, self), app
 				.getControl());
 
 		// connect the components
 		connect(pfd.getNegative(PerfectPointToPointLink.class), pp2p
 				.getPositive(PerfectPointToPointLink.class));
-		connect(pfd.getNegative(FairLossPointToPointLink.class), flp2p
-				.getPositive(FairLossPointToPointLink.class));
 		connect(pfd.getNegative(Timer.class), time.getPositive(Timer.class));
-
 		connect(pp2p.getNegative(Timer.class), time.getPositive(Timer.class));
 		connect(pp2p.getNegative(Network.class), network
 				.getPositive(Network.class));
@@ -92,6 +94,7 @@ public class Assignment1aMain extends ComponentDefinition {
 		connect(flp2p.getNegative(Timer.class), time.getPositive(Timer.class));
 		connect(flp2p.getNegative(Network.class), network
 				.getPositive(Network.class));
+		connect(pfd.getNegative(PerfectFailureDetector.class), app.getPositive(PerfectFailureDetector.class));
 	}
 
 	Handler<Fault> handleFault = new Handler<Fault>() {

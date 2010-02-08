@@ -1,6 +1,5 @@
 package se.kth.ict.id2203.pfd;
 
-import se.kth.ict.id2203.Assignment0Group0Main;
 import se.sics.kompics.launch.Scenario;
 import se.sics.kompics.launch.Topology;
 
