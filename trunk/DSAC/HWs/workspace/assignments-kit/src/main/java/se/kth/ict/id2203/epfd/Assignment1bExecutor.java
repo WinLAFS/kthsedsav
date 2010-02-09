@@ -16,7 +16,7 @@ public final class Assignment1bExecutor {
 			{
 				node(1, "127.0.0.1", 22031);
 				node(2, "127.0.0.1", 22032);
-				link(1, 2, 0, 0.5).bidirectional();
+				link(1, 2, 5000, 1).bidirectional();
 //				link(1, 2, 0, 0.99).bidirectional();
 			}
 		};

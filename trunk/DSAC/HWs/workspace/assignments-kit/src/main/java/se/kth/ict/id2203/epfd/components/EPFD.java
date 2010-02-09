@@ -10,7 +10,8 @@ import se.kth.ict.id2203.epfd.Application1Init;
 import se.kth.ict.id2203.epfd.events.CheckTimeoutEvent;
 import se.kth.ict.id2203.epfd.events.HeartbeatMessage;
 import se.kth.ict.id2203.epfd.events.HeartbeatTimeoutEvent;
-import se.kth.ict.id2203.epfd.events.CrashEvent;
+import se.kth.ict.id2203.epfd.events.RestoreEvent;
+import se.kth.ict.id2203.epfd.events.SuspectEvent;
 import se.kth.ict.id2203.epfd.ports.EventuallyPerfectFailureDetector;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
 import se.kth.ict.id2203.pp2p.Pp2pSend;
@@ -25,10 +26,11 @@ import se.sics.kompics.timer.Timer;
 public class EPFD extends ComponentDefinition {
 
 	long delta;
-	long gamma;
+	long timeDelay;
+	long period;
 	private Set<Address> neighborSet;
 	private Set<Address> aliveSet;
-	private Set<Address> detectedSet;
+	private Set<Address> suspectedSet;
 	private Address self;
 
 	Positive<PerfectPointToPointLink> pp2p = positive(PerfectPointToPointLink.class);
@@ -47,45 +49,58 @@ public class EPFD extends ComponentDefinition {
 		subscribe(handleInit, control);
 		subscribe(handleStart, control);
 		subscribe(handlePp2pHeartbeatMessage, pp2p);
-		subscribe(hbHandler, timer);
-		subscribe(ctHandler, timer);
+		subscribe(handleHeartbeat, timer);
+		subscribe(handleCheck, timer);
 	}
 
-	Handler<HeartbeatTimeoutEvent> hbHandler = new Handler<HeartbeatTimeoutEvent>() {
+	Handler<HeartbeatTimeoutEvent> handleHeartbeat = new Handler<HeartbeatTimeoutEvent>() {
 
 		public void handle(HeartbeatTimeoutEvent arg0) {
 			logger.debug("Sending hb to all alive to neighboors");
 			String message = "heartbeat";
 			
-			//8 - 10
+			//9 - 12
 			for (Address neighbor : neighborSet) {
-				logger.info("Sending hb message {} to {}", message, neighbor);
+//				logger.info("Sending hb message {} to {}", message, neighbor);
 				HeartbeatMessage hbMessage = new HeartbeatMessage(self);
 				trigger(new Pp2pSend(neighbor, hbMessage), pp2p);
 			}
 			
-			//11
-			ScheduleTimeout st = new ScheduleTimeout(gamma);
+			ScheduleTimeout st = new ScheduleTimeout(timeDelay);
 			st.setTimeoutEvent(new HeartbeatTimeoutEvent(st));
 			trigger(st, timer);
 		}
 	};
 
-	Handler<CheckTimeoutEvent> ctHandler = new Handler<CheckTimeoutEvent>() {
+	Handler<CheckTimeoutEvent> handleCheck = new Handler<CheckTimeoutEvent>() {
 
 		public void handle(CheckTimeoutEvent arg0) {
-			 //14 - 21
+			 //15 - 28
 			logger.info("Checking for dead neighbours");
+			Set<Address> checkIntersection = new HashSet<Address>();
+			checkIntersection.addAll(aliveSet);
+			checkIntersection.retainAll(suspectedSet);
+			if (!checkIntersection.isEmpty()) {
+				period += delta;
+				logger.info("Increasing period, false alarm! New period: " + period);
+			}
+			
 			for (Address neighbour : neighborSet) {
-				if ((!aliveSet.contains(neighbour)) && (!detectedSet.contains(neighbour))) {
-					detectedSet.add(neighbour);
-					trigger(new CrashEvent(neighbour), epfdPort);
-					logger.info("DEAD : : " + neighbour.toString());
+				if (!(aliveSet.contains(neighbour)) && !(suspectedSet.contains(neighbour))) {
+					logger.info("Suspected: " + neighbour.toString());
+					suspectedSet.add(neighbour);
+					trigger(new SuspectEvent(neighbour), epfdPort);
+				}
+				else if ((aliveSet.contains(neighbour)) && (suspectedSet.contains(neighbour))) {
+					logger.info("Restored: " + neighbour.toString());
+					suspectedSet.remove(neighbour);
+					trigger(new RestoreEvent(neighbour), epfdPort);
 				}
 			}
 			
 			aliveSet = new HashSet<Address>();
-			ScheduleTimeout st2 = new ScheduleTimeout(gamma + delta);
+			
+			ScheduleTimeout st2 = new ScheduleTimeout(period);
 			st2.setTimeoutEvent(new CheckTimeoutEvent(st2));
 			trigger(st2, timer);
 		}
@@ -93,20 +108,21 @@ public class EPFD extends ComponentDefinition {
 
 	Handler<Application1Init> handleInit = new Handler<Application1Init>() {
 		public void handle(Application1Init event) {
-			//2 - 5
+			//1-7
 			logger.info("Algorithm Start running");
-			detectedSet = new HashSet<Address>();
+			suspectedSet = new HashSet<Address>();
 			neighborSet = event.getNeighborSet();
 			aliveSet = neighborSet;
 			self = event.getSelf();
 			
 			delta = event.getDelta();
-			gamma = event.getGamma();
+			timeDelay = event.getGamma();
+			period = timeDelay;
 			
-			ScheduleTimeout st = new ScheduleTimeout(gamma);
+			ScheduleTimeout st = new ScheduleTimeout(timeDelay);
 			st.setTimeoutEvent(new HeartbeatTimeoutEvent(st));
 			trigger(st, timer);
-			ScheduleTimeout st2 = new ScheduleTimeout(gamma + delta);
+			ScheduleTimeout st2 = new ScheduleTimeout(period);
 			st2.setTimeoutEvent(new CheckTimeoutEvent(st2));
 			trigger(st2, timer);
 		}
@@ -119,7 +135,7 @@ public class EPFD extends ComponentDefinition {
 
 	Handler<HeartbeatMessage> handlePp2pHeartbeatMessage = new Handler<HeartbeatMessage>() {
 		public void handle(HeartbeatMessage event) {
-			//24
+			//31
 			logger.info("Received hb message from {}", event.getSource().toString());
 			aliveSet.add(event.getSource());
 		}

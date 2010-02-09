@@ -11,7 +11,8 @@ import se.kth.ict.id2203.application.ApplicationContinue;
 import se.kth.ict.id2203.application.Flp2pMessage;
 import se.kth.ict.id2203.application.Pp2pMessage;
 import se.kth.ict.id2203.epfd.Application1Init;
-import se.kth.ict.id2203.epfd.events.CrashEvent;
+import se.kth.ict.id2203.epfd.events.RestoreEvent;
+import se.kth.ict.id2203.epfd.events.SuspectEvent;
 import se.kth.ict.id2203.epfd.ports.EventuallyPerfectFailureDetector;
 import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
 import se.kth.ict.id2203.flp2p.Flp2pSend;
@@ -49,12 +50,18 @@ public class Application1b extends ComponentDefinition {
 		subscribe(handleContinue, timer);
 		subscribe(handlePp2pMessage, pp2p);
 		subscribe(handleFlp2pMessage, flp2p);
-		subscribe(handleCrashEvent, epfdPort);
+		subscribe(handleSuspectEvent, epfdPort);
 	}
 
-	Handler<CrashEvent> handleCrashEvent = new Handler<CrashEvent>() {
-		public void handle(CrashEvent event) {
-			logger.info("PFD sais that neigbour " + event.getAddress().toString() + " died!!");
+	Handler<SuspectEvent> handleSuspectEvent = new Handler<SuspectEvent>() {
+		public void handle(SuspectEvent event) {
+			logger.info("PFD sais that neigbour " + event.getAddress().toString() + " SUSPECTED.");
+		}
+	};
+	
+	Handler<RestoreEvent> handleRestoreEvent = new Handler<RestoreEvent>() {
+		public void handle(RestoreEvent event) {
+			logger.info("PFD sais that neigbour " + event.getAddress().toString() + " RESTORED.");
 		}
 	};
 	

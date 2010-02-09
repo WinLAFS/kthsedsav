@@ -34,7 +34,7 @@ public class Assignment1bMain extends ComponentDefinition {
 	private static String commandScript;
 	Topology topology = Topology.load(System.getProperty("topology"), selfId);
 	
-	private static long GAMMA = 4000;
+	private static long TIMEDELAY = 4000;
 	private static long DELTA = 1000;
 
 	/**
@@ -77,7 +77,7 @@ public class Assignment1bMain extends ComponentDefinition {
 		trigger(new MinaNetworkInit(self, 5), network.getControl());
 		trigger(new DelayLinkInit(topology), pp2p.getControl());
 		trigger(new DelayDropLinkInit(topology, 0), flp2p.getControl());
-		trigger(new Application1Init(commandScript, neighborSet, self, this.GAMMA, this.DELTA), epfd
+		trigger(new Application1Init(commandScript, neighborSet, self, this.TIMEDELAY, this.DELTA), epfd
 				.getControl());
 		trigger(new Application1Init(commandScript, neighborSet, self), app
 				.getControl());
