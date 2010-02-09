@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import se.kth.ict.id2203.pfd.Application1Init;
 import se.kth.ict.id2203.pfd.events.CheckTimeoutEvent;
-import se.kth.ict.id2203.pfd.events.SuspectEvent;
+import se.kth.ict.id2203.pfd.events.CrashEvent;
 import se.kth.ict.id2203.pfd.events.HeartbeatMessage;
 import se.kth.ict.id2203.pfd.events.HeartbeatTimeoutEvent;
 import se.kth.ict.id2203.pfd.ports.PerfectFailureDetector;
@@ -79,7 +79,7 @@ public class PFD extends ComponentDefinition {
 			for (Address neighbour : neighborSet) {
 				if ((!aliveSet.contains(neighbour)) && (!detectedSet.contains(neighbour))) {
 					detectedSet.add(neighbour);
-					trigger(new SuspectEvent(neighbour), pfdPort);
+					trigger(new CrashEvent(neighbour), pfdPort);
 					logger.info("DEAD : : " + neighbour.toString());
 				}
 			}
