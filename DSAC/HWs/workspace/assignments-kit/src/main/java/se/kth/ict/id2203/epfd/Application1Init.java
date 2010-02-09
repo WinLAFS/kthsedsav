@@ -13,7 +13,7 @@ public class Application1Init extends Init {
 	private final Address self;
 	
 	private final long delta;
-	private final long gamma;
+	private final long timeDelay;
 	
 	
 	/**
@@ -32,7 +32,7 @@ public class Application1Init extends Init {
 		this.neighborSet = neighborSet;
 		this.self = self;
 		this.delta = delta;
-		this.gamma = gamma;
+		this.timeDelay = gamma;
 	}
 	
 	public Application1Init(String commandScript, Set<Address> neighborSet, Address self) {
@@ -41,7 +41,7 @@ public class Application1Init extends Init {
 		this.neighborSet = neighborSet;
 		this.self = self;
 		delta = 0;
-		gamma = 0;
+		timeDelay = 0;
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public class Application1Init extends Init {
 	}
 
 	public long getGamma() {
-		return gamma;
+		return timeDelay;
 	}
 	
 	
