@@ -5,6 +5,8 @@ import se.sics.kompics.address.Address;
 
 public class HeartbeatMessage extends Pp2pDeliver {
 
+	private static final long serialVersionUID = 6763881557581375553L;
+
 	public HeartbeatMessage(Address source) {
 		super(source);
 		// TODO Auto-generated constructor stub

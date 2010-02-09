@@ -83,7 +83,7 @@ public class Assignment1aMain extends ComponentDefinition {
 		trigger(new DelayDropLinkInit(topology, 0), flp2p.getControl());
 		trigger(new Application1Init(commandScript, neighborSet, self, this.GAMMA, this.DELTA), pfd
 				.getControl());
-		trigger(new Application1Init(commandScript, neighborSet, self, this.GAMMA, this.DELTA), app
+		trigger(new Application1Init(commandScript, neighborSet, self), app
 				.getControl());
 
 		// connect the components
