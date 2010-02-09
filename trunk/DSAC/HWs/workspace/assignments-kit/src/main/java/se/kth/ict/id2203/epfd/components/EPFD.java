@@ -136,7 +136,7 @@ public class EPFD extends ComponentDefinition {
 	Handler<HeartbeatMessage> handlePp2pHeartbeatMessage = new Handler<HeartbeatMessage>() {
 		public void handle(HeartbeatMessage event) {
 			//31
-			logger.info("Received hb message from {}", event.getSource().toString());
+			logger.info("Received hb {}", event.getSource().toString());
 			aliveSet.add(event.getSource());
 		}
 	};

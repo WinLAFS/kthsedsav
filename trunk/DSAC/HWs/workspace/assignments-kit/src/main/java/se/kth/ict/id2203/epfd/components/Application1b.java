@@ -55,13 +55,13 @@ public class Application1b extends ComponentDefinition {
 
 	Handler<SuspectEvent> handleSuspectEvent = new Handler<SuspectEvent>() {
 		public void handle(SuspectEvent event) {
-			logger.info("PFD sais that neigbour " + event.getAddress().toString() + " SUSPECTED.");
+			logger.info("PFD sais " + event.getAddress().toString() + " SUSPECTED.");
 		}
 	};
 	
 	Handler<RestoreEvent> handleRestoreEvent = new Handler<RestoreEvent>() {
 		public void handle(RestoreEvent event) {
-			logger.info("PFD sais that neigbour " + event.getAddress().toString() + " RESTORED.");
+			logger.info("PFD sais " + event.getAddress().toString() + " RESTORED.");
 		}
 	};
 	
