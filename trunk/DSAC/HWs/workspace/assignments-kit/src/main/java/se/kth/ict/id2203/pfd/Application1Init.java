@@ -35,6 +35,15 @@ public class Application1Init extends Init {
 		this.gamma = gamma;
 	}
 	
+	public Application1Init(String commandScript, Set<Address> neighborSet, Address self) {
+		super();
+		this.commandScript = commandScript;
+		this.neighborSet = neighborSet;
+		this.self = self;
+		delta = 0;
+		gamma = 0;
+	}
+	
 	/**
 	 * Gets the command script.
 	 * 

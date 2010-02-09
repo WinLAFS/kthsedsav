@@ -6,7 +6,6 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import se.kth.ict.id2203.application.Application0Init;
 import se.kth.ict.id2203.pfd.Application1Init;
 import se.kth.ict.id2203.pfd.events.CheckTimeoutEvent;
 import se.kth.ict.id2203.pfd.events.CrashEvent;
