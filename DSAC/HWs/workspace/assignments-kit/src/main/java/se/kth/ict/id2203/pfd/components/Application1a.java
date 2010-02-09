@@ -13,7 +13,7 @@ import se.kth.ict.id2203.application.Pp2pMessage;
 import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
 import se.kth.ict.id2203.flp2p.Flp2pSend;
 import se.kth.ict.id2203.pfd.Application1Init;
-import se.kth.ict.id2203.pfd.events.CrashEvent;
+import se.kth.ict.id2203.pfd.events.SuspectEvent;
 import se.kth.ict.id2203.pfd.ports.PerfectFailureDetector;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
 import se.kth.ict.id2203.pp2p.Pp2pSend;
@@ -52,8 +52,8 @@ public class Application1a extends ComponentDefinition {
 		subscribe(handleCrashEvent, pfdPort);
 	}
 
-	Handler<CrashEvent> handleCrashEvent = new Handler<CrashEvent>() {
-		public void handle(CrashEvent event) {
+	Handler<SuspectEvent> handleCrashEvent = new Handler<SuspectEvent>() {
+		public void handle(SuspectEvent event) {
 			logger.info("PFD sais that neigbour " + event.getAddress().toString() + " died!!");
 		}
 	};
