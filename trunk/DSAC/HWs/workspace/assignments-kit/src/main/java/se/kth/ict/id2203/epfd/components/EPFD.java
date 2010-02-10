@@ -56,7 +56,7 @@ public class EPFD extends ComponentDefinition {
 	Handler<HeartbeatTimeoutEvent> handleHeartbeat = new Handler<HeartbeatTimeoutEvent>() {
 
 		public void handle(HeartbeatTimeoutEvent arg0) {
-			logger.debug("Sending hb to all alive to neighboors");
+			logger.info("Sending hb to all alive to neighboors");
 			String message = "heartbeat";
 			
 			//9 - 12
