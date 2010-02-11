@@ -140,6 +140,8 @@ public class Application1b extends ComponentDefinition {
 			doSleep(Integer.parseInt(cmd.substring(1)));
 		} else if (cmd.startsWith("X")) {
 			doShutdown();
+		} else if (cmd.startsWith("R")) {
+			doRecover();
 		} else if (cmd.equals("help")) {
 			doHelp();
 			doNextCommand();
@@ -147,6 +149,10 @@ public class Application1b extends ComponentDefinition {
 			logger.info("Bad command: '{}'. Try 'help'", cmd);
 			doNextCommand();
 		}
+	}
+
+	private void doRecover() {
+		logger.debug("I RECOVERED :-)");
 	}
 
 	private final void doHelp() {

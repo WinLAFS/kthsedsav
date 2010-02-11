@@ -54,7 +54,7 @@ public class Application1a extends ComponentDefinition {
 
 	Handler<CrashEvent> handleCrashEvent = new Handler<CrashEvent>() {
 		public void handle(CrashEvent event) {
-			logger.info("PFD sais that neigbour " + event.getAddress().toString() + " died!!");
+			logger.info("PFD said" + event.getAddress().toString() + " died!!");
 		}
 	};
 	

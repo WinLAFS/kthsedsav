@@ -59,7 +59,7 @@ public class PFD extends ComponentDefinition {
 			
 			//8 - 10
 			for (Address neighbor : neighborSet) {
-				logger.info("Sending hb message {} to {}", message, neighbor);
+//				logger.info("Sending hb message {} to {}", message, neighbor);
 				HeartbeatMessage hbMessage = new HeartbeatMessage(self);
 				trigger(new Pp2pSend(neighbor, hbMessage), pp2p);
 			}
@@ -120,7 +120,7 @@ public class PFD extends ComponentDefinition {
 	Handler<HeartbeatMessage> handlePp2pHeartbeatMessage = new Handler<HeartbeatMessage>() {
 		public void handle(HeartbeatMessage event) {
 			//24
-			logger.info("Received hb message from {}", event.getSource().toString());
+			logger.info("Received hb: {}", event.getSource().toString());
 			aliveSet.add(event.getSource());
 		}
 	};
