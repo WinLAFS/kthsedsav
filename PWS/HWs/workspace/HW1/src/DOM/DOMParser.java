@@ -169,7 +169,7 @@ public class DOMParser {
             trans.transform(source, result);
             String xmlString = sw.toString();
             
-            File file = new File("all.xml");
+            File file = new File("XMLs/profile_DOM.xml");
             Result result2 = new StreamResult(file);
             trans.transform(source, result2);
             //print xml
