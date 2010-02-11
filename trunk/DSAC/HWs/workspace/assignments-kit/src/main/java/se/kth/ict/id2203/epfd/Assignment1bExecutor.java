@@ -16,8 +16,7 @@ public final class Assignment1bExecutor {
 			{
 				node(1, "127.0.0.1", 22031);
 				node(2, "127.0.0.1", 22032);
-				link(1, 2, 5000, 1).bidirectional();
-//				link(1, 2, 0, 0.99).bidirectional();
+				link(1, 2, 8000, 0).bidirectional();
 			}
 		};
 
@@ -25,15 +24,7 @@ public final class Assignment1bExecutor {
 			{
 				node(1, "127.0.0.1", 22031);
 				node(2, "127.0.0.1", 22032);
-				node(3, "127.0.0.1", 22033);
-				node(4, "127.0.0.1", 22034);
-
-				link(1, 2, 3000, 0.5).bidirectional();
-				// link(1, 2, 3000, 0.5);
-				// link(2, 1, 3000, 0.5);
-				// link(3, 2, 3000, 0.5);
-				// link(4, 2, 3000, 0.5);
-				defaultLinks(1000, 0);
+				link(1, 2, 3213, 0).bidirectional();
 			}
 		};
 
@@ -41,10 +32,19 @@ public final class Assignment1bExecutor {
 			{
 //				command(1, "S5000:Labc");
 //				command(2, "S500:Pdef");
-				command(1, "S5000");
+				command(1, "S500");
 				command(2, "S500");
 			}
 		};
+		
+		Scenario scenario3 = new Scenario(Assignment1bMain.class) {
+			{
+				command(1, "S500:Lmsg1:S6000:X").recover("R:S500:Pmsg3:S500:X",
+						5000);
+				command(2, "S500");
+			}
+		};
+		
 //		Scenario scenario2 = new Scenario(Assignment0Group0Main.class) {
 //			{
 //				command(1, "S500:La1:S300:PA1:X").recover("S400:Pff", 1000);
@@ -54,7 +54,8 @@ public final class Assignment1bExecutor {
 //			}
 //		};
 
-		 scenario1.executeOn(topology1);
+		 scenario1.executeOn(topology2);
+//		scenario3.executeOn(topology1);
 		// scenario1.executeOn(topology2);
 		// scenario2.executeOn(topology1);
 		// scenario1.executeOnFullyConnected(topology1);

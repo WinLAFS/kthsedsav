@@ -34,7 +34,7 @@ public class Assignment1bMain extends ComponentDefinition {
 	private static String commandScript;
 	Topology topology = Topology.load(System.getProperty("topology"), selfId);
 	
-	private static long TIMEDELAY = 4000;
+	private static long TIMEDELAY = 1000;
 	private static long DELTA = 1000;
 
 	/**
@@ -87,6 +87,7 @@ public class Assignment1bMain extends ComponentDefinition {
 				.getPositive(PerfectPointToPointLink.class));
 		connect(epfd.getNegative(Timer.class), time.getPositive(Timer.class));
 		connect(pp2p.getNegative(Timer.class), time.getPositive(Timer.class));
+		connect(app.getNegative(Timer.class), time.getPositive(Timer.class));//TODO
 		connect(pp2p.getNegative(Network.class), network
 				.getPositive(Network.class));
 
