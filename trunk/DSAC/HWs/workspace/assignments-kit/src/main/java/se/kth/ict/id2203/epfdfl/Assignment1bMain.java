@@ -35,7 +35,7 @@ public class Assignment1bMain extends ComponentDefinition {
 	private static String commandScript;
 	Topology topology = Topology.load(System.getProperty("topology"), selfId);
 	
-	private static long TIMEDELAY = 2000;
+	private static long TIMEDELAY = 1000;
 	private static long DELTA = 1000;
 
 	/**
