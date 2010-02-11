@@ -1,1 +1,40 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><profile xmlns="http://www.kth.se/profile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kth.se/profile profile.xsd"><name>Vasilis</name><surname>Melene</surname><birthDate>1985-01-01</birthDate><degrees><degree title="MSc"><university>KTH</university><startYear>2009</startYear><endYear>2011</endYear><subject>seds</subject><grades><grade courseID="1"><gradeVal>10</gradeVal></grade><grade courseID="2"><gradeVal>10</gradeVal></grade><grade courseID="3"><gradeVal>7</gradeVal></grade></grades><gpa>9</gpa></degree></degrees><records><record companyName="IBM"><fromDate>2000-01-15</fromDate><toDate>2004-04-10</toDate><position>Developer</position><site>ibm.com</site></record><record companyName="Microsoft"><fromDate>2004-06-15</fromDate><toDate>2008-03-20</toDate><position>Developer</position><site>microsoft.com</site></record></records></profile>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<profile xmlns="http://www.kth.se/profile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kth.se/profile profile.xsd">
+    <name>Vasilis</name>
+    <surname>Melene</surname>
+    <birthDate>1985-01-01</birthDate>
+    <degrees>
+        <degree title="MSc">
+            <university>KTH</university>
+            <startYear>2009</startYear>
+            <endYear>2011</endYear>
+            <subject>seds</subject>
+            <grades>
+                <grade courseID="1">
+                    <gradeVal>10</gradeVal>
+                </grade>
+                <grade courseID="2">
+                    <gradeVal>10</gradeVal>
+                </grade>
+                <grade courseID="3">
+                    <gradeVal>7</gradeVal>
+                </grade>
+            </grades>
+            <gpa>9</gpa>
+        </degree>
+    </degrees>
+    <records>
+        <record companyName="IBM">
+            <fromDate>2000-01-15</fromDate>
+            <toDate>2004-04-10</toDate>
+            <position>Developer</position>
+            <site>ibm.com</site>
+        </record>
+        <record companyName="Microsoft">
+            <fromDate>2004-06-15</fromDate>
+            <toDate>2008-03-20</toDate>
+            <position>Developer</position>
+            <site>microsoft.com</site>
+        </record>
+    </records>
+</profile>
