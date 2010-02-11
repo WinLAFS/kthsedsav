@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profile xsi:schemaLocation="http://www.kth.se/profile profile.xsd"
+	xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.kth.se/profile">
+	<name>Vasilis</name>
+	<surname>Melene</surname>
+	<birthDate>1985-01-01</birthDate>
+	<degrees>
+		<degree title="MSc">
+			<university>KTH</university>
+			<startYear>2009</startYear>
+			<endYear>2011</endYear>
+			<subject>seds</subject>
+			<grades>
+				<grade courseID="1">
+					<gradeVal>10</gradeVal>
+				</grade>
+				<grade courseID="2">
+					<gradeVal>10</gradeVal>
+				</grade>
+				<grade courseID="3">
+					<gradeVal>7</gradeVal>
+				</grade>
+			</grades>
+			<gpa>9</gpa>
+		</degree>
+		<degree title="Diploma">
+			<university>KTH</university>
+			<startYear>2004</startYear>
+			<endYear>2007</endYear>
+			<subject>eve</subject>
+			<grades>
+				<grade courseID="11">
+					<gradeVal>7</gradeVal>
+				</grade>
+				<grade courseID="22">
+					<gradeVal>8</gradeVal>
+				</grade>
+			</grades>
+			<gpa>7.5</gpa>
+		</degree>
+	</degrees>
+	<records>
+		<record>
+			<fromDate>2000-01-15</fromDate>
+			<toDate>2004-04-10</toDate>
+			<position>Developer</position>
+			<site>ibm.com</site>
+		</record>
+		<record>
+			<fromDate>2004-06-15</fromDate>
+			<toDate>2008-03-20</toDate>
+			<position>Developer</position>
+			<site>microsoft.com</site>
+		</record>
+	</records>
+</profile>
