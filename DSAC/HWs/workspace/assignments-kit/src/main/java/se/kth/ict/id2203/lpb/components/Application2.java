@@ -14,6 +14,7 @@ import se.kth.ict.id2203.lpb.Application2Init;
 import se.kth.ict.id2203.lpb.events.pbBroadcast;
 import se.kth.ict.id2203.lpb.events.pbDeliver;
 import se.kth.ict.id2203.lpb.ports.ProbabilisticBroadcast;
+import se.kth.ict.id2203.unb.events.unDeliver;
 import se.sics.kompics.ComponentDefinition;
 import se.sics.kompics.Handler;
 import se.sics.kompics.Positive;
@@ -44,6 +45,12 @@ public class Application2 extends ComponentDefinition {
 		subscribe(handleProbabilisticBroadcast, pb);
 	}
 
+	Handler<unDeliver> handleUB = new Handler<unDeliver>() {
+		public void handle(unDeliver event) {
+			logger.debug("Broacast msg: " + event.getMessage());
+		}
+	};
+	
 	Handler<pbDeliver> handleProbabilisticBroadcast = new Handler<pbDeliver>() {
 		public void handle(pbDeliver event) {
 			logger.debug("Broacast msg: " + event.getSender().toString() + " : " + event.getMsg());
@@ -142,7 +149,6 @@ public class Application2 extends ComponentDefinition {
 	private void doBroadcast(String substring) {
 		logger.debug("Broadcasting :: " + substring);
 		trigger(new pbBroadcast(new pbDeliver(self, substring)), pb);
-		
 	}
 
 	private void doRecover() {

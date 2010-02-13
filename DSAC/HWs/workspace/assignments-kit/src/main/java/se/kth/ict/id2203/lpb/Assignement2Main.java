@@ -54,7 +54,7 @@ public class Assignement2Main extends ComponentDefinition {
 		selfId = Integer.parseInt(args[0]);
 		commandScript = args[1];
 
-		Kompics.createAndStart(Assignment1bMain.class);
+		Kompics.createAndStart(Assignement2Main.class);
 	}
 
 	/**
@@ -104,6 +104,7 @@ public class Assignement2Main extends ComponentDefinition {
 		connect(flp2p.getNegative(Timer.class), time.getPositive(Timer.class));
 		connect(flp2p.getNegative(Network.class), network
 				.getPositive(Network.class));
+		
 	}
 
 	Handler<Fault> handleFault = new Handler<Fault>() {

@@ -44,8 +44,9 @@ public class SimpleUnreliableBroadcast extends ComponentDefinition {
 		public void handle(unBroadcast event) {
 			unDeliver und = event.getUnDeliver();
 			for (Address neigbour : neighborSet) {
-				trigger(new Flp2pSend(neigbour, new Flp2pMessage(und.getSource(), und.getMessage())), flp2p);
+				trigger(new Flp2pSend(neigbour, new Flp2pMessage(und.getSender(), und.getMessage())), flp2p);
 			}
+			trigger(new Flp2pSend(self, new Flp2pMessage(und.getSender(), und.getMessage())), flp2p);
 		}
 	};
 	

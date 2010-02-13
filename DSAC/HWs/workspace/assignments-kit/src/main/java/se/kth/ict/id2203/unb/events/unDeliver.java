@@ -14,7 +14,7 @@ public class unDeliver extends Event {
 		this.message = message;
 	}
 
-	public Address getSource() {
+	public Address getSender() {
 		return source;
 	}
 
