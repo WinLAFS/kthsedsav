@@ -11,9 +11,7 @@ import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
 import se.kth.ict.id2203.lpb.lazyPBInit;
 import se.kth.ict.id2203.lpb.events.GossipTimeoutEvent;
 import se.kth.ict.id2203.lpb.events.pbBroadcast;
-import se.kth.ict.id2203.lpb.events.pbDeliver;
 import se.kth.ict.id2203.lpb.ports.ProbabilisticBroadcast;
-import se.kth.ict.id2203.pfd.Application1Init;
 import se.kth.ict.id2203.unb.components.SimpleUnreliableBroadcast;
 import se.kth.ict.id2203.unb.events.unDeliver;
 import se.kth.ict.id2203.unb.ports.UnreliableBroadcast;
@@ -41,6 +39,8 @@ public class LazyPB extends ComponentDefinition {
 	private Set<unDeliver> pending;
 	private Set<unDeliver> stored;
 	private double storetreshold;
+	private int fanouts;
+	private int ttl;
 
 	public LazyPB() {
 		subscribe(handleInit, control);
@@ -59,6 +59,8 @@ public class LazyPB extends ComponentDefinition {
 			pending = new HashSet<unDeliver>();
 			stored = new HashSet<unDeliver>();
 			storetreshold = event.getStoreTreshold();
+			fanouts = event.getFanouts();
+			ttl = event.getTtl();
 			logger.debug("lazyPBroadcast :: started");
 		}
 	};
