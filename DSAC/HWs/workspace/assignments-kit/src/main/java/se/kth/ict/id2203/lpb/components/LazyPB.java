@@ -1,5 +1,6 @@
 package se.kth.ict.id2203.lpb.components;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import se.kth.ict.id2203.application.Flp2pMessage;
 import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
+import se.kth.ict.id2203.lpb.lazyPBInit;
 import se.kth.ict.id2203.lpb.events.GossipTimeoutEvent;
 import se.kth.ict.id2203.lpb.events.pbBroadcast;
 import se.kth.ict.id2203.lpb.events.pbDeliver;
@@ -36,6 +38,9 @@ public class LazyPB extends ComponentDefinition {
 	private Address self;
 	
 	private int[] delivered;
+	private Set<unDeliver> pending;
+	private Set<unDeliver> stored;
+	private double storetreshold;
 
 	public LazyPB() {
 		subscribe(handleInit, control);
@@ -46,11 +51,14 @@ public class LazyPB extends ComponentDefinition {
 		subscribe(gtHandler, timer);
 	}
 	
-	Handler<Application1Init> handleInit = new Handler<Application1Init>() {
-		public void handle(Application1Init event) {
+	Handler<lazyPBInit> handleInit = new Handler<lazyPBInit>() {
+		public void handle(lazyPBInit event) {
 			neighborSet = event.getNeighborSet();
 			delivered = new int[neighborSet.size()];
 			self = event.getSelf();
+			pending = new HashSet<unDeliver>();
+			stored = new HashSet<unDeliver>();
+			storetreshold = event.getStoreTreshold();
 			logger.debug("lazyPBroadcast :: started");
 		}
 	};
