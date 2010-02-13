@@ -1,11 +1,11 @@
-package se.kth.ict.id2203.lpb;
+package se.kth.ict.id2203.unb;
 
 import java.util.Set;
 
 import se.sics.kompics.Init;
 import se.sics.kompics.address.Address;
 
-public class Application2Init extends Init {
+public class SimpleUnreliableBroadcastInit extends Init {
 	private final String commandScript;
 
 	private final Set<Address> neighborSet;
@@ -14,7 +14,7 @@ public class Application2Init extends Init {
 	
 	
 	
-	public Application2Init(String commandScript, Set<Address> neighborSet, Address self) {
+	public SimpleUnreliableBroadcastInit(String commandScript, Set<Address> neighborSet, Address self) {
 		super();
 		this.commandScript = commandScript;
 		this.neighborSet = neighborSet;
@@ -47,5 +47,4 @@ public class Application2Init extends Init {
 	public final Address getSelf() {
 		return self;
 	}
-
 }

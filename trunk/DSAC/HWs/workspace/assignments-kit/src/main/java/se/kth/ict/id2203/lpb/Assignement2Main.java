@@ -4,18 +4,16 @@ import java.util.Set;
 
 import org.apache.log4j.PropertyConfigurator;
 
-import se.kth.ict.id2203.epfd.Application1Init;
 import se.kth.ict.id2203.epfd.Assignment1bMain;
-import se.kth.ict.id2203.epfd.ports.EventuallyPerfectFailureDetector;
 import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
 import se.kth.ict.id2203.flp2p.delay.DelayDropLink;
 import se.kth.ict.id2203.flp2p.delay.DelayDropLinkInit;
 import se.kth.ict.id2203.lpb.components.Application2;
 import se.kth.ict.id2203.lpb.components.LazyPB;
 import se.kth.ict.id2203.lpb.ports.ProbabilisticBroadcast;
-import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
 import se.kth.ict.id2203.pp2p.delay.DelayLink;
 import se.kth.ict.id2203.pp2p.delay.DelayLinkInit;
+import se.kth.ict.id2203.unb.SimpleUnreliableBroadcastInit;
 import se.kth.ict.id2203.unb.components.SimpleUnreliableBroadcast;
 import se.kth.ict.id2203.unb.ports.UnreliableBroadcast;
 import se.sics.kompics.Component;
@@ -33,6 +31,10 @@ import se.sics.kompics.timer.java.JavaTimer;
 
 public class Assignement2Main extends ComponentDefinition {
 
+	private static final double storeTreshold = 0;
+	private static final int fanouts = 0;
+	private static final int ttl = 0;
+
 	static {
 		PropertyConfigurator.configureAndWatch("log4j.properties");
 	}
@@ -47,6 +49,7 @@ public class Assignement2Main extends ComponentDefinition {
 	 * @param args
 	 *            the arguments
 	 */
+	
 	public static void main(String[] args) {
 		selfId = Integer.parseInt(args[0]);
 		commandScript = args[1];
@@ -83,10 +86,9 @@ public class Assignement2Main extends ComponentDefinition {
 		trigger(new MinaNetworkInit(self, 5), network.getControl());
 		trigger(new DelayLinkInit(topology), pp2p.getControl());
 		trigger(new DelayDropLinkInit(topology, 0), flp2p.getControl());
-//		trigger(new Application1Init(commandScript, neighborSet, self, this.TIMEDELAY, this.DELTA), epfd
-//				.getControl());
-//		trigger(new Application1Init(commandScript, neighborSet, self), app
-//				.getControl()); TODO
+		trigger(new LazyPBInit(commandScript, neighborSet, self, storeTreshold, fanouts, ttl), lpb.getControl());
+		trigger(new Application2Init(commandScript, neighborSet, self), app.getControl()); 
+		trigger(new SimpleUnreliableBroadcastInit(commandScript, neighborSet, self), unb.getControl()); 
 
 		// connect the components
 		connect(app.getNegative(ProbabilisticBroadcast.class), lpb.getPositive(ProbabilisticBroadcast.class));

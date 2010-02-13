@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import se.kth.ict.id2203.application.Flp2pMessage;
 import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
 import se.kth.ict.id2203.flp2p.Flp2pSend;
-import se.kth.ict.id2203.pfd.Application1Init;
+import se.kth.ict.id2203.unb.SimpleUnreliableBroadcastInit;
 import se.kth.ict.id2203.unb.events.unBroadcast;
 import se.kth.ict.id2203.unb.events.unDeliver;
 import se.kth.ict.id2203.unb.ports.UnreliableBroadcast;
@@ -49,8 +49,8 @@ public class SimpleUnreliableBroadcast extends ComponentDefinition {
 		}
 	};
 	
-	Handler<Application1Init> handleInit = new Handler<Application1Init>() {
-		public void handle(Application1Init event) {
+	Handler<SimpleUnreliableBroadcastInit> handleInit = new Handler<SimpleUnreliableBroadcastInit>() {
+		public void handle(SimpleUnreliableBroadcastInit event) {
 			neighborSet = event.getNeighborSet();
 			self = event.getSelf();
 			logger.debug("unBroadcast :: started");
