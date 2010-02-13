@@ -141,7 +141,7 @@ public class Application2 extends ComponentDefinition {
 
 	private void doBroadcast(String substring) {
 		logger.debug("Broadcasting :: " + substring);
-		trigger(new pbBroadcast(self, substring), pb);
+		trigger(new pbBroadcast(new pbDeliver(self, substring)), pb);
 		
 	}
 
