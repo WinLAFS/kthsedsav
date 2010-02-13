@@ -1,0 +1,29 @@
+upon event < unDeliver | Pi, [DATA, Sm, m, SNm]>
+	if (random() > store-thresold) then
+		stored := stored \/ { [DATA, Sm, m, SNm] };
+	if (SNm = delivered[Sm] + 1)  then
+		delivered[Sm] := delivered[Sm] + 1;
+		trigger < pbDeliver | Sm, m >;
+	else if (SNm > delivered[Sm] + 1) then
+		pending := pending \/ { [DATA, Sm, m, SNm] };
+		forall seqnb ε [SNm - 1, delivered[Sm] + 1] do
+			gossip ([REQUEST, self, Sm, seqnb, maxrounds - 1]);
+		startTimer (TimeDelay, Pi, SNm);
+
+upon event < flp2pDeliver | Pj, [REQUEST, Pi, Sm, SNm, r] > do
+	if ([DATA, Sm, m, SNm] ε stored) then
+		trigger < flp2pSend | Pi, [DATA, Sm, m, SNm] >;
+	else if (r > 0) then
+		gossip ([REQUEST, Pi, Sm, SNm, r - 1]);
+
+upon event < flp2pDeliver | Pj, [DATA, Sm, m, SNm]> do
+	if (SNm = delivered[Sm] + 1) then
+		delivered[Sm] = delivered[Sm] + 1;
+		trigger < pbDeliver | Sm, m >;
+		deliver-pending (Sm);
+	else
+		pending := pending \/ { [DATA, Sm, m, SNm] };
+
+upon event < Timeout | s, Sn >
+	if sn = delivered[s] + 1 then
+		delivered[s] := delivered[s] + 1;
