@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import se.kth.ict.id2203.application.Flp2pMessage;
 import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
-import se.kth.ict.id2203.lpb.lazyPBInit;
+import se.kth.ict.id2203.lpb.LazyPBInit;
 import se.kth.ict.id2203.lpb.events.GossipTimeoutEvent;
 import se.kth.ict.id2203.lpb.events.pbBroadcast;
 import se.kth.ict.id2203.lpb.ports.ProbabilisticBroadcast;
@@ -51,8 +51,8 @@ public class LazyPB extends ComponentDefinition {
 		subscribe(gtHandler, timer);
 	}
 	
-	Handler<lazyPBInit> handleInit = new Handler<lazyPBInit>() {
-		public void handle(lazyPBInit event) {
+	Handler<LazyPBInit> handleInit = new Handler<LazyPBInit>() {
+		public void handle(LazyPBInit event) {
 			neighborSet = event.getNeighborSet();
 			delivered = new int[neighborSet.size()];
 			self = event.getSelf();
