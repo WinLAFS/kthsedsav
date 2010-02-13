@@ -46,7 +46,7 @@ public class Application2 extends ComponentDefinition {
 
 	Handler<pbDeliver> handleProbabilisticBroadcast = new Handler<pbDeliver>() {
 		public void handle(pbDeliver event) {
-			logger.debug("Broacast msg: " ); //TODO
+			logger.debug("Broacast msg: " + event.getSender().toString() + " : " + event.getMsg());
 		}
 	};
 	
