@@ -5,7 +5,7 @@ import java.util.Set;
 import se.sics.kompics.Init;
 import se.sics.kompics.address.Address;
 
-public class lazyPBInit extends Init {
+public class LazyPBInit extends Init {
 	private final String commandScript;
 
 	private final Set<Address> neighborSet;
@@ -18,7 +18,7 @@ public class lazyPBInit extends Init {
 	
 	private final int ttl;
 
-	public lazyPBInit(String commandScript, Set<Address> neighborSet, Address self, double storeTreshold, int fanouts, int ttl) {
+	public LazyPBInit(String commandScript, Set<Address> neighborSet, Address self, double storeTreshold, int fanouts, int ttl) {
 		super();
 		this.storeTreshold = storeTreshold;
 		this.commandScript = commandScript;
