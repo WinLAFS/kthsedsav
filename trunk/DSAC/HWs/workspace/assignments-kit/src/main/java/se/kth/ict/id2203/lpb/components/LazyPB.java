@@ -1,6 +1,11 @@
 package se.kth.ict.id2203.lpb.components;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -8,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import se.kth.ict.id2203.application.Flp2pMessage;
 import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
+import se.kth.ict.id2203.flp2p.Flp2pSend;
 import se.kth.ict.id2203.lpb.LazyPBInit;
 import se.kth.ict.id2203.lpb.events.GossipTimeoutEvent;
 import se.kth.ict.id2203.lpb.events.pbBroadcast;
@@ -41,6 +47,7 @@ public class LazyPB extends ComponentDefinition {
 	private double storetreshold;
 	private int fanouts;
 	private int ttl;
+	private ArrayList<Address> neighborList;
 
 	public LazyPB() {
 		subscribe(handleInit, control);
@@ -61,6 +68,8 @@ public class LazyPB extends ComponentDefinition {
 			storetreshold = event.getStoreTreshold();
 			fanouts = event.getFanouts();
 			ttl = event.getTtl();
+			neighborList =  new ArrayList<Address>();
+			neighborList.addAll(neighborSet);
 			logger.debug("lazyPBroadcast :: started");
 		}
 	};
@@ -95,4 +104,23 @@ public class LazyPB extends ComponentDefinition {
 		}
 	};
 	
+	private Set<Address> pickTargets(){
+		if(fanouts >= neighborSet.size()){
+			return neighborSet;
+		} else {
+			HashSet<Address> returnSet = new HashSet<Address>();
+			Collections.shuffle(neighborList);
+			for(int i =0; i<fanouts; i++){
+				returnSet.add(neighborList.get(i));
+			}
+			return returnSet;
+		}
+	}
+	
+	private void gossip(String msg){
+		Set<Address> selected = pickTargets();
+		for(Address target : selected){
+			trigger(new Flp2pSend(target, new Flp2pMessage(self, msg)), flp2p);
+		}
+	}
 }
