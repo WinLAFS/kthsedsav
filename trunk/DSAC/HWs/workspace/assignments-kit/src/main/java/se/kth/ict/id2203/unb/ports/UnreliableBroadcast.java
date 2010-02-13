@@ -6,7 +6,9 @@ import se.sics.kompics.PortType;
 
 public class UnreliableBroadcast extends PortType {
 	{
-		positive(unBroadcast.class);
-		negative(unDeliver.class);
+//		positive(unBroadcast.class);
+//		negative(unDeliver.class);
+		negative(unBroadcast.class);
+		positive(unDeliver.class);
 	}
 }
