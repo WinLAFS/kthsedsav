@@ -13,13 +13,27 @@ public class lazyPBInit extends Init {
 	private final Address self;
 	
 	private final double storeTreshold;
+	
+	private final int fanouts;
+	
+	private final int ttl;
 
-	public lazyPBInit(String commandScript, Set<Address> neighborSet, Address self, double storeTreshold) {
+	public lazyPBInit(String commandScript, Set<Address> neighborSet, Address self, double storeTreshold, int fanouts, int ttl) {
 		super();
 		this.storeTreshold = storeTreshold;
 		this.commandScript = commandScript;
 		this.neighborSet = neighborSet;
 		this.self = self;
+		this.fanouts = fanouts;
+		this.ttl = ttl;
+	}
+
+	public int getFanouts() {
+		return fanouts;
+	}
+
+	public int getTtl() {
+		return ttl;
 	}
 
 	public String getCommandScript() {
