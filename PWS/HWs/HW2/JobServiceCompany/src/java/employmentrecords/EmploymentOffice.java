@@ -5,7 +5,6 @@
 package employmentrecords;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
