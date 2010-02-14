@@ -1,0 +1,4 @@
+We first enabled the async service call in the service's WSDL. Then, in the
+client we chose the "callback" approach. That means that we did an
+asynchronous service call, and we attached a handler to it. So, when the call
+returned, the handleMessage method of the handler executed, parsing the response.
