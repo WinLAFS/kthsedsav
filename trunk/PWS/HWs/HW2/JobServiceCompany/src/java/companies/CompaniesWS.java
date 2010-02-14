@@ -2,7 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package university;
+
+package companies;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,15 +17,14 @@ import javax.jws.WebService;
  * @author Shum
  */
 @WebService()
-public class universityWS {
-
+public class CompaniesWS {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "getDegree")
-    public String getDegree(String surname) {
+    @WebMethod(operationName = "getCompanyInfo")
+    public String getCompanyInfo(String company) {
         try {
-            InputStreamReader is = new InputStreamReader(this.getClass().getResourceAsStream("/companies/"+surname+".xml"));
+            InputStreamReader is = new InputStreamReader(this.getClass().getResourceAsStream("/companies/"+company+".xml"));
             BufferedReader in = new BufferedReader(is);
             StringBuffer str = new StringBuffer();
             String s;
@@ -33,7 +33,7 @@ public class universityWS {
             }
             return str.toString();
         } catch (Exception ex) {
-            Logger.getLogger(universityWS.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CompaniesWS.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "Error";
     }

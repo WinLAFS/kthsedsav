@@ -2,4 +2,8 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:11983/JobServiceCompany/universityWSService?wsdl" uri="src/conf/xml-resources/web-service-references/universityWSService/wsdl/localhost_11983/JobServiceCompany/universityWSService.wsdl"/>
     <system systemId="http://localhost:11983/JobServiceCompany/universityWSService?xsd=1" uri="src/conf/xml-resources/web-service-references/universityWSService/wsdl/localhost_11983/JobServiceCompany/universityWSService.xsd_1.xsd"/>
+    <system systemId="http://localhost:11983/JobServiceCompany/CompaniesWSService?wsdl" uri="src/conf/xml-resources/web-service-references/CompaniesWSService/wsdl/localhost_11983/JobServiceCompany/CompaniesWSService.wsdl"/>
+    <system systemId="http://localhost:11983/JobServiceCompany/CompaniesWSService?xsd=1" uri="src/conf/xml-resources/web-service-references/CompaniesWSService/wsdl/localhost_11983/JobServiceCompany/CompaniesWSService.xsd_1.xsd"/>
 </catalog>
+
+

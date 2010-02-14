@@ -29,6 +29,11 @@
             <classpath path="${java.home}/../lib/tools.jar:${build.classes.dir}:${j2ee.platform.wsgen.classpath}:${javac.classpath}"/>
         </wsgen>
     </target>
+    <target name="wsgen-CompaniesWS" depends="wsgen-init">
+        <wsgen sourcedestdir="${build.generated.sources.dir}/jax-ws" resourcedestdir="${build.generated.sources.dir}/jax-ws/resources/" destdir="${build.generated.sources.dir}/jax-ws" verbose="true" xendorsed="true" keep="true" genwsdl="true" sei="companies.CompaniesWS">
+            <classpath path="${java.home}/../lib/tools.jar:${build.classes.dir}:${j2ee.platform.wsgen.classpath}:${javac.classpath}"/>
+        </wsgen>
+    </target>
     <!--
                 ===================
                 JAX-WS WSIMPORT SECTION
@@ -59,5 +64,21 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/universityClient"/>
         <delete dir="${build.generated.dir}/jax-wsCache/universityWSService"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-universityWSService"/>
+    <target name="wsimport-client-CompaniesWSService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/CompaniesWSService"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/CompaniesWSService" destdir="${build.generated.dir}/jax-wsCache/CompaniesWSService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/CompaniesWSService/wsdl/localhost_11983/JobServiceCompany/CompaniesWSService.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:11983/JobServiceCompany/CompaniesWSService?wsdl" xnocompile="true" xendorsed="true" package="companiesClient">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/CompaniesWSService/wsdl/localhost_11983/JobServiceCompany/CompaniesWSService.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/CompaniesWSService"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/CompaniesWSService">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-CompaniesWSService" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/companiesClient"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/CompaniesWSService"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-universityWSService, wsimport-client-CompaniesWSService"/>
 </project>

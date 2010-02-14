@@ -7,6 +7,9 @@
     <service name="EmploymentOffice">
       <implementation-class>employmentrecords.EmploymentOffice</implementation-class>
     </service>
+    <service name="CompaniesWS">
+      <implementation-class>companies.CompaniesWS</implementation-class>
+    </service>
   </services>
   <clients>
     <client name="universityWSService">
@@ -39,6 +42,38 @@
         <wsimport-option>
           <wsimport-option-name>package</wsimport-option-name>
           <wsimport-option-value>universityClient</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="CompaniesWSService">
+      <wsdl-url>http://localhost:11983/JobServiceCompany/CompaniesWSService?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_11983/JobServiceCompany/CompaniesWSService.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">companiesClient</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:11983/JobServiceCompany/CompaniesWSService?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>package</wsimport-option-name>
+          <wsimport-option-value>companiesClient</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>
