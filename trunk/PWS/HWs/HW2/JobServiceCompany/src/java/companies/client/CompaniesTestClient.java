@@ -5,8 +5,6 @@
 
 package companies.client;
 
-import companiesClient.CompaniesWS;
-import companiesClient.CompaniesWSService;
 import java.net.MalformedURLException;
 import java.net.URL;
 
