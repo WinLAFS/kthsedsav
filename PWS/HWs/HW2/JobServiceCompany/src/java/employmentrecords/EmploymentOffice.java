@@ -25,18 +25,18 @@ public class EmploymentOffice {
     public String getEmploymentRecord(@WebParam(name = "name") String name) {
 
         try {
-            InputStreamReader is = new InputStreamReader(this.getClass().getResourceAsStream("/" + name + ".xml"));
+            InputStreamReader is = new InputStreamReader(this.getClass().getResourceAsStream("/employmentrecords/" + name + ".xml"));
             BufferedReader in = new BufferedReader(is);
             StringBuffer str = new StringBuffer();
             String s;
             while ((s = in.readLine()) != null) {
                 str.append(s).append("\n");
             }
+            
             return str.toString();
-        } catch (IOException ex) {
-            //
+        } catch (Exception ex) {
+            return "Error";
         }
-        return "Error";
 
     }
 }
