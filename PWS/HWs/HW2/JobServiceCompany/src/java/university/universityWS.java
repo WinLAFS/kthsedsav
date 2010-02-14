@@ -5,8 +5,6 @@
 package university;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,9 +23,8 @@ public class universityWS {
      */
     @WebMethod(operationName = "getDegree")
     public String getDegree(String surname) {
-
         try {
-            InputStreamReader is = new InputStreamReader(this.getClass().getResourceAsStream("/university/Melene.xml"));
+            InputStreamReader is = new InputStreamReader(this.getClass().getResourceAsStream("/university/"+surname+".xml"));
             BufferedReader in = new BufferedReader(is);
             StringBuffer str = new StringBuffer();
             String s;
@@ -35,7 +32,7 @@ public class universityWS {
                 str.append(s).append("\n");
             }
             return str.toString();
-        } catch (IOException ex) { 
+        } catch (Exception ex) {
             Logger.getLogger(universityWS.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "Error";
