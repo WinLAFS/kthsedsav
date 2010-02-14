@@ -1,0 +1,12 @@
+The deployment and architecture of our application follows strictly the diagramm in page
+55 of homework description. We created 5 different components that provide (and consume)
+services and 1 client. The flow of information is the following:
+-the JobServiceTestClient uses the service of the JobService to submit his CV
+-the JobService uses the services from CompaniesWS, EmploymentOffice, universityWS
+	and RecruiterCompany to gather the information about the client. Specifically,
+	the job offerings that is getting from RecruiterCompany are taken both with
+	a synchronous and an asynchronous call of the service
+-the JobService integrates the data and creates the profile of the client. This profile
+	is sent back to the JobServiceTestClient as results of its call
+For the processing of XML files we used JAXB everywhere, except the RecruiterCompany where
+we used in order to have easily searchable data.
