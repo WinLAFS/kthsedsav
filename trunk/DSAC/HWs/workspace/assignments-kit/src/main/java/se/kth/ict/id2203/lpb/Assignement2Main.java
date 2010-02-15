@@ -31,9 +31,9 @@ import se.sics.kompics.timer.java.JavaTimer;
 
 public class Assignement2Main extends ComponentDefinition {
 
-	private static final double storeTreshold = 0;
-	private static final int fanouts = 0;
-	private static final int ttl = 0;
+	private static final double storeTreshold = 1;
+	private static final int fanouts = 2;
+	private static final int ttl = 1;
 
 	static {
 		PropertyConfigurator.configureAndWatch("log4j.properties");

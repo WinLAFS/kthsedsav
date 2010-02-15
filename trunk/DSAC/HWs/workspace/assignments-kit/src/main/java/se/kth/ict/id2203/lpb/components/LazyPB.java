@@ -52,7 +52,7 @@ public class LazyPB extends ComponentDefinition {
 	Negative<ProbabilisticBroadcast> pb = negative(ProbabilisticBroadcast.class);
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(SimpleUnreliableBroadcast.class);
+			.getLogger(LazyPB.class);
 
 	private Set<Address> neighborSet;
 	private Address self;
@@ -109,62 +109,85 @@ public class LazyPB extends ComponentDefinition {
 
 	Handler<unDeliver> handleUNDeliver = new Handler<unDeliver>() {
 		public void handle(unDeliver arg0) {
-			LPBMessage message=(LPBMessage) fromString(arg0.getMessage());
-			
-			//15-16
-			if(storetreshold < Math.random()){
-				stored.add(message);
-			}
-			
-			Address sender = message.getSender();
-			NeighbourInfo neighbour = neighboursState.get(sender);
-			if(message.getMessageNumber() >= (neighbour.getMaxDelivered()+1)){ //17
-				trigger(new pbDeliver(message.getSender(), message.getMessage()), pb); //18
-				
-				//19-21
-				for(Integer i = (neighbour.getMaxDelivered()+1);i<=(message.getMessageNumber()-1); i++){
-					GossipMessage gossipMessage = new GossipMessage();
-					gossipMessage.setMessageNumber(i);
-					gossipMessage.setOriginalMessageSender(message.getSender());
-					gossipMessage.setSender(self);
-					gossipMessage.setTtl(ttl);
-					gossipMessage.setMessageType("Request");
-					
-					String serializedGossipMessage = encodeToString(gossipMessage);
-					gossip(serializedGossipMessage);
-					
-					neighbour.getMissing().add(i); //21
+			try{
+	//			logger.info("2a - received message");
+				LPBMessage message=(LPBMessage) fromString(arg0.getMessage());
+	//			logger.info("2 - received message" +message);
+				//15-16
+				if(storetreshold > Math.random()){
+					logger.info("2 - Storing message: "+message.getMessage()+";"+message.getSender().toString());
+					stored.add(message);
 				}
-				//22
-				neighbour.setMaxDelivered(message.getMessageNumber());
+				
+				if(message.getSender().equals(self)){
+					trigger(new pbDeliver(message.getSender(), message.getMessage()), pb);
+					return;
+				}
+				
+				Address sender = message.getSender();
+				NeighbourInfo neighbour = neighboursState.get(sender);
+				
+				if(message.getMessageNumber() >= (neighbour.getMaxDelivered()+1)){ //17
+					trigger(new pbDeliver(message.getSender(), message.getMessage()), pb); //18
+					
+					//19-21
+					for(Integer i = (neighbour.getMaxDelivered()+1);i<=(message.getMessageNumber()-1); i++){
+						GossipMessage gossipMessage = new GossipMessage();
+						gossipMessage.setMessageNumber(i);
+						gossipMessage.setOriginalMessageSender(message.getSender());
+						gossipMessage.setSender(self);
+						gossipMessage.setTtl(ttl);
+						gossipMessage.setMessageType("Request");
+						
+						String serializedGossipMessage = encodeToString(gossipMessage);
+						gossip(serializedGossipMessage);
+						
+						neighbour.getMissing().add(i); //21
+					}
+					//22
+					neighbour.setMaxDelivered(message.getMessageNumber());
+				}
+				//24-26
+				else if (neighbour.getMissing().contains(message.getMessageNumber())) {
+					neighbour.getMissing().remove(message.getMessageNumber());
+					trigger(new pbDeliver(message.getSender(), message.getMessage()), pb);
+				}
+			} catch (ClassCastException e){
+//				logger.info("5 - wrong message");
 			}
-			//24-26
-			else if (neighbour.getMissing().contains(message.getMessageNumber())) {
-				neighbour.getMissing().remove(message.getMessageNumber());
-				trigger(new pbDeliver(message.getSender(), message.getMessage()), pb);
-			}
-
 		}
 	};
 
 	Handler<Flp2pMessage> handleFlp2pMessage = new Handler<Flp2pMessage>() {
 		public void handle(Flp2pMessage event) {
-			GossipMessage gMessage = (GossipMessage) fromString(event.getMessage());
-			//TODO FIX messages
-			if(gMessage.getMessageType().equalsIgnoreCase("Request")){
-				LPBMessage foundMessage = searchForStoredLPBMessage(gMessage.getOriginalMessageSender(), gMessage.getMessageNumber());
-				if(foundMessage!=null){
-					trigger(new Flp2pSend(gMessage.getSender(), new Flp2pMessage(self, encodeToString(foundMessage))), flp2p);
-				} else if (gMessage.getTtl()>0){
-					gMessage.setTtl(gMessage.getTtl()-1);
-					gossip(encodeToString(gMessage));
+			try{
+				GossipMessage gMessage = (GossipMessage) fromString(event.getMessage());
+				//TODO FIX messages
+				if(gMessage.getMessageType().equalsIgnoreCase("Request")){
+					logger.info("4 - received gossip request from "+gMessage.getSender());
+					LPBMessage foundMessage = searchForStoredLPBMessage(gMessage.getOriginalMessageSender(), gMessage.getMessageNumber());
+					if(foundMessage!=null){
+						gMessage.setMessageData(foundMessage.getMessage());
+						gMessage.setMessageType("Data");
+						Address target = gMessage.getSender();
+						gMessage.setSender(self);
+						//trigger(new Flp2pSend(gMessage.getSender(), new Flp2pMessage(self, encodeToString(foundMessage))), flp2p);\
+						trigger(new Flp2pSend(target, new Flp2pMessage(self, encodeToString(gMessage))), flp2p);
+//						logger.info("6 - sending gossip found responce: "+ gMessage.getMessageData()+" from "+ gMessage.getSender());
+					} else if (gMessage.getTtl()>0){
+						gMessage.setTtl(gMessage.getTtl()-1);
+						gossip(encodeToString(gMessage));
+					}
+					
+				} else if(gMessage.getMessageType().equalsIgnoreCase("Data")){
+					logger.info("5 - received gossip responce with data: "+ gMessage.getMessageData()+" from "+ gMessage.getSender());
+					if(searchIfMissingLPBMessage(gMessage.getOriginalMessageSender(), gMessage.getMessageNumber())){
+						removeMissingLPBMessage(gMessage.getOriginalMessageSender(), gMessage.getMessageNumber());
+						trigger(new pbDeliver(gMessage.getOriginalMessageSender(), gMessage.getMessageData()), pb); 
+					}
 				}
-				
-			} else if(gMessage.getMessageType().equalsIgnoreCase("Data")){
-				if(searchIfMissingLPBMessage(gMessage.getOriginalMessageSender(), gMessage.getMessageNumber())){
-					removeMissingLPBMessage(gMessage.getOriginalMessageSender(), gMessage.getMessageNumber());
-					trigger(new pbDeliver(gMessage.getOriginalMessageSender(), gMessage.getMessageData()), pb); 
-				}
+			} catch (ClassCastException e){
+//				logger.info("Cant handle: message");
 			}
 		}
 	};
@@ -178,6 +201,7 @@ public class LazyPB extends ComponentDefinition {
 			message.setMessageNumber(lsn);
 			message.setSender(event.getPbd().getSender());
 			message.setMessage(event.getPbd().getMsg());
+			logger.info("1 - sending pb");
 			
 			trigger(new unBroadcast(self, null, new unDeliver(self,encodeToString(message))), ub);
 		}
@@ -197,8 +221,10 @@ public class LazyPB extends ComponentDefinition {
 	}
 
 	private void gossip(String msg) {
+		
 		Set<Address> selected = pickTargets();
 		for (Address target : selected) {
+			logger.info("3 - start gossip to "+target);
 			trigger(new Flp2pSend(target, new Flp2pMessage(self, msg)), flp2p);
 		}
 	}
@@ -215,7 +241,6 @@ public class LazyPB extends ComponentDefinition {
 
 			return new String(encoder.encode(baos.toByteArray()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "";
@@ -232,7 +257,6 @@ public class LazyPB extends ComponentDefinition {
 			ois.close();
 			return o;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "";

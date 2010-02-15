@@ -32,7 +32,9 @@ public class Assignement2Executor {
 			{
 				node(1, "127.0.0.1", 22031);
 				node(2, "127.0.0.1", 22032);
-				link(1, 2, 3213, 0).bidirectional();
+				node(3, "127.0.0.1", 22033);
+//				link(1, 2, 3213, 0).bidirectional();
+				defaultLinks(1234, 0.5);
 			}
 		};
 
@@ -59,18 +61,19 @@ public class Assignement2Executor {
 			}
 		};
 		
-//		Scenario scenario2 = new Scenario(Assignment0Group0Main.class) {
-//			{
-//				command(1, "S500:La1:S300:PA1:X").recover("S400:Pff", 1000);
-//				command(2, "S500:Pb2:S300:LB2");
+		Scenario scenario2 = new Scenario(Assignement2Main.class) {
+			{
+				command(1, "S1");
+				command(2, "S1");
+				command(3, "S1");
 //				command(3, "S500:Lc3:S300:PC3");
 //				command(4, "S500:Pd4:S300:LD4");
-//			}
-//		};
+			}
+		};
 
-		 scenario1.executeOn(topology1);
+//		 scenario1.executeOn(topology1);
 //		scenario3.executeOn(topology1);
-		// scenario1.executeOn(topology2);
+		 scenario2.executeOn(topology2);
 		// scenario2.executeOn(topology1);
 		// scenario1.executeOnFullyConnected(topology1);
 		// scenario1.executeOnFullyConnected(topology2);
