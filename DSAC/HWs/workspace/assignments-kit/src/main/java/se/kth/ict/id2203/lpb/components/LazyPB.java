@@ -115,7 +115,7 @@ public class LazyPB extends ComponentDefinition {
 	//			logger.info("2 - received message" +message);
 				//15-16
 				if(storetreshold > Math.random()){
-					logger.info("2 - Storing message: "+message.getMessage()+";"+message.getSender().toString());
+					logger.info("2 - Storing msg: "+message.getSender() + "|" + message.getMessageNumber());
 					stored.add(message);
 				}
 				
@@ -152,7 +152,7 @@ public class LazyPB extends ComponentDefinition {
 					neighbour.getMissing().remove(message.getMessageNumber());
 					trigger(new pbDeliver(message.getSender(), message.getMessage()), pb);
 				}
-			} catch (ClassCastException e){
+			} catch (Exception e){
 //				logger.info("5 - wrong message");
 			}
 		}
@@ -164,9 +164,10 @@ public class LazyPB extends ComponentDefinition {
 				GossipMessage gMessage = (GossipMessage) fromString(event.getMessage());
 				//TODO FIX messages
 				if(gMessage.getMessageType().equalsIgnoreCase("Request")){
-					logger.info("4 - received gossip request from "+gMessage.getSender());
+					logger.info("4 - gossip request "+gMessage.getSender() + " for : " + gMessage.getOriginalMessageSender() + "|" + gMessage.getMessageNumber());
 					LPBMessage foundMessage = searchForStoredLPBMessage(gMessage.getOriginalMessageSender(), gMessage.getMessageNumber());
 					if(foundMessage!=null){
+						logger.info("\t\tSERVED");
 						gMessage.setMessageData(foundMessage.getMessage());
 						gMessage.setMessageType("Data");
 						Address target = gMessage.getSender();
@@ -175,18 +176,19 @@ public class LazyPB extends ComponentDefinition {
 						trigger(new Flp2pSend(target, new Flp2pMessage(self, encodeToString(gMessage))), flp2p);
 //						logger.info("6 - sending gossip found responce: "+ gMessage.getMessageData()+" from "+ gMessage.getSender());
 					} else if (gMessage.getTtl()>0){
+						logger.info("\t\tFORWARDED");
 						gMessage.setTtl(gMessage.getTtl()-1);
 						gossip(encodeToString(gMessage));
-					}
+					} else { logger.info("\t\tDONT HAVE & TTL=0"); }
 					
 				} else if(gMessage.getMessageType().equalsIgnoreCase("Data")){
-					logger.info("5 - received gossip responce with data: "+ gMessage.getMessageData()+" from "+ gMessage.getSender());
+					logger.info("5 - gossip response : "+ gMessage.getSender()+" for: "+ gMessage.getOriginalMessageSender() + "|" + gMessage.getMessageNumber());
 					if(searchIfMissingLPBMessage(gMessage.getOriginalMessageSender(), gMessage.getMessageNumber())){
 						removeMissingLPBMessage(gMessage.getOriginalMessageSender(), gMessage.getMessageNumber());
 						trigger(new pbDeliver(gMessage.getOriginalMessageSender(), gMessage.getMessageData()), pb); 
 					}
 				}
-			} catch (ClassCastException e){
+			} catch (Exception e){
 //				logger.info("Cant handle: message");
 			}
 		}
@@ -201,7 +203,7 @@ public class LazyPB extends ComponentDefinition {
 			message.setMessageNumber(lsn);
 			message.setSender(event.getPbd().getSender());
 			message.setMessage(event.getPbd().getMsg());
-			logger.info("1 - sending pb");
+			logger.info("1 - PB: " + message.getMessage() + " :: " + self + "|" + message.getMessageNumber());
 			
 			trigger(new unBroadcast(self, null, new unDeliver(self,encodeToString(message))), ub);
 		}
@@ -223,8 +225,9 @@ public class LazyPB extends ComponentDefinition {
 	private void gossip(String msg) {
 		
 		Set<Address> selected = pickTargets();
+		logger.info("3 - start gossip to: ");
 		for (Address target : selected) {
-			logger.info("3 - start gossip to "+target);
+			logger.info("  :" +target);
 			trigger(new Flp2pSend(target, new Flp2pMessage(self, msg)), flp2p);
 		}
 	}
