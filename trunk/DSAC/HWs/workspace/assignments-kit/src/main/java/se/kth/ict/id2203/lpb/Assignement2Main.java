@@ -4,7 +4,6 @@ import java.util.Set;
 
 import org.apache.log4j.PropertyConfigurator;
 
-import se.kth.ict.id2203.epfd.Assignment1bMain;
 import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
 import se.kth.ict.id2203.flp2p.delay.DelayDropLink;
 import se.kth.ict.id2203.flp2p.delay.DelayDropLinkInit;
@@ -31,9 +30,9 @@ import se.sics.kompics.timer.java.JavaTimer;
 
 public class Assignement2Main extends ComponentDefinition {
 
-	private static final double storeTreshold = 1;
+	private static final double storeTreshold = 0.5;
 	private static final int fanouts = 2;
-	private static final int ttl = 1;
+	private static final int ttl = 2;
 
 	static {
 		PropertyConfigurator.configureAndWatch("log4j.properties");
