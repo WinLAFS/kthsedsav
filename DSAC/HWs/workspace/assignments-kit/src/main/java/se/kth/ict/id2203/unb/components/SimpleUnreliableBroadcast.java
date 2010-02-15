@@ -65,7 +65,7 @@ public class SimpleUnreliableBroadcast extends ComponentDefinition {
 
 	Handler<Flp2pMessage> handleFlp2pMessage = new Handler<Flp2pMessage>() {
 		public void handle(Flp2pMessage event) {
-			logger.info("Received broadcast message message {}", event.getMessage());
+//			logger.info("Received broadcast message message {}", event.getMessage());
 			trigger(new unDeliver(event.getSource(), event.getMessage()), unb);
 		}
 	};
