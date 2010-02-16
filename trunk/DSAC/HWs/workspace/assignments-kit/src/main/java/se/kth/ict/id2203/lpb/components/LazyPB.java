@@ -121,6 +121,7 @@ public class LazyPB extends ComponentDefinition {
 				
 				if(message.getSender().equals(self)){
 					trigger(new pbDeliver(message.getSender(), message.getMessage()), pb);
+					logger.info("   >Delivery % till now: " + getDeliveredPercentage());
 					return;
 				}
 				
@@ -129,6 +130,7 @@ public class LazyPB extends ComponentDefinition {
 				
 				if(message.getMessageNumber() >= (neighbour.getMaxDelivered()+1)){ //17
 					trigger(new pbDeliver(message.getSender(), message.getMessage()), pb); //18
+					logger.info("   >Delivery % till now: " + getDeliveredPercentage());
 					
 					//19-21
 					for(Integer i = (neighbour.getMaxDelivered()+1);i<=(message.getMessageNumber()-1); i++){
@@ -151,6 +153,7 @@ public class LazyPB extends ComponentDefinition {
 				else if (neighbour.getMissing().contains(message.getMessageNumber())) {
 					neighbour.getMissing().remove(message.getMessageNumber());
 					trigger(new pbDeliver(message.getSender(), message.getMessage()), pb);
+					logger.info("   >Delivery % till now: " + getDeliveredPercentage());
 				}
 			} catch (Exception e){
 //				logger.info("5 - wrong message");
@@ -185,7 +188,8 @@ public class LazyPB extends ComponentDefinition {
 					logger.info("5 - gossip response : "+ gMessage.getSender()+" for: "+ gMessage.getOriginalMessageSender() + "|" + gMessage.getMessageNumber());
 					if(searchIfMissingLPBMessage(gMessage.getOriginalMessageSender(), gMessage.getMessageNumber())){
 						removeMissingLPBMessage(gMessage.getOriginalMessageSender(), gMessage.getMessageNumber());
-						trigger(new pbDeliver(gMessage.getOriginalMessageSender(), gMessage.getMessageData()), pb); 
+						trigger(new pbDeliver(gMessage.getOriginalMessageSender(), gMessage.getMessageData()), pb);
+						logger.info("   >Delivery % till now: " + getDeliveredPercentage());
 					}
 				}
 			} catch (Exception e){
@@ -286,6 +290,25 @@ public class LazyPB extends ComponentDefinition {
 		
 		return ni.getMissing().remove(number);
 		
+	}
+	
+	public double getDeliveredPercentage() {
+		double lostMessages = 0;
+		double allMessages = 0;
+		Collection<NeighbourInfo> neighbourInfoSet = neighboursState.values();
+		for (NeighbourInfo ni : neighbourInfoSet) {
+			allMessages += ni.getMaxDelivered();
+			lostMessages += ni.getMissing().size();
+		}
+		double perc = 100.0;
+		try {
+			if (allMessages > 0) {
+				perc = ((allMessages - lostMessages) / allMessages) * 100.0;
+			}
+		}
+		catch (Exception e) {
+		}
+		return perc; 
 	}
 
 }
