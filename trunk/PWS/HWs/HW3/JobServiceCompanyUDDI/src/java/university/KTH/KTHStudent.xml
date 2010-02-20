@@ -1,9 +1,9 @@
 <degrees xmlns="http://www.kth.se/Transcript" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kth.se/Transcript Transcript.xsd ">
   <degree title="MSc">
-    <university>Uppsala</university>
+    <university>KTH</university>
     <startYear>2009</startYear>
     <endYear>2011</endYear>
-    <subject>Networks</subject>
+    <subject>SEDS</subject>
     <grades>
       <grade courseID="1">
         <gradeVal>10</gradeVal>
@@ -12,7 +12,7 @@
         <gradeVal>10</gradeVal>
       </grade>
       <grade courseID="3">
-        <gradeVal>7</gradeVal>
+        <gradeVal>8</gradeVal>
       </grade>
     </grades>
   </degree>

@@ -99,7 +99,7 @@ public class UniversityPublish {
 
             //------- Define Name and Description
 
-            InternationalString s = blcm.createInternationalString("University_f");
+            InternationalString s = blcm.createInternationalString("UppsalaUniversity_f");
             Organization org = blcm.createOrganization(s);
             s = blcm.createInternationalString("Provides degree information");
             org.setDescription(s);
