@@ -88,8 +88,8 @@ public class JobService {
 
             //Getting and parsing companies info
             ArrayList<Companies> companiesList = new ArrayList<Companies>();
-
-            URL companiesUrl = getWSDLURL("http://localhost:11983/JobServiceCompany/CompaniesWSService?wsdl");
+            URL companiesUrl = new URL(sf.fetchCompaniesService());
+//            URL companiesUrl = getWSDLURL("http://localhost:11983/JobServiceCompany/CompaniesWSService?wsdl");
             CompaniesWSService companiesService = new CompaniesWSService(companiesUrl);
             CompaniesWS companiesPort = companiesService.getCompaniesWSPort();
 

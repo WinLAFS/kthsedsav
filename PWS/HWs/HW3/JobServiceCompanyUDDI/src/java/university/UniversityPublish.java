@@ -99,7 +99,7 @@ public class UniversityPublish {
 
             //------- Define Name and Description
 
-            InternationalString s = blcm.createInternationalString("University");
+            InternationalString s = blcm.createInternationalString("University_f");
             Organization org = blcm.createOrganization(s);
             s = blcm.createInternationalString("Provides degree information");
             org.setDescription(s);
@@ -161,7 +161,7 @@ public class UniversityPublish {
             binding.setDescription(istr);
 // allow us to publish a fictitious URI without an error
             binding.setValidateURI(false);
-            binding.setAccessURI("http://localhost:11983/JobServiceCompany/universityWSService?wsdl");
+            binding.setAccessURI("http://localhost:11983/JobServiceCompanyUDDI/universityWSService?wsdl");
             serviceBindings.add(binding);
 // Add service bindings to service
             service.addServiceBindings(serviceBindings);
@@ -173,7 +173,7 @@ public class UniversityPublish {
             specConcept = blcm.createConcept(null, "UniversityDegreeConcept", "");
             InternationalString str = blcm.createInternationalString("Concept description for University service");
             specConcept.setDescription(str);
-            ExternalLink wsdlLink = blcm.createExternalLink("http://localhost:11983/JobServiceCompany/universityWSService?wsdl",
+            ExternalLink wsdlLink = blcm.createExternalLink("http://localhost:11983/JobServiceCompanyUDDI/universityWSService?wsdl",
                     "RectuiyerWSDL document");
 
             specConcept.addExternalLink(wsdlLink);

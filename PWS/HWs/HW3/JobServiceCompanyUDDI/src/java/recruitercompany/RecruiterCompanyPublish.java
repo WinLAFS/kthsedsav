@@ -98,7 +98,7 @@ public class RecruiterCompanyPublish {
 
             //------- Define Name and Description
 
-            InternationalString s = blcm.createInternationalString("RecruiterCompany1");
+            InternationalString s = blcm.createInternationalString("RecruiterCompany_f");
             Organization org = blcm.createOrganization(s);
             s = blcm.createInternationalString("Find job opportunities");
             org.setDescription(s);
@@ -160,7 +160,7 @@ public class RecruiterCompanyPublish {
             binding.setDescription(istr);
 // allow us to publish a fictitious URI without an error
             binding.setValidateURI(false);
-            binding.setAccessURI("http://localhost:11983/JobServiceCompany/RecruiterCompanyService?wsdl");
+            binding.setAccessURI("http://localhost:11983/JobServiceCompanyUDDI/RecruiterCompanyService?wsdl");
             serviceBindings.add(binding);
 // Add service bindings to service
             service.addServiceBindings(serviceBindings);
@@ -172,7 +172,7 @@ public class RecruiterCompanyPublish {
             specConcept = blcm.createConcept(null, "RecruiterConcept", "");
             InternationalString str = blcm.createInternationalString("Concept description for Rectuiter Service");
             specConcept.setDescription(str);
-            ExternalLink wsdlLink = blcm.createExternalLink("http://localhost:11983/JobServiceCompany/RecruiterCompanyService?wsdl",
+            ExternalLink wsdlLink = blcm.createExternalLink("http://localhost:11983/JobServiceCompanyUDDI/RecruiterCompanyService?wsdl",
                     "RectuiyerWSDL document");
 
             specConcept.addExternalLink(wsdlLink);

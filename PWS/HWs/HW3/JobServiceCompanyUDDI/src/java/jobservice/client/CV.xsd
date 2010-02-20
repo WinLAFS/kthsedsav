@@ -36,12 +36,14 @@
 
 
 
+
 <element name="CV">
 <complexType>
 	<complexContent>
 	 	<extension base="tns:baseData">
 	 		<sequence>
 	 			<element ref="tns:birthDate"></element>
+                                <element name="university" type="string"></element>
 	 		</sequence>
 	 	</extension>
 	</complexContent>
@@ -52,6 +54,7 @@
 	<sequence>
 		<element ref="tns:name"></element>
 		<element ref="tns:surname"></element>
+                
 	</sequence>
 	<attribute name="personumme">
 		<simpleType>
