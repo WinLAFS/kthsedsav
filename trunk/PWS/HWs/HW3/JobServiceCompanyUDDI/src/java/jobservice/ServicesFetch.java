@@ -195,12 +195,100 @@ public class ServicesFetch {
         return ret;
     }
 
+     public String fetchCompaniesService() {
+        String ret = null;
+        try {
+            // Define find qualifiers and name patterns
+            Collection<String> findQualifiers = new ArrayList<String>();
+            findQualifiers.add(FindQualifier.SORT_BY_NAME_DESC);
+            Collection<String> namePatterns = new ArrayList<String>();
+            // qString refers to the organization name we are looking for
+            namePatterns.add("%" + "CompaniesDatabase" + "%");
+            // Find orgs with names that matches qString
+            BulkResponse response = bqm.findOrganizations(findQualifiers, namePatterns, null, null, null, null);
+
+            //Iterate over discovered organizations and collect their service binding
+            Collection orgs = response.getCollection();
+            Iterator orgIter = orgs.iterator();
+            while (orgIter.hasNext()) {
+                Organization org = (Organization) orgIter.next();
+                System.out.println("Found org: " + org.getDescription() + "\n\t with services:");
+                Collection services = org.getServices();
+                Iterator svcIter = services.iterator();
+                while (svcIter.hasNext()) {
+                    Service svc = (Service) svcIter.next();
+                    Collection serviceBindings = svc.getServiceBindings();
+                    Iterator sbIter = serviceBindings.iterator();
+                    while (sbIter.hasNext()) {
+                        ServiceBinding sb = (ServiceBinding) sbIter.next();
+                        System.out.println("    : " + sb.getAccessURI());
+                        ret = sb.getAccessURI();
+//                        System.out.println("        : " +
+
+                    }
+
+                }
+            }
+            return ret;
+
+        } catch (JAXRException ex) {
+            Logger.getLogger(ServicesFetch.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+
+      public String fetchJobService() {
+        String ret = null;
+        try {
+            // Define find qualifiers and name patterns
+            Collection<String> findQualifiers = new ArrayList<String>();
+            findQualifiers.add(FindQualifier.SORT_BY_NAME_DESC);
+            Collection<String> namePatterns = new ArrayList<String>();
+            // qString refers to the organization name we are looking for
+            namePatterns.add("%" + "JobService" + "%");
+            // Find orgs with names that matches qString
+            BulkResponse response = bqm.findOrganizations(findQualifiers, namePatterns, null, null, null, null);
+
+            //Iterate over discovered organizations and collect their service binding
+            Collection orgs = response.getCollection();
+            Iterator orgIter = orgs.iterator();
+            while (orgIter.hasNext()) {
+                Organization org = (Organization) orgIter.next();
+                System.out.println("Found org: " + org.getDescription() + "\n\t with services:");
+                Collection services = org.getServices();
+                Iterator svcIter = services.iterator();
+                while (svcIter.hasNext()) {
+                    Service svc = (Service) svcIter.next();
+                    Collection serviceBindings = svc.getServiceBindings();
+                    Iterator sbIter = serviceBindings.iterator();
+                    while (sbIter.hasNext()) {
+                        ServiceBinding sb = (ServiceBinding) sbIter.next();
+                        System.out.println("    : " + sb.getAccessURI());
+                        ret = sb.getAccessURI();
+//                        System.out.println("        : " +
+
+                    }
+
+                }
+            }
+            return ret;
+
+        } catch (JAXRException ex) {
+            Logger.getLogger(ServicesFetch.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+
     public static void main(String[] args) {
         ServicesFetch sf = new ServicesFetch();
         sf.fetchUniversityService();
         System.out.println("==========");
         sf.fetchRecruiterService();
-         System.out.println("==========");
+        System.out.println("==========");
         sf.fetchEmploymentOfficeService();
+        System.out.println("==========");
+        sf.fetchCompaniesService();
+        System.out.println("==========");
+        sf.fetchJobService();
     }
 }
