@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Starting the Browser</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="JAXRBrowser.html" />
+    <link rel="Next" href="JAXRBrowser3.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXRBrowser.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXRBrowser3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp64164"> </a><h2 class="pHeading1">
+Starting the Browser
+</h2>
+<a name="wp64165"> </a><p class="pBody">
+To start the browser, go to the directory <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/jaxr/bin/</code> or place this directory in your path. 
+</p>
+<a name="wp64166"> </a><p class="pBody">
+The following commands show how to start the browser on a UNIX system and a Microsoft Windows system, respectively:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+jaxr-browser.sh<a name="wp64167"> </a>
+jaxr-browser<a name="wp64168"> </a>
+</pre></div>
+<a name="wp64169"> </a><p class="pBody">
+In order to access the Registry Server through the browser, you must make sure to start the Application Server before you perform any queries or submissions to the browser; see <a  href="RegistryServer2.html#wp68744">Starting the Registry Server</a> for details.
+</p>
+<a name="wp64173"> </a><p class="pBody">
+In order to access external registries, the browser needs to know your Web proxy settings. By default, the browser uses the settings you specified when you installed the Java WSDP. These are defined in the file <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/conf/jwsdp.properties</code>. If you want to override these settings, you can edit this file or specify proxy information on the browser command line. 
+</p>
+<a name="wp64174"> </a><p class="pBody">
+To use the same proxy server for both HTTP and HTTPS access, specify a nondefault proxy host and proxy port as follows. The port is usually 8080. The following command shows how to start the browser on a UNIX system:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+jaxr-browser.sh <code class="cVariable">httpHost</code> <code class="cVariable">httpPort</code><a name="wp64175"> </a>
+</pre></div>
+<a name="wp64177"> </a><p class="pBody">
+For example, if your proxy host is named <code class="cCode">websys</code> and it is in the <code class="cCode">south</code> subdomain, you would type
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+jaxr-browser.sh websys.south 8080<a name="wp64178"> </a>
+</pre></div>
+<a name="wp64179"> </a><p class="pBody">
+To use different proxy servers for HTTP and HTTPS access, specify the hosts and ports as follows. (If you do not know whether you need two different servers, specify just one. It is relatively uncommon to need two.) On a Microsoft Windows system, the syntax is as follows:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+jaxr-browser <code class="cVariable">httpHost</code> <code class="cVariable">httpPort httpsHost httpsPort</code><a name="wp64619"> </a>
+</pre></div>
+<a name="wp64182"> </a><p class="pBody">
+After the browser starts, type the URL of the registry you want to use in the Registry Location combo box, or select a URL from the drop-down menu in the combo box. The menu allows you to choose among the IBM and Microsoft registries and the default Registry Server URL:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+http://localhost:8080/RegistryServer/<a name="wp65355"> </a>
+</pre></div>
+<a name="wp65356"> </a><p class="pBody">
+If you are accessing the Registry Server on a remote system, replace <code class="cCode">localhost</code> with the fully qualified hostname of the system where the Registry Server is running. If Tomcat is running on a nondefault port, replace <code class="cCode">8080</code> with the correct port number. You specify the same URL for both queries and updates. 
+</p>
+<a name="wp64183"> </a><p class="pBody">
+There may be a delay of a few seconds while a busy cursor is visible. 
+</p>
+<a name="wp64184"> </a><p class="pBody">
+When the busy cursor disappears, you have a connection to the URL. However, you do not establish a connection to the registry itself until you perform a query or update, so JAXR will not report an invalid URL until then.
+</p>
+<a name="wp64185"> </a><p class="pBody">
+The browser contains two main panes, Browse and Submissions. 
+</p>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXRBrowser.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXRBrowser3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

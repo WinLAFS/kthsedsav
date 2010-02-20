@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>XML Digital Signature API Examples</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XMLDigitalSignatureAPI7.html" />
+    <link rel="Next" href="RegistryServer.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XMLDigitalSignatureAPI7.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="RegistryServer.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp511406"> </a><h2 class="pHeading1">
+XML Digital Signature API Examples
+</h2>
+<a name="wp511426"> </a><p class="pBody">
+The following sections describe two examples that show how to use the XML Digital Signature API:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp511432"> </a><div class="pSmartList1"><li>Validate example</li></div>
+<a name="wp511433"> </a><div class="pSmartList1"><li>Signing example</li></div>
+</ul></div>
+<a name="wp512249"> </a><p class="pBody">
+To run the sample applications using the supplied Ant <code class="cCode">build.xml</code> files, issue the following commands after you installed Java WSDP:
+</p>
+<a name="wp512250"> </a><p class="pBody">
+For Solaris/Linux:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp512252"> </a><div class="pSmartList1"><li><code class="cCode">% export JAVA_HOME=&lt;</code><code class="cVariable">your J2SE installation directory</code><code class="cCode">&gt;</code></li></div>
+<a name="wp512253"> </a><div class="pSmartList1"><li><code class="cCode">% export JWSDP_HOME=&lt;</code><code class="cVariable">your Java WSDP installation directory</code><code class="cCode">&gt;</code></li></div>
+<a name="wp512254"> </a><div class="pSmartList1"><li><code class="cCode">% export ANT_HOME=$JWSDP_HOME/apache-ant</code></li></div>
+<a name="wp512255"> </a><div class="pSmartList1"><li>  <code class="cCode">% export PATH=$ANT_HOME/bin:$PATH</code></li></div>
+<a name="wp512256"> </a><div class="pSmartList1"><li>  <code class="cCode">% cd $JWSDP_HOME/xmldsig/samples/&lt;</code><code class="cVariable">sample-name</code><code class="cCode">&gt;</code></li></div>
+</ol></div>
+<a name="wp512258"> </a><p class="pBody">
+For Windows 2000/XP:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp512260"> </a><div class="pSmartList1"><li><code class="cCode">&gt; set JAVA_HOME=&lt;</code><code class="cVariable">your J2SE installation directory</code><code class="cCode">&gt;</code></li></div>
+<a name="wp512261"> </a><div class="pSmartList1"><li><code class="cCode">&gt; set JWSDP_HOME=&lt;</code><code class="cVariable">your Java WSDP installation directory</code><code class="cCode">&gt;</code></li></div>
+<a name="wp512262"> </a><div class="pSmartList1"><li><code class="cCode">&gt; set ANT_HOME=%JWSDP_HOME%\apache-ant</code></li></div>
+<a name="wp512263"> </a><div class="pSmartList1"><li><code class="cCode">&gt; set PATH=%ANT_HOME%\bin;%PATH%</code></li></div>
+<a name="wp512264"> </a><div class="pSmartList1"><li><code class="cCode">&gt; cd %JWSDP_HOME%\xmldsig\samples\&lt;</code><code class="cVariable">sample-name</code><code class="cCode">&gt;</code></li></div>
+</ol></div>
+<a name="wp511427"> </a><h3 class="pHeading2">
+validate Example
+</h3>
+<a name="wp512156"> </a><p class="pBody">
+You can find the code shown in this section in the <code class="cCode">Validate.java</code> file in the <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/xmldsig/samples/validate</code> directory. The file on which it operates, <code class="cCode">envelopedSignature.xml</code>, is in the same directory.
+</p>
+<a name="wp512162"> </a><p class="pBody">
+If you are behind a firewall and use an HTTP proxy server, you will need to modify the <code class="cCode">build.properties</code> file before you can run this example.
+</p>
+<a name="wp512164"> </a><p class="pBody">
+To run the example, execute the following command from the <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/xmldsig/samples/validate</code> directory:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+$ ant<a name="wp512165"> </a>
+</pre></div>
+<a name="wp512167"> </a><p class="pBody">
+The sample program will validate the signature in the file <code class="cCode">envelopedSignature.xml</code> in the current working directory. To validate a different signature, run the following command:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+$ ant -Dsample.args=&quot;signature.xml&quot; <a name="wp512172"> </a>
+</pre></div>
+<a name="wp512174"> </a><p class="pBody">
+where <code class="cCode">&quot;signature.xml&quot;</code> is the pathname of the file.
+</p>
+<a name="wp512158"> </a><h4 class="pHeading3">
+Validating an XML Signature
+</h4>
+<a name="wp511454"> </a><p class="pBody">
+This example shows you how to validate an XML Signature using the JSR 105 API.  The example uses DOM (the Document Object Model) to parse an XML document containing a Signature element and a JSR 105 DOM implementation to validate the signature.
+</p>
+<a name="wp511408"> </a><h4 class="pHeading3">
+Instantiating the Document that Contains the Signature
+</h4>
+<a name="wp511458"> </a><p class="pBody">
+First we use a JAXP <code class="cCode">DocumentBuilderFactory</code> to parse the XML document containing the Signature. An application obtains the default implementation for <code class="cCode">DocumentBuilderFactory</code> by calling the following line of code:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+DocumentBuilderFactory dbf = 
+&nbsp;&nbsp;DocumentBuilderFactory.newInstance();<a name="wp511460"> </a>
+</pre></div>
+<a name="wp511462"> </a><p class="pBody">
+We must also make the factory namespace-aware:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+dbf.setNamespaceAware(true);<a name="wp511464"> </a>
+</pre></div>
+<a name="wp511466"> </a><p class="pBody">
+Next, we use the factory to get an instance of a <code class="cCode">DocumentBuilder</code>, which is used to parse the document:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+DocumentBuilder builder = dbf.newDocumentBuilder();  
+Document doc = builder.parse(new FileInputStream(argv[0]));<a name="wp511468"> </a>
+</pre></div>
+<a name="wp511502"> </a><h4 class="pHeading3">
+Specifying the Signature Element to be Validated
+</h4>
+<a name="wp511508"> </a><p class="pBody">
+We need to specify the <code class="cCode">Signature</code> element that we want to validate, since there could be more than one in the document. We use the DOM method <code class="cCode">Document.getElementsByTagNameNS</code>, passing it the XML Signature namespace URI and the tag name of the <code class="cCode">Signature</code> element, as shown:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+NodeList nl = doc.getElementsByTagNameNS
+&nbsp;&nbsp;(XMLSignature.XMLNS, &quot;Signature&quot;);
+if (nl.getLength() == 0) {
+&nbsp;&nbsp;throw new Exception(&quot;Cannot find Signature element&quot;);
+}<a name="wp511510"> </a>
+</pre></div>
+<a name="wp511503"> </a><p class="pBody">
+This returns a list of all <code class="cCode">Signature</code> elements in the document. In this example, there is only one <code class="cCode">Signature</code> element.
+</p>
+<a name="wp511504"> </a><h4 class="pHeading3">
+Creating a Validation Context
+</h4>
+<a name="wp511524"> </a><p class="pBody">
+We create an <code class="cCode">XMLValidateContext</code> instance containing input parameters for validating the signature.  Since we are using DOM, we instantiate a <code class="cCode">DOMValidateContext</code> instance (a subclass of <code class="cCode">XMLValidateContext</code>), and pass it two parameters, a <code class="cCode">KeyValueKeySelector</code> object and a reference to the <code class="cCode">Signature</code> element to be validated (which is the first entry of the <code class="cCode">NodeList</code> we generated earlier):
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+DOMValidateContext valContext = new DOMValidateContext
+&nbsp;&nbsp;(new KeyValueKeySelector(), nl.item(0));<a name="wp511526"> </a>
+</pre></div>
+<a name="wp511529"> </a><p class="pBody">
+The <code class="cCode">KeyValueKeySelector</code> is explained in greater detail in <a  href="XMLDigitalSignatureAPI8.html#wp511424">Using KeySelectors</a>.
+</p>
+<a name="wp511418"> </a><h4 class="pHeading3">
+Unmarshaling the XML Signature
+</h4>
+<a name="wp511539"> </a><p class="pBody">
+We extract the contents of the <code class="cCode">Signature</code> element into an <code class="cCode">XMLSignature</code> object. This process is called unmarshalling. The <code class="cCode">Signature</code> element is unmarshalled using an <code class="cCode">XMLSignatureFactory</code> object. An application can obtain a DOM implementation of <code class="cCode">XMLSignatureFactory</code> by calling the following line of code:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+XMLSignatureFactory factory = 
+&nbsp;&nbsp;XMLSignatureFactory.getInstance(&quot;DOM&quot;);<a name="wp511541"> </a>
+</pre></div>
+<a name="wp511543"> </a><p class="pBody">
+We then invoke the <code class="cCode">unmarshalXMLSignature</code> method of the factory to unmarshal an <code class="cCode">XMLSignature</code> object, and pass it the validation context we created earlier:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+XMLSignature signature = 
+&nbsp;&nbsp;factory.unmarshalXMLSignature(valContext);<a name="wp511419"> </a>
+</pre></div>
+<a name="wp511420"> </a><h4 class="pHeading3">
+Validating the XML Signature
+</h4>
+<a name="wp511555"> </a><p class="pBody">
+Now we are ready to validate the signature. We do this by invoking the <code class="cCode">validate</code> method on the <code class="cCode">XMLSignature</code> object, and pass it the validation context as follows:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+boolean coreValidity = signature.validate(valContext);<a name="wp511557"> </a>
+</pre></div>
+<a name="wp511421"> </a><p class="pBody">
+The <code class="cCode">validate</code> method returns &quot;true&quot; if the signature validates successfully according to the <code class="cCode">core validation rules</code> in the <code class="cCode">W3C XML Signature Recommendation</code>, and false otherwise.
+</p>
+<a name="wp511422"> </a><h4 class="pHeading3">
+What If the XML Signature Fails to Validate?
+</h4>
+<a name="wp511567"> </a><p class="pBody">
+If the <code class="cCode">XMLSignature.validate</code> method returns false, we can try to narrow down the cause of the failure.  There are two phases in core XML Signature validation:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp512008"> </a><div class="pSmartList1"><li><code class="cCode">Signature validation</code> (the cryptographic verification of the signature) </li></div>
+<a name="wp512011"> </a><div class="pSmartList1"><li><code class="cCode">Reference validation</code> (the verification of the digest of each reference in the signature)</li></div>
+</ul></div>
+<a name="wp512014"> </a><p class="pBody">
+Each phase must be successful for the signature to be valid. To check if the signature failed to cryptographically validate, we can check the status, as follows:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+boolean sv = 
+&nbsp;&nbsp;signature.getSignatureValue().validate(valContext);
+System.out.println(&quot;signature validation status: &quot; + sv);<a name="wp511569"> </a>
+</pre></div>
+<a name="wp511572"> </a><p class="pBody">
+We can also iterate over the references and check the validation status of each one, as follows:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+Iterator i =
+&nbsp;&nbsp;signature.getSignedInfo().getReferences().iterator();
+for (int j=0; i.hasNext(); j++) {
+&nbsp;&nbsp;boolean refValid = ((Reference) 
+&nbsp;&nbsp;&nbsp;&nbsp;i.next()).validate(valContext);
+&nbsp;&nbsp;System.out.println(&quot;ref[&quot;+j+&quot;] validity status: &quot; + 
+&nbsp;&nbsp;&nbsp;&nbsp;refValid);
+}<a name="wp511574"> </a>
+</pre></div>
+<a name="wp511424"> </a><h4 class="pHeading3">
+Using KeySelectors
+</h4>
+<a name="wp511588"> </a><p class="pBody">
+<code class="cCode">KeySelectors</code> are used to find and select keys that are needed to validate an XMLSignature.  Earlier, when we created a <code class="cCode">DOMValidateContext</code> object, we passed a <code class="cCode">KeySelector</code> object as the first argument:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+DOMValidateContext valContext = new DOMValidateContext
+&nbsp;&nbsp;(new KeyValueKeySelector(), nl.item(0));<a name="wp511590"> </a>
+</pre></div>
+<a name="wp511593"> </a><p class="pBody">
+Alternatively, we could have passed a <code class="cCode">PublicKey</code> as the first argument if we already knew what key is needed to validate the signature.  However, we often don't know.
+</p>
+<a name="wp511425"> </a><p class="pBody">
+The <code class="cCode">KeyValueKeySelector</code> is a concrete implementation of the abstract <code class="cCode">KeySelector</code> class.  The <code class="cCode">KeyValueKeySelector</code> implementation tries to find an appropriate validation key using the data contained in <code class="cCode">KeyValue</code> elements of the <code class="cCode">KeyInfo</code> element of an <code class="cCode">XMLSignature</code>. It does not determine if the key is trusted. This is a very simple <code class="cCode">KeySelector</code> implementation, designed for illustration rather than real-world usage. A more practical example of a <code class="cCode">KeySelector</code> is one that searches a <code class="cCode">KeyStore</code> for trusted keys that match <code class="cCode">X509Data</code> information (for example, <code class="cCode">X509SubjectName</code>, <code class="cCode">X509IssuerSerial</code>, <code class="cCode">X509SKI</code>, or <code class="cCode">X509Certificate</code> elements)  contained in a <code class="cCode">KeyInfo</code>.
+</p>
+<a name="wp511606"> </a><p class="pBody">
+The implementation of the <code class="cCode">KeyValueKeySelector</code> is as follows:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+private static class KeyValueKeySelector extends KeySelector {
+
+&nbsp;&nbsp;public KeySelectorResult select(KeyInfo keyInfo,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KeySelector.Purpose purpose,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AlgorithmMethod method,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XMLCryptoContext context)
+&nbsp;&nbsp;&nbsp;&nbsp;throws KeySelectorException {
+
+&nbsp;&nbsp;&nbsp;&nbsp;if (keyInfo == null) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw new KeySelectorException(&quot;Null KeyInfo object!&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;SignatureMethod sm = (SignatureMethod) method;
+&nbsp;&nbsp;&nbsp;&nbsp;List list = keyInfo.getContent();
+
+&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i &lt; list.size(); i++) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XMLStructure xmlStructure = (XMLStructure) list.get(i);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (xmlStructure instanceof KeyValue) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PublicKey pk = null;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pk = ((KeyValue)xmlStructure).getPublicKey();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (KeyException ke) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw new KeySelectorException(ke);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// make sure algorithm is compatible with method
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (algEquals(sm.getAlgorithm(), 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pk.getAlgorithm())) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new SimpleKeySelectorResult(pk);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;throw new KeySelectorException(&quot;No KeyValue element 
+found!&quot;);
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;static boolean algEquals(String algURI, String algName) {
+&nbsp;&nbsp;&nbsp;&nbsp;if (algName.equalsIgnoreCase(&quot;DSA&quot;) &amp;&amp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;algURI.equalsIgnoreCase(SignatureMethod.DSA_SHA1)) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true;
+&nbsp;&nbsp;&nbsp;&nbsp;} else if (algName.equalsIgnoreCase(&quot;RSA&quot;) &amp;&amp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;algURI.equalsIgnoreCase(SignatureMethod.RSA_SHA1)) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true;
+&nbsp;&nbsp;&nbsp;&nbsp;} else {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;}
+}<a name="wp511608"> </a>
+</pre></div>
+<a name="wp511438"> </a><h3 class="pHeading2">
+genenveloped Example
+</h3>
+<a name="wp511755"> </a><p class="pBody">
+The code discussed in this section is in the <code class="cCode">GenEnveloped.java</code> file in the <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/xmldsig/samples/genenveloped</code> directory. The file on which it operates, <code class="cCode">envelope.xml</code>, is in the same directory. It generates the file <code class="cCode">envelopedSignature.xml.</code>
+</p>
+<a name="wp512216"> </a><p class="pBody">
+To compile and run this sample, execute the following command from the <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/xmldsig/samples/genenveloped</code> directory:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+$ ant <a name="wp512218"> </a>
+</pre></div>
+<a name="wp512220"> </a><p class="pBody">
+The sample program will generate an enveloped signature of the document in the file <code class="cCode">envelope.xml</code> and store it in the file <code class="cCode">envelopedSignature.xml</code> in the current working directory.
+</p>
+<a name="wp511436"> </a><h4 class="pHeading3">
+Generating an XML Signature
+</h4>
+<a name="wp511919"> </a><p class="pBody">
+This example shows you how to generate an XML Signature using the XML Digital Signature API. More specifically, the example generates an enveloped XML Signature of an XML document. An enveloped signature is a signature that is contained inside the content that it is signing. The example uses DOM (the Document Object Model) to parse the XML document to be signed and a JSR 105 DOM implementation to generate the resulting signature.
+</p>
+<a name="wp511740"> </a><p class="pBody">
+<a  href="http://www.w3.org/TR/xmldsig-core/" target="_blank">A basic knowledge of XML Signatures and their different components is helpful for understanding this section. See </a><code class="cCode">http://www.w3.org/TR/xmldsig-core/</code> for more information.
+</p>
+<a name="wp511741"> </a><h4 class="pHeading3">
+Instantiating the Document to be Signed
+</h4>
+<a name="wp511913"> </a><p class="pBody">
+First, we use a JAXP <code class="cCode">DocumentBuilderFactory</code> to parse the XML document that we want to sign. An application obtains the default implementation for <code class="cCode">DocumentBuilderFactory</code> by calling the following line of code:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+DocumentBuilderFactory dbf =
+&nbsp;&nbsp;DocumentBuilderFactory.newInstance();<a name="wp513167"> </a>
+</pre></div>
+<a name="wp511915"> </a><p class="pBody">
+We must also make the factory namespace-aware:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+dbf.setNamespaceAware(true);<a name="wp511895"> </a>
+</pre></div>
+<a name="wp511897"> </a><p class="pBody">
+Next, we use the factory to get an instance of a <code class="cCode">DocumentBuilder</code>, which is used to parse the document:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+DocumentBuilder builder = dbf.newDocumentBuilder();  
+Document doc = builder.parse(new FileInputStream(argv[0]));<a name="wp511899"> </a>
+</pre></div>
+<a name="wp511743"> </a><h4 class="pHeading3">
+Creating a Public Key Pair
+</h4>
+<a name="wp511875"> </a><p class="pBody">
+We generate a public key pair. Later in the example, we will use the private key to generate the signature. We create the key pair with a <code class="cCode">KeyPairGenerator</code>. In this example, we will create a DSA <code class="cCode">KeyPair</code> with a length of 512 bytes :
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+KeyPairGenerator kpg = KeyPairGenerator.getInstance(&quot;DSA&quot;);
+kpg.initialize(512);
+KeyPair kp = kpg.generateKeyPair();<a name="wp511877"> </a>
+</pre></div>
+<a name="wp511744"> </a><p class="pBody">
+In practice, the private key is usually previously generated and stored in a <code class="cCode">KeyStore</code> file with an associated public key certificate.
+</p>
+<a name="wp511745"> </a><h4 class="pHeading3">
+Creating a Signing Context
+</h4>
+<a name="wp511864"> </a><p class="pBody">
+We create an XML Digital Signature <code class="cCode">XMLSignContext</code> containing input parameters for generating the signature.  Since we are using DOM, we instantiate a <code class="cCode">DOMSignContext</code> (a subclass of <code class="cCode">XMLSignContext</code>), and pass it two parameters, the private key that will be used to sign the document and the root of the document to be signed:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+DOMSignContext dsc = new DOMSignContext
+&nbsp;&nbsp;(kp.getPrivate(), doc.getDocumentElement());<a name="wp511866"> </a>
+</pre></div>
+<a name="wp511747"> </a><h4 class="pHeading3">
+Assembling the XML Signature
+</h4>
+<a name="wp511799"> </a><p class="pBody">
+We assemble the different parts of the <code class="cCode">Signature</code> element into an <code class="cCode">XMLSignature</code> object. These objects are all created and assembled using an <code class="cCode">XMLSignatureFactory</code> object. An application obtains a DOM implementation of <code class="cCode">XMLSignatureFactory</code> by calling the following line of code:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+XMLSignatureFactory fac = 
+&nbsp;&nbsp;XMLSignatureFactory.getInstance(&quot;DOM&quot;);<a name="wp511801"> </a>
+</pre></div>
+<a name="wp511803"> </a><p class="pBody">
+We then invoke various factory methods to create the different parts of the <code class="cCode">XMLSignature</code> object as shown below. We create a <code class="cCode">Reference</code> object, passing to it the following:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp512044"> </a><div class="pSmartList1"><li>The URI of the object to be signed (We specify a URI of &quot;&quot;, which implies the root of the document.)</li></div>
+<a name="wp512049"> </a><div class="pSmartList1"><li>The <code class="cCode">DigestMethod</code> (we use SHA1)</li></div>
+<a name="wp512050"> </a><div class="pSmartList1"><li>A single <code class="cCode">Transform</code>, the enveloped <code class="cCode">Transform</code>, which is required for enveloped signatures so that the signature itself is removed before calculating the signature value</li></div>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+Reference ref = fac.newReference
+&nbsp;&nbsp;(&quot;&quot;, fac.newDigestMethod(DigestMethod.SHA1, null),
+&nbsp;&nbsp;&nbsp;&nbsp;Collections.singletonList
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fac.newTransform(Transform.ENVELOPED, null)),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null, null);<a name="wp511805"> </a>
+</pre></div>
+</ul></div>
+<a name="wp511811"> </a><p class="pBody">
+Next, we create the <code class="cCode">SignedInfo</code> object, which is the object that is actually signed, as shown below. When creating the <code class="cCode">SignedInfo</code>, we pass as parameters:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp512056"> </a><div class="pSmartList1"><li>The <code class="cCode">CanonicalizationMethod</code> (we use inclusive and preserve comments)</li></div>
+<a name="wp512059"> </a><div class="pSmartList1"><li>The <code class="cCode">SignatureMethod</code> (we use DSA)</li></div>
+<a name="wp512060"> </a><div class="pSmartList1"><li>A list of <code class="cCode">References</code> (in this case, only one)</li></div>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+SignedInfo si = fac.newSignedInfo
+&nbsp;&nbsp;(fac.newCanonicalizationMethod
+&nbsp;&nbsp;&nbsp;&nbsp;(CanonicalizationMethod.INCLUSIVE_WITH_COMMENTS, null),
+&nbsp;&nbsp;&nbsp;&nbsp;fac.newSignatureMethod(SignatureMethod.DSA_SHA1, null),
+&nbsp;&nbsp;&nbsp;&nbsp;Collections.singletonList(ref));<a name="wp511813"> </a>
+</pre></div>
+</ul></div>
+<a name="wp511819"> </a><p class="pBody">
+Next, we create the optional <code class="cCode">KeyInfo</code> object, which contains information that enables the recipient to find the key needed to validate the signature. In this example, we add a <code class="cCode">KeyValue</code> object containing the public key. To create <code class="cCode">KeyInfo</code> and its various subtypes, we use a <code class="cCode">KeyInfoFactory</code> object, which can be obtained by invoking the <code class="cCode">getKeyInfoFactory</code> method of the <code class="cCode">XMLSignatureFactory</code>, as follows:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+KeyInfoFactory kif = fac.getKeyInfoFactory();<a name="wp511822"> </a>
+</pre></div>
+<a name="wp511824"> </a><p class="pBody">
+We then use the <code class="cCode">KeyInfoFactory</code> to create the <code class="cCode">KeyValue</code> object and add it to a <code class="cCode">KeyInfo</code> object:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+KeyValue kv = kif.newKeyValue(kp.getPublic());
+KeyInfo ki = kif.newKeyInfo(Collections.singletonList(kv));<a name="wp511826"> </a>
+</pre></div>
+<a name="wp511829"> </a><p class="pBody">
+Finally, we create the <code class="cCode">XMLSignature</code> object, passing as parameters the <code class="cCode">SignedInfo</code> and <code class="cCode">KeyInfo</code> objects that we created earlier:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+XMLSignature signature = fac.newXMLSignature(si, ki);<a name="wp511831"> </a>
+</pre></div>
+<a name="wp511836"> </a><p class="pBody">
+Notice that we haven't actually generated the signature yet; we'll do that in the next step.
+</p>
+<a name="wp511749"> </a><h4 class="pHeading3">
+Generating the XML Signature
+</h4>
+<a name="wp511787"> </a><p class="pBody">
+Now we are ready to generate the signature, which we do by invoking the <code class="cCode">sign</code> method on the <code class="cCode">XMLSignature</code> object, and pass it the signing context as follows:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+signature.sign(dsc);<a name="wp511789"> </a>
+</pre></div>
+<a name="wp511750"> </a><p class="pBody">
+The resulting document now contains a signature, which has been inserted as the last child element of the root element.
+</p>
+<a name="wp511751"> </a><h4 class="pHeading3">
+Printing or Displaying the Resulting Document
+</h4>
+<a name="wp511768"> </a><p class="pBody">
+You can use the following code to print the resulting signed document to a file or standard output:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+OutputStream os;
+if (args.length &gt; 1) {
+&nbsp;&nbsp;os = new FileOutputStream(args[1]);
+} else {
+&nbsp;&nbsp;os = System.out;
+}<a name="wp511770"> </a>
+TransformerFactory tf = TransformerFactory.newInstance();
+Transformer trans = tf.newTransformer();
+trans.transform(new DOMSource(doc), new StreamResult(os));<a name="wp511777"> </a>
+</pre></div>
+<a name="wp511766"> </a><p class="pBody">
+
+</p>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XMLDigitalSignatureAPI7.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="RegistryServer.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

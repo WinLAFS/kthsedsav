@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Adding and Deleting Users</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="RegistryServer2.html" />
+    <link rel="Next" href="RegistryServer4.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="RegistryServer2.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="RegistryServer4.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp69538"> </a><h2 class="pHeading1">
+Adding and Deleting Users
+</h2>
+<a name="wp69539"> </a><p class="pBody">
+To add a new user to the Registry Server database, you use the script <code class="cCode">registry-server-test.bat</code> (Windows) or <code class="cCode">registry-server-test.sh</code> (UNIX), in the directory <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/registry-server/samples/</code>. This script uses files in the directory <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/registry-server/samples/xml/</code>. You use the same script to delete a user.
+</p>
+<a name="wp66011"> </a><h3 class="pHeading2">
+Adding a New User to the Registry
+</h3>
+<a name="wp66019"> </a><p class="pBody">
+To add a new user to the Registry Server database, you use the file <code class="cCode">UserInfo.xml</code> in the <code class="cCode">xml</code> subdirectory. Perform the following steps:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp69110"> </a><div class="pSmartList1"><li>Go to the directory <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/registry-server/samples/</code>.</li></div>
+<a name="wp66044"> </a><div class="pSmartList1"><li>Open the file <code class="cCode">xml/UserInfo.xml</code> in an editor.</li></div>
+<a name="wp69141"> </a><div class="pSmartList1"><li>Change the values in the <code class="cCode">&lt;fname&gt;</code>, <code class="cCode">&lt;lname&gt;</code>, and <code class="cCode">&lt;uid&gt;</code> tags to the first name, last name, and unique user ID (UID) of the new user. The <code class="cCode">&lt;uid&gt;</code> tag is commonly the user's login name. It must be unique. </li></div>
+<a name="wp69134"> </a><div class="pSmartList1"><li>Change the value in the <code class="cCode">&lt;passwd&gt;</code> tag to a password of your choice. This is the password for the new user. Do not modify the <code class="cCode">&lt;tokenExpiration&gt;</code> or <code class="cCode">&lt;authInfo&gt;</code> tag.</li></div>
+<a name="wp66170"> </a><div class="pSmartList1"><li>Save and close the <code class="cCode">UserInfo.xml</code> file.</li></div>
+<a name="wp66185"> </a><div class="pSmartList1"><li>Type the following command (all on one line):</li></div>
+<a name="wp69017"> </a><p class="pBodyRelative">
+Windows:
+</p>
+<a name="wp66194"> </a><p class="pBodyRelative">
+<code class="cCode">registry-server-test run-cli-request <br />&nbsp;&nbsp;-Drequest=xml\UserInfo.xml</code>
+</p>
+<a name="wp69021"> </a><p class="pBodyRelative">
+UNIX:
+</p>
+<a name="wp69025"> </a><p class="pBodyRelative">
+<code class="cCode">registry-server-test.sh run-cli-request <br />&nbsp;&nbsp;-Drequest=xml/UserInfo.xml</code>
+</p>
+</ol></div>
+<a name="wp68988"> </a><h3 class="pHeading2">
+Deleting a User from the Registry
+</h3>
+<a name="wp69043"> </a><p class="pBody">
+To delete a user from the registry, you use the file <code class="cCode">UserDelete.xml</code> in the <code class="cCode">xml</code> subdirectory.
+</p>
+<a name="wp69048"> </a><p class="pBody">
+Before you run the script this time, edit this file by modifying the values in the <code class="cCode">&lt;fname&gt;</code>, <code class="cCode">&lt;lname&gt;</code>, <code class="cCode">&lt;uid&gt;</code>, and <code class="cCode">&lt;passwd&gt;</code> tags.
+</p>
+<a name="wp69054"> </a><p class="pBody">
+To delete the user, use the following command:
+</p>
+<a name="wp69033"> </a><p class="pBody">
+Windows:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+registry-server-test run-cli-request 
+&nbsp;&nbsp;-Drequest=xml\UserDelete.xml<a name="wp69034"> </a>
+</pre></div>
+<a name="wp69035"> </a><p class="pBody">
+UNIX:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+registry-server-test.sh run-cli-request 
+&nbsp;&nbsp;-Drequest=xml/UserDelete.xml<a name="wp69036"> </a>
+</pre></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="RegistryServer2.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="RegistryServer4.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

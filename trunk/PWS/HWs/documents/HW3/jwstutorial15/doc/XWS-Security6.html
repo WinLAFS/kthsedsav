@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Understanding and Running the JAAS-Sample Application</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XWS-Security5.html" />
+    <link rel="Next" href="XWS-Security7.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security5.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security7.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp539789"> </a><h2 class="pHeading1">
+Understanding and Running the JAAS-Sample Application
+</h2>
+<a name="wp540219"> </a><p class="pBody">
+The Java Authentication and Authorization Service (JAAS) is a set of APIs that enable services to authenticate and enforce access controls upon users. It implements a Java technology version of the standard Pluggable Authentication Module (PAM) framework, and supports user-based authorization.
+</p>
+<a name="wp540394"> </a><p class="pBody">
+The <code class="cCode">jaas-sample</code> application demonstrates the following functionality:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp540220"> </a><div class="pSmartList1"><li>Obtaining a user name and password at run-time and sending it in a Web Services Security (WSS) <code class="cCode">UsernameToken</code> to the server.</li></div>
+<a name="wp540221"> </a><div class="pSmartList1"><li>Using JAAS authentication to authenticate the user name and password in the server application.</li></div>
+<a name="wp540222"> </a><div class="pSmartList1"><li>Accessing the authenticated sender's subject from within the endpoint implementation methods.</li></div>
+</ul></div>
+<a name="wp540246"> </a><p class="pBody">
+The application prints out both the client and server request and response SOAP messages. The output from the server may be viewed in the appropriate container's log file. The output from the client may be viewed using <code class="cCode">stdout</code>.
+</p>
+<a name="wp540247"> </a><p class="pBody">
+In this example, server-side code is found in the <code class="cCode">/jaas-sample/server/src/jaas-sample/</code> directory. Client-side code is found in the <code class="cCode">/jaas-sample/client/src/jaas-sample/</code> directory. The <code class="cCode">asant</code> (or <code class="cCode">ant)</code> targets build objects under the <code class="cCode">/build/server/</code> and <code class="cCode">/build/client/</code> directories. 
+</p>
+<a name="wp540269"> </a><h4 class="pHeading3">
+Understanding JAAS-Sample Security Configuration Files
+</h4>
+<a name="wp540271"> </a><p class="pBody">
+The security configuration pair <code class="cCode">user-pass-authenticate-client.xml</code> and <code class="cCode">user-pass-authenticate-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp540272"> </a><div class="pSmartList1"><li>Client adds a username-password token and sends a request.</li></div>
+<a name="wp540273"> </a><div class="pSmartList1"><li>Server authenticates the username and password against a username-password database.</li></div>
+<a name="wp540274"> </a><div class="pSmartList1"><li>Server sends response.</li></div>
+</ul></div>
+<a name="wp540275"> </a><p class="pBody">
+The username-password database must be set up before this security configuration pair will run properly. Refer to <a  href="XWS-Security4.html#wp521092">Setting Up the Application Server For the Examples</a> for instructions on setting up this database.
+</p>
+<a name="wp540279"> </a><p class="pBody">
+The <code class="cCode">user-pass-authenticate-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;xwss:UsernameToken digestPassword=&quot;false&quot;/&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+    &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.ClientSecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt;<a name="wp540286"> </a>
+</pre></div>
+<a name="wp562732"> </a><p class="pBody">
+If you compare this security configuration file to the similar one in the <code class="cCode">simple</code> sample, as discussed in <a  href="XWS-Security5.html#wp539184">Adding a UserName Password Token</a>, you'll see that this security configuration file does not hard-code the user name and password. The username and password are obtained by reading a system property <code class="cCode">username.password</code>. The default value for this property has been configured inside the <code class="cCode">build.xml</code> file of the <code class="cCode">jaas-sample</code> under the <code class="cCode">run-sample</code> target as a <code class="cCode">sysproperty</code>. The client-side <code class="cCode">SecurityEnvironmentHandler</code> of this sample is the entity that actually reads the system property at run-time and populates the username and password <code class="cCode">Callback</code> objects passed to it by the XWS-Security run-time. A different <code class="cCode">SecurityEnvironmentHandler</code> can be plugged into this sample to obtain the username and password at run-time from a different source (possibly by popping up a dialog box where the user can enter the username and password).
+</p>
+<a name="wp540317"> </a><p class="pBody">
+This samples server-side <code class="cCode">SecurityEnvironmentHandler</code> makes use of a JAAS login module that takes care of authenticating the user name and password. The sample demonstrates how JAAS authentication can be plugged into applications that use the XWS-Security framework. The source of the JAAS login module, <code class="cCode">UserPassLoginModule.java</code>, is located at  <code class="cVariable">&lt;JWSDP_HOME&gt;</code><code class="cCode">/xws-security/samples/jaas-sample/src/com/sun/xml/wss/sample</code> directory. The <code class="cCode">JAASValidator.java</code> class in the same directory does the actual JAAS authentication by creating a <code class="cCode">LoginContext</code> and calling the <code class="cCode">LoggingContext.login()</code> method. The <code class="cCode">UserPassLoginModule</code> makes use of a username-password XML database located at <code class="cVariable">&lt;JWSDP_HOME&gt;</code><code class="cCode">/xws-security/etc/userpasslist.xml</code> when performing the actual authentication in its <code class="cCode">login()</code> method.
+</p>
+<a name="wp539880"> </a><h3 class="pHeading2">
+Setting Up For the JAAS-Sample
+</h3>
+<a name="wp539950"> </a><p class="pBody">
+Before the sample application will run correctly, you must have completed the tasks defined in the following sections of this addendum:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp539954"> </a><div class="pSmartList1"><li><a  href="XWS-Security4.html#wp520429">Setting System Properties</a></li></div>
+<a name="wp539966"> </a><div class="pSmartList1"><li><a  href="XWS-Security4.html#wp524936">Setting Build Properties</a></li></div>
+</ul></div>
+<a name="wp539887"> </a><p class="pBody">
+In addition, follow the steps in this section that are specific to the <code class="cCode">jaas-sample</code> application.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp539969"> </a><div class="pSmartList1"><li>Stop the Application Server.</li></div>
+<a name="wp562819"> </a><div class="pSmartList1"><li>Set the user name and password for the example.</li></div>
+<a name="wp539979"> </a><p class="pBodyRelative">
+Because the samples are run using <code class="cCode">Asant</code> tasks, the user name and password for this example are set as a system property. The <code class="cCode">build.xml</code> file for the <code class="cCode">jaas-sample</code> example includes the following line under the <code class="cCode">run-sample </code>target that uses a user name and password supplied in the <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/xws-security/etc/userpasslist.xml</code> file. 
+</p>
+<a name="wp562825"> </a><p class="pBodyRelative">
+<code class="cCode">&lt;sysproperty key=&quot;username.password&quot; value=&quot;Ron noR&quot;/&gt;</code>
+</p>
+<a name="wp540039"> </a><p class="pBodyRelative">
+The JAAS login module also makes use of the <code class="cCode">userpasslist.xml</code> file, so make sure that this file exists and contains the user name and password specified in the <code class="cCode">build.xml</code> file.
+</p>
+<a name="wp539903"> </a><div class="pSmartList1"><li>Add the following JAAS policy to the JAAS policy file of the Application Server. This file can be found at &lt;<code class="cVariable">SJSAS_HOME</code>&gt;<code class="cCode">/domains/domain1/config/login.conf</code>. Add the following code near the end of the file:</li></div>
+<a name="wp540102"> </a><p class="pBodyRelative">
+<code class="cCode">/** Login Configuration for the Sample Application **/<br />XWS_SECURITY_SERVER{com.sun.xml.wss.sample.UserPassLoginModule REQUIRED debug=true;<br />};</code>
+</p>
+</ol></div>
+<a name="wp539883"> </a><h3 class="pHeading2">
+Running the JAAS-Sample Application
+</h3>
+<a name="wp539816"> </a><p class="pBody">
+To run the <code class="cCode">simple</code> sample application, follow these steps:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp539817"> </a><div class="pSmartList1"><li>Follow the steps in <a  href="XWS-Security6.html#wp539880">Setting Up For the JAAS-Sample</a>.</li></div>
+<a name="wp540192"> </a><div class="pSmartList1"><li>Start the selected container and make sure the server is running. To start the Application Server, </li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp539818"> </a><div class="pSmartList2"><li>From a Unix machine, enter the following command from a terminal window: <code class="cCode">asadmin start-domain domain1</code></li></div>
+<a name="wp539819"> </a><div class="pSmartList2"><li>From a Windows machine, choose Start<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>Programs<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>Sun Microsystems<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>Application Server<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>Start Default Server.</li></div>
+</ol></div>
+<a name="wp539820"> </a><div class="pSmartList1"><li>Modify the <code class="cCode">build.properties</code> file to set up the security configuration that you want to run for the client and/or server. See <a  href="XWS-Security5.html#wp521958">Sample Security Configuration File Options</a> for more information on the security configurations options that are already defined for the sample application.</li></div>
+<a name="wp539824"> </a><div class="pSmartList1"><li>Build and run the application from a terminal window or command prompt.</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp539825"> </a><div class="pSmartList2"><li>On the Application Server, the command to build and run the application is: <code class="cCode">asant</code> <code class="cCode">run-sample</code> </li></div>
+<a name="wp539826"> </a><div class="pSmartList2"><li>On the other containers, the command to build and run the application is: <code class="cCode">ant</code> <code class="cCode">run-sample</code></li></div>
+</ul></div>
+</ol></div>
+<hr>
+<a name="wp539828"> </a><p class="pNote">
+Note: To run the sample against a remote server containing the deployed endpoint, use the <code class="cCode">run-remote-sample</code> target in place of the <code class="cCode">run-sample</code> target. In this situation, make sure that the <code class="cCode">endpoint.host</code>, <code class="cCode">endpoint.port</code>, <code class="cCode">http.proxyHost</code>, <code class="cCode">http.proxyPort</code>, and <code class="cCode">service.url</code> properties are set correctly in the <code class="cCode">build.properties</code> file (as discussed in <a  href="XWS-Security4.html#wp524936">Setting Build Properties</a>) before running the sample.
+</p>
+<hr><a name="wp539832"> </a><p class="pBody">
+If the application runs successfully, you will see a message similar to the following:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[echo] Running the sample.TestClient program....
+     [java] Service URL=http://localhost:8080/jaassample/Ping
+     [java] Username read=Ron
+     [java] Password read=noR
+     [java] INFO: ==== Sending Message Start ====
+     [java] &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+     [java] &lt;env:Envelope xmlns:env=&quot;http://
+schemas.xmlsoap.org/soap/envelope/&quot; xmlns:enc=&quot;http://
+schemas.xmlsoap.org/soap/encoding/&quot; xmlns:ns0=&quot;http://
+xmlsoap.org/Ping&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; 
+xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+     [java] &lt;env:Header&gt;
+     [java] &lt;wsse:Security xmlns:wsse=&quot;http://docs.oasis-
+open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-
+1.0.xsd&quot; env:mustUnderstand=&quot;1&quot;&gt;
+     [java] &lt;wsse:UsernameToken&gt;
+     [java] &lt;wsse:Username&gt;Ron&lt;/wsse:Username&gt;
+     [java] &lt;wsse:Password&gt;****&lt;/wsse:Password&gt;
+     [java] &lt;wsse:Nonce EncodingType=&quot;http://docs.oasis-
+open.org/wss/2004/01/oasis-200401-wss-soap-message-security-
+1.0#Base64Binary&quot;&gt;qdKj8WL0U3r21rcgOiM4H76H&lt;/wsse:Nonce&gt;
+     [java] &lt;wsu:Created xmlns:wsu=&quot;http://docs.oasis-open.org/
+wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd&quot;&gt;2004-
+11-05T02:07:46Z&lt;/wsu:Created&gt;
+     [java] &lt;/wsse:UsernameToken&gt;
+     [java] &lt;/wsse:Security&gt;
+     [java] &lt;/env:Header&gt;
+     [java] &lt;env:Body&gt;
+     [java] &lt;ns0:Ping&gt;
+     [java] &lt;ns0:ticket&gt;SUNW&lt;/ns0:ticket&gt;
+     [java] &lt;ns0:text&gt;Hello !&lt;/ns0:text&gt;
+     [java] &lt;/ns0:Ping&gt;
+     [java] &lt;/env:Body&gt;
+     [java] &lt;/env:Envelope&gt;
+     [java] ==== Sending Message End ====
+ 
+     [java] INFO: ==== Received Message Start ====
+     [java] &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+     [java] &lt;env:Envelope xmlns:env=&quot;http://
+schemas.xmlsoap.org/soap/envelope/&quot; xmlns:enc=&quot;http://
+schemas.xmlsoap.org/soap/encoding/&quot; xmlns:ns0=&quot;http://
+xmlsoap.org/Ping&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; 
+xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+     [java] &lt;env:Body&gt;
+     [java] &lt;ns0:PingResponse&gt;
+     [java] &lt;ns0:text&gt;Hello !&lt;/ns0:text&gt;
+     [java] &lt;/ns0:PingResponse&gt;
+     [java] &lt;/env:Body&gt;
+     [java] &lt;/env:Envelope&gt;
+     [java] ==== Received Message End ==== <a name="wp563054"> </a>
+</pre></div>
+<a name="wp540195"> </a><p class="pBody">
+The server code in <code class="cCode">server/src/sample/PingImpl.java</code> makes use of a <code class="cCode">SubjectAccessor</code> to access and print the authenticated <code class="cCode">Subjects</code> principal from within the business method <code class="cCode">Ping()</code>.
+</p>
+<a name="wp539834"> </a><p class="pBody">
+You can view similar messages in the server logs: 
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;<code class="cVariable">SJSAS_HOME</code>&gt;/domains/&lt;<code class="cVariable">domain-name</code>&gt;/logs/server.log 
+&lt;<code class="cVariable">TOMCAT_HOME</code>&gt;/logs/launcher.server.log 
+&lt;<code class="cVariable">SJSWS_HOME</code>&gt;/&lt;<code class="cVariable">Virtual-Server-Dir</code>&gt;/logs/errors <a name="wp539835"> </a>
+</pre></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security5.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security7.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

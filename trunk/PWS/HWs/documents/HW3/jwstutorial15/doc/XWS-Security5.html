@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Understanding and Running the Simple Sample Application</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XWS-Security4.html" />
+    <link rel="Next" href="XWS-Security6.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security4.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security6.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp519089"> </a><h2 class="pHeading1">
+Understanding and Running the Simple Sample Application
+</h2>
+<a name="wp521763"> </a><p class="pBody">
+This example is a fully-developed sample application that demonstrates various configurations that can be used to exercise XWS-Security framework code. By modifying two properties in the <code class="cCode">build.properties</code> file for the example, you can change the type of security that is being used for the client and/or the server. The types of security configurations possible in this example include XML Digital Signature, XML Encryption, and <code class="cCode">UserNameToken</code> verification. This example allows and demonstrates combinations of these basic security mechanisms through the specification of the appropriate security configuration files.
+</p>
+<a name="wp521773"> </a><p class="pBody">
+The application prints out both the client and server request and response SOAP messages. The output from the server may be viewed in the appropriate container's log file. The output from the client may be viewed using <code class="cCode">stdout</code>.
+</p>
+<a name="wp521777"> </a><p class="pBody">
+In this example, server-side code is found in the <code class="cCode">/simple/server/src/simple/</code> directory. Client-side code is found in the <code class="cCode">/simple/client/src/simple/</code> directory. The <code class="cCode">asant</code> (or <code class="cCode">ant)</code> targets build objects under the <code class="cCode">/build/server/</code> and <code class="cCode">/build/client/</code> directories. 
+</p>
+<a name="wp521792"> </a><p class="pBody">
+This example uses keystores and truststores which are included in the <code class="cCode">/xws-security/etc/</code> directory. For more information on using keystore and truststore files, read the <code class="cCode">keytool</code> documentation at the following URL:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+<code class="cCode"><a  href="http://java.sun.com/j2se/1.5.0/docs/tooldocs/solaris/keytool.html" target="_blank"></a></code>http://java.sun.com/j2se/1.5.0/docs/tooldocs/solaris/key-
+tool.html<a name="wp531699"> </a>
+</pre></div>
+<a name="wp521930"> </a><h3 class="pHeading2">
+Plugging in Security Configurations
+</h3>
+<a name="wp521933"> </a><p class="pBody">
+This example makes it simple to plug in different client and server-side configurations describing security settings. This example has support for digital signatures, XML encryption/decryption, and username/token verification. This example allows and demonstrates combinations of these basic security mechanisms through configuration files. See <a  href="XWS-Security5.html#wp521958">Sample Security Configuration File Options</a>, for further description of the security configuration options defined for the <code class="cCode">simple</code> sample application.
+</p>
+<a name="wp522059"> </a><p class="pBody">
+To specify which security configuration option to use when the sample application is run (see <a  href="XWS-Security5.html#wp520879">Running the Simple Sample Application</a>), follow these steps:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp522164"> </a><div class="pSmartList1"><li>Open the <code class="cCode">build.properties</code> file for the example. This file is located at <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/xws-security/samples/simple/build.properties</code>. </li></div>
+<a name="wp522173"> </a><div class="pSmartList1"><li>To set the security configuration that you want to run for the client, locate the <code class="cCode">client.security.config</code> property, and uncomment one of the client security configuration options. The client configuration options are listed in <a  href="XWS-Security5.html#wp521958">Sample Security Configuration File Options</a>, and also list which client and server configurations work together. For example, if you want to use XML Encryption for the client, you would uncomment this option:</li></div>
+<a name="wp522189"> </a><p class="pBodyRelative">
+<code class="cCode"># Client Security Config. file<br />client.security.config=config/encrypt-client.xml</code>
+</p>
+<a name="wp538726"> </a><p class="pBodyRelative">
+Be sure to uncomment only one client security configuration at a time.
+</p>
+<a name="wp522192"> </a><div class="pSmartList1"><li>To set the security configuration that you want to run for the server, locate the <code class="cCode">server.security.config</code> property, and uncomment one of the server security configuration options. The server configuration options, and which server options are valid for a given client configuration, are listed in <a  href="XWS-Security5.html#wp521958">Sample Security Configuration File Options</a>. For example, if you want to use XML Encryption for the server, you would uncomment this option:</li></div>
+<a name="wp522193"> </a><p class="pBodyRelative">
+<code class="cCode"># Server Security Config. file<br />server.security.config=config/encrypt-server.xml</code>
+</p>
+<a name="wp538742"> </a><p class="pBodyRelative">
+Be sure to uncomment only one client security configuration at a time.
+</p>
+<a name="wp522214"> </a><div class="pSmartList1"><li>Save and exit the <code class="cCode">build.properties</code> file.</li></div>
+<a name="wp522358"> </a><div class="pSmartList1"><li>Run the sample application as described in <a  href="XWS-Security5.html#wp520879">Running the Simple Sample Application</a>.</li></div>
+</ol></div>
+<a name="wp521958"> </a><h3 class="pHeading2">
+Sample Security Configuration File Options
+</h3>
+<a name="wp521961"> </a><p class="pBody">
+The configuration files available for this example are located in the <code class="cCode">/xws-security/samples/simple/config/</code> directory. The configuration pairs available under this sample include configurations for both the client and server side. Some possible combinations are discussed in more detail in the referenced sections. 
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp522240"> </a><div class="pSmartList1"><li><code class="cCode">dump-client.xml, dump-server.xml</code></li></div>
+<a name="wp522241"> </a><div class="pSmartList1"><li><code class="cCode">encrypt-client.xml, encrypt-server.xml</code></li></div>
+<a name="wp522242"> </a><div class="pSmartList1"><li><code class="cCode">sign-client.xml, sign-server.xml</code></li></div>
+<a name="wp522243"> </a><div class="pSmartList1"><li><code class="cCode">sign-encrypt-client.xml, sign-encrypt-server.xml</code></li></div>
+<a name="wp522244"> </a><div class="pSmartList1"><li><code class="cCode">encrypt-sign-client.xml, encrypt-sign-server.xml</code></li></div>
+<a name="wp538753"> </a><div class="pSmartList1"><li><code class="cCode">sign-ticket-also-client.xml, sign-ticket-also-server.xml</code></li></div>
+<a name="wp538763"> </a><div class="pSmartList1"><li><code class="cCode">timestamp-sign-client.xml, timestamp-sign-server.xml</code></li></div>
+<a name="wp538764"> </a><div class="pSmartList1"><li><code class="cCode">encrypt-using-symmkey-client.xml, encrypt-server.xml</code></li></div>
+<a name="wp522366"> </a><div class="pSmartList1"><li><code class="cCode">user-pass-authenticate-client.xml, user-pass-authenticate-server.xml</code></li></div>
+<a name="wp522237"> </a><div class="pSmartList1"><li><code class="cCode">encrypted-user-pass-client.xml, encrypted-user-pass-server.xml</code></li></div>
+<a name="wp538772"> </a><div class="pSmartList1"><li><code class="cCode">encrypt-usernameToken-client.xml, encrypt-usernameToken-server.xml</code></li></div>
+<a name="wp538775"> </a><div class="pSmartList1"><li><code class="cCode">method-level-client.xml, method-level-server.xml</code></li></div>
+</ul></div>
+<a name="wp522251"> </a><h4 class="pHeading3">
+Dumping the Request and/or the Response 
+</h4>
+<a name="wp522252"> </a><p class="pBody">
+The security configuration pair <code class="cCode">dump-client.xml</code> and <code class="cCode">dump-server.xml</code> have no security operations. These options enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp524653"> </a><div class="pSmartList1"><li>Dump the request before it leaves the client. </li></div>
+<a name="wp524654"> </a><div class="pSmartList1"><li>Dump the response upon receipt from the server. </li></div>
+</ul></div>
+<a name="wp521969"> </a><p class="pBody">
+The container's server logs also contain the dumps of the server request and response. See <a  href="XWS-Security5.html#wp520879">Running the Simple Sample Application</a> for more information on viewing the server logs.
+</p>
+<a name="wp521972"> </a><h4 class="pHeading3">
+Encrypting the Request and/or the Response
+</h4>
+<a name="wp522253"> </a><p class="pBody">
+The security configuration pair <code class="cCode">encrypt-client.xml</code> and <code class="cCode">encrypt-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp524657"> </a><div class="pSmartList1"><li>Client encrypts the request body and sends it. </li></div>
+<a name="wp524662"> </a><div class="pSmartList1"><li>Server decrypts the request and sends back a response. </li></div>
+</ul></div>
+<a name="wp538790"> </a><p class="pBody">
+The <code class="cCode">encrypt-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;!--
+              Since no targets have been specified below, the 
+contents of
+              the soap body would be encrypted by default.
+            --&gt;
+            &lt;xwss:Encrypt&gt;
+                &lt;xwss:X509Token certificateAlias=&quot;s1as&quot;/&gt;
+            &lt;/xwss:Encrypt&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+    &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.SecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt;<a name="wp538798"> </a>
+</pre></div>
+<a name="wp538794"> </a><h4 class="pHeading3">
+Signing and Verifying the Signature
+</h4>
+<a name="wp522254"> </a><p class="pBody">
+The security configuration pair <code class="cCode">sign-client.xml</code> and <code class="cCode">sign-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp524680"> </a><div class="pSmartList1"><li>Client signs the request body. </li></div>
+<a name="wp524683"> </a><div class="pSmartList1"><li>Server verifies the signature and sends its response.</li></div>
+</ul></div>
+<a name="wp538860"> </a><p class="pBody">
+The <code class="cCode">sign-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;!--
+              Note that in the &lt;Sign&gt; operation, a Timestamp is 
+exported
+              in the security header and signed by default.
+            --&gt;
+            &lt;xwss:Sign&gt;
+                &lt;xwss:X509Token certificateAlias=&quot;xws-security-
+client&quot;/&gt;
+            &lt;/xwss:Sign&gt;
+            &lt;!--
+              Signature requirement. No target is specified, 
+hence the 
+              soap body is expected to be signed. Also, by 
+default, a
+              Timestamp is expected to be signed.
+            --&gt;
+            &lt;xwss:RequireSignature/&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+   &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.SecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt;<a name="wp538866"> </a>
+</pre></div>
+<a name="wp538862"> </a><h4 class="pHeading3">
+Signing then Encrypting the Request, Decrypting then Verifying the Signature
+</h4>
+<a name="wp522256"> </a><p class="pBody">
+The security configuration pair <code class="cCode">sign-encrypt-client.xml</code> and <code class="cCode">sign-encrypt-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp524721"> </a><div class="pSmartList1"><li>Client signs and then encrypts and sends the request body. </li></div>
+<a name="wp524733"> </a><div class="pSmartList1"><li>Server decrypts and verifies the signature. </li></div>
+<a name="wp524746"> </a><div class="pSmartList1"><li>Server signs and then encrypts and sends the response.</li></div>
+</ul></div>
+<a name="wp538936"> </a><p class="pBody">
+The <code class="cCode">sign-encrypt-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;xwss:Sign/&gt;
+            &lt;xwss:Encrypt&gt;
+                &lt;xwss:X509Token certificateAlias=&quot;s1as&quot; 
+keyReferenceType=&quot;Identifier&quot;/&gt;
+            &lt;/xwss:Encrypt&gt;
+            &lt;!-- 
+              Requirements on messages received:
+            --&gt;
+            &lt;xwss:RequireEncryption/&gt;
+            &lt;xwss:RequireSignature/&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+    &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.SecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt;<a name="wp538942"> </a>
+</pre></div>
+<a name="wp538938"> </a><h4 class="pHeading3">
+Encrypting then Signing the Request, Verifying then Decrypting the Signature
+</h4>
+<a name="wp524792"> </a><p class="pBody">
+The security configuration pair <code class="cCode">encrypt-sign-client.xml</code> and <code class="cCode">encrypt-sign-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp521985"> </a><div class="pSmartList1"><li>Client encrypts the request body, then signs and sends it. </li></div>
+<a name="wp524846"> </a><div class="pSmartList1"><li>Server verifies the signature and then decrypts the request body. </li></div>
+<a name="wp524852"> </a><div class="pSmartList1"><li>Server sends its response.</li></div>
+</ul></div>
+<a name="wp524823"> </a><p class="pBody">
+The <code class="cCode">encrypt-sign-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;!--
+              First encrypt the contents of the soap body
+            --&gt;
+            &lt;xwss:Encrypt&gt;
+                &lt;xwss:X509Token keyReferenceType=&quot;Identifier&quot; 
+certificateAlias=&quot;s1as&quot;/&gt;
+            &lt;/xwss:Encrypt&gt;
+            &lt;!--
+              Secondly, sign the soap body using some default 
+private key.
+              The sample CallbackHandler implementation has code 
+to handle
+              the default signature private key request.
+            --&gt;
+            &lt;xwss:Sign/&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+    &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.SecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt;<a name="wp538990"> </a>
+</pre></div>
+<a name="wp539051"> </a><h4 class="pHeading3">
+Signing a Ticket 
+</h4>
+<a name="wp539055"> </a><p class="pBody">
+The security configuration pair <code class="cCode">sign-ticket-also-client.xml</code> and <code class="cCode">sign-ticket-also-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp539062"> </a><div class="pSmartList1"><li>Client signs the ticket element, which is inside the message body.</li></div>
+<a name="wp539066"> </a><div class="pSmartList1"><li>Client signs the message body.</li></div>
+<a name="wp539067"> </a><div class="pSmartList1"><li>Server verifies signatures.</li></div>
+</ul></div>
+<a name="wp539068"> </a><p class="pBody">
+The <code class="cCode">sign-ticket-also-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;!-- 
+              Signing multiple targets as part of the same 
+ds:Signature
+              element in the security header
+            --&gt;
+            &lt;xwss:Sign&gt;
+                &lt;xwss:Target type=&quot;qname&quot;&gt;{http://xmlsoap.org/
+Ping}ticket&lt;/xwss:Target&gt;
+                &lt;xwss:Target type=&quot;xpath&quot;&gt;//env:Body&lt;/xwss:Target&gt;
+            &lt;/xwss:Sign&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+    &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.SecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt;<a name="wp539077"> </a>
+</pre></div>
+<a name="wp539125"> </a><h4 class="pHeading3">
+Adding a Timestamp to a Signature
+</h4>
+<a name="wp539131"> </a><p class="pBody">
+The security configuration pair <code class="cCode">timestamp-sign-client.xml</code> and <code class="cCode">timestamp-sign-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp539132"> </a><div class="pSmartList1"><li>Client signs the request, including a timestamp in the request.</li></div>
+</ul></div>
+<a name="wp539182"> </a><p class="pBody">
+The <code class="cCode">timestamp-sign-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;!--
+              Export a Timestamp with the specified timeout 
+interval (in sec).
+            --&gt;
+            &lt;xwss:Timestamp timeout=&quot;120&quot;/&gt;
+            &lt;!--
+              The above Timestamp would be signed by the following 
+Sign
+              operation by default.
+            --&gt;
+            &lt;xwss:Sign&gt;
+                &lt;xwss:Target type=&quot;qname&quot;&gt;{http://xmlsoap.org/
+Ping}ticket&lt;/xwss:Target&gt;
+            &lt;/xwss:Sign&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+    &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.SecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt;<a name="wp539188"> </a>
+</pre></div>
+<a name="wp539241"> </a><h4 class="pHeading3">
+Symmetric Key Encryption
+</h4>
+<a name="wp539242"> </a><p class="pBody">
+The security configuration pair <code class="cCode">encrypt-using-symmkey-client.xml</code> and <code class="cCode">encrypt-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp539243"> </a><div class="pSmartList1"><li>Client encrypts the request using the specified symmetric key.</li></div>
+</ul></div>
+<a name="wp539244"> </a><p class="pBody">
+The <code class="cCode">encrypt-using-symmkey-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;!--
+              Encrypt using a symmetric key associated with the 
+given alias
+            --&gt;
+            &lt;xwss:Encrypt&gt;
+                &lt;xwss:SymmetricKey keyAlias=&quot;sessionkey&quot;/&gt;
+            &lt;/xwss:Encrypt&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+    &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.SecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt;<a name="wp539270"> </a>
+</pre></div>
+<a name="wp539184"> </a><h4 class="pHeading3">
+Adding a UserName Password Token
+</h4>
+<a name="wp524798"> </a><p class="pBody">
+The security configuration pair <code class="cCode">user-pass-authenticate-client.xml</code> and <code class="cCode">user-pass-authenticate-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp522303"> </a><div class="pSmartList1"><li>Client adds a username-password token and sends a request.</li></div>
+<a name="wp524970"> </a><div class="pSmartList1"><li>Server authenticates the username and password against a username-password database.</li></div>
+<a name="wp525112"> </a><div class="pSmartList1"><li>Server sends response.</li></div>
+</ul></div>
+<a name="wp524971"> </a><p class="pBody">
+The <code class="cCode">user-pass-authenticate-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;!--
+              Default: Digested password will be sent.
+            --&gt;
+            &lt;xwss:UsernameToken name=&quot;Ron&quot; password=&quot;noR&quot;/&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+    &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.SecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt;<a name="wp539316"> </a>
+</pre></div>
+<a name="wp521990"> </a><h4 class="pHeading3">
+Encrypt Request Body and a UserNameToken
+</h4>
+<a name="wp524804"> </a><p class="pBody">
+The security configuration pair <code class="cCode">encrypt-usernameToken-client.xml</code> and <code class="cCode">encrypt-usernameToken-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp522296"> </a><div class="pSmartList1"><li>Client encrypts request body.</li></div>
+<a name="wp539464"> </a><div class="pSmartList1"><li>Client encrypts the <code class="cCode">UsernameToken</code> as well before sending the request. </li></div>
+<a name="wp525035"> </a><div class="pSmartList1"><li>Server decrypts the encrypted message body and encrypted <code class="cCode">UsernameToken</code>.</li></div>
+<a name="wp525046"> </a><div class="pSmartList1"><li>Server authenticates the user name and password against a username-password database.</li></div>
+</ul></div>
+<a name="wp525067"> </a><p class="pBody">
+The <code class="cCode">encrypt-usernameToken-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;!--
+              Export a username token into the security header. 
+Assign it
+              the mentioned wsu:Id
+            --&gt;
+            &lt;xwss:UsernameToken name=&quot;Ron&quot; password=&quot;noR&quot; 
+id=&quot;username-token&quot;/&gt;
+            &lt;xwss:Encrypt&gt;
+                &lt;xwss:X509Token certificateAlias=&quot;s1as&quot;/&gt;
+                &lt;xwss:Target type=&quot;xpath&quot;&gt;//SOAP-ENV:Body&lt;/
+xwss:Target&gt;
+                &lt;!--
+                  The username token has been refered as an 
+encryption
+                  target using a URI fragment
+                --&gt;
+                &lt;xwss:Target type=&quot;uri&quot;&gt;#username-token&lt;/
+xwss:Target&gt;
+            &lt;/xwss:Encrypt&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+    &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.SecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt;<a name="wp539487"> </a>
+</pre></div>
+<a name="wp562514"> </a><p class="pBody">
+In this sample, the <code class="cCode">UsernameToken</code> is assigned an id <code class="cCode">username</code>-<code class="cCode">token</code>. This id is used to refer to the token as an encryption target within the <code class="cCode">&lt;xwss:Encrypt&gt;</code> element. The id becomes the actual <code class="cCode">wsu:id</code> of the <code class="cCode">UsernameToken</code> in the generated <code class="cCode">SOAPMessage</code>.
+</p>
+<a name="wp539431"> </a><h4 class="pHeading3">
+Adding a UserName Password Token, then Encrypting the UserName Token
+</h4>
+<a name="wp539433"> </a><p class="pBody">
+The security configuration pair <code class="cCode">encrypted-user-pass-client.xml</code> and <code class="cCode">encrypted-user-pass-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp539434"> </a><div class="pSmartList1"><li>Client adds a <code class="cCode">UsernameToken</code>. </li></div>
+<a name="wp539435"> </a><div class="pSmartList1"><li>Client encrypts the <code class="cCode">UsernameToken</code> before sending the request.</li></div>
+<a name="wp539436"> </a><div class="pSmartList1"><li>Server decrypts the <code class="cCode">UsernameToken</code>.</li></div>
+<a name="wp539437"> </a><div class="pSmartList1"><li>Server authenticates the user name and password against a username-password database.</li></div>
+</ul></div>
+<a name="wp539443"> </a><p class="pBody">
+The <code class="cCode">encrypted-user-pass-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;xwss:UsernameToken name=&quot;Ron&quot; password=&quot;noR&quot;/&gt;
+            &lt;xwss:Encrypt&gt;
+                &lt;xwss:X509Token certificateAlias=&quot;s1as&quot; 
+keyReferenceType=&quot;Identifier&quot;/&gt;
+                &lt;xwss:Target type=&quot;qname&quot;&gt;
+                    {http://docs.oasis-open.org/wss/2004/01/
+oasis-200401-wss-wssecurity-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;secext-1.0.xsd}UsernameToken
+                &lt;/xwss:Target&gt;
+            &lt;/xwss:Encrypt&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+    &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.SecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt;<a name="wp539444"> </a>
+</pre></div>
+<a name="wp521995"> </a><h4 class="pHeading3">
+Adding Security at the Method Level
+</h4>
+<a name="wp524810"> </a><p class="pBody">
+The security configuration pair <code class="cCode">method-level-client.xml</code> and <code class="cCode">method-level-server.xml</code> enable the following tasks:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp525129"> </a><div class="pSmartList1"><li>Adds security to a particular method.</li></div>
+</ul></div>
+<a name="wp562559"> </a><p class="pBody">
+The <code class="cCode">simple</code> sample's WSDL file contains two operations, <code class="cCode">Ping</code> and <code class="cCode">Ping0</code>, and two port instances of type <code class="cCode">PingPort</code>. The port names are <code class="cCode">Ping</code> and <code class="cCode">Ping0</code>. The method level security configuration file demonstrates how different sets of security operations can be configured for the operations <code class="cCode">Ping</code> and <code class="cCode">Ping0</code> under each of the two <code class="cCode">Port</code> instances <code class="cCode">Ping</code> and <code class="cCode">Ping0</code>.
+</p>
+<a name="wp524836"> </a><p class="pBody">
+The <code class="cCode">method-level-client.xml</code> file looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:JAXRPCSecurity xmlns:xwss=&quot;http://java.sun.com/xml/ns/
+xwss/config&quot;&gt;
+
+    &lt;xwss:Service&gt;
+        &lt;!--
+          Service-level security configuration
+        --&gt;
+        &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+            &lt;xwss:Encrypt&gt;
+                &lt;xwss:X509Token certificateAlias=&quot;s1as&quot;/&gt;
+            &lt;/xwss:Encrypt&gt;
+        &lt;/xwss:SecurityConfiguration&gt;
+
+        &lt;xwss:Port name=&quot;{http://xmlsoap.org/Ping}Ping&quot;&gt; 
+
+            &lt;!--
+              Port-level security configuration. Takes precedence 
+over the
+              service-level security configuration
+            --&gt;
+            &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;/&gt;
+
+            &lt;xwss:Operation name=&quot;{http://xmlsoap.org/Ping}Ping&quot;&gt; 
+
+                &lt;!--
+                  Operation-level security configuration. Takes 
+precedence
+                  over port-level and service-level security 
+configurations.
+                --&gt;
+                &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+                    &lt;xwss:UsernameToken name=&quot;Ron&quot;
+                                        password=&quot;noR&quot;
+                                        digestPassword=&quot;false&quot;
+                                        useNonce=&quot;false&quot;/&gt;
+                    &lt;xwss:Sign&gt;
+                        &lt;xwss:Target type=&quot;qname&quot;&gt;{http://
+xmlsoap.org/Ping}ticket&lt;/xwss:Target&gt;
+                        &lt;xwss:Target type=&quot;qname&quot;&gt;{http://
+xmlsoap.org/Ping}text&lt;/xwss:Target&gt;
+                    &lt;/xwss:Sign&gt;
+                    &lt;xwss:Encrypt&gt;
+                        &lt;xwss:X509Token certificateAlias=&quot;s1as&quot;/&gt;
+                    &lt;/xwss:Encrypt&gt;            
+                &lt;/xwss:SecurityConfiguration&gt;
+
+            &lt;/xwss:Operation&gt; 
+
+            &lt;xwss:Operation name=&quot;{http://xmlsoap.org/
+Ping}Ping0&quot;&gt;
+
+                &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+                    &lt;xwss:Encrypt&gt;
+                        &lt;xwss:X509Token certificateAlias=&quot;s1as&quot;/&gt;
+                    &lt;/xwss:Encrypt&gt;
+                &lt;/xwss:SecurityConfiguration&gt;
+
+            &lt;/xwss:Operation&gt;
+
+        &lt;/xwss:Port&gt;
+
+        &lt;xwss:Port name=&quot;{http://xmlsoap.org/Ping}Ping0&quot;&gt; 
+
+            &lt;xwss:SecurityConfiguration dumpMessages=&quot;true&quot;&gt;
+                &lt;xwss:Encrypt&gt;
+                    &lt;xwss:X509Token certificateAlias=&quot;s1as&quot;/&gt;
+                &lt;/xwss:Encrypt&gt;
+                &lt;xwss:RequireSignature/&gt;
+            &lt;/xwss:SecurityConfiguration&gt;
+
+            &lt;xwss:Operation name=&quot;{http://xmlsoap.org/Ping}Ping&quot;/
+&gt; 
+
+            &lt;xwss:Operation name=&quot;{http://xmlsoap.org/
+Ping}Ping0&quot;/&gt; 
+
+        &lt;/xwss:Port&gt;          
+
+    &lt;/xwss:Service&gt;
+
+    &lt;xwss:SecurityEnvironmentHandler&gt;
+        com.sun.xml.wss.sample.SecurityEnvironmentHandler
+    &lt;/xwss:SecurityEnvironmentHandler&gt;
+
+&lt;/xwss:JAXRPCSecurity&gt; <a name="wp539555"> </a>
+</pre></div>
+<a name="wp562601"> </a><p class="pBody">
+In this example, the following has been configured for the <code class="cCode">Ping</code> operation under port instance <code class="cCode">Ping</code>:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp562603"> </a><div class="pSmartList1"><li>Inserts a <code class="cCode">UsernameToken</code> into the request.</li></div>
+<a name="wp562604"> </a><div class="pSmartList1"><li>Signs the ticket and text child elements of the request body.</li></div>
+<a name="wp562605"> </a><div class="pSmartList1"><li>Encrypts the contents of the request body.</li></div>
+</ul></div>
+<a name="wp562607"> </a><p class="pBody">
+The following has been configured for the <code class="cCode">Ping0</code> operation under port instance <code class="cCode">Ping</code>:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp562609"> </a><div class="pSmartList1"><li>Encrypt the content of the body of the message.</li></div>
+</ul></div>
+<a name="wp562611"> </a><p class="pBody">
+When the <code class="cCode">xwss:Encrypt</code> element is specified with no child elements of type <code class="cCode">xwss:Target</code>, it implies that the default <code class="cCode">Target</code> (which is <code class="cCode">SOAP-ENV:Body</code>) has to be encrypted. The same rule applies to <code class="cCode">xwss:Sign</code> elements with no child elements of type <code class="cCode">xwss:Target</code>.
+</p>
+<a name="wp562613"> </a><p class="pBody">
+The configuration file in this example also configures the following security for all the WSDL operations under port instance <code class="cCode">Ping0</code>:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp562615"> </a><div class="pSmartList1"><li>Encrypts the request body.</li></div>
+<a name="wp562599"> </a><div class="pSmartList1"><li>Expects a signed response from the server.Username</li></div>
+</ul></div>
+<a name="wp520879"> </a><h3 class="pHeading2">
+Running the Simple Sample Application
+</h3>
+<a name="wp521334"> </a><p class="pBody">
+Before the sample application will run correctly, you must have completed the tasks defined in the following sections of this addendum:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp521309"> </a><div class="pSmartList1"><li><a  href="XWS-Security4.html#wp520429">Setting System Properties</a></li></div>
+<a name="wp521507"> </a><div class="pSmartList1"><li><a  href="XWS-Security4.html#wp520663">Configuring a JCE Provider</a></li></div>
+<a name="wp521512"> </a><div class="pSmartList1"><li><a  href="XWS-Security4.html#wp521092">Setting Up the Application Server For the Examples</a></li></div>
+<a name="wp521516"> </a><div class="pSmartList1"><li><a  href="XWS-Security4.html#wp524936">Setting Build Properties</a></li></div>
+</ul></div>
+<a name="wp521310"> </a><p class="pBody">
+To run the <code class="cCode">simple</code> sample application, follow these steps:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp531772"> </a><div class="pSmartList1"><li>Start the selected container and make sure the server is running. To start the Application Server, </li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp531773"> </a><div class="pSmartList2"><li>From a Unix machine, enter the following command from a terminal window: <code class="cCode">asadmin start-domain domain1</code></li></div>
+<a name="wp521314"> </a><div class="pSmartList2"><li>From a Windows machine, choose Start<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>Programs<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>Sun Microsystems<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>J2EE 1.4<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>Start Default Server.</li></div>
+</ol></div>
+<a name="wp521317"> </a><div class="pSmartList1"><li>Modify the <code class="cCode">build.properties</code> file to set up the security configuration that you want to run for the client and/or server. See <a  href="XWS-Security5.html#wp521958">Sample Security Configuration File Options</a> for more information on the security configurations options that are already defined for the sample application.</li></div>
+<a name="wp521587"> </a><div class="pSmartList1"><li>Build and run the application from a terminal window or command prompt.</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp521592"> </a><div class="pSmartList2"><li>On the Application Server, the command to build and run the application is: <code class="cCode">asant</code> <code class="cCode">run-sample</code> </li></div>
+<a name="wp521616"> </a><div class="pSmartList2"><li>On the other containers, the command to build and run the application is: <code class="cCode">ant</code> <code class="cCode">run-sample</code></li></div>
+</ul></div>
+</ol></div>
+<hr>
+<a name="wp521327"> </a><p class="pNote">
+Note: To run the sample against a remote server containing the deployed endpoint, use the <code class="cCode">run-remote-sample</code> target in place of the <code class="cCode">run-sample</code> target. In this situation, make sure that the <code class="cCode">endpoint.host</code>, <code class="cCode">endpoint.port</code>, <code class="cCode">http.proxyHost</code>, <code class="cCode">http.proxyPort</code>, and <code class="cCode">service.url</code> properties are set correctly in the <code class="cCode">build.properties</code> file (as discussed in <a  href="XWS-Security4.html#wp524936">Setting Build Properties</a>) before running the sample.
+</p>
+<hr><a name="wp522073"> </a><p class="pBody">
+If the application runs successfully, you will see a message similar to the following:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+[echo] Running the client program....
+[java] ==== Sending Message Start ====
+...
+[java] ==== Sending Message End ====
+[java] ==== Received Message Start ====
+...
+[java] ==== Received Message End ====<a name="wp522074"> </a>
+</pre></div>
+<a name="wp522083"> </a><p class="pBody">
+You can view similar messages in the server logs: 
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;<code class="cVariable">SJSAS_HOME</code>&gt;/domains/&lt;<code class="cVariable">domain-name</code>&gt;/logs/server.log 
+&lt;<code class="cVariable">TOMCAT_HOME</code>&gt;/logs/launcher.server.log 
+&lt;<code class="cVariable">SJSWS_HOME</code>&gt;/&lt;<code class="cVariable">Virtual-Server-Dir</code>&gt;/logs/errors <a name="wp522084"> </a>
+</pre></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security4.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security6.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

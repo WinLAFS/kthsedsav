@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>XML Schemas</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="JAXBWorks2.html" />
+    <link rel="Next" href="JAXBWorks4.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks2.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBWorks4.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp98580"> </a><h2 class="pHeading1">
+XML Schemas
+</h2>
+<a name="wp98700"> </a><p class="pBody">
+Because XML schemas are such an important component of the JAXB processing model--and because other data binding facilities like JAXP work with DTDs instead of schemas--it is useful to review here some basics about what XML schemas are and how they work.
+</p>
+<a name="wp98581"> </a><p class="pBody">
+XML Schemas are a powerful way to describe allowable elements, attributes, entities, and relationships in an XML document. A more robust alternative to DTDs, the purpose of an XML schema is to define classes of XML documents that must adhere to a particular set of structural and data constraints--that is, you may want to define separate schemas for chapter-oriented books, for an online purchase order system, or for a personnel database. In the context of JAXB, an XML document containing data that is constrained by an XML schema is referred to as a <em class="cEmphasis">document instance</em>, and the structure and data within a document instance is referred to as a <em class="cEmphasis">content tree</em>.
+</p>
+<hr>
+<a name="wp98582"> </a><p class="pNote">
+Note: In practice, the term &quot;document&quot; is not always accurate, as an XML instance document does not have to be a completely formed, selfstanding document file; it can instead take the form of streams of data passed between applications, or of sets of database fields, or of <em class="cEmphasis">XML infosets</em> in which blocks of information contain just enough information to describe where they fit in the schema structure.
+</p>
+<hr><a name="wp100411"> </a><p class="pBody">
+The following sample code is taken from the W3C&#39;s <em class="cEmphasis">Schema Part 0: Primer</em> (<code class="cCode"><a  href="http://www.w3.org/TR/2001/REC-xmlschema-0-20010502/" target="_blank">http://www.w3.org/TR/2001/REC-xmlschema-0-20010502/</a></code>), and illustrates an XML document, <code class="cCode">po.xml</code>, for a simple purchase order.
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;purchaseOrder orderDate=&quot;1999-10-20&quot;&gt;
+&nbsp;&nbsp;&lt;shipTo country=&quot;US&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;Alice Smith&lt;/name&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;street&gt;123 Maple Street&lt;/street&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;city&gt;Mill Valley&lt;/city&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;state&gt;CA&lt;/state&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;zip&gt;90952&lt;/zip&gt;
+&nbsp;&nbsp;&lt;/shipTo&gt;
+&nbsp;&nbsp;&lt;billTo country=&quot;US&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;Robert Smith&lt;/name&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;street&gt;8 Oak Avenue&lt;/street&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;city&gt;Old Town&lt;/city&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;state&gt;PA&lt;/state&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;zip&gt;95819&lt;/zip&gt;
+&nbsp;&nbsp;&lt;/billTo&gt;
+&lt;comment&gt;Hurry, my lawn is going wild!&lt;/comment&gt;
+&nbsp;&nbsp;&lt;items&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;item partNum=&quot;872-AA&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;productName&gt;Lawnmower&lt;/productName&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;quantity&gt;1&lt;/quantity&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;USPrice&gt;148.95&lt;/USPrice&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;comment&gt;Confirm this is electric&lt;/comment&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/item&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;item partNum=&quot;926-AA&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;productName&gt;Baby Monitor&lt;/productName&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;quantity&gt;1&lt;/quantity&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;USPrice&gt;39.98&lt;/USPrice&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;shipDate&gt;1999-05-21&lt;/shipDate&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/item&gt;
+&nbsp;&nbsp;&lt;/items&gt;
+&lt;/purchaseOrder&gt;<a name="wp99876"> </a>
+</pre></div>
+<a name="wp98616"> </a><p class="pBody">
+The root element, <code class="cCode">purchaseOrder</code>, contains the child elements <code class="cCode">shipTo</code>, <code class="cCode">billTo</code>, <code class="cCode">comment</code>, and <code class="cCode">items</code>. All of these child elements except <code class="cCode">comment</code> contain other child elements. The leaves of the tree are the child elements like <code class="cCode">name</code>, <code class="cCode">street</code>, <code class="cCode">city</code>, and <code class="cCode">state</code>, which do not contain any further child elements. Elements that contain other child elements or can accept attributes are referred to as <em class="cEmphasis">complex types</em>. Elements that contain only <code class="cCode">PCDATA</code> and no child elements are referred to as <em class="cEmphasis">simple types</em>.
+</p>
+<a name="wp98617"> </a><p class="pBody">
+The complex types and some of the simple types in <code class="cCode">po.xml</code> are defined in the purchase order schema below. Again, this example schema, <code class="cCode">po.xsd</code>, is derived from the W3C&#39;s <em class="cEmphasis">Schema Part 0: Primer</em> (<code class="cCode"><a  href="http://www.w3.org/TR/2001/REC-xmlschema-0-20010502/" target="_blank">http://www.w3.org/TR/2001/REC-xmlschema-0-20010502/</a></code>).
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+&lt;xsd:element name=&quot;purchaseOrder&quot; type=&quot;PurchaseOrderType&quot;/&gt;
+&lt;xsd:element name=&quot;comment&quot; type=&quot;xsd:string&quot;/&gt;
+&lt;xsd:complexType name=&quot;PurchaseOrderType&quot;&gt;
+&nbsp;&nbsp;&lt;xsd:sequence&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;shipTo&quot; type=&quot;USAddress&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;billTo&quot; type=&quot;USAddress&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element ref=&quot;comment&quot; minOccurs=&quot;0&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;items&quot; type=&quot;Items&quot;/&gt;
+&nbsp;&nbsp;&lt;/xsd:sequence&gt;
+&nbsp;&nbsp;&lt;xsd:attribute name=&quot;orderDate&quot; type=&quot;xsd:date&quot;/&gt;
+&lt;/xsd:complexType&gt;
+
+&lt;xsd:complexType name=&quot;USAddress&quot;&gt;
+&nbsp;&nbsp;&lt;xsd:sequence&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;name&quot; type=&quot;xsd:string&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;street&quot; type=&quot;xsd:string&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;city&quot; type=&quot;xsd:string&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;state&quot; type=&quot;xsd:string&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;zip&quot; type=&quot;xsd:decimal&quot;/&gt;
+&nbsp;&nbsp;&lt;/xsd:sequence&gt;
+&nbsp;&nbsp;&lt;xsd:attribute name=&quot;country&quot; type=&quot;xsd:NMTOKEN&quot; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fixed=&quot;US&quot;/&gt;
+&lt;/xsd:complexType&gt;
+
+&lt;xsd:complexType name=&quot;Items&quot;&gt;
+&nbsp;&nbsp;&lt;xsd:sequence&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;item&quot; minOccurs=&quot;1&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxOccurs=&quot;unbounded&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:complexType&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:sequence&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;productName&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type=&quot;xsd:string&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;quantity&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:simpleType&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:restriction base=&quot;xsd:positiveInteger&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:maxExclusive value=&quot;100&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:restriction&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:simpleType&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:element&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;USPrice&quot; type=&quot;xsd:decimal&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element ref=&quot;comment&quot; minOccurs=&quot;0&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;shipDate&quot; type=&quot;xsd:date&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minOccurs=&quot;0&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:sequence&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:attribute name=&quot;partNum&quot; type=&quot;SKU&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use=&quot;required&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:complexType&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:element&gt;
+&nbsp;&nbsp;&lt;/xsd:sequence&gt;
+&lt;/xsd:complexType&gt;
+
+&lt;!-- Stock Keeping Unit, a code for identifying products --&gt;
+&lt;xsd:simpleType name=&quot;SKU&quot;&gt;
+&nbsp;&nbsp;&lt;xsd:restriction base=&quot;xsd:string&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:pattern value=&quot;\d{3}-[A-Z]{2}&quot;/&gt;
+&nbsp;&nbsp;&lt;/xsd:restriction&gt;
+&lt;/xsd:simpleType&gt;
+
+&lt;/xsd:schema&gt;<a name="wp98618"> </a>
+</pre></div>
+<a name="wp98673"> </a><p class="pBody">
+In this example, the schema comprises, similar to a DTD, a main or root <code class="cCode">schema</code> element and several child elements, <code class="cCode">element</code>, <code class="cCode">complexType</code>, and <code class="cCode">simpleType</code>. Unlike a DTD, this schema also specifies as attributes data types like <code class="cCode">decimal</code>, <code class="cCode">date</code>, <code class="cCode">fixed</code>, and <code class="cCode">string</code>. The schema also specifies constraints like <code class="cCode">pattern value</code>, <code class="cCode">minOccurs</code>, and <code class="cCode">positiveInteger</code>, among others. In DTDs, you can only specify data types for textual data (<code class="cCode">PCDATA</code> and <code class="cCode">CDATA</code>); XML schema supports more complex textual and numeric data types and constraints, all of which have direct analogs in the Java language.
+</p>
+<a name="wp98674"> </a><p class="pBody">
+Note that every element in this schema has the prefix <code class="cCode">xsd:</code>, which is associated with the W3C XML Schema namespace. To this end, the namespace declaration, <code class="cCode">xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;</code>, is declared as an attribute to the <code class="cCode">schema</code> element.
+</p>
+<a name="wp98675"> </a><p class="pBody">
+Namespace support is another important feature of XML schemas because it provides a means to differentiate between elements written against different schemas or used for varying purposes, but which may happen to have the same name as other elements in a document. For example, suppose you declared two namespaces in your schema, one for <code class="cCode">foo</code> and another for <code class="cCode">bar</code>. Two XML documents are combined, one from a billing database and another from an shipping database, each of which was written against a different schema. By specifying namespaces in your schema, you can differentiate between, say, <code class="cCode">foo:address</code> and <code class="cCode">bar:address</code>.
+</p>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks2.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBWorks4.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

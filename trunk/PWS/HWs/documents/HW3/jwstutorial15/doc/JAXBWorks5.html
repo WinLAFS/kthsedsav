@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Binding XML Schemas</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="JAXBWorks4.html" />
+    <link rel="Next" href="JAXBWorks6.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks4.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBWorks6.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp82918"> </a><h2 class="pHeading1">
+Binding XML Schemas
+</h2>
+<a name="wp82921"> </a><p class="pBody">
+This section describes the default XML-to-Java bindings used by JAXB. All of these bindings can be overridden on global or case-by-case levels by means of a custom binding declaration. The topics in this section are as follows:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp82924"> </a><div class="pSmartList1"><li><a  href="JAXBWorks5.html#wp82933">Simple Type Definitions</a></li></div>
+<a name="wp82925"> </a><div class="pSmartList1"><li><a  href="JAXBWorks5.html#wp82947">Default Data Type Bindings</a></li></div>
+<a name="wp82926"> </a><div class="pSmartList1"><li><a  href="JAXBWorks5.html#wp83047">Default Binding Rules Summary</a></li></div>
+</ul></div>
+<a name="wp82929"> </a><p class="pBody">
+See the <span style="font-style: italic">JAXB </span><span style="font-style: normal"><a  href="http://java.sun.com/xml/downloads/jaxb.html" target="_blank"></a></span><span style="font-style: italic">Specification </span>for complete information about the default JAXB bindings.
+</p>
+<a name="wp82933"> </a><h3 class="pHeading2">
+Simple Type Definitions
+</h3>
+<a name="wp82936"> </a><p class="pBody">
+A schema component using a simple type definition typically binds to a Java property. Since there are different kinds of such schema components, the following Java property attributes (common to the schema components) include:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp82939"> </a><div class="pSmartList1"><li>Base type</li></div>
+<a name="wp82940"> </a><div class="pSmartList1"><li>Collection type, if any</li></div>
+<a name="wp82941"> </a><div class="pSmartList1"><li>Predicate</li></div>
+</ul></div>
+<a name="wp82944"> </a><p class="pBody">
+The rest of the Java property attributes are specified in the schema component using the <code class="cCode">simple</code> type definition.
+</p>
+<a name="wp82947"> </a><h3 class="pHeading2">
+Default Data Type Bindings
+</h3>
+<a name="wp82950"> </a><p class="pBody">
+The Java language provides a richer set of data type than XML schema. <a  href="JAXBWorks5.html#wp86708">Table 1-3</a> lists the mapping of XML data types to Java data types in JAXB.</p><div align="left">
+<table border="1" summary="JAXB Mapping of XML Schema Built-in Data Types" id="wp86708">
+  <caption><a name="wp86708"> </a><div class="pTableTitle">
+Table 1-3   JAXB Mapping of XML Schema Built-in Data Types&nbsp;
+</div>
+</caption>
+  <tr align="center">    <th><a name="wp86817"> </a><div class="pCellHeading">
+XML Schema Type
+</div>
+</th>
+    <th><a name="wp86826"> </a><div class="pCellHeading">
+Java Data Type
+</div>
+</th>
+</tr>
+  <tr align="left">    <td><a name="wp86716"> </a><div class="pCellBody">
+<code class="cCode">xsd:string</code>
+</div>
+</td>
+    <td><a name="wp86718"> </a><div class="pCellBody">
+<code class="cCode">java.lang.String</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86720"> </a><div class="pCellBody">
+<code class="cCode">xsd:integer</code>
+</div>
+</td>
+    <td><a name="wp86722"> </a><div class="pCellBody">
+<code class="cCode">java.math.BigInteger</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86724"> </a><div class="pCellBody">
+<code class="cCode">xsd:int</code>
+</div>
+</td>
+    <td><a name="wp86726"> </a><div class="pCellBody">
+<code class="cCode">int</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86728"> </a><div class="pCellBody">
+<code class="cCode">xsd.long</code>
+</div>
+</td>
+    <td><a name="wp86730"> </a><div class="pCellBody">
+<code class="cCode">long</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86732"> </a><div class="pCellBody">
+<code class="cCode">xsd:short</code>
+</div>
+</td>
+    <td><a name="wp86734"> </a><div class="pCellBody">
+<code class="cCode">short</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86736"> </a><div class="pCellBody">
+<code class="cCode">xsd:decimal</code>
+</div>
+</td>
+    <td><a name="wp86738"> </a><div class="pCellBody">
+<code class="cCode">java.math.BigDecimal</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86740"> </a><div class="pCellBody">
+<code class="cCode">xsd:float</code>
+</div>
+</td>
+    <td><a name="wp86742"> </a><div class="pCellBody">
+<code class="cCode">float</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86744"> </a><div class="pCellBody">
+<code class="cCode">xsd:double</code>
+</div>
+</td>
+    <td><a name="wp86746"> </a><div class="pCellBody">
+<code class="cCode">double</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86748"> </a><div class="pCellBody">
+<code class="cCode">xsd:boolean</code>
+</div>
+</td>
+    <td><a name="wp86750"> </a><div class="pCellBody">
+<code class="cCode">boolean</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86752"> </a><div class="pCellBody">
+<code class="cCode">xsd:byte</code>
+</div>
+</td>
+    <td><a name="wp86754"> </a><div class="pCellBody">
+<code class="cCode">byte</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86756"> </a><div class="pCellBody">
+<code class="cCode">xsd:QName</code>
+</div>
+</td>
+    <td><a name="wp86758"> </a><div class="pCellBody">
+<code class="cCode">javax.xml.namespace.QName</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86760"> </a><div class="pCellBody">
+<code class="cCode">xsd:dateTime</code>
+</div>
+</td>
+    <td><a name="wp86762"> </a><div class="pCellBody">
+<code class="cCode">java.util.Calendar</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86764"> </a><div class="pCellBody">
+<code class="cCode">xsd:base64Binary</code>
+</div>
+</td>
+    <td><a name="wp86766"> </a><div class="pCellBody">
+<code class="cCode">byte[]</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86768"> </a><div class="pCellBody">
+<code class="cCode">xsd:hexBinary</code>
+</div>
+</td>
+    <td><a name="wp86770"> </a><div class="pCellBody">
+<code class="cCode">byte[]</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86772"> </a><div class="pCellBody">
+<code class="cCode">xsd:unsignedInt</code>
+</div>
+</td>
+    <td><a name="wp86774"> </a><div class="pCellBody">
+<code class="cCode">long</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86776"> </a><div class="pCellBody">
+<code class="cCode">xsd:unsignedShort</code>
+</div>
+</td>
+    <td><a name="wp86778"> </a><div class="pCellBody">
+<code class="cCode">int</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86780"> </a><div class="pCellBody">
+<code class="cCode">xsd:unsignedByte</code>
+</div>
+</td>
+    <td><a name="wp86782"> </a><div class="pCellBody">
+<code class="cCode">short</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86784"> </a><div class="pCellBody">
+<code class="cCode">xsd:time</code>
+</div>
+</td>
+    <td><a name="wp86786"> </a><div class="pCellBody">
+<code class="cCode">java.util.Calendar</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86788"> </a><div class="pCellBody">
+<code class="cCode">xsd:date</code>
+</div>
+</td>
+    <td><a name="wp86790"> </a><div class="pCellBody">
+<code class="cCode">java.util.Calendar</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86792"> </a><div class="pCellBody">
+<code class="cCode">xsd:anySimpleType</code>
+</div>
+</td>
+    <td><a name="wp86794"> </a><div class="pCellBody">
+<code class="cCode">java.lang.String</code>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp83047"> </a><h3 class="pHeading2">
+Default Binding Rules Summary
+</h3>
+<a name="wp83050"> </a><p class="pBody">
+The JAXB binding model follows the default binding rules summarized below:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp83053"> </a><div class="pSmartList1"><li>Bind the following to Java package:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp83055"> </a><div class="pSmartList2"><li>XML Namespace URI</li></div>
+</ul></div>
+<a name="wp83058"> </a><div class="pSmartList1"><li>Bind the following XML Schema components to Java content interface:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp83060"> </a><div class="pSmartList2"><li>Named complex type</li></div>
+<a name="wp83061"> </a><div class="pSmartList2"><li>Anonymous inlined type definition of an element declaration</li></div>
+</ul></div>
+<a name="wp83063"> </a><div class="pSmartList1"><li>Bind to typesafe enum class:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp83066"> </a><div class="pSmartList2"><li>A named simple type definition with a basetype that derives from &quot;<code class="cCode">xsd:NCName</code>&quot; and has enumeration facets.</li></div>
+</ul></div>
+<a name="wp83068"> </a><div class="pSmartList1"><li>Bind the following XML Schema components to a Java Element interface:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp83071"> </a><div class="pSmartList2"><li>A global element declaration to a Element interface.</li></div>
+<a name="wp83072"> </a><div class="pSmartList2"><li>Local element declaration that can be inserted into a general content list.</li></div>
+</ul></div>
+<a name="wp83074"> </a><div class="pSmartList1"><li>Bind to Java property:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp83077"> </a><div class="pSmartList2"><li>Attribute use</li></div>
+<a name="wp83078"> </a><div class="pSmartList2"><li>Particle with a term that is an element reference or local element declaration.</li></div>
+</ul></div>
+<a name="wp83080"> </a><div class="pSmartList1"><li>Bind model group with a repeating occurrence and complex type definitions with mixed <code class="cCode">{content type}</code> to:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp83083"> </a><div class="pSmartList2"><li>A general content property; a List content-property that holds Java instances representing element information items and character data items.</li></div>
+</ul></div>
+</ul></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks4.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBWorks6.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

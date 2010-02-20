@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Representing XML Content</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="JAXBWorks3.html" />
+    <link rel="Next" href="JAXBWorks5.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks3.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBWorks5.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp82872"> </a><h2 class="pHeading1">
+Representing XML Content
+</h2>
+<a name="wp82875"> </a><p class="pBody">
+This section describes how JAXB represents XML content as Java objects. Specifically, the topics in this section are as follows:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp82878"> </a><div class="pSmartList1"><li><a  href="JAXBWorks4.html#wp82883">Binding XML Names to Java Identifiers</a></li></div>
+<a name="wp82879"> </a><div class="pSmartList1"><li><a  href="JAXBWorks4.html#wp82893">Java Representation of XML Schema</a></li></div>
+</ul></div>
+<a name="wp82883"> </a><h3 class="pHeading2">
+Binding XML Names to Java Identifiers
+</h3>
+<a name="wp82886"> </a><p class="pBody">
+XML schema languages use <em class="cEmphasis">XML names</em>--strings that match the <em class="cEmphasis">Name</em> production defined in <em class="cEmphasis">XML 1.0 (Second Edition)</em> (<code class="cCode"><a  href="http://www.w3.org/XML/" target="_blank">http://www.w3.org/XML/</a></code>) to label schema components. This set of strings is much larger than the set of valid Java class, method, and constant identifiers. To resolve this discrepancy, JAXB uses several name-mapping algorithms.
+</p>
+<a name="wp82888"> </a><p class="pBody">
+The JAXB name-mapping algorithm maps XML names to Java identifiers in a way that adheres to standard Java API design guidelines, generates identifiers that retain obvious connections to the corresponding schema, and is unlikely to result in many collisions.
+</p>
+<a name="wp82890"> </a><p class="pBody">
+Refer to Chapter <a  href="JAXBUsing.html#wp69926">2</a> for information about changing default XML name mappings. See Appendix C in the <span style="font-style: italic">JAXB </span><span style="font-style: normal"><a  href="http://java.sun.com/xml/downloads/jaxb.html" target="_blank"></a></span><span style="font-style: italic">Specification</span> for complete details about the JAXB naming algorithm.
+</p>
+<a name="wp82893"> </a><h3 class="pHeading2">
+Java Representation of XML Schema
+</h3>
+<a name="wp82896"> </a><p class="pBody">
+JAXB supports the grouping of generated classes and interfaces in Java packages. A package comprises:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp82899"> </a><div class="pSmartList1"><li>A name, which is either derived directly from the XML namespace URI, or specified by a binding customization of the XML namespace URI</li></div>
+<a name="wp82900"> </a><div class="pSmartList1"><li>A set of Java content interfaces representing the content models declared within the schema</li></div>
+<a name="wp82901"> </a><div class="pSmartList1"><li>A Set of Java element interfaces representing element declarations occurring within the schema</li></div>
+<a name="wp82902"> </a><div class="pSmartList1"><li>An <code class="cCode">ObjectFactory</code> class containing:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp82904"> </a><div class="pSmartList2"><li>An instance factory method for each Java content interface and Java element interface within the package; for example, given a Java content interface named <code class="cCode">Foo</code>, the derived factory method would be:</li></div>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&nbsp;&nbsp;&nbsp;&nbsp;public Foo createFoo() throws JAXBException;<a name="wp82905"> </a>
+</pre></div>
+<a name="wp98522"> </a><div class="pSmartList2"><li>Dynamic instance factory allocator; creates an instance of the specified Java content interface; for example:</li></div>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public Object newInstance(Class javaContentInterface)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   throws JAXBException;<a name="wp98523"> </a>
+</pre></div>
+<a name="wp98530"> </a><div class="pSmartList2"><li><code class="cCode">getProperty</code> and <code class="cCode">setProperty</code> APIs that allow the manipulation of provider-specified properties </li></div>
+</ul></div>
+<a name="wp98528"> </a><div class="pSmartList1"><li>Set of typesafe enum classes</li></div>
+<a name="wp82913"> </a><div class="pSmartList1"><li>Package javadoc</li></div>
+</ul></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks3.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBWorks5.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

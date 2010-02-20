@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Package Hierarchy</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XMLDigitalSignatureAPI3.html" />
+    <link rel="Next" href="XMLDigitalSignatureAPI5.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XMLDigitalSignatureAPI3.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XMLDigitalSignatureAPI5.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp510709"> </a><h2 class="pHeading1">
+Package Hierarchy
+</h2>
+<a name="wp510735"> </a><p class="pBody">
+The six packages in the XML Digital Signature API are:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp510737"> </a><div class="pSmartList1"><li><code class="cCode">javax.xml.crypto</code></li></div>
+<a name="wp510738"> </a><div class="pSmartList1"><li><code class="cCode">javax.xml.crypto.dsig</code></li></div>
+<a name="wp510739"> </a><div class="pSmartList1"><li><code class="cCode">javax.xml.crypto.dsig.keyinfo</code></li></div>
+<a name="wp510740"> </a><div class="pSmartList1"><li><code class="cCode">javax.xml.crypto.dsig.spec</code></li></div>
+<a name="wp510741"> </a><div class="pSmartList1"><li><code class="cCode">javax.xml.crypto.dom</code></li></div>
+<a name="wp510742"> </a><div class="pSmartList1"><li><code class="cCode">javax.xml.crypto.dsig.dom</code></li></div>
+</ul></div>
+<a name="wp510744"> </a><p class="pBody">
+The <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/package-summary.html" target="_blank">javax.xml.crypto</a></code> package contains common classes that are used to perform XML cryptographic operations, such as generating an XML signature or encrypting XML data. Two notable classes in this package are the <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/KeySelector.html" target="_blank">KeySelector</a></code> class, which allows developers to supply implementations that locate and optionally validate keys using the information contained in a <code class="cCode">KeyInfo</code> object, and the <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/URIDereferencer.html" target="_blank">URIDereferencer</a></code> class, which allows developers to create and specify their own URI dereferencing implementations.
+</p>
+<a name="wp510746"> </a><p class="pBody">
+The <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/package-summary.html" target="_blank">javax.xml.crypto.dsig</a></code> package includes interfaces that represent the core elements defined in the W3C XML digital signature specification. Of primary significance is the <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/XMLSignature.html" target="_blank">XMLSignature</a></code> class, which allows you to sign and validate an XML digital signature. Most of the XML signature structures or elements are represented by a corresponding interface (except for the <code class="cCode">KeyInfo</code> structures, which are included in their own package and are discussed in the next paragraph). These interfaces include: <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/SignedInfo.html" target="_blank">SignedInfo</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/CanonicalizationMethod.html" target="_blank">CanonicalizationMethod</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/SignatureMethod.html" target="_blank">SignatureMethod</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/Reference.html" target="_blank">Reference</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/Transform.html" target="_blank">Transform</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/DigestMethod.html" target="_blank">DigestMethod</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/XMLObject.html" target="_blank">XMLObject</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/Manifest.html" target="_blank">Manifest</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/SignatureProperty.html" target="_blank">SignatureProperty</a></code>, and <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/SignatureProperties.html" target="_blank">SignatureProperties</a></code>. The <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/XMLSignatureFactory.html" target="_blank">XMLSignatureFactory</a></code> class is an abstract factory that is used to create objects that implement these interfaces.
+</p>
+<a name="wp510748"> </a><p class="pBody">
+The <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/keyinfo/package-summary.html" target="_blank">javax.xml.crypto.dsig.keyinfo</a></code> package contains interfaces that represent most of the <code class="cCode">KeyInfo</code> structures defined in the W3C XML digital signature recommendation, including <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/keyinfo/KeyInfo.html" target="_blank">KeyInfo</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/keyinfo/KeyName.html" target="_blank">KeyName</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/keyinfo/KeyValue.html" target="_blank">KeyValue</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/keyinfo/X509Data.html" target="_blank">X509Data</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/keyinfo/X509IssuerSerial.html" target="_blank">X509IssuerSerial</a></code>, <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/keyinfo/RetrievalMethod.html" target="_blank">RetrievalMethod</a></code>, and <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/keyinfo/PGPData.html" target="_blank">PGPData</a></code>. The <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/keyinfo/KeyInfoFactory.html" target="_blank">KeyInfoFactory</a></code> class is an abstract factory that is used to create objects that implement these interfaces.
+</p>
+<a name="wp510750"> </a><p class="pBody">
+The <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/spec/package-summary.html" target="_blank">javax.xml.crypto.dsig.spec</a></code> package contains interfaces and classes representing input parameters for the digest, signature, transform, or canonicalization algorithms used in the processing of XML signatures.
+</p>
+<a name="wp510725"> </a><p class="pBody">
+Finally, the <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dom/package-summary.html" target="_blank">javax.xml.crypto.dom</a></code> and <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/dom/package-summary.html" target="_blank">javax.xml.crypto.dsig.dom</a></code> packages contains DOM-specific classes for the <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/package-summary.html" target="_blank">javax.xml.crypto</a></code> and <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/package-summary.html" target="_blank">javax.xml.crypto.dsig</a></code> packages, respectively. Only developers and users who are creating or using a DOM-based <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/XMLSignatureFactory.html" target="_blank">XMLSignatureFactory</a></code> or <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/KeyInfoFactory.html" target="_blank">KeyInfoFactory</a></code> implementation should need to make direct use of these packages.
+</p>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XMLDigitalSignatureAPI3.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XMLDigitalSignatureAPI5.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

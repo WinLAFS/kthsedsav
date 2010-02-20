@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Securing JAX-RPC Applications with XML and Web Services Security</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="JAXBUsing4.html" />
+    <link rel="Next" href="XWS-Security2.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBUsing4.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security2.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp540763"> </a><h2 class="pTitle">
+Securing JAX-RPC Applications with XML and Web Services Security
+</h2>
+<a name="wp533098"> </a><p class="pBody">
+This addendum discusses using XML and Web Services Security (XWS-Security) for <em class="cEmphasis">message-level security</em>. In message-level security, security information is contained within the SOAP message, which allows security information to travel along with the message. For example, a portion of the message may be signed by a sender and encrypted for a particular receiver. When the message is sent from the initial sender, it may pass through intermediate nodes before reaching its intended receiver. In this scenario, the encrypted portions continue to be opaque to any intermediate nodes and can only be decrypted by the intended receiver. For this reason, message-level security is also sometimes referred to as <em class="cEmphasis">end-to-end security</em>. 
+</p>
+<a name="wp519593"> </a><p class="pBody">
+This release includes the following XWS-Security features: 
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp519595"> </a><div class="pSmartList1"><li>Support for securing JAX-RPC applications at the service, port, and operation levels. </li></div>
+<a name="wp519596"> </a><div class="pSmartList1"><li>A sample security framework within which a JAX-RPC application developer will be able to secure applications by signing/verifying parts of SOAP messages and/or encrypting/decrypting parts of a SOAP message. </li></div>
+<a name="wp519617"> </a><p class="pBodyRelative">
+The message sender can also make claims about the security properties by associating security tokens with the message. An example of a security claim is the identity of the sender, identified by a user name and password. 
+</p>
+<a name="wp519597"> </a><div class="pSmartList1"><li>Sample programs that demonstrate using the framework. </li></div>
+<a name="wp519637"> </a><div class="pSmartList1"><li>Command-line tools that provide specialized utilities for keystore management, including <code class="cCode">pkcs12import</code> and <code class="cCode">keyexport</code>.</li></div>
+</ul></div>
+<a name="wp519600"> </a><p class="pBody">
+The XWS-Security release contents are arranged in the structure shown in <a  href="XWS-Security.html#wp519769">Table 3-1</a> within the Java WSDP release: </p><div align="left">
+<table border="1" summary="XML and Web Services Security directory structure" id="wp519769">
+  <caption><a name="wp519769"> </a><div class="pTableTitle">
+Table 3-1   &nbsp;XWS-Security directory structure
+</div>
+</caption>
+  <tr align="center">    <th><a name="wp519773"> </a><div class="pCellHeading">
+Directory Name
+</div>
+</th>
+    <th><a name="wp519775"> </a><div class="pCellHeading">
+Contents
+</div>
+</th>
+</tr>
+  <tr align="left">    <td><a name="wp519777"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">&lt;</code><code style="font-style: oblique" class="cCode">JWSDP_HOME</code><code class="cCode">&gt;/<br />xws-security/etc/</code>
+</div>
+</td>
+    <td><a name="wp519779"> </a><div class="pCellBody">
+Keystore files used for the examples. 
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp519781"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">&lt;</code><code style="font-style: oblique" class="cCode">JWSDP_HOME</code><code class="cCode">&gt;/<br />xws-security/docs/</code>
+</div>
+</td>
+    <td><a name="wp519783"> </a><div class="pCellBody">
+Release documentation for the XWS-Security framework. 
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp519786"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">&lt;</code><code style="font-style: oblique" class="cCode">JWSDP_HOME</code><code class="cCode">&gt;/<br />xws-security/lib/</code>
+</div>
+</td>
+    <td><a name="wp519788"> </a><div class="pCellBody">
+JAR files used by the XWS-Security framework.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp519790"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">&lt;</code><code style="font-style: oblique" class="cCode">JWSDP_HOME</code><code class="cCode">&gt;/<br />xws-security/samples/</code>
+</div>
+</td>
+    <td><a name="wp519792"> </a><div class="pCellBody">
+Example code. This release includes sample applications. For more information on the samples, read <a  href="XWS-Security5.html#wp519089">Understanding and Running the Simple Sample Application</a>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp519795"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">&lt;</code><code style="font-style: oblique" class="cCode">JWSDP_HOME</code><code class="cCode">&gt;/<br />xws-security/bin/</code>
+</div>
+</td>
+    <td><a name="wp519797"> </a><div class="pCellBody">
+Command-line tools that provide specialized utilities for keystore management. For more information on these, read <a  href="XWS-Security7.html#wp523666">Useful XWS-Security Command-Line Tools</a>.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp524142"> </a><p class="pBody">
+This implementation of XWS-Security is based on the Oasis Web Services Security (WSS) specification, which can be viewed at the following URL:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+<a  href="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0.pdf" target="_blank">http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-
+message-security-1.0.pdf</a><a name="wp524146"> </a>
+</pre></div>
+<a name="wp524143"> </a><p class="pBody">
+Some of the material in this chapter assumes that you understand basic security concepts. To learn more about these concepts, we recommend that you explore the following resources before you begin this chapter.
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp518131"> </a><div class="pSmartList1"><li>The Java 2 Standard Edition discussion of security, which can be viewed from </li></div>
+<a name="wp531620"> </a><p class="pBodyRelative">
+<code class="cCode"><a  href="http://java.sun.com/j2se/1.5.0/docs/guide/security/index.html" target="_blank">http://java.sun.com/j2se/1.5.0/docs/guide/security/index.html</a></code>
+</p>
+<a name="wp518141"> </a><div class="pSmartList1"><li>The <em class="cEmphasis">J2EE 1.4 Tutorial</em> chapter titled <em class="cEmphasis">Security</em>, which can be viewed from</li></div>
+<a name="wp531627"> </a><p class="pBodyRelative">
+<code class="cCode"><a  href="http://java.sun.com/j2ee/1.4/docs/tutorial-update2/doc/index.html" target="_blank"></a></code>http://java.sun.com/j2ee/1.4/docs/tutorial-update2/doc/index.html
+</p>
+</ul></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBUsing4.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security2.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>
