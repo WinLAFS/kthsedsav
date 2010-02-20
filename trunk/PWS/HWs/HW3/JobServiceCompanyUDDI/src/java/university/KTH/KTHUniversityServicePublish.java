@@ -90,7 +90,7 @@ String httpProxyHost = "";
 
             //------- Define Name and Description
 
-            InternationalString s = blcm.createInternationalString("KTH University");
+            InternationalString s = blcm.createInternationalString("KTHUniversity_f");
             Organization org = blcm.createOrganization(s);
             s = blcm.createInternationalString("Provides KTH degree information");
             org.setDescription(s);
