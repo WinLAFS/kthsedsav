@@ -16,7 +16,7 @@ import java.net.URL;
  */
 public class CompaniesTestClient {
     public static void main(String[] argv ){
-        URL url = getWSDLURL("http://localhost:11983/JobServiceCompany/CompaniesWSService?wsdl");
+        URL url = getWSDLURL("http://localhost:11983/JobServiceCompanyUDDI/CompaniesWSService?wsdl");
         CompaniesWSService service1 = new CompaniesWSService(url);
         CompaniesWS s1 = service1.getCompaniesWSPort();
 
