@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>How XWS-Security and XML Digital Signature API Are Related</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XMLDigitalSignatureAPI.html" />
+    <link rel="Next" href="XMLDigitalSignatureAPI3.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XMLDigitalSignatureAPI.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XMLDigitalSignatureAPI3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp510646"> </a><h2 class="pHeading1">
+How XWS-Security and XML Digital Signature API Are Related
+</h2>
+<a name="wp510675"> </a><p class="pBody">
+Before getting into specifics, it is important to see how XWS-Security and XML Digital Signature API are related. In this release of the Java WSDP, XWS-Security is based on non-standard XML Digital Signature APIs.
+</p>
+<a name="wp511057"> </a><p class="pBody">
+XML Digital Signature API is an API that should be used by Java applications and middleware that need to create and/or process XML Signatures. It can be used by Web Services Security (the goal for a future release) and by non-Web Services technologies (for example, signing documents stored or transferred in XML). Both JSR 105 and JSR 106 (XML Digital Encryption APIs) are core-XML security components. (See <code class="cCode"><a  href="http://www.jcp.org/en/jsr/detail?id=106" target="_blank">http://www.jcp.org/en/jsr/detail?id=106</a></code> for more information about JSR 106.)
+</p>
+<a name="wp511059"> </a><p class="pBody">
+XWS-Security does not currently use the XML Digital Signature API or XML Digital Encryption APIs. XWS-Security uses the Apache libraries for XML-DSig and XML-Enc. The goal of XWS-Security is to move toward using these APIs in future releases.
+</p>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XMLDigitalSignatureAPI.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XMLDigitalSignatureAPI3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

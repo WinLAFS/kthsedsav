@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Customizing JAXB Bindings</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="JAXBWorks5.html" />
+    <link rel="Next" href="JAXBWorks7.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks5.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBWorks7.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp83090"> </a><h2 class="pHeading1">
+Customizing JAXB Bindings
+</h2>
+<a name="wp83093"> </a><p class="pBody">
+The default JAXB bindings can be overridden at a global scope or on a case-by-case basis as needed by using custom binding declarations. As described previously, JAXB uses default binding rules that can be customized by means of binding declarations made in either of two ways:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp94858"> </a><div class="pSmartList1"><li>As inline annotations in a source XML schema</li></div>
+<a name="wp94861"> </a><div class="pSmartList1"><li>As declarations in an external binding customizations file that is passed to the JAXB binding compiler</li></div>
+</ul></div>
+<a name="wp94859"> </a><p class="pBody">
+Custom JAXB binding declarations also allow you to customize your generated JAXB classes beyond the XML-specific constraints in an XML schema to include Java-specific refinements such as class and package name mappings.
+</p>
+<a name="wp83095"> </a><p class="pBody">
+You do not need to provide a binding instruction for every declaration in your schema to generate Java classes. For example, the binding compiler uses a general name-mapping algorithm to bind XML names to names that are acceptable in the Java programming language. However, if you want to use a different naming scheme for your classes, you can specify custom binding declarations to make the binding compiler generate different names. There are many other customizations you can make with the binding declaration, including:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp83098"> </a><div class="pSmartList1"><li>Name the package, derived classes, and methods</li></div>
+<a name="wp83099"> </a><div class="pSmartList1"><li>Assign types to the methods within the derived classes</li></div>
+<a name="wp83100"> </a><div class="pSmartList1"><li>Choose which elements to bind to classes</li></div>
+<a name="wp83101"> </a><div class="pSmartList1"><li>Decide how to bind each attribute and element declaration to a property in the appropriate content class</li></div>
+<a name="wp83102"> </a><div class="pSmartList1"><li>Choose the type of each attribute-value or content specification</li></div>
+</ul></div>
+<hr>
+<a name="wp83108"> </a><p class="pNote">
+Note: Relying on the default JAXB binding behavior rather than requiring a binding declaration for each XML Schema component bound to a Java representation makes it easier to keep pace with changes in the source schema. In most cases, the default rules are robust enough that a usable binding can be produced with no custom binding declaration at all.
+</p>
+<hr><a name="wp99343"> </a><p class="pBody">
+Code examples showing how to customize JAXB bindings are provided in Chapter <a  href="JAXBUsing.html#wp69926">2</a>.
+</p>
+<a name="wp99348"> </a><h3 class="pHeading2">
+Scope
+</h3>
+<a name="wp83118"> </a><p class="pBody">
+When a customization value is defined in a binding declaration, it is associated with a <em class="cEmphasis">scope</em>. A scope of a customization value is the set of schema elements to which it applies. If a customization value applies to a schema element, then the schema element is said to be covered by the scope of the customization value.
+</p>
+<a name="wp83120"> </a><p class="pBody">
+<a  href="JAXBWorks6.html#wp87075">Table 1-4</a> lists the four scopes for custom bindings.</p><div align="left">
+<table border="1" summary="Custom Binding Scopes" id="wp87075">
+  <caption><a name="wp87075"> </a><div class="pTableTitle">
+Table 1-4   Custom Binding Scopes&nbsp;
+</div>
+</caption>
+  <tr align="center">    <th><a name="wp100547"> </a><div class="pCellHeading">
+Scope
+</div>
+</th>
+    <th><a name="wp100549"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+</tr>
+  <tr align="left">    <td><a name="wp87079"> </a><div class="pCellHeading">
+Global
+</div>
+</td>
+    <td><a name="wp87081"> </a><div class="pCellBody">
+A customization value defined in <code class="cCode">&lt;globalBindings&gt;</code> has global scope. A global scope covers all the schema elements in the source schema and (recursively) any schemas that are included or imported by the source schema.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp87083"> </a><div class="pCellHeading">
+Schema
+</div>
+</td>
+    <td><a name="wp87085"> </a><div class="pCellBody">
+A customization value defined in <code class="cCode">&lt;schemaBindings&gt;</code> has schema scope. A schema scope covers all the schema elements in the target name space of a schema.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp87087"> </a><div class="pCellHeading">
+Definition
+</div>
+</td>
+    <td><a name="wp87089"> </a><div class="pCellBody">
+A customization value in binding declarations of a type definition and global declaration has definition scope. A definition scope covers all schema elements that reference the type definition or the global declaration.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp87091"> </a><div class="pCellHeading">
+Component
+</div>
+</td>
+    <td><a name="wp87093"> </a><div class="pCellBody">
+A customization value in a binding declaration has component scope if the customization value applies only to the schema element that was annotated with the binding declaration.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp83150"> </a><h3 class="pHeading2">
+Scope Inheritance
+</h3>
+<a name="wp83153"> </a><p class="pBody">
+The different scopes form a taxonomy. The taxonomy defines both the inheritance and overriding semantics of customization values. A customization value defined in one scope is inherited for use in a binding declaration covered by another scope as shown by the following inheritance hierarchy:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp83156"> </a><div class="pSmartList1"><li>A schema element in schema scope inherits a customization value defined in global scope.</li></div>
+<a name="wp83157"> </a><div class="pSmartList1"><li>A schema element in definition scope inherits a customization value defined in schema or global scope.</li></div>
+<a name="wp83158"> </a><div class="pSmartList1"><li>A schema element in component scope inherits a customization value defined in definition, schema or global scope.</li></div>
+</ul></div>
+<a name="wp83161"> </a><p class="pBody">
+Similarly, a customization value defined in one scope can override a customization value inherited from another scope as shown below:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp83164"> </a><div class="pSmartList1"><li>Value in schema scope overrides a value inherited from global scope.</li></div>
+<a name="wp83165"> </a><div class="pSmartList1"><li>Value in definition scope overrides a value inherited from schema scope or global scope.</li></div>
+<a name="wp83166"> </a><div class="pSmartList1"><li>Value in component scope overrides a value inherited from definition, schema or global scope.</li></div>
+</ul></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks5.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBWorks7.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

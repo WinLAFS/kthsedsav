@@ -1,0 +1,1188 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Advanced Topics in XWS-Security</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XWS-Security8.html" />
+    <link rel="Next" href="XWS-Security10.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security8.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security10.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp557321"> </a><h2 class="pHeading1">
+Advanced Topics in XWS-Security
+</h2>
+<a name="wp557325"> </a><h3 class="pHeading2">
+Writing SecurityEnvironmentHandlers for XWS-Security Applications
+</h3>
+<a name="wp557331"> </a><p class="pBody">
+The signing and encryption operations require private-keys and certificates. An application can obtain such information in various ways, such as looking up a keystore with an alias, using the default key-pairs available with the container, looking up a truststore with an alias, etc. Similarly if an application wants to send a username-password in a <code class="cCode">UsernameToken</code>, it can choose to obtain the username-password pair in various ways, such as reading from a file, prompting the user on the console, using a popup window, etc. The authentication of the username-password on the receiving application can similarly be done by plugging into existing authentication infrastructure, using a proprietary username-password database, etc.
+</p>
+<a name="wp557333"> </a><p class="pBody">
+To support these possibilities, XWS-Security defines a set of <code class="cCode">CallBack</code> classes and requires the application to define a <code class="cCode">CallBackHandler</code> to handle these callbacks. The <code class="cCode">xwss:SecurityEnvironmentHandler</code> element is a compulsory child element that needs to be specified. The value of this element is the class name of a Java class that implements the <code class="cCode">javax.security.auth.callback.CallbackHandler</code> interface and handles the set of callbacks defined by XWS-Security. There are a set of callbacks that are mandatory and every <code class="cCode">CallbackHandler</code> needs to implement them. A few callbacks are optional and can be used to supply some fine-grained property information to the XWS-Security run-time.
+</p>
+<a name="wp557335"> </a><p class="pBody">
+Because information such as private keys and certificates for signing and encryption can be obtained in various ways (looking up a keystore with an alias, using the default key-pairs available with the container, looking up a truststore with an alias, etc.), every callback defines a set of <code class="cCode">Request</code> inner classes and a callback can be initialized with any of its request inner classes. A tagging <code class="cCode">Request</code> interface is also defined within the callback to tag all <code class="cCode">Request</code> classes. For example, the XWS-Security configuration schema defines an <code class="cCode">xwss:X509Token</code> element containing an optional attribute <code class="cCode">certificateAlias</code>. When the <code class="cCode">xwss:X509Token</code> element embedded inside a <code class="cCode">xwss:Sign</code> element has a <code class="cCode">certificateAlias</code> attribute specified as shown in the following code snippet, the XWS-Security run-time would invoke the <code class="cCode">SecurityEnvironmentHandler</code> of the application with a <code class="cCode">SignatureKeyCallback</code> object to obtain the private-key required for the signing operation.
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;xwss:Sign&gt;
+        &lt;xwss:X509Token certificateAlias=&quot;xws-security-client&quot;/&gt;
+&lt;/xwss:Sign&gt;<a name="wp557337"> </a>
+</pre></div>
+<a name="wp557342"> </a><p class="pBody">
+The <code class="cCode">SignatureKeyCallback</code> will be initialized by XWS-Security run-time with an <code class="cCode">AliasPrivKeyCertRequest</code> in the following manner:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+SignatureKeyCallback sigKeyCallback = new 
+SignatureKeyCallback(new
+&nbsp;&nbsp;&nbsp;SignatureKeyCallback.AliasPrivKeyCertRequest(alias));<a name="wp557344"> </a>
+</pre></div>
+<a name="wp557346"> </a><p class="pBody">
+The application's <code class="cCode">SecurityEnvironmentHandler</code> implementation then needs to handle the <code class="cCode">SignatureKeyCallback</code> and use the alias to locate and set the private-key and X.509 certificate pair on the <code class="cCode">AliasPrivKeyCertRequest</code>. The following code shows how this callback is handled in the <code class="cCode">handle()</code> method of <code class="cCode">SecurityEnvironmentHandler</code> shipped with the <code class="cCode">simple</code> sample.
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+} else if (callbacks[i] instanceof SignatureKeyCallback) {
+                SignatureKeyCallback cb = 
+(SignatureKeyCallback)callbacks[i];
+                                                                                                                     
+                if (cb.getRequest() instanceof 
+SignatureKeyCallback.AliasPrivKeyCertRequest) {
+                    SignatureKeyCallback.AliasPrivKeyCertRequest 
+request =
+                        
+(SignatureKeyCallback.AliasPrivKeyCertRequest) 
+cb.getRequest();
+                    String alias = request.getAlias();
+                    if (keyStore == null)
+                        initKeyStore();
+                    try {
+                        X509Certificate cert =
+                            (X509Certificate) 
+keyStore.getCertificate(alias);
+                        request.setX509Certificate(cert);
+                        // Assuming key passwords same as the 
+keystore password
+                        PrivateKey privKey =
+                            (PrivateKey) keyStore.getKey(alias, 
+keyStorePassword.toCharArray());
+                        request.setPrivateKey(privKey);
+                    } catch (Exception e) {
+                        throw new IOException(e.getMessage());
+                    } 
+                } else {
+                     throw  new UnsupportedCallbackException(null, 
+&quot;Unsupported Callback 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type Encountered&quot;);
+                }
+           }<a name="wp558323"> </a>
+</pre></div>
+<a name="wp557373"> </a><p class="pBody">
+This handler uses a keystore to locate the private key and certificate pair, and sets it using <code class="cCode">AliasPrivKeyCertRequest</code>.
+</p>
+<a name="wp557375"> </a><p class="pBody">
+As shown in the sample code, the <code class="cCode">SecurityEnvironmentHandler</code> should throw an <code class="cCode">UnsupportedCallbackException</code> whenever it cannot handle a <code class="cCode">Callback</code> or a particular <code class="cCode">Request</code> type of a <code class="cCode">Callback</code>. 
+</p>
+<a name="wp557377"> </a><p class="pBody">
+The type of <code class="cCode">Request</code> with which the <code class="cCode">Callback</code> is initialized often depends on the information specified in the security configuration file of the application. For example if the <code class="cCode">xwss:X509Token</code> specified under an <code class="cCode">xwss:Sign</code> element did not contain the <code class="cCode">certificateAlias</code> attribute, XWS-Security would invoke the application's <code class="cCode">SecurityEnvironmentHandler</code> with <code class="cCode">SignatureKeyCallback.DefaultPrivKeyCertRequest</code> to try and obtain the default private-key and certificate pair. If the <code class="cCode">SecurityEnvironmentHandler</code> does not handle this request and throws an <code class="cCode">UnsupportedCallbackException</code>, the signature operation would fail.
+</p>
+<a name="wp557379"> </a><p class="pBody">
+For more information, read the API documentation for callbacks from the &lt;<code class="cVariable">JWSDP_HOME</code>&gt;<code class="cCode">/xws-security/docs/api/com/sun/xml/wss/impl/callback/package-summary.html</code>. This documentation includes the list of mandatory and optional callbacks and the details of the <code class="cCode">Callback</code> classes and supported methods. <a  href="XWS-Security9.html#wp558531">Table 3-7</a> provides a brief summary of all the mandatory <code class="cCode">Callback</code> classes and their associated <code class="cCode">Request</code> types.</p><div align="left">
+<table border="1" id="wp558531">
+  <caption><a name="wp558531"> </a><div class="pTableTitle">
+Table 3-7   Summary of Callback classes and their Request types&nbsp;
+</div>
+</caption>
+  <tr align="center">    <th><a name="wp558539"> </a><div class="pCellHeading">
+Callback
+</div>
+</th>
+    <th><a name="wp558541"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+    <th><a name="wp558543"> </a><div class="pCellHeading">
+&nbsp;&nbsp;Request Inner Classes Defined
+</div>
+</th>
+    <th><a name="wp558545"> </a><div class="pCellHeading">
+&nbsp;&nbsp;Methods in the Request Classes
+</div>
+</th>
+</tr>
+  <tr align="left">    <td><a name="wp558547"> </a><div class="pCellBody">
+Signature<br />Key<br />Callback
+</div>
+</td>
+    <td><a name="wp558549"> </a><div class="pCellBody">
+Used by XWS-Security run-time to obtain the private key to be used for signing the corresponding X.509 certificate. There are two ways in which an application can supply the private-key and certificate information.
+</div>
+<a name="wp558550"> </a><div class="pCellBody">
+1. Lookup a keystore using an alias.
+</div>
+<a name="wp558551"> </a><div class="pCellBody">
+2. Obtain the default private-key and certificate from the container/environment in which the application is running.
+</div>
+<a name="wp558553"> </a><div class="pCellBody">
+Accordingly, there are two <code class="cCode">Request</code> inner classes with which the <code class="cCode">SignatureKeyCallback</code> can be initialized.
+</div>
+</td>
+    <td><a name="wp558555"> </a><div class="pCellBody">
+1. <code class="cCode">AliasPrivKeyCertRequest</code>: A <code class="cCode">Callback</code> initialized with this request should be handled if the private key to be used for signing is mapped to an alias.
+</div>
+<a name="wp558562"> </a><div class="pCellBody">
+2. <code class="cCode">DefaultPrivKeyCertRequest</code>: A <code class="cCode">Callback</code> initialized with this request should be handled if there&#39;s some default private key to be used for signing. 
+</div>
+</td>
+    <td><a name="wp558569"> </a><div class="pCellBody">
+The following four methods are present in all <code class="cCode">Request</code> Classes of this <code class="cCode">Callback</code>:<br /><code class="cCode">public void setPrivateKey(<br />&nbsp;&nbsp;&nbsp;PrivateKey privateKey)<br />public PrivateKey getPrivateKey()</code>
+</div>
+<a name="wp558576"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558577"> </a><div class="pCellBody">
+<code class="cCode">public void setX509Certificate(<br />&nbsp;&nbsp;&nbsp;X509Certificate certificate)<br />public X509Certificate<br />&nbsp;&nbsp;&nbsp;getX509Certificate()</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp558582"> </a><div class="pCellBody">
+Signature<br />Verification<br />Key<br />Callback
+</div>
+</td>
+    <td><a name="wp558584"> </a><div class="pCellBody">
+Obtains the certificate required for signature verification. There are currently two situations in which XWS-Security would require this Callback to resolve the certificate:
+</div>
+<a name="wp558585"> </a><div class="pCellBody">
+1. When the signature to be verified references the key using an X.509 <code class="cCode">SubjectKeyIdentifier</code>. For example, when the sender specifies the attribute <code class="cCode">xwss:keyReferenceType=&quot;Identifier&quot;</code> on the <code class="cCode">xwss:X509Token</code> child of the <code class="cCode">xwss:Sign</code> element.
+</div>
+<a name="wp558589"> </a><div class="pCellBody">
+2. When the signature to be verified references the key using an X.509 <code class="cCode">IssuerSerialNumber</code>. For example, when the sender specifies the attribute <code class="cCode">xwss:keyReferenceType=&quot;IssuerSerialNumber&quot;</code> on the <code class="cCode">xwss:X509Token</code> child of the <code class="cCode">xwss:Sign</code> element.
+</div>
+<a name="wp558593"> </a><div class="pCellBody">
+Accordingly, there are two <code class="cCode">Request</code> inner classes with which a <code class="cCode">SignatureVerificationKeyCallback</code> can be initialized.
+</div>
+<a name="wp558594"> </a><div class="pCellBody">
+Note: Additional <code class="cCode">Requests</code> may be defined in a future release.
+</div>
+</td>
+    <td><a name="wp558596"> </a><div class="pCellBody">
+1. <code class="cCode">X509SubjectKeyIdentifierBasedRequest</code>: Request for an X.509 certificate whose X.509 <code class="cCode">SubjectKeyIdentifier</code> value is given.
+</div>
+<a name="wp558600"> </a><div class="pCellBody">
+2. <code class="cCode">X509IssuerSerialBasedRequest</code>: Request for an X.509 certificate whose issuer name and serial number values are given.
+</div>
+<a name="wp558605"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp558607"> </a><div class="pCellBody">
+The following two methods are present in all the <code class="cCode">Request</code> classes of this <code class="cCode">Callback</code>:
+</div>
+<a name="wp558609"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558610"> </a><div class="pCellBody">
+<code class="cCode">public void setX509Certificate(<br />&nbsp;&nbsp;&nbsp;X509Certificate certificate)</code>
+</div>
+<a name="wp558612"> </a><div class="pCellBody">
+<code class="cCode">public X509Certificate<br />&nbsp;&nbsp;&nbsp;getX509Certificate()</code>
+</div>
+<a name="wp558613"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp558615"> </a><div class="pCellBody">
+Encryption<br />Key<br />Callback
+</div>
+</td>
+    <td><a name="wp558617"> </a><div class="pCellBody">
+Obtains the certificate for key-encryption or a symmetric-key for data encryption. There are currently three situations in which XWS-Security would require this <code class="cCode">Callback</code> for performing encryption:
+</div>
+<a name="wp558618"> </a><div class="pCellBody">
+1. When the <code class="cCode">xwss:Encrypt</code> element contains an <code class="cCode">xwss:X509Token</code> child with <code class="cCode">certificateAlias</code> attribute set to an alias. The <code class="cCode">certificateAlias</code> indicates that a random symmetric key is used for encryption of the specified message part and the certificate is then used to encrypt the random symmetric-key to be sent along with the message.
+</div>
+<a name="wp558619"> </a><div class="pCellBody">
+2. When the <code class="cCode">xwss:Encrypt</code> element contains an <code class="cCode">xwss:X509Token</code> child with no <code class="cCode">certificateAlias</code> attribute set on it. XWS-Security tries to obtain a default certificate from the <code class="cCode">Callback</code> to be used for encrypting the random symmetric key.
+</div>
+<a name="wp558620"> </a><div class="pCellBody">
+3. When the <code class="cCode">xwss:Encrypt</code> element contains an <code class="cCode">xwss:SymmetricKey</code> child specifying the <code class="cCode">keyAlias</code> attribute. This alias indicates that a symmetric key corresponding to this alias needs to be located and used for encryption of the specified message part.
+</div>
+<a name="wp558621"> </a><div class="pCellBody">
+Accordingly, there are three <code class="cCode">Request</code> inner classes with which an <code class="cCode">EncryptionKeyCallback</code> can be initialized.
+</div>
+</td>
+    <td><a name="wp558623"> </a><div class="pCellBody">
+1. <code class="cCode">AliasX509CertificateRequest</code>: A <code class="cCode">Callback</code> initialized with this request should be handled if the X.509 certificate to be used for encryption is mapped to an alias.
+</div>
+<a name="wp558626"> </a><div class="pCellBody">
+2. <code class="cCode">DefaultX509CertificateRequest</code>: A <code class="cCode">Callback</code> initialized with this request should be handled if there&#39;s a default X.509 certificate to be used for encryption.
+</div>
+<a name="wp558629"> </a><div class="pCellBody">
+3. <code class="cCode">AliasSymmetricKeyRequest</code>: A <code class="cCode">Callback</code> initialized with this request should be handled if the symmetric key to be used for encryption is mapped to an alias.
+</div>
+</td>
+    <td><a name="wp558633"> </a><div class="pCellBody">
+The following two methods are present in the <code class="cCode">AliasX509CertificateRequest</code> and <code class="cCode">DefaultX509CertificateRequest Request</code> classes of this <code class="cCode">Callback</code>:
+</div>
+<a name="wp558637"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558638"> </a><div class="pCellBody">
+<code class="cCode">public void setX509Certificate(<br />&nbsp;&nbsp;&nbsp;X509Certificate certificate)<br />public X509Certificate<br />&nbsp;&nbsp;&nbsp;getX509Certificate()</code>
+</div>
+<a name="wp558641"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558642"> </a><div class="pCellBody">
+The following methods are present in the <code class="cCode">AliasSymmetricKeyRequest</code> class of this <code class="cCode">Callback</code>:
+</div>
+<a name="wp559295"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558646"> </a><div class="pCellBody">
+<code class="cCode">public void setSymmetricKey(<br />&nbsp;&nbsp;&nbsp;javax.crypto.SecretKey <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;symmetricKey)<br />public javax.crypto.SecretKey <br />&nbsp;&nbsp;&nbsp;getSymmetricKey()</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp558651"> </a><div class="pCellBody">
+Decryption<br />Key<br />Callback
+</div>
+</td>
+    <td><a name="wp558654"> </a><div class="pCellBody">
+Obtains the symmetric key to be used for decrypting the encrypted data or obtaining the private-key for decrypting the encrypted random symmetric key that was sent with the message (along with the encrypted data).
+</div>
+<a name="wp558655"> </a><div class="pCellBody">
+There are currently four situations in which XWS-Security will require this <code class="cCode">Callback</code> to perform decryption.
+</div>
+<a name="wp559317"> </a><div class="pCellBody">
+1. When the <code class="cCode">EncryptedKey</code> references the key (used for encrypting the symmetric key) using an X.509 <code class="cCode">SubjectKeyIdentifier</code>. For example, when the sender specifies the attribute <code class="cCode">keyReferenceType=&quot;Identifier&quot;</code> on the <code class="cCode">xwss:X509Token</code> child of the <code class="cCode">xwss:Encrypt</code> element. 
+</div>
+<a name="wp558659"> </a><div class="pCellBody">
+2. When the <code class="cCode">EncryptedKey</code> references the key (used for encrypting the symmetric key) using an X.509 <code class="cCode">IssuerSerialNumber</code>. For example, when the sender specifies the attribute <code class="cCode">keyReferenceType=&quot;IssuerSerialNumber&quot; </code>on the <code class="cCode">xwss:x509Token</code> child of <code class="cCode">xwss:Encrypt</code> element.
+</div>
+<a name="wp558667"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp558669"> </a><div class="pCellBody">
+1. <code class="cCode">X509SubjectKeyIdentifierBasedRequest</code>: Request for a private-key when the X.509 <code class="cCode">SubjectKeyIdentifier</code> value for a corresponding X.509 certificate is given.
+</div>
+<a name="wp558674"> </a><div class="pCellBody">
+2. <code class="cCode">X509IssuerSerialBasedRequest</code>: Request for a private key when the issuer name and serial number values for a corresponding X.509 certificate are given.
+</div>
+<a name="wp559598"> </a><div class="pCellBody">
+3. <code class="cCode">X509CertificateBasedRequest</code>: Request for a private key when a corresponding X.509 certificate is given.
+</div>
+<a name="wp558687"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp558689"> </a><div class="pCellBody">
+The following two methods are present in the <code class="cCode">X509SubjectKeyIdentifierBasedRequest</code>, <code class="cCode">X509IssuerSerialBasedRequest</code>, and <code class="cCode">X509CertificateBasedRequest</code> <code class="cCode">Request</code> classes of this <code class="cCode">Callback</code>:
+</div>
+<a name="wp559531"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558695"> </a><div class="pCellBody">
+<code class="cCode">public void setPrivateKey(<br />&nbsp;&nbsp;&nbsp;PrivateKey privateKey)<br />public PrivateKey <br />&nbsp;&nbsp;&nbsp;getPrivateKey()</code>
+</div>
+<a name="wp558698"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558709"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp559391"> </a><div class="pCellBody">
+Decryption<br />Key<br />Callback (continued)
+</div>
+</td>
+    <td><a name="wp559397"> </a><div class="pCellBody">
+3. When the <code class="cCode">EncryptedKey</code> contains a <code class="cCode">wsse:Direct</code> reference to the key used for encrypting the symmetric key. This means the X.509 certificate is present as a <code class="cCode">wsse:BinarySecurityToken</code> in the message. For example, when the sender specifies the attribute <code class="cCode">keyReferenceType=&quot;Direct&quot;</code> on the <code class="cCode">xwss:x509Token</code> child of <code class="cCode">xwss:Encrypt</code> element.
+</div>
+<a name="wp559398"> </a><div class="pCellBody">
+4. When the <code class="cCode">EncryptedData</code> contains a <code class="cCode">ds:keyName</code> reference to the symmetric key that was used for encryption. For example, when the sender specifies the <code class="cCode">xwss:SymmetricKey</code> child of <code class="cCode">xwss:Encrypt</code> and specifies the <code class="cCode">keyAlias</code> attribute on it.
+</div>
+<a name="wp559400"> </a><div class="pCellBody">
+Accordingly, there are four <code class="cCode">Request</code> classes with which a <code class="cCode">DecryptionKeyCallback</code> can be initialized.
+</div>
+</td>
+    <td><a name="wp559418"> </a><div class="pCellBody">
+4. <code class="cCode">AliasSymmetricKeyRequest</code>: A <code class="cCode">Callback</code> initialized with this request should be handled if the symmetric key to be used for decryption is mapped to some alias.
+</div>
+</td>
+    <td><a name="wp559589"> </a><div class="pCellBody">
+The following methods are present in the <code class="cCode">AliasSymmetricKeyRequest</code> class of this
+</div>
+<a name="wp559590"> </a><div class="pCellBody">
+<code class="cCode">Callback</code>:
+</div>
+<a name="wp559591"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp559592"> </a><div class="pCellBody">
+<code class="cCode">public void setSymmetricKey(<br />&nbsp;&nbsp;&nbsp;javax.crypto.SecretKey <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;symmetricKey)<br />public javax.crypto.SecretKey <br />&nbsp;&nbsp;&nbsp;getSymmetricKey()</code>
+</div>
+<a name="wp559443"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp558711"> </a><div class="pCellBody">
+Password<br />Validation<br />Callback
+</div>
+</td>
+    <td><a name="wp558713"> </a><div class="pCellBody">
+Username-Password validation. A validator that implements the <code class="cCode">PasswordValidator</code> interface should be set on the callback by the callback handler.
+</div>
+<a name="wp558715"> </a><div class="pCellBody">
+There are currently two situations in which XWS-Security will require this <code class="cCode">Callback</code> to perform username-password validation:
+</div>
+<a name="wp559615"> </a><div class="pCellBody">
+1. When the receiver gets a <code class="cCode">UsernameToken</code> with plain-text user name and password.
+</div>
+<a name="wp558718"> </a><div class="pCellBody">
+2. When the receiver gets a <code class="cCode">UsernameToken</code> with a digested password (as specified in the WSS UsernameToken Profile).
+</div>
+<a name="wp558719"> </a><div class="pCellBody">
+Accordingly there are two Request classes with which the <code class="cCode">PasswordValidationCallback</code> can be initialized.
+</div>
+<a name="wp558731"> </a><div class="pCellBody">
+Note: A validator for WSS Digested Username-Password is provided as part of this callback, with classname <code class="cCode">PasswordValidationCallback</code>.<code class="cCode">DigestPasswordValidator</code>.
+</div>
+<a name="wp558736"> </a><div class="pCellBody">
+This class implements WSS digest password validation. The method for computing password digest is described in <code class="cCode"><a  href="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0.pdf" target="_blank">http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0.pdf</a></code>.
+</div>
+<a name="wp558746"> </a><div class="pCellBody">
+For more information, see the <code class="cCode">ServerSecurityEnvironmentHandler</code> in &lt;<code class="cVariable">JWSDP_HOME</code>&gt;<code class="cCode">/xws-security/samples/jaas-sample/src/com/sun/xml/wss/sample</code>.
+</div>
+</td>
+    <td><a name="wp558752"> </a><div class="pCellBody">
+1. <code class="cCode">PlainTextPasswordRequest</code>: Represents a validation request when the password in the username token is in plain text.
+</div>
+<a name="wp558757"> </a><div class="pCellBody">
+2. <code class="cCode">DigestPasswordRequest</code>: Represents a validation request when the password in the username token is in digested form.
+</div>
+<a name="wp558762"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp558764"> </a><div class="pCellBody">
+The following methods are present in the <code class="cCode">PlainTextPasswordRequest</code>:
+</div>
+<a name="wp558767"> </a><div class="pCellBody">
+<code class="cCode">public String getUsername()</code>
+</div>
+<a name="wp558768"> </a><div class="pCellBody">
+<code class="cCode">public String getPassword()</code>
+</div>
+<a name="wp558770"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558771"> </a><div class="pCellBody">
+The following methods are present in the <code class="cCode">DigestPasswordRequest</code>:
+</div>
+<a name="wp558773"> </a><div class="pCellBody">
+<code class="cCode">public void setPassword(String password)</code>
+</div>
+<a name="wp558774"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558775"> </a><div class="pCellBody">
+This method must be invoked by the <code class="cCode">CallbackHandler</code> while handling a <code class="cCode">Callback</code> initialized with <code class="cCode">DigestPasswordRequest</code> to set the plain-text password on the <code class="cCode">Callback</code>.
+</div>
+<a name="wp558776"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558777"> </a><div class="pCellBody">
+<code class="cCode">public java.lang.String <br />&nbsp;&nbsp;&nbsp;getPassword()</code>
+</div>
+<a name="wp558778"> </a><div class="pCellBody">
+<code class="cCode">public java.lang.String <br />&nbsp;&nbsp;&nbsp;getUsername()</code>
+</div>
+<a name="wp558779"> </a><div class="pCellBody">
+<code class="cCode">public java.lang.String getDigest()</code>
+</div>
+<a name="wp558780"> </a><div class="pCellBody">
+<code class="cCode">public java.lang.String getNonce()</code>
+</div>
+<a name="wp558781"> </a><div class="pCellBody">
+<code class="cCode">public java.lang.String getCreated()</code>
+</div>
+<a name="wp558787"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp558789"> </a><div class="pCellBody">
+Username<br />Callback
+</div>
+</td>
+    <td><a name="wp558791"> </a><div class="pCellBody">
+To supply the user name for the <code class="cCode">UsernameToken</code> at run-time. It contains the following two methods:
+</div>
+<a name="wp558794"> </a><div class="pCellBody">
+<code class="cCode">public void setUsername(</code>
+</div>
+<a name="wp558795"> </a><div class="pCellBody">
+<code class="cCode">    String username)</code>
+</div>
+<a name="wp558796"> </a><div class="pCellBody">
+<code class="cCode">public String getUsername()</code>
+</div>
+<a name="wp558797"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558798"> </a><div class="pCellBody">
+Refer to the <code class="cCode">ClientSecurityEnvironmentHandler</code> of the
+</div>
+<a name="wp558799"> </a><div class="pCellBody">
+ <code class="cCode">jaas-sample</code> sample located in
+</div>
+<a name="wp558800"> </a><div class="pCellBody">
+&lt;<code class="cVariable">JWSDP_HOME</code>&gt;<code class="cCode">/xws-security/samples/jaas-sample/src/com/sun/xml/wss/sample</code> for more details on using the <code class="cCode">UsernameCallback</code>.
+</div>
+</td>
+    <td><a name="wp558805"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp558807"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp558809"> </a><div class="pCellBody">
+PasswordCallback
+</div>
+</td>
+    <td><a name="wp558811"> </a><div class="pCellBody">
+To supply the password for the username token at run-time. It contains the following two methods:
+</div>
+<a name="wp558819"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp558820"> </a><div class="pCellBody">
+<code class="cCode">public void setPassword(String<br />&nbsp;&nbsp;&nbsp;password)</code>
+</div>
+<a name="wp558821"> </a><div class="pCellBody">
+<code class="cCode">public String getPassword()</code>
+</div>
+<a name="wp559825"> </a><div class="pCellBody">
+Refer to the <code class="cCode">ClientSecurityEnvironmentHandler</code> of the <code class="cCode">jaas-sample</code> sample located in
+</div>
+<a name="wp559829"> </a><div class="pCellBody">
+&lt;<code class="cVariable">JWSDP_HOME</code>&gt;<code class="cCode">/xws-security/samples/jaas-sample/src/com/sun/xml/wss/sample</code> for more details on using the <code class="cCode">PasswordCallback</code>.
+</div>
+</td>
+    <td><a name="wp558823"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp558825"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp558827"> </a><div class="pCellBody">
+Property<br />Callback
+</div>
+</td>
+    <td><a name="wp558829"> </a><div class="pCellBody">
+Optional callback to specify the values of properties configurable with XWS-Security run-time.
+</div>
+<a name="wp558830"> </a><div class="pCellBody">
+Refer to the API documentation at<code class="cVariable"> &lt;JWSDP_HOME&gt;</code><code class="cCode">/xws-security/docs/api/com/sun/xml/wss/impl/callback/PropertyCallback.html</code> for a list of configurable properties methods supported by this callback.
+</div>
+</td>
+    <td><a name="wp558835"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp558837"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp558839"> </a><div class="pCellBody">
+Prefix<br />Namespace<br />Mapping<br />Callback
+</div>
+</td>
+    <td><a name="wp558841"> </a><div class="pCellBody">
+Optional callback to register any prefix versus namespace-uri mappings that the developer wants to make use of in the security configuration (while specifying <code class="cCode">Targets</code> as <code class="cCode">xpaths</code>).
+</div>
+<a name="wp558842"> </a><div class="pCellBody">
+Refer to the API documentation at <code class="cVariable">&lt;JWSDP_HOME&gt;</code><code class="cCode">/xws-security/docs/api/com/sun/xml/wss/impl/callback/PrefixNamespaceMappingCallback.html</code> for more details.
+</div>
+</td>
+    <td><a name="wp558847"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp558849"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp557683"> </a><p class="pBody">
+The following code snippet shows the <code class="cCode">handle()</code> method skeleton for an application&#39;s <code class="cCode">SecurityEnvironmentHandler</code> that handles all the mandatory <code class="cCode">Callbacks</code> (except <code class="cCode">UsernameCallback</code> and <code class="cCode">PasswordCallback</code>) and associated <code class="cCode">Requests</code> defined by XWS-Security. A particular application may choose to throw an <code class="cCode">UnsupportedCallbackException</code> for any of the <code class="cCode">Callbacks</code> or its <code class="cCode">Requests</code> that it cannot handle. The <code class="cCode">UsernameCallback</code> and <code class="cCode">PasswordCallback</code> are useful for obtaining a username-password pair at run-time and are explained later in this section.
+</p>
+<hr>
+<a name="wp560867"> </a><p class="pNote">
+Note: In this release of XWS-Security, users will have to ensure that the <code class="cCode">SecurityEnvironmentHandler</code> implementation they supply is thread safe. 
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+public  class SecurityEnvironmentHandler implements 
+CallbackHandler {
+
+    public void handle(Callback[] callbacks) throws IOException,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnsupportedCallbackException {
+    
+        for (int i=0; i &lt; callbacks.length; i++) {
+    
+            if (callbacks[i] instanceof 
+PasswordValidationCallback) {
+                PasswordValidationCallback cb = 
+(PasswordValidationCallback) callbacks[i];
+                if (cb.getRequest() instanceof
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PasswordValidationCallback.PlainTextPasswor
+dRequest) {
+                    // setValidator for plain-text password 
+validation on callback cb
+                } else if (cb.getRequest() instanceof
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PasswordValidationCallback.DigestPasswor
+dRequest) {
+                    
+PasswordValidationCallback.DigestPasswordRequest request =
+                        
+(PasswordValidationCallback.DigestPasswordRequest) 
+cb.getRequest();
+                    // set plaintext password on  request
+                    // setValidator for digest password validation 
+on cb
+
+                } else {
+                    // throw unsupported;
+                }
+    
+            } else if (callbacks[i] instanceof 
+SignatureVerificationKeyCallback) {
+                SignatureVerificationKeyCallback cb =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SignatureVerificationKeyCallback)callbacks
+[i];
+    
+                if (cb.getRequest() instanceof
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SignatureVerificationKeyCallback.X509Subjec
+tKeyIdentifierBasedRequest) {
+                    // subject keyid request
+                    
+SignatureVerificationKeyCallback.X509SubjectKeyIdentifierBased
+Request 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;request =
+                        
+(SignatureVerificationKeyCallback.X509SubjectKeyIdentifierBase
+dRequest)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cb.getRequest();
+                    // locate and setX509Certificate on the request   
+                } else if (cb.getRequest() instanceof
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SignatureVerificationKeyCallback.X509Iss
+uerSerialBasedRequest) {
+                    // issuer serial request
+                    
+SignatureVerificationKeyCallback.X509IssuerSerialBasedRequest 
+request =
+                        
+(SignatureVerificationKeyCallback.X509IssuerSerialBasedRequest
+)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cb.getRequest();
+                    // locate and setX509Certificate on the request
+
+                } else  {
+                     // throw unsupported;
+                }
+    
+            } else if (callbacks[i] instanceof 
+SignatureKeyCallback) {
+                 SignatureKeyCallback cb = 
+(SignatureKeyCallback)callbacks[i];
+                 if (cb.getRequest() instanceof 
+SignatureKeyCallback.DefaultPrivKeyCertRequest) {
+                    // default priv key cert req
+                    SignatureKeyCallback.DefaultPrivKeyCertRequest 
+request =
+                        
+(SignatureKeyCallback.DefaultPrivKeyCertRequest) 
+cb.getRequest();
+                    // locate and set default privateKey and 
+X509Certificate on request  
+                } else if (cb.getRequest() instanceof 
+SignatureKeyCallback.AliasPrivKeyCertRequest) {
+                    // Alias priv key cert req
+                    SignatureKeyCallback.AliasPrivKeyCertRequest 
+request =
+                        
+(SignatureKeyCallback.AliasPrivKeyCertRequest) 
+cb.getRequest();
+                    // locate and set default privateKey and 
+X509Certificate on request
+                   
+                } else {
+                     // throw unsupported;
+                }
+    
+            } else if (callbacks[i] instanceof 
+DecryptionKeyCallback) {
+                DecryptionKeyCallback cb = 
+(DecryptionKeyCallback)callbacks[i];
+    
+                if (cb.getRequest() instanceof 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DecryptionKeyCallback.X509SubjectKeyIdentif
+ierBasedRequest) {
+                    //ski  request
+                    
+DecryptionKeyCallback.X509SubjectKeyIdentifierBasedRequest 
+request =
+                        
+(DecryptionKeyCallback.X509SubjectKeyIdentifierBasedRequest)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cb.getRequest();
+                    // locate and set the privateKey on the request   
+
+                } else if (cb.getRequest() instanceof
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DecryptionKeyCallback.X509IssuerSerialBas
+edRequest) {
+                    // issuer serial request
+                    
+DecryptionKeyCallback.X509IssuerSerialBasedRequest request =
+                        
+(DecryptionKeyCallback.X509IssuerSerialBasedRequest) 
+cb.getRequest();
+                    // locate and set the privateKey on the request   
+                } else if (cb.getRequest() instanceof
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DecryptionKeyCallback.X509CertificateBas
+edRequest) {
+                    // X509 cert request
+                    
+DecryptionKeyCallback.X509CertificateBasedRequest request =
+                        
+(DecryptionKeyCallback.X509CertificateBasedRequest) 
+cb.getRequest();
+                    // locate and set private key on the request
+                } else if (cb.getRequest() instanceof
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DecryptionKeyCallback.AliasSymmetricKeyR
+equest) {
+                    DecryptionKeyCallback.AliasSymmetricKeyRequest 
+request =
+                        
+(DecryptionKeyCallback.AliasSymmetricKeyRequest) 
+cb.getRequest();
+                    // locate and set symmetric key on request
+   
+                } else  {
+                    // throw unsupported;
+                }
+    
+            } else if (callbacks[i] instanceof 
+EncryptionKeyCallback) {
+                EncryptionKeyCallback cb = 
+(EncryptionKeyCallback)callbacks[i];
+    
+                if (cb.getRequest() instanceof 
+EncryptionKeyCallback.AliasX509CertificateRequest) {
+                    
+EncryptionKeyCallback.AliasX509CertificateRequest request =
+                        
+(EncryptionKeyCallback.AliasX509CertificateRequest) 
+cb.getRequest();
+                    // locate and set certificate on request   
+                } else if (cb.getRequest() instanceof
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EncryptionKeyCallback.AliasSymmetricKeyRe
+quest) {
+                    EncryptionKeyCallback.AliasSymmetricKeyRequest 
+request =
+                        
+(EncryptionKeyCallback.AliasSymmetricKeyRequest) 
+cb.getRequest();
+                    // locate and set symmetric key on request
+   
+                } else {
+                    // throw unsupported;
+                }
+    
+            } else if (callbacks[i] instanceof 
+CertificateValidationCallback) {
+                CertificateValidationCallback cb = 
+(CertificateValidationCallback)callbacks[i];
+                // set an X509 Certificate Validator on the callback
+            } else {
+                // throw unsupported;
+            }
+        }
+    }
+}<a name="wp557685"> </a>
+</pre></div>
+<hr><a name="wp557796"> </a><p class="pBody">
+An application can also choose not to handle certain callbacks if it knows that the particular application will never require those callbacks. For example if the security application only deals with signing the requests and does not deal with encryption or username tokens, its <code class="cCode">handle()</code> method only needs to worry about <code class="cCode">SignatureKeyCallback</code> (with its associated <code class="cCode">Requests</code>) and <code class="cCode">SignatureVerificationKeyCallback</code> (with its associated <code class="cCode">Requests</code>). It can then throw an <code class="cCode">UnsupportedCallbackException</code> for any other callback. The following code shows the <code class="cCode">handle()</code> method skeleton for such an application:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+public  class SecurityEnvironmentHandler implements 
+CallbackHandler {
+
+    public void handle(Callback[] callbacks) throws IOException,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnsupportedCallbackException {
+    
+
+        for (int i=0; i &lt; callbacks.length; i++) {
+    
+            if (callbacks[i] instanceof 
+SignatureVerificationKeyCallback) {
+                SignatureVerificationKeyCallback cb =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SignatureVerificationKeyCallback)callbacks
+[i];
+    
+                if (cb.getRequest() instanceof
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SignatureVerificationKeyCallback.X509Subjec
+tKeyIdentifierBasedRequest) {
+                    // subject keyid request
+                    
+SignatureVerificationKeyCallback.X509SubjectKeyIdentifierBased
+Request 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;request =
+                        
+(SignatureVerificationKeyCallback.X509SubjectKeyIdentifierBase
+dRequest)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cb.getRequest();
+                    // locate and setX509Certificate on the request   
+                } else if (cb.getRequest() instanceof
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SignatureVerificationKeyCallback.X509Issu
+erSerialBasedRequest) {
+                    // issuer serial request
+                    
+SignatureVerificationKeyCallback.X509IssuerSerialBasedRequest 
+request =
+                        
+(SignatureVerificationKeyCallback.X509IssuerSerialBasedRequest
+)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cb.getRequest();
+                    // locate and setX509Certificate on the request
+
+                } else  {
+                    // throw unsupported;
+                }
+    
+            } else if (callbacks[i] instanceof 
+SignatureKeyCallback) {
+                 SignatureKeyCallback cb = 
+(SignatureKeyCallback)callbacks[i];
+                 if (cb.getRequest() instanceof 
+SignatureKeyCallback.DefaultPrivKeyCertRequest) {
+                    // default priv key cert req
+                    SignatureKeyCallback.DefaultPrivKeyCertRequest 
+request =
+                        
+(SignatureKeyCallback.DefaultPrivKeyCertRequest) 
+cb.getRequest();
+                    // locate and set default privateKey and 
+X509Certificate on request  
+                } else if (cb.getRequest() instanceof 
+SignatureKeyCallback.AliasPrivKeyCertRequest) {
+                    // Alias priv key cert req
+                    SignatureKeyCallback.AliasPrivKeyCertRequest 
+request =
+                        
+(SignatureKeyCallback.AliasPrivKeyCertRequest) 
+cb.getRequest();
+                    // locate and set default privateKey and 
+X509Certificate on request
+                   
+                } else {
+                    //  throw unsupported;
+                }
+
+            } else {
+                // throw unsupported;
+            }
+        }
+    }
+}<a name="wp557798"> </a>
+</pre></div>
+<a name="wp557848"> </a><p class="pBody">
+Similarly, an application dealing only with <code class="cCode">UsernameToken</code> but not signature or encryption requirements can simply throw <code class="cCode">UnsupportedCallbackException</code> for all non-username related callbacks. 
+</p>
+<a name="wp557850"> </a><p class="pBody">
+The <code class="cCode">SecurityEnvironmentHandler</code> implementation for the <code class="cCode">simple</code> sample is located in the directory <code class="cVariable">&lt;JWSDP_HOME&gt;</code><code class="cCode">/xws-security/samples/simple/src/com/sun/xml/wss/sample</code>. The <code class="cCode">simple</code> sample uses the same <code class="cCode">SecurityEnvironmentHandler</code> for both the client and server side.
+</p>
+<a name="wp557852"> </a><p class="pBody">
+The <code class="cCode">jaas-sample</code> sample requires a different set of callbacks to be handled on the client and server side. The <code class="cCode">CallbackHandlers</code> for the <code class="cCode">jaas-sample</code> sample are located in the directory <code class="cVariable">&lt;JWSDP_HOME&gt;</code><code class="cCode">/xws-security/samples/jaas-sample/src/com/sun/xml/wss/sample</code>. The two <code class="cCode">CallbackHandlers</code> defined for the <code class="cCode">jaas-sample</code> are: 
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp560299"> </a><div class="pSmartList1"><li>A <code class="cCode">ClientSecurityEnvironmentHandler</code> that handles only the <code class="cCode">UsernameCallback</code> and <code class="cCode">PasswordCallback</code> for retrieving the username and password to be sent in a WSS <code class="cCode">UsernameToken</code>. </li></div>
+<a name="wp560303"> </a><div class="pSmartList1"><li>A <code class="cCode">ServerSecurityEnvironmentHandler</code> that handles only the <code class="cCode">PasswordValidationCallback</code> to validate the username-password pair that it received in the WSS <code class="cCode">UsernameToken</code>. </li></div>
+</ul></div>
+<a name="wp557855"> </a><h3 class="pHeading2">
+Using the SubjectAccessor API
+</h3>
+<a name="wp557856"> </a><p class="pBody">
+XWS-Security applications might require access to the authenticated subject of the sender from within the SEI implementation methods. The <code class="cCode">SubjectAccessor</code> API contains a single method:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+public static Subject getRequesterSubject(Object context)
+&nbsp;&nbsp;&nbsp;throws XWSSecurityException<a name="wp557858"> </a>
+</pre></div>
+<a name="wp560407"> </a><p class="pBody">
+This method returns the <code class="cCode">Subject</code> if one is available or else it returns <code class="cCode">NULL</code>. The context argument to be passed into this method is the <code class="cCode">ServletEndpointContext</code> which is available with the SEI implementation class. For an example on how the <code class="cCode">SubjectAccessor</code> is used to obtain the authenticated sender subject, refer to the <code class="cCode">PingImpl.java</code> class in the <code class="cCode">jaas-sample</code> sample located at <code class="cVariable">&lt;JWSDP_HOME&gt;</code><code class="cCode">/xws-security/samples/jaas-sample/server/src/sample</code>. The API for <code class="cCode">SubjectAccessor</code> viewed from <code class="cVariable">&lt;JWSDP_HOME&gt;</code><code class="cCode">/xws-security/docs/api/com/sun/xml/wss/SubjectAccessor.html</code>.
+</p>
+<a name="wp561421"> </a><h3 class="pHeading2">
+Formal Schema Definition
+</h3>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;   
+           targetNamespace=&quot;http://java.sun.com/xml/ns/xwss/
+config&quot;
+           xmlns=&quot;http://java.sun.com/xml/ns/xwss/config&quot;
+           elementFormDefault=&quot;qualified&quot;&gt;
+
+&lt;xs:element name=&quot;JAXRPCSecurity&quot;&gt;
+   &lt;xs:complexType&gt;
+      &lt;xs:all&gt;
+         &lt;xs:element name=&quot;Service&quot; type=&quot;Service_T&quot;/&gt;
+         &lt;xs:element name=&quot;SecurityEnvironmentHandler&quot; 
+type=&quot;xs:string&quot;/&gt;
+      &lt;/xs:all&gt;
+   &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+
+&lt;xs:complexType name=&quot;Service_T&quot;&gt;
+   &lt;xs:sequence&gt;
+      &lt;xs:element ref=&quot;SecurityConfiguration&quot; minOccurs=&quot;0&quot; 
+maxOccurs=&quot;1&quot;/&gt;
+      &lt;xs:element name=&quot;Port&quot; 
+                  type=&quot;Port_T&quot; 
+                  minOccurs=&quot;0&quot;
+                  maxOccurs=&quot;unbounded&quot;/&gt;
+   &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:complexType name=&quot;Port_T&quot; mixed=&quot;true&quot;&gt;
+   &lt;xs:sequence&gt;
+      &lt;xs:element ref=&quot;SecurityConfiguration&quot; minOccurs=&quot;0&quot; 
+maxOccurs=&quot;1&quot;/&gt;
+      &lt;xs:element name=&quot;Operation&quot;
+                  type=&quot;Operation_T&quot;
+                  minOccurs=&quot;0&quot;
+                  maxOccurs=&quot;unbounded&quot;/&gt;
+   &lt;/xs:sequence&gt;
+   &lt;xs:attribute name=&quot;name&quot; use=&quot;required&quot;&gt;
+      &lt;xs:simpleType&gt;
+         &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+            &lt;xs:minLength value=&quot;1&quot;/&gt;
+         &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+   &lt;/xs:attribute&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:complexType name=&quot;Operation_T&quot;&gt;
+   &lt;xs:all&gt;
+      &lt;xs:element ref=&quot;SecurityConfiguration&quot; minOccurs=&quot;0&quot;/&gt;
+   &lt;/xs:all&gt;
+   &lt;xs:attribute name=&quot;name&quot; use=&quot;required&quot;&gt;
+      &lt;xs:simpleType&gt;
+         &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+            &lt;xs:minLength value=&quot;1&quot;/&gt;
+         &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+   &lt;/xs:attribute&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:element name=&quot;SecurityConfiguration&quot; 
+type=&quot;SecurityConfiguration_T&quot;/&gt; 
+
+&lt;xs:complexType name=&quot;SecurityConfiguration_T&quot;&gt;
+   &lt;xs:sequence&gt;
+      &lt;xs:group ref=&quot;ConfigurationElements&quot; 
+maxOccurs=&quot;unbounded&quot;/&gt;
+   &lt;/xs:sequence&gt;    
+   &lt;xs:attribute name=&quot;dumpMessages&quot; type=&quot;xs:boolean&quot; 
+default=&quot;false&quot;/&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:group name=&quot;ConfigurationElements&quot;&gt;
+   &lt;xs:choice&gt;
+      &lt;xs:element name=&quot;Timestamp&quot; 
+                  type=&quot;Timestamp_T&quot;
+                  minOccurs=&quot;0&quot;  
+                  maxOccurs=&quot;1&quot;/&gt;
+      &lt;xs:element name=&quot;RequireTimestamp&quot; 
+                  minOccurs=&quot;0&quot;  
+                  maxOccurs=&quot;1&quot;/&gt;
+      &lt;xs:element name=&quot;UsernameToken&quot; 
+                  type=&quot;UsernameToken_T&quot;
+                  minOccurs=&quot;0&quot;  
+                  maxOccurs=&quot;1&quot;/&gt;
+      &lt;xs:element name=&quot;RequireUsernameToken&quot; 
+                  type=&quot;RequireUsernameToken_T&quot;
+                  minOccurs=&quot;0&quot;  
+                  maxOccurs=&quot;1&quot;/&gt;
+      &lt;xs:element name=&quot;Sign&quot; 
+                  type=&quot;Sign_T&quot;
+                  minOccurs=&quot;0&quot;  
+                  maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;xs:element name=&quot;Encrypt&quot; 
+                  type=&quot;Encrypt_T&quot;
+                  minOccurs=&quot;0&quot;  
+                  maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;xs:element name=&quot;RequireSignature&quot; 
+                  type=&quot;RequireSignature_T&quot;
+                  minOccurs=&quot;0&quot;  
+                  maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;xs:element name=&quot;RequireEncryption&quot; 
+                  type=&quot;RequireEncryption_T&quot;
+                  minOccurs=&quot;0&quot;  
+                  maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;xs:element name=&quot;OptionalTargets&quot;
+                  type=&quot;OptionalTargets_T&quot;
+                  minOccurs=&quot;0&quot;
+                  maxOccurs=&quot;1&quot;/&gt;
+   &lt;/xs:choice&gt;
+&lt;/xs:group&gt;
+
+&lt;xs:complexType name=&quot;Timestamp_T&quot;&gt;
+  &lt;xs:attribute name=&quot;timeout&quot; type=&quot;xs:string&quot; default=&quot;300&quot;/&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:complexType name=&quot;UsernameToken_T&quot;&gt;
+   &lt;xs:attribute name=&quot;id&quot; type=&quot;id_T&quot; use=&quot;optional&quot;/&gt;
+   &lt;xs:attribute name=&quot;name&quot; type=&quot;xs:string&quot; use=&quot;optional&quot;/&gt;
+   &lt;xs:attribute name=&quot;password&quot; type=&quot;xs:string&quot; 
+use=&quot;optional&quot;/&gt;
+   &lt;xs:attribute name=&quot;useNonce&quot; type=&quot;xs:boolean&quot; 
+default=&quot;true&quot;/&gt;
+   &lt;xs:attribute name=&quot;digestPassword&quot; type=&quot;xs:boolean&quot; 
+default=&quot;true&quot;/&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:complexType name=&quot;RequireUsernameToken_T&quot;&gt;
+   &lt;xs:attribute name=&quot;nonceRequired&quot; type=&quot;xs:boolean&quot; 
+default=&quot;true&quot;/&gt;
+   &lt;xs:attribute name=&quot;passwordDigestRequired&quot; 
+                 type=&quot;xs:boolean&quot; default=&quot;true&quot;/&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:complexType name=&quot;Sign_T&quot;&gt;
+   &lt;xs:sequence&gt;
+      &lt;xs:element name=&quot;X509Token&quot; 
+                  type=&quot;X509Token_T&quot; 
+                  minOccurs=&quot;0&quot; 
+                  maxOccurs=&quot;1&quot;/&gt;
+      &lt;xs:element name=&quot;Target&quot; 
+                  type=&quot;Target_T&quot;
+                  minOccurs=&quot;0&quot; 
+                  maxOccurs=&quot;unbounded&quot;/&gt;
+   &lt;/xs:sequence&gt;
+   &lt;xs:attribute name=&quot;includeTimestamp&quot; 
+                 type=&quot;xs:boolean&quot; default=&quot;true&quot;/&gt; 
+&lt;/xs:complexType&gt;
+
+&lt;xs:complexType name=&quot;Encrypt_T&quot;&gt;
+   &lt;xs:sequence&gt;
+      &lt;xs:group ref=&quot;EncryptionKey_T&quot; minOccurs=&quot;0&quot; 
+maxOccurs=&quot;1&quot;/&gt;
+      &lt;xs:element name=&quot;Target&quot; 
+                  type=&quot;Target_T&quot;
+                  minOccurs=&quot;0&quot; 
+                  maxOccurs=&quot;unbounded&quot;/&gt;
+   &lt;/xs:sequence&gt;
+   &lt;xs:attribute name=&quot;keyEncryptionAlgorithm&quot; 
+                 type=&quot;xs:string&quot;
+                 use=&quot;optional&quot;
+                 default=&quot;RSA_OAEP&quot;/&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:group name=&quot;EncryptionKey_T&quot;&gt;
+   &lt;xs:choice&gt;
+      &lt;xs:element name=&quot;X509Token&quot; 
+                  type=&quot;X509Token_T&quot;
+                  minOccurs=&quot;0&quot; 
+                  maxOccurs=&quot;1&quot;/&gt;
+      &lt;xs:element name=&quot;SymmetricKey&quot;
+                  type=&quot;SymmetricKey_T&quot;
+                  minOccurs=&quot;0&quot;
+                  maxOccurs=&quot;1&quot;/&gt;
+   &lt;/xs:choice&gt;
+&lt;/xs:group&gt;
+
+&lt;xs:complexType name=&quot;SymmetricKey_T&quot;&gt;
+   &lt;xs:attribute name=&quot;keyAlias&quot; use=&quot;required&quot;&gt;
+      &lt;xs:simpleType&gt;
+         &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+            &lt;xs:minLength value=&quot;1&quot;/&gt;
+         &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+   &lt;/xs:attribute&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:complexType name=&quot;RequireSignature_T&quot;&gt;
+   &lt;xs:sequence&gt;
+      &lt;xs:element name=&quot;Target&quot; 
+                  type=&quot;Target_T&quot; 
+                  minOccurs=&quot;0&quot; 
+                  maxOccurs=&quot;unbounded&quot;/&gt;
+   &lt;/xs:sequence&gt;
+   &lt;xs:attribute name=&quot;requireTimestamp&quot; 
+                 type=&quot;xs:boolean&quot; use=&quot;optional&quot; default=&quot;true&quot;/&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:complexType name=&quot;RequireEncryption_T&quot;&gt;
+   &lt;xs:sequence&gt;
+      &lt;xs:element name=&quot;Target&quot; 
+                  type=&quot;Target_T&quot;
+                  minOccurs=&quot;0&quot; 
+                  maxOccurs=&quot;unbounded&quot;/&gt;
+   &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:complexType name=&quot;OptionalTargets_T&quot;&gt;
+   &lt;xs:sequence&gt;
+      &lt;xs:element name=&quot;Target&quot; 
+                  type=&quot;Target_T&quot;
+                  minOccurs=&quot;1&quot; 
+                  maxOccurs=&quot;unbounded&quot;/&gt;
+   &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:complexType name=&quot;X509Token_T&quot;&gt;
+   &lt;xs:attribute name=&quot;id&quot; type=&quot;id_T&quot; use=&quot;optional&quot;/&gt;
+   &lt;xs:attribute name=&quot;certificateAlias&quot; 
+                 type=&quot;xs:string&quot; use=&quot;optional&quot;/&gt;
+   &lt;xs:attribute name=&quot;keyReferenceType&quot; 
+                 use=&quot;optional&quot;
+                 default=&quot;Direct&quot;&gt;
+      &lt;xs:simpleType&gt;
+         &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+            &lt;xs:enumeration value=&quot;Direct&quot;/&gt;
+            &lt;xs:enumeration value=&quot;Identifier&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;IssuerSerialNumber&quot;/&gt;
+         &lt;/xs:restriction&gt;
+     &lt;/xs:simpleType&gt;
+  &lt;/xs:attribute&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:complexType name=&quot;Target_T&quot;&gt;
+   &lt;xs:simpleContent&gt;
+      &lt;xs:extension base=&quot;xs:string&quot;&gt;
+         &lt;xs:attribute name=&quot;type&quot; use=&quot;optional&quot; 
+default=&quot;qname&quot;&gt;
+            &lt;xs:simpleType&gt;
+               &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+                  &lt;xs:enumeration value=&quot;qname&quot;/&gt;
+                  &lt;xs:enumeration value=&quot;uri&quot;/&gt;
+                  &lt;xs:enumeration value=&quot;xpath&quot;/&gt;
+               &lt;/xs:restriction&gt;
+            &lt;/xs:simpleType&gt;
+         &lt;/xs:attribute&gt;
+         &lt;xs:attribute name=&quot;contentOnly&quot; 
+                       type=&quot;xs:boolean&quot;
+                       use=&quot;optional&quot; 
+                       default=&quot;true&quot;/&gt;
+         &lt;xs:attribute name=&quot;enforce&quot;
+                       type=&quot;xs:boolean&quot;
+                       use=&quot;optional&quot;
+                       default=&quot;true&quot;/&gt;  
+     &lt;/xs:extension&gt;
+  &lt;/xs:simpleContent&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:simpleType name=&quot;KeyReferenceType_T&quot;&gt;
+   &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+     &lt;xs:enumeration value=&quot;Direct&quot;/&gt;
+     &lt;xs:enumeration value=&quot;Identifier&quot;/&gt;
+     &lt;xs:enumeration value=&quot;IssuerSerialNumber&quot;/&gt;
+   &lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;
+
+&lt;xs:simpleType name=&quot;id_T&quot;&gt;
+   &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+     &lt;xs:minLength value=&quot;1&quot;/&gt;
+   &lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;
+
+&lt;/xs:schema&gt;<a name="wp562113"> </a>
+</pre></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security8.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security10.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

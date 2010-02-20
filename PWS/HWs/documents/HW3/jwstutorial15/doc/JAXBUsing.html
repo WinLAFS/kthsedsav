@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Using JAXB</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="JAXBWorks8.html" />
+    <link rel="Next" href="JAXBUsing2.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks8.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBUsing2.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp78319"> </a><h2 class="pTitle">
+Using JAXB
+</h2>
+<a name="wp87714"> </a><p class="pBody">
+This chapter provides instructions for using several of the sample Java applications that were included in the Java WSDP. These examples demonstrate and build upon key JAXB features and concepts. It is recommended that you follow these procedures in the order presented.
+</p>
+<a name="wp87716"> </a><p class="pBody">
+After reading this chapter, you should feel comfortable enough with JAXB that you can:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp87719"> </a><div class="pSmartList1"><li>Generate JAXB Java classes from an XML schema</li></div>
+<a name="wp87720"> </a><div class="pSmartList1"><li>Use schema-derived JAXB classes to unmarshal and marshal XML content in a Java application</li></div>
+<a name="wp87721"> </a><div class="pSmartList1"><li>Create a Java content tree from scratch using schema-derived JAXB classes</li></div>
+<a name="wp87722"> </a><div class="pSmartList1"><li>Validate XML content during unmarshalling and at runtime</li></div>
+<a name="wp149774"> </a><div class="pSmartList1"><li>Customize JAXB schema-to-Java bindings</li></div>
+</ul></div>
+<a name="wp149782"> </a><p class="pBody">
+The primary goals of the basic examples are to highlight the core set of JAXB functions using default settings and bindings. After familiarizing yourself with these core features and functions, you may wish to continue with <a  href="JAXBUsing4.html#wp148206">Customizing JAXB Bindings</a> for instructions on using five additional examples that demonstrate how to modify the default JAXB bindings.
+</p>
+<hr>
+<a name="wp87730"> </a><p class="pNote">
+Note: The Purchase Order schema, <code class="cCode">po.xsd</code>, and the Purchase Order XML file, <code class="cCode">po.xml</code>, used in these samples are derived from the W3C XML Schema Part 0: Primer (<code class="cCode"><a  href="http://www.w3.org/TR/xmlschema-0/" target="_blank">http://www.w3.org/TR/xmlschema-0/</a></code>), edited by David C. Fallside.
+</p>
+<hr>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks8.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBUsing2.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

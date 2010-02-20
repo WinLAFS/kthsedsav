@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Starting the Registry Server</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="RegistryServer.html" />
+    <link rel="Next" href="RegistryServer3.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="RegistryServer.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="RegistryServer3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp68744"> </a><h2 class="pHeading1">
+Starting the Registry Server
+</h2>
+<a name="wp68745"> </a><p class="pBody">
+In order to use the Java WSDP Registry Server, you must start the Application Server. Starting the Application Server automatically starts both the Registry Server and the Xindice database.
+</p>
+<a name="wp69609"> </a><p class="pBody">
+To start the Application Server on Windows, choose Sun Microsystems<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>J2EE 1.4 SDK<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>Start Default Server from the Start menu.
+</p>
+<a name="wp69612"> </a><p class="pBody">
+To start the Application Server on a UNIX system, use the following command:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;<code class="cVariable">J2EE_HOME</code>&gt;/bin/asadmin start-domain domain1<a name="wp69613"> </a>
+</pre></div>
+<a name="wp70043"> </a><p class="pBody">
+To stop the Application Server on Windows, choose Sun Microsystems<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>J2EE 1.4 SDK<span style="font-family: Symbol"><img src="images/arrwrite.gif" border="0" alt="Right Arrow"></span>Stop Default Server from the Start menu.
+</p>
+<a name="wp70035"> </a><p class="pBody">
+To stop the Application Server on a UNIX system, use the following command:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;<code class="cVariable">J2EE_HOME</code>&gt;/bin/asadmin stop-domain domain1<a name="wp69668"> </a>
+</pre></div>
+<a name="wp69970"> </a><h3 class="pHeading2">
+Changing the Port for the Registry Server
+</h3>
+<a name="wp70018"> </a><p class="pBody">
+Normally you run the Application Server on port 8080. If another application uses this port, you can change the port by editing the <code class="cCode">&lt;</code><code class="cVariable">J2EE_HOME</code><code class="cCode">&gt;/domains/domain1/config/domain.xml</code> file. Open the file in a text editor and find the <code class="cCode">http-listener</code> element that uses port 8080 (its <code class="cCode">id</code> attribute has the value <code class="cCode">http-listener-1</code>). Change this attribute to some other port value, such as 8082 or 8083:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+port=&quot;8082&quot;<a name="wp70019"> </a>
+</pre></div>
+<a name="wp69972"> </a><p class="pBody">
+In order to run the Registry Server on a changed Application Server port, you must also edit the file <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/jwsdp-shared/bin/launcher.xml</code>. Find the following lines (they are all on one line):
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;sysproperty key=&quot;org.apache.xindice.host&quot; 
+value=&quot;desired Xindice host&quot;/&gt;
+&lt;sysproperty key=&quot;org.apache.xindice.port&quot; 
+value=&quot;desired Xindice port&quot;/&gt;<a name="wp69983"> </a>
+</pre></div>
+<a name="wp69981"> </a><p class="pBody">
+Make the host and port the same as those for the Application Server HTTP listener. Uncomment these properties before you save the file.
+</p>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="RegistryServer.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="RegistryServer3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

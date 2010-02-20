@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Basic Examples</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="JAXBUsing2.html" />
+    <link rel="Next" href="JAXBUsing4.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBUsing2.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBUsing4.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp88652"> </a><h2 class="pHeading1">
+Basic Examples
+</h2>
+<a name="wp150673"> </a><p class="pBody">
+This section describes five basic examples (Unmarshal Read, Modify Marshal, Create Marshal, Unmarshal Validate, Validate-On-Demand) that demonstrate how to:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp150674"> </a><div class="pSmartList1"><li>Unmarshal an XML document into a Java content tree and access the data contained within it</li></div>
+<a name="wp150683"> </a><div class="pSmartList1"><li>Modify a Java content tree</li></div>
+<a name="wp150684"> </a><div class="pSmartList1"><li>Use the <code class="cCode">ObjectFactory</code> class to create a Java content tree from scratch and then marshal it to XML data</li></div>
+<a name="wp150693"> </a><div class="pSmartList1"><li>Perform validation during unmarshalling</li></div>
+<a name="wp150694"> </a><div class="pSmartList1"><li>Validate a Java content tree at runtime</li></div>
+</ul></div>
+<a name="wp150676"> </a><h3 class="pHeading2">
+Unmarshal Read Example
+</h3>
+<a name="wp88655"> </a><p class="pBody">
+The purpose of the Unmarshal Read example is to demonstrate how to unmarshal an XML document into a Java content tree and access the data contained within it.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp88759"> </a><div class="pSmartList1"><li>The <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/jaxb/samples/unmarshal-read/<br />Main.java</code> class declares imports for four standard Java classes plus three JAXB binding framework classes and the <code class="cCode">primer.po</code> package:</li></div>
+<a name="wp88761"> </a><p class="pBodyRelative">
+<code class="cCode">import java.io.FileInputStream<br />import java.io.IOException<br />import java.util.Iterator<br />import java.util.List<br />import javax.xml.bind.JAXBContext<br />import javax.xml.bind.JAXBException<br />import javax.xml.bind.Unmarshaller<br />import primer.po.*;</code>
+</p>
+<a name="wp88772"> </a><div class="pSmartList1"><li>A <code class="cCode">JAXBContext</code> instance is created for handling classes generated in <code class="cCode">primer.po</code>.</li></div>
+<a name="wp88773"> </a><p class="pBodyRelative">
+<code class="cCode">JAXBContext jc = JAXBContext.newInstance( &quot;primer.po&quot; );</code>
+</p>
+<a name="wp88776"> </a><div class="pSmartList1"><li>An <code class="cCode">Unmarshaller</code> instance is created.</li></div>
+<a name="wp88777"> </a><p class="pBodyRelative">
+<code class="cCode">Unmarshaller u = jc.createUnmarshaller();</code>
+</p>
+<a name="wp88780"> </a><div class="pSmartList1"><li><code class="cCode">po.xml</code> is unmarshalled into a Java content tree comprising objects generated by the JAXB binding compiler into the <code class="cCode">primer.po</code> package.</li></div>
+<a name="wp88781"> </a><p class="pBodyRelative">
+<code class="cCode">PurchaseOrder po =<br />&nbsp;&nbsp;(PurchaseOrder)u.unmarshal( <br />&nbsp;&nbsp;&nbsp;&nbsp;new FileInputStream( &quot;po.xml&quot; ) );</code>
+</p>
+<a name="wp88785"> </a><div class="pSmartList1"><li>A simple string is printed to <code class="cCode">system.out</code> to provide a heading for the purchase order invoice.</li></div>
+<a name="wp88786"> </a><p class="pBodyRelative">
+<code class="cCode">System.out.println( &quot;Ship the following items to: &quot; );</code>
+</p>
+<a name="wp88789"> </a><div class="pSmartList1"><li><code class="cCode">get</code> and <code class="cCode">display</code> methods are used to parse XML content in preparation for output.</li></div>
+<a name="wp88790"> </a><p class="pBodyRelative">
+<code class="cCode">USAddress address = po.getShipTo();<br />displayAddress(address);<br />Items items = po.getItems();<br />displayItems(items);</code>
+</p>
+<a name="wp88796"> </a><div class="pSmartList1"><li>Basic error handling is implemented.</li></div>
+<a name="wp88797"> </a><p class="pBodyRelative">
+<code class="cCode">} catch( JAXBException je ) {<br />&nbsp;&nbsp;je.printStackTrace();<br />} catch( IOException ioe ) {<br />&nbsp;&nbsp;ioe.printStackTrace();</code>
+</p>
+<a name="wp88801"> </a><div class="pSmartList1"><li>The <code class="cCode">USAddress</code> branch of the Java tree is walked, and address information is printed to <code class="cCode">system.out</code>.</li></div>
+<a name="wp88804"> </a><p class="pBodyRelative">
+<code class="cCode">public static void displayAddress( USAddress address ) {<br />&nbsp;&nbsp;// display the address<br />&nbsp;&nbsp;System.out.println( &quot;\t&quot; + address.getName() );<br />&nbsp;&nbsp;System.out.println( &quot;\t&quot; + address.getStreet() );<br />&nbsp;&nbsp;System.out.println( &quot;\t&quot; + address.getCity() +<br />&nbsp;&nbsp;&nbsp;&nbsp;&quot;, &quot; + address.getState() +<br />&nbsp;&nbsp;&nbsp;&nbsp;&quot; &quot;  + address.getZip() );<br />&nbsp;&nbsp;System.out.println( &quot;\t&quot; + address.getCountry() + &quot;\n&quot;);<br />}</code>
+</p>
+<a name="wp88815"> </a><div class="pSmartList1"><li>The <code class="cCode">Items</code> list branch is walked, and item information is printed to <code class="cCode">system.out</code>.</li></div>
+<a name="wp88816"> </a><p class="pBodyRelative">
+<code class="cCode">public static void displayItems( Items items ) {<br />&nbsp;&nbsp;// the items object contains a List of <br />&nbsp;&nbsp;//primer.po.ItemType objects<br />&nbsp;&nbsp;List itemTypeList = items.getItem();</code>
+</p>
+<a name="wp93455"> </a><div class="pSmartList1"><li>Walking of the <code class="cCode">Items</code> branch is iterated until all items have been printed.</li></div>
+<a name="wp93456"> </a><p class="pBodyRelative">
+<code class="cCode">for(Iterator iter = itemTypeList.iterator(); <br />&nbsp;&nbsp;&nbsp;&nbsp;iter.hasNext();) {<br />&nbsp;&nbsp;Items.ItemType item = (Items.ItemType)iter.next();<br />&nbsp;&nbsp;System.out.println( &quot;\t&quot; + item.getQuantity() +<br />&nbsp;&nbsp;&nbsp;&nbsp;&quot; copies of \&quot;&quot; + item.getProductName() +<br />&nbsp;&nbsp;&nbsp;&nbsp;&quot;\&quot;&quot; );<br />}</code>
+</p>
+</ol></div>
+<a name="wp88832"> </a><h4 class="pHeading3">
+Sample Output
+</h4>
+<a name="wp88835"> </a><p class="pBody">
+Running <code class="cCode">java Main</code> for this example produces the following output:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+Ship the following items to:
+   Alice Smith
+   123 Maple Street
+   Cambridge, MA 12345
+   US
+
+   5 copies of &quot;Nosferatu - Special Edition (1929)&quot;
+   3 copies of &quot;The Mummy (1959)&quot;
+   3 copies of &quot;Godzilla and Mothra: Battle for Earth/Godzilla
+     vs. King Ghidora&quot;<a name="wp88840"> </a>
+</pre></div>
+<a name="wp156960"> </a><h3 class="pHeading2">
+Modify Marshal Example
+</h3>
+<a name="wp156961"> </a><p class="pBody">
+The purpose of the Modify Marshal example is to demonstrate how to modify a Java content tree.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp88939"> </a><div class="pSmartList1"><li>The <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/jaxb/samples/modify-marshal/<br />Main.java</code> class declares imports for three standard Java classes plus four JAXB binding framework classes and <code class="cCode">primer.po</code> package:</li></div>
+<a name="wp88941"> </a><p class="pBodyRelative">
+<code class="cCode">import java.io.FileInputStream;<br />import java.io.IOException;<br />import java.math.BigDecimal;<br />import javax.xml.bind.JAXBContext;<br />import javax.xml.bind.JAXBException;<br />import javax.xml.bind.Marshaller;<br />import javax.xml.bind.Unmarshaller;<br />import primer.po.*;</code>
+</p>
+<a name="wp88952"> </a><div class="pSmartList1"><li>A <code class="cCode">JAXBContext</code> instance is created for handling classes generated in <code class="cCode">primer.po</code>.</li></div>
+<a name="wp88953"> </a><p class="pBodyRelative">
+<code class="cCode">JAXBContext jc = JAXBContext.newInstance( &quot;primer.po&quot; );</code>
+</p>
+<a name="wp88956"> </a><div class="pSmartList1"><li>An <code class="cCode">Unmarshaller</code> instance is created, and <code class="cCode">po.xml</code> is unmarshalled.</li></div>
+<a name="wp88958"> </a><p class="pBodyRelative">
+<code class="cCode">Unmarshaller u = jc.createUnmarshaller();<br />PurchaseOrder po =<br />&nbsp;&nbsp;(PurchaseOrder)u.unmarshal( <br />&nbsp;&nbsp;&nbsp;&nbsp;new FileInputStream( &quot;po.xml&quot; ) );</code>
+</p>
+<a name="wp88964"> </a><div class="pSmartList1"><li><code class="cCode">set</code> methods are used to modify information in the <code class="cCode">address</code> branch of the content tree.</li></div>
+<a name="wp88966"> </a><p class="pBodyRelative">
+<code class="cCode">USAddress address = po.getBillTo();<br />address.setName( &quot;John Bob&quot; );<br />address.setStreet( &quot;242 Main Street&quot; );<br />address.setCity( &quot;Beverly Hills&quot; );<br />address.setState( &quot;CA&quot; );<br />address.setZip( new BigDecimal( &quot;90210&quot; ) );</code>
+</p>
+<a name="wp88975"> </a><div class="pSmartList1"><li>A <code class="cCode">Marshaller</code> instance is created, and the updated XML content is marshalled to <code class="cCode">system.out</code>. The <code class="cCode">setProperty</code> API is used to specify output encoding; in this case formatted (human readable) XML format.</li></div>
+<a name="wp88977"> </a><p class="pBodyRelative">
+<code class="cCode">Marshaller m = jc.createMarshaller();<br />m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, <br />&nbsp;&nbsp;Boolean.TRUE);<br />m.marshal( po, System.out );</code>
+</p>
+</ol></div>
+<a name="wp88985"> </a><h4 class="pHeading3">
+Sample Output
+</h4>
+<a name="wp88988"> </a><p class="pBody">
+Running <code class="cCode">java Main</code> for this example produces the following output:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;purchaseOrder orderDate=&quot;1999-10-20-05:00&quot;&gt;
+&lt;shipTo country=&quot;US&quot;&gt;
+&lt;name&gt;Alice Smith&lt;/name&gt;
+&lt;street&gt;123 Maple Street&lt;/street&gt;
+&lt;city&gt;Cambridge&lt;/city&gt;
+&lt;state&gt;MA&lt;/state&gt;
+&lt;zip&gt;12345&lt;/zip&gt;
+&lt;/shipTo&gt;
+&lt;billTo country=&quot;US&quot;&gt;
+&lt;name&gt;John Bob&lt;/name&gt;
+&lt;street&gt;242 Main Street&lt;/street&gt;
+&lt;city&gt;Beverly Hills&lt;/city&gt;
+&lt;state&gt;CA&lt;/state&gt;
+&lt;zip&gt;90210&lt;/zip&gt;
+&lt;/billTo&gt;
+&lt;items&gt;
+&lt;item partNum=&quot;242-NO&quot;&gt;
+&lt;productName&gt;Nosferatu - Special Edition (1929)&lt;/productName&gt;
+&lt;quantity&gt;5&lt;/quantity&gt;
+&lt;USPrice&gt;19.99&lt;/USPrice&gt;
+&lt;/item&gt;
+&lt;item partNum=&quot;242-MU&quot;&gt;
+&lt;productName&gt;The Mummy (1959)&lt;/productName&gt;
+&lt;quantity&gt;3&lt;/quantity&gt;
+&lt;USPrice&gt;19.98&lt;/USPrice&gt;
+&lt;/item&gt;
+&lt;item partNum=&quot;242-GZ&quot;&gt;
+&lt;productName&gt;
+Godzilla and Mothra: Battle for Earth/Godzilla vs. King Ghidora
+&lt;/productName&gt;
+&lt;quantity&gt;3&lt;/quantity&gt;
+&lt;USPrice&gt;27.95&lt;/USPrice&gt;
+&lt;/item&gt;
+&lt;/items&gt;
+&lt;/purchaseOrder&gt;<a name="wp88992"> </a>
+</pre></div>
+<a name="wp89030"> </a><h3 class="pHeading2">
+Create Marshal Example
+</h3>
+<a name="wp155076"> </a><p class="pBody">
+The Create Marshal example demonstrates how to use the <code class="cCode">ObjectFactory</code> class to create a Java content tree from scratch and then marshal it to XML data.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp155077"> </a><div class="pSmartList1"><li>The <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/jaxb/samples/create-marshal/<br />Main.java</code> class declares imports for four standard Java classes plus three JAXB binding framework classes and the <code class="cCode">primer.po</code> package:</li></div>
+<a name="wp93897"> </a><p class="pBodyRelative">
+<code class="cCode">import java.math.BigDecimal;<br />import java.math.BigInteger;<br />import java.util.Calendar;<br />import java.util.List;<br />import javax.xml.bind.JAXBContext;<br />import javax.xml.bind.JAXBException;<br />import javax.xml.bind.Marshaller;<br />import primer.po.*;</code>
+</p>
+<a name="wp93898"> </a><div class="pSmartList1"><li>A <code class="cCode">JAXBContext</code> instance is created for handling classes generated in <code class="cCode">primer.po</code>.</li></div>
+<a name="wp89210"> </a><p class="pBodyRelative">
+<code class="cCode">JAXBContext jc = JAXBContext.newInstance( &quot;primer.po&quot; );</code>
+</p>
+<a name="wp146821"> </a><div class="pSmartList1"><li>The <code class="cCode">ObjectFactory</code> class is used to instantiate a new empty <code class="cCode">PurchaseOrder</code> object.</li></div>
+<a name="wp146827"> </a><p class="pBodyRelative">
+<code class="cCode">// creating the ObjectFactory<br />ObjectFactory objFactory = new ObjectFactory();<br /><br />// create an empty PurchaseOrder<br />PurchaseOrder po = objFactory.createPurchaseOrder();</code>
+</p>
+<a name="wp89217"> </a><div class="pSmartList1"><li>Per the constraints in the <code class="cCode">po.xsd</code> schema, the <code class="cCode">PurchaseOrder</code> object requires a value for the <code class="cCode">orderDate</code> attribute. To satisfy this constraint, the <code class="cCode">orderDate</code> is set using the standard <code class="cCode">Calendar.getInstance()</code> method from <code class="cCode">java.util.Calendar</code>.</li></div>
+<a name="wp89218"> </a><p class="pBodyRelative">
+<code class="cCode">po.setOrderDate( Calendar.getInstance() );</code>
+</p>
+<a name="wp93952"> </a><div class="pSmartList1"><li>The <code class="cCode">ObjectFactory</code> is used to instantiate new empty <code class="cCode">USAddress</code> objects, and the required attributes are set.</li></div>
+<a name="wp93953"> </a><p class="pBodyRelative">
+<code class="cCode">USAddress shipTo = createUSAddress( &quot;Alice Smith&quot;,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;123 Maple Street&quot;,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Cambridge&quot;,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;MA&quot;,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;12345&quot; );<br />&nbsp;&nbsp;po.setShipTo( shipTo );<br /><br />USAddress billTo = createUSAddress( &quot;Robert Smith&quot;,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;8 Oak Avenue&quot;,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Cambridge&quot;,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;MA&quot;,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;12345&quot; );<br />po.setBillTo( billTo );</code>
+</p>
+<a name="wp89239"> </a><div class="pSmartList1"><li>The <code class="cCode">ObjectFactory</code> class is used to instantiate a new empty <code class="cCode">Items</code> object.</li></div>
+<a name="wp89240"> </a><p class="pBodyRelative">
+<code class="cCode">Items items = objFactory.createItems();</code>
+</p>
+<a name="wp89243"> </a><div class="pSmartList1"><li>A <code class="cCode">get</code> method is used to get a reference to the <code class="cCode">ItemType</code> list.</li></div>
+<a name="wp89244"> </a><p class="pBodyRelative">
+<code class="cCode">List itemList = items.getItem();</code>
+</p>
+<a name="wp89247"> </a><div class="pSmartList1"><li><code class="cCode">ItemType</code> objects are created and added to the <code class="cCode">Items</code> list.</li></div>
+<a name="wp89249"> </a><p class="pBodyRelative">
+<code class="cCode">itemList.add( createItemType( <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Nosferatu - Special Edition (1929)&quot;,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new BigInteger( &quot;5&quot; ),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new BigDecimal( &quot;19.99&quot; ),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;242-NO&quot; ) );<br />itemList.add( createItemType( &quot;The Mummy (1959)&quot;,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new BigInteger( &quot;3&quot; ),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new BigDecimal( &quot;19.98&quot; ),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;242-MU&quot; ) );<br />itemList.add( createItemType( <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Godzilla and Mothra: Battle for Earth/Godzilla <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vs. King Ghidora&quot;,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new BigInteger( &quot;3&quot; ),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new BigDecimal( &quot;27.95&quot; ),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;242-GZ&quot; ) );</code>
+</p>
+<a name="wp89269"> </a><div class="pSmartList1"><li>The <code class="cCode">items</code> object now contains a list of <code class="cCode">ItemType</code> objects and can be added to the <code class="cCode">po</code> object.</li></div>
+<a name="wp89270"> </a><p class="pBodyRelative">
+<code class="cCode">po.setItems( items );</code>
+</p>
+<a name="wp89271"> </a><div class="pSmartList1"><li>A <code class="cCode">Marshaller</code> instance is created, and the updated XML content is marshalled to <code class="cCode">system.out</code>. The <code class="cCode">setProperty</code> API is used to specify output encoding; in this case formatted (human readable) XML format.</li></div>
+<a name="wp89275"> </a><p class="pBodyRelative">
+<code class="cCode">Marshaller m = jc.createMarshaller();<br />m.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, <br />&nbsp;&nbsp;Boolean.TRUE );<br />m.marshal( po, System.out );</code>
+</p>
+<a name="wp146895"> </a><div class="pSmartList1"><li>An empty <code class="cCode">USAddress</code> object is created and its properties set to comply with the schema constraints.</li></div>
+<a name="wp146901"> </a><p class="pBodyRelative">
+<code class="cCode">public static USAddress createUSAddress( <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ObjectFactory objFactory,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String name, String street,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String city,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String state,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String zip )<br />&nbsp;&nbsp;&nbsp;&nbsp;throws JAXBException {<br /><br />&nbsp;&nbsp;// create an empty USAddress objects<br />&nbsp;&nbsp;USAddress address = objFactory.createUSAddress();<br /><br />&nbsp;&nbsp;// set properties on it<br />&nbsp;&nbsp;address.setName( name );<br />&nbsp;&nbsp;address.setStreet( street );<br />&nbsp;&nbsp;address.setCity( city );<br />&nbsp;&nbsp;address.setState( state );<br />&nbsp;&nbsp;address.setZip( new BigDecimal( zip ) );<br /><br />&nbsp;&nbsp;// return it<br />&nbsp;&nbsp;return address;<br />}</code>
+</p>
+<a name="wp146897"> </a><div class="pSmartList1"><li>Similar to the previous step, an empty <code class="cCode">ItemType</code> object is created and its properties set to comply with the schema constraints.</li></div>
+<a name="wp146925"> </a><p class="pBodyRelative">
+<code class="cCode">public static Items.ItemType createItemType(ObjectFactory <br />&nbsp;&nbsp;&nbsp;&nbsp;objFactory,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String productName,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BigInteger quantity,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BigDecimal price,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String comment,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calendar shipDate,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String partNum )<br />&nbsp;&nbsp;&nbsp;&nbsp;throws JAXBException {<br /><br />&nbsp;&nbsp;// create an empty ItemType object<br />&nbsp;&nbsp;Items.ItemType itemType =<br />&nbsp;&nbsp;objFactory.createItemsItemType();<br /><br />&nbsp;&nbsp;// set properties on it<br />&nbsp;&nbsp;itemType.setProductName( productName );<br />&nbsp;&nbsp;itemType.setQuantity( quantity );<br />&nbsp;&nbsp;itemType.setUSPrice( price );<br />&nbsp;&nbsp;itemType.setComment( comment );<br />&nbsp;&nbsp;itemType.setShipDate( shipDate );<br />&nbsp;&nbsp;itemType.setPartNum( partNum );<br /><br />&nbsp;&nbsp;// return it<br />&nbsp;&nbsp;return itemType;<br />} </code>
+</p>
+</ol></div>
+<a name="wp89333"> </a><h4 class="pHeading3">
+Sample Output
+</h4>
+<a name="wp89336"> </a><p class="pBody">
+Running <code class="cCode">java Main</code> for this example produces the following output:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;purchaseOrder orderDate=&quot;2002-09-24-05:00&quot;&gt;
+&lt;shipTo&gt;
+&lt;name&gt;Alice Smith&lt;/name&gt;
+&lt;street&gt;123 Maple Street&lt;/street&gt;
+&lt;city&gt;Cambridge&lt;/city&gt;
+&lt;state&gt;MA&lt;/state&gt;
+&lt;zip&gt;12345&lt;/zip&gt;
+&lt;/shipTo&gt;
+&lt;billTo&gt;
+&lt;name&gt;Robert Smith&lt;/name&gt;
+&lt;street&gt;8 Oak Avenue&lt;/street&gt;
+&lt;city&gt;Cambridge&lt;/city&gt;
+&lt;state&gt;MA&lt;/state&gt;
+&lt;zip&gt;12345&lt;/zip&gt;
+&lt;/billTo&gt;
+&lt;items&gt;
+&lt;item partNum=&quot;242-NO&quot;&gt;
+&lt;productName&gt;Nosferatu - Special Edition (1929)&lt;/productName&gt;
+&lt;quantity&gt;5&lt;/quantity
+&lt;USPrice&gt;19.99&lt;/USPrice&gt;
+&lt;/item&gt;
+&lt;item partNum=&quot;242-MU&quot;&gt;
+&lt;productName&gt;The Mummy (1959)&lt;/productName&gt;
+&lt;quantity&gt;3&lt;/quantity&gt;
+&lt;USPrice&gt;19.98&lt;/USPrice&gt;
+&lt;/item&gt;
+&lt;item partNum=&quot;242-GZ&quot;&gt;
+&lt;productName&gt;Godzilla and Mothra: Battle for Earth/Godzilla vs. 
+King Ghidora&lt;/productName&gt;
+&lt;quantity&gt;3&lt;/quantity&gt;
+&lt;USPrice&gt;27.95&lt;/USPrice&gt;
+&lt;/item&gt;
+&lt;/items&gt;
+&lt;/purchaseOrder&gt;<a name="wp89340"> </a>
+</pre></div>
+<a name="wp89378"> </a><h3 class="pHeading2">
+Unmarshal Validate Example
+</h3>
+<a name="wp89381"> </a><p class="pBody">
+The Unmarshal Validate example demonstrates how to enable validation during unmarshalling (<em class="cEmphasis">Unmarshal-Time Validation</em>). Note that JAXB provides functions for validation during unmarshalling but not during marshalling. Validation is explained in more detail in <a  href="JAXBWorks2.html#wp82802">More About Validation</a>.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp89471"> </a><div class="pSmartList1"><li>The <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/jaxb/samples/unmarshal-validate/Main.java</code> <br />class declares imports for three standard Java classes plus seven JAXB binding framework classes and the <code class="cCode">primer.po</code> package:</li></div>
+<a name="wp89473"> </a><p class="pBodyRelative">
+<code class="cCode">import java.io.FileInputStream;<br />import java.io.IOException;<br />import java.math.BigDecimal;<br />import javax.xml.bind.JAXBContext;<br />import javax.xml.bind.JAXBException;<br />import javax.xml.bind.Marshaller;<br />import javax.xml.bind.UnmarshalException;<br />import javax.xml.bind.Unmarshaller;<br />import javax.xml.bind.ValidationEvent;<br />import javax.xml.bind.util.ValidationEventCollector;<br />import primer.po.*;</code>
+</p>
+<a name="wp89487"> </a><div class="pSmartList1"><li>A <code class="cCode">JAXBContext</code> instance is created for handling classes generated in <code class="cCode">primer.po</code>.</li></div>
+<a name="wp89488"> </a><p class="pBodyRelative">
+<code class="cCode">JAXBContext jc = JAXBContext.newInstance( &quot;primer.po&quot; );</code>
+</p>
+<a name="wp89491"> </a><div class="pSmartList1"><li>An <code class="cCode">Unmarshaller</code> instance is created.</li></div>
+<a name="wp89492"> </a><p class="pBodyRelative">
+<code class="cCode">Unmarshaller u = jc.createUnmarshaller();</code>
+</p>
+<a name="wp89495"> </a><div class="pSmartList1"><li>The default JAXB Unmarshaller <code class="cCode">ValidationEventHandler</code> is enabled to send to validation warnings and errors to <code class="cCode">system.out</code>. The default configuration causes the unmarshal operation to fail upon encountering the first validation error.</li></div>
+<a name="wp89496"> </a><p class="pBodyRelative">
+<code class="cCode">u.setValidating( true );</code>
+</p>
+<a name="wp89499"> </a><div class="pSmartList1"><li>An attempt is made to unmarshal <code class="cCode">po.xml</code> into a Java content tree. For the purposes of this example, the <code class="cCode">po.xml</code> contains a deliberate error.</li></div>
+<a name="wp89501"> </a><p class="pBodyRelative">
+<code class="cCode">PurchaseOrder po =<br />&nbsp;&nbsp;(PurchaseOrder)u.unmarshal(<br />&nbsp;&nbsp;&nbsp;&nbsp;new FileInputStream(&quot;po.xml&quot;));</code>
+</p>
+<a name="wp89506"> </a><div class="pSmartList1"><li>The default validation event handler processes a validation error, generates output to <code class="cCode">system.out</code>, and then an exception is thrown.</li></div>
+<a name="wp94649"> </a><p class="pBodyRelative">
+<code class="cCode">} catch( UnmarshalException ue ) {<br />&nbsp;&nbsp;System.out.println( &quot;Caught UnmarshalException&quot; );<br />} catch( JAXBException je ) {<br />&nbsp;&nbsp;je.printStackTrace();<br />} catch( IOException ioe ) {<br />&nbsp;&nbsp;ioe.printStackTrace();</code>
+</p>
+</ol></div>
+<a name="wp94650"> </a><h4 class="pHeading3">
+Sample Output
+</h4>
+<a name="wp89522"> </a><p class="pBody">
+Running <code class="cCode">java Main</code> for this example produces the following output:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+DefaultValidationEventHandler: [ERROR]: &quot;-1&quot; does not satisfy 
+the &quot;positiveInteger&quot; type
+Caught UnmarshalException<a name="wp89526"> </a>
+</pre></div>
+<a name="wp89532"> </a><h3 class="pHeading2">
+Validate-On-Demand Example
+</h3>
+<a name="wp157786"> </a><p class="pBody">
+The Validate-On-Demand example demonstrates how to validate a Java content tree at runtime (<em class="cEmphasis">On-Demand Validation</em>). At any point, client applications can call the <code class="cCode">Validator.validate</code> method on the Java content tree (or any subtree of it). All JAXB Providers are required to support this operation. Validation is explained in more detail in <a  href="JAXBWorks2.html#wp82802">More About Validation</a>.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp157790"> </a><div class="pSmartList1"><li>The <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/jaxb/samples/ondemand-validate/Main.java</code> <br />class declares imports for five standard Java classes plus nine JAXB Java classes and the <code class="cCode">primer.po</code> package:</li></div>
+<a name="wp94804"> </a><p class="pBodyRelative">
+<code class="cCode">import java.io.FileInputStream;<br />import java.io.IOException;<br />import java.math.BigDecimal;<br />import java.math.BigInteger;<br />import java.util.List;<br />import javax.xml.bind.JAXBContext;<br />import javax.xml.bind.JAXBException;<br />import javax.xml.bind.Marshaller;<br />import javax.xml.bind.UnmarshalException;<br />import javax.xml.bind.Unmarshaller;<br />import javax.xml.bind.ValidationEvent;<br />import javax.xml.bind.ValidationException;<br />import javax.xml.bind.Validator;<br />import javax.xml.bind.util.ValidationEventCollector;<br />import primer.po.*;</code>
+</p>
+<a name="wp89656"> </a><div class="pSmartList1"><li>A <code class="cCode">JAXBContext</code> instance is created for handling classes generated in <code class="cCode">primer.po</code>.</li></div>
+<a name="wp89657"> </a><p class="pBodyRelative">
+<code class="cCode">JAXBContext jc = JAXBContext.newInstance( &quot;primer.po&quot; );</code>
+</p>
+<a name="wp94842"> </a><div class="pSmartList1"><li>An <code class="cCode">Unmarshaller</code> instance is created, and a valid <code class="cCode">po.xml</code> document is unmarshalled into a Java content tree. Note that <code class="cCode">po.xml</code> is valid at this point; invalid data will be added later in this example.</li></div>
+<a name="wp94843"> </a><p class="pBodyRelative">
+<code class="cCode">Unmarshaller u = jc.createUnmarshaller();<br />PurchaseOrder po =<br />&nbsp;&nbsp;(PurchaseOrder)u.unmarshal( new FileInputStream( &quot;po.xml&quot; ) );</code>
+</p>
+<a name="wp89667"> </a><div class="pSmartList1"><li>A reference is obtained for the first item in the purchase order.</li></div>
+<a name="wp89669"> </a><p class="pBodyRelative">
+<code class="cCode">Items items = po.getItems();<br />List itemTypeList = items.getItem();<br />Items.ItemType item = (Items.ItemType)itemTypeList.get( 0 );</code>
+</p>
+<a name="wp89675"> </a><div class="pSmartList1"><li>Next, the item quantity is set to an invalid number. When validation is enabled later in this example, this invalid quantity will throw an exception.</li></div>
+<a name="wp89677"> </a><p class="pBodyRelative">
+<code class="cCode">item.setQuantity( new BigInteger( &quot;-5&quot; ) );</code>
+</p>
+</ol></div>
+<hr>
+<a name="wp89682"> </a><p class="pNote">
+Note: If <code class="cCode">@enableFailFastCheck</code> was <code class="cCode">&quot;true&quot;</code> and the optional <code class="cCode">FailFast</code> validation method was supported by an implementation, a <code class="cCode">TypeConstraintException</code> would be thrown here. Note that the JAXB implementation does not support the <code class="cCode">FailFast</code> feature. Refer to the<em class="cEmphasis"> </em><a  href="http://java.sun.com/xml/downloads/jaxb.html" target="_blank"></a>JAXB Specification for more information about <code class="cCode">FailFast</code> validation.
+</p>
+<hr><div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp89687"> </a><div class="pSmartList1"><li>A <code class="cCode">Validator</code> instance is created, and the content tree is validated. Note that the <code class="cCode">Validator</code> class is responsible for managing On-Demand validation, whereas the <code class="cCode">Unmarshaller</code> class is responsible for managing Unmarshal-Time validation during unmarshal operations.</li></div>
+<a name="wp89688"> </a><p class="pBodyRelative">
+<code class="cCode">Validator v = jc.createValidator();<br />boolean valid = v.validateRoot( po );<br />System.out.println( valid );</code>
+</p>
+<a name="wp89694"> </a><div class="pSmartList1"><li>The default validation event handler processes a validation error, generates output to <code class="cCode">system.out</code>, and then an exception is thrown.</li></div>
+<a name="wp89696"> </a><p class="pBodyRelative">
+<code class="cCode">} catch( ValidationException ue ) {<br />&nbsp;&nbsp;System.out.println( &quot;Caught ValidationException&quot; );<br />} catch( JAXBException je ) {<br />&nbsp;&nbsp;je.printStackTrace();<br />} catch( IOException ioe ) {<br />&nbsp;&nbsp;ioe.printStackTrace();<br />}</code>
+</p>
+</ol></div>
+<a name="wp89708"> </a><h4 class="pHeading3">
+Sample Output
+</h4>
+<a name="wp89711"> </a><p class="pBody">
+Running <code class="cCode">java Main</code> for this example produces the following output:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+DefaultValidationEventHandler: [ERROR]: &quot;-5&quot; does not satisfy 
+the &quot;positiveInteger&quot; type
+Caught ValidationException<a name="wp89715"> </a>
+</pre></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBUsing2.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBUsing4.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

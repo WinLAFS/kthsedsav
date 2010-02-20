@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Service Providers</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XMLDigitalSignatureAPI4.html" />
+    <link rel="Next" href="XMLDigitalSignatureAPI6.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XMLDigitalSignatureAPI4.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XMLDigitalSignatureAPI6.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp510726"> </a><h2 class="pHeading1">
+Service Providers
+</h2>
+<a name="wp510760"> </a><p class="pBody">
+A JSR 105 cryptographic service is a concrete implementation of the abstract <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/XMLSignatureFactory.html" target="_blank">XMLSignatureFactory</a></code> and <code class="cCode"><a  href="http://java.sun.com/webservices/docs/1.4/api/javax/xml/crypto/dsig/KeyInfoFactory.html" target="_blank">KeyInfoFactory</a></code> classes and is responsible for creating objects and algorithms that parse, generate and validate XML Signatures and <code class="cCode">KeyInfo</code> structures. A concrete implementation of <code class="cCode">XMLSignatureFactory</code> <em class="cEmphasis">must</em> provide support for each of the <em class="cEmphasis">required</em> algorithms as specified by the W3C recommendation for XML Signatures. It <em class="cEmphasis">may</em> support other algorithms as defined by the W3C recommendation or other specifications.
+</p>
+<a name="wp510762"> </a><p class="pBody">
+JSR 105 leverages the JCA provider model for registering and loading <code class="cCode">XMLSignatureFactory</code> and <code class="cCode">KeyInfoFactory</code> implementations.
+</p>
+<a name="wp510764"> </a><p class="pBody">
+Each concrete <code class="cCode">XMLSignatureFactory</code> or <code class="cCode">KeyInfoFactory</code> implementation supports a specific XML mechanism type that identifies the XML processing mechanism that an implementation uses internally to parse and generate XML signature and <code class="cCode">KeyInfo</code> structures. This JSR supports one standard type, DOM. The XML Digital Signature API early access provider implementation that is bundled with Java WSDP supports the DOM mechanism. Support for new standard types, such as JDOM, may be added in the future.
+</p>
+<a name="wp510727"> </a><p class="pBody">
+An XML Digital Signature API implementation <em class="cEmphasis">should</em> use underlying JCA engine classes, such as <code class="cCode"><a  href="http://java.sun.com/j2se/1.4/docs/api/java/security/Signature.html" target="_blank">java.security.Signature</a></code> and <code class="cCode"><a  href="http://java.sun.com/j2se/1.4/docs/api/java/security/MessageDigest.html" target="_blank">java.security.MessageDigest</a></code>, to perform cryptographic operations.
+</p>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XMLDigitalSignatureAPI4.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XMLDigitalSignatureAPI6.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Example of an XML Signature</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XMLDigitalSignatureAPI6.html" />
+    <link rel="Next" href="XMLDigitalSignatureAPI8.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XMLDigitalSignatureAPI6.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XMLDigitalSignatureAPI8.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp511122"> </a><h2 class="pHeading1">
+Example of an XML Signature
+</h2>
+<a name="wp511141"> </a><p class="pBody">
+The easiest way to describe the contents of an XML Signature is to show an actual sample and describe each component in more detail. The following is an example of an enveloped XML Signature generated over the contents of an XML document. The contents of the document before it is signed are:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;Envelope xmlns=&quot;urn:envelope&quot;&gt;
+&lt;/Envelope&gt;<a name="wp511143"> </a>
+</pre></div>
+<a name="wp511146"> </a><p class="pBody">
+The resulting enveloped XML Signature, indented and formatted for readability,  is as follows:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;Envelope xmlns=&quot;urn:envelope&quot;&gt;
+  &lt;Signature xmlns=&quot;http://www.w3.org/2000/09/xmldsig#&quot;&gt;
+    &lt;SignedInfo&gt;
+      &lt;CanonicalizationMethod 
+           Algorithm=&quot;http://www.w3.org/TR/2001/REC-xml-c14n-
+20010315#WithComments&quot;/&gt;
+      &lt;SignatureMethod Algorithm=&quot;http://www.w3.org/2000/09/
+xmldsig#dsa-sha1&quot;/&gt;
+      &lt;Reference URI=&quot;&quot;&gt;
+        &lt;Transforms&gt;
+          &lt;Transform Algorithm=&quot;http://www.w3.org/2000/09/
+xmldsig#enveloped-signature&quot;/&gt;
+        &lt;/Transforms&gt;
+        &lt;DigestMethod Algorithm=&quot;http://www.w3.org/2000/09/
+xmldsig#sha1&quot;/&gt;
+        &lt;DigestValue&gt;uooqbWYa5VCqcJCbuymBKqm17vY=&lt;/DigestValue&gt;
+      &lt;/Reference&gt;
+    &lt;/SignedInfo&gt;
+&lt;SignatureValue&gt;
+KedJuTob5gtvYx9qM3k3gm7kbLBwVbEQRl26S2tmXjqNND7MRGtoew==
+    &lt;/SignatureValue&gt;
+    &lt;KeyInfo&gt;
+      &lt;KeyValue&gt;
+        &lt;DSAKeyValue&gt;
+          &lt;P&gt;
+/KaCzo4Syrom78z3EQ5SbbB4sF7ey80etKII864WF64B81uRpH5t9jQTxe
+Eu0ImbzRMqzVDZkVG9xD7nN1kuFw==
+          &lt;/P&gt;
+          &lt;Q&gt;li7dzDacuo67Jg7mtqEm2TRuOMU=&lt;/Q&gt;
+          &lt;G&gt;Z4Rxsnqc9E7pGknFFH2xqaryRPBaQ01khpMdLRQnG541Awtx/
+XPaF5Bpsy4pNWMOHCBiNU0NogpsQW5QvnlMpA==
+          &lt;/G&gt;
+          &lt;Y&gt;qV38IqrWJG0V/
+mZQvRVi1OHw9Zj84nDC4jO8P0axi1gb6d+475yhMjSc/
+BrIVC58W3ydbkK+Ri4OKbaRZlYeRA==
+         &lt;/Y&gt;
+        &lt;/DSAKeyValue&gt;
+      &lt;/KeyValue&gt;
+    &lt;/KeyInfo&gt;
+  &lt;/Signature&gt;
+&lt;/Envelope&gt;<a name="wp511148"> </a>
+</pre></div>
+<a name="wp511183"> </a><p class="pBody">
+The <code class="cCode">Signature</code> element has been inserted inside the content that it is signing, thereby making it an enveloped signature.  The required <code class="cCode">SignedInfo</code> element contains the information that is actually signed:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;SignedInfo&gt;
+  &lt;CanonicalizationMethod 
+    Algorithm=&quot;http://www.w3.org/TR/2001/REC-xml-c14n-
+20010315#WithComments&quot;/&gt;
+  &lt;SignatureMethod Algorithm=&quot;http://www.w3.org/2000/09/
+xmldsig#dsa-sha1&quot;/&gt;
+  &lt;Reference URI=&quot;&quot;&gt;
+      &lt;Transforms&gt;
+        &lt;Transform Algorithm=&quot;http://www.w3.org/2000/09/
+xmldsig#enveloped-signature&quot;/&gt;
+      &lt;/Transforms&gt;
+      &lt;DigestMethod Algorithm=&quot;http://www.w3.org/2000/09/
+xmldsig#sha1&quot;/&gt;
+      &lt;DigestValue&gt;uooqbWYa5VCqcJCbuymBKqm17vY=&lt;/DigestValue&gt;
+  &lt;/Reference&gt;
+&lt;/SignedInfo&gt;<a name="wp511185"> </a>
+</pre></div>
+<a name="wp511204"> </a><p class="pBody">
+The required <code class="cCode">CanonicalizationMethod</code> element defines the algorithm used to canonicalize the <code class="cCode">SignedInfo</code> element before it is signed or validated. Canonicalization is the process of converting XML content to a canonical form, to take into account changes that can invalidate a signature over that data. Canonicalization is necessary due to the nature of XML and the way it is parsed by different processors and intermediaries, which can change the data such that the signature is no longer valid but the signed data is still logically equivalent.
+</p>
+<a name="wp511206"> </a><p class="pBody">
+The required <code class="cCode">SignatureMethod</code> element defines the digital signature algorithm used to generate the signature, in this case DSA with SHA-1.
+</p>
+<a name="wp511208"> </a><p class="pBody">
+One or more <code class="cCode">Reference</code> elements identify the data that is digested. Each <code class="cCode">Reference</code> element identifies the data via a URI. In this example, the value of the URI is the empty String (&quot;&quot;), which indicates the root of the document. The optional <code class="cCode">Transforms</code> element contains a list of one or more <code class="cCode">Transform</code> elements, each of which describes a transformation algorithm used to transform the data before it is digested. In this example, there is one <code class="cCode">Transform</code> element for the enveloped transform algorithm. The enveloped transform is required for enveloped signatures so that the signature element itself is removed before calculating the signature value. The required <code class="cCode">DigestMethod</code> element defines the algorithm used to digest the data, in this case SHA1. Finally the required <code class="cCode">DigestValue</code> element contains the actual base64-encoded digested value.
+</p>
+<a name="wp511210"> </a><p class="pBody">
+The required <code class="cCode">SignatureValue</code> element contains the base64-encoded signature value of the signature over the <code class="cCode">SignedInfo</code> element.
+</p>
+<a name="wp511252"> </a><p class="pBody">
+The optional <code class="cCode">KeyInfo</code> element contains information about the key that is needed to validate the signature:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&lt;KeyInfo&gt;
+  &lt;KeyValue&gt;
+    &lt;DSAKeyValue&gt;
+      &lt;P&gt;
+/KaCzo4Syrom78z3EQ5SbbB4sF7ey80etKII864WF64B81uRpH5t9jQTxe
+Eu0ImbzRMqzVDZkVG9xD7nN1kuFw==
+      &lt;/P&gt;
+      &lt;Q&gt;li7dzDacuo67Jg7mtqEm2TRuOMU=&lt;/Q&gt;
+      &lt;G&gt;Z4Rxsnqc9E7pGknFFH2xqaryRPBaQ01khpMdLRQnG541Awtx/
+XPaF5Bpsy4pNWMOHCBiNU0NogpsQW5QvnlMpA==
+      &lt;/G&gt;
+      &lt;Y&gt;
+qV38IqrWJG0V/mZQvRVi1OHw9Zj84nDC4jO8P0axi1gb6d+475yhMjSc/
+BrIVC58W3ydbkK+Ri4OKbaRZlYeRA==
+      &lt;/Y&gt;
+    &lt;/DSAKeyValue&gt;
+  &lt;/KeyValue&gt;
+&lt;/KeyInfo&gt;<a name="wp511374"> </a>
+</pre></div>
+<a name="wp511202"> </a><p class="pBody">
+This <code class="cCode">KeyInfo</code> element contains a <code class="cCode">KeyValue</code> element, which in turn contains a <code class="cCode">DSAKeyValue</code> element consisting of the public key needed to validate the signature. <code class="cCode">KeyInfo</code> can contain various content such as X.509 certificates and PGP key identifiers. See the <code class="cCode"><a  href="http://www.w3.org/TR/xmldsig-core/#sec-KeyInfo" target="_blank">KeyInfo section</a></code> of the XML Signature Recommendation for more information on the different <code class="cCode">KeyInfo</code> types.
+</p>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XMLDigitalSignatureAPI6.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XMLDigitalSignatureAPI8.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

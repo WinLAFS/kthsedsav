@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Troubleshooting XWS-Security Applications</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XWS-Security7.html" />
+    <link rel="Next" href="XWS-Security9.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security7.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security9.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp525278"> </a><h2 class="pHeading1">
+Troubleshooting XWS-Security Applications
+</h2>
+<a name="wp526461"> </a><h5 class="pHeading4">
+Error: at XMLCipher.getInstance (Unknown Source)
+</h5>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+[java] Exception in thread &quot;main&quot; 
+java.lang.NullPointerException
+[java] at 
+com.sun.org.apache.xml.security.encryption.XMLCipher.getInstan
+ce(Unknown Source) <a name="wp526481"> </a>
+</pre></div>
+<a name="wp526488"> </a><p class="pBody">
+Solution: Configure a JCE provider as described in <a  href="XWS-Security4.html#wp520663">Configuring a JCE Provider</a>.
+</p>
+<a name="wp526449"> </a><h5 class="pHeading4">
+Error: UnsupportedClassVersionError
+</h5>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+java.lang.UnsupportedClassVersionError: com/sun/tools/javac/
+Main (Unsupported major.minor version 49.0)<a name="wp526513"> </a>
+</pre></div>
+<a name="wp526532"> </a><p class="pBody">
+Solution: Install version 1.4.2_04 of Java 2 Standard Edition (J2SE). If you had an older version of the JDK, you will also have to reinstall the Application Server so that it recognizes this as the default version of the JDK. If you've installed version 1.5 of the JDK, you must use version 1.4.2 as the target JDK for XWS-Security.
+</p>
+<a name="wp526534"> </a><h5 class="pHeading4">
+Error: DeployTask not found
+</h5>
+<a name="wp526539"> </a><p class="pBody">
+Solution: Verify that the <code class="cCode">jwsdp.home</code> property in the <code class="cCode">build.properties</code> file for the sample is set correctly to the location where you installed the Java WSDP version 1.5, as described in <a  href="XWS-Security4.html#wp524936">Setting Build Properties</a>.
+</p>
+<a name="wp539741"> </a><h5 class="pHeading4">
+Compiler Errors
+</h5>
+<a name="wp539754"> </a><p class="pBody">
+If you use Application Server 2004Q4 Beta for the container, you will get compiler errors. This is because this version of the Application server has an earlier (pre-FCS) version of XWS-Security bundled into it. The compilation errors that you see are because these classes do not exist in the pre-FCS version of XWS-Security shipped in this version of the Application Server.
+</p>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security7.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security9.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

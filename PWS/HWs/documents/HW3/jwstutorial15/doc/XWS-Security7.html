@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Useful XWS-Security Command-Line Tools</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XWS-Security6.html" />
+    <link rel="Next" href="XWS-Security8.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security6.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security8.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp523666"> </a><h2 class="pHeading1">
+Useful XWS-Security Command-Line Tools
+</h2>
+<a name="wp526881"> </a><p class="pBody">
+In this release, the following command-line tools are included. These tools provide specialized utilities for keystore management or for specifying security configuration files.
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp526882"> </a><div class="pSmartList1"><li><code class="cCode">pkcs12import</code> </li></div>
+<a name="wp526921"> </a><p class="pBodyRelative">
+The <code class="cCode">pkcs12import</code> command allows <em class="cEmphasis">Public-Key Cryptography Standards version 12</em> (PKCS-12) files (sometimes referred to as PFX files) to be imported into a keystore, typically a keystore of type <em class="cEmphasis">Java KeyStore</em> (JKS). 
+</p>
+<a name="wp526952"> </a><p class="pBodyRelative">
+When would you want to do this? One example would be a situation where you want to obtain a new certificate from a certificate authority. In this scenario, one option is to follow this sequence of steps:
+</p>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp526963"> </a><div class="pSmartList2"><li>Generate a key-pair.</li></div>
+<a name="wp526969"> </a><div class="pSmartList2"><li>Generate a certificate request</li></div>
+<a name="wp526970"> </a><div class="pSmartList2"><li>Send the request to the authority for its signature</li></div>
+<a name="wp526971"> </a><div class="pSmartList2"><li>Get the signed certificate and import it into this keystore.</li></div>
+<a name="wp526924"> </a><p class="pBodyRelative">
+Another option is to let the certificate authority generate a key-pair. The authority would return a generated certificate signed by itself along with the corresponding private key. One way the certificate authority can return this information is to bundle the key and the certificate in a PKCS-12 formatted file (generally <code class="cCode">.pfx</code> extension files). The information in the PKCS-12 file would be encrypted using a password that would be conveyed to the user by the authority. After receiving the PKCS-12 formatted file, you would import this key-pair (certificate/private-key pair) into your private keystore using the <code class="cCode">pkcs12import</code> tool. The result of the import is that the private-key and the corresponding certificate in the PKCS-12 file are stored as a key entry inside the keystore, associated with some alias. 
+</p>
+<a name="wp527031"> </a><p class="pBodyRelative">
+The <code class="cCode">pkcs12import</code> tool can be found in the directory <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/xws-security/bin/</code>, and can be run from the command line by executing <code class="cCode">pkcs12import.sh</code> (on Unix systems) or <code class="cCode">pkcs12import.bat</code> (on Windows systems). The options for this tool listed in <a  href="XWS-Security7.html#wp525614">Table 3-5</a>.<div align="left">
+<table border="1" summary="Options for pkcs12import tool" id="wp525614">
+  <caption><a name="wp525614"> </a><div class="pTableTitle">
+Table 3-5   &nbsp;Options for pkcs12import tool
+</div>
+</caption>
+  <tr align="left">    <td><a name="wp526157"> </a><div class="pCellHeading">
+Option
+</div>
+</td>
+    <td><a name="wp526159"> </a><div class="pCellHeading">
+Description
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp525629"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">-file </code><code style="font-style: oblique" class="cCode">pkcs12-file</code><code class="cCode"> </code>
+</div>
+</td>
+    <td><a name="wp525620"> </a><div class="pCellBody">
+Required. The location of the PKCS-12 file to be imported.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp525977"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">[ -pass </code><code style="font-style: oblique" class="cCode">pkcs12-password</code><code class="cCode"> ] &nbsp;&nbsp;&nbsp;</code>
+</div>
+</td>
+    <td><a name="wp525979"> </a><div class="pCellBody">
+The password used to protect the PKCS-12 file. The user is prompted for this password if this option is omitted.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp525973"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">[ -keystore </code><code style="font-style: oblique" class="cCode">keystore-file</code><code class="cCode"> ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+</div>
+</td>
+    <td><a name="wp525975"> </a><div class="pCellBody">
+Location of the keystore file into which to import the contents of the PKCS-12 file. If no value is given, defaults to <code style="font-style: normal" class="cCode">${</code><code style="font-style: oblique" class="cCode">user-home</code><code class="cCode">}/.keystore</code>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp525969"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">[ -storepass </code><code style="font-style: oblique" class="cCode">store-password</code><code class="cCode"> ] &nbsp;&nbsp;</code>
+</div>
+</td>
+    <td><a name="wp526039"> </a><div class="pCellBody">
+The password of the keystore. User is prompted for the password of the truststore if this option is omitted.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp525961"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">[ -keypass </code><code style="font-style: oblique" class="cCode">key-password</code><code class="cCode"> ] </code>
+</div>
+</td>
+    <td><a name="wp527069"> </a><div class="pCellBody">
+The password to be used to protect the private key inside the keystore. The user is prompted for this password if this option is omitted.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp526021"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">[ -alias </code><code style="font-style: oblique" class="cCode">alias</code><code class="cCode"> ] </code>
+</div>
+</td>
+    <td><a name="wp526057"> </a><div class="pCellBody">
+The alias to be used to store the key entry (private key and the certificate) inside the keystore. 
+</div>
+</td>
+</tr>
+</table>
+</div>
+
+</p>
+</ol></div>
+<a name="wp528721"> </a><div class="pSmartList1"><li><code class="cCode">keyexport</code> </li></div>
+<a name="wp527077"> </a><p class="pBodyRelative">
+This tool is used to export a private key in a keystore (typically of type Java Keystore (JKS)) into a file. 
+</p>
+</ul></div>
+<hr>
+<a name="wp527092"> </a><p class="pNote">
+Note: The exported private key is not secured with a password, so it should be handled carefully. For example, you can export a private key from a keystore and use it to sign certificate requests obtained through any means using other key/certificate management tools. These certificate requests are then sent to a certificate authority for validation and certificate generation.
+</p>
+<a name="wp527075"> </a><p class="pBodyRelative">
+The <code class="cCode">keyexport</code> tool can be found in the directory <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/xws-security/bin/</code>, and can be run from the command line by executing <code class="cCode">keyexport.sh</code> (on Unix systems) or <code class="cCode">keyexport.bat</code> (on Windows systems). The options for this tool are listed in <a  href="XWS-Security7.html#wp526220">Table 3-6</a>.<div align="left">
+<table border="1" summary="Options for keyexport tool" id="wp526220">
+  <caption><a name="wp526220"> </a><div class="pTableTitle">
+Table 3-6   &nbsp;Options for keyexport tool
+</div>
+</caption>
+  <tr align="left">    <td><a name="wp526224"> </a><div class="pCellHeading">
+Option
+</div>
+</td>
+    <td><a name="wp526226"> </a><div class="pCellHeading">
+Description
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp526228"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">-keyfile </code><code style="font-style: oblique" class="cCode">key-file</code><code class="cCode"> </code>
+</div>
+</td>
+    <td><a name="wp526230"> </a><div class="pCellBody">
+Required. The location of the file to which the private key will be exported.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp526232"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">[ -outform </code><code style="font-style: oblique" class="cCode">output-format</code><code class="cCode"> ] &nbsp;&nbsp;&nbsp;</code>
+</div>
+</td>
+    <td><a name="wp526234"> </a><div class="pCellBody">
+This specifies the output format. The options are DER and PEM. The DER format is the DER encoding (binary format) of the certificate. The PEM format is the base64-encoding of the DER encoding with header and footer lines added.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp526236"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">[ -keystore </code><code style="font-style: oblique" class="cCode">keystore-file</code><code class="cCode"> ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+</div>
+</td>
+    <td><a name="wp526238"> </a><div class="pCellBody">
+Location of the keystore file containing the key. If no value is given, this option defaults to <code style="font-style: normal" class="cCode">${</code><code style="font-style: oblique" class="cCode">user-home</code><code class="cCode">}/.keystore</code>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp526240"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">[ -storepass </code><code style="font-style: oblique" class="cCode">store-password</code><code class="cCode"> ] &nbsp;&nbsp;</code>
+</div>
+</td>
+    <td><a name="wp526242"> </a><div class="pCellBody">
+Password of the keystore. User is prompted for the password if this option is omitted.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp526248"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">[ -keypass </code><code style="font-style: oblique" class="cCode">key-password</code><code class="cCode"> ] </code>
+</div>
+</td>
+    <td><a name="wp526250"> </a><div class="pCellBody">
+The password used to protect the private key inside the keystore. User is prompted for the password if this option is omitted. 
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp526252"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">[ -alias </code><code style="font-style: oblique" class="cCode">alias</code><code class="cCode"> ] </code>
+</div>
+</td>
+    <td><a name="wp526254"> </a><div class="pCellBody">
+The alias of the key entry inside the keystore. 
+</div>
+</td>
+</tr>
+</table>
+</div>
+
+</p>
+<hr><div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp521916"> </a><div class="pSmartList1"><li><code class="cCode">wscompile</code></li></div>
+<a name="wp521917"> </a><p class="pBodyRelative">
+The <code class="cCode">wscompile</code> tool generates the client stubs and server-side ties for the service definition interface that represents the Web service interface. Additionally, it generates the WSDL description of the Web service interface which is then used to generate the implementation artifacts.
+</p>
+<a name="wp526909"> </a><p class="pBodyRelative">
+XWS-Security has been integrated into JAX-RPC through the use of security configuration files. The code for performing the security operations on the client and server is generated by supplying the configuration files to the JAX-RPC <code class="cCode">wscompile</code> tool. The <code class="cCode">wscompile</code> tool can be instructed to generate security code by making us of the <code class="cCode">-security</code> option to specify the location of the security configuration file that contains information on how to secure the messages to be sent. An example of using the <code class="cCode">-security</code> option with <code class="cCode">wscompile</code> is shown in <a  href="XWS-Security3.html#wp522444">How Do I Specify the Security Configuration for the Build Files?</a>. 
+</p>
+<a name="wp526291"> </a><p class="pBodyRelative">
+The syntax for this option is as follows:
+</p>
+<a name="wp526292"> </a><p class="pBodyRelative">
+<code class="cCode">wscompile [-security {</code><code class="cVariable">location of security configuration file</code><code class="cCode">}]</code>
+</p>
+<a name="wp526898"> </a><p class="pBodyRelative">
+For more description of the <code class="cCode">wscompile</code> tool, its syntax, and examples of using this tool, read:<br /><code class="cCode"><a  href="http://docs.sun.com/source/817-6092/hman1m/wscompile.1m.html" target="_blank">http://docs.sun.com/source/817-6092/hman1m/wscompile.1m.html</a></code>
+</p>
+</ul></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security6.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security8.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

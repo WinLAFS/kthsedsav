@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Setting Up To Use XWS-Security With the Sample Applications</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XWS-Security3.html" />
+    <link rel="Next" href="XWS-Security5.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security3.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security5.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp520409"> </a><h2 class="pHeading1">
+Setting Up To Use XWS-Security With the Sample Applications
+</h2>
+<a name="wp520411"> </a><p class="pBody">
+This addendum discusses creating and running applications that use the XWS-Security framework, and deploying these applications onto the Sun Java System Application Server Platform Edition 8. For deployment onto other containers, read the <code class="cCode">README.txt</code> file for the example applications for more information.
+</p>
+<a name="wp520422"> </a><p class="pBody">
+Follow these steps to set up your system to create, run, and deploy the sample applications included in this release that use the XWS-Security framework.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp521080"> </a><div class="pSmartList1"><li>Make sure that you are running the Java WSDP 1.5 on the Java 2 Platform, Standard Edition version 1.4.2 or higher. If not, you can download the JDK from:<br /><code class="cCode"><a  href="http://java.sun.com/j2se/" target="_blank">http://java.sun.com/j2se/</a></code>.</li></div>
+<a name="wp521069"> </a><div class="pSmartList1"><li>Set system properties as described in <a  href="XWS-Security4.html#wp520429">Setting System Properties</a>.</li></div>
+<a name="wp520426"> </a><div class="pSmartList1"><li>If you are using version 1.4.x of the Java SDK, configure a JCE provider as discussed in <a  href="XWS-Security4.html#wp520663">Configuring a JCE Provider</a>.</li></div>
+<a name="wp521091"> </a><div class="pSmartList1"><li>Follow the steps in <a  href="XWS-Security4.html#wp521092">Setting Up the Application Server For the Examples</a>.</li></div>
+</ol></div>
+<a name="wp520429"> </a><h3 class="pHeading2">
+Setting System Properties
+</h3>
+<a name="wp520535"> </a><p class="pBody">
+The <code class="cCode">asant</code> (or <code class="cCode">ant)</code> build files for the XWS-Security samples shipped with this release rely on certain environment variables being set correctly. Make sure that the following environment variables are set to the locations specified in this list. If you are not sure how to set these environment variables, refer to the file <code style="font-style: normal" class="cCode">&lt;</code><code style="font-style: oblique" class="cCode">JWSDP_HOME</code><code class="cCode">&gt;/xws-security/docs/samples.html</code> for more specific information.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp520548"> </a><div class="pSmartList1"><li>Set <code class="cCode">JAVA_HOME</code> to the location of your J2SE installation directory, for example,<code class="cCode"> /home/&lt;</code><code class="cVariable">your_name</code><code class="cCode">&gt;/j2sdk1.4.2_04/</code>.</li></div>
+<a name="wp520591"> </a><div class="pSmartList1"><li>Set <code class="cCode">JWSDP_HOME</code> to the location of your Java WSDP 1.5 installation directory, for example, <code class="cCode">/home/&lt;</code><code class="cVariable">your_name</code><code class="cCode">&gt;/jwsdp-1.5/</code>.</li></div>
+<a name="wp520603"> </a><div class="pSmartList1"><li>Set <code class="cCode">SJSAS_HOME</code> to the location of your Application Server installation directory, for example, <code class="cCode">/home/&lt;</code><code class="cVariable">your_name</code><code class="cCode">&gt;/SUNWappserver/</code>. If you are deploying onto a different container, set <code class="cCode">SJSWS_HOME</code> or <code class="cCode">TOMCAT_HOME</code> instead.</li></div>
+<a name="wp520638"> </a><div class="pSmartList1"><li>Set <code class="cCode">ANT_HOME</code> to the location where the <code class="cCode">asant</code> (or <code class="cCode">ant</code>) executable can be found. If you are running on the Application Server, this will be <code class="cCode">&lt;</code><code class="cVariable">SJSAS_HOME</code><code class="cCode">&gt;/bin/.</code> If you are running on a different container, this location will probably be <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/apache-ant/bin/.</code></li></div>
+<a name="wp520662"> </a><div class="pSmartList1"><li>Set the <code class="cCode">PATH</code> variable so that it contains these directories: <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/jwsdp-shared/bin/</code>, <code class="cCode">&lt;</code><code class="cVariable">SJSAS_HOME</code><code class="cCode">&gt;/bin/</code>, <code class="cCode">&lt;</code><code class="cVariable">ANT_HOME</code><code class="cCode">&gt;/</code>, <code class="cCode">and</code> <code class="cCode">&lt;</code><code class="cVariable">JAVA_HOME</code><code class="cCode">&gt;/bin/</code>.</li></div>
+</ol></div>
+<a name="wp520663"> </a><h3 class="pHeading2">
+Configuring a JCE Provider
+</h3>
+<a name="wp520514"> </a><p class="pBody">
+The Java Cryptography Extension (JCE) provider included with J2SE 1.4.x does not support RSA encryption. Because the XWS-Security sample applications use RSA encryption, you must download and install a JCE provider that does support RSA encryption in order for these sample applications to run, if you are using encryption, and if you are using a version of the Java SDK prior to version 1.5.0. 
+</p>
+<hr>
+<a name="wp538251"> </a><p class="pNote">
+Note: RSA is public-key encryption technology developed by RSA Data Security, Inc. The acronym stands for Rivest, Shamir, and Adelman, the inventors of the technology.
+</p>
+<hr><a name="wp538260"> </a><p class="pBody">
+If you are running the Application Server on version 1.5 of the Java SDK, the JCE provider is already configured properly. If you are running the Application Server on version 1.4.x of the Java SDK, follow these steps to add a JCE provider statically as part of your JDK environment:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp520705"> </a><div class="pSmartList1"><li>Download and install a JCE provider JAR (Java ARchive) file. The following URL provides a list of JCE providers that support RSA encryption:</li></div>
+<a name="wp520710"> </a><p class="pBodyRelative">
+<code class="cCode"><a  href="http://java.sun.com/products/jce/jce14_providers.html" target="_blank">http://java.sun.com/products/jce/jce14_providers.html</a></code>
+</p>
+<a name="wp520724"> </a><div class="pSmartList1"><li>Copy the JCE provider JAR file to <code class="cCode">&lt;</code><code class="cVariable">JAVA_HOME</code><code class="cCode">&gt;/jre/lib/ext/</code>.</li></div>
+<a name="wp520756"> </a><div class="pSmartList1"><li>Stop the Application Server (or other container). If the Application Server is not stopped, and restarted later in this process, the JCE provider will not be recognized by the Application Server.</li></div>
+<a name="wp520764"> </a><div class="pSmartList1"><li>Edit the <code class="cCode">&lt;</code><code class="cVariable">JAVA_HOME</code><code class="cCode">&gt;/jre/lib/security/java.security</code> properties file in any text editor. Add the JCE provider you've just downloaded to this file. The <code class="cCode">java.security</code> file contains detailed instructions for adding this provider. Basically, you need to add a line of the following format in a location with similar properties: </li></div>
+<a name="wp520781"> </a><p class="pBodyRelative">
+<code class="cCode">security.provider.&lt;</code><code class="cVariable">n</code><code class="cCode">&gt;=&lt;</code><code class="cVariable">provider class name</code><code class="cCode">&gt;</code>
+</p>
+<a name="wp538273"> </a><p class="pBodyRelative">
+In this example, &lt;<code class="cVariable">n</code>&gt; is the order of preference to be used by the Application Server when evaluating security providers. Set &lt;<code class="cVariable">n</code>&gt; to <code class="cCode">2</code> for the JCE provider you've just added. 
+</p>
+<a name="wp538274"> </a><p class="pBodyRelative">
+For example, if you've downloaded ABC JCE provider, and the Java class name of the ABC provider's main class is <code class="cCode">org.abc.ABCProvider</code>, add this line.
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;security.provider.2=org.abc.ABCProvider<a name="wp538275"> </a>
+<a name="wp538276"> </a><p class="pBodyRelative">
+Make sure that the Sun security provider remains at the highest preference, with a value of 1.
+</p>
+<a name="wp538277"> </a><p class="pBodyRelative">
+<code class="cCode">&nbsp;&nbsp;&nbsp;security.provider.1=sun.security.provider.Sun</code>
+</p>
+<a name="wp538278"> </a><p class="pBodyRelative">
+Adjust the levels of the other security providers downward so that there is only one security provider at each level.
+</p>
+<a name="wp538279"> </a><p class="pBodyRelative">
+The following is an example of a <code class="cCode">java.security</code> file that provides the necessary JCE provider and keeps the existing providers in the correct locations.
+</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;security.provider.1=sun.security.provider.Sun
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;security.provider.2=org.abc.ABCProvider
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;security.provider.3=com.sun.net.ssl.internal.ssl.Prov
+ider
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;security.provider.4=com.sun.rsajca.Provider
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;security.provider.5=com.sun.crypto.provider.SunJCE
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;security.provider.6=sun.security.jgss.SunProvider<a name="wp538280"> </a>
+</pre></div>
+<a name="wp538268"> </a><div class="pSmartList1"><li>Save and close the file.</li></div>
+<a name="wp560567"> </a><div class="pSmartList1"><li>Set the provider permissions for this JCE provider in the server policy file of the Application Server as described in <a  href="XWS-Security4.html#wp521092">Setting Up the Application Server For the Examples</a>.</li></div>
+<a name="wp562973"> </a><div class="pSmartList1"><li>Restart the Application Server (or other container). To save time with stopping and restarting the server, you can complete the steps in <a  href="XWS-Security4.html#wp521092">Setting Up the Application Server For the Examples</a> before restarting the Application Server.</li></div>
+</ol></div>
+<a name="wp521092"> </a><h3 class="pHeading2">
+Setting Up the Application Server For the Examples
+</h3>
+<a name="wp521094"> </a><p class="pBody">
+To set up the container for running the XWS-Security sample applications included with this release, you need to specify on which container you are running the <code class="cCode">asant</code> (or <code class="cCode">ant)</code> build targets, and you must point the container to the keystore and truststore files to be used to run the XWS-Security sample applications. For the sample applications, these are the keystore and truststore files included in the <code class="cCode">/xws-security/etc/</code> directory. For further discussion of using keystores and truststores with XWS-Security applications, read <a  href="XWS-Security4.html#wp528524">Keystore and Truststore Files with XWS-Security</a>.
+</p>
+<a name="wp521220"> </a><p class="pBody">
+This tutorial describes deployment to the Application Server. For information on setting up other containers, refer to the <code class="cCode">README.txt</code> file located in the top-level directory for each sample application.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp560601"> </a><div class="pSmartList1"><li>Stop the Application Server.</li></div>
+<a name="wp562369"> </a><div class="pSmartList1"><li>Add the following permissions to the server policy file of the Application Server. This file can be found at &lt;<code class="cVariable">SJSAS_HOME</code>&gt;<code class="cCode">/domains/domain1/config/server.policy</code>. </li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp560645"> </a><div class="pSmartList2"><li>Add the following code near the end of the file for the <code class="cCode">jaas-sample</code> sample application. </li></div>
+<a name="wp560602"> </a><p class="pBodyRelative">
+<code class="cCode">grant codeBase &quot;file:${com.sun.aas.instanceRoot}/applications/j2ee-modules/jaassample/WEB-INF/-&quot; {<br />      permission javax.security.auth.AuthPermission &quot;modifyPrincipals&quot;;<br />      permission javax.security.auth.AuthPermission &quot;modifyPrivateCredentials&quot;;<br />      permission javax.security.auth.PrivateCredentialPermission &quot;* * \&quot;*\&quot;&quot;,&quot;read&quot;;<br />      permission javax.security.auth.AuthPermission &quot;getSubject&quot;;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;permission javax.security.auth.AuthPermission<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;createLoginContext.XWS_SECURITY_SERVER&quot;;<br />};</code>
+</p>
+<a name="wp560648"> </a><div class="pSmartList2"><li>Add the following code near the end of the file for the <code class="cCode">simple</code> sample application.</li></div>
+<a name="wp562991"> </a><p class="pBodyRelative">
+If you are using a 3rd party JCE provider, include the <code class="cCode">putProvider</code> security permission for that application here as well so that signature and encryption work. The word <code class="cVariable">&lt;Provider&gt;</code> in the last permission should be replaced by the standard name of the third-party JCE provider. For example, if the third party JCE provider specified in <code class="cCode">java.security</code> file has a standard name <code class="cCode">ABC</code>, replace <code class="cVariable">&lt;Provider&gt;</code> with <code class="cCode">ABC</code>. If you are using version 1.5 or higher of the Java SDK, do not include the <code class="cCode">putProvider</code> for the JCE provider. 
+</p>
+<a name="wp560669"> </a><p class="pBodyRelative">
+<code class="cCode">grant codeBase &quot;file:${com.sun.aas.instanceRoot}/applications/j2ee-modules/securesimple/WEB-INF/-&quot; {         <br /><br />      permission javax.security.auth.AuthPermission &quot;modifyPrincipals&quot;;<br />      permission javax.security.auth.AuthPermission &quot;modifyPrivateCredentials&quot;;<br />      permission javax.security.auth.AuthPermission &quot;modifyPublicCredentials&quot;;<br />      permission javax.security.auth.PrivateCredentialPermission &quot;* * \&quot;*\&quot;&quot;,&quot;read&quot;;<br />      permission javax.security.auth.AuthPermission &quot;getSubject&quot;;<br />      permission java.security.SecurityPermission  &quot;putProviderProperty.</code><code class="cVariable">&lt;Provider&gt;</code><code class="cCode">&quot;;<br />}; </code>
+</p>
+</ol></div>
+<a name="wp524934"> </a><div class="pSmartList1"><li>Save and exit the policy file.</li></div>
+<a name="wp562370"> </a><div class="pSmartList1"><li>Restart the Application Server.</li></div>
+</ol></div>
+<a name="wp528524"> </a><h4 class="pHeading3">
+Keystore and Truststore Files with XWS-Security
+</h4>
+<a name="wp562391"> </a><p class="pBody">
+For the <code class="cCode">simple</code> sample, the keystore, truststore, and symmetric-key databases used by that example are located in the <code class="cVariable">&lt;JWSDP_HOME&gt;</code><code class="cCode">/xws-security/etc/</code> directory. The locations of these files have been configured in the <code class="cVariable">&lt;JWSDP_HOME&gt;</code><code class="cCode">/xws-security/etc/client-security-env.properties</code> and <code class="cVariable">&lt;JWSDP_HOME&gt;</code><code class="cCode">/xws-security/etc/server-security-env.properties</code> files for the client and server respectively. These property files are used by the <code class="cCode">SecurityEnvironmentHandler</code> to handle the <code class="cCode">Callbacks</code>.
+</p>
+<a name="wp528557"> </a><p class="pBody">
+To plug in your own keystores and truststores for an application, make sure that the certificates are of version 3, and that the client truststore contains the certificate of the certificate authority that issued the server&#39;s certificate, and vice versa. 
+</p>
+<a name="wp562437"> </a><p class="pBody">
+XWS-Security requires version 3 (v3) certificates when the <code class="cCode">keyReferenceType</code> attribute (specified on a <code class="cCode">xwss:X509Token</code> element) has a value of <code class="cCode">Identifier</code>, which indicates the use of an X.509 <code class="cCode">SubjectKeyIdentifier</code> extension. For all other values of the <code class="cCode">keyReferenceType</code> attribute, a v1 certificate can also be used. Version 3 includes requirements specified by the WSS X509 Token Profile.
+</p>
+<a name="wp524936"> </a><h3 class="pHeading2">
+Setting Build Properties
+</h3>
+<a name="wp520820"> </a><p class="pBody">
+To run the sample applications, you must edit the sample <code class="cCode">build.properties</code> file for that sample application and specify information that is unique to your system and to your installation of Java WSDP 1.5 and the Application Server (or other container). 
+</p>
+<a name="wp520823"> </a><p class="pBody">
+To edit the <code class="cCode">build.properties</code> file for the example you want to run, follow these steps:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp520824"> </a><div class="pSmartList1"><li>Change to directory for the sample application you want to run: <code style="font-style: normal" class="cCode">&lt;</code><code style="font-style: oblique" class="cCode">JWSDP_HOME</code><code class="cCode">&gt;/xws-security/samples/&lt;</code><code class="cVariable">example</code><code class="cCode">&gt;/</code>.</li></div>
+<a name="wp520825"> </a><div class="pSmartList1"><li>Copy the <code class="cCode">build.properties.sample</code> file to <code class="cCode">build.properties</code>. </li></div>
+<a name="wp520826"> </a><div class="pSmartList1"><li>Edit the <code class="cCode">build.properties</code> file, checking that the following properties are set correctly for your system: </li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp521352"> </a><div class="pSmartList2"><li><code class="cCode">javahome</code>: Set this to the directory where J2SE version 1.4.2 or higher is installed. </li></div>
+<a name="wp521406"> </a><div class="pSmartList2"><li><code class="cCode">sjsas.home</code>: If you are running under the Application Server, set this to the directory where the Application Server is installed and make sure there is not a comment symbol (<code class="cCode">#</code>) to the left of this entry. If you are running under a different container, set the location for its install directory under the appropriate property name (<code class="cCode">tomcat.home</code> or <code class="cCode">sjsws.home</code>) and uncomment that entry instead. Only one of the container home properties should be uncommented at any one time.</li></div>
+<a name="wp521363"> </a><div class="pSmartList2"><li><code class="cCode">username</code>, <code class="cCode">password</code>: Enter the appropriate username and password values for a user assigned to the role of <code class="cCode">admin</code> for the container instance being used for this sample. A user with this role is authorized to deploy applications onto the Application Server.</li></div>
+<a name="wp521435"> </a><div class="pSmartList2"><li><code class="cCode">endpoint.host</code>, <code class="cCode">endpoint.port</code>: If you changed the default host and/or port during installation of the Application Server (or other container), change these properties to the correct values for your host and port. If you installed the Application Server using the default values, these properties will already be set to the correct values. </li></div>
+<a name="wp521372"> </a><div class="pSmartList2"><li><code class="cCode">VS.DIR</code>=If you are running under the Sun Java System Web Server, enter the directory for the virtual server. If you are running under any other container, you do not need to modify this property. </li></div>
+<a name="wp521457"> </a><div class="pSmartList2"><li><code class="cCode">jwsdp.home</code>: Set this property to the directory where Java WSDP is installed. The keystore and truststore URL's for the client are configured relative to this property. </li></div>
+<a name="wp521475"> </a><div class="pSmartList2"><li><code class="cCode">http.proxyHost</code>, <code class="cCode">http.proxyPort</code>: If you are using remote endpoints, set these properties to the correct proxy server address and port. If you are not using remote endpoints, put a comment character (<code class="cCode">#</code>) before these properties. A proxy server will follow the format of <code class="cCode">myserver.mycompany.com</code>. The proxy port is the port on which the proxy host is running, for example, <code class="cCode">8080</code>.</li></div>
+</ul></div>
+<a name="wp521481"> </a><div class="pSmartList1"><li>Save and exit the <code class="cCode">build.properties</code> file.</li></div>
+</ol></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security3.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security5.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>JAXB Architecture</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="JAXBWorks.html" />
+    <link rel="Next" href="JAXBWorks3.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBWorks3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp83511"> </a><h2 class="pHeading1">
+JAXB Architecture
+</h2>
+<a name="wp83514"> </a><p class="pBody">
+This section describes the components and interactions in the JAXB processing model. After providing a general overview, this section goes into more detail about core JAXB features. The topics in this section include:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp99703"> </a><div class="pSmartList1"><li><a  href="JAXBWorks2.html#wp98912">Architectural Overview</a></li></div>
+<a name="wp99707"> </a><div class="pSmartList1"><li><a  href="JAXBWorks2.html#wp99790">The JAXB Binding Process</a></li></div>
+<a name="wp99711"> </a><div class="pSmartList1"><li><a  href="JAXBWorks2.html#wp82649">JAXB Binding Framework</a></li></div>
+<a name="wp99715"> </a><div class="pSmartList1"><li><a  href="JAXBWorks2.html#wp82683">More About javax.xml.bind</a></li></div>
+<a name="wp99719"> </a><div class="pSmartList1"><li><a  href="JAXBWorks2.html#wp86067">More About Unmarshalling</a></li></div>
+<a name="wp99723"> </a><div class="pSmartList1"><li><a  href="JAXBWorks2.html#wp82750">More About Marshalling</a></li></div>
+<a name="wp99727"> </a><div class="pSmartList1"><li><a  href="JAXBWorks2.html#wp82802">More About Validation</a></li></div>
+</ul></div>
+<a name="wp98912"> </a><h3 class="pHeading2">
+Architectural Overview
+</h3>
+<a name="wp100285"> </a><p class="pBody">
+<a  href="JAXBWorks2.html#wp98914">Figure 1-1</a> shows the components that make up a JAXB implementation. </p><div align="left"><img src="images/JAXB-architecture.gif" height="226" width="446" alt="JAXB Architectural Overview" border="0" hspace="0" vspace="0"/>
+</div><p class="pBody">
+</p>
+
+<p>
+  <a name="98914"> </a><strong><font >Figure 1-1    JAXB Architectural Overview</font></strong>
+</p>
+
+<a name="wp99738"> </a><p class="pBody">
+As shown in <a  href="JAXBWorks2.html#wp98914">Figure 1-1</a>, a JAXB implementation comprises the following eight core components.</p><div align="left">
+<table border="1" summary="Core Components in a JAXB Implementation" id="wp99745">
+  <caption><a name="wp99745"> </a><div class="pTableTitle">
+Table 1-1   Core Components in a JAXB Implementation&nbsp;
+</div>
+</caption>
+  <tr align="center">    <th><a name="wp100506"> </a><div class="pCellHeading">
+Component
+</div>
+</th>
+    <th><a name="wp100508"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+</tr>
+  <tr align="left">    <td><a name="wp99749"> </a><div class="pCellHeading">
+XML Schema
+</div>
+</td>
+    <td><a name="wp99751"> </a><div class="pCellBody">
+An XML schema uses XML syntax to describe the relationships among elements, attributes and entities in an XML document. The purpose of an XML schema is to define a class of XML documents that must adhere to a particular set of structural rules and data constraints. For example, you may want to define separate schemas for chapter-oriented books, for an online purchase order system, or for a personnel database. In the context of JAXB, an XML document containing data that is constrained by an XML schema is referred to as a <em class="cEmphasis">document instance</em>, and the structure and data within a document instance is referred to as a <em class="cEmphasis">content tree</em>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99753"> </a><div class="pCellHeading">
+Binding<br />Customizations
+</div>
+</td>
+    <td><a name="wp99755"> </a><div class="pCellBody">
+By default, the JAXB binding compiler binds Java classes and packages to a source XML schema based on rules defined in Section 5, &quot;Binding XML Schema to Java Representations,&quot; in the <em class="cEmphasis">JAXB Specification</em>. In most cases, the default binding rules are sufficient to generate a robust set of schema-derived classes from a wide range of schemas. There may be times, however, when the default binding rules are not sufficient for your needs. JAXB supports customizations and overrides to the default binding rules by means of <em class="cEmphasis">binding customizations</em> made either inline as annotations in a source schema, or as statements in an external binding customization file that is passed to the JAXB binding compiler. Note that custom JAXB binding customizations also allow you to customize your generated JAXB classes beyond the XML-specific constraints in an XML schema to include Java-specific refinements such as class and package name mappings.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99757"> </a><div class="pCellHeading">
+Binding<br />Compiler
+</div>
+</td>
+    <td><a name="wp99759"> </a><div class="pCellBody">
+The JAXB binding compiler is the core of the JAXB processing model. Its function is to transform, or bind, a source XML schema to a set of JAXB <em class="cEmphasis">content classes</em> in the Java programming language. Basically, you run the JAXB binding compiler using an XML schema (optionally with custom binding declarations) as input, and the binding compiler generates Java classes that map to constraints in the source XML schema.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99761"> </a><div class="pCellHeading">
+Implementation of javax.xml.bind
+</div>
+</td>
+    <td><a name="wp99763"> </a><div class="pCellBody">
+The JAXB binding framework implementation is a runtime API that provides interfaces for unmarshalling, marshalling, and validating XML content in a Java application. The binding framework comprises interfaces in the <code class="cCode">javax.xml.bind</code> package.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99765"> </a><div class="pCellHeading">
+Schema-Derived<br />Classes
+</div>
+</td>
+    <td><a name="wp99767"> </a><div class="pCellBody">
+These are the schema-derived classes generated by the binding JAXB compiler. The specific classes will vary depending on the input schema.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99769"> </a><div class="pCellHeading">
+Java <br />Application
+</div>
+</td>
+    <td><a name="wp99771"> </a><div class="pCellBody">
+In the context of JAXB, a Java application is a client application that uses the JAXB binding framework to unmarshal XML data, validate and modify Java content objects, and marshal Java content back to XML data. Typically, the JAXB binding framework is wrapped in a larger Java application that may provide UI features, XML transformation functions, data processing, or whatever else is desired.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99773"> </a><div class="pCellHeading">
+XML Input<br />Documents
+</div>
+</td>
+    <td><a name="wp99775"> </a><div class="pCellBody">
+XML content that is unmarshalled as input to the JAXB binding framework -- that is, an XML instance document, from which a Java representation in the form of a content tree is generated. In practice, the term &quot;document&quot; may not have the conventional meaning, as an XML instance document does not have to be a completely formed, selfstanding document file; it can instead take the form of streams of data passed between applications, or of sets of database fields, or of <em class="cEmphasis">XML infosets</em>, in which blocks of information contain just enough information to describe where they fit in the schema structure.
+</div>
+<a name="wp99776"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp99777"> </a><div class="pCellBody">
+In JAXB, the unmarshalling process supports <em class="cEmphasis">validation</em> of the XML input document against the constraints defined in the source schema. This validation process is optional, however, and there may be cases in which you know by other means that an input document is valid and so you may choose for performance reasons to skip validation during unmarshalling. In any case, validation before (by means of a third-party application) or during unmarshalling is important, because it assures that an XML document generated during marshalling will also be valid with respect to the source schema. Validation is discussed more later in this chapter.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99779"> </a><div class="pCellHeading">
+XML Output<br />Documents
+</div>
+</td>
+    <td><a name="wp99781"> </a><div class="pCellBody">
+XML content that is marshalled out to an XML document. In JAXB, marshalling involves parsing an XML content object tree and writing out an XML document that is an accurate representation of the original XML document, and is valid with respect the source schema. JAXB can marshal XML data to XML documents, SAX content handlers, and DOM nodes.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp99790"> </a><h3 class="pHeading2">
+The JAXB Binding Process
+</h3>
+<a name="wp99794"> </a><p class="pBody">
+<a  href="JAXBWorks2.html#wp99791">Figure 1-2</a> shows what occurs during the JAXB binding process.
+</p>
+<a name="wp100493"> </a><p class="pBody">
+</p><div align="left"><img src="images/JAXB-data-binding-process2.gif" height="291" width="448" alt="Steps in the JAXB Binding Process" border="0" hspace="0" vspace="0"/>
+</div><p class="pBody">
+</p>
+
+<p>
+  <a name="99791"> </a><strong><font >Figure 1-2    Steps in the JAXB Binding Process</font></strong>
+</p>
+
+<a name="wp82585"> </a><p class="pBody">
+The general steps in the JAXB data binding process are:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp99403"> </a><div class="pSmartList1"><li>Generate classes. An XML schema is used as input to the JAXB binding compiler to generate JAXB classes based on that schema.</li></div>
+<a name="wp99414"> </a><div class="pSmartList1"><li>Compile classes. All of the generated classes, source files, and application code must be compiled.</li></div>
+<a name="wp99421"> </a><div class="pSmartList1"><li>Unmarshal. XML documents written according to the constraints in the source schema are unmarshalled by the JAXB binding framework. Note that JAXB also supports unmarshalling XML data from sources other than files/documents, such as DOM nodes, string buffers, SAX Sources, and so forth.</li></div>
+<a name="wp99428"> </a><div class="pSmartList1"><li>Generate content tree. The unmarshalling process generates a content tree of data objects instantiated from the generated JAXB classes; this content tree represents the structure and content of the source XML documents.</li></div>
+<a name="wp99435"> </a><div class="pSmartList1"><li>Validate (optional). The unmarshalling process optionally involves validation of the source XML documents before generating the content tree. Note that if you modify the content tree in Step 6, below, you can also use the JAXB Validate operation to validate the changes before marshalling the content back to an XML document.</li></div>
+<a name="wp99442"> </a><div class="pSmartList1"><li>Process content. The client application can modify the XML data represented by the Java content tree by means of interfaces generated by the binding compiler.</li></div>
+<a name="wp99443"> </a><div class="pSmartList1"><li>Marshal. The processed content tree is marshalled out to one or more XML output documents. The content may be validated before marshalling.</li></div>
+</ol></div>
+<a name="wp82632"> </a><p class="pBody">
+To summarize, using JAXB involves two discrete sets of activities:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp82635"> </a><div class="pSmartList1"><li>Generate and compile JAXB classes from a source schema, and build an application that implements these classes</li></div>
+<a name="wp82636"> </a><div class="pSmartList1"><li>Run the application to unmarshal, process, validate, and marshal XML content through the JAXB binding framework</li></div>
+</ul></div>
+<a name="wp82639"> </a><p class="pBody">
+These two steps are usually performed at separate times in two distinct phases. Typically, for example, there is an application development phase in which JAXB classes are generated and compiled, and a binding implementation is built, followed by a deployment phase in which the generated JAXB classes are used to process XML content in an ongoing &quot;live&quot; production setting.
+</p>
+<hr>
+<a name="wp82644"> </a><p class="pNote">
+Note: Unmarshalling is not the only means by which a content tree may be created. Schema-derived content classes also support the programmatic construction of content trees by direct invocation of the appropriate factory methods. Once created, a content tree may be revalidated, either in whole or in part, at any time. See <a  href="JAXBUsing3.html#wp89030">Create Marshal Example</a> for an example of using the <code class="cCode">ObjectFactory</code> class to directly add content to a content tree.
+</p>
+<hr><a name="wp82649"> </a><h3 class="pHeading2">
+JAXB Binding Framework
+</h3>
+<a name="wp82652"> </a><p class="pBody">
+The JAXB binding framework is implemented in three Java packages:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp99464"> </a><div class="pSmartList1"><li>The <code class="cCode">javax.xml.bind</code> package defines abstract classes and interfaces that are used directly with content classes. </li></div>
+<a name="wp99521"> </a><p class="pBodyRelative">
+The <code class="cCode">javax.xml.bind</code> package defines the <code class="cCode">Unmarshaller</code>, <code class="cCode">Validator</code>, and <code class="cCode">Marshaller</code> classes, which are auxiliary objects for providing their respective operations. 
+</p>
+<a name="wp99566"> </a><p class="pBodyRelative">
+The <code class="cCode">JAXBContext</code> class is the entry point for a Java application into the JAXB framework. A <code class="cCode">JAXBContext</code> instance manages the binding relationship between XML element names to Java content interfaces for a JAXB implementation to be used by the unmarshal, marshal and validation operations. 
+</p>
+<a name="wp99567"> </a><p class="pBodyRelative">
+The <code class="cCode">javax.xml.bind</code> package also defines a rich hierarchy of validation event and exception classes for use when marshalling or unmarshalling errors occur, when constraints are violated, and when other types of errors are detected.
+</p>
+<a name="wp99465"> </a><div class="pSmartList1"><li>The <code class="cCode">javax.xml.bind.util</code> package contains utility classes that may be used by client applications to manage marshalling, unmarshalling, and validation events.</li></div>
+<a name="wp99466"> </a><div class="pSmartList1"><li>The <code class="cCode">javax.xml.bind.helper</code> package provides partial default implementations for some of the javax.xml.bind interfaces. Implementations of JAXB can extend these classes and implement the abstract methods. These APIs are not intended to be directly used by applications using JAXB architecture.</li></div>
+</ul></div>
+<a name="wp82680"> </a><p class="pBody">
+The main package in the JAXB binding framework, <code class="cCode">javax.bind.xml</code>, is described in more detail below.
+</p>
+<a name="wp82683"> </a><h3 class="pHeading2">
+More About javax.xml.bind
+</h3>
+<a name="wp82686"> </a><p class="pBody">
+The three core functions provided by the primary binding framework package, <code class="cCode">javax.xml.bind</code>, are marshalling, unmarshalling, and validation. The main client entry point into the binding framework is the <code class="cCode">JAXBContext</code> class.
+</p>
+<a name="wp82688"> </a><p class="pBody">
+<code class="cCode">JAXBContext</code> provides an abstraction for managing the XML/Java binding information necessary to implement the unmarshal, marshal and validate operations. A client application obtains new instances of this class by means of the <code class="cCode">newInstance(contextPath)</code> method; for example:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+JAXBContext jc = JAXBContext.newInstance( 
+&quot;com.acme.foo:com.acme.bar&quot; );<a name="wp82691"> </a>
+</pre></div>
+<a name="wp82694"> </a><p class="pBody">
+The <code class="cCode">contextPath</code> parameter contains a list of Java package names that contain schema-derived interfaces--specifically the interfaces generated by the JAXB binding compiler. The value of this parameter initializes the <code class="cCode">JAXBContext</code> object to enable management of the schema-derived interfaces. To this end, the JAXB provider implementation must supply an implementation class containing a method with the following signature:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+public static JAXBContext createContext( String contextPath, 
+ClassLoader classLoader )<a name="wp82697"> </a>
+      throws JAXBException;<a name="wp82698"> </a>
+</pre></div>
+<hr>
+<a name="wp86035"> </a><p class="pNote">
+Note: The JAXB provider implementation must generate a<code class="cCode"> jaxb.properties</code> file in each package containing schema-derived classes. This property file must contain a property named <code class="cCode">javax.xml.bind.context.factory</code> whose value is the name of the class that implements the <code class="cCode">createContext</code> API.<br /><br />The class supplied by the provider does not have to be assignable to <code class="cCode">javax.xml.bind.JAXBContext</code>, it simply has to provide a class that implements the <code class="cCode">createContext</code> API. By allowing for multiple Java packages to be specified, the <code class="cCode">JAXBContext</code> instance allows for the management of multiple schemas at one time.
+</p>
+<hr><a name="wp86067"> </a><h3 class="pHeading2">
+More About Unmarshalling
+</h3>
+<a name="wp86068"> </a><p class="pBody">
+The <code class="cCode">Unmarshaller</code> class in the <code class="cCode">javax.xml.bind</code> package provides the client application the ability to convert XML data into a tree of Java content objects. The <code class="cCode">unmarshal</code> method for a schema (within a namespace) allows for any global XML element declared in the schema to be unmarshalled as the root of an instance document. The <code class="cCode">JAXBContext</code> object allows the merging of global elements across a set of schemas (listed in the <code class="cCode">contextPath</code>). Since each schema in the schema set can belong to distinct namespaces, the unification of schemas to an unmarshalling context should be namespace-independent. This means that a client application is able to unmarshal XML documents that are instances of any of the schemas listed in the <code class="cCode">contextPath</code>; for example:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+JAXBContext jc = JAXBContext.newInstance(
+&nbsp;&nbsp;&quot;com.acme.foo:com.acme.bar&quot; );
+
+Unmarshaller u = jc.createUnmarshaller();
+
+FooObject fooObj = 
+&nbsp;&nbsp;(FooObject)u.unmarshal( new File( &quot;foo.xml&quot; ) ); // ok
+
+BarObject barObj = 
+&nbsp;&nbsp;(BarObject)u.unmarshal( new File( &quot;bar.xml&quot; ) ); // ok
+
+BazObject bazObj = 
+&nbsp;&nbsp;(BazObject)u.unmarshal( new File( &quot;baz.xml&quot; ) ); 
+&nbsp;&nbsp;// error, &quot;com.acme.baz&quot; not in contextPath<a name="wp82719"> </a>
+</pre></div>
+<a name="wp82726"> </a><p class="pBody">
+A client application may also generate Java content trees explicitly rather than unmarshalling existing XML data. To do so, the application needs to have access and knowledge about each of the schema-derived <code class="cCode">ObjectFactory</code> classes that exist in each of Java packages contained in the <code class="cCode">contextPath</code>. For each schema-derived Java class, there will be a static factory method that produces objects of that type. For example, assume that after compiling a schema, you have a package <code class="cCode">com.acme.foo</code> that contains a schema-derived interface named <code class="cCode">PurchaseOrder</code>. To create objects of that type, the client application would use the following factory method:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+ObjectFactory objFactory = new ObjectFactory();
+
+com.acme.foo.PurchaseOrder po =
+&nbsp;&nbsp;objFactory.createPurchaseOrder();<a name="wp98306"> </a>
+</pre></div>
+<hr>
+<a name="wp98296"> </a><p class="pNote">
+Note: Because multiple <code class="cCode">ObjectFactory</code> classes are generated when there are multiple packages on the <code class="cCode">contextPath</code>, if you have multiple packages on the <code class="cCode">contextPath</code>, you should use the complete package name when referencing an <code class="cCode">ObjectFactory</code> class in one of those packages.
+</p>
+<hr><a name="wp82740"> </a><p class="pBody">
+Once the client application has an instance of the schema-derived object, it can use the mutator methods to set content on it.
+</p>
+<hr>
+<a name="wp82745"> </a><p class="pNote">
+Note: The JAXB provider implementation must generate a class in each package that contains all of the necessary object factory methods for that package named <code class="cCode">ObjectFactory</code> as well as the <code class="cCode">newInstance(javaContentInterface)</code> method.
+</p>
+<hr><a name="wp82750"> </a><h3 class="pHeading2">
+More About Marshalling
+</h3>
+<a name="wp82753"> </a><p class="pBody">
+The <code class="cCode">Marshaller</code> class in the <code class="cCode">javax.xml.bind</code> package provides the client application the ability to convert a Java content tree back into XML data. There is no difference between marshalling a content tree that is created manually using the factory methods and marshalling a content tree that is the result an unmarshal operation. Clients can marshal a Java content tree back to XML data to a <code class="cCode">java.io.OutputStream</code> or a <code class="cCode">java.io.Writer</code>. The marshalling process can alternatively produce SAX2 event streams to a registered <code class="cCode">ContentHandler</code> or produce a DOM <code class="cCode">Node</code> object.
+</p>
+<a name="wp82755"> </a><p class="pBody">
+A simple example that unmarshals an XML document and then marshals it back out is a follows: 
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+JAXBContext jc = JAXBContext.newInstance( &quot;com.acme.foo&quot; );
+
+// unmarshal from foo.xml
+Unmarshaller u = jc.createUnmarshaller();
+FooObject fooObj = 
+&nbsp;&nbsp;(FooObject)u.unmarshal( new File( &quot;foo.xml&quot; ) );
+
+// marshal to System.out
+Marshaller m = jc.createMarshaller();
+m.marshal( fooObj, System.out );<a name="wp82758"> </a>
+</pre></div>
+<a name="wp82769"> </a><p class="pBody">
+By default, the <code class="cCode">Marshaller</code> uses UTF-8 encoding when generating XML data to a <code class="cCode">java.io.OutputStream</code> or a <code class="cCode">java.io.Writer</code>. Use the <code class="cCode">setProperty</code> API to change the output encoding used during these marshal operations. Client applications are expected to supply a valid character encoding name as defined in the W3C XML 1.0 Recommendation (<code class="cCode"><a  href="http://www.w3.org/TR/2000/REC-xml-20001006#charencoding" target="_blank">http://www.w3.org/TR/2000/REC-xml-20001006#charencoding</a></code>) and supported by your Java Platform.
+</p>
+<a name="wp82771"> </a><p class="pBody">
+Client applications are not required to validate the Java content tree prior to calling one of the marshal APIs. There is also no requirement that the Java content tree be valid with respect to its original schema in order to marshal it back into XML data. Different JAXB Providers can support marshalling invalid Java content trees at varying levels, however all JAXB providers must be able to marshal a valid content tree back to XML data. A JAXB provider must throw a <code class="cCode">MarshalException</code> when it is unable to complete the marshal operation due to invalid content. Some JAXB providers will fully allow marshalling invalid content, others will fail on the first validation error.
+</p>
+<a name="wp82773"> </a><p class="pBody">
+<a  href="JAXBWorks2.html#wp86204">Table 1-2</a> shows the properties that the <code class="cCode">Marshaller</code> class supports.</p><div align="left">
+<table border="1" summary="Marshaller Properties" id="wp86204">
+  <caption><a name="wp86204"> </a><div class="pTableTitle">
+Table 1-2   Marshaller Properties&nbsp;
+</div>
+</caption>
+  <tr align="center">    <th><a name="wp100528"> </a><div class="pCellHeading">
+Property
+</div>
+</th>
+    <th><a name="wp100530"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+</tr>
+  <tr align="left">    <td><a name="wp86208"> </a><div class="pCellHeading">
+jaxb.encoding
+</div>
+</td>
+    <td><a name="wp86210"> </a><div class="pCellBody">
+Value must be a <code class="cCode">java.lang.String</code>; the output encoding to use when marshalling the XML data. The <code class="cCode">Marshaller</code> will use &quot;UTF-8&quot; by default if this property is not specified.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86212"> </a><div class="pCellHeading">
+jaxb.formatted.output
+</div>
+</td>
+    <td><a name="wp86214"> </a><div class="pCellBody">
+Value must be a <code class="cCode">java.lang.Boolean</code>; controls whether or not the <code class="cCode">Marshaller</code> will format the resulting XML data with line breaks and indentation. A <code class="cCode">true</code> value for this property indicates human readable indented XML data, while a <code class="cCode">false</code> value indicates unformatted XML data. The <code class="cCode">Marshaller</code> defaults to <code class="cCode">false</code> (unformatted) if this property is not specified.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86216"> </a><div class="pCellHeading">
+jaxb.schemaLocation
+</div>
+</td>
+    <td><a name="wp86218"> </a><div class="pCellBody">
+Value must be a <code class="cCode">java.lang.String</code>; allows the client application to specify an <code class="cCode">xsi:schemaLocation</code> attribute in the generated XML data. The format of the <code class="cCode">schemaLocation</code> attribute value is discussed in an easy to understand, non-normative form in Section 5.6 of the <em class="cEmphasis">W3C XML Schema Part 0: Primer</em> and specified in Section 2.6 of the <em class="cEmphasis">W3C XML Schema Part 1: Structures</em>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp86220"> </a><div class="pCellHeading">
+jaxb.noNamespaceSchemaLocation
+</div>
+</td>
+    <td><a name="wp86222"> </a><div class="pCellBody">
+Value must be a <code class="cCode">java.lang.String</code>; allows the client application to specify an <code class="cCode">xsi:noNamespaceSchemaLocation</code> attribute in the generated XML data.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp82802"> </a><h3 class="pHeading2">
+More About Validation
+</h3>
+<a name="wp82805"> </a><p class="pBody">
+The <code class="cCode">Validator</code> class in the <code class="cCode">javax.xml.bind</code> package is responsible for controlling the validation of content trees during runtime. When the unmarshalling process incorporates validation and it successfully completes without any validation errors, both the input document and the resulting content tree are guaranteed to be valid. By contrast, the marshalling process does not actually perform validation. If only validated content trees are marshalled, this guarantees that generated XML documents are always valid with respect to the source schema.
+</p>
+<a name="wp82807"> </a><p class="pBody">
+Some XML parsers, like SAX and DOM, allow schema validation to be disabled, and there are cases in which you may want to disable schema validation to improve processing speed and/or to process documents containing invalid or incomplete content. JAXB supports these processing scenarios by means of the exception handling you choose implement in your JAXB-enabled application. In general, if a JAXB implementation cannot unambiguously complete unmarshalling or marshalling, it will terminate processing with an exception.
+</p>
+<hr>
+<a name="wp82812"> </a><p class="pNote">
+Note: The <code class="cCode">Validator</code> class is responsible for managing On-Demand Validation (see below). The <code class="cCode">Unmarshaller</code> class is responsible for managing Unmarshal-Time Validation during the unmarshal operations. Although there is no formal method of enabling validation during the marshal operations, the <code class="cCode">Marshaller</code> may detect errors, which will be reported to the <code class="cCode">ValidationEventHandler</code> registered on it.
+</p>
+<hr><a name="wp82817"> </a><p class="pBody">
+A JAXB client can perform two types of validation:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp99585"> </a><div class="pSmartList1"><li><b class="cBold">Unmarshal-Time validation</b> enables a client application to receive information about validation errors and warnings detected while unmarshalling XML data into a Java content tree, and is completely orthogonal to the other types of validation. To enable or disable it, use the <code class="cCode">Unmarshaller.setValidating</code> method. All JAXB Providers are required to support this operation.</li></div>
+<a name="wp99586"> </a><div class="pSmartList1"><li><b class="cBold">On-Demand validation</b> enables a client application to receive information about validation errors and warnings detected in the Java content tree. At any point, client applications can call the <code class="cCode">Validator.validate</code> method on the Java content tree (or any sub-tree of it). All JAXB Providers are required to support this operation.</li></div>
+</ul></div>
+<a name="wp82837"> </a><p class="pBody">
+If the client application does not set an event handler on its <code class="cCode">Validator</code>, <code class="cCode">Unmarshaller</code>, or <code class="cCode">Marshaller</code> prior to calling the validate, unmarshal, or marshal methods, then a default event handler will receive notification of any errors or warnings encountered. The default event handler will cause the current operation to halt after encountering the first error or fatal error (but will attempt to continue after receiving warnings).
+</p>
+<a name="wp82839"> </a><p class="pBody">
+There are three ways to handle events encountered during the unmarshal, validate, and marshal operations:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp99613"> </a><div class="pSmartList1"><li>Use the default event handler.</li></div>
+<a name="wp99623"> </a><p class="pBodyRelative">
+The default event handler will be used if you do not specify one via the <code class="cCode">setEventHandler</code> APIs on <code class="cCode">Validator</code>, <code class="cCode">Unmarshaller</code>, or <code class="cCode">Marshaller</code>.
+</p>
+<a name="wp99614"> </a><div class="pSmartList1"><li>Implement and register a custom event handler.</li></div>
+<a name="wp99630"> </a><p class="pBodyRelative">
+Client applications that require sophisticated event processing can implement the <code class="cCode">ValidationEventHandler</code> interface and register it with the <code class="cCode">Unmarshaller</code> and/or <code class="cCode">Validator</code>.
+</p>
+<a name="wp99615"> </a><div class="pSmartList1"><li>Use the <code class="cCode">ValidationEventCollector</code> utility.</li></div>
+<a name="wp99639"> </a><p class="pBodyRelative">
+For convenience, a specialized event handler is provided that simply collects any <code class="cCode">ValidationEvent</code> objects created during the unmarshal, validate, and marshal operations and returns them to the client application as a <code class="cCode">java.util.Collection</code>.
+</p>
+</ul></div>
+<a name="wp82868"> </a><p class="pBody">
+Validation events are handled differently, depending on how the client application is configured to process them. However, there are certain cases where a JAXB Provider indicates that it is no longer able to reliably detect and report errors. In these cases, the JAXB Provider will set the severity of the <code class="cCode">ValidationEvent</code> to <code class="cCode">FATAL_ERROR</code> to indicate that the unmarshal, validate, or marshal operations should be terminated. The default event handler and <code class="cCode">ValidationEventCollector</code> utility class must terminate processing after being notified of a fatal error. Client applications that supply their own <code class="cCode">ValidationEventHandler</code> should also terminate processing after being notified of a fatal error. If not, unexpected behavior may occur.
+</p>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBWorks.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBWorks3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

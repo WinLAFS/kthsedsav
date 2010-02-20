@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>General Usage Instructions</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="JAXBUsing.html" />
+    <link rel="Next" href="JAXBUsing3.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBUsing.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBUsing3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp87739"> </a><h2 class="pHeading1">
+General Usage Instructions
+</h2>
+<a name="wp149800"> </a><p class="pBody">
+This section provides general usage instructions for the examples used in this chapter, including how to build and run the applications using the Ant build tool, and provides details about the default schema-to-JAXB bindings used in these examples. 
+</p>
+<a name="wp87752"> </a><h3 class="pHeading2">
+Description
+</h3>
+<a name="wp87755"> </a><p class="pBody">
+This chapter describes ten examples; the basic examples (Unmarshal Read, Modify Marshal, Create Marshal, Unmarshal Validate, Validate-On-Demand) demonstrate basic JAXB concepts like ummarshalling, marshalling, and validating XML content, while the customize examples (Customize Inline, Datatype Converter, External Customize, Fix Collides, Bind Choice) demonstrate various ways of customizing the binding of XML schemas to Java objects. Each of the examples in this chapter is based on a <em class="cEmphasis">Purchase Order</em> scenario. With the exception of the Bind Choice and the Fix Collides examples, each uses an XML document, <code class="cCode">po.xml</code>, written against an XML schema, <code class="cCode">po.xsd</code>.</p><div align="left">
+<table border="1" summary="Sample JAXB Application Descriptions" id="wp91365">
+  <caption><a name="wp91365"> </a><div class="pTableTitle">
+Table 2-1   Sample JAXB Application Descriptions
+</div>
+</caption>
+  <tr align="center">    <th><a name="wp154945"> </a><div class="pCellHeading">
+Example Name
+</div>
+</th>
+    <th><a name="wp154947"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+</tr>
+  <tr align="left">    <td><a name="wp91369"> </a><div class="pCellBody">
+<a  href="JAXBUsing3.html#wp150676">Unmarshal Read Example</a>
+</div>
+</td>
+    <td><a name="wp91371"> </a><div class="pCellBody">
+Demonstrates how to unmarshal an XML document into a Java content tree and access the data contained within it.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp91373"> </a><div class="pCellBody">
+<a  href="JAXBUsing3.html#wp156960">Modify Marshal Example</a>
+</div>
+</td>
+    <td><a name="wp91375"> </a><div class="pCellBody">
+Demonstrates how to modify a Java content tree.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp91377"> </a><div class="pCellBody">
+<a  href="JAXBUsing3.html#wp89030">Create Marshal Example</a>
+</div>
+</td>
+    <td><a name="wp91379"> </a><div class="pCellBody">
+Demonstrates how to use the <code class="cVariable">ObjectFactory</code> class to create a Java content tree from scratch and then marshal it to XML data.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp91381"> </a><div class="pCellBody">
+<a  href="JAXBUsing3.html#wp89378">Unmarshal Validate Example</a>
+</div>
+</td>
+    <td><a name="wp91383"> </a><div class="pCellBody">
+Demonstrates how to enable validation during unmarshalling.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp91385"> </a><div class="pCellBody">
+<a  href="JAXBUsing3.html#wp89532">Validate-On-Demand Example</a>
+</div>
+</td>
+    <td><a name="wp91387"> </a><div class="pCellBody">
+Demonstrates how to validate a Java content tree at runtime.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp149830"> </a><div class="pCellBody">
+<a  href="JAXBUsing4.html#wp148715">Customize Inline Example</a>
+</div>
+</td>
+    <td><a name="wp149832"> </a><div class="pCellBody">
+Demonstrates how to customize the default JAXB bindings by means of inline annotations in an XML schema.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp149823"> </a><div class="pCellBody">
+<a  href="JAXBUsing4.html#wp149091">Datatype Converter Example</a>
+</div>
+</td>
+    <td><a name="wp149825"> </a><div class="pCellBody">
+Similar to the Customize Inline example, this example illustrates alternate, more terse bindings of XML <code class="cCode">simpleType</code> definitions to Java datatypes.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp149816"> </a><div class="pCellBody">
+<a  href="JAXBUsing4.html#wp149110">External Customize Example</a>
+</div>
+</td>
+    <td><a name="wp149818"> </a><div class="pCellBody">
+Illustrates how to use an external binding declarations file to pass binding customizations for a read-only schema to the JAXB binding compiler.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp155357"> </a><div class="pCellBody">
+<a  href="JAXBUsing4.html#wp149313">Fix Collides Example</a>
+</div>
+</td>
+    <td><a name="wp155359"> </a><div class="pCellBody">
+Illustrates how to use customizations to resolve name conflicts reported by the JAXB binding compiler. It is recommended that you first run <code class="cCode">ant fail</code> in the application directory to see the errors reported by the JAXB binding compiler, and then look at <code class="cCode">binding.xjb</code> to see how the errors were resolved. Running <code class="cCode">ant</code> alone uses the binding customizations to resolve the name conflicts while compiling the schema.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp149809"> </a><div class="pCellBody">
+<a  href="JAXBUsing4.html#wp155808">Bind Choice Example</a>
+</div>
+</td>
+    <td><a name="wp149811"> </a><div class="pCellBody">
+Illustrates how to bind a <code class="cCode">choice</code> model group to a Java interface. 
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<hr>
+<a name="wp155342"> </a><p class="pNote">
+Note: These examples are all located in the <code class="cCode">$JWSDP_HOME/jaxb/samples</code> directory.
+</p>
+<hr><a name="wp155343"> </a><p class="pBody">
+Each example directory contains several base files: 
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp154308"> </a><div class="pSmartList1"><li><code class="cCode">po.xsd</code> is the XML schema you will use as input to the JAXB binding compiler, and from which schema-derived JAXB Java classes will be generated. For the Customize Inline and Datatype Converter examples, this file contains inline binding customizations. Note that the Bind Choice and Fix Collides examples use <code class="cCode">example.xsd</code> rather than <code class="cCode">po.xsd</code>.</li></div>
+<a name="wp154275"> </a><div class="pSmartList1"><li><code class="cCode">po.xml</code> is the <em class="cEmphasis">Purchase Order</em> XML file containing sample XML content, and is the file you will unmarshal into a Java content tree in each example. This file is almost exactly the same in each example, with minor content differences to highlight different JAXB concepts. Note that the Bind Choice and Fix Collides examples use <code class="cCode">example.xml</code> rather than<code class="cCode"> po.xml</code>.</li></div>
+<a name="wp154277"> </a><div class="pSmartList1"><li><code class="cCode">Main.java</code> is the main Java class for each example. </li></div>
+<a name="wp154279"> </a><div class="pSmartList1"><li><code class="cCode">build.xml</code> is an Ant project file provided for your convenience. Use Ant to generate, compile, and run the schema-derived JAXB classes automatically. The <code class="cCode">build.xml</code> file varies across the examples.</li></div>
+<a name="wp154281"> </a><div class="pSmartList1"><li><code class="cCode">MyDatatypeConverter.java</code> in the <code class="cCode">inline-customize</code> example is a Java class used to provide custom datatype conversions.</li></div>
+<a name="wp154283"> </a><div class="pSmartList1"><li><code class="cCode">binding.xjb</code> in the External Customize, Bind Choice, and Fix Collides examples is an external binding declarations file that is passed to the JAXB binding compiler to customize the default JAXB bindings.</li></div>
+<a name="wp154285"> </a><div class="pSmartList1"><li><code class="cCode">example.xsd</code> in the Fix Collides example is a short schema file that contains deliberate naming conflicts, to show how to resolve such conflicts with custom JAXB bindings.</li></div>
+</ul></div>
+<a name="wp87845"> </a><h3 class="pHeading2">
+Using the Examples
+</h3>
+<a name="wp87848"> </a><p class="pBody">
+As with all applications that implement schema-derived JAXB classes, as described above, there are two distinct phases in using JAXB:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp87851"> </a><div class="pSmartList1"><li>Generating and compiling JAXB Java classes from an XML source schema</li></div>
+<a name="wp87852"> </a><div class="pSmartList1"><li>Unmarshalling, validating, processing, and marshalling XML content</li></div>
+</ol></div>
+<a name="wp154929"> </a><p class="pBody">
+In the case of these examples, you perform these steps by using <code class="cCode">Ant</code> with the <code class="cCode">build.xml</code> project file included in each example directory. 
+</p>
+<a name="wp87940"> </a><h3 class="pHeading2">
+Configuring and Running the Samples
+</h3>
+<a name="wp96823"> </a><p class="pBody">
+The <code class="cCode">build.xml</code> file included in each example directory is an Ant project file that, when run, automatically performs the following steps:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp87946"> </a><div class="pSmartList1"><li>Updates your <code class="cCode">CLASSPATH</code> to include the necessary schema-derived JAXB classes.</li></div>
+<a name="wp87947"> </a><div class="pSmartList1"><li>Runs the JAXB binding compiler to generate JAXB Java classes from the XML source schema, <code class="cCode">po.xsd</code>, and puts the classes in a package named <code class="cCode">primer.po</code>.</li></div>
+<a name="wp87948"> </a><div class="pSmartList1"><li>Generates API documentation from the schema-derived JAXB classes using the Javadoc tool.</li></div>
+<a name="wp87949"> </a><div class="pSmartList1"><li>Compiles the schema-derived JAXB classes.</li></div>
+<a name="wp87950"> </a><div class="pSmartList1"><li>Runs the <code class="cCode">Main</code> class for the example.</li></div>
+</ol></div>
+<a name="wp87955"> </a><h4 class="pHeading3">
+Solaris/Linux
+</h4>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp146194"> </a><div class="pSmartList1"><li>Set the following environment variables:</li></div>
+<a name="wp146203"> </a><p class="pBodyRelative">
+<code class="cCode">export JAVA_HOME=&lt;</code><code class="cVariable">your J2SE installation directory</code><code class="cCode">&gt;<br />export JWSDP_HOME=&lt;</code><code class="cVariable">your JWSDP installation directory</code><code class="cCode">&gt;</code>
+</p>
+<a name="wp146240"> </a><div class="pSmartList1"><li>Change to the desired example directory.</li></div>
+<a name="wp146241"> </a><p class="pBodyRelative">
+For example, to run the Unmarshal Read example:
+</p>
+<a name="wp146242"> </a><p class="pBodyRelative">
+<code class="cCode">cd &lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/jaxb/samples/unmarshal-read</code>
+</p>
+<a name="wp157364"> </a><p class="pBodyRelative">
+(<code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;</code> is the directory where you installed the Java WSDP bundle.) 
+</p>
+<a name="wp87965"> </a><div class="pSmartList1"><li>Run ant:</li></div>
+<a name="wp87966"> </a><p class="pBodyRelative">
+<code class="cCode">$JWSDP_HOME/apache-ant/bin/ant -emacs</code>
+</p>
+<a name="wp87968"> </a><div class="pSmartList1"><li>Repeat these steps for each example.</li></div>
+</ol></div>
+<a name="wp87971"> </a><h4 class="pHeading3">
+Windows NT/2000/XP
+</h4>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp87974"> </a><div class="pSmartList1"><li>Set the following environment variables:</li></div>
+<a name="wp146258"> </a><p class="pBodyRelative">
+<code class="cCode">set JAVA_HOME=&lt;</code><code class="cVariable">your J2SE installation directory</code><code class="cCode">&gt;<br />set JWSDP_HOME=&lt;</code><code class="cVariable">your JWSDP installation directory</code><code class="cCode">&gt;</code>
+</p>
+<a name="wp146288"> </a><div class="pSmartList1"><li>Change to the desired example directory.</li></div>
+<a name="wp146289"> </a><p class="pBodyRelative">
+For example, to run the Unmarshal Read example:
+</p>
+<a name="wp146290"> </a><p class="pBodyRelative">
+<code class="cCode">cd &lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;\jaxb\samples\unmarshal-read</code>
+</p>
+<a name="wp157368"> </a><p class="pBodyRelative">
+(<code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;</code> is the directory where you installed the Java WSDP bundle.) 
+</p>
+<a name="wp87981"> </a><div class="pSmartList1"><li>Run ant:</li></div>
+<a name="wp87982"> </a><p class="pBodyRelative">
+<code class="cCode">%JWSDP_HOME%\apache-ant\bin\ant -emacs</code>
+</p>
+<a name="wp87984"> </a><div class="pSmartList1"><li>Repeat these steps for each example.</li></div>
+</ol></div>
+<a name="wp87987"> </a><p class="pBody">
+The schema-derived JAXB classes and how they are bound to the source schema is described in <a  href="JAXBUsing2.html#wp150351">About the Schema-to-Java Bindings</a>. The methods used for building and processing the Java content tree are described in <a  href="JAXBUsing3.html#wp88652">Basic Examples</a>.
+</p>
+<a name="wp87998"> </a><h3 class="pHeading2">
+JAXB Compiler Options
+</h3>
+<a name="wp150354"> </a><p class="pBody">
+The JAXB schema binding compiler is located in the <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/jaxb/bin</code> directory. There are two scripts in this directory: <code class="cCode">xjc.sh</code> (Solaris/Linux) and <code class="cCode">xjc.bat</code> (Windows).
+</p>
+<a name="wp150359"> </a><p class="pBody">
+Both <code class="cCode">xjc.sh</code> and <code class="cCode">xjc.bat</code> take the same command-line options. You can display quick usage instructions by invoking the scripts without any options, or with the <code class="cCode">-help</code> switch. The syntax is as follows:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+xjc [-options ...] &lt;<code class="cVariable">schema</code>&gt;<a name="wp153820"> </a>
+</pre></div>
+<a name="wp150425"> </a><p class="pBody">
+The <code class="cCode">xjc</code> command-line options are listed in <a  href="JAXBUsing2.html#wp150369">Table 2-2</a>.</p><div align="left">
+<table border="1" summary="xjc Command-Line Options" id="wp150369">
+  <caption><a name="wp150369"> </a><div class="pTableTitle">
+Table 2-2   xjc Command-Line Options&nbsp;
+</div>
+</caption>
+  <tr align="center">    <th><a name="wp154973"> </a><div class="pCellHeading">
+Option or Argument
+</div>
+</th>
+    <th><a name="wp154975"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+</tr>
+  <tr align="left">    <td><a name="wp150377"> </a><div class="pCellBody">
+<code class="cCode">&lt;</code><code class="cVariable">schema</code><code class="cCode">&gt;</code>
+</div>
+</td>
+    <td><a name="wp150379"> </a><div class="pCellBody">
+One or more schema files to compile.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp150381"> </a><div class="pCellBody">
+<code class="cCode">-nv</code>
+</div>
+</td>
+    <td><a name="wp150383"> </a><div class="pCellBody">
+Do not perform strict validation of the input schema(s). By default, <code class="cCode">xjc</code> performs strict validation of the source schema before processing. Note that this does not mean the binding compiler will not perform any validation; it simply means that it will perform less-strict validation.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp150385"> </a><div class="pCellBody">
+<code class="cCode">-extension</code>
+</div>
+</td>
+    <td><a name="wp150387"> </a><div class="pCellBody">
+By default, <code class="cCode">xjc</code> strictly enforces the rules outlined in the Compatibility chapter of the <em class="cEmphasis"><a  href="http://java.sun.com/xml/downloads/jaxb.html" target="_blank">JAXB Specification</a></em>. Specifically, Appendix E.2 defines a set of W3C XML Schema features that are not completely supported by JAXB v1.0. In some cases, you may be able to use these extensions with the <code class="cCode">-extension</code> switch. In the default (strict) mode, you are also limited to using only the binding customizations defined in the specification. By using the <code class="cCode">-extension</code> switch, you can enable the JAXB Vendor Extensions.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp150389"> </a><div class="pCellBody">
+<code class="cCode">-b &lt;</code><code class="cVariable">file</code><code class="cCode">&gt;</code>
+</div>
+</td>
+    <td><a name="wp150391"> </a><div class="pCellBody">
+Specify one or more external binding files to process (each binding file must have it&#39;s own <code class="cCode">-b</code> switch). The syntax of the external binding files is extremely flexible. You may have a single binding file that contains customizations for multiple schemas, or you can break the customizations into multiple bindings files; for example:
+</div>
+<a name="wp150392"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp150393"> </a><div class="pCellBody">
+<code class="cCode">xjc schema1.xsd schema2.xsd schema3.xsd -b bindings123.xjb</code>
+</div>
+<a name="wp150394"> </a><div class="pCellBody">
+<code class="cCode">xjc schema1.xsd schema2.xsd schema3.xsd -b bindings1.xjb -b bindings2.xjb -b bindings3.xjb</code>
+</div>
+<a name="wp150395"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp150396"> </a><div class="pCellBody">
+Note that the ordering of schema files and binding files on the command line does not matter.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp150398"> </a><div class="pCellBody">
+<code class="cCode">-d </code><code class="cVariable">&lt;</code><code class="cVariable">dir</code><code class="cVariable">&gt;</code>
+</div>
+</td>
+    <td><a name="wp150400"> </a><div class="pCellBody">
+By default, <code class="cCode">xjc</code> will generate Java content classes in the current directory. Use this option to specify an alternate output directory. The directory must already exist; <code class="cCode">xjc</code> will not create it for you. 
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp150402"> </a><div class="pCellBody">
+<code class="cCode">-p </code><code class="cVariable">&lt;</code><code class="cVariable">pkg</code><code class="cVariable">&gt;</code>
+</div>
+</td>
+    <td><a name="wp150404"> </a><div class="pCellBody">
+Specifies the target package for schema-derived classes. This option overrides any binding customization for package name as well as the default package name algorithm defined in the <em class="cEmphasis">JAXB Specification</em>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp150406"> </a><div class="pCellBody">
+<code class="cCode">-host </code><code class="cVariable">&lt;</code><code class="cVariable">proxyHost</code><code class="cCode">&gt;</code>
+</div>
+</td>
+    <td><a name="wp150408"> </a><div class="pCellBody">
+Set <code class="cCode">http.proxyHost</code> to <code class="cVariable">&lt;proxyHost&gt;</code>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp150410"> </a><div class="pCellBody">
+<code class="cCode">-port </code><code class="cVariable">&lt;</code><code class="cVariable">proxyPort</code><code class="cCode">&gt;</code>
+</div>
+</td>
+    <td><a name="wp150412"> </a><div class="pCellBody">
+Set <code class="cCode">http.proxyPort</code> to <code class="cVariable">&lt;proxyPort&gt;</code>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp150414"> </a><div class="pCellBody">
+<code class="cCode">-classpath </code><code class="cVariable">&lt;</code><code class="cVariable">arg</code><code class="cVariable">&gt;</code>
+</div>
+</td>
+    <td><a name="wp150416"> </a><div class="pCellBody">
+Specify where to find client application class files used by the <code class="cCode">&lt;jxb:javaType&gt;</code> and <code class="cCode">&lt;xjc:superClass&gt;</code> customizations.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp156165"> </a><div class="pCellBody">
+<code class="cCode">-catalog </code><code class="cVariable">&lt;</code><code class="cVariable">file</code><code class="cVariable">&gt;</code>
+</div>
+</td>
+    <td><a name="wp156167"> </a><div class="pCellBody">
+Specify catalog files to resolve external entity references.Supports TR9401, XCatalog, and OASIS XML Catalog format.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp150418"> </a><div class="pCellBody">
+<code class="cCode">-readOnly</code>
+</div>
+</td>
+    <td><a name="wp156177"> </a><div class="pCellBody">
+Generated source files will be marked read-only. By default, <code class="cCode">xjc</code> does not write-protect the schema-derived source files it generates.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp156191"> </a><div class="pCellBody">
+<code style="font-style: normal" class="cCode">-use-runtime &lt;</code><code style="font-style: oblique" class="cCode">pkg</code><code class="cCode">&gt;</code>
+</div>
+</td>
+    <td><a name="wp156211"> </a><div class="pCellBody">
+Suppress the generation of the <code class="cCode">impl.runtime</code> package and refer to another existing runtime in the specified package. This option is useful when you are compiling multiple independent schemas. Because the generated impl.runtime packages are identical, except for their package declarations, you can reduce the size of your generated codebase by telling the compiler to reuse an existing <code class="cCode">impl.runtime</code> package.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp156195"> </a><div class="pCellBody">
+<code class="cCode">-xmlschema</code>
+</div>
+</td>
+    <td><a name="wp156229"> </a><div class="pCellBody">
+Treat input schemas as W3C XML Schema (default). If you do not specify this switch, your input schemas will be treated as W3C XML Schema.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp156199"> </a><div class="pCellBody">
+<code class="cCode">-relaxng</code>
+</div>
+</td>
+    <td><a name="wp156239"> </a><div class="pCellBody">
+Treat input schemas as RELAX NG (experimental, unsupported). Support for RELAX NG schemas is provided as a JAXB Vendor Extension.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp156203"> </a><div class="pCellBody">
+<code class="cCode">-dtd</code>
+</div>
+</td>
+    <td><a name="wp156249"> </a><div class="pCellBody">
+Treat input schemas as XML DTD (experimental, unsupported). Support for RELAX NG schemas is provided as a JAXB Vendor Extension.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp150422"> </a><div class="pCellBody">
+<code class="cCode">-help</code>
+</div>
+</td>
+    <td><a name="wp150424"> </a><div class="pCellBody">
+Display this help message.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp150426"> </a><p class="pBody">
+The command invoked by the <code class="cCode">xjc.sh</code> and <code class="cCode">xjc.bat</code> scripts is equivalent to the Java command:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+$JAVA_HOME/bin/java -jar $JAXB_HOME/lib/jaxb-xjc.jar<a name="wp150427"> </a>
+</pre></div>
+<a name="wp150351"> </a><h3 class="pHeading2">
+About the Schema-to-Java Bindings
+</h3>
+<a name="wp88001"> </a><p class="pBody">
+When you run the JAXB binding compiler against the <code class="cCode">po.xsd</code> XML schema used in the basic examples (Unmarshal Read, Modify Marshal, Create Marshal, Unmarshal Validate, Validate-On-Demand), the JAXB binding compiler generates a Java package named <code class="cCode">primer.po</code> containing eleven classes, making a total of twelve classes in each of the basic examples:</p><div align="left">
+<table border="1" summary="Schema-Derived JAXB Classes in Sample Applications 1 Through 5" id="wp92488">
+  <caption><a name="wp92488"> </a><div class="pTableTitle">
+Table 2-3   Schema-Derived JAXB Classes in the Basic Examples&nbsp;
+</div>
+</caption>
+  <tr align="center">    <th><a name="wp154959"> </a><div class="pCellHeading">
+Class
+</div>
+</th>
+    <th><a name="wp154961"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+</tr>
+  <tr align="left">    <td><a name="wp92492"> </a><div class="pCellBody">
+<code class="cCode">primer/po/<br />Comment.java</code>
+</div>
+</td>
+    <td><a name="wp92494"> </a><div class="pCellBody">
+Public interface extending <code class="cCode">javax.xml.bind.Element</code>; binds to the global schema <code class="cCode">element</code> named <code class="cCode">comment</code>. Note that JAXB generates element interfaces for all global element declarations.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp92496"> </a><div class="pCellBody">
+<code class="cCode">primer/po/<br />Items.java</code>
+</div>
+</td>
+    <td><a name="wp92498"> </a><div class="pCellBody">
+Public interface that binds to the schema <code class="cCode">complexType</code> named <code class="cCode">Items</code>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp92500"> </a><div class="pCellBody">
+<code class="cCode">primer/po/<br />ObjectFactory.java</code>
+</div>
+</td>
+    <td><a name="wp92502"> </a><div class="pCellBody">
+Public class extending <code class="cCode">com.sun.xml.bind.DefaultJAXBContextImpl</code>; used to create instances of specified interfaces. For example, the <code class="cCode">ObjectFactory</code> <code class="cCode">createComment()</code> method instantiates a <code class="cCode">Comment</code> object.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp92504"> </a><div class="pCellBody">
+<code class="cCode">primer/po/<br />PurchaseOrder.java</code>
+</div>
+</td>
+    <td><a name="wp92506"> </a><div class="pCellBody">
+Public interface extending <code class="cCode">javax.xml.bind.Element</code>, and <code class="cCode">PurchaseOrderType</code>; binds to the global schema <code class="cCode">element</code> named <code class="cCode">PurchaseOrder</code>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp92508"> </a><div class="pCellBody">
+<code class="cCode">primer/po/<br />PurchaseOrderType.java</code>
+</div>
+</td>
+    <td><a name="wp92510"> </a><div class="pCellBody">
+Public interface that binds to the schema <code class="cCode">complexType</code> named <code class="cCode">PurchaseOrderType</code>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp92512"> </a><div class="pCellBody">
+<code class="cCode">primer/po/<br />USAddress.java</code>
+</div>
+</td>
+    <td><a name="wp92514"> </a><div class="pCellBody">
+Public interface that binds to the schema <code class="cCode">complexType</code> named <code class="cCode">USAddress</code>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp92516"> </a><div class="pCellBody">
+<code class="cCode">primer/po/impl/<br />CommentImpl.java</code>
+</div>
+</td>
+    <td><a name="wp92518"> </a><div class="pCellBody">
+Implementation of <code class="cCode">Comment.java</code>.
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp92520"> </a><div class="pCellBody">
+<code class="cCode">primer/po/impl/<br />ItemsImpl.java</code>
+</div>
+</td>
+    <td><a name="wp92522"> </a><div class="pCellBody">
+Implementation of <code class="cCode">Items.java</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp92524"> </a><div class="pCellBody">
+<code class="cCode">primer/po/impl/<br />PurchaseOrderImpl.java</code>
+</div>
+</td>
+    <td><a name="wp92526"> </a><div class="pCellBody">
+Implementation of <code class="cCode">PurchaseOrder.java</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp92528"> </a><div class="pCellBody">
+<code class="cCode">primer/po/impl/<br />PurchaseOrderTypeImpl.java</code>
+</div>
+</td>
+    <td><a name="wp92530"> </a><div class="pCellBody">
+Implementation of <code class="cCode">PurchaseOrderType.java</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp92532"> </a><div class="pCellBody">
+<code class="cCode">primer/po/impl/<br />USAddressImpl.java</code>
+</div>
+</td>
+    <td><a name="wp92534"> </a><div class="pCellBody">
+Implementation of <code class="cCode">USAddress.java</code>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<hr>
+<a name="wp158076"> </a><p class="pNote">
+Note: You should never directly use the generated implementation classes--that is, <code class="cCode">*Impl.java</code> in the &lt;<code class="cVariable">packagename</code>&gt;<code class="cCode">/impl</code> directory. These classes are not directly referenceable because the class names in this directory are not standardized by the JAXB specification. The <code class="cCode">ObjectFactory</code> method is the only portable means to create an instance of a schema-derived interface. There is also an <code class="cCode">ObjectFactory.newInstance(Class JAXBinterface)</code> method that enables you to create instances of interfaces.
+</p>
+<hr><a name="wp88075"> </a><p class="pBody">
+These classes and their specific bindings to the source XML schema for the basic examples are described below.</p><div align="left">
+<table border="1" summary="Schema-to-Java Bindings for Sample Applications 1 Through 5" id="wp99731">
+  <caption><a name="wp99731"> </a><div class="pTableTitle">
+Table 2-4   Schema-to-Java Bindings for the Basic Examples&nbsp;
+</div>
+</caption>
+  <tr align="center">    <th><a name="wp99735"> </a><div class="pCellHeading">
+XML Schema
+</div>
+</th>
+    <th><a name="wp99737"> </a><div class="pCellHeading">
+JAXB Binding
+</div>
+</th>
+</tr>
+  <tr align="left">    <td><a name="wp99739"> </a><div class="pCellBody">
+<code class="cCode">&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;</code>
+</div>
+</td>
+    <td><a name="wp99741"> </a><div class="pCellHeading">
+ 
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99743"> </a><div class="pCellBody">
+<code class="cCode">&lt;xsd:element name=&quot;purchaseOrder&quot; type=&quot;PurchaseOrderType&quot;/&gt;</code>
+</div>
+</td>
+    <td><a name="wp99745"> </a><div class="pCellBody">
+<code class="cCode">PurchaseOrder.java</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99747"> </a><div class="pCellBody">
+<code class="cCode">&lt;xsd:element name=&quot;comment&quot; type=&quot;xsd:string&quot;/&gt;</code>
+</div>
+</td>
+    <td><a name="wp99749"> </a><div style="color: #000000; font-size: 8pt; font-style: normal; font-variant: small-caps; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none">
+<code class="cCode">Comment.java</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99751"> </a><div class="pCellBody">
+<code class="cCode">&lt;xsd:complexType name=&quot;PurchaseOrderType&quot;&gt;<br />&nbsp;&nbsp;&lt;xsd:sequence&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;shipTo&quot; type=&quot;USAddress&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;billTo&quot; type=&quot;USAddress&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element ref=&quot;comment&quot; minOccurs=&quot;0&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;items&quot; type=&quot;Items&quot;/&gt;<br />&nbsp;&nbsp;&lt;/xsd:sequence&gt;<br />&nbsp;&nbsp;&lt;xsd:attribute name=&quot;orderDate&quot; type=&quot;xsd:date&quot;/&gt;<br />&lt;/xsd:complexType&gt;</code>
+</div>
+</td>
+    <td><a name="wp99753"> </a><div class="pCellBody">
+<code class="cCode">PurchaseOrderType.java</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99755"> </a><div class="pCellBody">
+<code class="cCode">&lt;xsd:complexType name=&quot;USAddress&quot;&gt;<br />&nbsp;&nbsp;&lt;xsd:sequence&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;name&quot; type=&quot;xsd:string&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;street&quot; type=&quot;xsd:string&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;city&quot; type=&quot;xsd:string&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;state&quot; type=&quot;xsd:string&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;zip&quot; type=&quot;xsd:decimal&quot;/&gt;<br />&nbsp;&nbsp;&lt;/xsd:sequence&gt;<br />&lt;xsd:attribute name=&quot;country&quot; type=&quot;xsd:NMTOKEN&quot; fixed=&quot;US&quot;/&gt;<br />&lt;/xsd:complexType&gt;</code>
+</div>
+</td>
+    <td><a name="wp99757"> </a><div class="pCellBody">
+<code class="cCode">USAddress.java</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99759"> </a><div class="pCellBody">
+<code class="cCode">&lt;xsd:complexType name=&quot;Items&quot;&gt;<br />&nbsp;&nbsp;&lt;xsd:sequence&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;item&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;unbounded&quot;&gt;</code>
+</div>
+</td>
+    <td><a name="wp99761"> </a><div class="pCellBody">
+<code class="cCode">Items.java</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99763"> </a><div class="pCellBody">
+<code class="cCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:complexType&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:sequence&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;productName&quot; type=&quot;xsd:string&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;quantity&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:simpleType&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:restriction base=&quot;xsd:positiveInteger&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:maxExclusive value=&quot;100&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:restriction&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:simpleType&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:element&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;USPrice&quot; type=&quot;xsd:decimal&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:element ref=&quot;comment&quot; minOccurs=&quot;0&quot;/&gt;<br />&lt;xsd:element name=&quot;shipDate&quot; type=&quot;xsd:date&quot; minOccurs=&quot;0&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:sequence&gt;<br />&nbsp;&nbsp;&lt;xsd:attribute name=&quot;partNum&quot; type=&quot;SKU&quot; use=&quot;required&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:complexType&gt;</code>
+</div>
+</td>
+    <td><a name="wp99765"> </a><div class="pCellBody">
+<code class="cCode">Items.ItemType</code>
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99767"> </a><div class="pCellBody">
+<code class="cCode">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsd:element&gt;<br />&nbsp;&nbsp;&lt;/xsd:sequence&gt;<br />&lt;/xsd:complexType&gt;</code>
+</div>
+</td>
+    <td><a name="wp99769"> </a><div class="pCellHeading">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99771"> </a><div class="pCellBody">
+<code class="cCode">&lt;!-- Stock Keeping Unit, a code for identifying products --&gt;</code>
+</div>
+</td>
+    <td><a name="wp99773"> </a><div class="pCellHeading">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99775"> </a><div class="pCellBody">
+<code class="cCode">&lt;xsd:simpleType name=&quot;SKU&quot;&gt;<br />&nbsp;&nbsp;&lt;xsd:restriction base=&quot;xsd:string&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:pattern value=&quot;\d{3}-[A-Z]{2}&quot;/&gt;<br />&nbsp;&nbsp;&lt;/xsd:restriction&gt;<br />&lt;/xsd:simpleType&gt;</code>
+</div>
+</td>
+    <td><a name="wp99777"> </a><div class="pCellHeading">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp99779"> </a><div class="pCellBody">
+<code class="cCode">&lt;/xsd:schema&gt;</code>
+</div>
+</td>
+    <td><a name="wp99781"> </a><div class="pCellHeading">
+&#160;
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp88188"> </a><h3 class="pHeading2">
+Schema-Derived JAXB Classes
+</h3>
+<a name="wp88191"> </a><p class="pBody">
+The code for the individual classes generated by the JAXB binding compiler for the basic examples is listed below, followed by brief explanations of its functions. The classes listed here are:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp88194"> </a><div class="pSmartList1"><li><code class="cCode">Comment.java</code></li></div>
+<a name="wp88195"> </a><div class="pSmartList1"><li><code class="cCode">Items.java</code></li></div>
+<a name="wp108255"> </a><div class="pSmartList1"><li><code class="cCode">ObjectFactory.java</code></li></div>
+<a name="wp108266"> </a><div class="pSmartList1"><li><code class="cCode">PurchaseOrder.java</code></li></div>
+<a name="wp108273"> </a><div class="pSmartList1"><li><code class="cCode">PurchaseOrderType.java</code></li></div>
+<a name="wp108280"> </a><div class="pSmartList1"><li><code class="cCode">USAddress.java</code></li></div>
+</ul></div>
+<a name="wp153839"> </a><h4 class="pHeading3">
+Comment.java
+</h4>
+<a name="wp153954"> </a><p class="pBody">
+In <code class="cCode">Comment.java</code>:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp153840"> </a><div class="pSmartList1"><li>The <code class="cCode">Comment.java</code> class is part of the <code class="cCode">primer.po</code> package.</li></div>
+<a name="wp153841"> </a><div class="pSmartList1"><li><code class="cCode">Comment</code> is a public interface that extends <code class="cCode">javax.xml.bind.Element</code>.</li></div>
+<a name="wp153842"> </a><div class="pSmartList1"><li>Content in instantiations of this class bind to the XML schema element named <code class="cCode">comment</code>.</li></div>
+<a name="wp153843"> </a><div class="pSmartList1"><li>The <code class="cCode">getValue()</code> and <code class="cCode">setValue()</code> methods are used to get and set strings representing XML <code class="cCode">comment</code> elements in the Java content tree.</li></div>
+</ul></div>
+<a name="wp154771"> </a><p class="pBody">
+The <code class="cCode">Comment.java</code> code looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+package primer.po;
+
+public interface Comment
+    extends javax.xml.bind.Element
+{
+
+    String getValue();
+    void setValue(String value);
+}<a name="wp88211"> </a>
+</pre></div>
+<a name="wp153851"> </a><h4 class="pHeading3">
+Items.java
+</h4>
+<a name="wp153955"> </a><p class="pBody">
+In <code class="cCode">Items.java</code>, below:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp153852"> </a><div class="pSmartList1"><li>The <code class="cCode">Items.java</code> class is part of the <code class="cCode">primer.po</code> package.</li></div>
+<a name="wp153853"> </a><div class="pSmartList1"><li>The class provides public interfaces for <code class="cCode">Items</code> and <code class="cCode">ItemType</code>.</li></div>
+<a name="wp153854"> </a><div class="pSmartList1"><li>Content in instantiations of this class bind to the XML ComplexTypes <code class="cCode">Items</code> and its child element <code class="cCode">ItemType</code>.</li></div>
+<a name="wp153855"> </a><div class="pSmartList1"><li><code class="cCode">Item</code> provides the <code class="cCode">getItem()</code> method.</li></div>
+<a name="wp153856"> </a><div class="pSmartList1"><li><code class="cCode">ItemType</code> provides methods for:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp153857"> </a><div class="pSmartList2"><li><code class="cCode">getPartNum();</code></li></div>
+<a name="wp153858"> </a><div class="pSmartList2"><li><code class="cCode">setPartNum(String value);</code></li></div>
+<a name="wp153859"> </a><div class="pSmartList2"><li><code class="cCode">getComment();</code></li></div>
+<a name="wp153860"> </a><div class="pSmartList2"><li><code class="cCode">setComment(java.lang.String value);</code></li></div>
+<a name="wp153861"> </a><div class="pSmartList2"><li><code class="cCode">getUSPrice();</code></li></div>
+<a name="wp153862"> </a><div class="pSmartList2"><li><code class="cCode">setUSPrice(java.math.BigDecimal value);</code></li></div>
+<a name="wp153863"> </a><div class="pSmartList2"><li><code class="cCode">getProductName();</code></li></div>
+<a name="wp153864"> </a><div class="pSmartList2"><li><code class="cCode">setProductName(String value);</code></li></div>
+<a name="wp153865"> </a><div class="pSmartList2"><li><code class="cCode">getShipDate();</code></li></div>
+<a name="wp153866"> </a><div class="pSmartList2"><li><code class="cCode">setShipDate(java.util.Calendar value);</code></li></div>
+<a name="wp153867"> </a><div class="pSmartList2"><li><code class="cCode">getQuantity();</code></li></div>
+<a name="wp153868"> </a><div class="pSmartList2"><li><code class="cCode">setQuantity(java.math.BigInteger value);</code></li></div>
+</ul></div>
+</ul></div>
+<a name="wp154776"> </a><p class="pBody">
+The <code class="cCode">Items.java</code> code looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+package primer.po;
+
+public interface Items {
+   java.util.List getItem();
+
+   public interface ItemType {
+        String getPartNum();
+        void setPartNum(String value);
+        java.lang.String getComment();
+        void setComment(java.lang.String value);
+        java.math.BigDecimal getUSPrice();
+        void setUSPrice(java.math.BigDecimal value);
+        String getProductName();
+        void setProductName(String value);
+        java.util.Calendar getShipDate();
+        void setShipDate(java.util.Calendar value);
+        java.math.BigInteger getQuantity();
+        void setQuantity(java.math.BigInteger value);
+    }
+}<a name="wp154772"> </a>
+</pre></div>
+<a name="wp153888"> </a><h4 class="pHeading3">
+ObjectFactory.java
+</h4>
+<a name="wp153956"> </a><p class="pBody">
+In <code class="cCode">ObjectFactory.java</code>, below:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp153889"> </a><div class="pSmartList1"><li>The <code class="cCode">ObjectFactory</code> class is part of the <code class="cCode">primer.po</code> package.</li></div>
+<a name="wp153890"> </a><div class="pSmartList1"><li><code class="cCode">ObjectFactory</code> provides factory methods for instantiating Java interfaces representing XML content in the Java content tree.</li></div>
+<a name="wp153891"> </a><div class="pSmartList1"><li>Method names are generated by concatenating:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp153892"> </a><div class="pSmartList2"><li>The string constant <code class="cCode">create</code></li></div>
+<a name="wp153893"> </a><div class="pSmartList2"><li>If the Java content interface is nested within another interface, then the concatenation of all outer Java class names</li></div>
+<a name="wp153894"> </a><div class="pSmartList2"><li>The name of the Java content interface</li></div>
+<a name="wp153895"> </a><div class="pSmartList2"><li>JAXB implementation-specific code was removed in this example to make it easier to read.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp153896"> </a><p class="pBody">
+For example, in this case, for the Java interface <code class="cCode">primer.po.Items.ItemType</code>, <code class="cCode">ObjectFactory</code> creates the method <code class="cCode">createItemsItemType()</code>.
+</p>
+<a name="wp154784"> </a><p class="pBody">
+The <code class="cCode">ObjectFactory.java</code> code looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+package primer.po;
+
+public class ObjectFactory
+    extends com.sun.xml.bind.DefaultJAXBContextImpl {
+
+    /**
+     * Create a new ObjectFactory that can be used to create
+     * new instances of schema derived classes for package: 
+     * primer.po
+     */
+    public ObjectFactory() {
+        super(new primer.po.ObjectFactory.GrammarInfoImpl());
+    }
+
+    /**
+     * Create an instance of the specified Java content
+     * interface.
+     */
+    public Object newInstance(Class javaContentInterface)
+        throws javax.xml.bind.JAXBException
+    {
+        return super.newInstance(javaContentInterface);
+    }
+
+    /**
+     * Get the specified property. This method can only be
+     * used to get provider specific properties.
+     * Attempting to get an undefined property will result
+     * in a PropertyException being thrown.
+     */
+    public Object getProperty(String name)
+        throws javax.xml.bind.PropertyException
+    {
+        return super.getProperty(name);
+    }
+
+    /**
+     * Set the specified property. This method can only be
+     * used to set provider specific properties.
+     * Attempting to set an undefined property will result
+     * in a PropertyException being thrown.
+     */
+    public void setProperty(String name, Object value)
+        throws javax.xml.bind.PropertyException
+    {
+        super.setProperty(name, value);
+    }
+
+    /**
+     * Create an instance of PurchaseOrder
+     */
+    public primer.po.PurchaseOrder createPurchaseOrder()
+        throws javax.xml.bind.JAXBException
+    {
+        return ((primer.po.PurchaseOrder)
+            newInstance((primer.po.PurchaseOrder.class)));
+    }
+
+    /**
+     * Create an instance of ItemsItemType
+     */
+    public primer.po.Items.ItemType createItemsItemType()
+        throws javax.xml.bind.JAXBException
+    {
+        return ((primer.po.Items.ItemType)
+            newInstance((primer.po.Items.ItemType.class)));
+    }
+
+    /**
+     * Create an instance of USAddress
+     */
+    public primer.po.USAddress createUSAddress()
+        throws javax.xml.bind.JAXBException
+    {
+        return ((primer.po.USAddress)
+            newInstance((primer.po.USAddress.class)));
+    }
+
+    /**
+     * Create an instance of Comment
+     */
+    public primer.po.Comment createComment()
+        throws javax.xml.bind.JAXBException
+    {
+        return ((primer.po.Comment)
+            newInstance((primer.po.Comment.class)));
+    }
+
+    /**
+     * Create an instance of Comment
+     */
+    public primer.po.Comment createComment(String value)
+        throws javax.xml.bind.JAXBException
+    {
+        return new primer.po.impl.CommentImpl(value);
+    }
+
+    /**
+     * Create an instance of Items
+     */
+    public primer.po.Items createItems()
+        throws javax.xml.bind.JAXBException
+    {
+        return ((primer.po.Items)
+            newInstance((primer.po.Items.class)));
+    }
+
+    /**
+     * Create an instance of PurchaseOrderType
+     */
+    public primer.po.PurchaseOrderType 
+createPurchaseOrderType()
+        throws javax.xml.bind.JAXBException
+    {
+        return ((primer.po.PurchaseOrderType)
+            newInstance((primer.po.PurchaseOrderType.class)));
+    }
+}<a name="wp153873"> </a>
+</pre></div>
+<a name="wp153906"> </a><h4 class="pHeading3">
+PurchaseOrder.java
+</h4>
+<a name="wp153957"> </a><p class="pBody">
+In <code class="cCode">PurchaseOrder.java</code>, below:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp153907"> </a><div class="pSmartList1"><li>The <code class="cCode">PurchaseOrder</code> class is part of the <code class="cCode">primer.po</code> package.</li></div>
+<a name="wp153908"> </a><div class="pSmartList1"><li><code class="cCode">PurchaseOrder</code> is a public interface that extends <code class="cCode">javax.xml.bind.Element</code> and <code class="cCode">primer.po.PurchaseOrderType</code>.</li></div>
+<a name="wp153909"> </a><div class="pSmartList1"><li>Content in instantiations of this class bind to the XML schema element named <code class="cCode">purchaseOrder</code>.</li></div>
+</ul></div>
+<a name="wp154790"> </a><p class="pBody">
+The <code class="cCode">PurchaseOrder.java</code> code looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+package primer.po;
+
+public interface PurchaseOrder
+extends javax.xml.bind.Element, primer.po.PurchaseOrderType{
+}<a name="wp88466"> </a>
+</pre></div>
+<a name="wp153915"> </a><h4 class="pHeading3">
+PurchaseOrderType.java
+</h4>
+<a name="wp153958"> </a><p class="pBody">
+In <code class="cCode">PurchaseOrderType.java</code>, below:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp153916"> </a><div class="pSmartList1"><li>The <code class="cCode">PurchaseOrderType</code> class is part of the <code class="cCode">primer.po</code> package.</li></div>
+<a name="wp153917"> </a><div class="pSmartList1"><li>Content in instantiations of this class bind to the XML schema child element named <code class="cCode">PurchaseOrderType</code>.</li></div>
+<a name="wp153918"> </a><div class="pSmartList1"><li><code class="cCode">PurchaseOrderType</code> is a public interface that provides the following methods:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp153919"> </a><div class="pSmartList2"><li><code class="cCode">getItems();</code></li></div>
+<a name="wp153920"> </a><div class="pSmartList2"><li><code class="cCode">setItems(primer.po.Items value);</code></li></div>
+<a name="wp153921"> </a><div class="pSmartList2"><li><code class="cCode">getOrderDate();</code></li></div>
+<a name="wp153922"> </a><div class="pSmartList2"><li><code class="cCode">setOrderDate(java.util.Calendar value);</code></li></div>
+<a name="wp153923"> </a><div class="pSmartList2"><li><code class="cCode">getComment();</code></li></div>
+<a name="wp153924"> </a><div class="pSmartList2"><li><code class="cCode">setComment(java.lang.String value);</code></li></div>
+<a name="wp153925"> </a><div class="pSmartList2"><li><code class="cCode">getBillTo();</code></li></div>
+<a name="wp153926"> </a><div class="pSmartList2"><li><code class="cCode">setBillTo(primer.po.USAddress value);</code></li></div>
+<a name="wp153927"> </a><div class="pSmartList2"><li><code class="cCode">getShipTo();</code></li></div>
+<a name="wp153928"> </a><div class="pSmartList2"><li><code class="cCode">setShipTo(primer.po.USAddress value);</code></li></div>
+</ul></div>
+</ul></div>
+<a name="wp154796"> </a><p class="pBody">
+The <code class="cCode">PurchaseOrderType.java</code> code looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+package primer.po;
+
+public interface PurchaseOrderType {
+    primer.po.Items getItems();
+    void setItems(primer.po.Items value);
+    java.util.Calendar getOrderDate();
+    void setOrderDate(java.util.Calendar value);
+    java.lang.String getComment();
+    void setComment(java.lang.String value);
+    primer.po.USAddress getBillTo();
+    void setBillTo(primer.po.USAddress value);
+    primer.po.USAddress getShipTo();
+    void setShipTo(primer.po.USAddress value);
+}<a name="wp88500"> </a>
+</pre></div>
+<a name="wp153936"> </a><h4 class="pHeading3">
+USAddress.java
+</h4>
+<a name="wp153961"> </a><p class="pBody">
+In <code class="cCode">USAddress.java</code>, below:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp153937"> </a><div class="pSmartList1"><li>The <code class="cCode">USAddress</code> class is part of the <code class="cCode">primer.po</code> package.</li></div>
+<a name="wp153938"> </a><div class="pSmartList1"><li>Content in instantiations of this class bind to the XML schema element named <code class="cCode">USAddress</code>.</li></div>
+<a name="wp153939"> </a><div class="pSmartList1"><li><code class="cCode">USAddress</code> is a public interface that provides the following methods:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp153940"> </a><div class="pSmartList2"><li><code class="cCode">getState();</code></li></div>
+<a name="wp153941"> </a><div class="pSmartList2"><li><code class="cCode">setState(String value);</code></li></div>
+<a name="wp153942"> </a><div class="pSmartList2"><li><code class="cCode">getZip();</code></li></div>
+<a name="wp153943"> </a><div class="pSmartList2"><li><code class="cCode">setZip(java.math.BigDecimal value);</code></li></div>
+<a name="wp153944"> </a><div class="pSmartList2"><li><code class="cCode">getCountry();</code></li></div>
+<a name="wp153945"> </a><div class="pSmartList2"><li><code class="cCode">setCountry(String value);</code></li></div>
+<a name="wp153946"> </a><div class="pSmartList2"><li><code class="cCode">getCity();</code></li></div>
+<a name="wp153947"> </a><div class="pSmartList2"><li><code class="cCode">setCity(String value);</code></li></div>
+<a name="wp153948"> </a><div class="pSmartList2"><li><code class="cCode">getStreet();</code></li></div>
+<a name="wp153949"> </a><div class="pSmartList2"><li><code class="cCode">setStreet(String value);</code></li></div>
+<a name="wp153950"> </a><div class="pSmartList2"><li><code class="cCode">getName();</code></li></div>
+<a name="wp153951"> </a><div class="pSmartList2"><li><code class="cCode">setName(String value);</code></li></div>
+</ul></div>
+</ul></div>
+<a name="wp154800"> </a><p class="pBody">
+The <code class="cCode">USAddress.java</code> code looks like this:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+package primer.po;
+
+public interface USAddress {
+    String getState();
+    void setState(String value);
+    java.math.BigDecimal getZip();
+    void setZip(java.math.BigDecimal value);
+    String getCountry();
+    void setCountry(String value);
+    String getCity();
+    void setCity(String value);
+    String getStreet();
+    void setStreet(String value);
+    String getName();
+    void setName(String value);
+}<a name="wp88576"> </a>
+</pre></div>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="JAXBUsing.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="JAXBUsing3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>

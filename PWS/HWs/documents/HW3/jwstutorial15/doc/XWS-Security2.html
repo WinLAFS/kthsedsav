@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>Does XWS-Security Implement Any Specifications?</title>
+    <link rel="StyleSheet" href="document.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" media="all" />
+    <link rel="Table of Contents" href="JavaWSTutorialTOC.html" />
+    <link rel="Previous" href="XWS-Security.html" />
+    <link rel="Next" href="XWS-Security3.html" />
+    <link rel="Index" href="JavaWSTutorialIX.html" />
+  </head>
+
+  <body>
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+    <blockquote>
+<a name="wp519183"> </a><h2 class="pHeading1">
+Does XWS-Security Implement Any Specifications?
+</h2>
+<a name="wp519912"> </a><p class="pBody">
+XWS-Security is an implementation of the Web Services Security (WSS) specification developed at OASIS. WSS defines a SOAP extension providing quality of protection through message integrity, message confidentiality, and message authentication. WSS mechanisms can be used to accommodate a wide variety of security models and encryption technologies. 
+</p>
+<a name="wp527435"> </a><p class="pBody">
+The WSS specification defines an end to end security framework that provides support for intermediary security processing. Message integrity is provided by using XML Signature in conjunction with security tokens to ensure that messages are transmitted without modifications. Message confidentiality is granted by using XML Encryption in conjunction with security tokens to keep portions of SOAP messages confidential. 
+</p>
+<a name="wp519908"> </a><p class="pBody">
+In this release, the XWS-Security framework provides the following options for securing JAX-RPC applications:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp533106"> </a><div class="pSmartList1"><li>XML Digital Signature (DSig)</li></div>
+<a name="wp527446"> </a><p class="pBodyRelative">
+This implementation of XML and Web Services Security uses Apache&#39;s XML-DSig implementation, which is based on the XML Signature specification, which can be viewed at <code class="cCode"><a  href="http://www.w3.org/TR/xmldsig-core/" target="_blank">http://www.w3.org/TR/xmldsig-core/</a></code>.
+</p>
+<a name="wp519941"> </a><p class="pBodyRelative">
+Samples containing code for signing and/or verifying parts of the SOAP message are included with this release in the directory <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/xws-security/samples/simple/</code>. Read <a  href="XWS-Security5.html#wp519089">Understanding and Running the Simple Sample Application</a> for more information on these sample applications.
+</p>
+<a name="wp533123"> </a><div class="pSmartList1"><li>XML Encryption (XML-Enc)</li></div>
+<a name="wp527453"> </a><p class="pBodyRelative">
+This implementation of XML and Web Services Security uses Apache&#39;s XML-Enc implementation, which is based on the XML Encryption W3C standard. This standard can be viewed at <code class="cCode"><a  href="http://www.w3.org/TR/xmlenc-core/" target="_blank">http://www.w3.org/TR/xmlenc-core/</a></code>.
+</p>
+<a name="wp519971"> </a><p class="pBodyRelative">
+Samples containing code for encrypting and/or decrypting parts of the SOAP message are included with this release in the directory <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/xws-security/samples/simple/</code>. Read <a  href="XWS-Security5.html#wp519089">Understanding and Running the Simple Sample Application</a> for more information on these sample applications.
+</p>
+<a name="wp519895"> </a><div class="pSmartList1"><li>UsernameToken Verification</li></div>
+<a name="wp519983"> </a><p class="pBodyRelative">
+Username token verification specifies a process for sending <code class="cCode">UserNameTokens</code> along with the message. The receiver can validate the identity of the sender by validating the digital signature sent by the sender. A digital signature internally refers to a security token (for example, an X.509 Certificate Token) to indicate the key used for signing. Sending these tokens with a message binds the identity of the tokens (and any other claims occurring in the security token) to the message.
+</p>
+<a name="wp526326"> </a><p class="pBodyRelative">
+This implementation of XML and Web Services Security provides support for Username Token Profile, which is based on OASIS WSS Username Token Profile 1.0 (which can be read at <code class="cCode"><a  href="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0.pdf" target="_blank">http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0.pdf</a></code>) and X.509 Certificate Token Profile, which is based on OASIS WSS X.509 Certificate Token Profile 1.0 (which can be read at <code class="cCode"><a  href="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0.pdf" target="_blank">http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0.pdf</a></code>).
+</p>
+<a name="wp519896"> </a><p class="pBodyRelative">
+Samples containing code for sending user name and X.509 certificate tokens along with the SOAP message are included with this release in the directory <code class="cCode">&lt;</code><code class="cVariable">JWSDP_HOME</code><code class="cCode">&gt;/xws-security/samples/simple/</code>. Read <a  href="XWS-Security5.html#wp519089">Understanding and Running the Simple Sample Application</a> for more information on these sample applications.
+</p>
+</ul></div>
+<a name="wp533134"> </a><h3 class="pHeading2">
+On Which Technologies Is XWS-Security Based?
+</h3>
+<a name="wp533136"> </a><p class="pBody">
+XWS-Security APIs are used for securing Web services based on JAX-RPC. This release of XWS-Security is based on non-standard XML Digital Signature and XML Encryption APIs, which are subject to change with new revisions of the technology. As standards are defined in the Web Services Security space, these nonstandard APIs will be replaced with standards-based APIs. 
+</p>
+<a name="wp533138"> </a><p class="pBody">
+JSR-105 (XML Digital Signature APIs) are included in this release of the Java WSDP as well. JSR 105 is a standard API (in progress, at Proposed Final Draft) for generating and validating XML Signatures as specified by the W3C recommendation. It is an API that should be used by Java applications and middleware that need to create and/or process XML Signatures. It can be used by Web Services Security (which is the goal for a future release) and by non-Web Services technologies, for example, documents stored or transferred in XML. Both JSR-105 and JSR-106 (XML Digital Encryption APIs) are core-XML security components.
+</p>
+<a name="wp533140"> </a><p class="pBody">
+XWS-Security does not use the JSR-105 or JSR-106 APIs because, currently, the Java standards for XML Digital Signatures and XML Encryption are undergoing definition under the Java Community Process. These Java standards are JSR-105-XML Digital Signature APIs, which you can read at <code class="cCode"><a  href="http://www.jcp.org/en/jsr/detail?id=105" target="_blank">http://www.jcp.org/en/jsr/detail?id=105</a></code> and JSR-106-XML Digital Encryption APIs, which you can read at <code class="cCode"><a  href="http://www.jcp.org/en/jsr/detail?id=106" target="_blank">http://www.jcp.org/en/jsr/detail?id=106</a></code>. 
+</p>
+<a name="wp533144"> </a><p class="pBody">
+XWS-Security uses the Apache libraries for DSig and XML-Enc. In future releases, the goal of XWS-Security is to move toward using JSR-105 and JSR-106 APIs.
+</p>
+<a name="wp529821"> </a><p class="pBody">
+<a  href="XWS-Security2.html#wp533155">Table 3-2</a> shows how the various technologies are stacked upon one another:</p><div align="left">
+<table border="1" summary="On Which APIs is XWS-Security Based?  This API/Implementation Stack Diagram shows how XWS-Security fits." id="wp533155">
+  <caption><a name="wp533155"> </a><div class="pTableTitle">
+Table 3-2   &nbsp;API/Implementation Stack Diagram
+</div>
+</caption>
+  <tr align="left">    <td><a name="wp533157"> </a><div class="pCellBody">
+XWS-Security 
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp533159"> </a><div class="pCellBody">
+JSR-105 &amp; JSR-106 (possible in future release) 
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp533161"> </a><div class="pCellBody">
+Apache XML Security implementation (current implementation, however this can easily be replaced or swapped, because the JSRs are provider-based) 
+</div>
+</td>
+</tr>
+  <tr align="left">    <td><a name="wp533164"> </a><div class="pCellBody">
+J2SE Security (JCE/JCA APIs) 
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp529834"> </a><p class="pBody">
+The <em class="cEmphasis">Apache XML Security</em> project is aimed at providing implementation of security standards for XML. Currently the focus is on the W3C standards. More information on Apache XML Security can be viewed at:
+</p>
+<div class="pPreformattedRelative"><pre class="pPreformattedRelative">
+<a  href="http://xml.apache.org/security/" target="_blank">http://xml.apache.org/security/</a><a name="wp531672"> </a>
+</pre></div>
+<a name="wp529839"> </a><p class="pBody">
+Java security includes the <em class="cEmphasis">Java Cryptography Extension (JCE)</em> and the <em class="cEmphasis">Java Cryptography Architecture (JCA)</em>. JCE and JCA form the foundation for public key technologies in the Java platform. The JCA API specification can be viewed at <code class="cCode"><a  href="http://java.sun.com/j2se/1.5.0/docs/guide/security/CryptoSpec.html" target="_blank">http://java.sun.com/j2se/1.5.0/docs/guide/security/CryptoSpec.html</a></code>. The JCE documentation can be viewed at <code class="cCode"><a  href="http://java.sun.com/products/jce/index-14.html" target="_blank">http://java.sun.com/products/jce/index-14.html</a></code>.
+</p>
+    </blockquote>
+
+   <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+
+    <table width="550" summary="layout" id="SummaryNotReq1">
+      <tr>
+	<td align="left" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/downloads/webservicestutorial.html" target="_blank">Download</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/faq.html" target="_blank">FAQ</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/history.html" target="_blank">History</a>
+	</td>
+        <td align="center" valign="center">
+<a accesskey="p" href="XWS-Security.html"><img id="LongDescNotReq1" src="images/PrevArrow.gif" width="26" height="26" border="0" alt="Prev" /></a><a accesskey="c" href="JavaWSTutorialFront.html"><img id="LongDescNotReq1" src="images/UpArrow.gif" width="26" height="26" border="0" alt="Home" /></a><a accesskey="n" href="XWS-Security3.html"><img id="LongDescNotReq3" src="images/NextArrow.gif" width="26" height="26" border="0" alt="Next" /></a><a accesskey="i" href="JavaWSTutorialIX.html"></a>
+        </td>
+	<td align="right" valign="center">
+	<font size="-1">
+	<a href="http://java.sun.com/webservices/docs/1.5/api/index.html" target="_blank">API</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/search.html" target="_blank">Search</a>
+	<br>
+	<a href="http://java.sun.com/webservices/docs/1.5/tutorial/information/sendusmail.html" target="_blank">Feedback</a></font>
+	</font>
+	</td>
+      </tr>
+    </table>
+
+    <img src="images/blueline.gif" width="550" height="8" ALIGN="BOTTOM" NATURALSIZEFLAG="3" ALT="Divider">
+
+<p><font size="-1">All of the material in <em>The Java(TM) Web Services Tutorial</em> is 
+<a href="JavaWSTutorialFront2.html">copyright</a>-protected and may not be published in other works
+without express written permission from Sun Microsystems.</font>
+
+  </body>
+</html>
