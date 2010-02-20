@@ -4,6 +4,8 @@
  */
 package jobservice;
 
+import KTHUnivesityClient.KTHUniversityService;
+import KTHUnivesityClient.KTHUniversityServiceService;
 import companiesClient.CompaniesWS;
 import companiesClient.CompaniesWSService;
 import employmentClient.EmploymentOffice;
@@ -64,13 +66,22 @@ public class JobService {
             CV cvData = (CV) unmarshallerCV.unmarshal(new ByteArrayInputStream(cv.getBytes()));
 
             //Getting and parsing transcripts
+             String universityTranscriptsStr = "";
+            if(cvData.getUniversity().equalsIgnoreCase("KTH")){
+               URL universityUrl = new URL(sf.fetchKTHUniversityService());
+//            URL universityUrl = new URL(sf.fetchUniversityService());
+//            URL universityUrl = getWSDLURL("http://localhost:11983/JobServiceCompany/universityWSService?wsdl");
+            KTHUniversityServiceService universityService = new KTHUniversityServiceService(universityUrl);
+            KTHUniversityService universityPort = universityService.getKTHUniversityServicePort();
+            universityTranscriptsStr = universityPort.getDegree(cvData.getSurname());
+            } else{
             URL universityUrl = new URL(sf.fetchUniversityService());
 //            URL universityUrl = new URL(sf.fetchUniversityService());
 //            URL universityUrl = getWSDLURL("http://localhost:11983/JobServiceCompany/universityWSService?wsdl");
             UniversityWSService universityService = new UniversityWSService(universityUrl);
             UniversityWS universityPort = universityService.getUniversityWSPort();
-            String universityTranscriptsStr = universityPort.getDegree(cvData.getSurname());
-
+            universityTranscriptsStr = universityPort.getDegree(cvData.getSurname());
+            }
             JAXBContext jcTranscript = JAXBContext.newInstance("jxbgenerated.transcript");
             Unmarshaller unmarshallerTranscript = jcTranscript.createUnmarshaller();
             Degrees degrees = (Degrees) unmarshallerTranscript.unmarshal(new ByteArrayInputStream(universityTranscriptsStr.getBytes()));
