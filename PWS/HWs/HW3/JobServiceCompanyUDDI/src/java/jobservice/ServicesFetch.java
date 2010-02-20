@@ -104,7 +104,7 @@ public class ServicesFetch {
             findQualifiers.add(FindQualifier.SORT_BY_NAME_DESC);
             Collection<String> namePatterns = new ArrayList<String>();
             // qString refers to the organization name we are looking for
-            namePatterns.add("%" + "University_f" + "%");
+            namePatterns.add("UppsalaUniversity_f" + "%");
             // Find orgs with names that matches qString
             BulkResponse response = bqm.findOrganizations(findQualifiers, namePatterns, null, null, null, null);
 
