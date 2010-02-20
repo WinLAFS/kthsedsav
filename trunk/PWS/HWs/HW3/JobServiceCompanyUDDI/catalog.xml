@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:11983/JobServiceCompany/universityWSService?xsd=1" uri="src/conf/xml-resources/web-service-references/universityWSService/wsdl/localhost_11983/JobServiceCompany/universityWSService.xsd_1.xsd"/>
+    <system systemId="http://localhost:11983/JobServiceCompany/CompaniesWSService?wsdl" uri="src/conf/xml-resources/web-service-references/CompaniesWSService/wsdl/localhost_11983/JobServiceCompany/CompaniesWSService.wsdl"/>
+    <system systemId="http://localhost:11983/JobServiceCompany/CompaniesWSService?xsd=1" uri="src/conf/xml-resources/web-service-references/CompaniesWSService/wsdl/localhost_11983/JobServiceCompany/CompaniesWSService.xsd_1.xsd"/>
+    <system systemId="file:/C:/Users/Shum/Documents/NetBeansProjects/HW2/JobServiceCompany/src/java/jobservice/XMLs/CV.xsd" uri="src/conf/xml-resources/jaxb/CVBinding/CV.xsd"/>
+    <system systemId="file:/C:/Users/Shum/Documents/NetBeansProjects/HW2/JobServiceCompany/src/java/jobservice/XMLs/CompaniesInfo.xsd" uri="src/conf/xml-resources/jaxb/CompaniesInfoBinding/CompaniesInfo.xsd"/>
+    <system systemId="file:/C:/Users/Shum/Documents/NetBeansProjects/HW2/JobServiceCompany/src/java/jobservice/XMLs/Transcript.xsd" uri="src/conf/xml-resources/jaxb/TranscriptBinding/Transcript.xsd"/>
+    <system systemId="file:/C:/Users/Shum/Documents/NetBeansProjects/HW2/JobServiceCompany/src/java/jobservice/XMLs/EmploymentRecord.xsd" uri="src/conf/xml-resources/jaxb/EmploymentBinding/EmploymentRecord.xsd"/>
+    <system systemId="file:/C:/Users/Shum/Documents/NetBeansProjects/HW2/JobServiceCompany/src/java/jobservice/XMLs/profile.xsd" uri="src/conf/xml-resources/jaxb/ProfileBinding/profile.xsd"/>
+    <system systemId="http://localhost:11983/JobServiceCompany/JobServiceService?wsdl" uri="src/conf/xml-resources/web-service-references/JobServiceService/wsdl/localhost_11983/JobServiceCompany/JobServiceService.wsdl"/>
+    <system systemId="http://localhost:11983/JobServiceCompany/JobServiceService?xsd=1" uri="src/conf/xml-resources/web-service-references/JobServiceService/wsdl/localhost_11983/JobServiceCompany/JobServiceService.xsd_1.xsd"/>
+    <system systemId="http://localhost:11983/JobServiceCompany/EmploymentOfficeService?wsdl" uri="src/conf/xml-resources/web-service-references/EmploymentOfficeService/wsdl/localhost_11983/JobServiceCompany/EmploymentOfficeService.wsdl"/>
+    <system systemId="http://localhost:11983/JobServiceCompany/EmploymentOfficeService?xsd=1" uri="src/conf/xml-resources/web-service-references/EmploymentOfficeService/wsdl/localhost_11983/JobServiceCompany/EmploymentOfficeService.xsd_1.xsd"/>
+    <system systemId="http://localhost:11983/JobServiceCompany/RecruiterCompanyService?wsdl" uri="src/conf/xml-resources/web-service-references/RecruiterCompanyService/wsdl/localhost_11983/JobServiceCompany/RecruiterCompanyService.wsdl"/>
+    <system systemId="http://localhost:11983/JobServiceCompany/RecruiterCompanyService?xsd=1" uri="src/conf/xml-resources/web-service-references/RecruiterCompanyService/wsdl/localhost_11983/JobServiceCompany/RecruiterCompanyService.xsd_1.xsd"/>
+    <system systemId="http://localhost:11983/JobServiceCompany/universityWSService?wsdl" uri="src/conf/xml-resources/web-service-references/universityWSService_1/wsdl/localhost_11983/JobServiceCompany/universityWSService.wsdl"/>
+</catalog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
