@@ -8,6 +8,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import recruitmentClient.RecruiterCompany;
+import recruitmentClient.RecruiterCompanyService;
 
 /**
  *
@@ -16,7 +18,7 @@ import java.util.List;
 public class RecruiterCompanyTest {
 
     public static void main(String[] argv) {
-        URL url = getWSDLURL("http://localhost:8080/JobServiceCompany/RecruiterCompanyService?wsdl");
+        URL url = getWSDLURL("http://localhost:11983/JobServiceCompany/RecruiterCompanyService?wsdl");
         RecruiterCompanyService service1 = new RecruiterCompanyService(url);
         RecruiterCompany s1 = service1.getRecruiterCompanyPort();
         List<String> keyw = new ArrayList<String>();

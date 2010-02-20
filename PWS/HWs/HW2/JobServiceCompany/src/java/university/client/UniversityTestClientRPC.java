@@ -7,14 +7,14 @@ package university.client;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import universityClient.UniversityWS;
-import universityClient.UniversityWSService;
+import universityClientRPC.UniversityWS;
+import universityClientRPC.UniversityWSService;
 
 /**
  *
  * @author Shum
  */
-public class UniversityTestClient {
+public class UniversityTestClientRPC {
     public static void main(String[] argv ){
         URL url = getWSDLURL("http://localhost:11983/JobServiceCompany/universityWSService?wsdl");
         UniversityWSService service1 = new UniversityWSService(url);
