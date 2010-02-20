@@ -56,13 +56,17 @@ public class JobService {
     @WebMethod(operationName = "createProfile")
     public String createProfile(String cv) {
         try {
+            ServicesFetch sf = new ServicesFetch();
+
             //Parsing CV
             JAXBContext jcCV = JAXBContext.newInstance("jaxbgenerated.cv");
             Unmarshaller unmarshallerCV = jcCV.createUnmarshaller();
             CV cvData = (CV) unmarshallerCV.unmarshal(new ByteArrayInputStream(cv.getBytes()));
 
             //Getting and parsing transcripts
-            URL universityUrl = getWSDLURL("http://localhost:11983/JobServiceCompany/universityWSService?wsdl");
+            URL universityUrl = new URL(sf.fetchUniversityService());
+//            URL universityUrl = new URL(sf.fetchUniversityService());
+//            URL universityUrl = getWSDLURL("http://localhost:11983/JobServiceCompany/universityWSService?wsdl");
             UniversityWSService universityService = new UniversityWSService(universityUrl);
             UniversityWS universityPort = universityService.getUniversityWSPort();
             String universityTranscriptsStr = universityPort.getDegree(cvData.getSurname());
@@ -72,7 +76,8 @@ public class JobService {
             Degrees degrees = (Degrees) unmarshallerTranscript.unmarshal(new ByteArrayInputStream(universityTranscriptsStr.getBytes()));
 
             //Getting and parsing employment records
-            URL employmentUrl = getWSDLURL("http://localhost:11983/JobServiceCompany/EmploymentOfficeService?wsdl");
+            URL employmentUrl = new URL(sf.fetchEmploymentOfficeService());
+//            URL employmentUrl = getWSDLURL("http://localhost:11983/JobServiceCompany/EmploymentOfficeService?wsdl");
             EmploymentOfficeService employmentService = new EmploymentOfficeService(employmentUrl);
             EmploymentOffice employmentPort = employmentService.getEmploymentOfficePort();
             String employmentStr = employmentPort.getEmploymentRecord(cvData.getPersonumme());
@@ -170,7 +175,8 @@ public class JobService {
             StringWriter sw = new StringWriter();
             marshaller.marshal(profileComplex, sw);
 
-            URL url = getWSDLURL("http://localhost:11983/JobServiceCompany/RecruiterCompanyService?wsdl");
+            URL url = new URL(sf.fetchRecruiterService());
+//            URL url = getWSDLURL("http://localhost:11983/JobServiceCompany/RecruiterCompanyService?wsdl");
             RecruiterCompanyService service1 = new RecruiterCompanyService(url);
             RecruiterCompany s1 = service1.getRecruiterCompanyPort();
             List<String> keyw = new ArrayList<String>();

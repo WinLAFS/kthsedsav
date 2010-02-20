@@ -279,16 +279,16 @@ public class ServicesFetch {
         return ret;
     }
 
-    public static void main(String[] args) {
-        ServicesFetch sf = new ServicesFetch();
-        sf.fetchUniversityService();
-        System.out.println("==========");
-        sf.fetchRecruiterService();
-        System.out.println("==========");
-        sf.fetchEmploymentOfficeService();
-        System.out.println("==========");
-        sf.fetchCompaniesService();
-        System.out.println("==========");
-        sf.fetchJobService();
-    }
+//    public static void main(String[] args) {
+//        ServicesFetch sf = new ServicesFetch();
+//        sf.fetchUniversityService();
+//        System.out.println("==========");
+//        sf.fetchRecruiterService();
+//        System.out.println("==========");
+//        sf.fetchEmploymentOfficeService();
+//        System.out.println("==========");
+//        sf.fetchCompaniesService();
+//        System.out.println("==========");
+//        sf.fetchJobService();
+//    }
 }

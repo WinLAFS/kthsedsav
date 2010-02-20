@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jobServiceClient.JobServiceService;
 import jobServiceClient.JobService;
+import jobservice.ServicesFetch;
 import universityClient.UniversityWS;
 import universityClient.UniversityWSService;
 
@@ -24,7 +25,9 @@ public class JobServiceTestClient {
 
     public static void main(String[] argv) {
         try {
-            URL url = getWSDLURL("http://localhost:11983/JobServiceCompanyUDDI/JobServiceService?wsdl");
+            ServicesFetch sf = new ServicesFetch();
+            URL url = new URL(sf.fetchJobService());
+//            URL url = getWSDLURL("http://localhost:11983/JobServiceCompanyUDDI/JobServiceService?wsdl");
             JobServiceService service1 = new JobServiceService(url);
             JobService s1 = service1.getJobServicePort();
             InputStreamReader is = new InputStreamReader(s1.getClass().getResourceAsStream("/jobservice/client/CV.xml"));
