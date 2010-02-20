@@ -10,11 +10,11 @@
     <service name="EmploymentOffice">
       <implementation-class>employmentrecords.EmploymentOffice</implementation-class>
     </service>
-    <service name="universityWS">
-      <implementation-class>university.universityWS</implementation-class>
-    </service>
     <service name="RecruiterCompany">
       <implementation-class>recruitercompany.RecruiterCompany</implementation-class>
+    </service>
+    <service name="universityWS">
+      <implementation-class>university.universityWS</implementation-class>
     </service>
   </services>
   <clients>
