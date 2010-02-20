@@ -8,6 +8,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jobservice.ServicesFetch;
 import recruitmentClient.RecruiterCompany;
 import recruitmentClient.RecruiterCompanyService;
 
@@ -18,13 +21,19 @@ import recruitmentClient.RecruiterCompanyService;
 public class RecruiterCompanyTest {
 
     public static void main(String[] argv) {
-        URL url = getWSDLURL("http://localhost:11983/JobServiceCompanyUDDI/RecruiterCompanyService?wsdl");
-        RecruiterCompanyService service1 = new RecruiterCompanyService(url);
-        RecruiterCompany s1 = service1.getRecruiterCompanyPort();
-        List<String> keyw = new ArrayList<String>();
-        keyw.add("Software");
-        keyw.add("Greece");
-        System.out.println(s1.findJobs(keyw));
+        try {
+            ServicesFetch sf = new ServicesFetch();
+            URL url = new URL(sf.fetchRecruiterService());
+            //        URL url = getWSDLURL("http://localhost:11983/JobServiceCompanyUDDI/RecruiterCompanyService?wsdl");
+            RecruiterCompanyService service1 = new RecruiterCompanyService(url);
+            RecruiterCompany s1 = service1.getRecruiterCompanyPort();
+            List<String> keyw = new ArrayList<String>();
+            keyw.add("Software");
+            keyw.add("Greece");
+            System.out.println(s1.findJobs(keyw));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(RecruiterCompanyTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
