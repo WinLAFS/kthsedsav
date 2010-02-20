@@ -1,0 +1,19 @@
+<degrees xmlns="http://www.kth.se/Transcript" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kth.se/Transcript Transcript.xsd ">
+  <degree title="MSc">
+    <university>KTH</university>
+    <startYear>2009</startYear>
+    <endYear>2011</endYear>
+    <subject>seds222</subject>
+    <grades>
+      <grade courseID="1">
+        <gradeVal>10</gradeVal>
+      </grade>
+      <grade courseID="2">
+        <gradeVal>10</gradeVal>
+      </grade>
+      <grade courseID="3">
+        <gradeVal>7</gradeVal>
+      </grade>
+    </grades>
+  </degree>
+</degrees>
