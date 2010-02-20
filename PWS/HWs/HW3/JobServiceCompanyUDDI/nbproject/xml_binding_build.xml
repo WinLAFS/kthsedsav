@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+            *** GENERATED FROM xml_binding_cfg.xml - DO NOT EDIT  ***
+            *** Configure thru JAXB Wizard.                       ***
+        -->
+<project name="JobServiceCompany_jaxb" default="default" basedir=".">
+    <target name="xjc-typedef-target" depends="-init-project">
+        <typedef classname="com.sun.tools.xjc.XJCTask" name="xjc" xmlns:s="http://xml.netbeans.org/schema/JAXBWizConfig">
+            <classpath path="${jaxbwiz.xjcdef.classpath}"/>
+        </typedef>
+    </target>
+    <target name="jaxb-clean-code-generation" depends="clean,jaxb-code-generation"/>
+    <target name="jaxb-code-generation" depends="xjc-typedef-target,-do-init,-init-macrodef-javac">
+        <mkdir dir="${build.generated.sources.dir}/jaxb" xmlns:s="http://xml.netbeans.org/schema/JAXBWizConfig"/>
+        <mkdir dir="build/generated/jaxbCache" xmlns:s="http://xml.netbeans.org/schema/JAXBWizConfig"/>
+        <mkdir dir="build/generated/jaxbCache/CompaniesInfoBinding"/>
+        <xjc package="jaxbgenerated.companiesinfo" destdir="build/generated/jaxbCache/CompaniesInfoBinding" catalog="catalog.xml">
+            <classpath>
+                <pathelement location="${src.dir}"/>
+                <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
+            </classpath>
+            <arg value="-xmlschema"/>
+            <schema file="src/conf/xml-resources/jaxb/CompaniesInfoBinding/CompaniesInfo.xsd"/>
+            <depends file="src/conf/xml-resources/jaxb/CompaniesInfoBinding/CompaniesInfo.xsd"/>
+            <produces dir="build/generated/jaxbCache/CompaniesInfoBinding"/>
+        </xjc>
+        <copy todir="${build.generated.sources.dir}/jaxb">
+            <fileset dir="build/generated/jaxbCache/CompaniesInfoBinding"/>
+        </copy>
+        <mkdir dir="build/generated/jaxbCache/TranscriptBinding"/>
+        <xjc package="jxbgenerated.transcript" destdir="build/generated/jaxbCache/TranscriptBinding" catalog="catalog.xml">
+            <classpath>
+                <pathelement location="${src.dir}"/>
+                <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
+            </classpath>
+            <arg value="-xmlschema"/>
+            <schema file="src/conf/xml-resources/jaxb/TranscriptBinding/Transcript.xsd"/>
+            <depends file="src/conf/xml-resources/jaxb/TranscriptBinding/Transcript.xsd"/>
+            <produces dir="build/generated/jaxbCache/TranscriptBinding"/>
+        </xjc>
+        <copy todir="${build.generated.sources.dir}/jaxb">
+            <fileset dir="build/generated/jaxbCache/TranscriptBinding"/>
+        </copy>
+        <mkdir dir="build/generated/jaxbCache/CVBinding"/>
+        <xjc package="jaxbgenerated.cv" destdir="build/generated/jaxbCache/CVBinding" catalog="catalog.xml">
+            <classpath>
+                <pathelement location="${src.dir}"/>
+                <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
+            </classpath>
+            <arg value="-xmlschema"/>
+            <schema file="src/conf/xml-resources/jaxb/CVBinding/CV.xsd"/>
+            <depends file="src/conf/xml-resources/jaxb/CVBinding/CV.xsd"/>
+            <produces dir="build/generated/jaxbCache/CVBinding"/>
+        </xjc>
+        <copy todir="${build.generated.sources.dir}/jaxb">
+            <fileset dir="build/generated/jaxbCache/CVBinding"/>
+        </copy>
+        <mkdir dir="build/generated/jaxbCache/EmploymentBinding"/>
+        <xjc package="jaxbgenerated.employment" destdir="build/generated/jaxbCache/EmploymentBinding" catalog="catalog.xml">
+            <classpath>
+                <pathelement location="${src.dir}"/>
+                <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
+            </classpath>
+            <arg value="-xmlschema"/>
+            <schema file="src/conf/xml-resources/jaxb/EmploymentBinding/EmploymentRecord.xsd"/>
+            <depends file="src/conf/xml-resources/jaxb/EmploymentBinding/EmploymentRecord.xsd"/>
+            <produces dir="build/generated/jaxbCache/EmploymentBinding"/>
+        </xjc>
+        <copy todir="${build.generated.sources.dir}/jaxb">
+            <fileset dir="build/generated/jaxbCache/EmploymentBinding"/>
+        </copy>
+        <mkdir dir="build/generated/jaxbCache/ProfileBinding"/>
+        <xjc package="jaxbgenerated.profile" destdir="build/generated/jaxbCache/ProfileBinding" catalog="catalog.xml">
+            <classpath>
+                <pathelement location="${src.dir}"/>
+                <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
+            </classpath>
+            <arg value="-xmlschema"/>
+            <schema file="src/conf/xml-resources/jaxb/ProfileBinding/profile.xsd"/>
+            <depends file="src/conf/xml-resources/jaxb/ProfileBinding/profile.xsd"/>
+            <produces dir="build/generated/jaxbCache/ProfileBinding"/>
+        </xjc>
+        <copy todir="${build.generated.sources.dir}/jaxb">
+            <fileset dir="build/generated/jaxbCache/ProfileBinding"/>
+        </copy>
+        <!--*** Web project javac macro does not support sourcepath attribute, so do not pass "sourcepath=${src.dir}"-->
+    </target>
+</project>

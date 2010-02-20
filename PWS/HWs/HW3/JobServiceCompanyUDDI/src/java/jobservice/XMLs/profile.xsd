@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.kth.se/profile" xmlns:tns="http://www.kth.se/profile" elementFormDefault="qualified">
+
+
+<!-- types -->
+<simpleType name="coolYear" >
+	<restriction base="gYear">
+		<minInclusive value="1940"></minInclusive>
+		<maxInclusive value="2014"></maxInclusive>
+	</restriction>
+</simpleType>
+
+<element name="profile">
+	<complexType>
+		<all>
+			<element ref="tns:name"></element>
+			<element ref="tns:surname"></element>
+			<element ref="tns:birthDate"></element>
+			<element ref="tns:degrees"></element>
+			<element ref="tns:records"></element>
+		</all>
+	</complexType>
+</element>
+<element name="name">
+	<simpleType>
+		<restriction base="string">
+			<pattern value="([A-Z]([a-z]*))"></pattern>
+		</restriction>
+	</simpleType>
+</element>
+
+<element name="surname">
+	<simpleType>
+		<restriction base="string">
+			<pattern value="([A-Z]([a-z]*))"></pattern>
+			<minLength value="2"></minLength>
+		</restriction>
+	</simpleType>
+</element>
+
+<element name="birthDate">
+	<simpleType>
+		<restriction base="date">
+			<minInclusive value="1930-01-01"></minInclusive>
+			<maxInclusive value="1990-01-01"></maxInclusive>
+		</restriction>
+	</simpleType>
+</element>
+
+<element name="university" type="string"></element>
+<element name="startYear" type="tns:coolYear"></element>
+<element name="endYear" type="tns:coolYear"></element>
+<element name="subject" type="string"></element>
+<element name="courseID" type="integer"></element>
+<element name="gradeVal">
+	<simpleType>
+		<restriction base="integer">
+			<minInclusive value="5"/>
+	     	<maxInclusive value="10"/>
+		</restriction>		
+	</simpleType>
+</element>
+
+
+
+
+<!-- complex type definition -->
+<element name="grades">
+	<complexType>
+		<sequence minOccurs="1" maxOccurs="unbounded">
+			<element ref="tns:grade"></element>
+		</sequence>
+	</complexType>
+</element>
+
+<element name="grade">
+	<complexType>
+		<sequence>
+			<element ref="tns:gradeVal"></element>
+		</sequence>
+		<attribute name="courseID">
+			<simpleType>
+				<restriction base="integer">
+					<maxInclusive value="666"></maxInclusive>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</complexType>
+</element>
+
+<element name="degree">
+	<complexType>
+		<all>
+			<element ref="tns:university"></element>
+			<element ref="tns:startYear"></element>
+			<element ref="tns:endYear"></element>
+			<element ref="tns:subject"></element>
+			<element ref="tns:grades"></element>
+			<element name="gpa" type="decimal" maxOccurs="1" minOccurs="0"></element>
+		</all>
+	<attribute name="title">
+		<simpleType>
+			<restriction base="string">
+				<pattern value="MSc|Diploma|BSc"></pattern>
+			</restriction>
+		</simpleType>
+	</attribute>
+	</complexType>
+</element>
+
+<element name="degrees">
+	<complexType>
+		<sequence minOccurs="1" maxOccurs="unbounded">
+			<element ref="tns:degree"></element>
+		</sequence>
+	</complexType>
+</element>
+
+
+
+<element name="records">
+	<complexType>
+		<sequence>
+			<element name="record" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="fromDate">
+							<simpleType>
+								<restriction base="date">
+									<minInclusive value="1920-01-01"></minInclusive>
+									<maxInclusive value="2010-02-10"></maxInclusive>
+								</restriction>
+							</simpleType>
+						</element>
+						<element name="toDate">
+							<simpleType>
+								<restriction base="date">
+									<minInclusive value="1920-01-02"></minInclusive>
+									<maxInclusive value="2010-02-10"></maxInclusive>
+								</restriction>
+							</simpleType>
+						</element>
+						<element name="position" type="string" />
+						<element name="site" type="string" />
+					</sequence>
+					<attribute name="companyName">
+						<simpleType>
+							<restriction base="string">
+								<minLength value="3"></minLength>
+								<maxLength value="16"></maxLength>
+							</restriction>
+						</simpleType>
+					</attribute>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+</element>
+</schema>
