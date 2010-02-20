@@ -161,7 +161,7 @@ public class JobServicePublish {
             binding.setDescription(istr);
 // allow us to publish a fictitious URI without an error
             binding.setValidateURI(false);
-            binding.setAccessURI("http://localhost:11983/JobServiceCompany/JobServiceService");
+            binding.setAccessURI("http://localhost:11983/JobServiceCompany/JobServiceService?wsdl");
             serviceBindings.add(binding);
 // Add service bindings to service
             service.addServiceBindings(serviceBindings);
