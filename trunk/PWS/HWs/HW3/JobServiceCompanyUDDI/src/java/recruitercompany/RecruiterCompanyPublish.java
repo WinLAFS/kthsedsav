@@ -17,14 +17,21 @@ import javax.xml.registry.Connection;
 import javax.xml.registry.ConnectionFactory;
 import javax.xml.registry.JAXRException;
 import javax.xml.registry.JAXRResponse;
+import javax.xml.registry.LifeCycleManager;
 import javax.xml.registry.RegistryService;
 import javax.xml.registry.infomodel.Classification;
 import javax.xml.registry.infomodel.ClassificationScheme;
+import javax.xml.registry.infomodel.Concept;
 import javax.xml.registry.infomodel.EmailAddress;
+import javax.xml.registry.infomodel.ExternalLink;
 import javax.xml.registry.infomodel.InternationalString;
+import javax.xml.registry.infomodel.Key;
 import javax.xml.registry.infomodel.Organization;
 import javax.xml.registry.infomodel.PersonName;
 import javax.xml.registry.infomodel.PostalAddress;
+import javax.xml.registry.infomodel.Service;
+import javax.xml.registry.infomodel.ServiceBinding;
+import javax.xml.registry.infomodel.SpecificationLink;
 import javax.xml.registry.infomodel.TelephoneNumber;
 import javax.xml.registry.infomodel.User;
 
@@ -40,6 +47,7 @@ public class RecruiterCompanyPublish {
     String httpsProxyPort = "";
     String regUrli = "";
     String regUrlp = "";
+    Boolean ret = false;
 //    String username = "";
 //    String password = "";
     private static final String QUERY_URL = "query.url";
@@ -135,6 +143,84 @@ public class RecruiterCompanyPublish {
 // Set organization's classification
             org.addClassifications(classifications);
 
+            Collection<Service> services = new ArrayList<Service>();
+            InternationalString istr = blcm.createInternationalString("Recruiter Service");
+            Service service = blcm.createService(istr);
+            istr = blcm.createInternationalString("Recruiter Service Description");
+            service.setDescription(istr);
+
+            //set providing organization
+            service.setProvidingOrganization(org);
+
+            // Create service bindings
+            Collection<ServiceBinding> serviceBindings = new ArrayList<ServiceBinding>();
+            ServiceBinding binding = blcm.createServiceBinding();
+            istr = blcm.createInternationalString("Recruiter Service Service Binding "
+                    + "Description");
+            binding.setDescription(istr);
+// allow us to publish a fictitious URI without an error
+            binding.setValidateURI(false);
+            binding.setAccessURI("http://localhost:11983/JobServiceCompany/RecruiterCompanyService");
+            serviceBindings.add(binding);
+// Add service bindings to service
+            service.addServiceBindings(serviceBindings);
+// Add service to services, then add services to organization
+            services.add(service);
+
+            //--------- Create Concept and as an External Link ----------------
+            Concept specConcept;
+            specConcept = blcm.createConcept(null, "RecruiterConcept", "");
+            InternationalString str = blcm.createInternationalString("Concept description for Rectuiter Service");
+            specConcept.setDescription(str);
+            ExternalLink wsdlLink = blcm.createExternalLink("http://localhost:11983/JobServiceCompany/RecruiterCompanyService?wsdl",
+                    "RectuiyerWSDL document");
+
+            specConcept.addExternalLink(wsdlLink);
+
+            /*--- Find the uddi-org:types classification scheme define by
+            the UDDI specification, using well-known key id.*/
+            String uuid_types = "uuid:C1ACF26D-9672-4404-9D70-39B756E62AB4";
+            ClassificationScheme uddiOrgTypes = (ClassificationScheme) bqm.getRegistryObject(uuid_types, LifeCycleManager.CLASSIFICATION_SCHEME);
+            /*---Create a classification, specifying the scheme and the
+            taxonomy name and value defined for WSDL documents by the UDDI
+            specification.*/
+            Classification wsdlSpecClassification =
+                    blcm.createClassification(uddiOrgTypes, "wsdlSpec", "wsdlSpec");
+            specConcept.addClassification(wsdlSpecClassification);
+
+// Define classifications
+            Collection<Concept> concepts = new ArrayList<Concept>();
+            concepts.add(specConcept);
+// Save Concept
+            BulkResponse concResponse = blcm.saveConcepts(concepts);
+
+            String conceptKeyId = null;
+            Collection concExceptions = concResponse.getExceptions();
+            //   Retrieve the (assigned ) Key from save concept
+            Key concKey = null;
+            if (concExceptions == null) {
+                System.out.println("WSDL Specification Concept saved");
+                Collection<Key> keys = concResponse.getCollection();
+                Iterator<Key> keyIter = keys.iterator();
+                if (keyIter.hasNext()) {
+                    concKey = keyIter.next();
+                    conceptKeyId = concKey.getId();
+                    System.out.println("Concept key is " + conceptKeyId);
+                }
+            }
+// Retrieve the concept from Registry
+            Concept retSpecConcept =
+                    (Concept) bqm.getRegistryObject(conceptKeyId, LifeCycleManager.CONCEPT);
+
+            // Associate     concept to Binding object
+            SpecificationLink retSpeclLink =
+                    blcm.createSpecificationLink();
+            retSpeclLink.setSpecificationObject(retSpecConcept);
+            binding.addSpecificationLink(retSpeclLink);
+
+
+            org.addServices(services);
+
             Collection<Organization> orgs = new HashSet<Organization>();
             orgs.add(org);
 
@@ -142,6 +228,7 @@ public class RecruiterCompanyPublish {
             if (br.getStatus() == JAXRResponse.STATUS_SUCCESS) {
                 System.out.println("Organization Saved");
                 return true;
+//                ret = true;
             } else {
                 System.err.println("One or more JAXRExceptions "
                         + "occurred during the save operation:");
@@ -153,7 +240,6 @@ public class RecruiterCompanyPublish {
                 }
                 return false;
             }
-            
 
         } catch (JAXRException ex) {
             System.err.println(ex.getMessage());
