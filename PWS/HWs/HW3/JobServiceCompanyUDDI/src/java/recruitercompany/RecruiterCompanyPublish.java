@@ -98,7 +98,7 @@ public class RecruiterCompanyPublish {
 
             //------- Define Name and Description
 
-            InternationalString s = blcm.createInternationalString("RecruiterCompany");
+            InternationalString s = blcm.createInternationalString("RecruiterCompany1");
             Organization org = blcm.createOrganization(s);
             s = blcm.createInternationalString("Find job opportunities");
             org.setDescription(s);
