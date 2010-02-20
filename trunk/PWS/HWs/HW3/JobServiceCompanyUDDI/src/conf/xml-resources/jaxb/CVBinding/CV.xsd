@@ -42,6 +42,7 @@
 	 	<extension base="tns:baseData">
 	 		<sequence>
 	 			<element ref="tns:birthDate"></element>
+                                <element name="university" type="string"></element>
 	 		</sequence>
 	 	</extension>
 	</complexContent>

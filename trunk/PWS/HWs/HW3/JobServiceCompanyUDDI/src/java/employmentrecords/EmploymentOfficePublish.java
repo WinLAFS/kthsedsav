@@ -98,7 +98,7 @@ String httpProxyHost = "";
 
             //------- Define Name and Description
 
-            InternationalString s = blcm.createInternationalString("EmploymentOffice");
+            InternationalString s = blcm.createInternationalString("EmploymentOffice_f");
             Organization org = blcm.createOrganization(s);
             s = blcm.createInternationalString("Find job past");
             org.setDescription(s);
@@ -160,7 +160,7 @@ String httpProxyHost = "";
             binding.setDescription(istr);
 // allow us to publish a fictitious URI without an error
             binding.setValidateURI(false);
-            binding.setAccessURI("http://localhost:11983/JobServiceCompany/EmploymentOfficeService?wsdl");
+            binding.setAccessURI("http://localhost:11983/JobServiceCompanyUDDI/EmploymentOfficeService?wsdl");
             serviceBindings.add(binding);
 // Add service bindings to service
             service.addServiceBindings(serviceBindings);
@@ -172,7 +172,7 @@ String httpProxyHost = "";
             specConcept = blcm.createConcept(null, "EmploymentConcept", "");
             InternationalString str = blcm.createInternationalString("Concept description for Employment Service");
             specConcept.setDescription(str);
-            ExternalLink wsdlLink = blcm.createExternalLink("http://localhost:11983/JobServiceCompany/EmploymentOfficeService?wsdl",
+            ExternalLink wsdlLink = blcm.createExternalLink("http://localhost:11983/JobServiceCompanyUDDI/EmploymentOfficeService?wsdl",
                     "EmploymentWSDL document");
 
             specConcept.addExternalLink(wsdlLink);

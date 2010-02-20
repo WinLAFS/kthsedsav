@@ -62,7 +62,7 @@ public class ServicesFetch {
             findQualifiers.add(FindQualifier.SORT_BY_NAME_DESC);
             Collection<String> namePatterns = new ArrayList<String>();
             // qString refers to the organization name we are looking for
-            namePatterns.add("%" + "RecruiterCompany" + "%");
+            namePatterns.add("%" + "RecruiterCompany_f" + "%");
             // Find orgs with names that matches qString
             BulkResponse response = bqm.findOrganizations(findQualifiers, namePatterns, null, null, null, null);
 
@@ -104,7 +104,7 @@ public class ServicesFetch {
             findQualifiers.add(FindQualifier.SORT_BY_NAME_DESC);
             Collection<String> namePatterns = new ArrayList<String>();
             // qString refers to the organization name we are looking for
-            namePatterns.add("%" + "University" + "%");
+            namePatterns.add("%" + "University_f" + "%");
             // Find orgs with names that matches qString
             BulkResponse response = bqm.findOrganizations(findQualifiers, namePatterns, null, null, null, null);
 
@@ -161,7 +161,7 @@ public class ServicesFetch {
             findQualifiers.add(FindQualifier.SORT_BY_NAME_DESC);
             Collection<String> namePatterns = new ArrayList<String>();
             // qString refers to the organization name we are looking for
-            namePatterns.add("%" + "EmploymentOffice" + "%");
+            namePatterns.add("%" + "EmploymentOffice_f" + "%");
             // Find orgs with names that matches qString
             BulkResponse response = bqm.findOrganizations(findQualifiers, namePatterns, classifications, null, null, null);
 
@@ -203,7 +203,7 @@ public class ServicesFetch {
             findQualifiers.add(FindQualifier.SORT_BY_NAME_DESC);
             Collection<String> namePatterns = new ArrayList<String>();
             // qString refers to the organization name we are looking for
-            namePatterns.add("%" + "CompaniesDatabase" + "%");
+            namePatterns.add("%" + "CompaniesDatabase_f" + "%");
             // Find orgs with names that matches qString
             BulkResponse response = bqm.findOrganizations(findQualifiers, namePatterns, null, null, null, null);
 
@@ -245,7 +245,7 @@ public class ServicesFetch {
             findQualifiers.add(FindQualifier.SORT_BY_NAME_DESC);
             Collection<String> namePatterns = new ArrayList<String>();
             // qString refers to the organization name we are looking for
-            namePatterns.add("%" + "JobService" + "%");
+            namePatterns.add("%" + "JobService_f" + "%");
             // Find orgs with names that matches qString
             BulkResponse response = bqm.findOrganizations(findQualifiers, namePatterns, null, null, null, null);
 
@@ -279,16 +279,16 @@ public class ServicesFetch {
         return ret;
     }
 
-//    public static void main(String[] args) {
-//        ServicesFetch sf = new ServicesFetch();
-//        sf.fetchUniversityService();
-//        System.out.println("==========");
-//        sf.fetchRecruiterService();
-//        System.out.println("==========");
-//        sf.fetchEmploymentOfficeService();
-//        System.out.println("==========");
-//        sf.fetchCompaniesService();
-//        System.out.println("==========");
-//        sf.fetchJobService();
-//    }
+    public static void main(String[] args) {
+        ServicesFetch sf = new ServicesFetch();
+        sf.fetchUniversityService();
+        System.out.println("==========");
+        sf.fetchRecruiterService();
+        System.out.println("==========");
+        sf.fetchEmploymentOfficeService();
+        System.out.println("==========");
+        sf.fetchCompaniesService();
+        System.out.println("==========");
+        sf.fetchJobService();
+    }
 }
