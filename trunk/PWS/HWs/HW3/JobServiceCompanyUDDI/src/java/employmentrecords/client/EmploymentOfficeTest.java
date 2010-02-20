@@ -16,7 +16,7 @@ import java.net.URL;
 public class EmploymentOfficeTest {
 
     public static void main(String[] argv) {
-        URL url = getWSDLURL("http://localhost:11983/JobServiceCompany/EmploymentOfficeService?wsdl");
+        URL url = getWSDLURL("http://localhost:11983/JobServiceCompanyUDDI/EmploymentOfficeService?wsdl");
         EmploymentOfficeService service1 = new EmploymentOfficeService(url);
         EmploymentOffice s1 = service1.getEmploymentOfficePort();
 

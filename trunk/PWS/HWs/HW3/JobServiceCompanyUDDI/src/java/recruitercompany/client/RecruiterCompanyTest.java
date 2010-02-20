@@ -18,7 +18,7 @@ import recruitmentClient.RecruiterCompanyService;
 public class RecruiterCompanyTest {
 
     public static void main(String[] argv) {
-        URL url = getWSDLURL("http://localhost:11983/JobServiceCompany/RecruiterCompanyService?wsdl");
+        URL url = getWSDLURL("http://localhost:11983/JobServiceCompanyUDDI/RecruiterCompanyService?wsdl");
         RecruiterCompanyService service1 = new RecruiterCompanyService(url);
         RecruiterCompany s1 = service1.getRecruiterCompanyPort();
         List<String> keyw = new ArrayList<String>();

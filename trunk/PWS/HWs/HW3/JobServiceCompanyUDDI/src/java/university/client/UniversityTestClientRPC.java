@@ -16,7 +16,7 @@ import universityClientRPC.UniversityWSService;
  */
 public class UniversityTestClientRPC {
     public static void main(String[] argv ){
-        URL url = getWSDLURL("http://localhost:11983/JobServiceCompany/universityWSService?wsdl");
+        URL url = getWSDLURL("http://localhost:11983/JobServiceCompanyUDDI/universityWSService?wsdl");
         UniversityWSService service1 = new UniversityWSService(url);
         UniversityWS s1 = service1.getUniversityWSPort();
 
