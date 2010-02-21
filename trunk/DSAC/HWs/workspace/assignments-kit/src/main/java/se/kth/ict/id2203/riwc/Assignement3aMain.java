@@ -7,7 +7,6 @@ import org.apache.log4j.PropertyConfigurator;
 import se.kth.ict.id2203.beb.BasicBroadcastInit;
 import se.kth.ict.id2203.beb.components.BasicBroadcast;
 import se.kth.ict.id2203.beb.ports.BEBPort;
-import se.kth.ict.id2203.flp2p.FairLossPointToPointLink;
 import se.kth.ict.id2203.pfd.components.PFD;
 import se.kth.ict.id2203.pfd.ports.PerfectFailureDetector;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
@@ -92,7 +91,7 @@ public class Assignement3aMain extends ComponentDefinition {
 		connect(app.getNegative(Timer.class), time.getPositive(Timer.class));
 		connect(riwc.getNegative(BEBPort.class), beb.getPositive(BEBPort.class));
 		connect(riwc.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
-		connect(riwc.getNegative(PerfectFailureDetector.class), pfd.getPositive(PerfectFailureDetector.class));
+		connect(pfd.getNegative(PerfectFailureDetector.class), riwc.getPositive(PerfectFailureDetector.class));
 		connect(beb.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
 		connect(pfd.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
 		connect(pfd.getNegative(Timer.class), time.getPositive(Timer.class));

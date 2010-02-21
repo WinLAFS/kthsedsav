@@ -35,7 +35,7 @@ import se.sics.kompics.address.Address;
 public class ReadImposeWriteConsult extends ComponentDefinition {
 	Positive<BEBPort> beb = positive(BEBPort.class);
 	Positive<PerfectPointToPointLink> pp2p = positive(PerfectPointToPointLink.class);
-	Positive<PerfectFailureDetector> pfd = positive(PerfectFailureDetector.class);
+	Negative<PerfectFailureDetector> pfd = negative(PerfectFailureDetector.class);
 	Negative<AtomicRegister> atomicRegister = negative(AtomicRegister.class);
 
 	private static final Logger logger = LoggerFactory.getLogger(LazyPB.class);
