@@ -18,7 +18,6 @@ import se.kth.ict.id2203.riwc.events.WriteResponse;
 import se.kth.ict.id2203.riwc.ports.AtomicRegister;
 import se.sics.kompics.ComponentDefinition;
 import se.sics.kompics.Handler;
-import se.sics.kompics.Negative;
 import se.sics.kompics.Positive;
 import se.sics.kompics.Start;
 import se.sics.kompics.address.Address;
