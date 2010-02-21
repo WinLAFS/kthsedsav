@@ -191,8 +191,12 @@ public class JobService {
             RecruiterCompanyService service1 = new RecruiterCompanyService(url);
             RecruiterCompany s1 = service1.getRecruiterCompanyPort();
             List<String> keyw = new ArrayList<String>();
-            keyw.add("Software");
-            keyw.add("Greece");
+
+            if(profileComplex.getRecords().getRecord().get(0).getCompanyName().equalsIgnoreCase("IBM")){
+                keyw.add("Java");
+            } else if(profileComplex.getRecords().getRecord().get(0).getCompanyName().equalsIgnoreCase("Microsoft")){
+                keyw.add("C#");
+            }
             System.out.println(s1.findJobs(keyw));
 
             callAsynCallback(keyw);
