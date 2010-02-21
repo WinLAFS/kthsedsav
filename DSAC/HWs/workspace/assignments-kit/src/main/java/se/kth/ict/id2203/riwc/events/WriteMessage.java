@@ -1,9 +1,13 @@
 package se.kth.ict.id2203.riwc.events;
 
+import java.io.Serializable;
+
 import se.kth.ict.id2203.beb.events.BebDeliver;
 import se.sics.kompics.address.Address;
 
 public class WriteMessage extends BebDeliver {
+	
+	
 	private final int register;
 	private final int requestID;
 	private final int timestamp;

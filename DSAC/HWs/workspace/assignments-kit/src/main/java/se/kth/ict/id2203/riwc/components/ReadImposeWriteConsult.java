@@ -49,12 +49,12 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 	private int i;
 	private int r;
 	private HashMap<Integer, ArrayList<Address>> writeSet;
-	private ArrayList<Boolean> reading;
-	private ArrayList<Integer> reqid;
-	private ArrayList<String> readval;
-	private ArrayList<String> v;
-	private ArrayList<Integer> ts;
-	private ArrayList<Integer> mrank;
+	private ArrayList<Boolean> reading = new ArrayList<Boolean>();
+	private ArrayList<Integer> reqid = new ArrayList<Integer>();
+	private ArrayList<String> readval = new ArrayList<String>();
+	private ArrayList<String> v = new ArrayList<String>();
+	private ArrayList<Integer> ts = new ArrayList<Integer>();
+	private ArrayList<Integer> mrank = new ArrayList<Integer>();
 
 	public ReadImposeWriteConsult() {
 		subscribe(handleInit, control);
@@ -76,15 +76,16 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 			i = self.getId();
 			r = event.getNumberOfRegister();
 			
+			writeSet = new HashMap<Integer, ArrayList<Address>>();
 			//4-12
 			for(int j=0; j<r; j++){
 				writeSet.put(j, new ArrayList<Address>());
-				reading.set(j, false);
-				reqid.set(j, 0);
-				readval.set(j, "0");
-				v.set(j, "0");
-				ts.set(j, 0);
-				mrank.set(j, 0);
+				reading.add(j, false);
+				reqid.add(j, 0);
+				readval.add(j, "0");
+				v.add(j, "0");
+				ts.add(j, 0);
+				mrank.add(j, 0);
 			}
 			
 			logger.debug("lazyPBroadcast :: started");
@@ -96,8 +97,9 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 		}
 	};
 	
-	Handler<Pp2pDeliver> handlePp2pDeliver = new Handler<Pp2pDeliver>() {
-		public void handle(Pp2pDeliver event) {
+	Handler<ACKMessage> handlePp2pDeliver = new Handler<ACKMessage>() {
+		public void handle(ACKMessage event) {
+			logger.info("ACK from "+event.getSource());
 			ACKMessage ack = (ACKMessage) event;
 			int rr = ack.getRegister();
 			//10-12
@@ -109,8 +111,8 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 		}
 	};
 	
-	Handler<BebDeliver> handleBebMessage = new Handler<BebDeliver>() {
-		public void handle(BebDeliver event) {
+	Handler<WriteMessage> handleBebMessage = new Handler<WriteMessage>() {
+		public void handle(WriteMessage event) {
 			//2-6
 			WriteMessage wm = (WriteMessage) event;
 			int rr = wm.getRegister();
