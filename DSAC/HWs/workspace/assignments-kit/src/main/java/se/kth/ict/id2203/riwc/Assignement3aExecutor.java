@@ -85,7 +85,7 @@ public final class Assignement3aExecutor {
 		Scenario scenario4 = new Scenario(Assignement3aMain.class) {
 			{
 				command(0, "S30000");
-				command(1, "S500:W4:D25000");
+				command(1, "S500:W4:S25000");
 				command(2, "S10000:R");
 			}
 		};
