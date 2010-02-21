@@ -27,7 +27,7 @@ import se.sics.kompics.timer.Timer;
 
 public class Application3a extends ComponentDefinition {
 	Positive<Timer> timer = positive(Timer.class);
-	Negative<AtomicRegister> reg = negative(AtomicRegister.class);
+	Positive<AtomicRegister> reg = positive(AtomicRegister.class);
 	
 	
 	private static final Logger logger = LoggerFactory
