@@ -1,4 +1,4 @@
-package se.kth.ict.id2203.riwc.ports;
+package se.kth.ict.id2203.riwcm.ports;
 
 import se.sics.kompics.PortType;
 
