@@ -1,9 +1,9 @@
 
 <records xmlns="http://www.kth.se/EmploymentRecord" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 		 xsi:schemaLocation="http://www.kth.se/EmploymentRecord EmploymentRecord.xsd">
-	<record companyName="IBM">
-		<fromDate>2000-01-15</fromDate>
-		<toDate>2004-04-10</toDate>
+	<record companyName="Microsoft">
+		<fromDate>2004-06-15</fromDate>
+		<toDate>2008-03-20</toDate>
 		<position>Developer</position>
 	</record>
 </records>
