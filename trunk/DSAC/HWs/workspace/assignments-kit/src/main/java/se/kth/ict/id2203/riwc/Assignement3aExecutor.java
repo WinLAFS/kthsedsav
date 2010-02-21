@@ -87,6 +87,10 @@ public final class Assignement3aExecutor {
 				command(0, "S30000");
 				command(1, "S500:W4:S25000");
 				command(2, "S10000:R");
+				
+//				command(0, "S3");
+//				command(1, "S5");
+//				command(2, "S1");
 			}
 		};
 
