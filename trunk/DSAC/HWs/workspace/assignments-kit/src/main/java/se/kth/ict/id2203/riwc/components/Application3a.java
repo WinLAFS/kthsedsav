@@ -52,7 +52,7 @@ public class Application3a extends ComponentDefinition {
 
 	Handler<WriteResponse> handleRegisterWriteResponse = new Handler<WriteResponse>() {
 		public void handle(WriteResponse arg0) {
-			logger.info("Write response: " + arg0.getRegister());
+			logger.info("Write response: R: " + arg0.getRegister());
 		}
 	};
 	
