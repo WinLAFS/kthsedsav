@@ -1,4 +1,4 @@
-package se.kth.ict.id2203.riwc;
+package se.kth.ict.id2203.riwcm;
 
 import se.sics.kompics.ComponentDefinition;
 

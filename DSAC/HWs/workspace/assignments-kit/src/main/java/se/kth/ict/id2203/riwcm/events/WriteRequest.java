@@ -1,4 +1,4 @@
-package se.kth.ict.id2203.riwc.events;
+package se.kth.ict.id2203.riwcm.events;
 
 import se.sics.kompics.Event;
 
