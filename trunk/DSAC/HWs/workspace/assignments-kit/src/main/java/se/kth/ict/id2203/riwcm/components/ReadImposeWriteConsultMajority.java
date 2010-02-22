@@ -1,4 +1,4 @@
-package se.kth.ict.id2203.riwc.components;
+package se.kth.ict.id2203.riwcm.components;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,14 +14,14 @@ import se.kth.ict.id2203.pfd.events.CrashEvent;
 import se.kth.ict.id2203.pfd.ports.PerfectFailureDetector;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
 import se.kth.ict.id2203.pp2p.Pp2pSend;
-import se.kth.ict.id2203.riwc.RIWCInit;
-import se.kth.ict.id2203.riwc.events.ACKMessage;
-import se.kth.ict.id2203.riwc.events.ReadRequest;
-import se.kth.ict.id2203.riwc.events.ReadResponse;
-import se.kth.ict.id2203.riwc.events.WriteMessage;
-import se.kth.ict.id2203.riwc.events.WriteRequest;
-import se.kth.ict.id2203.riwc.events.WriteResponse;
-import se.kth.ict.id2203.riwc.ports.AtomicRegister;
+import se.kth.ict.id2203.riwcm.RIWCInit;
+import se.kth.ict.id2203.riwcm.events.ACKMessage;
+import se.kth.ict.id2203.riwcm.events.ReadRequest;
+import se.kth.ict.id2203.riwcm.events.ReadResponse;
+import se.kth.ict.id2203.riwcm.events.WriteMessage;
+import se.kth.ict.id2203.riwcm.events.WriteRequest;
+import se.kth.ict.id2203.riwcm.events.WriteResponse;
+import se.kth.ict.id2203.riwcm.ports.AtomicRegister;
 import se.sics.kompics.ComponentDefinition;
 import se.sics.kompics.Handler;
 import se.sics.kompics.Negative;
@@ -29,13 +29,13 @@ import se.sics.kompics.Positive;
 import se.sics.kompics.Start;
 import se.sics.kompics.address.Address;
 
-public class ReadImposeWriteConsult extends ComponentDefinition {
+public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 	Positive<BEBPort> beb = positive(BEBPort.class);
 	Positive<PerfectPointToPointLink> pp2p = positive(PerfectPointToPointLink.class);
 	Negative<PerfectFailureDetector> pfd = negative(PerfectFailureDetector.class);
 	Negative<AtomicRegister> atomicRegister = negative(AtomicRegister.class);
 
-	private static final Logger logger = LoggerFactory.getLogger(ReadImposeWriteConsult.class);
+	private static final Logger logger = LoggerFactory.getLogger(ReadImposeWriteConsultMajority.class);
 
 	private Set<Address> neighborSet;
 	private ArrayList<Address> neighborList;
@@ -53,7 +53,7 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 	private ArrayList<Integer> ts = new ArrayList<Integer>();
 	private ArrayList<Integer> mrank = new ArrayList<Integer>();
 
-	public ReadImposeWriteConsult() {
+	public ReadImposeWriteConsultMajority() {
 		subscribe(handleInit, control);
 		subscribe(handleStart, control);
 		subscribe(handlePp2pDeliver, pp2p);
