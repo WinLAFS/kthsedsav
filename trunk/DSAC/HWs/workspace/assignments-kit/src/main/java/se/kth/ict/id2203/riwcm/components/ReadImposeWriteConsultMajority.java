@@ -14,7 +14,7 @@ import se.kth.ict.id2203.pfd.events.CrashEvent;
 import se.kth.ict.id2203.pfd.ports.PerfectFailureDetector;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
 import se.kth.ict.id2203.pp2p.Pp2pSend;
-import se.kth.ict.id2203.riwcm.RIWCInit;
+import se.kth.ict.id2203.riwcm.RIWCMInit;
 import se.kth.ict.id2203.riwcm.events.ACKMessage;
 import se.kth.ict.id2203.riwcm.events.ReadRequest;
 import se.kth.ict.id2203.riwcm.events.ReadResponse;
@@ -63,8 +63,8 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 		subscribe(handleWriteRequestMessage, atomicRegister);
 	}
 
-	Handler<RIWCInit> handleInit = new Handler<RIWCInit>() {
-		public void handle(RIWCInit event) {
+	Handler<RIWCMInit> handleInit = new Handler<RIWCMInit>() {
+		public void handle(RIWCMInit event) {
 			neighborSet = event.getNeighborSet();
 			neighborList = new ArrayList<Address>();
 			neighborList.addAll(neighborSet);
