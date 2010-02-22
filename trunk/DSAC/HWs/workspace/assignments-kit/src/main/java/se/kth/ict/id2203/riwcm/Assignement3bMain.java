@@ -7,8 +7,6 @@ import org.apache.log4j.PropertyConfigurator;
 import se.kth.ict.id2203.beb.BasicBroadcastInit;
 import se.kth.ict.id2203.beb.components.BasicBroadcast;
 import se.kth.ict.id2203.beb.ports.BEBPort;
-import se.kth.ict.id2203.pfd.components.PFD;
-import se.kth.ict.id2203.pfd.ports.PerfectFailureDetector;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
 import se.kth.ict.id2203.pp2p.delay.DelayLink;
 import se.kth.ict.id2203.pp2p.delay.DelayLinkInit;
@@ -65,7 +63,6 @@ public class Assignement3bMain extends ComponentDefinition {
 		Component app = create(Application3b.class);
 		Component beb = create(BasicBroadcast.class);
 		Component riwcm = create(ReadImposeWriteConsultMajority.class);
-		Component pfd = create(PFD.class);
 		
 		// handle possible faults in the components
 		subscribe(handleFault, time.getControl());
@@ -74,7 +71,6 @@ public class Assignement3bMain extends ComponentDefinition {
 		subscribe(handleFault, app.getControl());
 		subscribe(handleFault, beb.getControl());
 		subscribe(handleFault, riwcm.getControl());
-		subscribe(handleFault, pfd.getControl());
 
 		// initialize the components
 		Address self = topology.getSelfAddress();
@@ -91,10 +87,7 @@ public class Assignement3bMain extends ComponentDefinition {
 		connect(app.getNegative(Timer.class), time.getPositive(Timer.class));
 		connect(riwcm.getNegative(BEBPort.class), beb.getPositive(BEBPort.class));
 		connect(riwcm.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
-		connect(pfd.getNegative(PerfectFailureDetector.class), riwcm.getPositive(PerfectFailureDetector.class));
 		connect(beb.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
-		connect(pfd.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
-		connect(pfd.getNegative(Timer.class), time.getPositive(Timer.class));
 
 		connect(pp2p.getNegative(Network.class), network.getPositive(Network.class));
 		connect(pp2p.getNegative(Timer.class), time.getPositive(Timer.class));
