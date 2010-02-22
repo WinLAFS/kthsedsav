@@ -12,7 +12,7 @@ import se.kth.ict.id2203.pfd.ports.PerfectFailureDetector;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
 import se.kth.ict.id2203.pp2p.delay.DelayLink;
 import se.kth.ict.id2203.pp2p.delay.DelayLinkInit;
-import se.kth.ict.id2203.riwcm.components.Application3a;
+import se.kth.ict.id2203.riwcm.components.Application3b;
 import se.kth.ict.id2203.riwcm.components.ReadImposeWriteConsultMajority;
 import se.kth.ict.id2203.riwcm.ports.AtomicRegister;
 import se.sics.kompics.Component;
@@ -28,7 +28,7 @@ import se.sics.kompics.network.mina.MinaNetworkInit;
 import se.sics.kompics.timer.Timer;
 import se.sics.kompics.timer.java.JavaTimer;
 
-public class Assignement3aMain extends ComponentDefinition {
+public class Assignement3bMain extends ComponentDefinition {
 	private static final int numberOfRegister = 1;
 
 	static {
@@ -50,19 +50,19 @@ public class Assignement3aMain extends ComponentDefinition {
 		selfId = Integer.parseInt(args[0]);
 		commandScript = args[1];
 
-		Kompics.createAndStart(Assignement3aMain.class);
+		Kompics.createAndStart(Assignement3bMain.class);
 	}
 
 	/**
 	 * Instantiates a new assignment0 group0.
 	 */
-	public Assignement3aMain() {
+	public Assignement3bMain() {
 		// create components
 		Component time = create(JavaTimer.class);
 		Component network = create(MinaNetwork.class);
 		Component pp2p = create(DelayLink.class);
 //		Component flp2p = create(DelayDropLink.class);
-		Component app = create(Application3a.class);
+		Component app = create(Application3b.class);
 		Component beb = create(BasicBroadcast.class);
 		Component riwcm = create(ReadImposeWriteConsultMajority.class);
 		Component pfd = create(PFD.class);
