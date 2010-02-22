@@ -2,6 +2,7 @@ package se.kth.ict.id2203.riwcm.components;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -15,9 +16,12 @@ import se.kth.ict.id2203.pfd.ports.PerfectFailureDetector;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
 import se.kth.ict.id2203.pp2p.Pp2pSend;
 import se.kth.ict.id2203.riwcm.RIWCMInit;
+import se.kth.ict.id2203.riwcm.beans.ReadSetBean;
 import se.kth.ict.id2203.riwcm.events.ACKMessage;
+import se.kth.ict.id2203.riwcm.events.ReadMessage;
 import se.kth.ict.id2203.riwcm.events.ReadRequest;
 import se.kth.ict.id2203.riwcm.events.ReadResponse;
+import se.kth.ict.id2203.riwcm.events.ReadValueDeliver;
 import se.kth.ict.id2203.riwcm.events.WriteMessage;
 import se.kth.ict.id2203.riwcm.events.WriteRequest;
 import se.kth.ict.id2203.riwcm.events.WriteResponse;
@@ -32,7 +36,6 @@ import se.sics.kompics.address.Address;
 public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 	Positive<BEBPort> beb = positive(BEBPort.class);
 	Positive<PerfectPointToPointLink> pp2p = positive(PerfectPointToPointLink.class);
-	Negative<PerfectFailureDetector> pfd = negative(PerfectFailureDetector.class);
 	Negative<AtomicRegister> atomicRegister = negative(AtomicRegister.class);
 
 	private static final Logger logger = LoggerFactory.getLogger(ReadImposeWriteConsultMajority.class);
@@ -46,19 +49,23 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 	private int i;
 	private int r;
 	private HashMap<Integer, ArrayList<Address>> writeSet;
+	private HashMap<Integer, ArrayList<ReadSetBean>> readSet;
 	private ArrayList<Boolean> reading = new ArrayList<Boolean>();
 	private ArrayList<Integer> reqid = new ArrayList<Integer>();
 	private ArrayList<String> readval = new ArrayList<String>();
 	private ArrayList<String> v = new ArrayList<String>();
 	private ArrayList<Integer> ts = new ArrayList<Integer>();
 	private ArrayList<Integer> mrank = new ArrayList<Integer>();
+	private ArrayList<String> writeval = new ArrayList<String>();
+	private int majoritySize;
 
 	public ReadImposeWriteConsultMajority() {
 		subscribe(handleInit, control);
 		subscribe(handleStart, control);
-		subscribe(handlePp2pDeliver, pp2p);
-		subscribe(handleBebMessage, beb);
-		subscribe(handleCrashMessage, pfd);
+		subscribe(handlePp2pAckDeliver, pp2p);
+		subscribe(handlePp2pReadValueDeliver, pp2p);
+		subscribe(handleBebWrite, beb);
+		subscribe(handleBebRead, beb);
 		subscribe(handleReadRequestMessage, atomicRegister);
 		subscribe(handleWriteRequestMessage, atomicRegister);
 	}
@@ -72,8 +79,12 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 			self = event.getSelf();
 			i = self.getId();
 			r = event.getNumberOfRegister();
+			majoritySize = event.getMajoritySize();
+			
+//			logger.info("Majority number set to:" +majoritySize);
 			
 			writeSet = new HashMap<Integer, ArrayList<Address>>();
+			readSet = new HashMap<Integer, ArrayList<ReadSetBean>>();
 			//4-12
 			for(int j=0; j<r; j++){
 				writeSet.put(j, new ArrayList<Address>());
@@ -83,6 +94,8 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 				v.add(j, "0");
 				ts.add(j, 0);
 				mrank.add(j, 0);
+				writeval.add(j, "0");
+				readSet.put(j, new ArrayList<ReadSetBean>());
 			}
 			
 			logger.debug("lazyPBroadcast :: started");
@@ -94,7 +107,7 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 		}
 	};
 	
-	Handler<ACKMessage> handlePp2pDeliver = new Handler<ACKMessage>() {
+	Handler<ACKMessage> handlePp2pAckDeliver = new Handler<ACKMessage>() {
 		public void handle(ACKMessage event) {
 			logger.info("ACK from "+event.getSource());
 			ACKMessage ack = (ACKMessage) event;
@@ -108,7 +121,52 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 		}
 	};
 	
-	Handler<WriteMessage> handleBebMessage = new Handler<WriteMessage>() {
+	Handler<ReadValueDeliver> handlePp2pReadValueDeliver = new Handler<ReadValueDeliver>() {
+		public void handle(ReadValueDeliver event) {
+			logger.info("Read Value from "+event.getSource());
+//			ACKMessage ack = (ACKMessage) event;
+//			int rr = ack.getRegister();
+//			//10-12
+//			if(ack.getRequestID()==reqid.get(ack.getRegister())){
+//				//TODO check if works
+//				writeSet.get(rr).add(ack.getSource());
+//				checkIfReturn(rr);
+//			}
+			
+			int rr = event.getRegister();
+			
+			if (event.getRequestID() == reqid.get(rr)){
+				ReadSetBean rsb = new ReadSetBean(event.getTimestamp(), event.getProcessRank(), event.getValue());
+				readSet.get(rr).add(rsb);
+				checkIfGotGlobalId(rr);
+			}
+		}
+	};
+	
+	Handler<ReadMessage> handleBebRead = new Handler<ReadMessage>() {
+		public void handle(ReadMessage event) {
+			//
+//			ReadMessage wm = (ReadMessage) event;
+//			int rr = wm.getRegister();
+//			if( (wm.getTimestamp()>ts.get(rr)) || (wm.getTimestamp()==ts.get(rr) && wm.getProcessRank() > mrank.get(rr)) ){
+//				v.set(rr, wm.getMessage());
+//				ts.set(rr, wm.getTimestamp());
+//				mrank.set(rr, wm.getProcessRank());
+//			}
+			//7
+//			trigger(new Pp2pSend(wm.getSender(), new ACKMessage(self, wm.getRegister(), wm.getRequestID())), pp2p);
+			
+			ReadMessage rm = (ReadMessage) event;
+			int rr = rm.getRegister();
+			
+			logger.info("Sending read request. From:"+self+"\t To:"+rm.getSender());
+			ReadValueDeliver rvd = new ReadValueDeliver(self, rm.getRegister(), rm.getRequestID(), ts.get(rr), mrank.get(rr), v.get(rr));
+			trigger(new Pp2pSend(rm.getSender(), rvd), pp2p);
+			
+		}
+	};
+	
+	Handler<WriteMessage> handleBebWrite = new Handler<WriteMessage>() {
 		public void handle(WriteMessage event) {
 			//2-6
 			WriteMessage wm = (WriteMessage) event;
@@ -123,30 +181,26 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 			trigger(new Pp2pSend(wm.getSender(), new ACKMessage(self, wm.getRegister(), wm.getRequestID())), pp2p);
 		}
 	};
-	
-	Handler<CrashEvent> handleCrashMessage = new Handler<CrashEvent>() {
-		public void handle(CrashEvent event) {
-			//15
-			Address crashedAddress = event.getAddress();
-			logger.info("received crash event. Node:"+crashedAddress);
-			//TODO check if works
-			correct.remove(crashedAddress);
-		}
-	};
+
 	
 	Handler<ReadRequest> handleReadRequestMessage = new Handler<ReadRequest>() {
 		public void handle(ReadRequest event) {
-			//18-21
+			//
 			int rr = event.getRegister();
 			reqid.set(rr, (reqid.get(rr)+1));
 			reading.set(rr, true);
+			readSet.put(rr, new ArrayList<ReadSetBean>());
 			writeSet.put(rr, new ArrayList<Address>());
-			readval.set(rr, v.get(rr));
+//			readval.set(rr, v.get(rr));
 			
-			//22
-			WriteMessage wm = new WriteMessage(v.get(rr), self, rr, reqid.get(rr), ts.get(rr), mrank.get(rr));
-			logger.info("Received read request. R:"+rr+"\t Value:"+v.get(rr));
-			trigger(new BebBroadcast(new BebMessage(self, wm), self), beb);
+			//
+//			WriteMessage wm = new WriteMessage(v.get(rr), self, rr, reqid.get(rr), ts.get(rr), mrank.get(rr));
+//			logger.info("Received read request. R:"+rr+"\t Value:"+v.get(rr));
+//			trigger(new BebBroadcast(new BebMessage(self, wm), self), beb);
+			
+			ReadMessage rm = new ReadMessage(self, rr, reqid.get(rr));
+			logger.info("Initializing read request. R:"+rr);
+			trigger(new BebBroadcast(new BebMessage(self, rm), self), beb);
 		}
 	};
 	
@@ -155,18 +209,26 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 			//25-26
 			int rr = event.getRegister();
 			String val = event.getValue();
+			
 			reqid.set(rr, (reqid.get(rr)+1));
+			writeval.set(rr, val);
 			writeSet.put(rr, new ArrayList<Address>());
+			readSet.put(rr, new ArrayList<ReadSetBean>());
 			
 			//27
-			WriteMessage wm = new WriteMessage(val, self, rr, reqid.get(rr), (ts.get(rr)+1), i);
-			logger.info("Received write request. R:"+rr+"\t Value:"+val);
-			trigger(new BebBroadcast(new BebMessage(self, wm), self), beb);
+//			WriteMessage wm = new WriteMessage(val, self, rr, reqid.get(rr), (ts.get(rr)+1), i);
+//			logger.info("Received write request. R:"+rr+"\t Value:"+val);
+//			trigger(new BebBroadcast(new BebMessage(self, wm), self), beb);
+			
+			ReadMessage rm = new ReadMessage(self, rr, reqid.get(rr));
+			logger.info("Initializing write request. R:"+rr);
+			trigger(new BebBroadcast(new BebMessage(self, rm), self), beb);
 		}
 	};
 	
 	private void checkIfReturn(int rr){
-		if (writeSet.get(rr).containsAll(correct)){
+		if (writeSet.get(rr).size() >= majoritySize){
+			writeSet.put(rr, new ArrayList<Address>());
 			if(reading.get(rr) == true){
 				reading.set(rr, false);
 				logger.info("Sending read responce. R:"+rr+"\t Value:"+readval.get(rr));
@@ -174,6 +236,37 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 			} else {
 				logger.info("Sending write responce. R:"+rr);
 				trigger(new WriteResponse(rr), atomicRegister);
+			}
+		}
+	}
+	
+	private void checkIfGotGlobalId(int rr){
+		if(readSet.get(rr).size()>=majoritySize){
+			
+			ReadSetBean rsbh = new ReadSetBean(0, 0, "");
+			ArrayList<ReadSetBean> rsbList = readSet.get(rr);
+			
+			readSet.put(rr, new ArrayList<ReadSetBean>());
+			
+			Iterator<ReadSetBean> it = rsbList.iterator();
+			while (it.hasNext()) {
+				ReadSetBean readSetBean = (ReadSetBean) it.next();
+				
+				if( (readSetBean.getTimestamp()>rsbh.getTimestamp()) || (readSetBean.getTimestamp()==rsbh.getTimestamp() && readSetBean.getProcessRank() > rsbh.getProcessRank()) ){
+					rsbh = readSetBean;
+				}
+			}
+			
+			readval.set(rr, rsbh.getValue());
+			
+			if(reading.get(rr)){
+				logger.info("Got first step majority for read");
+				WriteMessage wm = new WriteMessage(readval.get(rr), self, rr, reqid.get(rr), rsbh.getTimestamp(), rsbh.getProcessRank());
+				trigger(new BebBroadcast(new BebMessage(self, wm), self), beb);
+			} else {
+				logger.info("Got first step majority for write");
+				WriteMessage wm = new WriteMessage(writeval.get(rr), self, rr, reqid.get(rr), rsbh.getTimestamp()+1, i);
+				trigger(new BebBroadcast(new BebMessage(self, wm), self), beb);
 			}
 		}
 	}
