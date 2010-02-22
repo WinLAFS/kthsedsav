@@ -7,9 +7,9 @@ public class ReadMessage extends BebDeliver {
 	private final int register;
 	private final int requestID;
 
-	public ReadMessage(String message, Address sender, int register,
+	public ReadMessage(Address sender, int register,
 			int requestID) {
-		super(message, sender);
+		super(null, sender);
 		this.register = register;
 		this.requestID = requestID;
 	}
