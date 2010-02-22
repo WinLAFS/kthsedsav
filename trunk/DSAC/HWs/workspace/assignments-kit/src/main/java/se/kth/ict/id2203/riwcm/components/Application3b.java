@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import se.kth.ict.id2203.application.ApplicationContinue;
 import se.kth.ict.id2203.application.Flp2pMessage;
 import se.kth.ict.id2203.application.Pp2pMessage;
-import se.kth.ict.id2203.riwc.Application3aInit;
+import se.kth.ict.id2203.riwcm.Application3bInit;
 import se.kth.ict.id2203.riwcm.events.ReadRequest;
 import se.kth.ict.id2203.riwcm.events.ReadResponse;
 import se.kth.ict.id2203.riwcm.events.WriteRequest;
@@ -24,13 +24,13 @@ import se.sics.kompics.address.Address;
 import se.sics.kompics.timer.ScheduleTimeout;
 import se.sics.kompics.timer.Timer;
 
-public class Application3a extends ComponentDefinition {
+public class Application3b extends ComponentDefinition {
 	Positive<Timer> timer = positive(Timer.class);
 	Positive<AtomicRegister> reg = positive(AtomicRegister.class);
 	
 	
 	private static final Logger logger = LoggerFactory
-			.getLogger(Application3a.class);
+			.getLogger(Application3b.class);
 
 	private String[] commands;
 	private int lastCommand;
@@ -41,7 +41,7 @@ public class Application3a extends ComponentDefinition {
 	/**
 	 * Instantiates a new application0.
 	 */
-	public Application3a() {
+	public Application3b() {
 		subscribe(handleInit, control);
 		subscribe(handleStart, control);
 		subscribe(handleContinue, timer);
@@ -61,8 +61,8 @@ public class Application3a extends ComponentDefinition {
 		}
 	};
 	
-	Handler<Application3aInit> handleInit = new Handler<Application3aInit>() {
-		public void handle(Application3aInit event) {
+	Handler<Application3bInit> handleInit = new Handler<Application3bInit>() {
+		public void handle(Application3bInit event) {
 			commands = event.getCommandScript().split(":");
 			lastCommand = -1;
 			neighborSet = event.getNeighborSet();

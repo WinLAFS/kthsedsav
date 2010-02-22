@@ -3,7 +3,7 @@ package se.kth.ict.id2203.riwcm;
 import se.sics.kompics.launch.Scenario;
 import se.sics.kompics.launch.Topology;
 
-public final class Assignement3aExecutor {
+public final class Assignement3bExecutor {
 	/**
 	 * The main method.
 	 * 
@@ -47,7 +47,7 @@ public final class Assignement3aExecutor {
 			}
 		};
 
-		Scenario scenario1 = new Scenario(Assignement3aMain.class) {
+		Scenario scenario1 = new Scenario(Assignement3bMain.class) {
 			{
 //				command(1, "S5000:Labc");
 //				command(2, "S500:Pdef");
@@ -62,7 +62,7 @@ public final class Assignement3aExecutor {
 			}
 		};
 		
-		Scenario scenario3 = new Scenario(Assignement3aMain.class) {
+		Scenario scenario3 = new Scenario(Assignement3bMain.class) {
 			{
 				command(1, "S500:Lmsg1:S6000:X").recover("R:S500:Pmsg3:S500:X",
 						5000);
@@ -70,7 +70,7 @@ public final class Assignement3aExecutor {
 			}
 		};
 		
-		Scenario scenario2 = new Scenario(Assignement3aMain.class) {
+		Scenario scenario2 = new Scenario(Assignement3bMain.class) {
 			{
 				command(1, "B1");
 				command(2, "S1");
@@ -81,7 +81,7 @@ public final class Assignement3aExecutor {
 			}
 		};
 
-		Scenario scenario4 = new Scenario(Assignement3aMain.class) {
+		Scenario scenario4 = new Scenario(Assignement3bMain.class) {
 			{
 				command(0, "S30000");
 				command(1, "S500:W4:S25000");
