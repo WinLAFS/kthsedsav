@@ -10,7 +10,7 @@ public class RIWCMInit extends Init {
 	private final Set<Address> neighborSet;
 	private final Address self;
 	private final int numberOfRegister;
-	private final int majorityNumer;
+	private final int majoritySize;
 	
 	
 	
@@ -24,7 +24,7 @@ public class RIWCMInit extends Init {
 		this.neighborSet = neighborSet;
 		this.self = self;
 		numberOfRegister = 1;
-		this.majorityNumer =  Math.ceil((neighborSet.size() + 1) / 2) + 1;
+		this.majoritySize =  (int) (Math.floor((neighborSet.size() + 1) / 2) + 1);
 	}
 	
 	public RIWCMInit(String commandScript, Set<Address> neighborSet,
@@ -34,6 +34,11 @@ public class RIWCMInit extends Init {
 		this.neighborSet = neighborSet;
 		this.self = self;
 		this.numberOfRegister = numberOfRegister;
+		this.majoritySize =  (int) (Math.floor((neighborSet.size() + 1) / 2) + 1);
+	}
+
+	public int getMajoritySize() {
+		return majoritySize;
 	}
 
 	/**
