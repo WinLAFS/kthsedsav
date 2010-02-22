@@ -84,7 +84,7 @@ public class Assignement3bMain extends ComponentDefinition {
 		trigger(new DelayLinkInit(topology), pp2p.getControl());
 		trigger(new BasicBroadcastInit(commandScript, neighborSet, self), beb.getControl());
 		trigger(new Application3bInit(commandScript, neighborSet, self, numberOfRegister), app.getControl());
-		trigger(new RIWCInit(commandScript, neighborSet, self, numberOfRegister), riwcm.getControl()); 
+		trigger(new RIWCMInit(commandScript, neighborSet, self, numberOfRegister), riwcm.getControl()); 
 
 		// connect the components
 		connect(app.getNegative(AtomicRegister.class), riwcm.getPositive(AtomicRegister.class));
