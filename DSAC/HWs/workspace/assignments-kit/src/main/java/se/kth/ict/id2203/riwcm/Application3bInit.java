@@ -5,7 +5,7 @@ import java.util.Set;
 import se.sics.kompics.Init;
 import se.sics.kompics.address.Address;
 
-public class RIWCInit extends Init {
+public class Application3bInit extends Init {
 	private final String commandScript;
 	private final Set<Address> neighborSet;
 	private final Address self;
@@ -17,7 +17,7 @@ public class RIWCInit extends Init {
 		return numberOfRegister;
 	}
 
-	public RIWCInit(String commandScript, Set<Address> neighborSet, Address self) {
+	public Application3bInit(String commandScript, Set<Address> neighborSet, Address self) {
 		super();
 		this.commandScript = commandScript;
 		this.neighborSet = neighborSet;
@@ -25,7 +25,7 @@ public class RIWCInit extends Init {
 		numberOfRegister = 1;
 	}
 	
-	public RIWCInit(String commandScript, Set<Address> neighborSet,
+	public Application3bInit(String commandScript, Set<Address> neighborSet,
 			Address self, int numberOfRegister) {
 		super();
 		this.commandScript = commandScript;
