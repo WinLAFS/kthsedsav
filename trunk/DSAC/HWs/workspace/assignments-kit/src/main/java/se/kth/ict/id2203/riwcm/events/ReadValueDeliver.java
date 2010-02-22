@@ -8,15 +8,21 @@ public class ReadValueDeliver extends Pp2pDeliver {
 	private final int requestID;
 	private final int timestamp;
 	private final int processRank;
+	private final String value;
 	
 
 	public ReadValueDeliver(Address source, int register, int requestID,
-			int timestamp, int processRank) {
+			int timestamp, int processRank, String value) {
 		super(source);
 		this.register = register;
 		this.requestID = requestID;
 		this.timestamp = timestamp;
 		this.processRank = processRank;
+		this.value = value;
+	}
+
+	public String getValue() {
+		return value;
 	}
 
 	public int getRegister() {
