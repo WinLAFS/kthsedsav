@@ -38,7 +38,7 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 	Negative<PerfectFailureDetector> pfd = negative(PerfectFailureDetector.class);
 	Negative<AtomicRegister> atomicRegister = negative(AtomicRegister.class);
 
-	private static final Logger logger = LoggerFactory.getLogger(LazyPB.class);
+	private static final Logger logger = LoggerFactory.getLogger(ReadImposeWriteConsult.class);
 
 	private Set<Address> neighborSet;
 	private ArrayList<Address> neighborList;
@@ -122,6 +122,7 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 				mrank.set(rr, wm.getProcessRank());
 			}
 			//7
+			logger.info("Sending ACK. From:"+self+"\t To:"+wm.getSender()+"\tR:"+wm.getRegister());
 			trigger(new Pp2pSend(wm.getSender(), new ACKMessage(self, wm.getRegister(), wm.getRequestID())), pp2p);
 		}
 	};
@@ -130,6 +131,7 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 		public void handle(CrashEvent event) {
 			//15
 			Address crashedAddress = event.getAddress();
+			logger.info("received crash event. Node:"+crashedAddress);
 			//TODO check if works
 			correct.remove(crashedAddress);
 		}
@@ -146,6 +148,7 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 			
 			//22
 			WriteMessage wm = new WriteMessage(v.get(rr), self, rr, reqid.get(rr), ts.get(rr), mrank.get(rr));
+			logger.info("Received read request. R:"+rr+"\t Value:"+v.get(rr));
 			trigger(new BebBroadcast(new BebMessage(self, wm), self), beb);
 		}
 	};
@@ -160,6 +163,7 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 			
 			//27
 			WriteMessage wm = new WriteMessage(val, self, rr, reqid.get(rr), (ts.get(rr)+1), i);
+			logger.info("Received write request. R:"+rr+"\t Value:"+val);
 			trigger(new BebBroadcast(new BebMessage(self, wm), self), beb);
 		}
 	};
@@ -168,8 +172,10 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 		if (writeSet.get(rr).containsAll(correct)){
 			if(reading.get(rr) == true){
 				reading.set(rr, false);
+				logger.info("Sending read responce. R:"+rr+"\t Value:"+readval.get(rr));
 				trigger(new ReadResponse(rr, readval.get(rr)), atomicRegister);
 			} else {
+				logger.info("Sending write responce. R:"+rr);
 				trigger(new WriteResponse(rr), atomicRegister);
 			}
 		}
