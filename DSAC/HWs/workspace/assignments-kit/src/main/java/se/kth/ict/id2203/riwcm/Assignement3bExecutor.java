@@ -23,7 +23,7 @@ public final class Assignement3bExecutor {
 				node(8, "127.0.0.1", 22038);
 				link(1, 2, 1000, 0.5).bidirectional();
 				defaultLinks(1234, 0.5);
-				
+
 			}
 		};
 
@@ -33,7 +33,7 @@ public final class Assignement3bExecutor {
 				node(2, "127.0.0.1", 22032);
 				node(3, "127.0.0.1", 22033);
 				node(4, "127.0.0.1", 22034);
-//				link(1, 2, 3213, 0).bidirectional();
+				// link(1, 2, 3213, 0).bidirectional();
 				defaultLinks(1234, 0.4);
 			}
 		};
@@ -49,8 +49,8 @@ public final class Assignement3bExecutor {
 
 		Scenario scenario1 = new Scenario(Assignement3bMain.class) {
 			{
-//				command(1, "S5000:Labc");
-//				command(2, "S500:Pdef");
+				// command(1, "S5000:Labc");
+				// command(2, "S500:Pdef");
 				command(1, "S500:B1:B2:B3:B4:B5:B6");
 				command(2, "");
 				command(3, "");
@@ -61,7 +61,7 @@ public final class Assignement3bExecutor {
 				command(8, "");
 			}
 		};
-		
+
 		Scenario scenario3 = new Scenario(Assignement3bMain.class) {
 			{
 				command(1, "S500:Lmsg1:S6000:X").recover("R:S500:Pmsg3:S500:X",
@@ -69,32 +69,94 @@ public final class Assignement3bExecutor {
 				command(2, "S500");
 			}
 		};
-		
+
 		Scenario scenario2 = new Scenario(Assignement3bMain.class) {
 			{
 				command(1, "B1");
 				command(2, "S1");
 				command(3, "S1");
 				command(4, "S1");
-//				command(3, "S500:Lc3:S300:PC3");
-//				command(4, "S500:Pd4:S300:LD4");
+				// command(3, "S500:Lc3:S300:PC3");
+				// command(4, "S500:Pd4:S300:LD4");
 			}
 		};
 
 		Scenario scenario4 = new Scenario(Assignement3bMain.class) {
 			{
-				command(0, "S500:W5:R:S5000:R:S30000");
-				command(1, "S500:W6:R:S5000:R:S30000");
-				command(2, "S500:R:S500:R:S10000", 15000);
-//				command(0, "S5");
-//				command(1, "S5");
-//				command(2, "S5");
+				command(0, "S30000");
+				command(1, "S500:W4:S25000");
+				command(2, "S10000:R");
+
+				// command(0, "S3");
+				// command(1, "S5");
+				// command(2, "S1");
+
 			}
 		};
 
-//		 scenario1.executeOn(topology1);
-//		scenario3.executeOn(topology1);
-		 scenario4.executeOn(topology3);
+		Scenario scenarioE3_012 = new Scenario(Assignement3bMain.class) {
+			{
+				command(0, "S500:Wv0:R:S500:R:S8000");
+				command(1, "S500:Wv1:R:S500:R:S8000", 100);
+				command(2, "S500:Wv2:R:S500:R:S8000", 200);
+			}
+		};
+
+		Scenario scenarioE3_021 = new Scenario(Assignement3bMain.class) {
+			{
+				command(0, "S500:Wv0:R:S500:R:S8000");
+				command(1, "S500:Wv1:R:S500:R:S8000", 200);
+				command(2, "S500:Wv2:R:S500:R:S8000", 100);
+			}
+		};
+
+		Scenario scenarioE3_102 = new Scenario(Assignement3bMain.class) {
+			{
+				command(0, "S500:Wv0:R:S500:R:S8000", 100);
+				command(1, "S500:Wv1:R:S500:R:S8000");
+				command(2, "S500:Wv2:R:S500:R:S8000", 200);
+			}
+		};
+
+		Scenario scenarioE3_120 = new Scenario(Assignement3bMain.class) {
+			{
+				command(0, "S500:Wv0:R:S500:R:S8000", 200);
+				command(1, "S500:Wv1:R:S500:R:S8000");
+				command(2, "S500:Wv2:R:S500:R:S8000", 100);
+			}
+		};
+
+		Scenario scenarioE3_201 = new Scenario(Assignement3bMain.class) {
+			{
+				command(0, "S500:Wv0:R:S500:R:S8000", 100);
+				command(1, "S500:Wv1:R:S500:R:S8000", 200);
+				command(2, "S500:Wv2:R:S500:R:S8000");
+			}
+		};
+
+		Scenario scenarioE3_210 = new Scenario(Assignement3bMain.class) {
+			{
+				command(0, "S500:Wv0:R:S500:R:S8000", 200);
+				command(1, "S500:Wv1:R:S500:R:S8000", 100);
+				command(2, "S500:Wv2:R:S500:R:S8000");
+			}
+		};
+
+		Topology topologyEx3 = new Topology() {
+			{
+				node(0, "127.0.0.1", 22031);
+				node(1, "127.0.0.1", 22032);
+				node(2, "127.0.0.1", 22033);
+				link(0, 1, 1000, 0).bidirectional();
+				link(0, 2, 2000, 0).bidirectional();
+				link(1, 2, 1750, 0).bidirectional();
+			}
+		};
+
+		// scenario1.executeOn(topology1);
+		// scenario3.executeOn(topology1);
+		// scenario4.executeOn(topology3);
+		scenarioE3_210.executeOn(topologyEx3);
 		// scenario2.executeOn(topology1);
 		// scenario1.executeOnFullyConnected(topology1);
 		// scenario1.executeOnFullyConnected(topology2);
@@ -102,17 +164,17 @@ public final class Assignement3bExecutor {
 		// scenario2.executeOnFullyConnected(topology2);
 
 		System.exit(0);
-//		scenario2.executeOn(topology2);
-//		// move one of the below scenario executions above the exit for
-//		// execution
-//
-//		scenario1.executeOn(topology1);
-//		scenario1.executeOn(topology2);
-//		scenario2.executeOn(topology1);
-//		scenario2.executeOn(topology2);
-//		scenario1.executeOnFullyConnected(topology1);
-//		scenario1.executeOnFullyConnected(topology2);
-//		scenario2.executeOnFullyConnected(topology1);
-//		scenario2.executeOnFullyConnected(topology2);
+		// scenario2.executeOn(topology2);
+		// // move one of the below scenario executions above the exit for
+		// // execution
+		//
+		// scenario1.executeOn(topology1);
+		// scenario1.executeOn(topology2);
+		// scenario2.executeOn(topology1);
+		// scenario2.executeOn(topology2);
+		// scenario1.executeOnFullyConnected(topology1);
+		// scenario1.executeOnFullyConnected(topology2);
+		// scenario2.executeOnFullyConnected(topology1);
+		// scenario2.executeOnFullyConnected(topology2);
 	}
 }
