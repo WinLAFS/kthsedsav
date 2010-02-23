@@ -113,7 +113,7 @@ public class ReadImposeWriteConsult extends ComponentDefinition {
 			//2-6
 			WriteMessage wm = (WriteMessage) event;
 			int rr = wm.getRegister();
-			if( (wm.getTimestamp()>ts.get(rr)) || (wm.getTimestamp()==ts.get(rr) && wm.getProcessRank() > mrank.get(rr)) ){
+			if( (wm.getTimestamp()>ts.get(rr)) || (wm.getTimestamp()==ts.get(rr) && wm.getProcessRank() < mrank.get(rr)) ){
 				v.set(rr, wm.getMessage());
 				ts.set(rr, wm.getTimestamp());
 				mrank.set(rr, wm.getProcessRank());
