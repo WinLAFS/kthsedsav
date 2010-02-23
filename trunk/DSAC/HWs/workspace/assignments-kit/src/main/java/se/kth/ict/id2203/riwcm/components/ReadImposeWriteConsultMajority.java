@@ -108,7 +108,6 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 			int rr = ack.getRegister();
 			//10-12
 			if(ack.getRequestID()==reqid.get(ack.getRegister())){
-				//TODO check if works
 				writeSet.get(rr).add(ack.getSource());
 				checkIfReturn(rr);
 			}
@@ -204,7 +203,7 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 	
 	private void checkIfReturn(int rr){
 		if (writeSet.get(rr).size() >= majoritySize){
-//			writeSet.put(rr, new ArrayList<Address>());
+			writeSet.put(rr, new ArrayList<Address>());
 			if(reading.get(rr) == true){
 				reading.set(rr, false);
 				logger.info("<2> Finished read. R: "+rr+"\tV: "+readval.get(rr));
@@ -222,7 +221,7 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 			ReadSetBean rsbh = new ReadSetBean(-1, -1, "");
 			ArrayList<ReadSetBean> rsbList = readSet.get(rr);
 			
-//			readSet.put(rr, new ArrayList<ReadSetBean>());
+			readSet.put(rr, new ArrayList<ReadSetBean>());
 			
 			Iterator<ReadSetBean> it = rsbList.iterator();
 			while (it.hasNext()) {

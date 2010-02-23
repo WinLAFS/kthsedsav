@@ -52,12 +52,14 @@ public class Application3b extends ComponentDefinition {
 	Handler<WriteResponse> handleRegisterWriteResponse = new Handler<WriteResponse>() {
 		public void handle(WriteResponse arg0) {
 			logger.info("Write response: R: " + arg0.getRegister());
+			doNextCommand();
 		}
 	};
 	
 	Handler<ReadResponse> handleRegisterReadResponse = new Handler<ReadResponse>() {
 		public void handle(ReadResponse arg0) {
 			logger.info("Read response: R: " + arg0.getRegister() + "\tVal: " + arg0.getValue());
+			doNextCommand();
 		}
 	};
 	
@@ -137,10 +139,10 @@ public class Application3b extends ComponentDefinition {
 			doSleep(Integer.parseInt(cmd.substring(1)));
 		} else if (cmd.startsWith("W")) {
 			doRegisterWrite(cmd.substring(1));
-			doNextCommand();
+//			doNextCommand();
 		} else if (cmd.startsWith("R")) {
 			doRegisterRead(cmd.substring(1));
-			doNextCommand();
+//			doNextCommand();
 		} else if (cmd.startsWith("X")) {
 			doShutdown();
 //		} else if (cmd.startsWith("R")) {
