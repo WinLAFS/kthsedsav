@@ -206,7 +206,7 @@ public class ReadImposeWriteConsultMajority extends ComponentDefinition {
 			writeSet.put(rr, new ArrayList<Address>());
 			if(reading.get(rr) == true){
 				reading.set(rr, false);
-				logger.info("<2> Finished read. R: "+rr+"\tV: "+readval.get(rr));
+//				logger.info("<2> Finished read. R: "+rr+"\tV: "+readval.get(rr));
 				trigger(new ReadResponse(rr, readval.get(rr)), atomicRegister);
 			} else {
 				//logger.info("<2> Finished write. R: "+rr);
