@@ -163,6 +163,26 @@ public final class Assignement3bExecutor {
 				link(1, 2, 1750, 0).bidirectional();
 			}
 		};
+		Topology topologyEx4_2 = new Topology() {
+			{
+				node(0, "127.0.0.1", 22031);
+				node(1, "127.0.0.1", 22032);
+				node(2, "127.0.0.1", 22033);
+				link(0, 1, 1000, 0).bidirectional();
+				link(0, 2, 200, 0).bidirectional();
+				link(1, 2, 1750, 0).bidirectional();
+			}
+		};
+		Topology topologyEx4_3 = new Topology() {
+			{
+				node(0, "127.0.0.1", 22031);
+				node(1, "127.0.0.1", 22032);
+				node(2, "127.0.0.1", 22033);
+				link(0, 1, 1000, 0).bidirectional();
+				link(0, 2, 2332, 0).bidirectional();
+				link(1, 2, 123, 0).bidirectional();
+			}
+		};
 		
 		Scenario scenarioE4_1 = new Scenario(Assignement3bMain.class) {
 			{
@@ -189,8 +209,8 @@ public final class Assignement3bExecutor {
 		// scenario1.executeOn(topology1);
 		// scenario3.executeOn(topology1);
 		// scenario4.executeOn(topology3);
-		scenarioE4_1.executeOn(topologyEx4_1);
 //		scenarioE4_1.executeOn(topologyEx4_1);
+		scenarioE4_3.executeOn(topologyEx4_3);
 //		scenarioE4_1.executeOn(topologyEx4_1);
 		// scenario2.executeOn(topology1);
 		// scenario1.executeOnFullyConnected(topology1);

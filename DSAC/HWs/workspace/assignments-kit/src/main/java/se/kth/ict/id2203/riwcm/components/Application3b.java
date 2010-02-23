@@ -58,7 +58,7 @@ public class Application3b extends ComponentDefinition {
 	
 	Handler<ReadResponse> handleRegisterReadResponse = new Handler<ReadResponse>() {
 		public void handle(ReadResponse arg0) {
-			logger.info("Read response: R: " + arg0.getRegister() + "\tVal: " + arg0.getValue());
+			logger.info("Read response: R: " + arg0.getRegister() + " Val: " + arg0.getValue());
 			doNextCommand();
 		}
 	};
@@ -70,7 +70,6 @@ public class Application3b extends ComponentDefinition {
 			neighborSet = event.getNeighborSet();
 			self = event.getSelf();
 			numberOfRegister = event.getNumberOfRegister();
-			logger.debug("Application3 :: started | " + numberOfRegister + " register(s)");
 		}
 	};
 
@@ -174,7 +173,6 @@ public class Application3b extends ComponentDefinition {
 		logger.info("Pm: sends perfect message 'm' to all neighbors");
 		logger.info("Lm: sends lossy message 'm' to all neighbors");
 		logger.info("Sn: sleeps 'n' milliseconds before the next command");
-		logger.info("help: shows this help message");
 		logger.info("X: terminates this process");
 	}
 
