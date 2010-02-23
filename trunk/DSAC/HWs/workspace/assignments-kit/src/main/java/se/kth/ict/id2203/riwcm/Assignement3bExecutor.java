@@ -156,7 +156,7 @@ public final class Assignement3bExecutor {
 		// scenario1.executeOn(topology1);
 		// scenario3.executeOn(topology1);
 		// scenario4.executeOn(topology3);
-		scenarioE3_210.executeOn(topologyEx3);
+		scenarioE3_012.executeOn(topologyEx3);
 		// scenario2.executeOn(topology1);
 		// scenario1.executeOnFullyConnected(topology1);
 		// scenario1.executeOnFullyConnected(topology2);
