@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="AuthorizationWS">
+      <implementation-class>authorization.AuthorizationWS</implementation-class>
+    </service>
+    <service name="PublisherWS">
+      <implementation-class>bookpublisher.PublisherWS</implementation-class>
+    </service>
+    <service name="PublisherUSAWS">
+      <implementation-class>bookpublisherUSA.PublisherUSAWS</implementation-class>
+    </service>
+    <service name="ShipmentService">
+      <implementation-class>shipment.ShipmentService</implementation-class>
+    </service>
+  </services>
+  <clients/>
+</jax-ws>
