@@ -20,6 +20,10 @@ public class UserDataBean {
         this.phone = phone;
     }
 
+    public UserDataBean() {
+    }
+    
+
     public String getAddress() {
         return address;
     }
