@@ -5,6 +5,7 @@
 
 package bookpublisher;
 
+import bookpublisher.BooksDB.BooksDB;
 import bookpublisher.objects.Book;
 import bookpublisher.objects.CreditCard;
 import bookpublisher.objects.Invoice;
@@ -23,12 +24,22 @@ public class PublisherWS {
  public List<Book> findBooks(String title, String author, String ISBN){
         //TODO add logic
 
-        ArrayList<Book> books = new ArrayList<Book>();
-        Book foundBook = new Book();
-        foundBook.setAuthor("Author1");
-        foundBook.setISBN("12345");
-        foundBook.setTitle("Title1");
-        books.add(foundBook);
+        if(title == null){
+            title = "";
+        }
+        if(author == null){
+            author = "";
+        }
+        if(ISBN == null){
+            ISBN = "";
+        }
+        ArrayList<Book> books = null;
+        books = BooksDB.getInstance().getBooks(title, author, ISBN);
+//        Book foundBook = new Book();
+//        foundBook.setAuthor("Author1");
+//        foundBook.setISBN("12345");
+//        foundBook.setTitle("Title1");
+//        books.add(foundBook);
 
         return books;
     }
@@ -38,7 +49,8 @@ public class PublisherWS {
 
         Invoice invoice = new Invoice();
         invoice.setBookISBN(bookISBN);
-        invoice.setBuyer(card.getHolderName());
+        //invoice.setBuyer(card.getHolderName());
+        invoice.setBuyer("Shum");
         invoice.setSum(100);
 
         Book book = new Book();
