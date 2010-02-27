@@ -12,13 +12,15 @@ import bookpublisher.objects.Location;
 import bookpublisher.objects.SellReturnObj;
 import java.util.ArrayList;
 import java.util.List;
+import javax.jws.WebService;
 
 /**
  *
  * @author Shum
  */
-public class PublisherService {
-    public List<Book> findBooks(String title, String author, String ISBN){
+@WebService()
+public class PublisherWS {
+ public List<Book> findBooks(String title, String author, String ISBN){
         //TODO add logic
 
         ArrayList<Book> books = new ArrayList<Book>();
@@ -58,5 +60,10 @@ public class PublisherService {
          return sro;
     }
 
+     public boolean purchaseCancel(String bookISBN, CreditCard card){
 
+         //TODO add logic
+         
+         return true;
+     }
 }
