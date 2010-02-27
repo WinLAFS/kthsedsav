@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package bookpublisher.BooksDB;
+package bookpublisherUSA.BoksDB;
 
 import bookpublisher.objects.Book;
 import java.util.ArrayList;
@@ -12,12 +12,12 @@ import java.util.ArrayList;
  *
  * @author Shum
  */
-public class BooksDB {
-    private static BooksDB instance;
+public class BooksUSADB {
+    private static BooksUSADB instance;
 
     private ArrayList<Book> books = new ArrayList<Book>();
 
-    private BooksDB(){
+    private BooksUSADB(){
         Book book1 = new Book();
         book1.setAuthor("Author1");
         book1.setISBN("111");
@@ -47,9 +47,9 @@ public class BooksDB {
         books.add(book4);
     }
 
-    public static BooksDB getInstance() {
+    public static BooksUSADB getInstance() {
         if (instance == null) {
-            instance = new BooksDB();
+            instance = new BooksUSADB();
         }
         return instance;
     }

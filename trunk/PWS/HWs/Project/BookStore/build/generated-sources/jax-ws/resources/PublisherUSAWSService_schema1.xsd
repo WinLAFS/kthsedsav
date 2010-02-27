@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://bookpublisherUSA/" xmlns:tns="http://bookpublisherUSA/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="findBooks" type="tns:findBooks"/>
+
+  <xs:element name="findBooksResponse" type="tns:findBooksResponse"/>
+
+  <xs:element name="purchaseCancel" type="tns:purchaseCancel"/>
+
+  <xs:element name="purchaseCancelResponse" type="tns:purchaseCancelResponse"/>
+
+  <xs:element name="sellBook" type="tns:sellBook"/>
+
+  <xs:element name="sellBookResponse" type="tns:sellBookResponse"/>
+
+  <xs:complexType name="purchaseCancel">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="tns:creditCard" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creditCard">
+    <xs:sequence>
+      <xs:element name="cardNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="expirationMonth" type="xs:int"/>
+      <xs:element name="expirationYear" type="xs:int"/>
+      <xs:element name="holderName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="purchaseCancelResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sellBook">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="tns:creditCard" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sellBookResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:sellReturnObj" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sellReturnObj">
+    <xs:sequence>
+      <xs:element name="bookInfo" type="tns:book" minOccurs="0"/>
+      <xs:element name="invoice" type="tns:invoice" minOccurs="0"/>
+      <xs:element name="location" type="tns:location" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="book">
+    <xs:sequence>
+      <xs:element name="author" type="xs:string" minOccurs="0"/>
+      <xs:element name="ISBN" type="xs:string" minOccurs="0"/>
+      <xs:element name="price" type="xs:double"/>
+      <xs:element name="title" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="invoice">
+    <xs:sequence>
+      <xs:element name="bookISBN" type="xs:string" minOccurs="0"/>
+      <xs:element name="buyer" type="xs:string" minOccurs="0"/>
+      <xs:element name="sum" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="location">
+    <xs:sequence>
+      <xs:element name="address" type="xs:string" minOccurs="0"/>
+      <xs:element name="city" type="xs:string" minOccurs="0"/>
+      <xs:element name="country" type="xs:string" minOccurs="0"/>
+      <xs:element name="postCode" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBooks">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg2" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBooksResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:book" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

@@ -7,6 +7,9 @@
     <service name="PublisherWS">
       <implementation-class>bookpublisher.PublisherWS</implementation-class>
     </service>
+    <service name="PublisherUSAWS">
+      <implementation-class>bookpublisherUSA.PublisherUSAWS</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
