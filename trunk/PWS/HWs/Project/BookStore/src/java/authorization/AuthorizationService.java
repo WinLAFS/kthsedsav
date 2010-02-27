@@ -24,17 +24,17 @@ public class AuthorizationService {
      */
     public UserDataBean login(String username, String password) {
 
-//        UsersDB usersDB = UsersDB.getInstance();
-//        UserDataWithPasswordBean udwpbb = usersDB.getUserData(username);
-//        if (udwpbb == null) {
-//            return null;
-//        }
-//        if (udwpbb.getPassword().equals(password)) {
-//            return udwpbb.getUserDataBean();
-//        }
-//        else {
+        UsersDB usersDB = UsersDB.getInstance();
+        UserDataWithPasswordBean udwpbb = usersDB.getUserData(username);
+        if (udwpbb == null) {
             return null;
-//        }
+        }
+        if (udwpbb.getPassword().equals(password)) {
+            return udwpbb.getUserDataBean();
+        }
+        else {
+            return null;
+        }
     }
 
 }
