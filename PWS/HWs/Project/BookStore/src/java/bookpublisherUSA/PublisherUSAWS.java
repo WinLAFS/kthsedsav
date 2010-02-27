@@ -3,14 +3,14 @@
  * and open the template in the editor.
  */
 
-package bookpublisher;
+package bookpublisherUSA;
 
-import bookpublisher.BooksDB.BooksDB;
 import bookpublisher.objects.Book;
 import bookpublisher.objects.CreditCard;
 import bookpublisher.objects.Invoice;
 import bookpublisher.objects.Location;
 import bookpublisher.objects.SellReturnObj;
+import bookpublisherUSA.BoksDB.BooksUSADB;
 import java.util.ArrayList;
 import java.util.List;
 import javax.jws.WebService;
@@ -20,8 +20,8 @@ import javax.jws.WebService;
  * @author Shum
  */
 @WebService()
-public class PublisherWS {
- public List<Book> findBooks(String title, String author, String ISBN){
+public class PublisherUSAWS {
+    public List<Book> findBooks(String title, String author, String ISBN){
         //TODO add logic
 
         if(title == null){
@@ -34,7 +34,7 @@ public class PublisherWS {
             ISBN = "";
         }
         ArrayList<Book> books = null;
-        books = BooksDB.getInstance().getBooks(title, author, ISBN);
+        books = BooksUSADB.getInstance().getBooks(title, author, ISBN);
 
         return books;
     }
@@ -70,7 +70,7 @@ public class PublisherWS {
      public boolean purchaseCancel(String bookISBN, CreditCard card){
 
          //TODO add logic
-         
+
          return true;
      }
 }
