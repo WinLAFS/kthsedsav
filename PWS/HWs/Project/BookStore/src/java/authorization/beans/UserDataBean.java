@@ -46,5 +46,4 @@ public class UserDataBean implements Serializable {
         this.username = username;
     }
 
-
 }
