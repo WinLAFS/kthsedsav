@@ -22,22 +22,19 @@ public class AuthorizationService {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "login")
-    public UserDataBean login(@WebParam(name = "username")
-        String username, @WebParam(name = "password")
-        String password) {
+    public UserDataBean login(String username, String password) {
 
-        UsersDB usersDB = UsersDB.getInstance();
-        UserDataWithPasswordBean udwpbb = usersDB.getUserData(username);
-        if (udwpbb == null) {
+//        UsersDB usersDB = UsersDB.getInstance();
+//        UserDataWithPasswordBean udwpbb = usersDB.getUserData(username);
+//        if (udwpbb == null) {
+//            return null;
+//        }
+//        if (udwpbb.getPassword().equals(password)) {
+//            return udwpbb.getUserDataBean();
+//        }
+//        else {
             return null;
-        }
-        if (udwpbb.getPassword().equals(password)) {
-            return udwpbb.getUserDataBean();
-        }
-        else {
-            return null;
-        }
+//        }
     }
 
 }
