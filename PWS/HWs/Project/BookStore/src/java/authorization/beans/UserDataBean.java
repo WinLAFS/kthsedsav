@@ -5,11 +5,13 @@
 
 package authorization.beans;
 
+import java.io.Serializable;
+
 /**
  *
  * @author saibbot
  */
-public class UserDataBean {
+public class UserDataBean implements Serializable {
     private String username;
     private String address;
     private String phone;
