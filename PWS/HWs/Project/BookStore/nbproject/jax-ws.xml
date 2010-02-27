@@ -4,6 +4,9 @@
     <service name="AuthorizationService">
       <implementation-class>authorization.AuthorizationService</implementation-class>
     </service>
+    <service name="PublisherWS">
+      <implementation-class>bookpublisher.PublisherWS</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
