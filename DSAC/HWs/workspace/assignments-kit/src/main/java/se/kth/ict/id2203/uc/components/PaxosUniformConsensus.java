@@ -61,6 +61,7 @@ public class PaxosUniformConsensus extends ComponentDefinition {
 			self = event.getSelf();
 			proposal = new HashMap<Integer, String>();
 			proposed = new HashMap<Integer, Boolean>();
+			decided = new HashMap<Integer, Boolean>();
 			/*
 			 * upon event ⟨ Init ⟩ do seenIds := ∅; leader := false; 4: end
 			 * event
