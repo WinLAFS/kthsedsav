@@ -67,6 +67,12 @@ public class RWAbortableConsensus extends ComponentDefinition {
 	
 	Handler<RWAbortableConsensusInit> handleInit = new Handler<RWAbortableConsensusInit>() {
 		public void handle(RWAbortableConsensusInit event) {
+			/*
+			 * 	uponevent <Init > do
+					seenIds:= 0;
+					majority:= |N/2|+1;
+				end event
+			 */
 			neighborSet = event.getNeighborSet();
 			self = event.getSelf();
 			
@@ -83,6 +89,19 @@ public class RWAbortableConsensus extends ComponentDefinition {
 	};
 	
 	private void initInstance(int id){
+		
+		/*
+		 * procedure initInstance(id) is
+			if (id / < seenIds) then
+				tempValue[id]:=val[id]:= -1;
+				wAcks[id]:=rts[id]:=wts[id]:=0;
+				tstamp[id]:=rank(self);
+				readSet[id]:= 0;
+				seenIds:=seenIds {id};
+			endif
+		   endprocedure
+		 */
+		
 		if(!seenIds.contains(id)){
 			tempValue.put(id, "-1");
 			val.put(id, "-1");
@@ -97,6 +116,15 @@ public class RWAbortableConsensus extends ComponentDefinition {
 	
 	Handler<ACPropose> handleACPropose = new Handler<ACPropose>() {
 		public void handle(ACPropose event) {
+			/*
+			 * uponevent <acPropose | id, v > do
+				initInstance(id);
+				tstamp[id]:=tstamp[id]+ N;
+				tempValue[id]:= v;
+				trigger < bebBroadcast | [Read,id,tstamp[id]] >;
+			   endevent
+			 */
+			
 			int id = event.getId();
 			String v = event.getValue();
 			
@@ -111,6 +139,18 @@ public class RWAbortableConsensus extends ComponentDefinition {
 	
 	Handler<BEBACReadDeliver> handleBEBACReadDeliver = new Handler<BEBACReadDeliver>() {
 		public void handle(BEBACReadDeliver event) {
+			/*
+			 * uponevent < bebDeliver | pj ,[Read,id,ts] > do
+				initInstance(id);
+				if (rts[id] >= ts or wts[id] >= ts) then
+					trigger < pp2pSend | pj ,[Nack,id] >;
+				else
+					rts[id]:=ts;
+					trigger <pp2pSend | pj ,[ReadAck,id,wts[id],val[id],ts] >;
+				endif
+			   endevent
+			 */
+			
 			int id = event.getId();
 			int ts = event.getTs();
 			
@@ -128,6 +168,14 @@ public class RWAbortableConsensus extends ComponentDefinition {
 	
 	Handler<NackPP2PDeliver> handleNackPP2PDeliver = new Handler<NackPP2PDeliver>() {
 		public void handle(NackPP2PDeliver event) {
+			/*
+			 * uponevent < pp2pDeliver | pj ,[Nack,id] > do
+				readSet[id]:= 0;
+				wAcks[id]:=0;
+				trigger < acReturn | id, -1>;
+			   endevent
+			 */
+			
 			int id = event.getId();
 			
 			readSet.put(id, new ArrayList<ReadSetBean>());
@@ -138,6 +186,21 @@ public class RWAbortableConsensus extends ComponentDefinition {
 	
 	Handler<ReadAckPP2PDeliver> handleReadAckPP2PDeliver = new Handler<ReadAckPP2PDeliver>() {
 		public void handle(ReadAckPP2PDeliver event) {
+			/*
+			 * uponevent < pp2pDeliver | pj ,[ReadAck,id,ts,v,sentts] >do
+				if (sentts=tstamp[id]) then
+					readSet[id]:=readSet[id] U{(ts,v)};
+					if (|readSet[id]| =majority) then
+						(ts,v):= highest(readSet[id]); // largesttimestamp
+						if (v = -1) then
+							tempValue[id]:=v;
+						endif
+						trigger < bebBroadcast | [Write,id,tstamp[id],tempValue[id]]>;
+					endif
+				endif
+			  endevent
+			 */
+			
 			int sentts = event.getTs();
 			int id = event.getId();
 			int ts = event.getWts();
@@ -162,6 +225,18 @@ public class RWAbortableConsensus extends ComponentDefinition {
 	
 	Handler<BEBACWriteDeliver> handleBEBACWriteDeliver = new Handler<BEBACWriteDeliver>() {
 		public void handle(BEBACWriteDeliver event) {
+			/*
+			 * uponevent < bebDeliver | pj ,[Write,id,ts,v] > do
+				initInstance(id);
+				if (rts[id] > ts or wts[id] > ts) then
+					trigger < pp2pSend | pj ,[Nack,id] >;
+				else
+					val[id]:=v;
+					wts[id]:=ts;
+					trigger < pp2pSend | pj ,[WriteAck,id,ts] >;
+				endif
+			   endevent
+			 */
 			int id = event.getId();
 			int ts = event.getTstamp();
 			String v = event.getTempValue();
@@ -182,6 +257,19 @@ public class RWAbortableConsensus extends ComponentDefinition {
 	
 	Handler<WriteAckPP2PDeliver> handleWriteAckPP2PDeliver = new Handler<WriteAckPP2PDeliver>() {
 		public void handle(WriteAckPP2PDeliver event) {
+			
+			/*
+			 * uponevent < pp2pDeliver | pj ,[WriteAck,id,sentts] > do
+				if (sentts=tstamp[id]) then
+					wAcks[id]:=wAcks[id]+1;
+					if (wAcks[id]=majority) then
+						readSet[id]:= 0;wAcks[id]:=0;
+						trigger < acReturn | id,tempValue[id]] >;
+					endif
+				endif
+			   endevent
+			 */
+			
 			int id = event.getId();
 			int sentts = event.getTs();
 			
