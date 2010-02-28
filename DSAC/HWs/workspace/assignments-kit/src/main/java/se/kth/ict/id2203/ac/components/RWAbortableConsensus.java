@@ -15,6 +15,7 @@ import se.kth.ict.id2203.ac.events.BEBACReadDeliver;
 import se.kth.ict.id2203.ac.events.BEBACWriteDeliver;
 import se.kth.ict.id2203.ac.events.NackPP2PDeliver;
 import se.kth.ict.id2203.ac.events.ReadAckPP2PDeliver;
+import se.kth.ict.id2203.ac.events.WriteAckPP2PDeliver;
 import se.kth.ict.id2203.ac.ports.AbortableConsensus;
 import se.kth.ict.id2203.beb.events.BebBroadcast;
 import se.kth.ict.id2203.beb.events.BebMessage;
@@ -60,6 +61,8 @@ public class RWAbortableConsensus extends ComponentDefinition {
 		subscribe(handleBEBACReadDeliver, beb);
 		subscribe(handleNackPP2PDeliver, pp2p);
 		subscribe(handleReadAckPP2PDeliver, pp2p);
+		subscribe(handleBEBACWriteDeliver, beb);
+		subscribe(handleWriteAckPP2PDeliver, pp2p);
 	}
 	
 	Handler<RWAbortableConsensusInit> handleInit = new Handler<RWAbortableConsensusInit>() {
@@ -152,6 +155,42 @@ public class RWAbortableConsensus extends ComponentDefinition {
 					//trigger
 					BEBACWriteDeliver bebacWrite = new BEBACWriteDeliver(self, id, tstamp.get(id), tempValue.get(id));
 					trigger(new BebBroadcast(new BebMessage(self, bebacWrite), self), beb);
+				}
+			}
+		}
+	};
+	
+	Handler<BEBACWriteDeliver> handleBEBACWriteDeliver = new Handler<BEBACWriteDeliver>() {
+		public void handle(BEBACWriteDeliver event) {
+			int id = event.getId();
+			int ts = event.getTstamp();
+			String v = event.getTempValue();
+			
+			initInstance(id);
+			if(rts.get(id)>ts || wts.get(id)>ts){
+				NackPP2PDeliver npp2pdeliver = new NackPP2PDeliver(self, id);
+				trigger(new Pp2pSend(event.getSender(), npp2pdeliver), pp2p);
+			} else {
+				val.put(id, v);
+				wts.put(id, ts);
+				//trigger
+				WriteAckPP2PDeliver wack = new WriteAckPP2PDeliver(self, id, ts);
+				trigger(new Pp2pSend(event.getSender(), wack), pp2p);
+			}
+		}
+	};
+	
+	Handler<WriteAckPP2PDeliver> handleWriteAckPP2PDeliver = new Handler<WriteAckPP2PDeliver>() {
+		public void handle(WriteAckPP2PDeliver event) {
+			int id = event.getId();
+			int sentts = event.getTs();
+			
+			if(sentts == tstamp.get(id)){
+				wAcks.put(id, wAcks.get(id)+1);
+				if(wAcks.get(id) == majority){
+					readSet.put(id, new ArrayList<ReadSetBean>());
+					wAcks.put(id, 0);
+					trigger(new ACDecide(id, tempValue.get(id)), ac);
 				}
 			}
 		}
