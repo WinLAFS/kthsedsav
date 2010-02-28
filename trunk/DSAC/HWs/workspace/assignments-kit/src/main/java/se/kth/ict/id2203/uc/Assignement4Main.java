@@ -92,6 +92,7 @@ public class Assignement4Main extends ComponentDefinition {
 
 		trigger(new MinaNetworkInit(self, 5), network.getControl());
 		trigger(new DelayLinkInit(topology), pp2p.getControl());
+		trigger(new Application4Init(commandScript, neighborSet, self), app.getControl());
 		trigger(new BasicBroadcastInit(commandScript, neighborSet, self), beb.getControl());
 		trigger(new UCInit(commandScript, neighborSet, self), uc.getControl());
 		trigger(new RWAbortableConsensusInit(commandScript, neighborSet, self), ac.getControl());

@@ -57,7 +57,7 @@ public class Application4 extends ComponentDefinition {
 			lastCommand = -1;
 			neighborSet = event.getNeighborSet();
 			self = event.getSelf();
-			logger.debug("Application STARTED!!");
+			logger.debug("Application :: STARTED!!");
 			System.err.println("Application STARTED!!");
 		}
 	};
