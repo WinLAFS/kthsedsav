@@ -211,9 +211,11 @@ public class RWAbortableConsensus extends ComponentDefinition {
 				readSet.get(id).add(rsb);
 				if(readSet.get(id).size() == majority){
 					ArrayList<ReadSetBean> beans = readSet.get(ts);
-					ReadSetBean largestBean = findLargestReadSetBean(beans);
-					if(!largestBean.getValue().equalsIgnoreCase("-1")){
-						tempValue.put(id, largestBean.getValue());
+					if(beans!=null){
+						ReadSetBean largestBean = findLargestReadSetBean(beans);
+						if(!largestBean.getValue().equalsIgnoreCase("-1")){
+							tempValue.put(id, largestBean.getValue());
+						}
 					}
 					//trigger
 					BEBACWriteDeliver bebacWrite = new BEBACWriteDeliver(self, id, tstamp.get(id), tempValue.get(id));

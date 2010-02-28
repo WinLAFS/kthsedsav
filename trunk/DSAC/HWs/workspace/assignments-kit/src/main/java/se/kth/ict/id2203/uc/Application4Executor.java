@@ -36,6 +36,13 @@ public final class Application4Executor {
 				command(3, "D2200:P1-3");
 			}
 		};
+		Scenario scenarioEx3_21 = new Scenario(Assignement4Main.class) {
+			{;
+			command(1, "P1-1:P2-2:D12341:P3-3:P4-4");
+			command(2, "S1");
+			command(3, "S1");
+			}
+		};
 		
 		Scenario scenarioEmpty = new Scenario(Assignement4Main.class) {
 			{;
@@ -46,9 +53,9 @@ public final class Application4Executor {
 		};
 
 		
-		scenarioEmpty.executeOn(topologyEx3);
+//		scenarioEmpty.executeOn(topologyEx3);
 //		scenarioEx3_1.executeOn(topologyEx3);
-//		scenarioEx3_2.executeOn(topologyEx3);
+		scenarioEx3_21.executeOn(topologyEx3);
 
 		System.exit(0);
 	}
