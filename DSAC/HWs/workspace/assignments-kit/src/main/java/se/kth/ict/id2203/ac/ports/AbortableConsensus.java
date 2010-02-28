@@ -8,5 +8,7 @@ public class AbortableConsensus extends PortType {
 	{
 		positive(ACDecide.class);
 		negative(ACPropose.class);
+//		negative(ACDecide.class);
+//		positive(ACPropose.class);
 	}
 }
