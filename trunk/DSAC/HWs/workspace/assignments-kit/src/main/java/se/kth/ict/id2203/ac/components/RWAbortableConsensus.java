@@ -9,9 +9,18 @@ import org.slf4j.LoggerFactory;
 
 import se.kth.ict.id2203.ac.RWAbortableConsensusInit;
 import se.kth.ict.id2203.ac.beans.ReadSetBean;
+import se.kth.ict.id2203.ac.events.ACPropose;
+import se.kth.ict.id2203.ac.events.BEBACReadDeliver;
+import se.kth.ict.id2203.ac.events.NackPP2PDeliver;
+import se.kth.ict.id2203.ac.events.ReadAckPP2PDeliver;
 import se.kth.ict.id2203.ac.ports.AbortableConsensus;
+import se.kth.ict.id2203.application.Pp2pMessage;
+import se.kth.ict.id2203.beb.events.BebBroadcast;
+import se.kth.ict.id2203.beb.events.BebMessage;
 import se.kth.ict.id2203.beb.ports.BEBPort;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
+import se.kth.ict.id2203.pp2p.Pp2pSend;
+import se.kth.ict.id2203.riwc.events.ACKMessage;
 import se.sics.kompics.ComponentDefinition;
 import se.sics.kompics.Handler;
 import se.sics.kompics.Negative;
@@ -47,7 +56,8 @@ public class RWAbortableConsensus extends ComponentDefinition {
 	public RWAbortableConsensus() {
 		subscribe(handleInit, control);
 		subscribe(handleStart, control);
-//		subscribe(handlePp2pMessage, pp2p);
+		subscribe(handleACPropose, ac);
+		subscribe(handleBEBACReadDeliver, beb);
 //		subscribe(handleUnreliabeBroadcast, beb);
 	}
 	
@@ -80,4 +90,34 @@ public class RWAbortableConsensus extends ComponentDefinition {
 			seenIds.add(id);
 		}
 	}
+	
+	Handler<ACPropose> handleACPropose = new Handler<ACPropose>() {
+		public void handle(ACPropose event) {
+			int id = event.getId();
+			String v = event.getValue();
+			
+			initInstance(id);
+			tstamp.put(id, tstamp.get(id)+neighborSet.size());
+			tempValue.put(id, v);
+			
+			BEBACReadDeliver bebd = new BEBACReadDeliver(id, tstamp.get(id), self);
+			trigger(new BebBroadcast(new BebMessage(self, bebd), self), beb);
+		}
+	};
+	
+	Handler<BEBACReadDeliver> handleBEBACReadDeliver = new Handler<BEBACReadDeliver>() {
+		public void handle(BEBACReadDeliver event) {
+			int id = event.getId();
+			int ts = event.getTs();
+			
+			initInstance(id);
+			if(rts.get(id)>=ts || wts.get(id)>=ts){
+				NackPP2PDeliver npp2pdeliver = new NackPP2PDeliver(self, id);
+				trigger(new Pp2pSend(event.getSender(), npp2pdeliver), pp2p);
+			} else {
+				rts.put(id, ts);
+				ReadAckPP2PDeliver rapp2pd = new ReadAckPP2PDeliver(self, id, wts.get(id), val.get(id), ts);
+			}
+		}
+	};
 }
