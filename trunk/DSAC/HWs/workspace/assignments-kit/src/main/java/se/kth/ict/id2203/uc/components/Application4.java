@@ -180,6 +180,10 @@ public class Application4 extends ComponentDefinition {
 				return (arg0[0] - arg1[0]);
 			}
 		});
+		logger.info("Decided values::");
+		for (Integer[] vals : decides) {
+			logger.info("  id: " + vals[0] + "\t | Val: " + vals[1]);
+		}
 	}
 
 	private void doPropose(String substring) {
