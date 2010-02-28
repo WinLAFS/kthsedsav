@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import se.kth.ict.id2203.ac.events.ACDecide;
+import se.kth.ict.id2203.ac.events.ACPropose;
 import se.kth.ict.id2203.ac.ports.AbortableConsensus;
 import se.kth.ict.id2203.beb.events.BebBroadcast;
 import se.kth.ict.id2203.beb.events.BebDecidedDeliver;
@@ -188,7 +189,7 @@ public class PaxosUniformConsensus extends ComponentDefinition {
 		 */
 		if ((leader == true) && (proposed.get(id) == false) && (!proposal.get(id).equals("-1"))) {
 			proposed.put(id, true);
-			trigger(new ACDecide(id, proposal.get(id)), ac);
+			trigger(new ACPropose(id, proposal.get(id)), ac);
 		}
 	}
 	
