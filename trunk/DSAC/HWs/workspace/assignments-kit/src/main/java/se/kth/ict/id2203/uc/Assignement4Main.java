@@ -4,10 +4,13 @@ import java.util.Set;
 
 import org.apache.log4j.PropertyConfigurator;
 
+import se.kth.ict.id2203.ac.RWAbortableConsensusInit;
 import se.kth.ict.id2203.ac.components.RWAbortableConsensus;
+import se.kth.ict.id2203.ac.ports.AbortableConsensus;
 import se.kth.ict.id2203.beb.BasicBroadcastInit;
 import se.kth.ict.id2203.beb.components.BasicBroadcast;
 import se.kth.ict.id2203.beb.ports.BEBPort;
+import se.kth.ict.id2203.eld.ELDInit;
 import se.kth.ict.id2203.eld.components.ELD;
 import se.kth.ict.id2203.pfd.ports.PerfectFailureDetector;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
@@ -18,6 +21,7 @@ import se.kth.ict.id2203.riwc.RIWCInit;
 import se.kth.ict.id2203.riwc.ports.AtomicRegister;
 import se.kth.ict.id2203.uc.components.Application4;
 import se.kth.ict.id2203.uc.components.PaxosUniformConsensus;
+import se.kth.ict.id2203.uc.ports.UniformConsensus;
 import se.sics.kompics.Component;
 import se.sics.kompics.ComponentDefinition;
 import se.sics.kompics.Fault;
@@ -33,6 +37,9 @@ import se.sics.kompics.timer.java.JavaTimer;
 
 public class Assignement4Main extends ComponentDefinition {
 
+	private static long delta = 1000;
+	private static long timeDelay = 1000;
+	
 	static {
 		PropertyConfigurator.configureAndWatch("log4j.properties");
 	}
@@ -86,21 +93,28 @@ public class Assignement4Main extends ComponentDefinition {
 		trigger(new MinaNetworkInit(self, 5), network.getControl());
 		trigger(new DelayLinkInit(topology), pp2p.getControl());
 		trigger(new BasicBroadcastInit(commandScript, neighborSet, self), beb.getControl());
-//		trigger(new Application3aInit(commandScript, neighborSet, self, numberOfRegister), app.getControl());
-//		trigger(new RIWCInit(commandScript, neighborSet, self, numberOfRegister), riwc.getControl()); 
+		trigger(new UCInit(commandScript, neighborSet, self), uc.getControl());
+		trigger(new RWAbortableConsensusInit(commandScript, neighborSet, self), ac.getControl());
+		trigger(new ELDInit(commandScript, neighborSet, self, (int) delta, (int) timeDelay) , eld.getControl());
 
 		// connect the components
-//		connect(app.getNegative(AtomicRegister.class), riwc.getPositive(AtomicRegister.class));
-//		connect(app.getNegative(Timer.class), time.getPositive(Timer.class));
-//		connect(riwc.getNegative(BEBPort.class), beb.getPositive(BEBPort.class));
-//		connect(riwc.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
-//		connect(pfd.getNegative(PerfectFailureDetector.class), riwc.getPositive(PerfectFailureDetector.class));
-//		connect(beb.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
-//		connect(pfd.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
-//		connect(pfd.getNegative(Timer.class), time.getPositive(Timer.class));
-//
-//		connect(pp2p.getNegative(Network.class), network.getPositive(Network.class));
-//		connect(pp2p.getNegative(Timer.class), time.getPositive(Timer.class));
+		connect(app.getNegative(UniformConsensus.class), uc.getPositive(UniformConsensus.class));
+		connect(app.getNegative(Timer.class), time.getPositive(Timer.class));
+		
+		connect(uc.getNegative(BEBPort.class), beb.getPositive(BEBPort.class));
+		connect(uc.getNegative(AbortableConsensus.class), ac.getPositive(AbortableConsensus.class));
+		connect(uc.getNegative(se.kth.ict.id2203.eld.ports.ELD.class), eld.getPositive(se.kth.ict.id2203.eld.ports.ELD.class));
+		
+		connect(ac.getNegative(BEBPort.class), beb.getPositive(BEBPort.class));
+		connect(ac.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
+		
+		connect(beb.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
+		
+		connect(eld.getNegative(PerfectPointToPointLink.class), pp2p.getPositive(PerfectPointToPointLink.class));
+		connect(eld.getNegative(Timer.class), time.getPositive(Timer.class));
+
+		connect(pp2p.getNegative(Network.class), network.getPositive(Network.class));
+		connect(pp2p.getNegative(Timer.class), time.getPositive(Timer.class));
 		
 	}
 
