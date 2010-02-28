@@ -4,12 +4,17 @@ import se.sics.kompics.Event;
 
 public class ACPropose extends Event{
 	private final String value;
+	private final int id;
 	
-	public ACPropose (String value){
+	public ACPropose (int id, String value){
+		this.id = id;
 		this.value = value;
 	}
 	
 	public String getValue() {
 		return value;
+	}
+	public int getId() {
+		return id;
 	}
 }
