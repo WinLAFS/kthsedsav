@@ -9,18 +9,18 @@ import org.slf4j.LoggerFactory;
 
 import se.kth.ict.id2203.ac.RWAbortableConsensusInit;
 import se.kth.ict.id2203.ac.beans.ReadSetBean;
+import se.kth.ict.id2203.ac.events.ACDecide;
 import se.kth.ict.id2203.ac.events.ACPropose;
 import se.kth.ict.id2203.ac.events.BEBACReadDeliver;
+import se.kth.ict.id2203.ac.events.BEBACWriteDeliver;
 import se.kth.ict.id2203.ac.events.NackPP2PDeliver;
 import se.kth.ict.id2203.ac.events.ReadAckPP2PDeliver;
 import se.kth.ict.id2203.ac.ports.AbortableConsensus;
-import se.kth.ict.id2203.application.Pp2pMessage;
 import se.kth.ict.id2203.beb.events.BebBroadcast;
 import se.kth.ict.id2203.beb.events.BebMessage;
 import se.kth.ict.id2203.beb.ports.BEBPort;
 import se.kth.ict.id2203.pp2p.PerfectPointToPointLink;
 import se.kth.ict.id2203.pp2p.Pp2pSend;
-import se.kth.ict.id2203.riwc.events.ACKMessage;
 import se.sics.kompics.ComponentDefinition;
 import se.sics.kompics.Handler;
 import se.sics.kompics.Negative;
@@ -58,7 +58,8 @@ public class RWAbortableConsensus extends ComponentDefinition {
 		subscribe(handleStart, control);
 		subscribe(handleACPropose, ac);
 		subscribe(handleBEBACReadDeliver, beb);
-//		subscribe(handleUnreliabeBroadcast, beb);
+		subscribe(handleNackPP2PDeliver, pp2p);
+		subscribe(handleReadAckPP2PDeliver, pp2p);
 	}
 	
 	Handler<RWAbortableConsensusInit> handleInit = new Handler<RWAbortableConsensusInit>() {
@@ -117,7 +118,54 @@ public class RWAbortableConsensus extends ComponentDefinition {
 			} else {
 				rts.put(id, ts);
 				ReadAckPP2PDeliver rapp2pd = new ReadAckPP2PDeliver(self, id, wts.get(id), val.get(id), ts);
+				trigger(new Pp2pSend(event.getSender(), rapp2pd), pp2p);
 			}
 		}
 	};
+	
+	Handler<NackPP2PDeliver> handleNackPP2PDeliver = new Handler<NackPP2PDeliver>() {
+		public void handle(NackPP2PDeliver event) {
+			int id = event.getId();
+			
+			readSet.put(id, new ArrayList<ReadSetBean>());
+			wAcks.put(id, 0);
+			trigger(new ACDecide(id, "-1"), ac);
+		}
+	};
+	
+	Handler<ReadAckPP2PDeliver> handleReadAckPP2PDeliver = new Handler<ReadAckPP2PDeliver>() {
+		public void handle(ReadAckPP2PDeliver event) {
+			int sentts = event.getTs();
+			int id = event.getId();
+			int ts = event.getWts();
+			String v = event.getVal();
+			
+			if(sentts==tstamp.get(id)){
+				ReadSetBean rsb = new ReadSetBean(ts, v);
+				readSet.get(id).add(rsb);
+				if(readSet.get(id).size() == majority){
+					ArrayList<ReadSetBean> beans = readSet.get(ts);
+					ReadSetBean largestBean = findLargestReadSetBean(beans);
+					if(!largestBean.getValue().equalsIgnoreCase("-1")){
+						tempValue.put(id, largestBean.getValue());
+					}
+					//trigger
+					BEBACWriteDeliver bebacWrite = new BEBACWriteDeliver(self, id, tstamp.get(id), tempValue.get(id));
+					trigger(new BebBroadcast(new BebMessage(self, bebacWrite), self), beb);
+				}
+			}
+		}
+	};
+	
+	private ReadSetBean findLargestReadSetBean(ArrayList<ReadSetBean> list){
+		ReadSetBean rsb = new ReadSetBean(0, "-1");
+		
+		for(ReadSetBean b :list){
+			if(b.getTimestamp()> rsb.getTimestamp()){
+				rsb = b;
+			}
+		}
+		
+		return rsb;
+	}
 }
