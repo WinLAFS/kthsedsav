@@ -190,6 +190,7 @@ public class Application4 extends ComponentDefinition {
 		String parts[] = substring.split("-");
 		int id = Integer.parseInt(parts[0]);
 		int val = Integer.parseInt(parts[1]);
+		logger.info("Start proposal. Id: " + id + " | Val: " + val);
 		trigger(new UCPropose(id, val+""), uc);
 	}
 
