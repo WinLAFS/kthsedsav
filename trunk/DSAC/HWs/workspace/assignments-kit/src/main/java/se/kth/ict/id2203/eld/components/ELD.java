@@ -59,6 +59,7 @@ public class ELD extends ComponentDefinition {
 			if (!leader.equals(newLeader)) {
 				leader = newLeader;
 				period += delta;
+				logger.info("NEW leader: " + leader);
 				trigger(new Trust(leader), eldPort);
 			}
 			initializeHeartbeat();
@@ -78,6 +79,7 @@ public class ELD extends ComponentDefinition {
 			candidateSet.addAll(neighborSet);
 			leader = selectLeader();
 			trigger(new Trust(leader), eldPort);
+			logger.info("NEW leader: " + leader);
 			period = timeDelay;
 			
 			initializeHeartbeat();
