@@ -30,7 +30,7 @@ import se.sics.kompics.address.Address;
  * @author Cosmin Arad <cosmin@sics.se>
  * @version $Id: Application0Init.java 516 2009-01-28 04:00:47Z cosmin $
  */
-public final class Application0Init extends Init {
+public class Application0Init extends Init {
 
 	private final String commandScript;
 
