@@ -130,6 +130,7 @@ public class RWAbortableConsensus extends ComponentDefinition {
 			
 			initInstance(id);
 			tstamp.put(id, tstamp.get(id)+neighborSet.size());
+			logger.info("Node "+self.getId()+" trying to write id "+id+" tstamp "+tstamp.get(id));
 			tempValue.put(id, v);
 			
 			BEBACReadDeliver bebd = new BEBACReadDeliver(id, tstamp.get(id), self);
@@ -180,6 +181,7 @@ public class RWAbortableConsensus extends ComponentDefinition {
 			
 			readSet.put(id, new ArrayList<ReadSetBean>());
 			wAcks.put(id, 0);
+			logger.info("NACK from "+event.getSource());
 			trigger(new ACDecide(id, "-1"), ac);
 		}
 	};
@@ -280,6 +282,7 @@ public class RWAbortableConsensus extends ComponentDefinition {
 				if(wAcks.get(id) == majority){
 					readSet.put(id, new ArrayList<ReadSetBean>());
 					wAcks.put(id, 0);
+					logger.info("ack for "+id + " value "+ tempValue.get(id));
 					trigger(new ACDecide(id, tempValue.get(id)), ac);
 				}
 			}
