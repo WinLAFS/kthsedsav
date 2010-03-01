@@ -39,7 +39,8 @@ public class Application4 extends ComponentDefinition {
 	private boolean waitingForOtherProposals = false;
 	private int numberOfOtherProposals = 0;
 	private long sleepTime;
-	private ArrayList<Integer[]> decides = new ArrayList<Integer[]>(); 
+	private ArrayList<Integer[]> decides = new ArrayList<Integer[]>();
+	private boolean sleptAlready = false;
 
 	/**
 	 * Instantiates a new application0.
@@ -79,14 +80,23 @@ public class Application4 extends ComponentDefinition {
 			numberOfOtherProposals--;
 			if (waitingForOtherProposals && (numberOfOtherProposals == 0)) {
 				waitingForOtherProposals = false;
-				logger.debug("> > Finished waiting for proposals. Sleep: " + sleepTime + "ms");
-				doSleep(sleepTime);
+				String outp = "> > Finished waiting for proposals.";
+				outp += sleptAlready ? "" : "Sleep: " + sleepTime + "ms";
+				logger.debug(outp);
+				if (!sleptAlready) {
+					doSleep(sleepTime);
+				}
+				else {
+					sleptAlready = false;
+					doNextCommand();
+				}
 			}
 			Integer[] vals = {event.getId(), Integer.parseInt(event.getValue())};
 			decides.add(vals);
 			logger.info("UCDecide. Id: " + event.getId() + " | Val: " + event.getValue());
 		}
 	};
+	
 	
 	
 
@@ -142,6 +152,7 @@ public class Application4 extends ComponentDefinition {
 			sleepTime = Integer.parseInt(cmd.substring(1));
 			if (numberOfOtherProposals == 0) {
 				doSleep(sleepTime);
+				sleptAlready = true;
 			} 
 			else {
 				logger.debug("> > Waiting for proposals to finish");
