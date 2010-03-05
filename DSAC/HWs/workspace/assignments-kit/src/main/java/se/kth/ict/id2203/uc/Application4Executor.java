@@ -20,6 +20,23 @@ public final class Application4Executor {
 				defaultLinks(1000, 0);
 			}
 		};
+		Topology topologyS = new Topology() {
+			{
+				node(1, "127.0.0.1", 22031);
+				node(2, "127.0.0.1", 22032);
+				node(3, "127.0.0.1", 22033);
+				link(1, 2, 3000, 0);
+//				link(2, 1, 1000, 0);
+				defaultLinks(1000, 0);
+			}
+		};
+		Topology topologyQ4 = new Topology() {
+			{
+				node(1, "127.0.0.1", 22031);
+				node(2, "127.0.0.1", 22032);
+				defaultLinks(2000, 0);
+			}
+		};
 		
 		Scenario scenarioEx3_1 = new Scenario(Assignement4Main.class) {
 			{;
@@ -52,10 +69,19 @@ public final class Application4Executor {
 			}
 		};
 
+		Scenario scenarioQ4 = new Scenario(Assignement4Main.class) {
+			{;
+			command(1, "S500:P1-12");
+			command(2, "S500:P1-100");
+			}
+		};
 		
 //		scenarioEmpty.executeOn(topologyEx3);
+		scenarioEx3_2.executeOn(topologyS);
+		//
+//		scenarioEmpty.executeOn(topologyEx3);
 //		scenarioEx3_1.executeOn(topologyEx3);
-		scenarioEx3_21.executeOn(topologyEx3);
+//		scenarioEx3_21.executeOn(topologyEx3);
 
 		System.exit(0);
 	}
