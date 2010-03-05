@@ -38,7 +38,7 @@ import se.sics.kompics.timer.java.JavaTimer;
 public class Assignement4Main extends ComponentDefinition {
 
 	private static long delta = 1000;
-	private static long timeDelay = 1000;
+	private static long timeDelay = 2000;
 	
 	static {
 		PropertyConfigurator.configureAndWatch("log4j.properties");
