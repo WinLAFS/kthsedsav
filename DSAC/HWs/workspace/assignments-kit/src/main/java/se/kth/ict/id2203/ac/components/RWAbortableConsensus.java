@@ -129,7 +129,7 @@ public class RWAbortableConsensus extends ComponentDefinition {
 			String v = event.getValue();
 			
 			initInstance(id);
-			tstamp.put(id, tstamp.get(id)+neighborSet.size());
+			tstamp.put(id, tstamp.get(id)+neighborSet.size()+1);
 			logger.info("Node "+self.getId()+" trying to write id "+id+" tstamp "+tstamp.get(id));
 			tempValue.put(id, v);
 			
