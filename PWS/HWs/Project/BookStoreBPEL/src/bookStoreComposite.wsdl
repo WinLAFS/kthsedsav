@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="bookStoreComposite" targetNamespace="http://j2ee.netbeans.org/wsdl/BookStoreBPEL/bookStoreComposite"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL/bookStoreComposite" xmlns:ns="http://bookpublisher/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/BookStoreBPEL/bookStoreComposite">
+            <xsd:import namespace="http://bookpublisher/" schemaLocation="BookStore2/wsdl/PublisherWSService_schema1.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="bookStoreCompositeOperationRequest">
+        <part name="username" type="xsd:string"/>
+        <part name="password" type="xsd:string"/>
+        <part name="searchTerm" type="xsd:string"/>
+        <part name="cretidCardNumber" type="xsd:string"/>
+    </message>
+    <message name="bookStoreCompositeOperationResponse">
+        <part name="buyResults" type="ns:sellReturnObj"/>
+    </message>
+    <portType name="bookStoreCompositePortType">
+        <operation name="bookStoreCompositeOperation">
+            <input name="input1" message="tns:bookStoreCompositeOperationRequest"/>
+            <output name="output1" message="tns:bookStoreCompositeOperationResponse"/>
+        </operation>
+    </portType>
+    <plnk:partnerLinkType name="bookStoreComposite">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="bookStoreCompositePortTypeRole" portType="tns:bookStoreCompositePortType"/>
+    </plnk:partnerLinkType>
+</definitions>
+
