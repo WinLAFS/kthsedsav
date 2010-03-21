@@ -78,7 +78,7 @@ public class PublisherWS {
     public void purchaseCancel(String bookISBN, CreditCard card) {
 
           try {
-            FileOutputStream fout = new FileOutputStream("order");
+            FileOutputStream fout = new FileOutputStream("order1");
             // Print a line of text
             // Close our output stream
             new PrintStream(fout).println("");
@@ -92,7 +92,7 @@ public class PublisherWS {
     public void orderBookPurchase(String bookISBN, CreditCard card, Location location) {
         try {
             //TODO
-            FileOutputStream fout = new FileOutputStream("order");
+            FileOutputStream fout = new FileOutputStream("order1");
             // Print a line of text
 
             String txt = bookISBN;
@@ -120,7 +120,7 @@ public class PublisherWS {
         try {
 
             // Open an input stream
-            FileInputStream fin = new FileInputStream("order");
+            FileInputStream fin = new FileInputStream("order1");
             // Close our input stream
             SellReturnObj sro = new SellReturnObj();
 
