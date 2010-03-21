@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://enterprise.netbeans.org/bpel/BookStoreBPEL2/bookStoreBPEL2" xmlns:ns2="BookStoreComposite2" xmlns:ns3="http://bookpublisher/" xmlns:ns4="http://authorization/" xmlns:ns5="http://bookpublishercallback/" xmlns:ns6="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" version="1.0">
+    <services binding-component="true">
+        <provides endpoint-name="casaPort2" interface-name="ns3:PublisherWS" service-name="ns2:BookStoreComposite2Service3"/>
+        <provides endpoint-name="Authorization" interface-name="ns4:AuthorizationWS" service-name="ns2:BookStoreComposite2Service2"/>
+        <consumes endpoint-name="casaPort3" interface-name="ns5:PublisherWSCallBack" service-name="ns2:BookStoreComposite2Service4"/>
+        <consumes endpoint-name="casaPort1" interface-name="ns6:ClientCompositePortType" service-name="ns2:BookStoreComposite2Service1"/>
+    </services>
+</jbi>

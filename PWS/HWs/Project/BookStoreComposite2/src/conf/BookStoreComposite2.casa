@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="BookStoreComposite2" xmlns:ns2="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" xmlns:ns3="http://authorization/" xmlns:ns4="http://bookpublisher/" xmlns:ns5="http://bookpublishercallback/" xmlns:ns6="http://enterprise.netbeans.org/bpel/BookStoreBPEL2/bookStoreBPEL2" xmlns:xlink="http://www.w3.org/2000/xlink">
+    <endpoints>
+        <endpoint endpoint-name="casaPort1" interface-name="ns2:ClientCompositePortType" name="endpoint1" service-name="ns1:BookStoreComposite2Service1"/>
+        <endpoint endpoint-name="Authorization" interface-name="ns3:AuthorizationWS" name="endpoint2" service-name="ns1:BookStoreComposite2Service2"/>
+        <endpoint endpoint-name="casaPort2" interface-name="ns4:PublisherWS" name="endpoint3" service-name="ns1:BookStoreComposite2Service3"/>
+        <endpoint endpoint-name="casaPort3" interface-name="ns5:PublisherWSCallBack" name="endpoint4" service-name="ns1:BookStoreComposite2Service4"/>
+        <endpoint display-name="PartnerLink1" endpoint-name="ClientCompositePortTypeRole_myRole" file-path="bookStoreBPEL2.bpel" interface-name="ns2:ClientCompositePortType" name="endpoint5" process-name="bookStoreBPEL2" service-name="ns6:PartnerLink1"/>
+        <endpoint display-name="PublisherCallbackLink" endpoint-name="PublisherWSCallBackRole_myRole" file-path="bookStoreBPEL2.bpel" interface-name="ns5:PublisherWSCallBack" name="endpoint6" process-name="bookStoreBPEL2" service-name="ns6:PublisherCallbackLink"/>
+        <endpoint display-name="AuthorizationPartnerLink" endpoint-name="AuthorizationWSRole_partnerRole" file-path="bookStoreBPEL2.bpel" interface-name="ns3:AuthorizationWS" name="endpoint7" process-name="bookStoreBPEL2" service-name="ns6:AuthorizationPartnerLink"/>
+        <endpoint display-name="PublisherLink" endpoint-name="PublisherWSRole_partnerRole" file-path="bookStoreBPEL2.bpel" interface-name="ns4:PublisherWS" name="endpoint8" process-name="bookStoreBPEL2" service-name="ns6:PublisherLink"/>
+    </endpoints>
+    <service-units>
+        <service-engine-service-unit artifacts-zip="BookStoreBPEL2.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="BookStoreComposite2-BookStoreBPEL2" unit-name="BookStoreBPEL2" unknown="false" x="133" y="111">
+            <provides endpoint="endpoint5"/>
+            <provides endpoint="endpoint6"/>
+            <consumes endpoint="endpoint7"/>
+            <consumes endpoint="endpoint8"/>
+        </service-engine-service-unit>
+        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="BookStoreComposite2-sun-http-binding" unit-name="sun-http-binding">
+            <ports>
+                <port bindingType="soap" x="67" y="148">
+                    <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service1']/port[@name='casaPort1'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint1"/>
+                    <provides endpoint="endpoint1"/>
+                </port>
+                <port bindingType="soap" x="67" y="391">
+                    <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service2']/port[@name='Authorization'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint2"/>
+                    <provides endpoint="endpoint2"/>
+                </port>
+                <port bindingType="soap" x="67" y="312">
+                    <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service3']/port[@name='casaPort2'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint3"/>
+                    <provides endpoint="endpoint3"/>
+                </port>
+                <port bindingType="soap" x="67" y="233">
+                    <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service4']/port[@name='casaPort3'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint4"/>
+                    <provides endpoint="endpoint4"/>
+                </port>
+            </ports>
+        </binding-component-service-unit>
+    </service-units>
+    <connections>
+        <connection consumer="endpoint8" provider="endpoint3" state="new"/>
+        <connection consumer="endpoint4" provider="endpoint6" state="new"/>
+        <connection consumer="endpoint1" provider="endpoint5" state="new"/>
+        <connection consumer="endpoint7" provider="endpoint2" state="new"/>
+    </connections>
+    <porttypes>
+        <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreBPEL2/ClientComposite.wsdl#xpointer(/definitions/portType[@name='ClientCompositePortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreBPEL2/PublisherWSCallBackService.wsdl#xpointer(/definitions/portType[@name='PublisherWSCallBack'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreComposite2.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/AuthorizationWSService.wsdl#xpointer(/definitions/portType[@name='AuthorizationWS'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherUSAWSService.wsdl#xpointer(/definitions/portType[@name='PublisherUSAWS'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherWSService.wsdl#xpointer(/definitions/portType[@name='PublisherWS'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/java/bookpublishercallback/wsdl/PublisherWSCallBackService.wsdl#xpointer(/definitions/portType[@name='PublisherWSCallBack'])" xlink:type="simple"/>
+    </porttypes>
+    <bindings>
+        <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/binding[@name='casaBinding3'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/binding[@name='casaBinding4'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreBPEL2/PublisherWSCallBackService.wsdl#xpointer(/definitions/binding[@name='PublisherWSCallBackPortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreComposite2.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreComposite2.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreComposite2.wsdl#xpointer(/definitions/binding[@name='casaBinding3'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreComposite2.wsdl#xpointer(/definitions/binding[@name='casaBinding4'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/AuthorizationWSService.wsdl#xpointer(/definitions/binding[@name='AuthorizationWSPortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherUSAWSService.wsdl#xpointer(/definitions/binding[@name='PublisherUSAWSPortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherWSService.wsdl#xpointer(/definitions/binding[@name='PublisherWSPortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/java/bookpublishercallback/wsdl/PublisherWSCallBackService.wsdl#xpointer(/definitions/binding[@name='PublisherWSCallBackPortBinding'])" xlink:type="simple"/>
+    </bindings>
+    <services>
+        <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service3'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service4'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreBPEL2/PublisherWSCallBackService.wsdl#xpointer(/definitions/service[@name='PublisherWSCallBackService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service3'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BookStoreComposite2.wsdl#xpointer(/definitions/service[@name='BookStoreComposite2Service4'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/AuthorizationWSService.wsdl#xpointer(/definitions/service[@name='AuthorizationWSService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherUSAWSService.wsdl#xpointer(/definitions/service[@name='PublisherUSAWSService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherWSService.wsdl#xpointer(/definitions/service[@name='PublisherWSService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/java/bookpublishercallback/wsdl/PublisherWSCallBackService.wsdl#xpointer(/definitions/service[@name='PublisherWSCallBackService'])" xlink:type="simple"/>
+    </services>
+    <regions>
+        <region name="WSDL Endpoints" width="150"/>
+        <region name="JBI Modules" width="500"/>
+        <region name="External Modules" width="200"/>
+    </regions>
+</casa>

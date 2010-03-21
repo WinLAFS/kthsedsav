@@ -1,0 +1,10 @@
+<soapenv:Envelope xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:book="BookStoreComposite2">
+  <soapenv:Body>
+    <book:ClientCompositeOperation>
+      <username>user1</username>
+      <password>pass1</password>
+      <bookSearchTerm>111</bookSearchTerm>
+      <creditCardNumber>?string?</creditCardNumber>
+    </book:ClientCompositeOperation>
+  </soapenv:Body>
+</soapenv:Envelope>

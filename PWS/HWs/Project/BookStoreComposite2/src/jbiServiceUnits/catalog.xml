@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="BookStore2/wsdl/AuthorizationWSService.wsdl" uri="BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/AuthorizationWSService.wsdl"/>
+    <system systemId="AuthorizationWSService_schema1.xsd" uri="BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/AuthorizationWSService_schema1.xsd"/>
+    <system systemId="BookStore2/wsdl/PublisherUSAWSService.wsdl" uri="BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherUSAWSService.wsdl"/>
+    <system systemId="PublisherUSAWSService_schema1.xsd" uri="BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherUSAWSService_schema1.xsd"/>
+    <system systemId="BookStore2/bookpublishercallback/wsdl/PublisherWSCallBackService.wsdl" uri="BookStoreBPEL2/src/_references/_projects/BookStore2/src/java/bookpublishercallback/wsdl/PublisherWSCallBackService.wsdl"/>
+    <system systemId="PublisherWSCallBackService_schema1.xsd" uri="BookStoreBPEL2/src/_references/_projects/BookStore2/src/java/bookpublishercallback/wsdl/PublisherWSCallBackService_schema1.xsd"/>
+    <system systemId="BookStore2/wsdl/PublisherWSService.wsdl" uri="BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherWSService.wsdl"/>
+    <system systemId="PublisherWSService_schema1.xsd" uri="BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherWSService_schema1.xsd"/>
+    <system systemId="BookStore2/wsdl/PublisherWSService_schema1.xsd" uri="BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherWSService_schema1.xsd"/>
+</catalog>
