@@ -25,7 +25,7 @@ public class AuthorizationWS {
         UsersDB usersDB = UsersDB.getInstance();
         UserDataWithPasswordBean udwpbb = usersDB.getUserData(username);
         if (udwpbb == null) {
-            return null;
+            return new UserDataBean("NOTLOGGED", "", "");
         }
         if (udwpbb.getPassword().equals(password)) {
             return udwpbb.getUserDataBean();
