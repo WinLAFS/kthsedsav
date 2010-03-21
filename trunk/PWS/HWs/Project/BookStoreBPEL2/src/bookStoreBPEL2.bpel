@@ -36,7 +36,7 @@
         </assign>
         <invoke name="InvokeLogin" partnerLink="AuthorizationPartnerLink" operation="login" xmlns:tns="http://authorization/" portType="tns:AuthorizationWS" inputVariable="LoginIn" outputVariable="LoginOut"/>
         <if name="If1">
-            <condition>$LoginOut.parameters/return/username = ''</condition>
+            <condition>$LoginOut.parameters/return/username = 'NOTLOGGED'</condition>
             <assign name="AssignNotLogged">
                 <copy>
                     <from>'Not logged'</from>
