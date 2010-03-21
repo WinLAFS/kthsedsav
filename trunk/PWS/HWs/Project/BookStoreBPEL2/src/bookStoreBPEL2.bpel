@@ -12,11 +12,20 @@
     <import namespace="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" location="ClientComposite.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/AuthorizationWSServiceWrapper" location="AuthorizationWSServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://authorization/" location="BookStore2/wsdl/AuthorizationWSService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/PublisherWSCallBackServiceWrapper" location="PublisherWSCallBackServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://bookpublishercallback/" location="PublisherWSCallBackService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/PublisherWSServiceWrapper" location="PublisherWSServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://bookpublisher/" location="BookStore2/wsdl/PublisherWSService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
         <partnerLink name="AuthorizationPartnerLink" xmlns:tns="http://enterprise.netbeans.org/bpel/AuthorizationWSServiceWrapper" partnerLinkType="tns:AuthorizationWSLinkType" partnerRole="AuthorizationWSRole"/>
+        <partnerLink name="PublisherLink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherWSServiceWrapper" partnerLinkType="tns:PublisherWSLinkType" partnerRole="PublisherWSRole"/>
         <partnerLink name="PartnerLink1" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" partnerLinkType="tns:ClientComposite" myRole="ClientCompositePortTypeRole"/>
+        <partnerLink name="PublisherCallbackLink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherWSCallBackServiceWrapper" partnerLinkType="tns:PublisherWSCallBackLinkType" myRole="PublisherWSCallBackRole"/>
     </partnerLinks>
     <variables>
+        <variable name="BookOrderDoneIn" xmlns:tns="http://bookpublishercallback/" messageType="tns:bookOrderDone"/>
+        <variable name="OrderBookPurchaseOut" xmlns:tns="http://bookpublisher/" messageType="tns:orderBookPurchaseResponse"/>
+        <variable name="OrderBookPurchaseIn" xmlns:tns="http://bookpublisher/" messageType="tns:orderBookPurchase"/>
         <variable name="LoginOut" xmlns:tns="http://authorization/" messageType="tns:loginResponse"/>
         <variable name="LoginIn" xmlns:tns="http://authorization/" messageType="tns:login"/>
         <variable name="ClientCompositeOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" messageType="tns:ClientCompositeOperationResponse"/>
@@ -44,16 +53,31 @@
                 </copy>
             </assign>
             <else>
-                <assign name="AssignLogged">
-                    <copy>
-                        <from>'logged :-)'</from>
-                        <to variable="ClientCompositeOperationOut" part="part1"/>
-                    </copy>
-                </assign>
+                <sequence name="Sequence1">
+                    <assign name="AssignLogged">
+                        <copy>
+                                <from>'logged :-)'</from>
+                                    <to variable="ClientCompositeOperationOut" part="part1"/>
+                            </copy>
+                        <copy>
+                            <from>'111'</from>
+                            <to>$OrderBookPurchaseIn.parameters/arg0</to>
+                        </copy>
+                    </assign>
+                    <invoke name="Invoke1" partnerLink="PublisherLink" operation="orderBookPurchase" xmlns:tns="http://bookpublisher/" portType="tns:PublisherWS" inputVariable="OrderBookPurchaseIn" outputVariable="OrderBookPurchaseOut"/>
+                    <receive name="Receive2" partnerLink="PublisherCallbackLink" operation="bookOrderDone" xmlns:tns="http://bookpublishercallback/" portType="tns:PublisherWSCallBack" createInstance="no" variable="BookOrderDoneIn"/>
+                    <assign name="Assign1">
+                        <copy>
+                            <from>$BookOrderDoneIn.parameters/arg0/bookInfo/ISBN</from>
+                            <to variable="ClientCompositeOperationOut" part="part1"/>
+                        </copy>
+                    </assign>
+                </sequence>
             </else>
         </if>
         <reply name="Reply1" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" variable="ClientCompositeOperationOut"/>
     </sequence>
 </process>
+
 
 
