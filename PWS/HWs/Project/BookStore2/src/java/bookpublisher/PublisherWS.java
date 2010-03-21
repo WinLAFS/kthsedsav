@@ -75,7 +75,7 @@ public class PublisherWS {
         return sro;
     }
 
-    public boolean purchaseCancel(String bookISBN, CreditCard card) {
+    public void purchaseCancel(String bookISBN, CreditCard card) {
 
           try {
             FileOutputStream fout = new FileOutputStream("order");
@@ -87,8 +87,6 @@ public class PublisherWS {
         } catch (IOException ex) {
             Logger.getLogger(PublisherWS.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return true;
     }
 
     public void orderBookPurchase(String bookISBN, CreditCard card, Location location) {
