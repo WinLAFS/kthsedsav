@@ -130,7 +130,10 @@ public class PublisherWS {
             // Close our output stream
             fout.close();
 
-            //callback code
+           
+            (new Thread() {
+                public void run(){
+                     //callback code
              String address = "http://localhost:11985/BookStoreComposite2Service4/casaPort3";
              PublisherWSCallBackService srv = new PublisherWSCallBackService();
              PublisherWSCallBack portType = srv.getPublisherWSCallBackPort();
@@ -169,19 +172,25 @@ public class PublisherWS {
 
             fin.close();
 
-            System.out.println("==========================="+address);
-            portType.bookOrderDone(sro);
-            System.out.println("==========================="+address);
+            System.out.println("===========================1"+address);
+
+                    portType.bookOrderDone(sro);
+                    System.out.println("===========================2"+address);
         } catch (IOException ex) {
             Logger.getLogger(PublisherWS.class.getName()).log(Level.SEVERE, null, ex);
 
         }
+                }
+            }).start();
+            System.out.println("===========================3");
+            
+            
              
 
         } catch (IOException ex) {
             Logger.getLogger(PublisherWS.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+System.out.println("===========================4");
     }
 
     public SellReturnObj bookOrderDone() {
