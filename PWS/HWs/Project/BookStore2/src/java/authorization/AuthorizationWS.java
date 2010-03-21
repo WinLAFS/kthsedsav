@@ -31,7 +31,7 @@ public class AuthorizationWS {
             return udwpbb.getUserDataBean();
         }
         else {
-            return null;
+            return new UserDataBean("NOTLOGGED", "", "");
         }
     }
 }
