@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <m:ClientCompositeOperationResponse xmlns:m="BookStoreComposite2" xmlns:msgns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite">
+      <sellReturnObj>
+        <bookInfo>
+          <author>Author1</author>
+          <ISBN>111</ISBN>
+          <price>99.0</price>
+          <title>Title1</title>
+        </bookInfo>
+        <invoice>
+          <bookISBN>111</bookISBN>
+          <buyer>user1</buyer>
+          <sum>0.0</sum>
+        </invoice>
+        <location>
+          <address>Sweden , MIT</address>
+          <city>Sweden , MIT</city>
+          <country>Sweden , MIT</country>
+          <postCode>Sweden , MIT</postCode>
+        </location>
+      </sellReturnObj>
+      <invoiceBean xmlns:msgns="http://shipmentcallback/" xmlns:ns0="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite">
+        <currency>SEK</currency>
+        <deliveryDate>2010-03-28T17:47:39.000+02:00</deliveryDate>
+        <destinationAddress>Sweden , MIT</destinationAddress>
+        <id>0</id>
+        <issueDate>2010-03-22T17:47:39.000+01:00</issueDate>
+        <price>90.0</price>
+        <text>Sending from USA to Sweden , MIT item with weight 10.0 kg.</text>
+      </invoiceBean>
+    </m:ClientCompositeOperationResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

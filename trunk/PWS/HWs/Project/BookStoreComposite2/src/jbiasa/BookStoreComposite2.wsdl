@@ -148,27 +148,6 @@
             </output>
         </operation>
     </binding>
-    <binding name="casaBinding1" type="ns:ClientCompositePortType">
-        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <operation name="ClientCompositeOperation">
-            <soap:operation/>
-            <input name="input1">
-                <soap:body use="literal" namespace="BookStoreComposite2"/>
-            </input>
-            <output name="output1">
-                <soap:body use="literal" namespace="BookStoreComposite2"/>
-            </output>
-            <fault name="NoBooksFound">
-                <soap:fault name="NoBooksFound" use="literal" namespace="BookStoreComposite2"/>
-            </fault>
-            <fault name="NoPublisherResponse">
-                <soap:fault name="NoPublisherResponse" use="literal" namespace="BookStoreComposite2"/>
-            </fault>
-            <fault name="NoShipmentResponse">
-                <soap:fault name="NoShipmentResponse" use="literal" namespace="BookStoreComposite2"/>
-            </fault>
-        </operation>
-    </binding>
     <binding name="casaBinding7" type="ns6:ShipmentServiceCallback">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <operation name="shipmentDone">
@@ -211,6 +190,30 @@
             </output>
         </operation>
     </binding>
+    <binding name="casaBinding1" type="ns:ClientCompositePortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="ClientCompositeOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="BookStoreComposite2"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="BookStoreComposite2"/>
+            </output>
+            <fault name="NoBooksFound">
+                <soap:fault name="NoBooksFound" use="literal" namespace="BookStoreComposite2"/>
+            </fault>
+            <fault name="NoPublisherResponse">
+                <soap:fault name="NoPublisherResponse" use="literal" namespace="BookStoreComposite2"/>
+            </fault>
+            <fault name="NoShipmentResponse">
+                <soap:fault name="NoShipmentResponse" use="literal" namespace="BookStoreComposite2"/>
+            </fault>
+            <fault name="NotLoggedResponse">
+                <soap:fault name="NotLoggedResponse" use="literal" namespace="BookStoreComposite2"/>
+            </fault>
+        </operation>
+    </binding>
     <service name="BookStoreComposite2Service2">
         <port name="Authorization" binding="tns:casaBinding2">
             <soap:address location="http://localhost:11983/BookStore2/AuthorizationWSService"/>
@@ -236,11 +239,6 @@
             <soap:address location="http://localhost:11986/BookStoreComposite2Service6/casaPort5"/>
         </port>
     </service>
-    <service name="BookStoreComposite2Service1">
-        <port name="casaPort1" binding="tns:casaBinding1">
-            <soap:address location="http://localhost:11893/BookStoreCompositeService1/casaPort1"/>
-        </port>
-    </service>
     <service name="BookStoreComposite2Service7">
         <port name="casaPort6" binding="tns:casaBinding7">
             <soap:address location="http://localhost:11987/BookStoreComposite2Service7/casaPort6"/>
@@ -251,7 +249,13 @@
             <soap:address location="http://localhost:11983/BookStore2/ShipmentServiceService"/>
         </port>
     </service>
+    <service name="BookStoreComposite2Service1">
+        <port name="casaPort1" binding="tns:casaBinding1">
+            <soap:address location="http://localhost:11893/BookStoreCompositeService1/casaPort1"/>
+        </port>
+    </service>
 </definitions>
+
 
 
 
