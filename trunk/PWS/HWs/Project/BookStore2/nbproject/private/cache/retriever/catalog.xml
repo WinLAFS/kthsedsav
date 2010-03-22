@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:11983/BookStore2/PublisherWSCallbackService_schema1.xsd" uri="localhost_11983/BookStore2/PublisherWSCallbackService_schema1.xsd"/>
+</catalog>
