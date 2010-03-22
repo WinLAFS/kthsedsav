@@ -32,6 +32,8 @@
         <partnerLink name="PublisherUSALink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSCallBackServiceWrapper" partnerLinkType="tns:PublisherUSAWSCallBackLinkType" myRole="PublisherUSAWSCallBackRole"/>
     </partnerLinks>
     <variables>
+        <variable name="baseCountry" type="xs:string"/>
+        <variable name="shipmentNeeded" type="xs:boolean"/>
         <variable name="PurchaseCancelOutUSA" messageType="ns2:purchaseCancelResponse"/>
         <variable name="PurchaseCancelInUSA" messageType="ns2:purchaseCancel"/>
         <variable name="BookOrderDoneInUSA" xmlns:tns="http://bookpublisherUSAcallback/" messageType="tns:bookOrderDone"/>
@@ -260,6 +262,10 @@ false - from publisherUSA</documentation>
                                     <from>$LoginOut.parameters/return/address</from>
                                     <to>$location/postCode</to>
                                 </copy>
+                                <copy>
+                                    <from>'Sweden'</from>
+                                    <to variable="baseCountry"/>
+                                </copy>
                             </assign>
                             <assign name="AssignLogged">
                                 <copy>
@@ -352,6 +358,10 @@ false - from publisherUSA</documentation>
                                         <from variable="ClientCompositeOperationIn" part="username"/>
                                         <to>$creditcardUSA/holderName</to>
                                     </copy>
+                                    <copy>
+                                        <from>'USA'</from>
+                                        <to variable="baseCountry"/>
+                                    </copy>
                                 </assign>
                                 <assign name="Assign17">
                                     <copy>
@@ -408,6 +418,15 @@ false - from publisherUSA</documentation>
                                 </pick>
                             </sequence>
                         </else>
+                    </if>
+                    <if name="If9">
+                        <condition>contains($LoginOut.parameters/return/address, $baseCountry)</condition>
+                        <assign name="Assign20">
+                            <copy>
+                                <from>concat($ClientCompositeOperationOut.part1, '----   cool and no shipment')</from>
+                                <to variable="ClientCompositeOperationOut" part="part1"/>
+                            </copy>
+                        </assign>
                     </if>
                 </sequence>
             </else>
