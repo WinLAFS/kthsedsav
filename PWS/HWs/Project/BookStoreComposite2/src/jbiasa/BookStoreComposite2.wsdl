@@ -156,8 +156,11 @@
             <output name="output1">
                 <soap:body use="literal" namespace="BookStoreComposite2"/>
             </output>
-            <fault name="fault1">
-                <soap:fault name="fault1" use="literal" namespace="BookStoreComposite2"/>
+            <fault name="NoBooksFound">
+                <soap:fault name="NoBooksFound" use="literal" namespace="BookStoreComposite2"/>
+            </fault>
+            <fault name="NoPublisherResponse">
+                <soap:fault name="NoPublisherResponse" use="literal" namespace="BookStoreComposite2"/>
             </fault>
         </operation>
     </binding>
