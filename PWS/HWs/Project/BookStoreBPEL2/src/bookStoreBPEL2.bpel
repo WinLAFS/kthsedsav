@@ -17,11 +17,17 @@
     <import namespace="http://enterprise.netbeans.org/bpel/PublisherWSServiceWrapper" location="PublisherWSServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://bookpublisher/" location="BookStore2/wsdl/PublisherWSService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties" location="WizardCorrelationProperties.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/PublisherUSAWSCallBackServiceWrapper" location="PublisherUSAWSCallBackServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://bookpublisherUSAcallback/" location="PublisherUSAWSCallBackService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/PublisherUSAWSServiceWrapper" location="PublisherUSAWSServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://bookpublisherUSA/" location="BookStore2/wsdl/PublisherUSAWSService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
         <partnerLink name="AuthorizationPartnerLink" xmlns:tns="http://enterprise.netbeans.org/bpel/AuthorizationWSServiceWrapper" partnerLinkType="tns:AuthorizationWSLinkType" partnerRole="AuthorizationWSRole"/>
         <partnerLink name="PublisherLink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherWSServiceWrapper" partnerLinkType="tns:PublisherWSLinkType" partnerRole="PublisherWSRole"/>
+        <partnerLink name="PublisherUSALink2" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSServiceWrapper" partnerLinkType="tns:PublisherUSAWSLinkType" partnerRole="PublisherUSAWSRole"/>
         <partnerLink name="PartnerLink1" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" partnerLinkType="tns:ClientComposite" myRole="ClientCompositePortTypeRole"/>
         <partnerLink name="PublisherCallbackLink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherWSCallBackServiceWrapper" partnerLinkType="tns:PublisherWSCallBackLinkType" myRole="PublisherWSCallBackRole"/>
+        <partnerLink name="PublisherUSALink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSCallBackServiceWrapper" partnerLinkType="tns:PublisherUSAWSCallBackLinkType" myRole="PublisherUSAWSCallBackRole"/>
     </partnerLinks>
     <variables>
         <variable name="BookOrderDoneIn" xmlns:tns="http://bookpublishercallback/" messageType="tns:bookOrderDone"/>
@@ -90,6 +96,7 @@
         <reply name="Reply1" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" variable="ClientCompositeOperationOut"/>
     </sequence>
 </process>
+
 
 
 
