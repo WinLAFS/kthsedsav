@@ -30,6 +30,8 @@
         <partnerLink name="PublisherUSALink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSCallBackServiceWrapper" partnerLinkType="tns:PublisherUSAWSCallBackLinkType" myRole="PublisherUSAWSCallBackRole"/>
     </partnerLinks>
     <variables>
+        <variable name="FoundBookAtPublisherUSA1" type="xs:boolean"/>
+        <variable name="FoundBookAtPublisher1" type="xs:boolean"/>
         <variable name="FindBooksOutUSA" xmlns:tns="http://bookpublisherUSA/" messageType="tns:findBooksResponse"/>
         <variable name="FindBooksInUSA" xmlns:tns="http://bookpublisherUSA/" messageType="tns:findBooks"/>
         <variable name="FindBooksOut" xmlns:tns="http://bookpublisher/" messageType="tns:findBooksResponse"/>
@@ -85,6 +87,23 @@
                                 </copy>
                             </assign>
                             <invoke name="Invoke2" partnerLink="PublisherLink" operation="findBooks" xmlns:tns="http://bookpublisher/" portType="tns:PublisherWS" inputVariable="FindBooksIn" outputVariable="FindBooksOut"/>
+                            <if name="If2">
+                                <condition>starts-with(concat($FindBooksOut.parameters/return/ISBN, '\\\'), '\\\')</condition>
+                                <assign name="Assign4">
+                                    <copy>
+                                        <from>false()</from>
+                                        <to variable="FoundBookAtPublisher1"/>
+                                    </copy>
+                                </assign>
+                                <else>
+                                    <assign name="Assign5">
+                                        <copy>
+                                            <from>true()</from>
+                                            <to variable="FoundBookAtPublisher1"/>
+                                        </copy>
+                                    </assign>
+                                </else>
+                            </if>
                         </sequence>
                         <sequence name="Sequence3">
                             <assign name="Assign3">
@@ -102,6 +121,23 @@
                                 </copy>
                             </assign>
                             <invoke name="Invoke3" partnerLink="PublisherUSALink2" operation="findBooks" xmlns:tns="http://bookpublisherUSA/" portType="tns:PublisherUSAWS" inputVariable="FindBooksInUSA" outputVariable="FindBooksOutUSA"/>
+                            <if name="If3">
+                                <condition>starts-with(concat($FindBooksOutUSA.parameters/return/ISBN, '////'), '////')</condition>
+                                <assign name="Assign6">
+                                    <copy>
+                                        <from>false()</from>
+                                        <to variable="FoundBookAtPublisherUSA1"/>
+                                    </copy>
+                                </assign>
+                                <else>
+                                    <assign name="Assign7">
+                                        <copy>
+                                            <from>true()</from>
+                                            <to variable="FoundBookAtPublisherUSA1"/>
+                                        </copy>
+                                    </assign>
+                                </else>
+                            </if>
                         </sequence>
                     </flow>
                     <assign name="AssignLogged">
@@ -136,6 +172,7 @@
         <reply name="Reply1" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" variable="ClientCompositeOperationOut"/>
     </sequence>
 </process>
+
 
 
 
