@@ -22,7 +22,7 @@ public class BooksUSADB {
         book1.setAuthor("Author1");
         book1.setISBN("111");
         book1.setTitle("Title1");
-        book1.setPrice(100);
+        book1.setPrice(99);
         books.add(book1);
 
         Book book2 = new Book();
