@@ -62,6 +62,7 @@
     </variables>
     <correlationSets>
         <correlationSet name="wzrd_set_Invoke1_Receive2" properties="ns0:wzrd_prop_arg0_ISBN"/>
+        <correlationSet name="wzrd_set_Invoke5_OnMessage_Pick2_bookOrderDone" properties="ns0:wzrd_prop_address_address"/>
     </correlationSets>
     <sequence>
         <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" variable="ClientCompositeOperationIn"></receive>
@@ -366,9 +367,16 @@ false - from publisherUSA</documentation>
                                         <to>$OrderBookPurchaseInUSA.parameters/arg2</to>
                                     </copy>
                                 </assign>
-                                <invoke name="Invoke5" partnerLink="PublisherUSALink2" operation="orderBookPurchase" portType="ns2:PublisherUSAWS" inputVariable="OrderBookPurchaseInUSA" outputVariable="OrderBookPurchaseOutUSA"/>
+                                <invoke name="Invoke5" partnerLink="PublisherUSALink2" operation="orderBookPurchase" portType="ns2:PublisherUSAWS" inputVariable="OrderBookPurchaseInUSA" outputVariable="OrderBookPurchaseOutUSA">
+                                    <correlations>
+                                        <correlation set="wzrd_set_Invoke5_OnMessage_Pick2_bookOrderDone" initiate="yes" pattern="request"/>
+                                    </correlations>
+                                </invoke>
                                 <pick name="Pick2">
                                     <onMessage partnerLink="PublisherUSALink" operation="bookOrderDone" xmlns:tns="http://bookpublisherUSAcallback/" portType="tns:PublisherUSAWSCallBack" variable="BookOrderDoneInUSA">
+                                        <correlations>
+                                            <correlation set="wzrd_set_Invoke5_OnMessage_Pick2_bookOrderDone" initiate="no"/>
+                                        </correlations>
                                         <assign name="Assign18">
                                             <copy>
                                                 <from>concat($BookOrderDoneInUSA.parameters/arg0/bookInfo/ISBN, $BookOrderDoneInUSA.parameters/arg0/bookInfo/price, $BookOrderDoneInUSA.parameters/arg0/invoice/buyer, $BookOrderDoneInUSA.parameters/arg0/invoice/sum, $BookOrderDoneInUSA.parameters/arg0/location/address)</from>
@@ -407,6 +415,7 @@ false - from publisherUSA</documentation>
         <reply name="Reply1" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" variable="ClientCompositeOperationOut"/>
     </sequence>
 </process>
+
 
 
 
