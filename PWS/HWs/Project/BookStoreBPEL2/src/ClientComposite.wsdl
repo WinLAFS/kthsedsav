@@ -2,8 +2,13 @@
 <definitions name="ClientComposite" targetNamespace="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite"
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
-    <types/>
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns0="http://bookpublishercallback/" xmlns:ns1="http://shipmentcallback/">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite">
+            <xsd:import namespace="http://bookpublishercallback/" schemaLocation="PublisherWSCallBackService_schema1.xsd"/>
+            <xsd:import namespace="http://shipmentcallback/" schemaLocation="ShipmentServiceCallbackService_schema1.xsd"/>
+        </xsd:schema>
+    </types>
     <message name="ClientCompositeOperationRequest">
         <part name="username" type="xsd:string"/>
         <part name="password" type="xsd:string"/>
@@ -21,6 +26,10 @@
     </message>
     <message name="NoShipmentResponseFault">
         <part name="message" type="xsd:string"/>
+    </message>
+    <message name="ClientCompositeOperationResponse2">
+        <part name="sellReturnObj" type="ns0:sellReturnObj"/>
+        <part name="invoiceBean" type="ns1:invoiceBean"/>
     </message>
     <portType name="ClientCompositePortType">
         <operation name="ClientCompositeOperation">
