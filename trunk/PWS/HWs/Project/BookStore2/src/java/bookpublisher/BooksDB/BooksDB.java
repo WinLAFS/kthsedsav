@@ -29,7 +29,7 @@ public class BooksDB {
         book2.setAuthor("Author2");
         book2.setISBN("222");
         book2.setTitle("Title2");
-        book2.setPrice(100);
+        book2.setPrice(50);
         books.add(book2);
 
         Book book3 = new Book();
