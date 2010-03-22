@@ -5,14 +5,16 @@
 
 package bookpublisherUSA;
 
-import bookpublisher.BooksDB.BooksDB;
-import bookpublisher.PublisherWS;
 import bookpublisher.objects.Book;
 import bookpublisher.objects.CreditCard;
 import bookpublisher.objects.Invoice;
 import bookpublisher.objects.Location;
 import bookpublisher.objects.SellReturnObj;
 import bookpublisherUSA.BoksDB.BooksUSADB;
+import bookpublisherusacallback.PublisherUSAWSCallBack;
+import bookpublisherusacallback.PublisherUSAWSCallBackService;
+import com.sun.xml.ws.developer.WSBindingProvider;
+import com.sun.xml.ws.api.message.Headers;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,6 +26,7 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebService;
+import javax.xml.namespace.QName;
 
 /**
  *
@@ -31,6 +34,20 @@ import javax.jws.WebService;
  */
 @WebService()
 public class PublisherUSAWS {
+
+
+    private static final String NS_ADDRESSING_2003 =
+"http://schemas.xmlsoap.org/ws/2003/03/addressing";
+    /** header : reply to. */
+    private static final String HEADER_REPLYTO = "ReplyTo";
+    /** header : address. */
+    private static final String HEADER_ADDRESS = "Address";
+    /** header : message id. */
+    private static final String HEADER_MESSAGEID = "MessageID";
+    /** header : relates to. */
+    private static final String HEADER_RELATESTO = "RelatesTo";
+
+    
     public List<Book> findBooks(String title, String author, String ISBN){
         //TODO add logic
 
@@ -77,26 +94,31 @@ public class PublisherUSAWS {
          return sro;
     }
 
-      public void purchaseCancel(String bookISBN, CreditCard card) {
+
+     public void purchaseCancel(String bookISBN, CreditCard card) {
 
           try {
-            FileOutputStream fout = new FileOutputStream("order");
+            FileOutputStream fout = new FileOutputStream("order1");
             // Print a line of text
             // Close our output stream
             new PrintStream(fout).println("");
             fout.close();
 
         } catch (IOException ex) {
-            Logger.getLogger(PublisherWS.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PublisherUSAWS.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void orderBookPurchase(String bookISBN, CreditCard card, Location location) {
         try {
             //TODO
-            FileOutputStream fout = new FileOutputStream("order");
+            FileOutputStream fout = new FileOutputStream("order1");
             // Print a line of text
 
+            if(card==null)
+                card = new CreditCard();
+            if(location==null)
+                location=new Location();
             String txt = bookISBN;
             txt += "|" + card.getHolderName();
             ArrayList<Book> books = BooksUSADB.getInstance().getBooks("", "", bookISBN);
@@ -112,17 +134,75 @@ public class PublisherUSAWS {
             // Close our output stream
             fout.close();
 
-        } catch (IOException ex) {
-            Logger.getLogger(PublisherWS.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
+            (new Thread() {
+                public void run(){
+                     //callback code
+             String address = "http://localhost:11986/BookStoreComposite2Service6/casaPort5";
+             PublisherUSAWSCallBackService srv = new PublisherUSAWSCallBackService();
+             PublisherUSAWSCallBack portType = srv.getPublisherUSAWSCallBackPort();
+             WSBindingProvider bp = (WSBindingProvider) portType;
+
+             bp.setAddress(address);
+             bp.setOutboundHeaders(Headers.create(new QName(NS_ADDRESSING_2003,HEADER_RELATESTO),"11"));
+
+              try {
+
+            // Open an input stream
+            FileInputStream fin = new FileInputStream("order1");
+            // Close our input stream
+
+            bookpublisherusacallback.SellReturnObj sro = new bookpublisherusacallback.SellReturnObj();
+
+            String txt2 = new DataInputStream(fin).readLine();
+            StringTokenizer st = new StringTokenizer(txt2, "|");
+
+            bookpublisherusacallback.Book book2 = new bookpublisherusacallback.Book();
+            String bookISBN2 = st.nextToken();
+            book2.setISBN(bookISBN2);
+            bookpublisherusacallback.Invoice invoice = new bookpublisherusacallback.Invoice();
+            invoice.setBookISBN(bookISBN2);
+            invoice.setBuyer(st.nextToken());
+            sro.setInvoice(invoice);
+            book2.setAuthor(st.nextToken());
+            book2.setTitle(st.nextToken());
+            book2.setPrice(new Double(st.nextToken()));
+            sro.setBookInfo(book2);
+            bookpublisherusacallback.Location location2 = new bookpublisherusacallback.Location();
+            location2.setAddress(st.nextToken());
+            location2.setCity(st.nextToken());
+            location2.setCountry(st.nextToken());
+            location2.setPostCode(st.nextToken());
+            sro.setLocation(location2);
+
+            fin.close();
+
+            System.out.println("usa===========================1"+address);
+
+                    portType.bookOrderDone(sro);
+                    System.out.println("usa===========================2"+address);
+        } catch (IOException ex) {
+            Logger.getLogger(PublisherUSAWS.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+                }
+            }).start();
+            System.out.println("usa===========================3");
+
+
+
+
+        } catch (IOException ex) {
+            Logger.getLogger(PublisherUSAWS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+System.out.println("usa===========================4");
     }
 
     public SellReturnObj bookOrderDone() {
         try {
 
             // Open an input stream
-            FileInputStream fin = new FileInputStream("order");
+            FileInputStream fin = new FileInputStream("order1");
             // Close our input stream
             SellReturnObj sro = new SellReturnObj();
 
