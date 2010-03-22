@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/BookStoreBPEL2/bookStoreBPEL2" xmlns:ns1="http://authorization/" xmlns:ns2="http://bookpublisher/" xmlns:ns3="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" xmlns:ns4="http://bookpublishercallback/" xmlns:ns5="http://www.sun.com/jbi/descriptor/service-unit" version="1.0">
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/BookStoreBPEL2/bookStoreBPEL2" xmlns:ns1="http://authorization/" xmlns:ns2="http://bookpublisher/" xmlns:ns3="http://bookpublisherUSA/" xmlns:ns4="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" xmlns:ns5="http://bookpublishercallback/" xmlns:ns6="http://bookpublisherUSAcallback/" xmlns:ns7="http://www.sun.com/jbi/descriptor/service-unit" version="1.0">
     <services binding-component="false">
-        <provides endpoint-name="ClientCompositePortTypeRole_myRole" interface-name="ns3:ClientCompositePortType" service-name="ns0:PartnerLink1">
-            <ns5:display-name>PartnerLink1</ns5:display-name>
-            <ns5:process-name>bookStoreBPEL2</ns5:process-name>
-            <ns5:file-path>bookStoreBPEL2.bpel</ns5:file-path>
+        <provides endpoint-name="ClientCompositePortTypeRole_myRole" interface-name="ns4:ClientCompositePortType" service-name="ns0:PartnerLink1">
+            <ns7:display-name>PartnerLink1</ns7:display-name>
+            <ns7:process-name>bookStoreBPEL2</ns7:process-name>
+            <ns7:file-path>bookStoreBPEL2.bpel</ns7:file-path>
         </provides>
-        <provides endpoint-name="PublisherWSCallBackRole_myRole" interface-name="ns4:PublisherWSCallBack" service-name="ns0:PublisherCallbackLink">
-            <ns5:display-name>PublisherCallbackLink</ns5:display-name>
-            <ns5:process-name>bookStoreBPEL2</ns5:process-name>
-            <ns5:file-path>bookStoreBPEL2.bpel</ns5:file-path>
+        <provides endpoint-name="PublisherWSCallBackRole_myRole" interface-name="ns5:PublisherWSCallBack" service-name="ns0:PublisherCallbackLink">
+            <ns7:display-name>PublisherCallbackLink</ns7:display-name>
+            <ns7:process-name>bookStoreBPEL2</ns7:process-name>
+            <ns7:file-path>bookStoreBPEL2.bpel</ns7:file-path>
+        </provides>
+        <provides endpoint-name="PublisherUSAWSCallBackRole_myRole" interface-name="ns6:PublisherUSAWSCallBack" service-name="ns0:PublisherUSALink">
+            <ns7:display-name>PublisherUSALink</ns7:display-name>
+            <ns7:process-name>bookStoreBPEL2</ns7:process-name>
+            <ns7:file-path>bookStoreBPEL2.bpel</ns7:file-path>
         </provides>
         <consumes endpoint-name="AuthorizationWSRole_partnerRole" interface-name="ns1:AuthorizationWS" service-name="ns0:AuthorizationPartnerLink">
-            <ns5:display-name>AuthorizationPartnerLink</ns5:display-name>
-            <ns5:process-name>bookStoreBPEL2</ns5:process-name>
-            <ns5:file-path>bookStoreBPEL2.bpel</ns5:file-path>
+            <ns7:display-name>AuthorizationPartnerLink</ns7:display-name>
+            <ns7:process-name>bookStoreBPEL2</ns7:process-name>
+            <ns7:file-path>bookStoreBPEL2.bpel</ns7:file-path>
         </consumes>
         <consumes endpoint-name="PublisherWSRole_partnerRole" interface-name="ns2:PublisherWS" service-name="ns0:PublisherLink">
-            <ns5:display-name>PublisherLink</ns5:display-name>
-            <ns5:process-name>bookStoreBPEL2</ns5:process-name>
-            <ns5:file-path>bookStoreBPEL2.bpel</ns5:file-path>
+            <ns7:display-name>PublisherLink</ns7:display-name>
+            <ns7:process-name>bookStoreBPEL2</ns7:process-name>
+            <ns7:file-path>bookStoreBPEL2.bpel</ns7:file-path>
+        </consumes>
+        <consumes endpoint-name="PublisherUSAWSRole_partnerRole" interface-name="ns3:PublisherUSAWS" service-name="ns0:PublisherUSALink2">
+            <ns7:display-name>PublisherUSALink2</ns7:display-name>
+            <ns7:process-name>bookStoreBPEL2</ns7:process-name>
+            <ns7:file-path>bookStoreBPEL2.bpel</ns7:file-path>
         </consumes>
     </services>
 </jbi>

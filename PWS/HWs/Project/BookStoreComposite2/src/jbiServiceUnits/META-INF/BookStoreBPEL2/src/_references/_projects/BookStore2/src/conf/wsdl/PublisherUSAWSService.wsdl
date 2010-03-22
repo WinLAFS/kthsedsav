@@ -24,6 +24,18 @@
   <message name="purchaseCancelResponse">
     <part name="parameters" element="tns:purchaseCancelResponse"/>
   </message>
+  <message name="orderBookPurchase">
+    <part name="parameters" element="tns:orderBookPurchase"/>
+  </message>
+  <message name="orderBookPurchaseResponse">
+    <part name="parameters" element="tns:orderBookPurchaseResponse"/>
+  </message>
+  <message name="bookOrderDone">
+    <part name="parameters" element="tns:bookOrderDone"/>
+  </message>
+  <message name="bookOrderDoneResponse">
+    <part name="parameters" element="tns:bookOrderDoneResponse"/>
+  </message>
   <portType name="PublisherUSAWS">
     <operation name="findBooks">
       <input message="tns:findBooks"/>
@@ -36,6 +48,14 @@
     <operation name="purchaseCancel">
       <input message="tns:purchaseCancel"/>
       <output message="tns:purchaseCancelResponse"/>
+    </operation>
+    <operation name="orderBookPurchase">
+      <input message="tns:orderBookPurchase"/>
+      <output message="tns:orderBookPurchaseResponse"/>
+    </operation>
+    <operation name="bookOrderDone">
+      <input message="tns:bookOrderDone"/>
+      <output message="tns:bookOrderDoneResponse"/>
     </operation>
   </portType>
   <binding name="PublisherUSAWSPortBinding" type="tns:PublisherUSAWS">
@@ -59,6 +79,24 @@
       </output>
     </operation>
     <operation name="purchaseCancel">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="orderBookPurchase">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="bookOrderDone">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

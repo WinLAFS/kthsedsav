@@ -35,6 +35,14 @@
                 <provider endpoint-name="PublisherWSCallBackRole_myRole" service-name="ns1:PublisherCallbackLink"/>
             </connection>
             <connection>
+                <consumer endpoint-name="casaPort5" service-name="ns2:BookStoreComposite2Service6"/>
+                <provider endpoint-name="PublisherUSAWSCallBackRole_myRole" service-name="ns1:PublisherUSALink"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="PublisherUSAWSRole_partnerRole" service-name="ns1:PublisherUSALink2"/>
+                <provider endpoint-name="casaPort4" service-name="ns2:BookStoreComposite2Service5"/>
+            </connection>
+            <connection>
                 <consumer endpoint-name="casaPort1" service-name="ns2:BookStoreComposite2Service1"/>
                 <provider endpoint-name="ClientCompositePortTypeRole_myRole" service-name="ns1:PartnerLink1"/>
             </connection>
