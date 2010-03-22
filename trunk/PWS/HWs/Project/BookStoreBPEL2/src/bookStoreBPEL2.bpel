@@ -30,6 +30,8 @@
         <partnerLink name="PublisherUSALink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSCallBackServiceWrapper" partnerLinkType="tns:PublisherUSAWSCallBackLinkType" myRole="PublisherUSAWSCallBackRole"/>
     </partnerLinks>
     <variables>
+        <variable name="FindBooksOutUSA" xmlns:tns="http://bookpublisherUSA/" messageType="tns:findBooksResponse"/>
+        <variable name="FindBooksInUSA" xmlns:tns="http://bookpublisherUSA/" messageType="tns:findBooks"/>
         <variable name="FindBooksOut" xmlns:tns="http://bookpublisher/" messageType="tns:findBooksResponse"/>
         <variable name="FindBooksIn" xmlns:tns="http://bookpublisher/" messageType="tns:findBooks"/>
         <variable name="BookOrderDoneIn" xmlns:tns="http://bookpublishercallback/" messageType="tns:bookOrderDone"/>
@@ -84,6 +86,23 @@
                             </assign>
                             <invoke name="Invoke2" partnerLink="PublisherLink" operation="findBooks" xmlns:tns="http://bookpublisher/" portType="tns:PublisherWS" inputVariable="FindBooksIn" outputVariable="FindBooksOut"/>
                         </sequence>
+                        <sequence name="Sequence3">
+                            <assign name="Assign3">
+                                <copy>
+                                    <from variable="ClientCompositeOperationIn" part="bookSearchTerm"/>
+                                    <to>$FindBooksInUSA.parameters/arg0</to>
+                                </copy>
+                                <copy>
+                                    <from variable="ClientCompositeOperationIn" part="bookSearchTerm"/>
+                                    <to>$FindBooksInUSA.parameters/arg1</to>
+                                </copy>
+                                <copy>
+                                    <from variable="ClientCompositeOperationIn" part="bookSearchTerm"/>
+                                    <to>$FindBooksInUSA.parameters/arg2</to>
+                                </copy>
+                            </assign>
+                            <invoke name="Invoke3" partnerLink="PublisherUSALink2" operation="findBooks" xmlns:tns="http://bookpublisherUSA/" portType="tns:PublisherUSAWS" inputVariable="FindBooksInUSA" outputVariable="FindBooksOutUSA"/>
+                        </sequence>
                     </flow>
                     <assign name="AssignLogged">
                         <copy>
@@ -117,6 +136,7 @@
         <reply name="Reply1" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" variable="ClientCompositeOperationOut"/>
     </sequence>
 </process>
+
 
 
 
