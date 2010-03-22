@@ -5,10 +5,6 @@
 package shipment;
 
 import bookpublisher.PublisherWS;
-import bookpublisher.objects.Book;
-import bookpublisher.objects.Invoice;
-import bookpublisher.objects.Location;
-import bookpublisher.objects.SellReturnObj;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -36,7 +32,7 @@ public class ShipmentService {
             return;
         }
 
-        String[] bannedAreas = new String[]{"us", "asia", "france", "greece"};
+        String[] bannedAreas = new String[]{ "asia", "france", "greece"};
 
         for (String area : bannedAreas) {
             if (addressDestination.toLowerCase().indexOf(area) >= 0) {
@@ -92,9 +88,9 @@ public class ShipmentService {
             String txt = invoiceBean.getCurrency();
             txt += "|" + invoiceBean.getDestinationAddress();
             txt += "|" + invoiceBean.getText();
-            txt += "|" + invoiceBean.getDeliveryDate();
+            txt += "|" + invoiceBean.getDeliveryDate().toGMTString();
             txt += "|" + invoiceBean.getId();
-            txt += "|" + invoiceBean.getIssueDate();
+            txt += "|" + invoiceBean.getIssueDate().toGMTString();
             txt += "|" + invoiceBean.getPrice();
             new PrintStream(fout).println(txt);
             fout.close();
