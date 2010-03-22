@@ -32,6 +32,11 @@
         <partnerLink name="PublisherUSALink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSCallBackServiceWrapper" partnerLinkType="tns:PublisherUSAWSCallBackLinkType" myRole="PublisherUSAWSCallBackRole"/>
     </partnerLinks>
     <variables>
+        <variable name="PurchaseCancelOutUSA" messageType="ns2:purchaseCancelResponse"/>
+        <variable name="PurchaseCancelInUSA" messageType="ns2:purchaseCancel"/>
+        <variable name="BookOrderDoneInUSA" xmlns:tns="http://bookpublisherUSAcallback/" messageType="tns:bookOrderDone"/>
+        <variable name="OrderBookPurchaseOutUSA" messageType="ns2:orderBookPurchaseResponse"/>
+        <variable name="OrderBookPurchaseInUSA" messageType="ns2:orderBookPurchase"/>
         <variable name="locationUSA" type="ns2:location"/>
         <variable name="creditcardUSA" type="ns2:creditCard"/>
         <variable name="NoPublisherResponseFaultVar" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" messageType="tns:NoResponseFromPublisherFault"/>
@@ -347,6 +352,52 @@ false - from publisherUSA</documentation>
                                         <to>$creditcardUSA/holderName</to>
                                     </copy>
                                 </assign>
+                                <assign name="Assign17">
+                                    <copy>
+                                        <from>$FindBooksOutUSA.parameters/return/ISBN</from>
+                                        <to>$OrderBookPurchaseInUSA.parameters/arg0</to>
+                                    </copy>
+                                    <copy>
+                                        <from variable="creditcardUSA"/>
+                                        <to>$OrderBookPurchaseInUSA.parameters/arg1</to>
+                                    </copy>
+                                    <copy>
+                                        <from variable="locationUSA"/>
+                                        <to>$OrderBookPurchaseInUSA.parameters/arg2</to>
+                                    </copy>
+                                </assign>
+                                <invoke name="Invoke5" partnerLink="PublisherUSALink2" operation="orderBookPurchase" portType="ns2:PublisherUSAWS" inputVariable="OrderBookPurchaseInUSA" outputVariable="OrderBookPurchaseOutUSA"/>
+                                <pick name="Pick2">
+                                    <onMessage partnerLink="PublisherUSALink" operation="bookOrderDone" xmlns:tns="http://bookpublisherUSAcallback/" portType="tns:PublisherUSAWSCallBack" variable="BookOrderDoneInUSA">
+                                        <assign name="Assign18">
+                                            <copy>
+                                                <from>concat($BookOrderDoneInUSA.parameters/arg0/bookInfo/ISBN, $BookOrderDoneInUSA.parameters/arg0/bookInfo/price, $BookOrderDoneInUSA.parameters/arg0/invoice/buyer, $BookOrderDoneInUSA.parameters/arg0/invoice/sum, $BookOrderDoneInUSA.parameters/arg0/location/address)</from>
+                                                <to variable="ClientCompositeOperationOut" part="part1"/>
+                                            </copy>
+                                        </assign>
+                                    </onMessage>
+                                    <onAlarm>
+                                        <for>'P0Y0M0DT0H0M20.0S'</for>
+                                        <sequence name="Sequence8">
+                                            <assign name="Assign19">
+                                                <copy>
+                                                    <from variable="ClientCompositeOperationIn" part="bookSearchTerm"/>
+                                                    <to>$PurchaseCancelInUSA.parameters/arg0</to>
+                                                </copy>
+                                                <copy>
+                                                    <from variable="creditcardUSA"/>
+                                                    <to>$PurchaseCancelInUSA.parameters/arg1</to>
+                                                </copy>
+                                                <copy>
+                                                    <from>'No book from publisher USA, LOOOOOSER!!!'</from>
+                                                    <to variable="NoPublisherResponseFaultVar" part="message"/>
+                                                </copy>
+                                            </assign>
+                                            <invoke name="Invoke6" partnerLink="PublisherUSALink2" operation="purchaseCancel" portType="ns2:PublisherUSAWS" inputVariable="PurchaseCancelInUSA" outputVariable="PurchaseCancelOutUSA"/>
+                                            <reply name="Reply4" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" faultName="tns:NoPublisherResponse" variable="NoPublisherResponseFaultVar"/>
+                                        </sequence>
+                                    </onAlarm>
+                                </pick>
                             </sequence>
                         </else>
                     </if>
