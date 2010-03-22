@@ -4,18 +4,22 @@
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WizardCorrelationProperties.wsdl" targetNamespace="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:ns="http://bookpublishercallback/" xmlns:ns1="http://bookpublisher/" xmlns:ns2="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" xmlns:tns="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties" xmlns:ns3="http://bookpublisherUSA/" xmlns:ns4="http://bookpublisherUSAcallback/">
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WizardCorrelationProperties.wsdl" targetNamespace="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:ns="http://bookpublishercallback/" xmlns:ns1="http://bookpublisher/" xmlns:ns2="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" xmlns:ns3="http://bookpublisherUSA/" xmlns:ns4="http://bookpublisherUSAcallback/" xmlns:tns="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties" xmlns:ns5="http://shipment/" xmlns:ns6="http://shipmentcallback/">
     <import namespace="http://bookpublishercallback/" location="PublisherWSCallBackService.wsdl"/>
     <import namespace="http://bookpublisher/" location="BookStore2/wsdl/PublisherWSService.wsdl"/>
     <import namespace="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" location="ClientComposite.wsdl"/>
     <import namespace="http://bookpublisherUSA/" location="BookStore2/wsdl/PublisherUSAWSService.wsdl"/>
     <import namespace="http://bookpublisherUSAcallback/" location="PublisherUSAWSCallBackService.wsdl"/>
+    <import namespace="http://shipment/" location="BookStore2/wsdl/ShipmentServiceService.wsdl"/>
+    <import namespace="http://shipmentcallback/" location="ShipmentServiceCallbackService.wsdl"/>
     <types>
         <xsd:schema targetNamespace="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties">
             <xsd:import namespace="http://bookpublishercallback/" schemaLocation="PublisherWSCallBackService_schema1.xsd"/>
             <xsd:import namespace="http://bookpublisher/" schemaLocation="BookStore2/wsdl/PublisherWSService_schema1.xsd"/>
             <xsd:import namespace="http://bookpublisherUSA/" schemaLocation="BookStore2/wsdl/PublisherUSAWSService_schema1.xsd"/>
             <xsd:import namespace="http://bookpublisherUSAcallback/" schemaLocation="PublisherUSAWSCallBackService_schema1.xsd"/>
+            <xsd:import namespace="http://shipment/" schemaLocation="BookStore2/wsdl/ShipmentServiceService_schema1.xsd"/>
+            <xsd:import namespace="http://shipmentcallback/" schemaLocation="ShipmentServiceCallbackService_schema1.xsd"/>
         </xsd:schema>
     </types>
     <vprop:property name="wzrd_prop_ISBN_arg0" type="xsd:string"/>
@@ -44,7 +48,15 @@
     <vprop:propertyAlias propertyName="tns:wzrd_prop_address_address" messageType="ns4:bookOrderDone" part="parameters">
         <vprop:query>/ns4:bookOrderDone/arg0/location/address</vprop:query>
     </vprop:propertyAlias>
+    <vprop:property name="wzrd_prop_arg1_destinationAddress" type="xsd:string"/>
+    <vprop:propertyAlias propertyName="tns:wzrd_prop_arg1_destinationAddress" messageType="ns5:orderShipment" part="parameters">
+        <vprop:query>/ns5:orderShipment/arg1</vprop:query>
+    </vprop:propertyAlias>
+    <vprop:propertyAlias propertyName="tns:wzrd_prop_arg1_destinationAddress" messageType="ns6:shipmentDone" part="parameters">
+        <vprop:query>/ns6:shipmentDone/arg0/destinationAddress</vprop:query>
+    </vprop:propertyAlias>
 </definitions>
+
 
 
 

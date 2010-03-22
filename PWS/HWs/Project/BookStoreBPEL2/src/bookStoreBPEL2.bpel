@@ -23,15 +23,27 @@
     <import namespace="http://bookpublisherUSA/" location="BookStore2/wsdl/PublisherUSAWSService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://bookpublisher/" location="BookStore2/wsdl/PublisherWSService_schema1.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
     <import namespace="http://bookpublisherUSA/" location="BookStore2/wsdl/PublisherUSAWSService_schema1.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/ShipmentServiceServiceWrapper" location="ShipmentServiceServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://shipment/" location="BookStore2/wsdl/ShipmentServiceService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/ShipmentServiceCallbackServiceWrapper" location="ShipmentServiceCallbackServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://shipmentcallback/" location="ShipmentServiceCallbackService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
         <partnerLink name="AuthorizationPartnerLink" xmlns:tns="http://enterprise.netbeans.org/bpel/AuthorizationWSServiceWrapper" partnerLinkType="tns:AuthorizationWSLinkType" partnerRole="AuthorizationWSRole"/>
         <partnerLink name="PublisherLink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherWSServiceWrapper" partnerLinkType="tns:PublisherWSLinkType" partnerRole="PublisherWSRole"/>
         <partnerLink name="PublisherUSALink2" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSServiceWrapper" partnerLinkType="tns:PublisherUSAWSLinkType" partnerRole="PublisherUSAWSRole"/>
+        <partnerLink name="ShipmentLink" xmlns:tns="http://enterprise.netbeans.org/bpel/ShipmentServiceServiceWrapper" partnerLinkType="tns:ShipmentServiceLinkType" partnerRole="ShipmentServiceRole"/>
         <partnerLink name="PartnerLink1" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" partnerLinkType="tns:ClientComposite" myRole="ClientCompositePortTypeRole"/>
         <partnerLink name="PublisherCallbackLink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherWSCallBackServiceWrapper" partnerLinkType="tns:PublisherWSCallBackLinkType" myRole="PublisherWSCallBackRole"/>
         <partnerLink name="PublisherUSALink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSCallBackServiceWrapper" partnerLinkType="tns:PublisherUSAWSCallBackLinkType" myRole="PublisherUSAWSCallBackRole"/>
+        <partnerLink name="ShipmentCallbackLink" xmlns:tns="http://enterprise.netbeans.org/bpel/ShipmentServiceCallbackServiceWrapper" partnerLinkType="tns:ShipmentServiceCallbackLinkType" myRole="ShipmentServiceCallbackRole"/>
     </partnerLinks>
     <variables>
+        <variable name="NoShipmentResponseFaultVar" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" messageType="tns:NoShipmentResponseFault"/>
+        <variable name="CancelShipmentOut" xmlns:tns="http://shipment/" messageType="tns:cancelShipmentResponse"/>
+        <variable name="CancelShipmentIn" xmlns:tns="http://shipment/" messageType="tns:cancelShipment"/>
+        <variable name="ShipmentDoneIn" xmlns:tns="http://shipmentcallback/" messageType="tns:shipmentDone"/>
+        <variable name="OrderShipmentOut" xmlns:tns="http://shipment/" messageType="tns:orderShipmentResponse"/>
+        <variable name="OrderShipmentIn" xmlns:tns="http://shipment/" messageType="tns:orderShipment"/>
         <variable name="baseCountry" type="xs:string"/>
         <variable name="shipmentNeeded" type="xs:boolean"/>
         <variable name="PurchaseCancelOutUSA" messageType="ns2:purchaseCancelResponse"/>
@@ -65,6 +77,7 @@
     <correlationSets>
         <correlationSet name="wzrd_set_Invoke1_Receive2" properties="ns0:wzrd_prop_arg0_ISBN"/>
         <correlationSet name="wzrd_set_Invoke5_OnMessage_Pick2_bookOrderDone" properties="ns0:wzrd_prop_address_address"/>
+        <correlationSet name="wzrd_set_Invoke7_OnMessage_Pick3_shipmentDone" properties="ns0:wzrd_prop_arg1_destinationAddress"/>
     </correlationSets>
     <sequence>
         <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" variable="ClientCompositeOperationIn"></receive>
@@ -427,6 +440,63 @@ false - from publisherUSA</documentation>
                                 <to variable="ClientCompositeOperationOut" part="part1"/>
                             </copy>
                         </assign>
+                        <else>
+                            <sequence name="Sequence9">
+                                <assign name="Assign21">
+                                    <copy>
+                                        <from variable="baseCountry"/>
+                                        <to>$OrderShipmentIn.parameters/arg0</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$LoginOut.parameters/return/address</from>
+                                        <to>$OrderShipmentIn.parameters/arg1</to>
+                                    </copy>
+                                    <copy>
+                                        <from>10</from>
+                                        <to>$OrderShipmentIn.parameters/arg2</to>
+                                    </copy>
+                                    <copy>
+                                        <from variable="ClientCompositeOperationIn" part="creditCardNumber"/>
+                                        <to>$OrderShipmentIn.parameters/arg3</to>
+                                    </copy>
+                                </assign>
+                                <invoke name="Invoke7" partnerLink="ShipmentLink" operation="orderShipment" xmlns:tns="http://shipment/" portType="tns:ShipmentService" inputVariable="OrderShipmentIn" outputVariable="OrderShipmentOut">
+                                    <correlations>
+                                        <correlation set="wzrd_set_Invoke7_OnMessage_Pick3_shipmentDone" initiate="yes" pattern="request"/>
+                                    </correlations>
+                                </invoke>
+                                <pick name="Pick3">
+                                    <onMessage partnerLink="ShipmentCallbackLink" operation="shipmentDone" xmlns:tns="http://shipmentcallback/" portType="tns:ShipmentServiceCallback" variable="ShipmentDoneIn">
+                                        <correlations>
+                                            <correlation set="wzrd_set_Invoke7_OnMessage_Pick3_shipmentDone" initiate="no"/>
+                                        </correlations>
+                                        <assign name="Assign22">
+                                            <copy>
+                                                <from>concat($ClientCompositeOperationOut.part1, ' ---- ', $ShipmentDoneIn.parameters/arg0/deliveryDate, $ShipmentDoneIn.parameters/arg0/destinationAddress, $ShipmentDoneIn.parameters/arg0/text, $ShipmentDoneIn.parameters/arg0/issueDate)</from>
+                                                <to variable="ClientCompositeOperationOut" part="part1"/>
+                                            </copy>
+                                        </assign>
+                                    </onMessage>
+                                    <onAlarm>
+                                        <for>'P0Y0M0DT0H0M20.0S'</for>
+                                        <sequence name="Sequence10">
+                                            <assign name="Assign23">
+                                                <copy>
+                                                    <from>'cancel'</from>
+                                                    <to>$CancelShipmentIn.parameters/arg0</to>
+                                                </copy>
+                                                <copy>
+                                                    <from>'No Shipment Response!!!! Fault!'</from>
+                                                    <to variable="NoShipmentResponseFaultVar" part="message"/>
+                                                </copy>
+                                            </assign>
+                                            <invoke name="Invoke8" partnerLink="ShipmentLink" operation="cancelShipment" xmlns:tns="http://shipment/" portType="tns:ShipmentService" inputVariable="CancelShipmentIn" outputVariable="CancelShipmentOut"/>
+                                            <reply name="Reply5" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" faultName="tns:NoShipmentResponse" variable="NoShipmentResponseFaultVar"/>
+                                        </sequence>
+                                    </onAlarm>
+                                </pick>
+                            </sequence>
+                        </else>
                     </if>
                 </sequence>
             </else>
@@ -434,6 +504,8 @@ false - from publisherUSA</documentation>
         <reply name="Reply1" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" variable="ClientCompositeOperationOut"/>
     </sequence>
 </process>
+
+
 
 
 
