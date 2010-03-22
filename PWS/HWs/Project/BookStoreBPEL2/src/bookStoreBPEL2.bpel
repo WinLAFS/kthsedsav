@@ -30,6 +30,7 @@
         <partnerLink name="PublisherUSALink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSCallBackServiceWrapper" partnerLinkType="tns:PublisherUSAWSCallBackLinkType" myRole="PublisherUSAWSCallBackRole"/>
     </partnerLinks>
     <variables>
+        <variable name="OrderFromPublisher1" type="xs:boolean"/>
         <variable name="FoundBookAtPublisherUSA1" type="xs:boolean"/>
         <variable name="FoundBookAtPublisher1" type="xs:boolean"/>
         <variable name="FindBooksOutUSA" xmlns:tns="http://bookpublisherUSA/" messageType="tns:findBooksResponse"/>
@@ -140,6 +141,54 @@
                             </if>
                         </sequence>
                     </flow>
+                    <if name="If4">
+                        <documentation>both have a book</documentation>
+                        <condition>$FoundBookAtPublisherUSA1 and $FoundBookAtPublisher1</condition>
+                        <if name="If5">
+                            <documentation>comparing prices
+if true - publisherusa
+if false - publisher1</documentation>
+                            <condition>$FindBooksOut.parameters/return/price &gt; $FindBooksOutUSA.parameters/return/price</condition>
+                            <assign name="Assign8">
+                                <copy>
+                                    <from>false()</from>
+                                    <to variable="OrderFromPublisher1"/>
+                                </copy>
+                            </assign>
+                            <else>
+                                <assign name="Assign9">
+                                    <copy>
+                                        <from>true()</from>
+                                        <to variable="OrderFromPublisher1"/>
+                                    </copy>
+                                </assign>
+                            </else>
+                        </if>
+                        <else>
+                            <if name="If6">
+                                <documentation>found only at publisher1</documentation>
+                                <condition>$FoundBookAtPublisher1</condition>
+                                <assign name="Assign10">
+                                    <copy>
+                                        <from>true()</from>
+                                        <to variable="OrderFromPublisher1"/>
+                                    </copy>
+                                </assign>
+                                <else>
+                                    <if name="If7">
+                                        <documentation>found only at publisher usa</documentation>
+                                        <condition>$FoundBookAtPublisherUSA1</condition>
+                                        <assign name="Assign11">
+                                            <copy>
+                                                <from>false()</from>
+                                                <to variable="OrderFromPublisher1"/>
+                                            </copy>
+                                        </assign>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
                     <assign name="AssignLogged">
                         <copy>
                                 <from>'logged :-)'</from>
@@ -162,7 +211,7 @@
                     </receive>
                     <assign name="Assign1">
                         <copy>
-                            <from>$BookOrderDoneIn.parameters/arg0/bookInfo/ISBN</from>
+                            <from>concat($FoundBookAtPublisherUSA1, '----', $FoundBookAtPublisher1)</from>
                             <to variable="ClientCompositeOperationOut" part="part1"/>
                         </copy>
                     </assign>
@@ -172,6 +221,7 @@
         <reply name="Reply1" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" variable="ClientCompositeOperationOut"/>
     </sequence>
 </process>
+
 
 
 
