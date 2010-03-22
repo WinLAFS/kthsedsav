@@ -3,7 +3,7 @@
     <book:ClientCompositeOperation>
       <username>user1</username>
       <password>pass1</password>
-      <bookSearchTerm>111</bookSearchTerm>
+      <bookSearchTerm>111-</bookSearchTerm>
       <creditCardNumber>?string?</creditCardNumber>
     </book:ClientCompositeOperation>
   </soapenv:Body>

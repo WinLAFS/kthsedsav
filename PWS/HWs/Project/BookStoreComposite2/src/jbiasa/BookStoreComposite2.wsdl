@@ -17,18 +17,6 @@
     <import namespace="http://bookpublisherUSA/" location="../jbiServiceUnits/META-INF/BookStoreBPEL2/src/_references/_projects/BookStore2/src/conf/wsdl/PublisherUSAWSService.wsdl"/>
     <import namespace="http://bookpublisherUSAcallback/" location="../jbiServiceUnits/BookStoreBPEL2/PublisherUSAWSCallBackService.wsdl"/>
     <portType name="dummyCasaPortType"/>
-    <binding name="casaBinding1" type="ns:ClientCompositePortType">
-        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <operation name="ClientCompositeOperation">
-            <soap:operation/>
-            <input name="input1">
-                <soap:body use="literal" namespace="BookStoreComposite2"/>
-            </input>
-            <output name="output1">
-                <soap:body use="literal" namespace="BookStoreComposite2"/>
-            </output>
-        </operation>
-    </binding>
     <binding name="casaBinding2" type="ns1:AuthorizationWS">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <operation name="login">
@@ -158,11 +146,21 @@
             </output>
         </operation>
     </binding>
-    <service name="BookStoreComposite2Service1">
-        <port name="casaPort1" binding="tns:casaBinding1">
-            <soap:address location="http://localhost:11893/BookStoreCompositeService1/casaPort1"/>
-        </port>
-    </service>
+    <binding name="casaBinding7" type="ns:ClientCompositePortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="ClientCompositeOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="BookStoreComposite2"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="BookStoreComposite2"/>
+            </output>
+            <fault name="fault1">
+                <soap:fault name="fault1" use="literal" namespace="BookStoreComposite2"/>
+            </fault>
+        </operation>
+    </binding>
     <service name="BookStoreComposite2Service2">
         <port name="Authorization" binding="tns:casaBinding2">
             <soap:address location="http://localhost:11983/BookStore2/AuthorizationWSService"/>
@@ -188,6 +186,12 @@
             <soap:address location="http://localhost:11986/BookStoreComposite2Service6/casaPort5"/>
         </port>
     </service>
+    <service name="BookStoreComposite2Service7">
+        <port name="casaPort6" binding="tns:casaBinding7">
+            <soap:address location="http://localhost:11893/BookStoreCompositeService1/casaPort1"/>
+        </port>
+    </service>
 </definitions>
+
 
 
