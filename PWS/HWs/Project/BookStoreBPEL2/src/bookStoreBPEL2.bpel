@@ -8,7 +8,7 @@
     xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties" xmlns:ns1="http://bookpublisher/" xmlns:ns2="http://bookpublisherUSA/">
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties" xmlns:ns1="http://bookpublisher/" xmlns:ns2="http://bookpublisherUSA/" xmlns:sxxf="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/XPathFunctions">
     <import namespace="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" location="ClientComposite.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/AuthorizationWSServiceWrapper" location="AuthorizationWSServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://authorization/" location="BookStore2/wsdl/AuthorizationWSService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
@@ -38,6 +38,8 @@
         <partnerLink name="ShipmentCallbackLink" xmlns:tns="http://enterprise.netbeans.org/bpel/ShipmentServiceCallbackServiceWrapper" partnerLinkType="tns:ShipmentServiceCallbackLinkType" myRole="ShipmentServiceCallbackRole"/>
     </partnerLinks>
     <variables>
+        <variable name="ClientCompositeOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" messageType="tns:ClientCompositeOperationResponse2"/>
+        <variable name="NotLoggedResponseFaultVar" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" messageType="tns:NotLoggedFault"/>
         <variable name="NoShipmentResponseFaultVar" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" messageType="tns:NoShipmentResponseFault"/>
         <variable name="CancelShipmentOut" xmlns:tns="http://shipment/" messageType="tns:cancelShipmentResponse"/>
         <variable name="CancelShipmentIn" xmlns:tns="http://shipment/" messageType="tns:cancelShipment"/>
@@ -71,7 +73,6 @@
         <variable name="OrderBookPurchaseIn" xmlns:tns="http://bookpublisher/" messageType="tns:orderBookPurchase"/>
         <variable name="LoginOut" xmlns:tns="http://authorization/" messageType="tns:loginResponse"/>
         <variable name="LoginIn" xmlns:tns="http://authorization/" messageType="tns:login"/>
-        <variable name="ClientCompositeOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" messageType="tns:ClientCompositeOperationResponse"/>
         <variable name="ClientCompositeOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" messageType="tns:ClientCompositeOperationRequest"/>
     </variables>
     <correlationSets>
@@ -94,12 +95,15 @@
         <invoke name="InvokeLogin" partnerLink="AuthorizationPartnerLink" operation="login" xmlns:tns="http://authorization/" portType="tns:AuthorizationWS" inputVariable="LoginIn" outputVariable="LoginOut"/>
         <if name="If1">
             <condition>$LoginOut.parameters/return/username = 'NOTLOGGED'</condition>
-            <assign name="AssignNotLogged">
-                <copy>
-                    <from>'Not logged'</from>
-                    <to variable="ClientCompositeOperationOut" part="part1"/>
-                </copy>
-            </assign>
+            <sequence name="Sequence11">
+                <assign name="AssignNotLogged">
+                    <copy>
+                        <from>'Not logged'</from>
+                        <to variable="NotLoggedResponseFaultVar" part="message"/>
+                    </copy>
+                </assign>
+                <reply name="Reply6" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" faultName="tns:NotLoggedResponse" variable="NotLoggedResponseFaultVar"/>
+            </sequence>
             <else>
                 <sequence name="Sequence1">
                     <flow name="Flow1">
@@ -307,8 +311,8 @@ false - from publisherUSA</documentation>
                                     </correlations>
                                     <assign name="Assign15">
                                         <copy>
-                                            <from>concat('found by publisher1', $BookOrderDoneIn.parameters/arg0/bookInfo/author, $BookOrderDoneIn.parameters/arg0/bookInfo/ISBN, $BookOrderDoneIn.parameters/arg0/bookInfo/price, $BookOrderDoneIn.parameters/arg0/bookInfo/title, $BookOrderDoneIn.parameters/arg0/invoice/buyer, $BookOrderDoneIn.parameters/arg0/invoice/sum, $BookOrderDoneIn.parameters/arg0/location/address, $BookOrderDoneIn.parameters/arg0/location/postCode)</from>
-                                            <to variable="ClientCompositeOperationOut" part="part1"/>
+                                            <from>$BookOrderDoneIn.parameters/arg0</from>
+                                            <to variable="ClientCompositeOperationOut" part="sellReturnObj"/>
                                         </copy>
                                     </assign>
                                 </onMessage>
@@ -402,8 +406,48 @@ false - from publisherUSA</documentation>
                                         </correlations>
                                         <assign name="Assign18">
                                             <copy>
-                                                <from>concat($BookOrderDoneInUSA.parameters/arg0/bookInfo/ISBN, $BookOrderDoneInUSA.parameters/arg0/bookInfo/price, $BookOrderDoneInUSA.parameters/arg0/invoice/buyer, $BookOrderDoneInUSA.parameters/arg0/invoice/sum, $BookOrderDoneInUSA.parameters/arg0/location/address)</from>
-                                                <to variable="ClientCompositeOperationOut" part="part1"/>
+                                                <from>$BookOrderDoneInUSA.parameters/arg0/bookInfo/author</from>
+                                                <to>$ClientCompositeOperationOut.sellReturnObj/bookInfo/author</to>
+                                            </copy>
+                                            <copy>
+                                                <from>$BookOrderDoneInUSA.parameters/arg0/bookInfo/ISBN</from>
+                                                <to>$ClientCompositeOperationOut.sellReturnObj/bookInfo/ISBN</to>
+                                            </copy>
+                                            <copy>
+                                                <from>$BookOrderDoneInUSA.parameters/arg0/bookInfo/price</from>
+                                                <to>$ClientCompositeOperationOut.sellReturnObj/bookInfo/price</to>
+                                            </copy>
+                                            <copy>
+                                                <from>$BookOrderDoneInUSA.parameters/arg0/bookInfo/title</from>
+                                                <to>$ClientCompositeOperationOut.sellReturnObj/bookInfo/title</to>
+                                            </copy>
+                                            <copy>
+                                                <from>$BookOrderDoneInUSA.parameters/arg0/invoice/bookISBN</from>
+                                                <to>$ClientCompositeOperationOut.sellReturnObj/invoice/bookISBN</to>
+                                            </copy>
+                                            <copy>
+                                                <from>$BookOrderDoneInUSA.parameters/arg0/invoice/buyer</from>
+                                                <to>$ClientCompositeOperationOut.sellReturnObj/invoice/buyer</to>
+                                            </copy>
+                                            <copy>
+                                                <from>$BookOrderDoneInUSA.parameters/arg0/invoice/sum</from>
+                                                <to>$ClientCompositeOperationOut.sellReturnObj/invoice/sum</to>
+                                            </copy>
+                                            <copy>
+                                                <from>$BookOrderDoneInUSA.parameters/arg0/location/address</from>
+                                                <to>$ClientCompositeOperationOut.sellReturnObj/location/address</to>
+                                            </copy>
+                                            <copy>
+                                                <from>$BookOrderDoneInUSA.parameters/arg0/location/city</from>
+                                                <to>$ClientCompositeOperationOut.sellReturnObj/location/city</to>
+                                            </copy>
+                                            <copy>
+                                                <from>$BookOrderDoneInUSA.parameters/arg0/location/country</from>
+                                                <to>$ClientCompositeOperationOut.sellReturnObj/location/country</to>
+                                            </copy>
+                                            <copy>
+                                                <from>$BookOrderDoneInUSA.parameters/arg0/location/postCode</from>
+                                                <to>$ClientCompositeOperationOut.sellReturnObj/location/postCode</to>
                                             </copy>
                                         </assign>
                                     </onMessage>
@@ -436,8 +480,32 @@ false - from publisherUSA</documentation>
                         <condition>contains($LoginOut.parameters/return/address, $baseCountry)</condition>
                         <assign name="Assign20">
                             <copy>
-                                <from>concat($ClientCompositeOperationOut.part1, '----   cool and no shipment')</from>
-                                <to variable="ClientCompositeOperationOut" part="part1"/>
+                                <from>0</from>
+                                <to>$ClientCompositeOperationOut.invoiceBean/price</to>
+                            </copy>
+                            <copy>
+                                <from>'No shipment needed'</from>
+                                <to>$ClientCompositeOperationOut.invoiceBean/text</to>
+                            </copy>
+                            <copy>
+                                <from>sxxf:current-date()</from>
+                                <to>$ClientCompositeOperationOut.invoiceBean/issueDate</to>
+                            </copy>
+                            <copy>
+                                <from>0</from>
+                                <to>$ClientCompositeOperationOut.invoiceBean/id</to>
+                            </copy>
+                            <copy>
+                                <from>''</from>
+                                <to>$ClientCompositeOperationOut.invoiceBean/destinationAddress</to>
+                            </copy>
+                            <copy>
+                                <from>sxxf:current-date()</from>
+                                <to>$ClientCompositeOperationOut.invoiceBean/deliveryDate</to>
+                            </copy>
+                            <copy>
+                                <from>''</from>
+                                <to>$ClientCompositeOperationOut.invoiceBean/currency</to>
                             </copy>
                         </assign>
                         <else>
@@ -472,8 +540,8 @@ false - from publisherUSA</documentation>
                                         </correlations>
                                         <assign name="Assign22">
                                             <copy>
-                                                <from>concat($ClientCompositeOperationOut.part1, ' ---- ', $ShipmentDoneIn.parameters/arg0/deliveryDate, $ShipmentDoneIn.parameters/arg0/destinationAddress, $ShipmentDoneIn.parameters/arg0/text, $ShipmentDoneIn.parameters/arg0/issueDate)</from>
-                                                <to variable="ClientCompositeOperationOut" part="part1"/>
+                                                <from>$ShipmentDoneIn.parameters/arg0</from>
+                                                <to variable="ClientCompositeOperationOut" part="invoiceBean"/>
                                             </copy>
                                         </assign>
                                     </onMessage>
