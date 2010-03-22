@@ -30,6 +30,8 @@
         <partnerLink name="PublisherUSALink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSCallBackServiceWrapper" partnerLinkType="tns:PublisherUSAWSCallBackLinkType" myRole="PublisherUSAWSCallBackRole"/>
     </partnerLinks>
     <variables>
+        <variable name="FindBooksOut" xmlns:tns="http://bookpublisher/" messageType="tns:findBooksResponse"/>
+        <variable name="FindBooksIn" xmlns:tns="http://bookpublisher/" messageType="tns:findBooks"/>
         <variable name="BookOrderDoneIn" xmlns:tns="http://bookpublishercallback/" messageType="tns:bookOrderDone"/>
         <variable name="OrderBookPurchaseOut" xmlns:tns="http://bookpublisher/" messageType="tns:orderBookPurchaseResponse"/>
         <variable name="OrderBookPurchaseIn" xmlns:tns="http://bookpublisher/" messageType="tns:orderBookPurchase"/>
@@ -64,6 +66,25 @@
             </assign>
             <else>
                 <sequence name="Sequence1">
+                    <flow name="Flow1">
+                        <sequence name="Sequence2">
+                            <assign name="Assign2">
+                                <copy>
+                                    <from variable="ClientCompositeOperationIn" part="bookSearchTerm"/>
+                                    <to>$FindBooksIn.parameters/arg0</to>
+                                </copy>
+                                <copy>
+                                    <from variable="ClientCompositeOperationIn" part="bookSearchTerm"/>
+                                    <to>$FindBooksIn.parameters/arg1</to>
+                                </copy>
+                                <copy>
+                                    <from variable="ClientCompositeOperationIn" part="bookSearchTerm"/>
+                                    <to>$FindBooksIn.parameters/arg2</to>
+                                </copy>
+                            </assign>
+                            <invoke name="Invoke2" partnerLink="PublisherLink" operation="findBooks" xmlns:tns="http://bookpublisher/" portType="tns:PublisherWS" inputVariable="FindBooksIn" outputVariable="FindBooksOut"/>
+                        </sequence>
+                    </flow>
                     <assign name="AssignLogged">
                         <copy>
                                 <from>'logged :-)'</from>
