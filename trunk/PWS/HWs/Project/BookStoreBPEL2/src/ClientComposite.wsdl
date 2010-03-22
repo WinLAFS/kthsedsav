@@ -31,13 +31,17 @@
         <part name="sellReturnObj" type="ns0:sellReturnObj"/>
         <part name="invoiceBean" type="ns1:invoiceBean"/>
     </message>
+    <message name="NotLoggedFault">
+        <part name="message" type="xsd:string"/>
+    </message>
     <portType name="ClientCompositePortType">
         <operation name="ClientCompositeOperation">
             <input name="input1" message="tns:ClientCompositeOperationRequest"/>
-            <output name="output1" message="tns:ClientCompositeOperationResponse"/>
+            <output name="output1" message="tns:ClientCompositeOperationResponse2"/>
             <fault name="NoBooksFound" message="tns:NoBooksFoundFault"/>
             <fault name="NoPublisherResponse" message="tns:NoResponseFromPublisherFault"/>
             <fault name="NoShipmentResponse" message="tns:NoShipmentResponseFault"/>
+            <fault name="NotLoggedResponse" message="tns:NotLoggedFault"/>
         </operation>
     </portType>
     <plnk:partnerLinkType name="ClientComposite">
