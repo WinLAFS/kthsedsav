@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <m:ClientCompositeOperationResponse xmlns:m="BookStoreComposite2" xmlns:msgns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite">
+      <sellReturnObj xmlns:msgns="http://bookpublishercallback/" xmlns:ns0="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite">
+        <bookInfo>
+          <author>Author2</author>
+          <ISBN>222</ISBN>
+          <price>50.0</price>
+          <title>Title2</title>
+        </bookInfo>
+        <invoice>
+          <bookISBN>222</bookISBN>
+          <buyer>user2</buyer>
+          <sum>0.0</sum>
+        </invoice>
+        <location>
+          <address>Arvingev, Sweden</address>
+          <city>Arvingev, Sweden</city>
+          <country>Arvingev, Sweden</country>
+          <postCode>Arvingev, Sweden</postCode>
+        </location>
+      </sellReturnObj>
+      <invoiceBean>
+        <currency/>
+        <deliveryDate>2010-03-22+01:00</deliveryDate>
+        <destinationAddress/>
+        <id>0</id>
+        <issueDate>2010-03-22+01:00</issueDate>
+        <price>0.0</price>
+        <text>No shipment needed</text>
+      </invoiceBean>
+    </m:ClientCompositeOperationResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

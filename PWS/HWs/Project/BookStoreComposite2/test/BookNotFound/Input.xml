@@ -3,8 +3,8 @@
     <book:ClientCompositeOperation>
       <username>user1</username>
       <password>pass1</password>
-      <bookSearchTerm>111</bookSearchTerm>
-      <creditCardNumber>12345678876543</creditCardNumber>
+      <bookSearchTerm>PWS</bookSearchTerm>
+      <creditCardNumber>1234567876543245</creditCardNumber>
     </book:ClientCompositeOperation>
   </soapenv:Body>
 </soapenv:Envelope>
