@@ -6,7 +6,9 @@
     <system systemId="BookStore2/wsdl/PublisherWSService.wsdl" uri="nb-uri:BookStore2#src/conf/wsdl/PublisherWSService.wsdl"/>
     <system systemId="BookStore2/wsdl/PublisherWSService_schema1.xsd" uri="nb-uri:BookStore2#src/conf/wsdl/PublisherWSService_schema1.xsd"/>
     <system systemId="BookStore2/wsdl/PublisherUSAWSService.wsdl" uri="nb-uri:BookStore2#src/conf/wsdl/PublisherUSAWSService.wsdl"/>
+    <system systemId="BookStore2/wsdl/PublisherUSAWSService_schema1.xsd" uri="nb-uri:BookStore2#src/conf/wsdl/PublisherUSAWSService_schema1.xsd"/>
 </catalog>
+
 
 
 
