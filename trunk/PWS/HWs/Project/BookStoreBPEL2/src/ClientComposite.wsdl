@@ -16,11 +16,15 @@
     <message name="NoBooksFoundFault">
         <part name="part1" type="xsd:string"/>
     </message>
+    <message name="NoResponseFromPublisherFault">
+        <part name="message" type="xsd:string"/>
+    </message>
     <portType name="ClientCompositePortType">
         <operation name="ClientCompositeOperation">
             <input name="input1" message="tns:ClientCompositeOperationRequest"/>
             <output name="output1" message="tns:ClientCompositeOperationResponse"/>
-            <fault name="fault1" message="tns:NoBooksFoundFault"/>
+            <fault name="NoBooksFound" message="tns:NoBooksFoundFault"/>
+            <fault name="NoPublisherResponse" message="tns:NoResponseFromPublisherFault"/>
         </operation>
     </portType>
     <plnk:partnerLinkType name="ClientComposite">
@@ -30,6 +34,7 @@ A partner link type characterizes the conversational relationship between two se
         <plnk:role name="ClientCompositePortTypeRole" portType="tns:ClientCompositePortType"/>
     </plnk:partnerLinkType>
 </definitions>
+
 
 
 

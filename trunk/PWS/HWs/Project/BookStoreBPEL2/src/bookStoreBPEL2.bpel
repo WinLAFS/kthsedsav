@@ -8,7 +8,7 @@
     xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties">
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties" xmlns:ns1="http://bookpublisher/">
     <import namespace="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" location="ClientComposite.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/AuthorizationWSServiceWrapper" location="AuthorizationWSServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://authorization/" location="BookStore2/wsdl/AuthorizationWSService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
@@ -21,6 +21,7 @@
     <import namespace="http://bookpublisherUSAcallback/" location="PublisherUSAWSCallBackService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/PublisherUSAWSServiceWrapper" location="PublisherUSAWSServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://bookpublisherUSA/" location="BookStore2/wsdl/PublisherUSAWSService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://bookpublisher/" location="BookStore2/wsdl/PublisherWSService_schema1.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
     <partnerLinks>
         <partnerLink name="AuthorizationPartnerLink" xmlns:tns="http://enterprise.netbeans.org/bpel/AuthorizationWSServiceWrapper" partnerLinkType="tns:AuthorizationWSLinkType" partnerRole="AuthorizationWSRole"/>
         <partnerLink name="PublisherLink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherWSServiceWrapper" partnerLinkType="tns:PublisherWSLinkType" partnerRole="PublisherWSRole"/>
@@ -30,6 +31,11 @@
         <partnerLink name="PublisherUSALink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSCallBackServiceWrapper" partnerLinkType="tns:PublisherUSAWSCallBackLinkType" myRole="PublisherUSAWSCallBackRole"/>
     </partnerLinks>
     <variables>
+        <variable name="NoPublisherResponseFaultVar" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" messageType="tns:NoResponseFromPublisherFault"/>
+        <variable name="PurchaseCancelOut" messageType="ns1:purchaseCancelResponse"/>
+        <variable name="PurchaseCancelIn" messageType="ns1:purchaseCancel"/>
+        <variable name="creditcard" type="ns1:creditCard"/>
+        <variable name="location" type="ns1:location"/>
         <variable name="NoBooksFoundFaultVar" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" messageType="tns:NoBooksFoundFault"/>
         <variable name="OrderFromPublisher1" type="xs:boolean"/>
         <variable name="FoundBookAtPublisherUSA1" type="xs:boolean"/>
@@ -143,7 +149,9 @@
                         </sequence>
                     </flow>
                     <if name="If4">
-                        <documentation>both have a book</documentation>
+                        <documentation>Checking who have a book
+
+both have a book</documentation>
                         <condition>$FoundBookAtPublisherUSA1 and $FoundBookAtPublisher1</condition>
                         <if name="If5">
                             <documentation>comparing prices
@@ -188,12 +196,13 @@ if false - publisher1</documentation>
                                         <else>
                                             <sequence name="Sequence4">
                                                 <assign name="Assign12">
+                                                    <documentation>sending fault</documentation>
                                                     <copy>
                                                         <from>'No books were found, looser!'</from>
                                                         <to variable="NoBooksFoundFaultVar" part="part1"/>
                                                     </copy>
                                                 </assign>
-                                                <reply name="Reply2" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" faultName="tns:fault1" variable="NoBooksFoundFaultVar"/>
+                                                <reply name="Reply2" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" faultName="tns:NoBooksFound" variable="NoBooksFoundFaultVar"/>
                                             </sequence>
                                         </else>
                                     </if>
@@ -201,32 +210,102 @@ if false - publisher1</documentation>
                             </if>
                         </else>
                     </if>
-                    <assign name="AssignLogged">
-                        <copy>
-                                <from>'logged :-)'</from>
-                                    <to variable="ClientCompositeOperationOut" part="part1"/>
-                            </copy>
-                        <copy>
-                            <from>'111'</from>
-                            <to>$OrderBookPurchaseIn.parameters/arg0</to>
-                        </copy>
-                    </assign>
-                    <invoke name="Invoke1" partnerLink="PublisherLink" operation="orderBookPurchase" xmlns:tns="http://bookpublisher/" portType="tns:PublisherWS" inputVariable="OrderBookPurchaseIn" outputVariable="OrderBookPurchaseOut">
-                        <correlations>
-                            <correlation set="wzrd_set_Invoke1_Receive2" initiate="yes" pattern="request"/>
-                        </correlations>
-                    </invoke>
-                    <receive name="Receive2" partnerLink="PublisherCallbackLink" operation="bookOrderDone" xmlns:tns="http://bookpublishercallback/" portType="tns:PublisherWSCallBack" createInstance="no" variable="BookOrderDoneIn">
-                        <correlations>
-                            <correlation set="wzrd_set_Invoke1_Receive2" initiate="no"/>
-                        </correlations>
-                    </receive>
-                    <assign name="Assign1">
-                        <copy>
-                            <from>concat($FoundBookAtPublisherUSA1, '----', $FoundBookAtPublisher1)</from>
-                            <to variable="ClientCompositeOperationOut" part="part1"/>
-                        </copy>
-                    </assign>
+                    <if name="If8">
+                        <documentation>from whom to order
+
+true - from publisher1
+false - from publisherUSA</documentation>
+                        <condition>$OrderFromPublisher1</condition>
+                        <sequence name="Sequence5">
+                            <assign name="Assign13">
+                                <copy>
+                                    <from variable="ClientCompositeOperationIn" part="creditCardNumber"/>
+                                    <to>$creditcard/cardNumber</to>
+                                </copy>
+                                <copy>
+                                    <from>11</from>
+                                    <to>$creditcard/expirationMonth</to>
+                                </copy>
+                                <copy>
+                                    <from>2011</from>
+                                    <to>$creditcard/expirationYear</to>
+                                </copy>
+                                <copy>
+                                    <from variable="ClientCompositeOperationIn" part="username"/>
+                                    <to>$creditcard/holderName</to>
+                                </copy>
+                                <copy>
+                                    <from>$LoginOut.parameters/return/address</from>
+                                    <to>$location/address</to>
+                                </copy>
+                                <copy>
+                                    <from>$LoginOut.parameters/return/address</from>
+                                    <to>$location/city</to>
+                                </copy>
+                                <copy>
+                                    <from>$LoginOut.parameters/return/address</from>
+                                    <to>$location/country</to>
+                                </copy>
+                                <copy>
+                                    <from>$LoginOut.parameters/return/address</from>
+                                    <to>$location/postCode</to>
+                                </copy>
+                            </assign>
+                            <assign name="AssignLogged">
+                                <copy>
+                                    <from>$FindBooksOut.parameters/return/ISBN</from>
+                                    <to>$OrderBookPurchaseIn.parameters/arg0</to>
+                                </copy>
+                                <copy>
+                                    <from variable="creditcard"/>
+                                    <to>$OrderBookPurchaseIn.parameters/arg1</to>
+                                </copy>
+                                <copy>
+                                    <from variable="location"/>
+                                    <to>$OrderBookPurchaseIn.parameters/arg2</to>
+                                </copy>
+                            </assign>
+                            <invoke name="Invoke1" partnerLink="PublisherLink" operation="orderBookPurchase" xmlns:tns="http://bookpublisher/" portType="tns:PublisherWS" inputVariable="OrderBookPurchaseIn" outputVariable="OrderBookPurchaseOut">
+                                <correlations>
+                                    <correlation set="wzrd_set_Invoke1_Receive2" initiate="yes" pattern="request"/>
+                                </correlations>
+                            </invoke>
+                            <pick name="Pick1">
+                                <onMessage partnerLink="PublisherCallbackLink" operation="bookOrderDone" xmlns:tns="http://bookpublishercallback/" portType="tns:PublisherWSCallBack" variable="BookOrderDoneIn">
+                                    <correlations>
+                                        <correlation set="wzrd_set_Invoke1_Receive2" initiate="no"/>
+                                    </correlations>
+                                    <assign name="Assign15">
+                                        <copy>
+                                            <from>'found by publisher1'</from>
+                                            <to variable="ClientCompositeOperationOut" part="part1"/>
+                                        </copy>
+                                    </assign>
+                                </onMessage>
+                                <onAlarm>
+                                    <for>'P0Y0M0DT0H0M20.0S'</for>
+                                    <sequence name="Sequence6">
+                                        <assign name="Assign14">
+                                            <copy>
+                                                <from variable="ClientCompositeOperationIn" part="bookSearchTerm"/>
+                                                <to>$PurchaseCancelIn.parameters/arg0</to>
+                                            </copy>
+                                            <copy>
+                                                <from variable="creditcard"/>
+                                                <to>$PurchaseCancelIn.parameters/arg1</to>
+                                            </copy>
+                                            <copy>
+                                                <from>'No publisher1 response, looser!'</from>
+                                                <to variable="NoPublisherResponseFaultVar" part="message"/>
+                                            </copy>
+                                        </assign>
+                                        <invoke name="Invoke4" partnerLink="PublisherLink" operation="purchaseCancel" portType="ns1:PublisherWS" inputVariable="PurchaseCancelIn" outputVariable="PurchaseCancelOut"/>
+                                        <reply name="Reply3" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" faultName="tns:NoPublisherResponse" variable="NoPublisherResponseFaultVar"/>
+                                    </sequence>
+                                </onAlarm>
+                            </pick>
+                        </sequence>
+                    </if>
                 </sequence>
             </else>
         </if>
