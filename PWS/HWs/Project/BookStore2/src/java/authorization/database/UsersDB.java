@@ -20,7 +20,7 @@ public class UsersDB {
 
     private UsersDB() {
         users = new HashMap<String, UserDataWithPasswordBean>();
-        UserDataBean u1 = new UserDataBean("user1", "addr 1", "0707999991");
+        UserDataBean u1 = new UserDataBean("user1", "USA , MIT", "0707999991");
         UserDataWithPasswordBean up1 = new UserDataWithPasswordBean(u1, "pass1");
         users.put(u1.getUsername(), up1);
         UserDataBean u2 = new UserDataBean("user2", "addr 2", "0707999992");
