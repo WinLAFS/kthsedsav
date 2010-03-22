@@ -30,6 +30,7 @@
         <partnerLink name="PublisherUSALink" xmlns:tns="http://enterprise.netbeans.org/bpel/PublisherUSAWSCallBackServiceWrapper" partnerLinkType="tns:PublisherUSAWSCallBackLinkType" myRole="PublisherUSAWSCallBackRole"/>
     </partnerLinks>
     <variables>
+        <variable name="NoBooksFoundFaultVar" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" messageType="tns:NoBooksFoundFault"/>
         <variable name="OrderFromPublisher1" type="xs:boolean"/>
         <variable name="FoundBookAtPublisherUSA1" type="xs:boolean"/>
         <variable name="FoundBookAtPublisher1" type="xs:boolean"/>
@@ -184,6 +185,17 @@ if false - publisher1</documentation>
                                                 <to variable="OrderFromPublisher1"/>
                                             </copy>
                                         </assign>
+                                        <else>
+                                            <sequence name="Sequence4">
+                                                <assign name="Assign12">
+                                                    <copy>
+                                                        <from>'No books were found, looser!'</from>
+                                                        <to variable="NoBooksFoundFaultVar"/>
+                                                    </copy>
+                                                </assign>
+                                                <reply name="Reply2" partnerLink="PartnerLink1" operation="ClientCompositeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BookStoreBPEL2/ClientComposite" portType="tns:ClientCompositePortType" faultName="tns:fault1" variable="NoBooksFoundFaultVar"/>
+                                            </sequence>
+                                        </else>
                                     </if>
                                 </else>
                             </if>
