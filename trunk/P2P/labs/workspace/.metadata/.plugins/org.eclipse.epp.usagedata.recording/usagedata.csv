@@ -1,0 +1,16 @@
+what,kind,bundleId,bundleVersion,description,time
+started,bundle,org.eclipse.jem.util,2.0.200.v200905140200,"org.eclipse.jem.util",1272024304475
+started,bundle,org.eclipse.wst.common.frameworks,1.1.300.v200904160730,"org.eclipse.wst.common.frameworks",1272024304480
+started,bundle,org.eclipse.team.cvs.ui,3.3.201.R35x_v20090826-0905,"org.eclipse.team.cvs.ui",1272024304512
+started,bundle,org.eclipse.jst.jsf.common,1.1.7.v20090903,"org.eclipse.jst.jsf.common",1272024304596
+started,bundle,org.eclipse.jst.jsf.core,1.2.2.v20090903,"org.eclipse.jst.jsf.core",1272024304652
+started,bundle,org.eclipse.update.scheduler,3.2.200.v20081127,"org.eclipse.update.scheduler",1272024304750
+started,bundle,org.eclipse.update.core,3.2.300.v20090525,"org.eclipse.update.core",1272024304932
+started,bundle,org.eclipse.jst.common.project.facet.core,1.4.1.v200908111817,"org.eclipse.jst.common.project.facet.core",1272024304966
+started,bundle,org.eclipse.wst.ws.service.policy.ui,1.0.102.v200903070248,"org.eclipse.wst.ws.service.policy.ui",1272024305103
+started,bundle,org.eclipse.mylyn.team.ui,3.3.1.v20091215-0000-e3x,"org.eclipse.mylyn.team.ui",1272024305238
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1272024724148
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1272024725958
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1272024727102
+closed,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1272024727419
+stopped,bundle,org.eclipse.jst.ws.axis.creation.ui,1.0.406.v200903031852,"org.eclipse.jst.ws.axis.creation.ui",1272024728247
