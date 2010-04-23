@@ -1,0 +1,13 @@
+To compile and run lab0 you can use ant and the build.xml file attached to the source code.
+
+Comile the code:
+> ant -f build.xml compile
+
+Create jar file:
+> ant -f build.xml jar
+
+Run the lab0 simualtion:
+> ant -f build.xml compile
+> java -cp lib/kompics.jar:build se.sics.kompics.p2p.simulator.launch.Main
+or simply
+> ant -f build.xml run
