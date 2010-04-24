@@ -142,6 +142,8 @@ public final class Peer extends ComponentDefinition {
 					succList[0] = succ;
 					Snapshot.setSuccList(peerSelf, succList);
 					Snapshot.setSucc(peerSelf, succ);
+//					fingers[0] = succ;
+//					Snapshot.setFingers(peerSelf, fingers);
 					trigger(new BootstrapCompleted("chord", peerSelf), bootstrap.getPositive(P2pBootstrap.class));
 				}
 
@@ -159,16 +161,35 @@ public final class Peer extends ComponentDefinition {
 			PeerAddress nextPeer;
 			if (RingKey.belongsTo(targetNodeID, peerSelf.getPeerId(), succ.getPeerId(), 
 					IntervalBounds.OPEN_CLOSED, RING_SIZE)) {
-				//TODO wtf is fingerIndex, is andrei's idea??
 				//found its correct successor
 				FindSuccReply fsr = new FindSuccReply(peerSelf, event.getInitiator(), succ, event.getFingerIndex());
 				trigger(fsr, network);
 			}
 			else {
-//				nextPeer = findClosestPrecedingNode(event.getInitiator());
-//				FindSucc fs = new FindSucc(peerSelf, nextPeer, event.getInitiator(), event.getID(), -1);
-				FindSucc fs = new FindSucc(peerSelf, succ, event.getInitiator(), event.getID(), event.getFingerIndex());
-				trigger(fs, network);
+				boolean found = false;
+				
+				for (int i = 0; i < (SUCC_SIZE - 1); i++) {
+					if ((succList[i + 1] != null) && RingKey.belongsTo(targetNodeID, 
+							succList[i].getPeerId(), succList[i + 1].getPeerId(), 
+							IntervalBounds.OPEN_CLOSED, RING_SIZE)) {
+						
+						FindSuccReply fsr = new FindSuccReply(peerSelf, event.getInitiator(), succList[i + 1], event.getFingerIndex());
+						trigger(fsr, network);
+						found = true;
+						break;
+					}
+				}
+				
+				if (!found) {
+//					FindSucc fs = new FindSucc(peerSelf, succ, event.getInitiator(), event.getID(), event.getFingerIndex());
+
+					nextPeer = findClosestPrecedingNode(event.getInitiator());
+					FindSucc fs = new FindSucc(peerSelf, nextPeer, event.getInitiator(), event.getID(), event.getFingerIndex());
+					trigger(fs, network);
+					
+				}
+				
+				
 			}
 		}
 	};
@@ -181,7 +202,10 @@ public final class Peer extends ComponentDefinition {
 			}
 		}
 		
-		return peerSelf;
+		logger.info(">> TO " + peerSelf.getPeerId() + " || try to route: " + targetAddress.getPeerId());
+		logger.info("my succ: " + succ.getPeerId() + " | my fl0 " + (fingers[0] ==null ? "null" : fingers[0].getPeerId()) );
+//		return peerSelf;
+		return succ;
 	}
 	
 //-------------------------------------------------------------------
@@ -193,6 +217,8 @@ public final class Peer extends ComponentDefinition {
 				succList = new PeerAddress[SUCC_SIZE];
 				succList[0] = succ;
 				Snapshot.setSuccList(peerSelf, succList);
+//				fingers[0] = succ;
+//				Snapshot.setFingers(peerSelf, fingers);
 				pred = null;
 				logger.info(peerSelf.getPeerId() + "\t: " + "found succ: " + succ.getPeerId());
 				Snapshot.setSucc(peerSelf, succ);
@@ -249,6 +275,8 @@ public final class Peer extends ComponentDefinition {
 				succList[0] = succ;
 				Snapshot.setSuccList(peerSelf, succList);
 				Snapshot.setSucc(peerSelf, succ);
+//				fingers[0] = succ;
+//				Snapshot.setFingers(peerSelf, fingers);
 			}
 			
 			succList = new PeerAddress[SUCC_SIZE];
