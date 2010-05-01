@@ -36,6 +36,7 @@ import se.sics.kompics.timer.SchedulePeriodicTimeout;
 import se.sics.kompics.timer.Timer;
 
 public final class Peer extends ComponentDefinition {
+	private static final int TRYING_TO_REJOIN_ROUNDS = 20;
 	public static BigInteger RING_SIZE = new BigInteger(2 + "").pow(Configuration.Log2Ring);
 	public static int FINGER_SIZE = Configuration.Log2Ring;
 	public static int SUCC_SIZE = Configuration.Log2Ring;
@@ -45,8 +46,6 @@ public final class Peer extends ComponentDefinition {
 
 	Positive<Network> network = positive(Network.class);
 	Positive<Timer> timer = positive(Timer.class);
-	
-	private static Logger logger = LoggerFactory.getLogger(Peer.class);
 
 	private Component fd, bootstrap;
 	
@@ -61,12 +60,16 @@ public final class Peer extends ComponentDefinition {
 	private HashMap<Address, UUID> fdRequests;
 	private HashMap<Address, PeerAddress> fdPeers;
 	
-	private boolean bootstrapped;
-	private int nextFinger = -1;
-	private int roundsWaiting = 0;
-	private boolean lookingForFirstSucc = true;
-	private static int WAITING_ROUNDS = 10;
-
+	private boolean bootstrapped = false;
+	private static Logger logger = LoggerFactory.getLogger(Peer.class);
+	protected int nextFinger = -1;
+	private boolean callingBoostrap;
+	protected boolean tryingToFindNewSucc;
+	protected int roundsWaitingForNewSucc;
+	private boolean testingNewSucc;
+	protected PeerAddress myPreviusSucc;
+	protected int greaterSuccTest = 0;
+	
 //-------------------------------------------------------------------
 	public Peer() {
 		fdRequests = new HashMap<Address, UUID>();
@@ -112,23 +115,26 @@ public final class Peer extends ComponentDefinition {
 //-------------------------------------------------------------------
 	Handler<JoinPeer> handleJoin = new Handler<JoinPeer>() {
 		public void handle(JoinPeer event) {
-			//we add the bootstrap server for the node that we will use to join
 			Snapshot.addPeer(peerSelf);
 			BootstrapRequest request = new BootstrapRequest("chord", 1);
-			trigger(request, bootstrap.getPositive(P2pBootstrap.class));			
+			trigger(request, bootstrap.getPositive(P2pBootstrap.class));
+			
+			SchedulePeriodicTimeout spt = new SchedulePeriodicTimeout(5*STABILIZING_PERIOD, STABILIZING_PERIOD);
+			spt.setTimeoutEvent(new PeriodicStabilization(spt));
+			trigger(spt, timer);
+			
+			roundsWaitingForNewSucc = 2 * TRYING_TO_REJOIN_ROUNDS;
 		}
 	};
+
 
 //-------------------------------------------------------------------
 	Handler<BootstrapResponse> handleBootstrapResponse = new Handler<BootstrapResponse>() {
 		public void handle(BootstrapResponse event) {
+			PeerAddress peer;
+			Set<PeerEntry> somePeers = event.getPeers();
 			if (!bootstrapped) {
 				bootstrapped = true;
-				PeerAddress peer;
-				Set<PeerEntry> somePeers = event.getPeers();
-				
-//				logger.info(peerSelf.getPeerId() + "\t: " + " try to join.");
-				
 				if (!somePeers.isEmpty()) {
 					PeerEntry peerEntry = (PeerEntry) somePeers.toArray()[0];
 					peer = (PeerAddress) peerEntry.getOverlayAddress();
@@ -137,23 +143,34 @@ public final class Peer extends ComponentDefinition {
 					trigger(fs, network);
 				}
 				else {
-					//we are the first node
-//					logger.info(self + ": NOT found another peer, create new ring");
-					lookingForFirstSucc = false;
 					pred = null;
 					succ = peerSelf;
 					succList = new PeerAddress[SUCC_SIZE];
 					succList[0] = succ;
+					fingers = new PeerAddress[FINGER_SIZE];
+					fingers[0] = succ;
 					Snapshot.setSuccList(peerSelf, succList);
 					Snapshot.setSucc(peerSelf, succ);
-					fingers[0] = succ;
-//					Snapshot.setFingers(peerSelf, fingers);
+					Snapshot.setPred(peerSelf, pred);
+					Snapshot.setFingers(peerSelf, fingers);
 					trigger(new BootstrapCompleted("chord", peerSelf), bootstrap.getPositive(P2pBootstrap.class));
 				}
-
-				SchedulePeriodicTimeout spt = new SchedulePeriodicTimeout(STABILIZING_PERIOD, STABILIZING_PERIOD);
-				spt.setTimeoutEvent(new PeriodicStabilization(spt));
-				trigger(spt, timer);
+				
+			}
+			if (callingBoostrap) {
+				callingBoostrap = false;
+				if (!somePeers.isEmpty()) {
+					PeerEntry peerEntry = (PeerEntry) somePeers.toArray()[0];
+					peer = (PeerAddress) peerEntry.getOverlayAddress();
+//					FindSucc fs = new FindSucc(peerSelf, peer, peerSelf, peerSelf.getPeerId(), -2);
+//					trigger(fs, network);
+					succ = peer;
+					Snapshot.setSucc(peerSelf, peer);
+					fingers = new PeerAddress[FINGER_SIZE];
+					Snapshot.setFingers(peerSelf, fingers);
+					
+					logger.info(peerSelf.getPeerId() + ": bootstrap gave me: "+ peer);
+				}
 			}
 		}
 	};
@@ -163,41 +180,28 @@ public final class Peer extends ComponentDefinition {
 		public void handle(FindSucc event) {
 			BigInteger targetNodeID = event.getID();
 			PeerAddress nextPeer;
-//			logger.info(">> NODE: " + peerSelf.getPeerId() + " || try to route: " + event.getID());
-//			logger.info("\tmy succ: " + succ.getPeerId() + " | my fl0 " + (fingers[0] ==null ? "null" : fingers[0].getPeerId()) );
-			if (succ != null && RingKey.belongsTo(targetNodeID, peerSelf.getPeerId(), succ.getPeerId(), 
+			
+			//if current node responsible
+			if (pred != null && RingKey.belongsTo(targetNodeID, pred.getPeerId(), peerSelf.getPeerId(), 
+					IntervalBounds.OPEN_CLOSED, RING_SIZE)) {
+				FindSuccReply fsr = new FindSuccReply(peerSelf, event.getInitiator(), peerSelf, event.getFingerIndex());
+				trigger(fsr, network);
+			}
+			//if successor responsible
+			else if ((succ != null) && RingKey.belongsTo(targetNodeID, peerSelf.getPeerId(), succ.getPeerId(), 
 					IntervalBounds.OPEN_CLOSED, RING_SIZE)) {
 				//found its correct successor
 				FindSuccReply fsr = new FindSuccReply(peerSelf, event.getInitiator(), succ, event.getFingerIndex());
 				trigger(fsr, network);
-//				logger.info("! ");
 			}
 			else {
-				boolean found = false;
-				
-				for (int i = 0; i < (SUCC_SIZE - 1); i++) {
-					if ((succList[i + 1] != null) && RingKey.belongsTo(targetNodeID, 
-							succList[i].getPeerId(), succList[i + 1].getPeerId(), 
-							IntervalBounds.OPEN_CLOSED, RING_SIZE)) {
-						
-						FindSuccReply fsr = new FindSuccReply(peerSelf, event.getInitiator(), succList[i + 1], event.getFingerIndex());
-						trigger(fsr, network);
-						found = true;
-//						logger.info("> ");
-						break;
-					}
-				}
-				
-				if (!found) {
-//					FindSucc fs = new FindSucc(peerSelf, succ, event.getInitiator(), event.getID(), event.getFingerIndex());
-
-					nextPeer = findClosestPrecedingNode(event.getID());
-					FindSucc fs = new FindSucc(peerSelf, nextPeer, event.getInitiator(), event.getID(), event.getFingerIndex());
+				nextPeer = findClosestPrecedingNode(targetNodeID);
+				if (nextPeer != null) {
+					FindSucc fs = new FindSucc(peerSelf, nextPeer, event.getInitiator(), targetNodeID, event.getFingerIndex());
 					trigger(fs, network);
-					
 				}
-				
-				
+//				logger.info(peerSelf.getPeerId() + ": routing: " + targetNodeID + " to: " + nextPeer.getPeerId());
+//				logger.info("\t my finger 0 is: " + ((fingers[0] != null) ? fingers[0].getPeerId() : "null"));
 			}
 		}
 	};
@@ -207,22 +211,17 @@ public final class Peer extends ComponentDefinition {
 			if ((fingers[i] != null) && 
 					RingKey.belongsTo(fingers[i].getPeerId(), peerSelf.getPeerId(), targetID, 
 							IntervalBounds.OPEN_OPEN, RING_SIZE)) {
-//				logger.info(">> ");
 				return fingers[i];
 			}
 		}
-		
-		
-		return peerSelf;
-//		return succ;
+//		return peerSelf;
+		return succ;
 	}
 	
 //-------------------------------------------------------------------
-	//found his correct successor
 	Handler<FindSuccReply> handleFindSuccReply = new Handler<FindSuccReply>() {
 		public void handle(FindSuccReply event) {
 			if (event.getFingerIndex() == -1) {
-				lookingForFirstSucc = false;
 				PeerAddress psucc = succ;
 				succ = event.getResponsible();
 				if (psucc == null || !psucc.equals(succ)) {
@@ -234,21 +233,38 @@ public final class Peer extends ComponentDefinition {
 				succList[0] = succ;
 				Snapshot.setSuccList(peerSelf, succList);
 				fingers[0] = succ;
-//				Snapshot.setFingers(peerSelf, fingers);
 				pred = null;
-//				logger.info(peerSelf.getPeerId() + "\t: " + "found succ: " + succ.getPeerId());
 				Snapshot.setSucc(peerSelf, succ);
+				Snapshot.setPred(peerSelf, pred);
+				Snapshot.setFingers(peerSelf, fingers);
+				Snapshot.setSuccList(peerSelf, succList);
 				
 				Notify notify = new Notify(peerSelf, succ, peerSelf);
 				trigger(notify, network);
 				
 				trigger(new BootstrapCompleted("chord", peerSelf), bootstrap.getPositive(P2pBootstrap.class));
 			}
-			else {
+			else if (event.getFingerIndex() == -2) {
+				succ = event.getResponsible();
+				logger.info(peerSelf.getPeerId() + ": rejoined @: " + succ);
+				fdRegister(succ);
+				succList = new PeerAddress[SUCC_SIZE];
+				succList[0] = succ;
+				Snapshot.setSuccList(peerSelf, succList);
+				fingers[0] = succ;
+				Snapshot.setSucc(peerSelf, succ);
+				Snapshot.setPred(peerSelf, pred);
+				Snapshot.setFingers(peerSelf, fingers);
+				Snapshot.setSuccList(peerSelf, succList);
+				
+				Notify notify = new Notify(peerSelf, succ, peerSelf);
+				trigger(notify, network);
+			}
+			else
+			{
 				fingers[event.getFingerIndex()] = event.getResponsible();
 				Snapshot.setFingers(peerSelf, fingers);
 			}
-			
 		}
 	};
 	
@@ -256,52 +272,69 @@ public final class Peer extends ComponentDefinition {
 	Handler<PeriodicStabilization> handlePeriodicStabilization = new Handler<PeriodicStabilization>() {
 		public void handle(PeriodicStabilization event) {
 			if (succ != null) {
-//				roundsWaiting = 0;
-//				logger.info(peerSelf.getPeerId() + ": doing stabilization");
-				
 				nextFinger = (nextFinger + 1) % FINGER_SIZE;
 				BigInteger targetID = BigInteger.valueOf((long) (Math.pow(2.0, nextFinger) + peerSelf.getPeerId().doubleValue()));
 				
 				FindSucc findSucc = new FindSucc(peerSelf, succ, peerSelf, targetID, nextFinger);
 				trigger(findSucc, network);
 				
-				
 				WhoIsPred wp = new WhoIsPred(peerSelf, succ);
 				trigger(wp, network);
-			}
-			else {
-				if (roundsWaiting == WAITING_ROUNDS) {
-					if (lookingForFirstSucc) {
-						logger.info(":-o first succ : " + peerSelf.getPeerId());
-						BootstrapRequest request = new BootstrapRequest("chord", 1);
-						trigger(request, bootstrap.getPositive(P2pBootstrap.class));			
-					}
-					else {
-						logger.info(":-o succ");
-						lookForNewSucc();
-					}
-					roundsWaiting = 0;
+				
+				if ((testingNewSucc || callingBoostrap) && ((roundsWaitingForNewSucc == 0))) {
+					logger.info(peerSelf.getPeerId() + ": my new succ is DEAD: " + succ.getPeerId());
+					findNextSucc();
 				}
 				else {
-					roundsWaiting++;
+					roundsWaitingForNewSucc--;
 				}
 			}
-			
+			else if (!bootstrapped) {
+				if ((roundsWaitingForNewSucc == 0)) {
+					logger.info(peerSelf.getPeerId() + ": calling BOOTSTRAP AGAIN!");
+					roundsWaitingForNewSucc = TRYING_TO_REJOIN_ROUNDS;
+					BootstrapRequest request = new BootstrapRequest("chord", 1);
+					trigger(request, bootstrap.getPositive(P2pBootstrap.class));
+				}
+				else {
+					roundsWaitingForNewSucc--;
+				}
+			}
+			else {
+				logger.info(peerSelf.getPeerId() + ": NULL succ :S");
+				findNextSucc();
+			}
+			if (greaterSuccTest == 5*TRYING_TO_REJOIN_ROUNDS) {
+				greaterSuccTest = 0;
+				logger.info(peerSelf.getPeerId() + ": my succ looks to failed SOSOSOSOSOSOS");
+				findNextSucc();
+			}
+			else {
+				greaterSuccTest++;
+			}
 		}
 	};
 
 //-------------------------------------------------------------------
 	Handler<WhoIsPred> handleWhoIsPred = new Handler<WhoIsPred>() {
 		public void handle(WhoIsPred event) {
-			//TODO WHAT IS THIS AGAIN???
 			WhoIsPredReply wpr = new WhoIsPredReply(peerSelf, event.getMSPeerSource(), pred, succList);
 			trigger(wpr, network);
 		}
 	};
 
+
 //-------------------------------------------------------------------
 	Handler<WhoIsPredReply> handleWhoIsPredReply = new Handler<WhoIsPredReply>() {
 		public void handle(WhoIsPredReply event) {
+			//TODO ??
+			if (testingNewSucc && !myPreviusSucc.equals(event.getMSPeerSource())) {
+				testingNewSucc = false;
+				logger.info(peerSelf.getPeerId() + ": verified new succ: " + succ.getPeerId());
+			}
+			greaterSuccTest = 0;
+			
+			
 			if ((event.getPred() != null) && (event.getPred().belongsTo(peerSelf, succ, 
 					se.sics.kompics.p2p.peer.PeerAddress.IntervalBounds.OPEN_OPEN, RING_SIZE))) {
 				PeerAddress psucc = succ;
@@ -315,8 +348,11 @@ public final class Peer extends ComponentDefinition {
 				Snapshot.setSuccList(peerSelf, succList);
 				Snapshot.setSucc(peerSelf, succ);
 				fingers[0] = succ;
-//				Snapshot.setFingers(peerSelf, fingers);
+				Snapshot.setFingers(peerSelf, fingers);
 			}
+			
+			Notify notify = new Notify(peerSelf, succ, peerSelf);
+			trigger(notify, network);
 			
 			succList = new PeerAddress[SUCC_SIZE];
 			succList[0] = succ;
@@ -329,15 +365,12 @@ public final class Peer extends ComponentDefinition {
 			
 			Snapshot.setSuccList(peerSelf, succList);
 			
-			Notify notify = new Notify(peerSelf, succ, peerSelf);
-			trigger(notify, network);
 		}
 	};
 
 //-------------------------------------------------------------------
 	Handler<Notify> handleNotify = new Handler<Notify>() {
 		public void handle(Notify event) {
-//			logger.info(peerSelf.getPeerId() + ": trying to become my pred: " + event.getMSPeerSource());
 			if (pred == null || event.getMSPeerSource().belongsTo(pred, peerSelf, 
 					se.sics.kompics.p2p.peer.PeerAddress.IntervalBounds.OPEN_OPEN, RING_SIZE)) {
 				
@@ -348,47 +381,60 @@ public final class Peer extends ComponentDefinition {
 					fdRegister(pred);	
 				}
 				Snapshot.setPred(peerSelf, pred);
-//				logger.info(peerSelf.getPeerId() + ": \tAccepted pred: " + event.getMSPeerDestination().getPeerId());
 			}
 		}
 	};
+	
+
+
 
 //-------------------------------------------------------------------	
 	Handler<PeerFailureSuspicion> handlePeerFailureSuspicion = new Handler<PeerFailureSuspicion>() {
 		public void handle(PeerFailureSuspicion event) {
 			Address suspectedPeerAddress = event.getPeerAddress();
-			
 			if (event.getSuspicionStatus().equals(SuspicionStatus.SUSPECTED)) {
 				logger.info(peerSelf.getPeerId() + " : suspected " + suspectedPeerAddress);
 				
 				if (pred != null && suspectedPeerAddress.equals(pred.getPeerAddress())) {
-					logger.info("\t it is my pred");
+					logger.info("\t" + pred.getPeerId() + " was my pred");
+					fdUnregister(pred);
 					pred = null;
+					Snapshot.setPred(peerSelf, pred);
 				}
 				else if (suspectedPeerAddress.equals(succ.getPeerAddress())) {
-					logger.info("\t it is my succ");
+					logger.info("\t" + succ.getPeerId() + " was my succ");
+					fdUnregister(succ);
+					myPreviusSucc = succ;
 					succ = null;
-					roundsWaiting = 0;
-					lookForNewSucc();
+					Snapshot.setSucc(peerSelf, succ);
+					findNextSucc();
 				}
 			}
 		}
+
 	};
-	
-	private void lookForNewSucc() {
-		PeerAddress peer;
-		int index = (int) ((Math.ceil((Math.random() * SUCC_SIZE))) % (SUCC_SIZE-1)) + 1;
-		peer = succList[index];
-		if (peer == null) {
-			index = (int) ((Math.ceil((Math.random() * FINGER_SIZE))) % (FINGER_SIZE-1)) + 1;
-			peer = fingers[index];
+
+	private void findNextSucc() {
+		String log = peerSelf.getPeerId() + ": findNextSucc, ";
+		if (succ != null) {
+			fdUnregister(succ);
 		}
-		if (peer != null) {
-			logger.info(":-o found peer to use: " + peer.getPeerId());
-			FindSucc fs = new FindSucc(peerSelf, peer, peerSelf, peerSelf.getPeerId(), -1);
-			trigger(fs, network);
+		shiftSuccList();
+		roundsWaitingForNewSucc = TRYING_TO_REJOIN_ROUNDS;
+		if (succList[0] != null) {
+			log += succList[0];
+			succ = succList[0];
+			Snapshot.setSucc(peerSelf, succ);
+			fdRegister(succ);
+			testingNewSucc = true;
 		}
-		
+		else {
+			log += "BOOTSTRAP";
+			callingBoostrap = true;
+			BootstrapRequest request = new BootstrapRequest("chord", 1);
+			trigger(request, bootstrap.getPositive(P2pBootstrap.class));
+		}
+		logger.info(log);
 	}
 	
 //-------------------------------------------------------------------
@@ -400,6 +446,15 @@ public final class Peer extends ComponentDefinition {
 		
 		fdPeers.put(peerAddress, peer);
 	}
+
+
+protected void shiftSuccList() {
+	for (int i = 0; i < (SUCC_SIZE - 1); i++) {
+		succList[i] = succList[i + 1];
+	}
+	succList[SUCC_SIZE - 1] = null;
+	Snapshot.setSuccList(peerSelf, succList);
+}
 
 //-------------------------------------------------------------------	
 	private void fdUnregister(PeerAddress peer) {
