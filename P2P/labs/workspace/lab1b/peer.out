@@ -33,1354 +33,1354 @@ avg generated traffic: 0
 current time: 4
 total number of peers: 31
 ring: 30 succ link(s) in ring are wrong :(
-reverse ring: 30 pred link(s) in ring are wrong :(
+reverse ring: 31 pred link(s) in ring are wrong :(
 fingers: 402 link(s) in finger list are wrong :(
-succList: 400 link(s) in successor list are wrong :(
+succList: 402 link(s) in successor list are wrong :(
 avg generated traffic: 0
 ###
 current time: 5
 total number of peers: 41
-ring: 41 succ link(s) in ring are wrong :(
-reverse ring: 41 pred link(s) in ring are wrong :(
-fingers: 533 link(s) in finger list are wrong :(
-succList: 528 link(s) in successor list are wrong :(
+ring: 40 succ link(s) in ring are wrong :(
+reverse ring: 40 pred link(s) in ring are wrong :(
+fingers: 532 link(s) in finger list are wrong :(
+succList: 530 link(s) in successor list are wrong :(
 avg generated traffic: 0
 ###
 current time: 6
 total number of peers: 50
-ring: 49 succ link(s) in ring are wrong :(
-reverse ring: 50 pred link(s) in ring are wrong :(
-fingers: 649 link(s) in finger list are wrong :(
-succList: 644 link(s) in successor list are wrong :(
+ring: 48 succ link(s) in ring are wrong :(
+reverse ring: 49 pred link(s) in ring are wrong :(
+fingers: 648 link(s) in finger list are wrong :(
+succList: 646 link(s) in successor list are wrong :(
 avg generated traffic: 0
 ###
 current time: 7
 total number of peers: 50
-ring: 47 succ link(s) in ring are wrong :(
-reverse ring: 47 pred link(s) in ring are wrong :(
-fingers: 647 link(s) in finger list are wrong :(
-succList: 639 link(s) in successor list are wrong :(
-avg generated traffic: 1
+ring: 48 succ link(s) in ring are wrong :(
+reverse ring: 49 pred link(s) in ring are wrong :(
+fingers: 648 link(s) in finger list are wrong :(
+succList: 641 link(s) in successor list are wrong :(
+avg generated traffic: 0
 ###
 current time: 8
 total number of peers: 50
-ring: 46 succ link(s) in ring are wrong :(
-reverse ring: 46 pred link(s) in ring are wrong :(
-fingers: 646 link(s) in finger list are wrong :(
-succList: 635 link(s) in successor list are wrong :(
+ring: 48 succ link(s) in ring are wrong :(
+reverse ring: 49 pred link(s) in ring are wrong :(
+fingers: 648 link(s) in finger list are wrong :(
+succList: 639 link(s) in successor list are wrong :(
 avg generated traffic: 1
 ###
 current time: 9
 total number of peers: 50
-ring: 46 succ link(s) in ring are wrong :(
-reverse ring: 46 pred link(s) in ring are wrong :(
-fingers: 646 link(s) in finger list are wrong :(
-succList: 633 link(s) in successor list are wrong :(
-avg generated traffic: 2
+ring: 48 succ link(s) in ring are wrong :(
+reverse ring: 48 pred link(s) in ring are wrong :(
+fingers: 648 link(s) in finger list are wrong :(
+succList: 636 link(s) in successor list are wrong :(
+avg generated traffic: 1
 ###
 current time: 10
 total number of peers: 50
 ring: 45 succ link(s) in ring are wrong :(
 reverse ring: 45 pred link(s) in ring are wrong :(
 fingers: 645 link(s) in finger list are wrong :(
-succList: 631 link(s) in successor list are wrong :(
+succList: 634 link(s) in successor list are wrong :(
 avg generated traffic: 2
 ###
 current time: 11
 total number of peers: 50
-ring: 44 succ link(s) in ring are wrong :(
-reverse ring: 44 pred link(s) in ring are wrong :(
-fingers: 644 link(s) in finger list are wrong :(
-succList: 627 link(s) in successor list are wrong :(
-avg generated traffic: 3
+ring: 45 succ link(s) in ring are wrong :(
+reverse ring: 45 pred link(s) in ring are wrong :(
+fingers: 645 link(s) in finger list are wrong :(
+succList: 633 link(s) in successor list are wrong :(
+avg generated traffic: 2
 ###
 current time: 12
 total number of peers: 50
-ring: 44 succ link(s) in ring are wrong :(
-reverse ring: 44 pred link(s) in ring are wrong :(
-fingers: 642 link(s) in finger list are wrong :(
-succList: 625 link(s) in successor list are wrong :(
-avg generated traffic: 3
+ring: 45 succ link(s) in ring are wrong :(
+reverse ring: 45 pred link(s) in ring are wrong :(
+fingers: 645 link(s) in finger list are wrong :(
+succList: 629 link(s) in successor list are wrong :(
+avg generated traffic: 2
 ###
 current time: 13
 total number of peers: 50
+ring: 45 succ link(s) in ring are wrong :(
+reverse ring: 45 pred link(s) in ring are wrong :(
+fingers: 645 link(s) in finger list are wrong :(
+succList: 628 link(s) in successor list are wrong :(
+avg generated traffic: 3
+###
+current time: 14
+total number of peers: 50
+ring: 45 succ link(s) in ring are wrong :(
+reverse ring: 45 pred link(s) in ring are wrong :(
+fingers: 645 link(s) in finger list are wrong :(
+succList: 629 link(s) in successor list are wrong :(
+avg generated traffic: 3
+###
+current time: 15
+total number of peers: 50
 ring: 44 succ link(s) in ring are wrong :(
 reverse ring: 44 pred link(s) in ring are wrong :(
+fingers: 644 link(s) in finger list are wrong :(
+succList: 625 link(s) in successor list are wrong :(
+avg generated traffic: 4
+###
+current time: 16
+total number of peers: 50
+ring: 43 succ link(s) in ring are wrong :(
+reverse ring: 43 pred link(s) in ring are wrong :(
+fingers: 642 link(s) in finger list are wrong :(
+succList: 624 link(s) in successor list are wrong :(
+avg generated traffic: 4
+###
+current time: 17
+total number of peers: 50
+ring: 43 succ link(s) in ring are wrong :(
+reverse ring: 43 pred link(s) in ring are wrong :(
 fingers: 642 link(s) in finger list are wrong :(
 succList: 621 link(s) in successor list are wrong :(
 avg generated traffic: 4
 ###
-current time: 14
-total number of peers: 50
-ring: 43 succ link(s) in ring are wrong :(
-reverse ring: 43 pred link(s) in ring are wrong :(
-fingers: 640 link(s) in finger list are wrong :(
-succList: 622 link(s) in successor list are wrong :(
-avg generated traffic: 4
-###
-current time: 15
-total number of peers: 50
-ring: 43 succ link(s) in ring are wrong :(
-reverse ring: 43 pred link(s) in ring are wrong :(
-fingers: 640 link(s) in finger list are wrong :(
-succList: 624 link(s) in successor list are wrong :(
-avg generated traffic: 5
-###
-current time: 16
-total number of peers: 50
-ring: 42 succ link(s) in ring are wrong :(
-reverse ring: 42 pred link(s) in ring are wrong :(
-fingers: 638 link(s) in finger list are wrong :(
-succList: 612 link(s) in successor list are wrong :(
-avg generated traffic: 5
-###
-current time: 17
-total number of peers: 50
-ring: 42 succ link(s) in ring are wrong :(
-reverse ring: 42 pred link(s) in ring are wrong :(
-fingers: 638 link(s) in finger list are wrong :(
-succList: 612 link(s) in successor list are wrong :(
-avg generated traffic: 6
-###
 current time: 18
 total number of peers: 50
-ring: 42 succ link(s) in ring are wrong :(
-reverse ring: 42 pred link(s) in ring are wrong :(
-fingers: 634 link(s) in finger list are wrong :(
-succList: 608 link(s) in successor list are wrong :(
-avg generated traffic: 6
+ring: 43 succ link(s) in ring are wrong :(
+reverse ring: 43 pred link(s) in ring are wrong :(
+fingers: 642 link(s) in finger list are wrong :(
+succList: 622 link(s) in successor list are wrong :(
+avg generated traffic: 5
 ###
 current time: 19
 total number of peers: 50
-ring: 41 succ link(s) in ring are wrong :(
-reverse ring: 41 pred link(s) in ring are wrong :(
-fingers: 621 link(s) in finger list are wrong :(
-succList: 605 link(s) in successor list are wrong :(
-avg generated traffic: 7
+ring: 42 succ link(s) in ring are wrong :(
+reverse ring: 42 pred link(s) in ring are wrong :(
+fingers: 640 link(s) in finger list are wrong :(
+succList: 615 link(s) in successor list are wrong :(
+avg generated traffic: 5
 ###
 current time: 20
 total number of peers: 50
-ring: 41 succ link(s) in ring are wrong :(
-reverse ring: 41 pred link(s) in ring are wrong :(
-fingers: 618 link(s) in finger list are wrong :(
-succList: 609 link(s) in successor list are wrong :(
-avg generated traffic: 7
+ring: 42 succ link(s) in ring are wrong :(
+reverse ring: 42 pred link(s) in ring are wrong :(
+fingers: 636 link(s) in finger list are wrong :(
+succList: 615 link(s) in successor list are wrong :(
+avg generated traffic: 6
 ###
 current time: 21
 total number of peers: 50
-ring: 40 succ link(s) in ring are wrong :(
-reverse ring: 40 pred link(s) in ring are wrong :(
-fingers: 608 link(s) in finger list are wrong :(
-succList: 599 link(s) in successor list are wrong :(
-avg generated traffic: 8
+ring: 41 succ link(s) in ring are wrong :(
+reverse ring: 41 pred link(s) in ring are wrong :(
+fingers: 633 link(s) in finger list are wrong :(
+succList: 614 link(s) in successor list are wrong :(
+avg generated traffic: 6
 ###
 current time: 22
 total number of peers: 50
-ring: 40 succ link(s) in ring are wrong :(
-reverse ring: 40 pred link(s) in ring are wrong :(
-fingers: 598 link(s) in finger list are wrong :(
-succList: 599 link(s) in successor list are wrong :(
-avg generated traffic: 8
+ring: 41 succ link(s) in ring are wrong :(
+reverse ring: 41 pred link(s) in ring are wrong :(
+fingers: 622 link(s) in finger list are wrong :(
+succList: 608 link(s) in successor list are wrong :(
+avg generated traffic: 6
 ###
 current time: 23
 total number of peers: 50
-ring: 40 succ link(s) in ring are wrong :(
-reverse ring: 40 pred link(s) in ring are wrong :(
-fingers: 584 link(s) in finger list are wrong :(
-succList: 602 link(s) in successor list are wrong :(
-avg generated traffic: 9
+ring: 41 succ link(s) in ring are wrong :(
+reverse ring: 41 pred link(s) in ring are wrong :(
+fingers: 615 link(s) in finger list are wrong :(
+succList: 600 link(s) in successor list are wrong :(
+avg generated traffic: 7
 ###
 current time: 24
 total number of peers: 50
-ring: 38 succ link(s) in ring are wrong :(
-reverse ring: 39 pred link(s) in ring are wrong :(
-fingers: 576 link(s) in finger list are wrong :(
-succList: 600 link(s) in successor list are wrong :(
-avg generated traffic: 9
+ring: 41 succ link(s) in ring are wrong :(
+reverse ring: 41 pred link(s) in ring are wrong :(
+fingers: 614 link(s) in finger list are wrong :(
+succList: 598 link(s) in successor list are wrong :(
+avg generated traffic: 7
 ###
 current time: 25
 total number of peers: 50
-ring: 35 succ link(s) in ring are wrong :(
-reverse ring: 36 pred link(s) in ring are wrong :(
-fingers: 565 link(s) in finger list are wrong :(
-succList: 598 link(s) in successor list are wrong :(
-avg generated traffic: 10
+ring: 40 succ link(s) in ring are wrong :(
+reverse ring: 40 pred link(s) in ring are wrong :(
+fingers: 606 link(s) in finger list are wrong :(
+succList: 600 link(s) in successor list are wrong :(
+avg generated traffic: 8
 ###
 current time: 26
 total number of peers: 50
-ring: 34 succ link(s) in ring are wrong :(
-reverse ring: 34 pred link(s) in ring are wrong :(
-fingers: 560 link(s) in finger list are wrong :(
-succList: 586 link(s) in successor list are wrong :(
-avg generated traffic: 10
+ring: 40 succ link(s) in ring are wrong :(
+reverse ring: 40 pred link(s) in ring are wrong :(
+fingers: 604 link(s) in finger list are wrong :(
+succList: 601 link(s) in successor list are wrong :(
+avg generated traffic: 8
 ###
 current time: 27
 total number of peers: 50
-ring: 33 succ link(s) in ring are wrong :(
-reverse ring: 33 pred link(s) in ring are wrong :(
-fingers: 557 link(s) in finger list are wrong :(
-succList: 579 link(s) in successor list are wrong :(
-avg generated traffic: 11
+ring: 39 succ link(s) in ring are wrong :(
+reverse ring: 39 pred link(s) in ring are wrong :(
+fingers: 592 link(s) in finger list are wrong :(
+succList: 590 link(s) in successor list are wrong :(
+avg generated traffic: 8
 ###
 current time: 28
 total number of peers: 50
-ring: 33 succ link(s) in ring are wrong :(
-reverse ring: 33 pred link(s) in ring are wrong :(
-fingers: 547 link(s) in finger list are wrong :(
-succList: 560 link(s) in successor list are wrong :(
-avg generated traffic: 11
+ring: 39 succ link(s) in ring are wrong :(
+reverse ring: 39 pred link(s) in ring are wrong :(
+fingers: 581 link(s) in finger list are wrong :(
+succList: 592 link(s) in successor list are wrong :(
+avg generated traffic: 9
 ###
 current time: 29
 total number of peers: 50
-ring: 33 succ link(s) in ring are wrong :(
-reverse ring: 33 pred link(s) in ring are wrong :(
-fingers: 544 link(s) in finger list are wrong :(
-succList: 517 link(s) in successor list are wrong :(
-avg generated traffic: 12
+ring: 38 succ link(s) in ring are wrong :(
+reverse ring: 38 pred link(s) in ring are wrong :(
+fingers: 572 link(s) in finger list are wrong :(
+succList: 581 link(s) in successor list are wrong :(
+avg generated traffic: 9
 ###
 current time: 30
 total number of peers: 50
-ring: 32 succ link(s) in ring are wrong :(
-reverse ring: 32 pred link(s) in ring are wrong :(
-fingers: 542 link(s) in finger list are wrong :(
-succList: 516 link(s) in successor list are wrong :(
-avg generated traffic: 12
+ring: 38 succ link(s) in ring are wrong :(
+reverse ring: 38 pred link(s) in ring are wrong :(
+fingers: 567 link(s) in finger list are wrong :(
+succList: 581 link(s) in successor list are wrong :(
+avg generated traffic: 10
 ###
 current time: 31
 total number of peers: 50
-ring: 31 succ link(s) in ring are wrong :(
-reverse ring: 31 pred link(s) in ring are wrong :(
-fingers: 539 link(s) in finger list are wrong :(
-succList: 505 link(s) in successor list are wrong :(
-avg generated traffic: 13
+ring: 38 succ link(s) in ring are wrong :(
+reverse ring: 38 pred link(s) in ring are wrong :(
+fingers: 560 link(s) in finger list are wrong :(
+succList: 583 link(s) in successor list are wrong :(
+avg generated traffic: 10
 ###
 current time: 32
 total number of peers: 50
-ring: 31 succ link(s) in ring are wrong :(
-reverse ring: 31 pred link(s) in ring are wrong :(
-fingers: 539 link(s) in finger list are wrong :(
-succList: 493 link(s) in successor list are wrong :(
-avg generated traffic: 13
+ring: 37 succ link(s) in ring are wrong :(
+reverse ring: 37 pred link(s) in ring are wrong :(
+fingers: 550 link(s) in finger list are wrong :(
+succList: 570 link(s) in successor list are wrong :(
+avg generated traffic: 10
 ###
 current time: 33
 total number of peers: 50
-ring: 31 succ link(s) in ring are wrong :(
-reverse ring: 31 pred link(s) in ring are wrong :(
-fingers: 539 link(s) in finger list are wrong :(
-succList: 493 link(s) in successor list are wrong :(
-avg generated traffic: 14
+ring: 37 succ link(s) in ring are wrong :(
+reverse ring: 37 pred link(s) in ring are wrong :(
+fingers: 541 link(s) in finger list are wrong :(
+succList: 570 link(s) in successor list are wrong :(
+avg generated traffic: 11
 ###
 current time: 34
 total number of peers: 50
-ring: 30 succ link(s) in ring are wrong :(
-reverse ring: 30 pred link(s) in ring are wrong :(
-fingers: 538 link(s) in finger list are wrong :(
-succList: 492 link(s) in successor list are wrong :(
-avg generated traffic: 14
+ring: 36 succ link(s) in ring are wrong :(
+reverse ring: 36 pred link(s) in ring are wrong :(
+fingers: 533 link(s) in finger list are wrong :(
+succList: 570 link(s) in successor list are wrong :(
+avg generated traffic: 11
 ###
 current time: 35
 total number of peers: 50
-ring: 30 succ link(s) in ring are wrong :(
-reverse ring: 30 pred link(s) in ring are wrong :(
-fingers: 538 link(s) in finger list are wrong :(
-succList: 492 link(s) in successor list are wrong :(
-avg generated traffic: 15
+ring: 36 succ link(s) in ring are wrong :(
+reverse ring: 36 pred link(s) in ring are wrong :(
+fingers: 533 link(s) in finger list are wrong :(
+succList: 558 link(s) in successor list are wrong :(
+avg generated traffic: 12
 ###
 current time: 36
 total number of peers: 50
-ring: 29 succ link(s) in ring are wrong :(
-reverse ring: 29 pred link(s) in ring are wrong :(
-fingers: 534 link(s) in finger list are wrong :(
-succList: 479 link(s) in successor list are wrong :(
-avg generated traffic: 15
+ring: 35 succ link(s) in ring are wrong :(
+reverse ring: 35 pred link(s) in ring are wrong :(
+fingers: 531 link(s) in finger list are wrong :(
+succList: 545 link(s) in successor list are wrong :(
+avg generated traffic: 12
 ###
 current time: 37
 total number of peers: 50
-ring: 29 succ link(s) in ring are wrong :(
-reverse ring: 29 pred link(s) in ring are wrong :(
-fingers: 534 link(s) in finger list are wrong :(
-succList: 479 link(s) in successor list are wrong :(
-avg generated traffic: 16
+ring: 35 succ link(s) in ring are wrong :(
+reverse ring: 35 pred link(s) in ring are wrong :(
+fingers: 531 link(s) in finger list are wrong :(
+succList: 545 link(s) in successor list are wrong :(
+avg generated traffic: 12
 ###
 current time: 38
 total number of peers: 50
-ring: 29 succ link(s) in ring are wrong :(
-reverse ring: 29 pred link(s) in ring are wrong :(
-fingers: 531 link(s) in finger list are wrong :(
-succList: 467 link(s) in successor list are wrong :(
-avg generated traffic: 16
+ring: 34 succ link(s) in ring are wrong :(
+reverse ring: 34 pred link(s) in ring are wrong :(
+fingers: 530 link(s) in finger list are wrong :(
+succList: 532 link(s) in successor list are wrong :(
+avg generated traffic: 13
 ###
 current time: 39
 total number of peers: 50
-ring: 29 succ link(s) in ring are wrong :(
-reverse ring: 29 pred link(s) in ring are wrong :(
-fingers: 531 link(s) in finger list are wrong :(
-succList: 467 link(s) in successor list are wrong :(
-avg generated traffic: 17
+ring: 34 succ link(s) in ring are wrong :(
+reverse ring: 34 pred link(s) in ring are wrong :(
+fingers: 530 link(s) in finger list are wrong :(
+succList: 532 link(s) in successor list are wrong :(
+avg generated traffic: 13
 ###
 current time: 40
 total number of peers: 50
-ring: 28 succ link(s) in ring are wrong :(
-reverse ring: 28 pred link(s) in ring are wrong :(
-fingers: 522 link(s) in finger list are wrong :(
-succList: 466 link(s) in successor list are wrong :(
-avg generated traffic: 17
+ring: 34 succ link(s) in ring are wrong :(
+reverse ring: 34 pred link(s) in ring are wrong :(
+fingers: 530 link(s) in finger list are wrong :(
+succList: 532 link(s) in successor list are wrong :(
+avg generated traffic: 14
 ###
 current time: 41
 total number of peers: 50
-ring: 28 succ link(s) in ring are wrong :(
-reverse ring: 28 pred link(s) in ring are wrong :(
-fingers: 515 link(s) in finger list are wrong :(
-succList: 466 link(s) in successor list are wrong :(
-avg generated traffic: 18
+ring: 33 succ link(s) in ring are wrong :(
+reverse ring: 33 pred link(s) in ring are wrong :(
+fingers: 529 link(s) in finger list are wrong :(
+succList: 519 link(s) in successor list are wrong :(
+avg generated traffic: 14
 ###
 current time: 42
 total number of peers: 50
-ring: 28 succ link(s) in ring are wrong :(
-reverse ring: 28 pred link(s) in ring are wrong :(
-fingers: 494 link(s) in finger list are wrong :(
-succList: 466 link(s) in successor list are wrong :(
-avg generated traffic: 18
+ring: 33 succ link(s) in ring are wrong :(
+reverse ring: 33 pred link(s) in ring are wrong :(
+fingers: 529 link(s) in finger list are wrong :(
+succList: 519 link(s) in successor list are wrong :(
+avg generated traffic: 14
 ###
 current time: 43
 total number of peers: 50
-ring: 26 succ link(s) in ring are wrong :(
-reverse ring: 26 pred link(s) in ring are wrong :(
-fingers: 480 link(s) in finger list are wrong :(
-succList: 464 link(s) in successor list are wrong :(
-avg generated traffic: 19
+ring: 32 succ link(s) in ring are wrong :(
+reverse ring: 32 pred link(s) in ring are wrong :(
+fingers: 528 link(s) in finger list are wrong :(
+succList: 518 link(s) in successor list are wrong :(
+avg generated traffic: 15
 ###
 current time: 44
 total number of peers: 50
-ring: 25 succ link(s) in ring are wrong :(
-reverse ring: 25 pred link(s) in ring are wrong :(
-fingers: 459 link(s) in finger list are wrong :(
-succList: 463 link(s) in successor list are wrong :(
-avg generated traffic: 19
+ring: 32 succ link(s) in ring are wrong :(
+reverse ring: 32 pred link(s) in ring are wrong :(
+fingers: 528 link(s) in finger list are wrong :(
+succList: 506 link(s) in successor list are wrong :(
+avg generated traffic: 15
 ###
 current time: 45
 total number of peers: 50
-ring: 25 succ link(s) in ring are wrong :(
-reverse ring: 25 pred link(s) in ring are wrong :(
-fingers: 421 link(s) in finger list are wrong :(
-succList: 461 link(s) in successor list are wrong :(
-avg generated traffic: 20
+ring: 32 succ link(s) in ring are wrong :(
+reverse ring: 32 pred link(s) in ring are wrong :(
+fingers: 528 link(s) in finger list are wrong :(
+succList: 506 link(s) in successor list are wrong :(
+avg generated traffic: 16
 ###
 current time: 46
 total number of peers: 50
-ring: 24 succ link(s) in ring are wrong :(
-reverse ring: 24 pred link(s) in ring are wrong :(
-fingers: 404 link(s) in finger list are wrong :(
-succList: 458 link(s) in successor list are wrong :(
-avg generated traffic: 20
+ring: 32 succ link(s) in ring are wrong :(
+reverse ring: 32 pred link(s) in ring are wrong :(
+fingers: 521 link(s) in finger list are wrong :(
+succList: 494 link(s) in successor list are wrong :(
+avg generated traffic: 16
 ###
 current time: 47
 total number of peers: 50
-ring: 24 succ link(s) in ring are wrong :(
-reverse ring: 24 pred link(s) in ring are wrong :(
-fingers: 399 link(s) in finger list are wrong :(
-succList: 456 link(s) in successor list are wrong :(
-avg generated traffic: 21
+ring: 31 succ link(s) in ring are wrong :(
+reverse ring: 31 pred link(s) in ring are wrong :(
+fingers: 520 link(s) in finger list are wrong :(
+succList: 493 link(s) in successor list are wrong :(
+avg generated traffic: 16
 ###
 current time: 48
 total number of peers: 50
-ring: 22 succ link(s) in ring are wrong :(
-reverse ring: 23 pred link(s) in ring are wrong :(
-fingers: 389 link(s) in finger list are wrong :(
-succList: 442 link(s) in successor list are wrong :(
-avg generated traffic: 21
+ring: 31 succ link(s) in ring are wrong :(
+reverse ring: 31 pred link(s) in ring are wrong :(
+fingers: 519 link(s) in finger list are wrong :(
+succList: 493 link(s) in successor list are wrong :(
+avg generated traffic: 17
 ###
 current time: 49
 total number of peers: 50
-ring: 22 succ link(s) in ring are wrong :(
-reverse ring: 22 pred link(s) in ring are wrong :(
-fingers: 384 link(s) in finger list are wrong :(
-succList: 442 link(s) in successor list are wrong :(
-avg generated traffic: 22
+ring: 31 succ link(s) in ring are wrong :(
+reverse ring: 31 pred link(s) in ring are wrong :(
+fingers: 513 link(s) in finger list are wrong :(
+succList: 481 link(s) in successor list are wrong :(
+avg generated traffic: 17
 ###
 current time: 50
 total number of peers: 50
-ring: 22 succ link(s) in ring are wrong :(
-reverse ring: 22 pred link(s) in ring are wrong :(
-fingers: 376 link(s) in finger list are wrong :(
-succList: 429 link(s) in successor list are wrong :(
-avg generated traffic: 22
+ring: 30 succ link(s) in ring are wrong :(
+reverse ring: 30 pred link(s) in ring are wrong :(
+fingers: 509 link(s) in finger list are wrong :(
+succList: 480 link(s) in successor list are wrong :(
+avg generated traffic: 18
 ###
 current time: 51
 total number of peers: 50
-ring: 21 succ link(s) in ring are wrong :(
-reverse ring: 21 pred link(s) in ring are wrong :(
-fingers: 365 link(s) in finger list are wrong :(
-succList: 423 link(s) in successor list are wrong :(
-avg generated traffic: 23
+ring: 29 succ link(s) in ring are wrong :(
+reverse ring: 29 pred link(s) in ring are wrong :(
+fingers: 495 link(s) in finger list are wrong :(
+succList: 479 link(s) in successor list are wrong :(
+avg generated traffic: 18
 ###
 current time: 52
 total number of peers: 50
-ring: 21 succ link(s) in ring are wrong :(
-reverse ring: 21 pred link(s) in ring are wrong :(
-fingers: 360 link(s) in finger list are wrong :(
-succList: 406 link(s) in successor list are wrong :(
-avg generated traffic: 23
+ring: 29 succ link(s) in ring are wrong :(
+reverse ring: 29 pred link(s) in ring are wrong :(
+fingers: 482 link(s) in finger list are wrong :(
+succList: 467 link(s) in successor list are wrong :(
+avg generated traffic: 18
 ###
 current time: 53
 total number of peers: 50
-ring: 20 succ link(s) in ring are wrong :(
-reverse ring: 20 pred link(s) in ring are wrong :(
-fingers: 354 link(s) in finger list are wrong :(
-succList: 394 link(s) in successor list are wrong :(
-avg generated traffic: 24
+ring: 29 succ link(s) in ring are wrong :(
+reverse ring: 29 pred link(s) in ring are wrong :(
+fingers: 480 link(s) in finger list are wrong :(
+succList: 467 link(s) in successor list are wrong :(
+avg generated traffic: 19
 ###
 current time: 54
 total number of peers: 50
-ring: 20 succ link(s) in ring are wrong :(
-reverse ring: 20 pred link(s) in ring are wrong :(
-fingers: 350 link(s) in finger list are wrong :(
-succList: 385 link(s) in successor list are wrong :(
-avg generated traffic: 24
+ring: 28 succ link(s) in ring are wrong :(
+reverse ring: 28 pred link(s) in ring are wrong :(
+fingers: 461 link(s) in finger list are wrong :(
+succList: 454 link(s) in successor list are wrong :(
+avg generated traffic: 19
 ###
 current time: 55
 total number of peers: 50
-ring: 19 succ link(s) in ring are wrong :(
-reverse ring: 19 pred link(s) in ring are wrong :(
-fingers: 349 link(s) in finger list are wrong :(
-succList: 369 link(s) in successor list are wrong :(
-avg generated traffic: 25
+ring: 27 succ link(s) in ring are wrong :(
+reverse ring: 27 pred link(s) in ring are wrong :(
+fingers: 447 link(s) in finger list are wrong :(
+succList: 453 link(s) in successor list are wrong :(
+avg generated traffic: 20
 ###
 current time: 56
 total number of peers: 50
-ring: 18 succ link(s) in ring are wrong :(
-reverse ring: 18 pred link(s) in ring are wrong :(
-fingers: 348 link(s) in finger list are wrong :(
-succList: 367 link(s) in successor list are wrong :(
-avg generated traffic: 25
+ring: 27 succ link(s) in ring are wrong :(
+reverse ring: 27 pred link(s) in ring are wrong :(
+fingers: 429 link(s) in finger list are wrong :(
+succList: 441 link(s) in successor list are wrong :(
+avg generated traffic: 20
 ###
 current time: 57
 total number of peers: 50
-ring: 18 succ link(s) in ring are wrong :(
-reverse ring: 18 pred link(s) in ring are wrong :(
-fingers: 348 link(s) in finger list are wrong :(
-succList: 351 link(s) in successor list are wrong :(
-avg generated traffic: 26
+ring: 27 succ link(s) in ring are wrong :(
+reverse ring: 27 pred link(s) in ring are wrong :(
+fingers: 418 link(s) in finger list are wrong :(
+succList: 441 link(s) in successor list are wrong :(
+avg generated traffic: 20
 ###
 current time: 58
 total number of peers: 50
-ring: 18 succ link(s) in ring are wrong :(
-reverse ring: 18 pred link(s) in ring are wrong :(
-fingers: 348 link(s) in finger list are wrong :(
-succList: 336 link(s) in successor list are wrong :(
-avg generated traffic: 26
+ring: 27 succ link(s) in ring are wrong :(
+reverse ring: 27 pred link(s) in ring are wrong :(
+fingers: 414 link(s) in finger list are wrong :(
+succList: 429 link(s) in successor list are wrong :(
+avg generated traffic: 21
 ###
 current time: 59
 total number of peers: 50
-ring: 16 succ link(s) in ring are wrong :(
-reverse ring: 16 pred link(s) in ring are wrong :(
-fingers: 346 link(s) in finger list are wrong :(
-succList: 325 link(s) in successor list are wrong :(
-avg generated traffic: 27
+ring: 26 succ link(s) in ring are wrong :(
+reverse ring: 27 pred link(s) in ring are wrong :(
+fingers: 409 link(s) in finger list are wrong :(
+succList: 428 link(s) in successor list are wrong :(
+avg generated traffic: 21
 ###
 current time: 60
 total number of peers: 50
-ring: 16 succ link(s) in ring are wrong :(
-reverse ring: 16 pred link(s) in ring are wrong :(
-fingers: 341 link(s) in finger list are wrong :(
-succList: 321 link(s) in successor list are wrong :(
-avg generated traffic: 27
+ring: 26 succ link(s) in ring are wrong :(
+reverse ring: 26 pred link(s) in ring are wrong :(
+fingers: 402 link(s) in finger list are wrong :(
+succList: 428 link(s) in successor list are wrong :(
+avg generated traffic: 22
 ###
 current time: 61
 total number of peers: 50
-ring: 16 succ link(s) in ring are wrong :(
-reverse ring: 16 pred link(s) in ring are wrong :(
-fingers: 340 link(s) in finger list are wrong :(
-succList: 297 link(s) in successor list are wrong :(
-avg generated traffic: 28
+ring: 25 succ link(s) in ring are wrong :(
+reverse ring: 25 pred link(s) in ring are wrong :(
+fingers: 396 link(s) in finger list are wrong :(
+succList: 427 link(s) in successor list are wrong :(
+avg generated traffic: 22
 ###
 current time: 62
 total number of peers: 50
-ring: 16 succ link(s) in ring are wrong :(
-reverse ring: 16 pred link(s) in ring are wrong :(
-fingers: 339 link(s) in finger list are wrong :(
-succList: 286 link(s) in successor list are wrong :(
-avg generated traffic: 28
+ring: 25 succ link(s) in ring are wrong :(
+reverse ring: 25 pred link(s) in ring are wrong :(
+fingers: 395 link(s) in finger list are wrong :(
+succList: 415 link(s) in successor list are wrong :(
+avg generated traffic: 22
 ###
 current time: 63
+total number of peers: 50
+ring: 24 succ link(s) in ring are wrong :(
+reverse ring: 24 pred link(s) in ring are wrong :(
+fingers: 392 link(s) in finger list are wrong :(
+succList: 414 link(s) in successor list are wrong :(
+avg generated traffic: 23
+###
+current time: 64
+total number of peers: 50
+ring: 24 succ link(s) in ring are wrong :(
+reverse ring: 24 pred link(s) in ring are wrong :(
+fingers: 391 link(s) in finger list are wrong :(
+succList: 402 link(s) in successor list are wrong :(
+avg generated traffic: 23
+###
+current time: 65
+total number of peers: 50
+ring: 23 succ link(s) in ring are wrong :(
+reverse ring: 23 pred link(s) in ring are wrong :(
+fingers: 387 link(s) in finger list are wrong :(
+succList: 389 link(s) in successor list are wrong :(
+avg generated traffic: 24
+###
+current time: 66
+total number of peers: 50
+ring: 23 succ link(s) in ring are wrong :(
+reverse ring: 23 pred link(s) in ring are wrong :(
+fingers: 381 link(s) in finger list are wrong :(
+succList: 389 link(s) in successor list are wrong :(
+avg generated traffic: 24
+###
+current time: 67
+total number of peers: 50
+ring: 23 succ link(s) in ring are wrong :(
+reverse ring: 23 pred link(s) in ring are wrong :(
+fingers: 381 link(s) in finger list are wrong :(
+succList: 377 link(s) in successor list are wrong :(
+avg generated traffic: 24
+###
+current time: 68
+total number of peers: 50
+ring: 23 succ link(s) in ring are wrong :(
+reverse ring: 23 pred link(s) in ring are wrong :(
+fingers: 381 link(s) in finger list are wrong :(
+succList: 377 link(s) in successor list are wrong :(
+avg generated traffic: 25
+###
+current time: 69
+total number of peers: 50
+ring: 22 succ link(s) in ring are wrong :(
+reverse ring: 22 pred link(s) in ring are wrong :(
+fingers: 380 link(s) in finger list are wrong :(
+succList: 376 link(s) in successor list are wrong :(
+avg generated traffic: 25
+###
+current time: 70
+total number of peers: 50
+ring: 22 succ link(s) in ring are wrong :(
+reverse ring: 22 pred link(s) in ring are wrong :(
+fingers: 380 link(s) in finger list are wrong :(
+succList: 376 link(s) in successor list are wrong :(
+avg generated traffic: 26
+###
+current time: 71
+total number of peers: 50
+ring: 21 succ link(s) in ring are wrong :(
+reverse ring: 21 pred link(s) in ring are wrong :(
+fingers: 379 link(s) in finger list are wrong :(
+succList: 375 link(s) in successor list are wrong :(
+avg generated traffic: 26
+###
+current time: 72
+total number of peers: 50
+ring: 21 succ link(s) in ring are wrong :(
+reverse ring: 21 pred link(s) in ring are wrong :(
+fingers: 379 link(s) in finger list are wrong :(
+succList: 363 link(s) in successor list are wrong :(
+avg generated traffic: 26
+###
+current time: 73
+total number of peers: 50
+ring: 20 succ link(s) in ring are wrong :(
+reverse ring: 20 pred link(s) in ring are wrong :(
+fingers: 378 link(s) in finger list are wrong :(
+succList: 350 link(s) in successor list are wrong :(
+avg generated traffic: 27
+###
+current time: 74
+total number of peers: 50
+ring: 20 succ link(s) in ring are wrong :(
+reverse ring: 20 pred link(s) in ring are wrong :(
+fingers: 378 link(s) in finger list are wrong :(
+succList: 350 link(s) in successor list are wrong :(
+avg generated traffic: 27
+###
+current time: 75
+total number of peers: 50
+ring: 20 succ link(s) in ring are wrong :(
+reverse ring: 20 pred link(s) in ring are wrong :(
+fingers: 378 link(s) in finger list are wrong :(
+succList: 338 link(s) in successor list are wrong :(
+avg generated traffic: 28
+###
+current time: 76
+total number of peers: 50
+ring: 19 succ link(s) in ring are wrong :(
+reverse ring: 19 pred link(s) in ring are wrong :(
+fingers: 377 link(s) in finger list are wrong :(
+succList: 337 link(s) in successor list are wrong :(
+avg generated traffic: 28
+###
+current time: 77
+total number of peers: 50
+ring: 19 succ link(s) in ring are wrong :(
+reverse ring: 19 pred link(s) in ring are wrong :(
+fingers: 374 link(s) in finger list are wrong :(
+succList: 337 link(s) in successor list are wrong :(
+avg generated traffic: 28
+###
+current time: 78
+total number of peers: 50
+ring: 18 succ link(s) in ring are wrong :(
+reverse ring: 18 pred link(s) in ring are wrong :(
+fingers: 373 link(s) in finger list are wrong :(
+succList: 336 link(s) in successor list are wrong :(
+avg generated traffic: 29
+###
+current time: 79
+total number of peers: 50
+ring: 18 succ link(s) in ring are wrong :(
+reverse ring: 18 pred link(s) in ring are wrong :(
+fingers: 366 link(s) in finger list are wrong :(
+succList: 324 link(s) in successor list are wrong :(
+avg generated traffic: 29
+###
+current time: 80
+total number of peers: 50
+ring: 18 succ link(s) in ring are wrong :(
+reverse ring: 18 pred link(s) in ring are wrong :(
+fingers: 356 link(s) in finger list are wrong :(
+succList: 324 link(s) in successor list are wrong :(
+avg generated traffic: 30
+###
+current time: 81
+total number of peers: 50
+ring: 17 succ link(s) in ring are wrong :(
+reverse ring: 17 pred link(s) in ring are wrong :(
+fingers: 353 link(s) in finger list are wrong :(
+succList: 311 link(s) in successor list are wrong :(
+avg generated traffic: 30
+###
+current time: 82
+total number of peers: 50
+ring: 17 succ link(s) in ring are wrong :(
+reverse ring: 17 pred link(s) in ring are wrong :(
+fingers: 345 link(s) in finger list are wrong :(
+succList: 311 link(s) in successor list are wrong :(
+avg generated traffic: 30
+###
+current time: 83
+total number of peers: 50
+ring: 17 succ link(s) in ring are wrong :(
+reverse ring: 17 pred link(s) in ring are wrong :(
+fingers: 342 link(s) in finger list are wrong :(
+succList: 311 link(s) in successor list are wrong :(
+avg generated traffic: 31
+###
+current time: 84
 total number of peers: 50
 ring: 16 succ link(s) in ring are wrong :(
 reverse ring: 16 pred link(s) in ring are wrong :(
 fingers: 329 link(s) in finger list are wrong :(
-succList: 286 link(s) in successor list are wrong :(
-avg generated traffic: 29
-###
-current time: 64
-total number of peers: 50
-ring: 15 succ link(s) in ring are wrong :(
-reverse ring: 16 pred link(s) in ring are wrong :(
-fingers: 324 link(s) in finger list are wrong :(
-succList: 285 link(s) in successor list are wrong :(
-avg generated traffic: 29
-###
-current time: 65
-total number of peers: 50
-ring: 15 succ link(s) in ring are wrong :(
-reverse ring: 15 pred link(s) in ring are wrong :(
-fingers: 321 link(s) in finger list are wrong :(
-succList: 285 link(s) in successor list are wrong :(
-avg generated traffic: 30
-###
-current time: 66
-total number of peers: 50
-ring: 15 succ link(s) in ring are wrong :(
-reverse ring: 15 pred link(s) in ring are wrong :(
-fingers: 307 link(s) in finger list are wrong :(
-succList: 273 link(s) in successor list are wrong :(
-avg generated traffic: 30
-###
-current time: 67
-total number of peers: 50
-ring: 14 succ link(s) in ring are wrong :(
-reverse ring: 14 pred link(s) in ring are wrong :(
-fingers: 294 link(s) in finger list are wrong :(
-succList: 272 link(s) in successor list are wrong :(
+succList: 298 link(s) in successor list are wrong :(
 avg generated traffic: 31
-###
-current time: 68
-total number of peers: 50
-ring: 13 succ link(s) in ring are wrong :(
-reverse ring: 13 pred link(s) in ring are wrong :(
-fingers: 272 link(s) in finger list are wrong :(
-succList: 271 link(s) in successor list are wrong :(
-avg generated traffic: 31
-###
-current time: 69
-total number of peers: 50
-ring: 13 succ link(s) in ring are wrong :(
-reverse ring: 13 pred link(s) in ring are wrong :(
-fingers: 259 link(s) in finger list are wrong :(
-succList: 259 link(s) in successor list are wrong :(
-avg generated traffic: 32
-###
-current time: 70
-total number of peers: 50
-ring: 12 succ link(s) in ring are wrong :(
-reverse ring: 12 pred link(s) in ring are wrong :(
-fingers: 250 link(s) in finger list are wrong :(
-succList: 246 link(s) in successor list are wrong :(
-avg generated traffic: 32
-###
-current time: 71
-total number of peers: 50
-ring: 12 succ link(s) in ring are wrong :(
-reverse ring: 12 pred link(s) in ring are wrong :(
-fingers: 236 link(s) in finger list are wrong :(
-succList: 246 link(s) in successor list are wrong :(
-avg generated traffic: 33
-###
-current time: 72
-total number of peers: 50
-ring: 12 succ link(s) in ring are wrong :(
-reverse ring: 12 pred link(s) in ring are wrong :(
-fingers: 229 link(s) in finger list are wrong :(
-succList: 234 link(s) in successor list are wrong :(
-avg generated traffic: 33
-###
-current time: 73
-total number of peers: 50
-ring: 10 succ link(s) in ring are wrong :(
-reverse ring: 10 pred link(s) in ring are wrong :(
-fingers: 212 link(s) in finger list are wrong :(
-succList: 232 link(s) in successor list are wrong :(
-avg generated traffic: 34
-###
-current time: 74
-total number of peers: 50
-ring: 10 succ link(s) in ring are wrong :(
-reverse ring: 10 pred link(s) in ring are wrong :(
-fingers: 207 link(s) in finger list are wrong :(
-succList: 220 link(s) in successor list are wrong :(
-avg generated traffic: 34
-###
-current time: 75
-total number of peers: 50
-ring: 10 succ link(s) in ring are wrong :(
-reverse ring: 10 pred link(s) in ring are wrong :(
-fingers: 201 link(s) in finger list are wrong :(
-succList: 208 link(s) in successor list are wrong :(
-avg generated traffic: 35
-###
-current time: 76
-total number of peers: 50
-ring: 9 succ link(s) in ring are wrong :(
-reverse ring: 9 pred link(s) in ring are wrong :(
-fingers: 195 link(s) in finger list are wrong :(
-succList: 207 link(s) in successor list are wrong :(
-avg generated traffic: 35
-###
-current time: 77
-total number of peers: 50
-ring: 9 succ link(s) in ring are wrong :(
-reverse ring: 9 pred link(s) in ring are wrong :(
-fingers: 191 link(s) in finger list are wrong :(
-succList: 207 link(s) in successor list are wrong :(
-avg generated traffic: 36
-###
-current time: 78
-total number of peers: 50
-ring: 8 succ link(s) in ring are wrong :(
-reverse ring: 8 pred link(s) in ring are wrong :(
-fingers: 189 link(s) in finger list are wrong :(
-succList: 194 link(s) in successor list are wrong :(
-avg generated traffic: 36
-###
-current time: 79
-total number of peers: 50
-ring: 7 succ link(s) in ring are wrong :(
-reverse ring: 7 pred link(s) in ring are wrong :(
-fingers: 187 link(s) in finger list are wrong :(
-succList: 181 link(s) in successor list are wrong :(
-avg generated traffic: 37
-###
-current time: 80
-total number of peers: 50
-ring: 7 succ link(s) in ring are wrong :(
-reverse ring: 7 pred link(s) in ring are wrong :(
-fingers: 187 link(s) in finger list are wrong :(
-succList: 181 link(s) in successor list are wrong :(
-avg generated traffic: 37
-###
-current time: 81
-total number of peers: 50
-ring: 7 succ link(s) in ring are wrong :(
-reverse ring: 7 pred link(s) in ring are wrong :(
-fingers: 187 link(s) in finger list are wrong :(
-succList: 169 link(s) in successor list are wrong :(
-avg generated traffic: 38
-###
-current time: 82
-total number of peers: 50
-ring: 6 succ link(s) in ring are wrong :(
-reverse ring: 7 pred link(s) in ring are wrong :(
-fingers: 186 link(s) in finger list are wrong :(
-succList: 168 link(s) in successor list are wrong :(
-avg generated traffic: 38
-###
-current time: 83
-total number of peers: 50
-ring: 5 succ link(s) in ring are wrong :(
-reverse ring: 5 pred link(s) in ring are wrong :(
-fingers: 185 link(s) in finger list are wrong :(
-succList: 167 link(s) in successor list are wrong :(
-avg generated traffic: 39
-###
-current time: 84
-total number of peers: 50
-ring: 4 succ link(s) in ring are wrong :(
-reverse ring: 4 pred link(s) in ring are wrong :(
-fingers: 180 link(s) in finger list are wrong :(
-succList: 166 link(s) in successor list are wrong :(
-avg generated traffic: 39
 ###
 current time: 85
 total number of peers: 50
-ring: 4 succ link(s) in ring are wrong :(
-reverse ring: 4 pred link(s) in ring are wrong :(
-fingers: 176 link(s) in finger list are wrong :(
-succList: 153 link(s) in successor list are wrong :(
-avg generated traffic: 40
+ring: 15 succ link(s) in ring are wrong :(
+reverse ring: 15 pred link(s) in ring are wrong :(
+fingers: 308 link(s) in finger list are wrong :(
+succList: 297 link(s) in successor list are wrong :(
+avg generated traffic: 32
 ###
 current time: 86
 total number of peers: 50
-ring: 4 succ link(s) in ring are wrong :(
-reverse ring: 4 pred link(s) in ring are wrong :(
-fingers: 174 link(s) in finger list are wrong :(
-succList: 141 link(s) in successor list are wrong :(
-avg generated traffic: 40
+ring: 15 succ link(s) in ring are wrong :(
+reverse ring: 15 pred link(s) in ring are wrong :(
+fingers: 283 link(s) in finger list are wrong :(
+succList: 285 link(s) in successor list are wrong :(
+avg generated traffic: 32
 ###
 current time: 87
 total number of peers: 50
-ring: 4 succ link(s) in ring are wrong :(
-reverse ring: 4 pred link(s) in ring are wrong :(
-fingers: 174 link(s) in finger list are wrong :(
-succList: 130 link(s) in successor list are wrong :(
-avg generated traffic: 41
+ring: 15 succ link(s) in ring are wrong :(
+reverse ring: 15 pred link(s) in ring are wrong :(
+fingers: 274 link(s) in finger list are wrong :(
+succList: 285 link(s) in successor list are wrong :(
+avg generated traffic: 32
 ###
 current time: 88
 total number of peers: 50
-ring: 3 succ link(s) in ring are wrong :(
-reverse ring: 3 pred link(s) in ring are wrong :(
-fingers: 171 link(s) in finger list are wrong :(
-succList: 129 link(s) in successor list are wrong :(
-avg generated traffic: 41
+ring: 14 succ link(s) in ring are wrong :(
+reverse ring: 14 pred link(s) in ring are wrong :(
+fingers: 261 link(s) in finger list are wrong :(
+succList: 272 link(s) in successor list are wrong :(
+avg generated traffic: 33
 ###
 current time: 89
 total number of peers: 50
-ring: 3 succ link(s) in ring are wrong :(
-reverse ring: 3 pred link(s) in ring are wrong :(
-fingers: 165 link(s) in finger list are wrong :(
-succList: 129 link(s) in successor list are wrong :(
-avg generated traffic: 42
+ring: 14 succ link(s) in ring are wrong :(
+reverse ring: 14 pred link(s) in ring are wrong :(
+fingers: 258 link(s) in finger list are wrong :(
+succList: 272 link(s) in successor list are wrong :(
+avg generated traffic: 33
 ###
 current time: 90
 total number of peers: 50
-ring: 3 succ link(s) in ring are wrong :(
-reverse ring: 3 pred link(s) in ring are wrong :(
-fingers: 154 link(s) in finger list are wrong :(
-succList: 117 link(s) in successor list are wrong :(
-avg generated traffic: 42
+ring: 13 succ link(s) in ring are wrong :(
+reverse ring: 13 pred link(s) in ring are wrong :(
+fingers: 253 link(s) in finger list are wrong :(
+succList: 259 link(s) in successor list are wrong :(
+avg generated traffic: 34
 ###
 current time: 91
 total number of peers: 50
-ring: 2 succ link(s) in ring are wrong :(
-reverse ring: 2 pred link(s) in ring are wrong :(
-fingers: 148 link(s) in finger list are wrong :(
-succList: 116 link(s) in successor list are wrong :(
-avg generated traffic: 43
+ring: 13 succ link(s) in ring are wrong :(
+reverse ring: 13 pred link(s) in ring are wrong :(
+fingers: 249 link(s) in finger list are wrong :(
+succList: 259 link(s) in successor list are wrong :(
+avg generated traffic: 34
 ###
 current time: 92
 total number of peers: 50
-ring: 1 succ link(s) in ring are wrong :(
-reverse ring: 1 pred link(s) in ring are wrong :(
-fingers: 128 link(s) in finger list are wrong :(
-succList: 103 link(s) in successor list are wrong :(
-avg generated traffic: 43
+ring: 13 succ link(s) in ring are wrong :(
+reverse ring: 13 pred link(s) in ring are wrong :(
+fingers: 246 link(s) in finger list are wrong :(
+succList: 247 link(s) in successor list are wrong :(
+avg generated traffic: 34
 ###
 current time: 93
 total number of peers: 50
-ring: 1 succ link(s) in ring are wrong :(
-reverse ring: 1 pred link(s) in ring are wrong :(
-fingers: 104 link(s) in finger list are wrong :(
-succList: 103 link(s) in successor list are wrong :(
-avg generated traffic: 44
+ring: 12 succ link(s) in ring are wrong :(
+reverse ring: 12 pred link(s) in ring are wrong :(
+fingers: 238 link(s) in finger list are wrong :(
+succList: 246 link(s) in successor list are wrong :(
+avg generated traffic: 35
 ###
 current time: 94
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 92 link(s) in finger list are wrong :(
-succList: 90 link(s) in successor list are wrong :(
-avg generated traffic: 44
+ring: 12 succ link(s) in ring are wrong :(
+reverse ring: 12 pred link(s) in ring are wrong :(
+fingers: 235 link(s) in finger list are wrong :(
+succList: 246 link(s) in successor list are wrong :(
+avg generated traffic: 35
 ###
 current time: 95
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 79 link(s) in finger list are wrong :(
-succList: 89 link(s) in successor list are wrong :(
-avg generated traffic: 45
+ring: 11 succ link(s) in ring are wrong :(
+reverse ring: 11 pred link(s) in ring are wrong :(
+fingers: 231 link(s) in finger list are wrong :(
+succList: 245 link(s) in successor list are wrong :(
+avg generated traffic: 36
 ###
 current time: 96
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 66 link(s) in finger list are wrong :(
-succList: 76 link(s) in successor list are wrong :(
-avg generated traffic: 45
+ring: 11 succ link(s) in ring are wrong :(
+reverse ring: 11 pred link(s) in ring are wrong :(
+fingers: 228 link(s) in finger list are wrong :(
+succList: 233 link(s) in successor list are wrong :(
+avg generated traffic: 36
 ###
 current time: 97
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 61 link(s) in finger list are wrong :(
-succList: 63 link(s) in successor list are wrong :(
-avg generated traffic: 46
+ring: 11 succ link(s) in ring are wrong :(
+reverse ring: 11 pred link(s) in ring are wrong :(
+fingers: 227 link(s) in finger list are wrong :(
+succList: 233 link(s) in successor list are wrong :(
+avg generated traffic: 36
 ###
 current time: 98
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 56 link(s) in finger list are wrong :(
-succList: 52 link(s) in successor list are wrong :(
-avg generated traffic: 46
+ring: 11 succ link(s) in ring are wrong :(
+reverse ring: 11 pred link(s) in ring are wrong :(
+fingers: 227 link(s) in finger list are wrong :(
+succList: 221 link(s) in successor list are wrong :(
+avg generated traffic: 37
 ###
 current time: 99
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 51 link(s) in finger list are wrong :(
-succList: 34 link(s) in successor list are wrong :(
-avg generated traffic: 47
+ring: 10 succ link(s) in ring are wrong :(
+reverse ring: 10 pred link(s) in ring are wrong :(
+fingers: 226 link(s) in finger list are wrong :(
+succList: 220 link(s) in successor list are wrong :(
+avg generated traffic: 37
 ###
 current time: 100
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 47 link(s) in finger list are wrong :(
-succList: 26 link(s) in successor list are wrong :(
-avg generated traffic: 47
+ring: 10 succ link(s) in ring are wrong :(
+reverse ring: 10 pred link(s) in ring are wrong :(
+fingers: 226 link(s) in finger list are wrong :(
+succList: 220 link(s) in successor list are wrong :(
+avg generated traffic: 38
 ###
 current time: 101
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 46 link(s) in finger list are wrong :(
-succList: 20 link(s) in successor list are wrong :(
-avg generated traffic: 48
+ring: 9 succ link(s) in ring are wrong :(
+reverse ring: 9 pred link(s) in ring are wrong :(
+fingers: 225 link(s) in finger list are wrong :(
+succList: 207 link(s) in successor list are wrong :(
+avg generated traffic: 38
 ###
 current time: 102
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 42 link(s) in finger list are wrong :(
-succList: 14 link(s) in successor list are wrong :(
-avg generated traffic: 48
+ring: 9 succ link(s) in ring are wrong :(
+reverse ring: 9 pred link(s) in ring are wrong :(
+fingers: 225 link(s) in finger list are wrong :(
+succList: 207 link(s) in successor list are wrong :(
+avg generated traffic: 38
 ###
 current time: 103
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 41 link(s) in finger list are wrong :(
-succList: 13 link(s) in successor list are wrong :(
-avg generated traffic: 49
+ring: 8 succ link(s) in ring are wrong :(
+reverse ring: 8 pred link(s) in ring are wrong :(
+fingers: 220 link(s) in finger list are wrong :(
+succList: 194 link(s) in successor list are wrong :(
+avg generated traffic: 39
 ###
 current time: 104
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 41 link(s) in finger list are wrong :(
-succList: 8 link(s) in successor list are wrong :(
-avg generated traffic: 49
+ring: 8 succ link(s) in ring are wrong :(
+reverse ring: 8 pred link(s) in ring are wrong :(
+fingers: 216 link(s) in finger list are wrong :(
+succList: 194 link(s) in successor list are wrong :(
+avg generated traffic: 39
 ###
 current time: 105
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 41 link(s) in finger list are wrong :(
-succList: 5 link(s) in successor list are wrong :(
-avg generated traffic: 50
+ring: 8 succ link(s) in ring are wrong :(
+reverse ring: 8 pred link(s) in ring are wrong :(
+fingers: 216 link(s) in finger list are wrong :(
+succList: 182 link(s) in successor list are wrong :(
+avg generated traffic: 40
 ###
 current time: 106
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 41 link(s) in finger list are wrong :(
-succList: 1 link(s) in successor list are wrong :(
-avg generated traffic: 50
+ring: 8 succ link(s) in ring are wrong :(
+reverse ring: 8 pred link(s) in ring are wrong :(
+fingers: 214 link(s) in finger list are wrong :(
+succList: 182 link(s) in successor list are wrong :(
+avg generated traffic: 40
 ###
 current time: 107
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 41 link(s) in finger list are wrong :(
-succList: 1 link(s) in successor list are wrong :(
-avg generated traffic: 51
+ring: 7 succ link(s) in ring are wrong :(
+reverse ring: 7 pred link(s) in ring are wrong :(
+fingers: 209 link(s) in finger list are wrong :(
+succList: 181 link(s) in successor list are wrong :(
+avg generated traffic: 40
 ###
 current time: 108
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 41 link(s) in finger list are wrong :(
-succList: successor list is correct :)
-avg generated traffic: 51
+ring: 6 succ link(s) in ring are wrong :(
+reverse ring: 6 pred link(s) in ring are wrong :(
+fingers: 200 link(s) in finger list are wrong :(
+succList: 180 link(s) in successor list are wrong :(
+avg generated traffic: 41
 ###
 current time: 109
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 41 link(s) in finger list are wrong :(
-succList: successor list is correct :)
-avg generated traffic: 52
+ring: 6 succ link(s) in ring are wrong :(
+reverse ring: 6 pred link(s) in ring are wrong :(
+fingers: 199 link(s) in finger list are wrong :(
+succList: 180 link(s) in successor list are wrong :(
+avg generated traffic: 41
 ###
 current time: 110
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 24 link(s) in finger list are wrong :(
-succList: successor list is correct :)
-avg generated traffic: 52
+ring: 5 succ link(s) in ring are wrong :(
+reverse ring: 5 pred link(s) in ring are wrong :(
+fingers: 190 link(s) in finger list are wrong :(
+succList: 166 link(s) in successor list are wrong :(
+avg generated traffic: 42
 ###
 current time: 111
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 24 link(s) in finger list are wrong :(
-succList: successor list is correct :)
-avg generated traffic: 53
+ring: 5 succ link(s) in ring are wrong :(
+reverse ring: 5 pred link(s) in ring are wrong :(
+fingers: 182 link(s) in finger list are wrong :(
+succList: 166 link(s) in successor list are wrong :(
+avg generated traffic: 42
 ###
 current time: 112
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 22 link(s) in finger list are wrong :(
-succList: successor list is correct :)
-avg generated traffic: 53
+ring: 5 succ link(s) in ring are wrong :(
+reverse ring: 5 pred link(s) in ring are wrong :(
+fingers: 172 link(s) in finger list are wrong :(
+succList: 155 link(s) in successor list are wrong :(
+avg generated traffic: 42
 ###
 current time: 113
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 15 link(s) in finger list are wrong :(
-succList: successor list is correct :)
-avg generated traffic: 54
+ring: 4 succ link(s) in ring are wrong :(
+reverse ring: 5 pred link(s) in ring are wrong :(
+fingers: 156 link(s) in finger list are wrong :(
+succList: 142 link(s) in successor list are wrong :(
+avg generated traffic: 43
 ###
 current time: 114
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 14 link(s) in finger list are wrong :(
-succList: successor list is correct :)
-avg generated traffic: 54
+ring: 4 succ link(s) in ring are wrong :(
+reverse ring: 4 pred link(s) in ring are wrong :(
+fingers: 148 link(s) in finger list are wrong :(
+succList: 142 link(s) in successor list are wrong :(
+avg generated traffic: 43
 ###
 current time: 115
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 14 link(s) in finger list are wrong :(
-succList: successor list is correct :)
-avg generated traffic: 55
+ring: 4 succ link(s) in ring are wrong :(
+reverse ring: 4 pred link(s) in ring are wrong :(
+fingers: 138 link(s) in finger list are wrong :(
+succList: 142 link(s) in successor list are wrong :(
+avg generated traffic: 44
 ###
 current time: 116
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 8 link(s) in finger list are wrong :(
-succList: successor list is correct :)
-avg generated traffic: 55
+ring: 3 succ link(s) in ring are wrong :(
+reverse ring: 3 pred link(s) in ring are wrong :(
+fingers: 121 link(s) in finger list are wrong :(
+succList: 129 link(s) in successor list are wrong :(
+avg generated traffic: 44
 ###
 current time: 117
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: 6 link(s) in finger list are wrong :(
-succList: successor list is correct :)
-avg generated traffic: 56
+ring: 2 succ link(s) in ring are wrong :(
+reverse ring: 2 pred link(s) in ring are wrong :(
+fingers: 116 link(s) in finger list are wrong :(
+succList: 128 link(s) in successor list are wrong :(
+avg generated traffic: 44
 ###
 current time: 118
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 56
+ring: 2 succ link(s) in ring are wrong :(
+reverse ring: 2 pred link(s) in ring are wrong :(
+fingers: 106 link(s) in finger list are wrong :(
+succList: 116 link(s) in successor list are wrong :(
+avg generated traffic: 45
 ###
 current time: 119
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 57
+ring: 2 succ link(s) in ring are wrong :(
+reverse ring: 2 pred link(s) in ring are wrong :(
+fingers: 94 link(s) in finger list are wrong :(
+succList: 104 link(s) in successor list are wrong :(
+avg generated traffic: 45
 ###
 current time: 120
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 57
+ring: 2 succ link(s) in ring are wrong :(
+reverse ring: 2 pred link(s) in ring are wrong :(
+fingers: 91 link(s) in finger list are wrong :(
+succList: 104 link(s) in successor list are wrong :(
+avg generated traffic: 46
 ###
 current time: 121
 total number of peers: 50
-ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 58
+ring: 1 succ link(s) in ring are wrong :(
+reverse ring: 1 pred link(s) in ring are wrong :(
+fingers: 85 link(s) in finger list are wrong :(
+succList: 103 link(s) in successor list are wrong :(
+avg generated traffic: 46
 ###
 current time: 122
 total number of peers: 50
 ring: ring is correct :)
-reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 58
+reverse ring: 1 pred link(s) in ring are wrong :(
+fingers: 82 link(s) in finger list are wrong :(
+succList: 102 link(s) in successor list are wrong :(
+avg generated traffic: 46
 ###
 current time: 123
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 59
+fingers: 79 link(s) in finger list are wrong :(
+succList: 89 link(s) in successor list are wrong :(
+avg generated traffic: 47
 ###
 current time: 124
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 59
+fingers: 75 link(s) in finger list are wrong :(
+succList: 88 link(s) in successor list are wrong :(
+avg generated traffic: 47
 ###
 current time: 125
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 60
+fingers: 70 link(s) in finger list are wrong :(
+succList: 76 link(s) in successor list are wrong :(
+avg generated traffic: 48
 ###
 current time: 126
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 60
+fingers: 67 link(s) in finger list are wrong :(
+succList: 64 link(s) in successor list are wrong :(
+avg generated traffic: 48
 ###
 current time: 127
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 61
+fingers: 67 link(s) in finger list are wrong :(
+succList: 52 link(s) in successor list are wrong :(
+avg generated traffic: 48
 ###
 current time: 128
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 61
+fingers: 67 link(s) in finger list are wrong :(
+succList: 43 link(s) in successor list are wrong :(
+avg generated traffic: 49
 ###
 current time: 129
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 62
+fingers: 67 link(s) in finger list are wrong :(
+succList: 43 link(s) in successor list are wrong :(
+avg generated traffic: 49
 ###
 current time: 130
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 62
+fingers: 67 link(s) in finger list are wrong :(
+succList: 27 link(s) in successor list are wrong :(
+avg generated traffic: 50
 ###
 current time: 131
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 63
+fingers: 67 link(s) in finger list are wrong :(
+succList: 26 link(s) in successor list are wrong :(
+avg generated traffic: 50
 ###
 current time: 132
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 63
+fingers: 67 link(s) in finger list are wrong :(
+succList: 19 link(s) in successor list are wrong :(
+avg generated traffic: 50
 ###
 current time: 133
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 64
+fingers: 67 link(s) in finger list are wrong :(
+succList: 18 link(s) in successor list are wrong :(
+avg generated traffic: 51
 ###
 current time: 134
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 64
+fingers: 67 link(s) in finger list are wrong :(
+succList: 9 link(s) in successor list are wrong :(
+avg generated traffic: 51
 ###
 current time: 135
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 65
+fingers: 62 link(s) in finger list are wrong :(
+succList: 8 link(s) in successor list are wrong :(
+avg generated traffic: 52
 ###
 current time: 136
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 65
+fingers: 62 link(s) in finger list are wrong :(
+succList: 5 link(s) in successor list are wrong :(
+avg generated traffic: 52
 ###
 current time: 137
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 66
+fingers: 58 link(s) in finger list are wrong :(
+succList: 2 link(s) in successor list are wrong :(
+avg generated traffic: 52
 ###
 current time: 138
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
-succList: successor list is correct :)
-avg generated traffic: 66
+fingers: 58 link(s) in finger list are wrong :(
+succList: 2 link(s) in successor list are wrong :(
+avg generated traffic: 53
 ###
 current time: 139
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 58 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 67
+avg generated traffic: 53
 ###
 current time: 140
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 53 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 67
+avg generated traffic: 54
 ###
 current time: 141
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 53 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 68
+avg generated traffic: 54
 ###
 current time: 142
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 53 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 68
+avg generated traffic: 54
 ###
 current time: 143
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 25 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 69
+avg generated traffic: 55
 ###
 current time: 144
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 25 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 69
+avg generated traffic: 55
 ###
 current time: 145
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 24 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 70
+avg generated traffic: 56
 ###
 current time: 146
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 20 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 70
+avg generated traffic: 56
 ###
 current time: 147
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 5 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 71
+avg generated traffic: 56
 ###
 current time: 148
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 4 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 71
+avg generated traffic: 57
 ###
 current time: 149
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 3 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 72
+avg generated traffic: 57
 ###
 current time: 150
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 3 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 72
+avg generated traffic: 58
 ###
 current time: 151
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 3 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 73
+avg generated traffic: 58
 ###
 current time: 152
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 73
+avg generated traffic: 58
 ###
 current time: 153
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 74
+avg generated traffic: 59
 ###
 current time: 154
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 74
+avg generated traffic: 59
 ###
 current time: 155
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 75
+avg generated traffic: 60
 ###
 current time: 156
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 75
+avg generated traffic: 60
 ###
 current time: 157
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 76
+avg generated traffic: 60
 ###
 current time: 158
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 76
+avg generated traffic: 61
 ###
 current time: 159
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 77
+avg generated traffic: 61
 ###
 current time: 160
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 77
+avg generated traffic: 62
 ###
 current time: 161
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 78
+avg generated traffic: 62
 ###
 current time: 162
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 78
+avg generated traffic: 62
 ###
 current time: 163
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 79
+avg generated traffic: 63
 ###
 current time: 164
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 79
+avg generated traffic: 63
 ###
 current time: 165
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 80
+avg generated traffic: 64
 ###
 current time: 166
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 80
+avg generated traffic: 64
 ###
 current time: 167
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 81
+avg generated traffic: 64
 ###
 current time: 168
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 81
+avg generated traffic: 65
 ###
 current time: 169
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 82
+avg generated traffic: 65
 ###
 current time: 170
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 82
+avg generated traffic: 66
 ###
 current time: 171
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 83
+avg generated traffic: 66
 ###
 current time: 172
 total number of peers: 50
 ring: ring is correct :)
 reverse ring: reverse ring is correct :)
-fingers: finger list is correct :)
+fingers: 1 link(s) in finger list are wrong :(
 succList: successor list is correct :)
-avg generated traffic: 83
+avg generated traffic: 66
 ###
 current time: 173
 total number of peers: 50
@@ -1388,7 +1388,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 84
+avg generated traffic: 67
 ###
 current time: 174
 total number of peers: 50
@@ -1396,7 +1396,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 84
+avg generated traffic: 67
 ###
 current time: 175
 total number of peers: 50
@@ -1404,7 +1404,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 85
+avg generated traffic: 68
 ###
 current time: 176
 total number of peers: 50
@@ -1412,7 +1412,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 85
+avg generated traffic: 68
 ###
 current time: 177
 total number of peers: 50
@@ -1420,7 +1420,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 86
+avg generated traffic: 68
 ###
 current time: 178
 total number of peers: 50
@@ -1428,7 +1428,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 86
+avg generated traffic: 69
 ###
 current time: 179
 total number of peers: 50
@@ -1436,7 +1436,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 87
+avg generated traffic: 69
 ###
 current time: 180
 total number of peers: 50
@@ -1444,7 +1444,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 87
+avg generated traffic: 70
 ###
 current time: 181
 total number of peers: 50
@@ -1452,7 +1452,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 88
+avg generated traffic: 70
 ###
 current time: 182
 total number of peers: 50
@@ -1460,7 +1460,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 88
+avg generated traffic: 70
 ###
 current time: 183
 total number of peers: 50
@@ -1468,7 +1468,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 89
+avg generated traffic: 71
 ###
 current time: 184
 total number of peers: 50
@@ -1476,7 +1476,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 89
+avg generated traffic: 71
 ###
 current time: 185
 total number of peers: 50
@@ -1484,7 +1484,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 90
+avg generated traffic: 72
 ###
 current time: 186
 total number of peers: 50
@@ -1492,7 +1492,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 90
+avg generated traffic: 72
 ###
 current time: 187
 total number of peers: 50
@@ -1500,7 +1500,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 91
+avg generated traffic: 72
 ###
 current time: 188
 total number of peers: 50
@@ -1508,7 +1508,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 91
+avg generated traffic: 73
 ###
 current time: 189
 total number of peers: 50
@@ -1516,7 +1516,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 92
+avg generated traffic: 73
 ###
 current time: 190
 total number of peers: 50
@@ -1524,7 +1524,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 92
+avg generated traffic: 74
 ###
 current time: 191
 total number of peers: 50
@@ -1532,7 +1532,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 93
+avg generated traffic: 74
 ###
 current time: 192
 total number of peers: 50
@@ -1540,7 +1540,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 93
+avg generated traffic: 74
 ###
 current time: 193
 total number of peers: 50
@@ -1548,7 +1548,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 94
+avg generated traffic: 75
 ###
 current time: 194
 total number of peers: 50
@@ -1556,7 +1556,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 94
+avg generated traffic: 75
 ###
 current time: 195
 total number of peers: 50
@@ -1564,7 +1564,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 95
+avg generated traffic: 76
 ###
 current time: 196
 total number of peers: 50
@@ -1572,7 +1572,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 95
+avg generated traffic: 76
 ###
 current time: 197
 total number of peers: 50
@@ -1580,7 +1580,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 96
+avg generated traffic: 76
 ###
 current time: 198
 total number of peers: 50
@@ -1588,7 +1588,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 96
+avg generated traffic: 77
 ###
 current time: 199
 total number of peers: 50
@@ -1596,7 +1596,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 97
+avg generated traffic: 77
 ###
 current time: 200
 total number of peers: 50
@@ -1604,7 +1604,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 97
+avg generated traffic: 78
 ###
 current time: 201
 total number of peers: 50
@@ -1612,7 +1612,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 98
+avg generated traffic: 78
 ###
 current time: 202
 total number of peers: 50
@@ -1620,7 +1620,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 98
+avg generated traffic: 78
 ###
 current time: 203
 total number of peers: 50
@@ -1628,7 +1628,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 99
+avg generated traffic: 79
 ###
 current time: 204
 total number of peers: 50
@@ -1636,7 +1636,7 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 99
+avg generated traffic: 79
 ###
 current time: 205
 total number of peers: 50
@@ -1644,797 +1644,1037 @@ ring: ring is correct :)
 reverse ring: reverse ring is correct :)
 fingers: finger list is correct :)
 succList: successor list is correct :)
-avg generated traffic: 100
+avg generated traffic: 80
 ###
 current time: 206
-total number of peers: 51
-ring: 2 succ link(s) in ring are wrong :(
-reverse ring: 2 pred link(s) in ring are wrong :(
-fingers: 27 link(s) in finger list are wrong :(
-succList: 104 link(s) in successor list are wrong :(
-avg generated traffic: 98
-total lookups: 1
+total number of peers: 52
+ring: 4 succ link(s) in ring are wrong :(
+reverse ring: 4 pred link(s) in ring are wrong :(
+fingers: 37 link(s) in finger list are wrong :(
+succList: 208 link(s) in successor list are wrong :(
+avg generated traffic: 77
+total lookups: 3
 correct lookups: 0
 successfull lookups: 0
 avg hop count: 0
 ###
 current time: 207
-total number of peers: 51
-ring: 1 succ link(s) in ring are wrong :(
-reverse ring: 2 pred link(s) in ring are wrong :(
-fingers: 26 link(s) in finger list are wrong :(
-succList: 104 link(s) in successor list are wrong :(
-avg generated traffic: 99
+total number of peers: 52
+ring: 4 succ link(s) in ring are wrong :(
+reverse ring: 7 pred link(s) in ring are wrong :(
+fingers: 75 link(s) in finger list are wrong :(
+succList: 384 link(s) in successor list are wrong :(
+avg generated traffic: 77
 total lookups: 4
-correct lookups: 2
-successfull lookups: 2
-avg hop count: 0
+correct lookups: 4
+successfull lookups: 4
+avg hop count: 1
 ###
 current time: 208
-total number of peers: 53
+total number of peers: 54
 ring: 7 succ link(s) in ring are wrong :(
-reverse ring: 9 pred link(s) in ring are wrong :(
-fingers: 111 link(s) in finger list are wrong :(
-succList: 358 link(s) in successor list are wrong :(
-avg generated traffic: 96
-total lookups: 5
+reverse ring: 11 pred link(s) in ring are wrong :(
+fingers: 116 link(s) in finger list are wrong :(
+succList: 490 link(s) in successor list are wrong :(
+avg generated traffic: 75
+total lookups: 6
 correct lookups: 5
 successfull lookups: 5
 avg hop count: 1
 ###
 current time: 209
-total number of peers: 54
-ring: 10 succ link(s) in ring are wrong :(
-reverse ring: 12 pred link(s) in ring are wrong :(
-fingers: 167 link(s) in finger list are wrong :(
-succList: 411 link(s) in successor list are wrong :(
-avg generated traffic: 94
-total lookups: 5
-correct lookups: 5
-successfull lookups: 5
+total number of peers: 53
+ring: 7 succ link(s) in ring are wrong :(
+reverse ring: 8 pred link(s) in ring are wrong :(
+fingers: 129 link(s) in finger list are wrong :(
+succList: 391 link(s) in successor list are wrong :(
+avg generated traffic: 77
+total lookups: 8
+correct lookups: 6
+successfull lookups: 6
 avg hop count: 1
 ###
 current time: 210
-total number of peers: 58
-ring: 16 succ link(s) in ring are wrong :(
-reverse ring: 20 pred link(s) in ring are wrong :(
-fingers: 278 link(s) in finger list are wrong :(
-succList: 588 link(s) in successor list are wrong :(
-avg generated traffic: 88
+total number of peers: 55
+ring: 8 succ link(s) in ring are wrong :(
+reverse ring: 10 pred link(s) in ring are wrong :(
+fingers: 180 link(s) in finger list are wrong :(
+succList: 394 link(s) in successor list are wrong :(
+avg generated traffic: 74
 total lookups: 8
-correct lookups: 8
-successfull lookups: 8
+correct lookups: 6
+successfull lookups: 7
 avg hop count: 1
 ###
 current time: 211
-total number of peers: 60
-ring: 18 succ link(s) in ring are wrong :(
-reverse ring: 22 pred link(s) in ring are wrong :(
-fingers: 316 link(s) in finger list are wrong :(
-succList: 637 link(s) in successor list are wrong :(
-avg generated traffic: 86
-total lookups: 11
-correct lookups: 8
-successfull lookups: 9
+total number of peers: 56
+ring: 9 succ link(s) in ring are wrong :(
+reverse ring: 11 pred link(s) in ring are wrong :(
+fingers: 195 link(s) in finger list are wrong :(
+succList: 469 link(s) in successor list are wrong :(
+avg generated traffic: 73
+total lookups: 9
+correct lookups: 7
+successfull lookups: 8
 avg hop count: 1
 ###
 current time: 212
-total number of peers: 58
-ring: 17 succ link(s) in ring are wrong :(
-reverse ring: 20 pred link(s) in ring are wrong :(
-fingers: 339 link(s) in finger list are wrong :(
-succList: 609 link(s) in successor list are wrong :(
-avg generated traffic: 89
-total lookups: 14
+total number of peers: 57
+ring: 9 succ link(s) in ring are wrong :(
+reverse ring: 11 pred link(s) in ring are wrong :(
+fingers: 211 link(s) in finger list are wrong :(
+succList: 468 link(s) in successor list are wrong :(
+avg generated traffic: 72
+total lookups: 12
 correct lookups: 9
-successfull lookups: 10
-avg hop count: 0
+successfull lookups: 11
+avg hop count: 1
 ###
 current time: 213
-total number of peers: 58
-ring: 14 succ link(s) in ring are wrong :(
-reverse ring: 16 pred link(s) in ring are wrong :(
-fingers: 336 link(s) in finger list are wrong :(
-succList: 593 link(s) in successor list are wrong :(
-avg generated traffic: 89
-total lookups: 17
+total number of peers: 57
+ring: 10 succ link(s) in ring are wrong :(
+reverse ring: 12 pred link(s) in ring are wrong :(
+fingers: 217 link(s) in finger list are wrong :(
+succList: 517 link(s) in successor list are wrong :(
+avg generated traffic: 73
+total lookups: 13
 correct lookups: 10
-successfull lookups: 13
+successfull lookups: 12
 avg hop count: 1
 ###
 current time: 214
-total number of peers: 57
-ring: 16 succ link(s) in ring are wrong :(
-reverse ring: 16 pred link(s) in ring are wrong :(
-fingers: 335 link(s) in finger list are wrong :(
-succList: 592 link(s) in successor list are wrong :(
-avg generated traffic: 92
-total lookups: 17
-correct lookups: 12
-successfull lookups: 15
+total number of peers: 59
+ring: 12 succ link(s) in ring are wrong :(
+reverse ring: 15 pred link(s) in ring are wrong :(
+fingers: 254 link(s) in finger list are wrong :(
+succList: 548 link(s) in successor list are wrong :(
+avg generated traffic: 71
+total lookups: 14
+correct lookups: 10
+successfull lookups: 12
 avg hop count: 1
 ###
 current time: 215
-total number of peers: 59
-ring: 17 succ link(s) in ring are wrong :(
-reverse ring: 17 pred link(s) in ring are wrong :(
-fingers: 378 link(s) in finger list are wrong :(
-succList: 581 link(s) in successor list are wrong :(
-avg generated traffic: 89
-total lookups: 18
+total number of peers: 58
+ring: 13 succ link(s) in ring are wrong :(
+reverse ring: 16 pred link(s) in ring are wrong :(
+fingers: 311 link(s) in finger list are wrong :(
+succList: 548 link(s) in successor list are wrong :(
+avg generated traffic: 72
+total lookups: 16
 correct lookups: 12
-successfull lookups: 15
+successfull lookups: 14
 avg hop count: 1
 ###
 current time: 216
-total number of peers: 59
-ring: 18 succ link(s) in ring are wrong :(
-reverse ring: 18 pred link(s) in ring are wrong :(
-fingers: 387 link(s) in finger list are wrong :(
-succList: 599 link(s) in successor list are wrong :(
-avg generated traffic: 89
-total lookups: 21
-correct lookups: 12
+total number of peers: 58
+ring: 13 succ link(s) in ring are wrong :(
+reverse ring: 15 pred link(s) in ring are wrong :(
+fingers: 311 link(s) in finger list are wrong :(
+succList: 531 link(s) in successor list are wrong :(
+avg generated traffic: 73
+total lookups: 19
+correct lookups: 13
 successfull lookups: 15
 avg hop count: 1
 ###
 current time: 217
-total number of peers: 59
+total number of peers: 61
 ring: 17 succ link(s) in ring are wrong :(
 reverse ring: 18 pred link(s) in ring are wrong :(
-fingers: 385 link(s) in finger list are wrong :(
-succList: 589 link(s) in successor list are wrong :(
-avg generated traffic: 90
-total lookups: 22
-correct lookups: 13
-successfull lookups: 16
+fingers: 387 link(s) in finger list are wrong :(
+succList: 605 link(s) in successor list are wrong :(
+avg generated traffic: 69
+total lookups: 20
+correct lookups: 15
+successfull lookups: 17
 avg hop count: 1
 ###
 current time: 218
-total number of peers: 61
-ring: 20 succ link(s) in ring are wrong :(
-reverse ring: 21 pred link(s) in ring are wrong :(
-fingers: 414 link(s) in finger list are wrong :(
-succList: 613 link(s) in successor list are wrong :(
-avg generated traffic: 87
-total lookups: 25
-correct lookups: 14
+total number of peers: 62
+ring: 18 succ link(s) in ring are wrong :(
+reverse ring: 20 pred link(s) in ring are wrong :(
+fingers: 408 link(s) in finger list are wrong :(
+succList: 623 link(s) in successor list are wrong :(
+avg generated traffic: 69
+total lookups: 21
+correct lookups: 15
 successfull lookups: 17
 avg hop count: 1
 ###
 current time: 219
-total number of peers: 61
-ring: 21 succ link(s) in ring are wrong :(
-reverse ring: 23 pred link(s) in ring are wrong :(
-fingers: 437 link(s) in finger list are wrong :(
-succList: 636 link(s) in successor list are wrong :(
-avg generated traffic: 88
-total lookups: 25
-correct lookups: 14
-successfull lookups: 17
-avg hop count: 1
-###
-current time: 220
-total number of peers: 63
-ring: 22 succ link(s) in ring are wrong :(
-reverse ring: 26 pred link(s) in ring are wrong :(
-fingers: 478 link(s) in finger list are wrong :(
-succList: 647 link(s) in successor list are wrong :(
-avg generated traffic: 85
-total lookups: 27
-correct lookups: 15
+total number of peers: 62
+ring: 17 succ link(s) in ring are wrong :(
+reverse ring: 20 pred link(s) in ring are wrong :(
+fingers: 407 link(s) in finger list are wrong :(
+succList: 622 link(s) in successor list are wrong :(
+avg generated traffic: 69
+total lookups: 24
+correct lookups: 16
 successfull lookups: 18
 avg hop count: 1
 ###
-current time: 221
-total number of peers: 62
+current time: 220
+total number of peers: 64
 ring: 22 succ link(s) in ring are wrong :(
 reverse ring: 23 pred link(s) in ring are wrong :(
-fingers: 497 link(s) in finger list are wrong :(
-succList: 633 link(s) in successor list are wrong :(
-avg generated traffic: 87
-total lookups: 29
-correct lookups: 16
-successfull lookups: 20
+fingers: 466 link(s) in finger list are wrong :(
+succList: 645 link(s) in successor list are wrong :(
+avg generated traffic: 67
+total lookups: 26
+correct lookups: 17
+successfull lookups: 19
+avg hop count: 1
+###
+current time: 221
+total number of peers: 66
+ring: 22 succ link(s) in ring are wrong :(
+reverse ring: 25 pred link(s) in ring are wrong :(
+fingers: 493 link(s) in finger list are wrong :(
+succList: 688 link(s) in successor list are wrong :(
+avg generated traffic: 65
+total lookups: 27
+correct lookups: 19
+successfull lookups: 21
 avg hop count: 1
 ###
 current time: 222
-total number of peers: 61
-ring: 21 succ link(s) in ring are wrong :(
-reverse ring: 21 pred link(s) in ring are wrong :(
-fingers: 488 link(s) in finger list are wrong :(
-succList: 630 link(s) in successor list are wrong :(
-avg generated traffic: 89
+total number of peers: 66
+ring: 26 succ link(s) in ring are wrong :(
+reverse ring: 29 pred link(s) in ring are wrong :(
+fingers: 516 link(s) in finger list are wrong :(
+succList: 713 link(s) in successor list are wrong :(
+avg generated traffic: 66
 total lookups: 29
-correct lookups: 16
-successfull lookups: 20
+correct lookups: 19
+successfull lookups: 21
 avg hop count: 1
 ###
 current time: 223
-total number of peers: 61
-ring: 19 succ link(s) in ring are wrong :(
-reverse ring: 20 pred link(s) in ring are wrong :(
-fingers: 487 link(s) in finger list are wrong :(
-succList: 630 link(s) in successor list are wrong :(
-avg generated traffic: 89
-total lookups: 32
-correct lookups: 16
-successfull lookups: 20
+total number of peers: 68
+ring: 27 succ link(s) in ring are wrong :(
+reverse ring: 30 pred link(s) in ring are wrong :(
+fingers: 559 link(s) in finger list are wrong :(
+succList: 735 link(s) in successor list are wrong :(
+avg generated traffic: 64
+total lookups: 29
+correct lookups: 20
+successfull lookups: 22
 avg hop count: 1
 ###
 current time: 224
-total number of peers: 59
-ring: 21 succ link(s) in ring are wrong :(
-reverse ring: 22 pred link(s) in ring are wrong :(
-fingers: 501 link(s) in finger list are wrong :(
-succList: 639 link(s) in successor list are wrong :(
-avg generated traffic: 93
-total lookups: 33
-correct lookups: 16
-successfull lookups: 20
+total number of peers: 70
+ring: 29 succ link(s) in ring are wrong :(
+reverse ring: 31 pred link(s) in ring are wrong :(
+fingers: 596 link(s) in finger list are wrong :(
+succList: 766 link(s) in successor list are wrong :(
+avg generated traffic: 63
+total lookups: 32
+correct lookups: 21
+successfull lookups: 23
 avg hop count: 1
 ###
 current time: 225
-total number of peers: 58
-ring: 19 succ link(s) in ring are wrong :(
-reverse ring: 21 pred link(s) in ring are wrong :(
-fingers: 494 link(s) in finger list are wrong :(
-succList: 613 link(s) in successor list are wrong :(
-avg generated traffic: 95
-total lookups: 34
-correct lookups: 16
-successfull lookups: 20
+total number of peers: 69
+ring: 29 succ link(s) in ring are wrong :(
+reverse ring: 29 pred link(s) in ring are wrong :(
+fingers: 590 link(s) in finger list are wrong :(
+succList: 746 link(s) in successor list are wrong :(
+avg generated traffic: 64
+total lookups: 32
+correct lookups: 21
+successfull lookups: 23
 avg hop count: 1
 ###
 current time: 226
-total number of peers: 58
-ring: 17 succ link(s) in ring are wrong :(
-reverse ring: 19 pred link(s) in ring are wrong :(
-fingers: 487 link(s) in finger list are wrong :(
-succList: 605 link(s) in successor list are wrong :(
-avg generated traffic: 96
-total lookups: 36
-correct lookups: 17
-successfull lookups: 21
+total number of peers: 70
+ring: 30 succ link(s) in ring are wrong :(
+reverse ring: 30 pred link(s) in ring are wrong :(
+fingers: 602 link(s) in finger list are wrong :(
+succList: 741 link(s) in successor list are wrong :(
+avg generated traffic: 63
+total lookups: 34
+correct lookups: 21
+successfull lookups: 23
 avg hop count: 1
 ###
 current time: 227
-total number of peers: 59
-ring: 18 succ link(s) in ring are wrong :(
-reverse ring: 19 pred link(s) in ring are wrong :(
-fingers: 488 link(s) in finger list are wrong :(
-succList: 633 link(s) in successor list are wrong :(
-avg generated traffic: 94
-total lookups: 40
-correct lookups: 17
-successfull lookups: 21
-avg hop count: 0
-###
-current time: 228
-total number of peers: 59
-ring: 17 succ link(s) in ring are wrong :(
-reverse ring: 18 pred link(s) in ring are wrong :(
-fingers: 482 link(s) in finger list are wrong :(
-succList: 612 link(s) in successor list are wrong :(
-avg generated traffic: 95
-total lookups: 42
-correct lookups: 18
-successfull lookups: 23
-avg hop count: 0
-###
-current time: 229
-total number of peers: 61
-ring: 18 succ link(s) in ring are wrong :(
-reverse ring: 19 pred link(s) in ring are wrong :(
-fingers: 503 link(s) in finger list are wrong :(
-succList: 618 link(s) in successor list are wrong :(
-avg generated traffic: 92
-total lookups: 42
-correct lookups: 18
-successfull lookups: 23
-avg hop count: 0
-###
-current time: 230
-total number of peers: 61
-ring: 17 succ link(s) in ring are wrong :(
-reverse ring: 18 pred link(s) in ring are wrong :(
-fingers: 487 link(s) in finger list are wrong :(
-succList: 602 link(s) in successor list are wrong :(
-avg generated traffic: 93
-total lookups: 42
-correct lookups: 18
-successfull lookups: 23
-avg hop count: 0
-###
-current time: 231
-total number of peers: 60
-ring: 17 succ link(s) in ring are wrong :(
-reverse ring: 18 pred link(s) in ring are wrong :(
-fingers: 469 link(s) in finger list are wrong :(
-succList: 588 link(s) in successor list are wrong :(
-avg generated traffic: 94
-total lookups: 45
-correct lookups: 19
-successfull lookups: 24
-avg hop count: 0
-###
-current time: 232
-total number of peers: 62
-ring: 22 succ link(s) in ring are wrong :(
-reverse ring: 22 pred link(s) in ring are wrong :(
-fingers: 499 link(s) in finger list are wrong :(
-succList: 616 link(s) in successor list are wrong :(
-avg generated traffic: 92
-total lookups: 48
-correct lookups: 20
-successfull lookups: 25
-avg hop count: 0
-###
-current time: 233
-total number of peers: 63
-ring: 23 succ link(s) in ring are wrong :(
-reverse ring: 23 pred link(s) in ring are wrong :(
-fingers: 505 link(s) in finger list are wrong :(
-succList: 599 link(s) in successor list are wrong :(
-avg generated traffic: 91
-total lookups: 49
-correct lookups: 21
-successfull lookups: 26
-avg hop count: 0
-###
-current time: 234
-total number of peers: 64
-ring: 24 succ link(s) in ring are wrong :(
-reverse ring: 25 pred link(s) in ring are wrong :(
-fingers: 522 link(s) in finger list are wrong :(
-succList: 617 link(s) in successor list are wrong :(
-avg generated traffic: 90
-total lookups: 52
-correct lookups: 21
-successfull lookups: 26
-avg hop count: 0
-###
-current time: 235
-total number of peers: 65
-ring: 25 succ link(s) in ring are wrong :(
-reverse ring: 26 pred link(s) in ring are wrong :(
-fingers: 521 link(s) in finger list are wrong :(
-succList: 638 link(s) in successor list are wrong :(
-avg generated traffic: 89
-total lookups: 53
-correct lookups: 21
-successfull lookups: 26
-avg hop count: 0
-###
-current time: 236
-total number of peers: 65
-ring: 24 succ link(s) in ring are wrong :(
-reverse ring: 24 pred link(s) in ring are wrong :(
-fingers: 506 link(s) in finger list are wrong :(
-succList: 609 link(s) in successor list are wrong :(
-avg generated traffic: 89
-total lookups: 55
-correct lookups: 22
-successfull lookups: 27
-avg hop count: 0
-###
-current time: 237
-total number of peers: 66
-ring: 25 succ link(s) in ring are wrong :(
-reverse ring: 25 pred link(s) in ring are wrong :(
-fingers: 507 link(s) in finger list are wrong :(
-succList: 608 link(s) in successor list are wrong :(
-avg generated traffic: 88
-total lookups: 59
-correct lookups: 23
-successfull lookups: 28
-avg hop count: 0
-###
-current time: 238
-total number of peers: 68
-ring: 30 succ link(s) in ring are wrong :(
-reverse ring: 30 pred link(s) in ring are wrong :(
-fingers: 557 link(s) in finger list are wrong :(
-succList: 641 link(s) in successor list are wrong :(
-avg generated traffic: 86
-total lookups: 62
-correct lookups: 23
-successfull lookups: 28
-avg hop count: 0
-###
-current time: 239
-total number of peers: 70
-ring: 32 succ link(s) in ring are wrong :(
-reverse ring: 32 pred link(s) in ring are wrong :(
-fingers: 579 link(s) in finger list are wrong :(
-succList: 661 link(s) in successor list are wrong :(
-avg generated traffic: 84
-total lookups: 63
-correct lookups: 23
-successfull lookups: 28
-avg hop count: 0
-###
-current time: 240
 total number of peers: 71
 ring: 33 succ link(s) in ring are wrong :(
 reverse ring: 33 pred link(s) in ring are wrong :(
-fingers: 589 link(s) in finger list are wrong :(
-succList: 654 link(s) in successor list are wrong :(
-avg generated traffic: 83
-total lookups: 63
+fingers: 606 link(s) in finger list are wrong :(
+succList: 753 link(s) in successor list are wrong :(
+avg generated traffic: 63
+total lookups: 34
+correct lookups: 22
+successfull lookups: 24
+avg hop count: 1
+###
+current time: 228
+total number of peers: 71
+ring: 33 succ link(s) in ring are wrong :(
+reverse ring: 33 pred link(s) in ring are wrong :(
+fingers: 603 link(s) in finger list are wrong :(
+succList: 746 link(s) in successor list are wrong :(
+avg generated traffic: 63
+total lookups: 35
 correct lookups: 23
+successfull lookups: 25
+avg hop count: 1
+###
+current time: 229
+total number of peers: 72
+ring: 38 succ link(s) in ring are wrong :(
+reverse ring: 38 pred link(s) in ring are wrong :(
+fingers: 615 link(s) in finger list are wrong :(
+succList: 801 link(s) in successor list are wrong :(
+avg generated traffic: 62
+total lookups: 37
+correct lookups: 24
+successfull lookups: 26
+avg hop count: 1
+###
+current time: 230
+total number of peers: 73
+ring: 41 succ link(s) in ring are wrong :(
+reverse ring: 41 pred link(s) in ring are wrong :(
+fingers: 642 link(s) in finger list are wrong :(
+succList: 828 link(s) in successor list are wrong :(
+avg generated traffic: 62
+total lookups: 39
+correct lookups: 24
+successfull lookups: 27
+avg hop count: 1
+###
+current time: 231
+total number of peers: 73
+ring: 42 succ link(s) in ring are wrong :(
+reverse ring: 42 pred link(s) in ring are wrong :(
+fingers: 652 link(s) in finger list are wrong :(
+succList: 838 link(s) in successor list are wrong :(
+avg generated traffic: 62
+total lookups: 40
+correct lookups: 25
 successfull lookups: 28
-avg hop count: 0
+avg hop count: 1
+###
+current time: 232
+total number of peers: 72
+ring: 42 succ link(s) in ring are wrong :(
+reverse ring: 43 pred link(s) in ring are wrong :(
+fingers: 647 link(s) in finger list are wrong :(
+succList: 825 link(s) in successor list are wrong :(
+avg generated traffic: 63
+total lookups: 42
+correct lookups: 25
+successfull lookups: 28
+avg hop count: 1
+###
+current time: 233
+total number of peers: 72
+ring: 43 succ link(s) in ring are wrong :(
+reverse ring: 43 pred link(s) in ring are wrong :(
+fingers: 646 link(s) in finger list are wrong :(
+succList: 821 link(s) in successor list are wrong :(
+avg generated traffic: 64
+total lookups: 45
+correct lookups: 25
+successfull lookups: 29
+avg hop count: 1
+###
+current time: 234
+total number of peers: 73
+ring: 45 succ link(s) in ring are wrong :(
+reverse ring: 45 pred link(s) in ring are wrong :(
+fingers: 669 link(s) in finger list are wrong :(
+succList: 853 link(s) in successor list are wrong :(
+avg generated traffic: 63
+total lookups: 46
+correct lookups: 26
+successfull lookups: 31
+avg hop count: 1
+###
+current time: 235
+total number of peers: 74
+ring: 46 succ link(s) in ring are wrong :(
+reverse ring: 46 pred link(s) in ring are wrong :(
+fingers: 679 link(s) in finger list are wrong :(
+succList: 865 link(s) in successor list are wrong :(
+avg generated traffic: 62
+total lookups: 47
+correct lookups: 27
+successfull lookups: 32
+avg hop count: 1
+###
+current time: 236
+total number of peers: 75
+ring: 46 succ link(s) in ring are wrong :(
+reverse ring: 47 pred link(s) in ring are wrong :(
+fingers: 695 link(s) in finger list are wrong :(
+succList: 873 link(s) in successor list are wrong :(
+avg generated traffic: 62
+total lookups: 48
+correct lookups: 27
+successfull lookups: 32
+avg hop count: 1
+###
+current time: 237
+total number of peers: 77
+ring: 48 succ link(s) in ring are wrong :(
+reverse ring: 48 pred link(s) in ring are wrong :(
+fingers: 721 link(s) in finger list are wrong :(
+succList: 903 link(s) in successor list are wrong :(
+avg generated traffic: 60
+total lookups: 50
+correct lookups: 27
+successfull lookups: 32
+avg hop count: 1
+###
+current time: 238
+total number of peers: 79
+ring: 52 succ link(s) in ring are wrong :(
+reverse ring: 52 pred link(s) in ring are wrong :(
+fingers: 766 link(s) in finger list are wrong :(
+succList: 945 link(s) in successor list are wrong :(
+avg generated traffic: 59
+total lookups: 50
+correct lookups: 27
+successfull lookups: 32
+avg hop count: 1
+###
+current time: 239
+total number of peers: 80
+ring: 53 succ link(s) in ring are wrong :(
+reverse ring: 53 pred link(s) in ring are wrong :(
+fingers: 763 link(s) in finger list are wrong :(
+succList: 958 link(s) in successor list are wrong :(
+avg generated traffic: 59
+total lookups: 51
+correct lookups: 27
+successfull lookups: 32
+avg hop count: 1
+###
+current time: 240
+total number of peers: 81
+ring: 53 succ link(s) in ring are wrong :(
+reverse ring: 54 pred link(s) in ring are wrong :(
+fingers: 770 link(s) in finger list are wrong :(
+succList: 972 link(s) in successor list are wrong :(
+avg generated traffic: 58
+total lookups: 51
+correct lookups: 28
+successfull lookups: 33
+avg hop count: 1
 ###
 current time: 241
-total number of peers: 72
-ring: 35 succ link(s) in ring are wrong :(
-reverse ring: 35 pred link(s) in ring are wrong :(
-fingers: 602 link(s) in finger list are wrong :(
-succList: 734 link(s) in successor list are wrong :(
-avg generated traffic: 82
-total lookups: 65
-correct lookups: 23
-successfull lookups: 30
-avg hop count: 0
+total number of peers: 81
+ring: 53 succ link(s) in ring are wrong :(
+reverse ring: 54 pred link(s) in ring are wrong :(
+fingers: 772 link(s) in finger list are wrong :(
+succList: 965 link(s) in successor list are wrong :(
+avg generated traffic: 58
+total lookups: 51
+correct lookups: 28
+successfull lookups: 33
+avg hop count: 1
 ###
 current time: 242
-total number of peers: 74
-ring: 39 succ link(s) in ring are wrong :(
-reverse ring: 39 pred link(s) in ring are wrong :(
-fingers: 648 link(s) in finger list are wrong :(
-succList: 806 link(s) in successor list are wrong :(
-avg generated traffic: 80
-total lookups: 66
-correct lookups: 23
-successfull lookups: 30
-avg hop count: 0
+total number of peers: 80
+ring: 54 succ link(s) in ring are wrong :(
+reverse ring: 57 pred link(s) in ring are wrong :(
+fingers: 797 link(s) in finger list are wrong :(
+succList: 980 link(s) in successor list are wrong :(
+avg generated traffic: 59
+total lookups: 51
+correct lookups: 28
+successfull lookups: 33
+avg hop count: 1
 ###
 current time: 243
-total number of peers: 75
-ring: 40 succ link(s) in ring are wrong :(
-reverse ring: 40 pred link(s) in ring are wrong :(
-fingers: 664 link(s) in finger list are wrong :(
-succList: 789 link(s) in successor list are wrong :(
-avg generated traffic: 79
-total lookups: 68
-correct lookups: 24
-successfull lookups: 31
-avg hop count: 0
+total number of peers: 81
+ring: 55 succ link(s) in ring are wrong :(
+reverse ring: 57 pred link(s) in ring are wrong :(
+fingers: 812 link(s) in finger list are wrong :(
+succList: 989 link(s) in successor list are wrong :(
+avg generated traffic: 59
+total lookups: 51
+correct lookups: 28
+successfull lookups: 33
+avg hop count: 1
 ###
 current time: 244
-total number of peers: 77
-ring: 41 succ link(s) in ring are wrong :(
-reverse ring: 42 pred link(s) in ring are wrong :(
-fingers: 686 link(s) in finger list are wrong :(
-succList: 806 link(s) in successor list are wrong :(
-avg generated traffic: 78
-total lookups: 71
-correct lookups: 25
-successfull lookups: 32
-avg hop count: 0
+total number of peers: 79
+ring: 52 succ link(s) in ring are wrong :(
+reverse ring: 53 pred link(s) in ring are wrong :(
+fingers: 775 link(s) in finger list are wrong :(
+succList: 958 link(s) in successor list are wrong :(
+avg generated traffic: 61
+total lookups: 51
+correct lookups: 28
+successfull lookups: 33
+avg hop count: 1
 ###
 current time: 245
-total number of peers: 78
-ring: 43 succ link(s) in ring are wrong :(
-reverse ring: 44 pred link(s) in ring are wrong :(
-fingers: 690 link(s) in finger list are wrong :(
-succList: 814 link(s) in successor list are wrong :(
-avg generated traffic: 77
-total lookups: 72
-correct lookups: 25
+total number of peers: 80
+ring: 54 succ link(s) in ring are wrong :(
+reverse ring: 55 pred link(s) in ring are wrong :(
+fingers: 785 link(s) in finger list are wrong :(
+succList: 977 link(s) in successor list are wrong :(
+avg generated traffic: 60
+total lookups: 54
+correct lookups: 28
 successfull lookups: 33
-avg hop count: 0
+avg hop count: 1
 ###
 current time: 246
-total number of peers: 80
-ring: 43 succ link(s) in ring are wrong :(
-reverse ring: 45 pred link(s) in ring are wrong :(
-fingers: 708 link(s) in finger list are wrong :(
-succList: 860 link(s) in successor list are wrong :(
-avg generated traffic: 76
-total lookups: 73
-correct lookups: 25
-successfull lookups: 33
-avg hop count: 0
+total number of peers: 86
+ring: 59 succ link(s) in ring are wrong :(
+reverse ring: 59 pred link(s) in ring are wrong :(
+fingers: 871 link(s) in finger list are wrong :(
+succList: 1065 link(s) in successor list are wrong :(
+avg generated traffic: 56
+total lookups: 55
+correct lookups: 28
+successfull lookups: 34
+avg hop count: 1
 ###
 current time: 247
-total number of peers: 82
-ring: 44 succ link(s) in ring are wrong :(
-reverse ring: 47 pred link(s) in ring are wrong :(
-fingers: 750 link(s) in finger list are wrong :(
-succList: 886 link(s) in successor list are wrong :(
-avg generated traffic: 74
-total lookups: 73
-correct lookups: 26
+total number of peers: 86
+ring: 56 succ link(s) in ring are wrong :(
+reverse ring: 58 pred link(s) in ring are wrong :(
+fingers: 867 link(s) in finger list are wrong :(
+succList: 1063 link(s) in successor list are wrong :(
+avg generated traffic: 56
+total lookups: 55
+correct lookups: 28
 successfull lookups: 34
-avg hop count: 0
+avg hop count: 1
 ###
 current time: 248
-total number of peers: 82
-ring: 42 succ link(s) in ring are wrong :(
-reverse ring: 44 pred link(s) in ring are wrong :(
-fingers: 745 link(s) in finger list are wrong :(
-succList: 878 link(s) in successor list are wrong :(
-avg generated traffic: 74
-total lookups: 76
-correct lookups: 26
-successfull lookups: 36
-avg hop count: 0
+total number of peers: 85
+ring: 55 succ link(s) in ring are wrong :(
+reverse ring: 57 pred link(s) in ring are wrong :(
+fingers: 854 link(s) in finger list are wrong :(
+succList: 1046 link(s) in successor list are wrong :(
+avg generated traffic: 57
+total lookups: 56
+correct lookups: 28
+successfull lookups: 34
+avg hop count: 1
 ###
 current time: 249
-total number of peers: 83
-ring: 41 succ link(s) in ring are wrong :(
-reverse ring: 42 pred link(s) in ring are wrong :(
-fingers: 751 link(s) in finger list are wrong :(
-succList: 888 link(s) in successor list are wrong :(
-avg generated traffic: 74
-total lookups: 76
-correct lookups: 26
-successfull lookups: 36
-avg hop count: 0
+total number of peers: 88
+ring: 59 succ link(s) in ring are wrong :(
+reverse ring: 59 pred link(s) in ring are wrong :(
+fingers: 910 link(s) in finger list are wrong :(
+succList: 1070 link(s) in successor list are wrong :(
+avg generated traffic: 56
+total lookups: 58
+correct lookups: 28
+successfull lookups: 34
+avg hop count: 1
 ###
 current time: 250
-total number of peers: 83
-ring: 41 succ link(s) in ring are wrong :(
-reverse ring: 41 pred link(s) in ring are wrong :(
-fingers: 750 link(s) in finger list are wrong :(
-succList: 882 link(s) in successor list are wrong :(
-avg generated traffic: 74
-total lookups: 78
-correct lookups: 27
-successfull lookups: 37
-avg hop count: 0
+total number of peers: 90
+ring: 60 succ link(s) in ring are wrong :(
+reverse ring: 61 pred link(s) in ring are wrong :(
+fingers: 942 link(s) in finger list are wrong :(
+succList: 1096 link(s) in successor list are wrong :(
+avg generated traffic: 55
+total lookups: 61
+correct lookups: 28
+successfull lookups: 35
+avg hop count: 1
 ###
 current time: 251
-total number of peers: 84
-ring: 41 succ link(s) in ring are wrong :(
-reverse ring: 41 pred link(s) in ring are wrong :(
-fingers: 761 link(s) in finger list are wrong :(
-succList: 890 link(s) in successor list are wrong :(
-avg generated traffic: 74
-total lookups: 79
-correct lookups: 27
-successfull lookups: 37
-avg hop count: 0
+total number of peers: 91
+ring: 61 succ link(s) in ring are wrong :(
+reverse ring: 61 pred link(s) in ring are wrong :(
+fingers: 957 link(s) in finger list are wrong :(
+succList: 1107 link(s) in successor list are wrong :(
+avg generated traffic: 54
+total lookups: 62
+correct lookups: 28
+successfull lookups: 35
+avg hop count: 1
 ###
 current time: 252
-total number of peers: 84
-ring: 40 succ link(s) in ring are wrong :(
-reverse ring: 40 pred link(s) in ring are wrong :(
-fingers: 754 link(s) in finger list are wrong :(
-succList: 889 link(s) in successor list are wrong :(
-avg generated traffic: 74
-total lookups: 81
+total number of peers: 90
+ring: 62 succ link(s) in ring are wrong :(
+reverse ring: 62 pred link(s) in ring are wrong :(
+fingers: 939 link(s) in finger list are wrong :(
+succList: 1094 link(s) in successor list are wrong :(
+avg generated traffic: 55
+total lookups: 63
 correct lookups: 28
-successfull lookups: 38
-avg hop count: 0
+successfull lookups: 35
+avg hop count: 1
 ###
 current time: 253
-total number of peers: 85
-ring: 41 succ link(s) in ring are wrong :(
-reverse ring: 41 pred link(s) in ring are wrong :(
-fingers: 767 link(s) in finger list are wrong :(
-succList: 901 link(s) in successor list are wrong :(
-avg generated traffic: 73
-total lookups: 82
+total number of peers: 90
+ring: 61 succ link(s) in ring are wrong :(
+reverse ring: 61 pred link(s) in ring are wrong :(
+fingers: 929 link(s) in finger list are wrong :(
+succList: 1089 link(s) in successor list are wrong :(
+avg generated traffic: 55
+total lookups: 64
 correct lookups: 28
-successfull lookups: 38
-avg hop count: 0
+successfull lookups: 35
+avg hop count: 1
 ###
 current time: 254
-total number of peers: 85
-ring: 40 succ link(s) in ring are wrong :(
-reverse ring: 41 pred link(s) in ring are wrong :(
-fingers: 758 link(s) in finger list are wrong :(
-succList: 904 link(s) in successor list are wrong :(
-avg generated traffic: 74
-total lookups: 84
-correct lookups: 29
-successfull lookups: 39
-avg hop count: 0
+total number of peers: 90
+ring: 61 succ link(s) in ring are wrong :(
+reverse ring: 61 pred link(s) in ring are wrong :(
+fingers: 926 link(s) in finger list are wrong :(
+succList: 1089 link(s) in successor list are wrong :(
+avg generated traffic: 56
+total lookups: 66
+correct lookups: 28
+successfull lookups: 35
+avg hop count: 1
 ###
 current time: 255
-total number of peers: 87
-ring: 42 succ link(s) in ring are wrong :(
-reverse ring: 45 pred link(s) in ring are wrong :(
-fingers: 788 link(s) in finger list are wrong :(
-succList: 974 link(s) in successor list are wrong :(
-avg generated traffic: 72
-total lookups: 87
-correct lookups: 30
-successfull lookups: 40
+total number of peers: 90
+ring: 60 succ link(s) in ring are wrong :(
+reverse ring: 60 pred link(s) in ring are wrong :(
+fingers: 924 link(s) in finger list are wrong :(
+succList: 1087 link(s) in successor list are wrong :(
+avg generated traffic: 56
+total lookups: 69
+correct lookups: 29
+successfull lookups: 37
 avg hop count: 0
 ###
 current time: 256
 total number of peers: 90
-ring: 42 succ link(s) in ring are wrong :(
-reverse ring: 49 pred link(s) in ring are wrong :(
-fingers: 841 link(s) in finger list are wrong :(
-succList: 1026 link(s) in successor list are wrong :(
-avg generated traffic: 70
-total lookups: 88
-correct lookups: 31
-successfull lookups: 42
+ring: 60 succ link(s) in ring are wrong :(
+reverse ring: 60 pred link(s) in ring are wrong :(
+fingers: 918 link(s) in finger list are wrong :(
+succList: 1086 link(s) in successor list are wrong :(
+avg generated traffic: 56
+total lookups: 70
+correct lookups: 29
+successfull lookups: 37
 avg hop count: 0
 ###
 current time: 257
-total number of peers: 92
-ring: 45 succ link(s) in ring are wrong :(
-reverse ring: 50 pred link(s) in ring are wrong :(
-fingers: 862 link(s) in finger list are wrong :(
-succList: 1063 link(s) in successor list are wrong :(
-avg generated traffic: 69
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+total number of peers: 90
+ring: 58 succ link(s) in ring are wrong :(
+reverse ring: 58 pred link(s) in ring are wrong :(
+fingers: 905 link(s) in finger list are wrong :(
+succList: 1084 link(s) in successor list are wrong :(
+avg generated traffic: 56
+total lookups: 71
+correct lookups: 29
+successfull lookups: 37
 avg hop count: 0
 ###
 current time: 258
-total number of peers: 92
-ring: 43 succ link(s) in ring are wrong :(
-reverse ring: 45 pred link(s) in ring are wrong :(
-fingers: 847 link(s) in finger list are wrong :(
-succList: 1040 link(s) in successor list are wrong :(
-avg generated traffic: 70
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+total number of peers: 90
+ring: 58 succ link(s) in ring are wrong :(
+reverse ring: 58 pred link(s) in ring are wrong :(
+fingers: 894 link(s) in finger list are wrong :(
+succList: 1084 link(s) in successor list are wrong :(
+avg generated traffic: 57
+total lookups: 71
+correct lookups: 29
+successfull lookups: 37
 avg hop count: 0
 ###
 current time: 259
-total number of peers: 92
-ring: 41 succ link(s) in ring are wrong :(
-reverse ring: 41 pred link(s) in ring are wrong :(
-fingers: 839 link(s) in finger list are wrong :(
-succList: 1035 link(s) in successor list are wrong :(
-avg generated traffic: 70
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+total number of peers: 90
+ring: 58 succ link(s) in ring are wrong :(
+reverse ring: 58 pred link(s) in ring are wrong :(
+fingers: 886 link(s) in finger list are wrong :(
+succList: 1086 link(s) in successor list are wrong :(
+avg generated traffic: 57
+total lookups: 72
+correct lookups: 30
+successfull lookups: 38
 avg hop count: 0
 ###
 current time: 260
-total number of peers: 91
-ring: 38 succ link(s) in ring are wrong :(
-reverse ring: 38 pred link(s) in ring are wrong :(
-fingers: 792 link(s) in finger list are wrong :(
-succList: 1009 link(s) in successor list are wrong :(
-avg generated traffic: 71
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+total number of peers: 90
+ring: 58 succ link(s) in ring are wrong :(
+reverse ring: 58 pred link(s) in ring are wrong :(
+fingers: 885 link(s) in finger list are wrong :(
+succList: 1086 link(s) in successor list are wrong :(
+avg generated traffic: 57
+total lookups: 72
+correct lookups: 30
+successfull lookups: 38
 avg hop count: 0
 ###
 current time: 261
-total number of peers: 91
-ring: 37 succ link(s) in ring are wrong :(
-reverse ring: 37 pred link(s) in ring are wrong :(
-fingers: 774 link(s) in finger list are wrong :(
-succList: 1003 link(s) in successor list are wrong :(
-avg generated traffic: 71
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+total number of peers: 90
+ring: 58 succ link(s) in ring are wrong :(
+reverse ring: 58 pred link(s) in ring are wrong :(
+fingers: 872 link(s) in finger list are wrong :(
+succList: 1091 link(s) in successor list are wrong :(
+avg generated traffic: 57
+total lookups: 74
+correct lookups: 30
+successfull lookups: 40
 avg hop count: 0
 ###
 current time: 262
 total number of peers: 90
-ring: 38 succ link(s) in ring are wrong :(
-reverse ring: 38 pred link(s) in ring are wrong :(
-fingers: 777 link(s) in finger list are wrong :(
-succList: 992 link(s) in successor list are wrong :(
-avg generated traffic: 73
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+ring: 58 succ link(s) in ring are wrong :(
+reverse ring: 58 pred link(s) in ring are wrong :(
+fingers: 870 link(s) in finger list are wrong :(
+succList: 1091 link(s) in successor list are wrong :(
+avg generated traffic: 58
+total lookups: 76
+correct lookups: 30
+successfull lookups: 41
 avg hop count: 0
 ###
 current time: 263
 total number of peers: 90
-ring: 39 succ link(s) in ring are wrong :(
-reverse ring: 39 pred link(s) in ring are wrong :(
-fingers: 772 link(s) in finger list are wrong :(
-succList: 970 link(s) in successor list are wrong :(
-avg generated traffic: 73
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+ring: 58 succ link(s) in ring are wrong :(
+reverse ring: 58 pred link(s) in ring are wrong :(
+fingers: 865 link(s) in finger list are wrong :(
+succList: 1091 link(s) in successor list are wrong :(
+avg generated traffic: 58
+total lookups: 76
+correct lookups: 30
+successfull lookups: 41
 avg hop count: 0
 ###
 current time: 264
 total number of peers: 90
-ring: 38 succ link(s) in ring are wrong :(
-reverse ring: 38 pred link(s) in ring are wrong :(
-fingers: 754 link(s) in finger list are wrong :(
-succList: 947 link(s) in successor list are wrong :(
-avg generated traffic: 73
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+ring: 58 succ link(s) in ring are wrong :(
+reverse ring: 58 pred link(s) in ring are wrong :(
+fingers: 846 link(s) in finger list are wrong :(
+succList: 1091 link(s) in successor list are wrong :(
+avg generated traffic: 58
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
 avg hop count: 0
 ###
 current time: 265
 total number of peers: 90
-ring: 38 succ link(s) in ring are wrong :(
-reverse ring: 38 pred link(s) in ring are wrong :(
-fingers: 747 link(s) in finger list are wrong :(
-succList: 947 link(s) in successor list are wrong :(
-avg generated traffic: 74
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+ring: 58 succ link(s) in ring are wrong :(
+reverse ring: 58 pred link(s) in ring are wrong :(
+fingers: 844 link(s) in finger list are wrong :(
+succList: 1091 link(s) in successor list are wrong :(
+avg generated traffic: 58
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
 avg hop count: 0
 ###
 current time: 266
 total number of peers: 90
-ring: 37 succ link(s) in ring are wrong :(
-reverse ring: 38 pred link(s) in ring are wrong :(
-fingers: 732 link(s) in finger list are wrong :(
-succList: 933 link(s) in successor list are wrong :(
-avg generated traffic: 74
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+ring: 58 succ link(s) in ring are wrong :(
+reverse ring: 58 pred link(s) in ring are wrong :(
+fingers: 838 link(s) in finger list are wrong :(
+succList: 1099 link(s) in successor list are wrong :(
+avg generated traffic: 59
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
 avg hop count: 0
 ###
 current time: 267
 total number of peers: 90
-ring: 37 succ link(s) in ring are wrong :(
-reverse ring: 38 pred link(s) in ring are wrong :(
-fingers: 719 link(s) in finger list are wrong :(
-succList: 933 link(s) in successor list are wrong :(
-avg generated traffic: 74
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+ring: 57 succ link(s) in ring are wrong :(
+reverse ring: 57 pred link(s) in ring are wrong :(
+fingers: 827 link(s) in finger list are wrong :(
+succList: 1102 link(s) in successor list are wrong :(
+avg generated traffic: 59
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
 avg hop count: 0
 ###
 current time: 268
 total number of peers: 90
-ring: 37 succ link(s) in ring are wrong :(
-reverse ring: 37 pred link(s) in ring are wrong :(
-fingers: 706 link(s) in finger list are wrong :(
-succList: 923 link(s) in successor list are wrong :(
-avg generated traffic: 75
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+ring: 56 succ link(s) in ring are wrong :(
+reverse ring: 57 pred link(s) in ring are wrong :(
+fingers: 825 link(s) in finger list are wrong :(
+succList: 1102 link(s) in successor list are wrong :(
+avg generated traffic: 59
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
 avg hop count: 0
 ###
 current time: 269
 total number of peers: 90
-ring: 36 succ link(s) in ring are wrong :(
-reverse ring: 37 pred link(s) in ring are wrong :(
-fingers: 697 link(s) in finger list are wrong :(
-succList: 924 link(s) in successor list are wrong :(
-avg generated traffic: 75
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+ring: 56 succ link(s) in ring are wrong :(
+reverse ring: 57 pred link(s) in ring are wrong :(
+fingers: 817 link(s) in finger list are wrong :(
+succList: 1100 link(s) in successor list are wrong :(
+avg generated traffic: 59
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
 avg hop count: 0
 ###
 current time: 270
 total number of peers: 90
-ring: 36 succ link(s) in ring are wrong :(
-reverse ring: 37 pred link(s) in ring are wrong :(
-fingers: 677 link(s) in finger list are wrong :(
-succList: 905 link(s) in successor list are wrong :(
-avg generated traffic: 76
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+ring: 56 succ link(s) in ring are wrong :(
+reverse ring: 56 pred link(s) in ring are wrong :(
+fingers: 811 link(s) in finger list are wrong :(
+succList: 1095 link(s) in successor list are wrong :(
+avg generated traffic: 60
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
 avg hop count: 0
 ###
 current time: 271
 total number of peers: 90
+ring: 56 succ link(s) in ring are wrong :(
+reverse ring: 56 pred link(s) in ring are wrong :(
+fingers: 805 link(s) in finger list are wrong :(
+succList: 1087 link(s) in successor list are wrong :(
+avg generated traffic: 60
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 272
+total number of peers: 90
+ring: 55 succ link(s) in ring are wrong :(
+reverse ring: 55 pred link(s) in ring are wrong :(
+fingers: 798 link(s) in finger list are wrong :(
+succList: 1087 link(s) in successor list are wrong :(
+avg generated traffic: 60
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 273
+total number of peers: 90
+ring: 52 succ link(s) in ring are wrong :(
+reverse ring: 55 pred link(s) in ring are wrong :(
+fingers: 791 link(s) in finger list are wrong :(
+succList: 1086 link(s) in successor list are wrong :(
+avg generated traffic: 60
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 274
+total number of peers: 90
+ring: 52 succ link(s) in ring are wrong :(
+reverse ring: 55 pred link(s) in ring are wrong :(
+fingers: 789 link(s) in finger list are wrong :(
+succList: 1085 link(s) in successor list are wrong :(
+avg generated traffic: 61
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 275
+total number of peers: 90
+ring: 51 succ link(s) in ring are wrong :(
+reverse ring: 54 pred link(s) in ring are wrong :(
+fingers: 786 link(s) in finger list are wrong :(
+succList: 1079 link(s) in successor list are wrong :(
+avg generated traffic: 61
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 276
+total number of peers: 90
+ring: 50 succ link(s) in ring are wrong :(
+reverse ring: 52 pred link(s) in ring are wrong :(
+fingers: 783 link(s) in finger list are wrong :(
+succList: 1074 link(s) in successor list are wrong :(
+avg generated traffic: 61
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 277
+total number of peers: 90
+ring: 47 succ link(s) in ring are wrong :(
+reverse ring: 48 pred link(s) in ring are wrong :(
+fingers: 776 link(s) in finger list are wrong :(
+succList: 1066 link(s) in successor list are wrong :(
+avg generated traffic: 61
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 278
+total number of peers: 90
+ring: 47 succ link(s) in ring are wrong :(
+reverse ring: 48 pred link(s) in ring are wrong :(
+fingers: 775 link(s) in finger list are wrong :(
+succList: 1064 link(s) in successor list are wrong :(
+avg generated traffic: 62
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 279
+total number of peers: 90
+ring: 47 succ link(s) in ring are wrong :(
+reverse ring: 47 pred link(s) in ring are wrong :(
+fingers: 768 link(s) in finger list are wrong :(
+succList: 1048 link(s) in successor list are wrong :(
+avg generated traffic: 62
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 280
+total number of peers: 90
+ring: 46 succ link(s) in ring are wrong :(
+reverse ring: 46 pred link(s) in ring are wrong :(
+fingers: 767 link(s) in finger list are wrong :(
+succList: 1041 link(s) in successor list are wrong :(
+avg generated traffic: 62
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 281
+total number of peers: 90
+ring: 42 succ link(s) in ring are wrong :(
+reverse ring: 46 pred link(s) in ring are wrong :(
+fingers: 763 link(s) in finger list are wrong :(
+succList: 1037 link(s) in successor list are wrong :(
+avg generated traffic: 63
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 282
+total number of peers: 90
+ring: 37 succ link(s) in ring are wrong :(
+reverse ring: 44 pred link(s) in ring are wrong :(
+fingers: 755 link(s) in finger list are wrong :(
+succList: 1028 link(s) in successor list are wrong :(
+avg generated traffic: 63
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 283
+total number of peers: 90
 ring: 35 succ link(s) in ring are wrong :(
-reverse ring: 36 pred link(s) in ring are wrong :(
-fingers: 671 link(s) in finger list are wrong :(
-succList: 903 link(s) in successor list are wrong :(
-avg generated traffic: 76
-total lookups: 89
-correct lookups: 31
-successfull lookups: 42
+reverse ring: 42 pred link(s) in ring are wrong :(
+fingers: 750 link(s) in finger list are wrong :(
+succList: 1020 link(s) in successor list are wrong :(
+avg generated traffic: 63
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 284
+total number of peers: 90
+ring: 30 succ link(s) in ring are wrong :(
+reverse ring: 33 pred link(s) in ring are wrong :(
+fingers: 736 link(s) in finger list are wrong :(
+succList: 973 link(s) in successor list are wrong :(
+avg generated traffic: 64
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 285
+total number of peers: 90
+ring: 25 succ link(s) in ring are wrong :(
+reverse ring: 29 pred link(s) in ring are wrong :(
+fingers: 730 link(s) in finger list are wrong :(
+succList: 965 link(s) in successor list are wrong :(
+avg generated traffic: 64
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 286
+total number of peers: 90
+ring: 22 succ link(s) in ring are wrong :(
+reverse ring: 26 pred link(s) in ring are wrong :(
+fingers: 721 link(s) in finger list are wrong :(
+succList: 952 link(s) in successor list are wrong :(
+avg generated traffic: 64
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 287
+total number of peers: 90
+ring: 16 succ link(s) in ring are wrong :(
+reverse ring: 20 pred link(s) in ring are wrong :(
+fingers: 713 link(s) in finger list are wrong :(
+succList: 914 link(s) in successor list are wrong :(
+avg generated traffic: 65
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 288
+total number of peers: 90
+ring: 14 succ link(s) in ring are wrong :(
+reverse ring: 14 pred link(s) in ring are wrong :(
+fingers: 684 link(s) in finger list are wrong :(
+succList: 877 link(s) in successor list are wrong :(
+avg generated traffic: 65
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 289
+total number of peers: 90
+ring: 11 succ link(s) in ring are wrong :(
+reverse ring: 11 pred link(s) in ring are wrong :(
+fingers: 664 link(s) in finger list are wrong :(
+succList: 825 link(s) in successor list are wrong :(
+avg generated traffic: 66
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 290
+total number of peers: 90
+ring: 9 succ link(s) in ring are wrong :(
+reverse ring: 9 pred link(s) in ring are wrong :(
+fingers: 646 link(s) in finger list are wrong :(
+succList: 799 link(s) in successor list are wrong :(
+avg generated traffic: 66
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
+avg hop count: 0
+###
+current time: 291
+total number of peers: 90
+ring: 9 succ link(s) in ring are wrong :(
+reverse ring: 9 pred link(s) in ring are wrong :(
+fingers: 622 link(s) in finger list are wrong :(
+succList: 760 link(s) in successor list are wrong :(
+avg generated traffic: 66
+total lookups: 80
+correct lookups: 32
+successfull lookups: 43
 avg hop count: 0
 ###
