@@ -34,7 +34,7 @@ public class Configuration {
 	BootstrapConfiguration bootConfiguration = new BootstrapConfiguration(bootServerAddress, 60000, 4000, 3, 30000, webPort, webPort);
 	PingFailureDetectorConfiguration fdConfiguration = new PingFailureDetectorConfiguration(10000, 50000, 5000, 1000, Transport.TCP);
 	NetworkConfiguration networkConfiguration = new NetworkConfiguration(ip, networkPort, 0);
-	PeerConfiguration peerConfiguration = new PeerConfiguration(1, 2000);
+	PeerConfiguration peerConfiguration = new PeerConfiguration(1, 2500);
 
 //-------------------------------------------------------------------	
 	public void set() throws IOException {

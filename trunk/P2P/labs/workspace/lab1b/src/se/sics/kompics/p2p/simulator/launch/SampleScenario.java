@@ -196,9 +196,9 @@ public class SampleScenario extends Scenario {
 //		process2.startAfterTerminationOf(2000, process1);
 //		process3.startAfterTerminationOf(150000, process2);
 //		process4.startAfterTerminationOf(150000, process2);
-		
-		
-		
+//		
+//		
+//		
 		
 ////================Question 6===================
 //		// process1 -> one peer join		
