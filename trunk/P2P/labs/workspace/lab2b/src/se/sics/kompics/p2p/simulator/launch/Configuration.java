@@ -44,7 +44,7 @@ public class Configuration {
 	// D: Node outdegree that shows the maximum number of nodes that can download from this node
 	// E: The number of pieces
 	// F: The piece size (Kb)
-	PeerConfiguration peerConfiguration = new PeerConfiguration(512, 64, 4, 4, 30, 16);
+	PeerConfiguration peerConfiguration = new PeerConfiguration(512, 16, 4, 4, 30, 64);
 
 //-------------------------------------------------------------------	
 	public void set() throws IOException {
