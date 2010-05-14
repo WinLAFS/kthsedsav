@@ -1,7 +1,7 @@
 package se.sics.kompics.p2p.peer.tracker;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,11 +9,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import edu.cornell.lassp.houle.RngPack.Ranmar;
+
 import se.sics.kompics.ComponentDefinition;
 import se.sics.kompics.Handler;
 import se.sics.kompics.Negative;
 import se.sics.kompics.Positive;
-import se.sics.kompics.timer.Timer;
 import se.sics.kompics.p2p.peer.GetUploaderRequest;
 import se.sics.kompics.p2p.peer.GetUploaderResponse;
 import se.sics.kompics.p2p.peer.MessagePort;
@@ -22,6 +23,7 @@ import se.sics.kompics.p2p.peer.PeerPort;
 import se.sics.kompics.p2p.peer.RegisterPeer;
 import se.sics.kompics.p2p.peer.UpdateBuffer;
 import se.sics.kompics.p2p.simulator.launch.PeerType;
+import se.sics.kompics.timer.Timer;
 
 public final class Tracker extends ComponentDefinition {
 	Negative<PeerPort> peerPort = negative(PeerPort.class);
@@ -32,6 +34,8 @@ public final class Tracker extends ComponentDefinition {
 	private PeerAddress peerSelf;
 	private int numOfPieces;
     private HashMap<PeerAddress, Boolean[]> peers = new HashMap<PeerAddress, Boolean[]>();
+    int currentPeer = -1;
+    int currentPiece = -1;
 	
 //-------------------------------------------------------------------
 	public Tracker() {
@@ -95,7 +99,7 @@ public final class Tracker extends ComponentDefinition {
 			
 			PeerAddress requester = event.getPeerSource(); 
 			Boolean[] requesterBuffer = peers.get(requester);
-			
+			/*
 			List<PeerAddress> peerSet = new ArrayList<PeerAddress>(peers.keySet()); 
 			Collections.shuffle((List<PeerAddress>) peerSet);
 
@@ -118,6 +122,28 @@ public final class Tracker extends ComponentDefinition {
 						break;
 					}
 				}
+			}*/
+			Set<PeerAddress> peerSet = peers.keySet();
+			ArrayList<PeerAddress> peerList = new ArrayList<PeerAddress>(peerSet);
+			while (!sent) {
+				currentPeer = (currentPeer + 1) % peers.size();
+				PeerAddress responder = peerList.get(currentPeer);
+				if (!requester.equals(responder)) {
+					Boolean[] responderBuffer = peers.get(responder);
+					
+					ArrayList<Integer> shuffledList = createRandomListOfIntegers(numOfPieces);
+					Iterator<Integer> shuffledIterator = shuffledList.iterator();
+					while (shuffledIterator.hasNext()) {
+						Integer index = (Integer) shuffledIterator.next();
+						if ((!requesterBuffer[index]) && responderBuffer[index]) {
+							//it is ok! use this
+							System.err.println(index + ".");
+							trigger(new GetUploaderResponse(peerSelf, requester, responder, index), network);
+							sent = true;
+							break;
+						}
+					}
+				}
 			}
 		}
 	};
@@ -127,7 +153,6 @@ public final class Tracker extends ComponentDefinition {
 		for (int i = 0; i < size; i++) {
 			intList.add(new Integer(i));
 		}
-		
 		Collections.shuffle(intList);
 		
 		return intList;
