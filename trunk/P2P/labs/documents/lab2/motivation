@@ -1,0 +1,14 @@
+q1>
+As expected, the dissemination of the data in the whole system is done faster as the upload bandwidth increases. This is explained by the fact that the total download rate in the system (at any moment) equals with the total update rate. So, since we have nodes with greater download bandwidth than upload bandwidth, increasing the upload speed of the nodes, increases the data dissemination.
+
+q2>
+Again, the diagram is as expected. Increasing the piece size increases the time that all nodes become peers. Since we have that the nodes of the system have higher download rate than upload one, each piece is transfered with the upload speed of the uploader node. So, each piece needs (piece size)/(upload bandwidth) to be transfered, thus increasing the piece size, increases the transfer time.
+
+q3>
+In this experiment we can notice we can see that increasing the in-degree decreases the download time in the system. That is rational, since if you have more upload slots available, than download slots then you do not have a full utilization of the upload slots in the whole process of the download. On the other hand, we noticed that even when we had 5 download slots and 5 upload one, we had an increase over the case we had 4 and 4. This happened because in the end of the dissemination, where there are several seeders, the leechers can utilize all their 5 download slots.
+
+q4>
+The explanation behind the results in this experiment is the same with the previous one with one difference. Here, the case were we have 5 upload slots and 4 download ones helps in the faster dissemination of the data in the beginning of the process, by allowing to increase the entropy within the system faster.
+
+q5>
+Our results reveal that the algorithm scales very well. We noticed that there is almost no dependency in data dissemination time and the network size. There is only a small tendency of increasing time. The results can be explained by the fact that each extra nodes, apart from consuming "system" bandwidth, it offers upload bandwidth.
