@@ -16,7 +16,7 @@ public class Scenario1 extends Scenario {
 
 		StochasticProcess process3 = new StochasticProcess() {{
 			eventInterArrivalTime(constant(100));
-			raise(300, Operations.peerJoin(PeerType.LEECHER), uniform(13));
+			raise(199, Operations.peerJoin(PeerType.LEECHER), uniform(13));
 		}};
 
 		process1.start();

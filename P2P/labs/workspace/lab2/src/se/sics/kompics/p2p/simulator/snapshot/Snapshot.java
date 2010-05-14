@@ -39,7 +39,7 @@ public class Snapshot {
 		String str = new String();
 		str += "current time: " + counter++ + "\n";
 		str += reportNetworkState();
-		str += reportDetailes();
+//		str += reportDetailes();
 		str += reportPeersStatus();
 		str += "###\n";
 		
