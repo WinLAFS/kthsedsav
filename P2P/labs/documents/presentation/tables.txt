@@ -1,0 +1,30 @@
+Decoyer
+Ordinary
+# of IPs
+624
+82,015
+# of users
+8,683
+117,673
+# of copies
+1,183,622
+347,939
+# of versions
+443,102
+167,103
+-------------------
+# of copies
+23,771
+17,104
+# of versions
+22,678
+3,907
+Decoyer
+Ordinary
+# of IPs
+26
+12,135
+# of users
+27
+12,545
+
